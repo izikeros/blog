@@ -84,3 +84,17 @@ TAG_CLOUD_STEPS = 4
 
 # Maximum number of tags in the cloud
 TAG_CLOUD_MAX_ITEMS = 100
+
+STATIC_PATHS = [
+    'images', 
+    'extra/robots.txt', 
+    'extra/favicon.ico'
+]
+EXTRA_PATH_METADATA = {
+    'extra/robots.txt': {'path': 'robots.txt'},
+    'extra/favicon.ico': {'path': 'favicon.ico'}
+}
+
+PLUGIN_PATH = './pelican-plugins'
+PLUGINS = ['ipynb.markup', 'tag_cloud']
+#PLUGINS = ['tag_cloud']
