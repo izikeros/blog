@@ -49,7 +49,7 @@ GOOGLE_CUSTOM_SEARCH = '006263355362628034990:cuxoisonrno'
 THEME = '/home/bulk/blogs/blog/pelican-themes/my-w3-personal-blog'
 
 DISPLAY_PAGES_ON_MENU = False
-DEFAULT_PAGINATION = 2
+DEFAULT_PAGINATION = 10
 
 # url and path settings
 RELATIVE_URLS = False
