@@ -31,10 +31,9 @@ LINKS = (
     # ('You can modify those links in your config file', '#'),
 )
 """
-# Social widget
+
 # Social widget
 SOCIAL = (
-    # 3247880
     ('<i class="fa-li fa fa-stack-overflow"></i> Stack', 'https://stackoverflow.com/users/3247880'),
     ('<i class="fa-li fa fa-linkedin"></i> Linkedin', 'https://www.linkedin.com/in/krystiansafjan'),
     ('<i class="fa-li fa fa-envelope"></i> Gmail', 'mailto:gmail.com'),
@@ -42,7 +41,9 @@ SOCIAL = (
 )
 
 # TWITTER_USERNAME = 'samael500'
+
 GITHUB_URL = ''
+
 GOOGLE_CUSTOM_SEARCH = '006263355362628034990:cuxoisonrno'
 
 THEME = '/home/bulk/blogs/blog/pelican-themes/my-w3-personal-blog'
@@ -53,7 +54,6 @@ DEFAULT_PAGINATION = 2
 # url and path settings
 RELATIVE_URLS = False
 CACHE_CONTENT = False
-#STATIC_PATHS = ['icons', 'media', 'extra', 'emojify', 'stuff', ]
 
 # article
 ARTICLE_URL = u'articles/{category}/{slug}/'
