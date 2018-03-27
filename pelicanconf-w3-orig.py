@@ -6,7 +6,7 @@ AUTHOR = u'Krystian Safjan'
 SITENAME = u'Safjan\'s blog'
 # SITESUBTITLE = u'Samael500'
 SITEURL = '/'
-#SITEURL = 'https://izikeros.github.com/blog'
+#SITEURL = 'https://safjan.com'
 KEYWORDS = u'Krystian Safjan personal blog'
 
 # Path to content directory to be processed by Pelican.
