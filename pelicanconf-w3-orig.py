@@ -43,7 +43,7 @@ SOCIAL = (
 # TWITTER_USERNAME = 'samael500'
 
 GITHUB_URL = ''
-
+DISQUS_SITENAME = 'krystian-safjan'
 GOOGLE_CUSTOM_SEARCH = '006263355362628034990:cuxoisonrno'
 
 THEME = '/home/bulk/blogs/blog/pelican-themes/my-w3-personal-blog'
