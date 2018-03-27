@@ -20,7 +20,7 @@ TIMEZONE = 'Europe/Warsaw'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_DOMAIN = SITEURL
+FEED_DOMAIN = 'https://safjan.com'
 
 # Blogroll
 """

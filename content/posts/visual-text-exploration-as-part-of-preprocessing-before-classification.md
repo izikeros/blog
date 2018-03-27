@@ -4,6 +4,7 @@ date: '2018-03-26T15:01:34+01:0'
 tags: NLP, python
 Category: Posts
 image: /images/img2.jpg
+Status: draft
 ---
 
 It's me!
