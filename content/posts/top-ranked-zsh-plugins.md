@@ -1,11 +1,11 @@
 ---
 title: Top-ranked ZSH plugins
 date: '2018-03-22T13:01:34+01:0'
-draft: false
 tags: zsh, scrapping, python
 Category: Posts
-image: /images/img2.jpg
-Summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Image: /images/img3.jpg
+Summary: There is exhaustive but curated list of ZSH plugins posted on Github project [Awesome ZSH plugins](https://github.com/unixorn/awesome-zsh-plugins). You can find there 800+ links to plugins, themes and zsh plugin managers/frameworks. Even though it is collection of `awesome` stuff the number is bit high get orientation which plugins gained already good reputation from ZSH users comunity. This post aims at identyfying most popular plugins where pupluarity is measured wuth number of stars that github users added to given plugin. For clarity I will focus here only on plugins excluding frameworks and themes that are also listed on "Awesome ZSH plugins" website.
+Status: published
 ---
 
 ZSH plugins that have highest count of [Github stars]()

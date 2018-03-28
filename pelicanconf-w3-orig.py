@@ -15,6 +15,8 @@ PATH = 'content'
 # Where to output the generated files
 OUTPUT_PATH = 'docs'
 
+THEME = '/home/izik/blog/pelican-themes/Flex'
+
 # languages settings
 TIMEZONE = 'Europe/Warsaw'
 DEFAULT_LANG = u'en'
@@ -46,9 +48,8 @@ GITHUB_URL = ''
 DISQUS_SITENAME = 'krystian-safjan'
 GOOGLE_CUSTOM_SEARCH = '006263355362628034990:cuxoisonrno'
 
-THEME = '/home/bulk/blogs/blog/pelican-themes/my-w3-personal-blog'
 
-DISPLAY_PAGES_ON_MENU = False
+DISPLAY_PAGES_ON_MENU = True
 DEFAULT_PAGINATION = 10
 
 # url and path settings
@@ -86,8 +87,8 @@ TAG_CLOUD_STEPS = 4
 TAG_CLOUD_MAX_ITEMS = 100
 
 STATIC_PATHS = [
-    'images', 
-    'extra/robots.txt', 
+    'images',
+    'extra/robots.txt',
     'extra/favicon.ico'
 ]
 EXTRA_PATH_METADATA = {
@@ -96,5 +97,5 @@ EXTRA_PATH_METADATA = {
 }
 
 PLUGIN_PATH = './pelican-plugins'
-PLUGINS = ['ipynb.markup', 'tag_cloud']
+PLUGINS = ['pelican-ipynb.markup', 'tag_cloud', 'neighbors','post_stats','related_posts','representative_image']
 #PLUGINS = ['tag_cloud']

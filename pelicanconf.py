@@ -1,1 +1,1 @@
-pelicanconf-w3-orig.py
+pelicanconf-flex.py

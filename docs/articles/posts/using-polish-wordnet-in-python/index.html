@@ -1,176 +1,159 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Using polish wordnet in Python | Safjan's blog</title>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#00aeff" />
-    <meta name="msapplication-navbutton-color" content="#00aeff" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#00aeff" />
+    <link rel="stylesheet" type="text/css" href="/theme/stylesheet/style.min.css">
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="robots" content="index, follow"/>
-    <meta name="keywords" content="article, python, NLP, Machine learning" />
-    <meta name="description" content="It's me!" />
-
-    <meta property="og:title" content="Using polish wordnet in Python"/>
-    <meta property="og:url" content="/articles/posts/using-polish-wordnet-in-python/"/>
-    <meta property="og:site_name" content="Safjan's blog"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:image" content="/images/img2.jpg" />
-    <meta property="og:description" content="It's me!" />
-
-    <link rel="canonical" href="/articles/posts/using-polish-wordnet-in-python/" />
-
-    <link href="https://safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Safjan's blog Atom">
+  <link rel="stylesheet" type="text/css" href="/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
-    <link rel="stylesheet" type="text/css" href="/theme/css/social-likes_flat.css" />
-
-    <script type="text/javascript" src="/theme/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/theme/js/social-likes.min.js"></script>
+    <link href="https://safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's blog Atom">
 
 
-    <link rel="stylesheet" type="text/css" href="/theme/css/tree.css" />
-    <link rel="stylesheet" type="text/css" href="/theme/css/anchorific.css" />
-    <script type="text/javascript" src="/theme/js/anchorific.js"></script>
+    <link rel="shortcut icon" href="/extra/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/extra/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="" />
+<meta name="keywords" content="python, NLP, Machine learning">
+<meta property="og:site_name" content="Krystian Safjan's blog"/>
+<meta property="og:title" content="Using polish wordnet in Python"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/articles/posts/using-polish-wordnet-in-python/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-03-26 15:01:34+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/krystian-safjan/">
+<meta property="article:section" content="Posts"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="NLP"/>
+<meta property="article:tag" content="Machine learning"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Krystian Safjan's blog &ndash; Using polish wordnet in Python</title>
+
 </head>
-<body id="index">
-<div class="header">  
-    <div class="container">
-        <div class="logo">
-            <a href="/">
-                SAFJAN'S BLOG            </a>
-        </div>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="/images/profile.jpg" alt="" title="">
+      </a>
+      <h1><a href=""></a></h1>
 
-        <div class="top-menu">
+<p>Independent Data Science Consultant</p>
+      <nav>
+        <ul class="list">
+          <li><a href="/about-me/#about-me">About me</a></li>
 
-            <div class="search">
+        </ul>
+      </nav>
 
-<script>
-  (function() {
-    var cx = '006263355362628034990:cuxoisonrno';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-
-<form id="searchbox_006263355362628034990:cuxoisonrno" action="https://www.google.com/">
-    <input value="006263355362628034990:cuxoisonrno" name="cx" type="hidden" />
-    <input value="FORID:11" name="cof" type="hidden" />
-    <input id="q" name="q" type="text" required />
-    <input type="submit" value="">
-</form>
-
-            </div>
-
-            <span class="menu"> </span>
-                <ul>
-                            <li class="active"><a href="/category/posts.html">POSTS</a></li>
-                    <div class="clearfix"></div>
-                </ul>
-
-            <div class="clearfix"></div>
-
-            <script>
-                $("span.menu").click(function(){
-                    $(".top-menu ul").slideToggle("slow" , function(){
-                    });
-                });
-            </script>
-        </div>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/izikeros" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+        <li><a class="sc-rss" href="https://safjan.com/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
     </div>
-</div>
-    <div class="content">
-        <div class="container">
-                <div class="content-grids">
-<div class="single-main">
 
-    <div class="col-md-9 single-grid">
 
-        <header>
-<h4>
-    <a href="/articles/posts/using-polish-wordnet-in-python/" title="Using polish wordnet in Python">Using polish wordnet in Python</a>
-    Mar 26, 2018
+  </aside>
+  <main>
+
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://safjan.com/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="using-polish-wordnet-in-python">Using polish wordnet in Python</h1>
+    <p>
+          Posted on Mon 26 March 2018 in <a href="/category/posts.html">Posts</a>
+
+
+        &#8226; 1 min read
+    </p>
+  </header>
+
+
+  <div>
+    
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/python/">python</a>
+      <a href="/tag/nlp/">NLP</a>
+      <a href="/tag/machine-learning/">Machine learning</a>
+    </p>
+  </div>
+
+
+  <div class="related-posts">
+    <h4>    You might enjoy
 </h4>
-
-<div class="footer art-info">
-    
-        Author: <a class="url fn" href="/author/krystian-safjan/">Krystian Safjan</a> |
-    
-    Category: <a href="/category/posts.html">Posts</a>
-    
-
-        | <a href="/articles/posts/using-polish-wordnet-in-python/#disqus_thread">Comments</a>
-
-    
-
-    
-        <br />
-        Tags:         <a href="/tag/python/">python</a>
-        <a href="/tag/nlp/">NLP</a>
-        <a href="/tag/machine-learning/">Machine learning</a>
-    
-</div><div class="social-likes">
-    <div class="twitter"  title="Share on Twitter">Twitter</div>
-    <div class="plusone" title="Share on Google+">Google+</div>
-</div>        </header>
-
-        <article class="content">
+    <ul class="related-posts">
+      <li><a href="/articles/posts/jupyter-notebook-extensions-useful-for-machine-learning/">Jupyter Notebook extensions useful for Machine Learning</a></li>
+      <li><a href="/articles/posts/visual-text-exploration-as-part-of-preprocessing-before-classification/">Visual Text Exploration as Part of Preprocessing Before Classification</a></li>
+      <li><a href="/articles/posts/how-to-add-pylint-code-quality-check-to-gitlab-workflow/">How to add PyLint code quality check to Gitlab workflow?</a></li>
+      <li><a href="/articles/posts/top-ranked-zsh-plugins/">Top-ranked ZSH plugins</a></li>
+      <li><a href="/articles/posts/first-post/">Notebook-ipynb</a></li>
+    </ul>
+  </div>
 
 
-            <p>It's me!</p>
-
-        </article>
-
-            <div class="comments">
-                <div id="disqus_thread"></div>
-                <script type="text/javascript">
-                    var disqus_identifier = "articles/posts/using-polish-wordnet-in-python/";
-                    (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//krystian-safjan.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                    })();
-                </script>
-            </div>
-    </div>
-    <div class="col-md-3 content-right">
-        <div class='anchorific'></div>
-    </div>
-</div>
-                </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div class="container">
-            <p>This site is using W3 Personal Blog a flat, responsive theme designed by <a href="https://w3layouts.com/personal-blog-a-blogging-category-flat-bootstrap-responsive-web-template/">W3layouts</a> ported to a pelican by <a href="http://samael500.github.io/">Samael500</a>.<p>
-            <p>Copyrights &copy; 2015&mdash;2017 Safjan's blog All rights reserved.</p>
-            
-        </div>
-    </div>
-
-
+<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'krystian-safjan';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Krystian Safjan </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's blog ",
+  "url" : "",
+  "image": "/images/profile.jpg",
+  "description": "Krystian Safjan's Thoughts and Writings"
+}
 </script>
 </body>
 </html>
