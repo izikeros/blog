@@ -13,12 +13,13 @@ How the kaggle image has grown?
 * plot number of packages time evolution (static plot)
 * show time evolution (gource or other animation) (spacecowb0y/gource_to_git.sh)
 
-What is inside kaggle-python docker image?    
+What is inside kaggle-python docker image?
+
     * classification (categories)
-    	- extract pip installs and add oneliner comment with description
-    	- do the same with github packages (second approximation)
+        - extract pip installs and add oneliner comment with description
+        - do the same with github packages (second approximation)
 
     * size of packages (brutto: package + dependencies, netto: package)
 
-    
+
     * propose to remove large and less-starred packages (remove_score=size/stars)

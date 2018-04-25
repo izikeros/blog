@@ -130,6 +130,7 @@ TAG_CLOUD_MAX_ITEMS = 100
 
 STATIC_PATHS = [
     'images',
+    'downloads',
     'extra/robots.txt',
     'extra/favicon.ico'
 ]
