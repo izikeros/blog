@@ -37,7 +37,7 @@ PATH = 'content'
 # Where to output the generated files
 OUTPUT_PATH = 'docs'
 
-THEME = '/home/izik/blog/pelican-themes/Flex'
+THEME = '/home/izix/blog/pelican-themes/Flex'
 THEME_COLOR = '#FF8000'
 
 # languages settings
@@ -49,7 +49,7 @@ FEED_DOMAIN = 'https://safjan.com'
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 FEED_ALL_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
+CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
 # Social widget
 SOCIAL = (
@@ -140,7 +140,15 @@ STATIC_PATHS = [
 #}
 
 PLUGIN_PATHS = ['./pelican-plugins']
-PLUGINS = ['pelican-ipynb.markup', 'tag_cloud', 'neighbors','post_stats','related_posts','representative_image']
+#PLUGINS = ['pelican-ipynb.markup', 'tag_cloud', 'neighbors','post_stats','related_posts','representative_image']
+PLUGINS = [
+        'pelican-ipynb.markup',
+        'tag_cloud',
+        'neighbors',
+        'post_stats',
+        'related_posts',
+        'representative_image'
+        ]
 #PLUGINS = ['tag_cloud']
 
 # Sitemap Settings
