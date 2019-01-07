@@ -28,6 +28,7 @@ FAVICON = '/extra/favicon.ico'
 ICONS_PATH = 'images/icons'
 
 SITEURL = 'https://safjan.com'
+SITEURL = ''
 KEYWORDS = u'Krystian Safjan blog'
 
 # Path to content directory to be processed by Pelican.
@@ -36,8 +37,8 @@ PATH = 'content'
 # Where to output the generated files
 OUTPUT_PATH = 'docs'
 
-#THEME = '/home/izix/blog/pelican-themes/Flex'
-THEME = './pelican-themes/Flex'
+THEME = '/home/izix/blog/pelican-themes/Flex'
+#THEME = 'pelican-themes/Flex'
 
 THEME_COLOR = '#FF8000'
 
