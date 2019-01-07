@@ -28,7 +28,7 @@ FAVICON = '/extra/favicon.ico'
 ICONS_PATH = 'images/icons'
 
 SITEURL = 'https://safjan.com'
-SITEURL = 'localhost'
+SITEURL = ''    # use for local development
 
 KEYWORDS = u'Krystian Safjan blog'
 
