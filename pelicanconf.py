@@ -28,6 +28,8 @@ FAVICON = '/extra/favicon.ico'
 ICONS_PATH = 'images/icons'
 
 SITEURL = 'https://safjan.com'
+SITEURL = 'localhost'
+
 KEYWORDS = u'Krystian Safjan blog'
 
 # Path to content directory to be processed by Pelican.
