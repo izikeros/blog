@@ -5,7 +5,7 @@ tags: python, pylint, gitlab
 Category: Posts
 image: /images/img1.jpg
 Summary: How to add PyLint code quality check to Gitlab workflow?
-Status: published
+Status: draft
 ---
 
 It's me!

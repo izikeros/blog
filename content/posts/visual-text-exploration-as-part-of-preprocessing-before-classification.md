@@ -5,7 +5,7 @@ tags: NLP, python
 Category: Posts
 image: /images/img2.jpg
 Summary: Visual text data exploration can help with early detection of patterns occuring in data set and bring ideas for processing actions that has to be taken. This post analyse tools that can be used for visual explaration and provides generic ideas for data inspection that can be applied in many text-exploration tasks.
-Status: published
+Status: draft
 ---
 
 Do tag cloud, frequency charts
