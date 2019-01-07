@@ -13,7 +13,7 @@ In this blog post I will share way to organize your Data Science project based o
 # Problem with finding valuable work you done in the Jupyter notebook in the past
 I had few problems like that. In my projects I used to find multiple untitled notebooks such as: `Untitled1.ipynb`, `Untitled2.ipynb`, `Untitled3.ipynb` - that requires extra effort to check out what is inside. Similarly with data: shall this be in `~/datasets` or `~/projects/my_project/datasets`. The need for standardization emerged after creating like dozen of notebook-based projects. Here are lessons learned and solutions worked out for my use cases.
 
-# Rules I follow
+# Rules I try to follow
 **Rule #1: Keep your projects directory clean**
 
 This means not to put notebooks directly in your `projects`, `src` directory (or as you call it) but rather keep each project in separate directory in order to have uniform structure and, at projects view level - only one item (directory) per project. This also help when using version control on project-level.
@@ -44,23 +44,28 @@ my_project_name/
 # Specific aspects for different use cases
 
 **End-to-end individual work**
+
 Characteristics:
+
 * short-time activity
 * low complexity
 * consist of small number of notebooks (fits into single notebook
+
 For longer/bigger projects consider using guidelines from Collaborative Project
 
 If not using version control or not doing small (atomic) commits consider adding changelog cell to track evolution of the notebook.
 
 **Collaborative project**
+
 Consider extracting some mature code into python module that in imported into notebook and take some effort to clean-up and test the code. Take advantage of using modern IDEs such as PyCharm.
 
 Using version control is also highly recommended even if tracing differences in json files (format of Jupyter notebooks) is less convenient when compared to plain source code you will have record of previous versions of notebook.
 
 **Individual work but final notebook shares as result**
+
 Take care of reproducibility - either for yourself if the updates to the outcome document will be needed or for someone else that would like to reproduce your results e.g. when following tutorial you created.
 
-For more complex project setup take look at [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science)
+For more complex project setup take look at [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science).
 
 # Additional Tips
 **Notebook metadata**
@@ -78,6 +83,7 @@ sales_file = Path.cwd() / "data" / "raw" / "Sales-History.csv"
 pipeline_file = Path.cwd() / "data" / "raw" / "pipeline_data.xlsx"
 summary_file = Path.cwd() / "data" / "processed" / f"summary_{today:%b-%d-%Y}.pkl"
 ```
+
 **Use cookiecutter to standardize your projects**
 
 To bootstrap the software projects from template one can use cookiecutter. You can create your template by following short instructions [](). Here is exception from the documentation:
