@@ -1,6 +1,6 @@
 ---
 Title: How to organize Data Science project based on Jupyter notebook
-Date: '2019-01-05T13:01:34+01:0'
+Date: '2019-01-05'
 Tags: jupyter, python, notebook, howto
 Category: Posts
 Image:  /images/head/books.jpg

@@ -1,10 +1,11 @@
 ---
 title: How to install TensorFlow and Keras on Windows 10
-date: '2019-01-17T06:00:00+01:0'
+date: '2019-01-17'
+Modified: '2019-02-08'
 tags: machine learning, tensorflow, howto
 Category: Posts
 image: /images/head/keras+tensorflow.jpg
-Summary: Here is a quick guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA.
+Summary: Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA.
 Status: published
 ---
 Quick guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA.
@@ -20,8 +21,9 @@ Quick guide on how to install TensorFlow cpu-only version - the case for machine
 # Creating Conda environment for working with TensorFlow and Keras
 Open `anaconda prompt` (hit `Win+Q`, type anaconda) and create conda virtualenv:
 ```sh
-conda create -n tf_windows python=3.6 anaconda
+conda create -n tf_windows python=3.6
 ```
+this will create minimal environement
 
 When the environment is created, activate it. After that the environment’s name will be added before the prompt.
 ```sh
@@ -79,3 +81,4 @@ Using TensorFlow backend.
 >>> print(backend._BACKEND)
 tensorflow
 >>>
+```
