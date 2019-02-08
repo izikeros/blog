@@ -44,3 +44,12 @@ then:
 * symlink required plugins
 
 
+## Jupyter notebooks
+### Hide prompt
+add code as below to the notebook (e.g. last cell) and execute
+```python
+from IPython.core.display import HTML
+HTML("<style>.prompt{display: None;</style>")
+```
+
+### Collapse cells
