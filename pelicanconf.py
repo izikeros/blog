@@ -15,14 +15,14 @@ SITE_AUTHOR = 'Krystian Safjan'
 AUTHOR = u'Krystian Safjan'
 
 # Note under profile image
-SITESUBTITLE = '<hr>Independent Data Science Consultant.</br>I blog about Machine Learning, Deep Learning and NLP.<hr>'
+SITESUBTITLE = '<hr>Data Scientist</br></br>I blog about Machine Learning, Deep Learning and NLP<hr>'
 
 # Description thet goes to metadata
 SITEDESCRIPTION = '%s\'s Thoughts and Writings' % AUTHOR
 
 INDEX_DESCRIPTION = 'A machine learning consultant with core expertise in Python and related technologies.'
 
-SITELOGO = '/images/profile.jpg'
+SITELOGO = '/images/profile_new.jpg'
 FAVICON = '/extra/favicon.ico'
 
 ICONS_PATH = 'images/icons'
@@ -152,6 +152,7 @@ PLUGINS = [
         'neighbors',
         'post_stats',
         'related_posts',
+        'render_math',
         'representative_image'
         ]
 #PLUGINS = ['tag_cloud']
