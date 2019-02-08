@@ -143,4 +143,5 @@ The next step involved full process and proved crossover and mutation to be effi
 
 <a id="credits"></a>
 # Credits
+<a id="cover-image-from-httpscommonswikimediaorgwikifilehigh_school_biology_1-13pdf-by-ck-12-foundation-on-cc-license"></a>
 Cover image from https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf by CK-12 Foundation on CC license

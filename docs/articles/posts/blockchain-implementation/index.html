@@ -25,11 +25,11 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="Toy project - Python implementation of blockchain in few lines of code." />
-<meta name="keywords" content="blockchain, cryptocurency, python">
+<meta name="description" content="Python implementation of blockchain in few lines of code." />
+<meta name="keywords" content="blockchain, cryptocurency, python, jupyter">
 <meta property="og:site_name" content="Krystian Safjan's blog"/>
 <meta property="og:title" content="Blockchain implementation"/>
-<meta property="og:description" content="Toy project - Python implementation of blockchain in few lines of code."/>
+<meta property="og:description" content="Python implementation of blockchain in few lines of code."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="/articles/posts/blockchain-implementation/"/>
 <meta property="og:type" content="article"/>
@@ -40,6 +40,7 @@
 <meta property="article:tag" content="blockchain"/>
 <meta property="article:tag" content="cryptocurency"/>
 <meta property="article:tag" content="python"/>
+<meta property="article:tag" content="jupyter"/>
 <meta property="og:image" content="/images/profile.jpg">
 
   <title>Krystian Safjan's blog &ndash; Blockchain implementation</title>
@@ -91,7 +92,7 @@
   <header>
     <h1 id="blockchain-implementation">Blockchain implementation</h1>
     <p>
-          Posted on Mon 26 March 2018 in <a href="/category/posts.html">Posts</a>
+          Posted on pon. 26 marzec 2018 in <a href="/category/posts.html">Posts</a>
 
 
         &#8226; 12 min read
@@ -1252,7 +1253,7 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-data-structure-for-block:">Create data structure for block:<a class="anchor-link" href="#Create-data-structure-for-block:">¶</a></h3><p>block 'metadata':</p>
+<h3 id="Create-data-structure-for-block:">Create data structure for block:<a class="anchor-link" href="#Create-data-structure-for-block:">&#182;</a></h3><p>block 'metadata':</p>
 <ul>
 <li>index - each block is numbered (has it's index)</li>
 <li>timestamp - block creation time needed for conflict resolution</li>
@@ -1264,15 +1265,16 @@ h6:hover .anchor-link {
 <li>data - actual 'payload' of the block</li>
 </ul>
 <p>The <code>hasher</code> aggregate all elements of block (except this block hash) and calculates hash.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">hashlib</span> <span class="k">as</span> <span class="nn">hasher</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">hashlib</span> <span class="k">as</span> <span class="nn">hasher</span>
 
 <span class="k">class</span> <span class="nc">Block</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">previous_hash</span><span class="p">):</span>
@@ -1287,65 +1289,73 @@ h6:hover .anchor-link {
         <span class="n">sha</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> 
                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span> <span class="o">+</span> 
                    <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> 
-                   <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">previous_hash</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+                   <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">previous_hash</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">sha</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First block in chain is different from the rest in that sense that it has no predecessor - there is no previous block.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">date</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">date</span>
 
 <span class="k">def</span> <span class="nf">create_genesis_block</span><span class="p">():</span>
     <span class="c1"># Manually construct a block with</span>
     <span class="c1"># index zero and arbitrary previous hash</span>
-    <span class="k">return</span> <span class="n">Block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="s2">"Genesis Block"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="s2">&quot;Genesis Block&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create next block based on last block</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">next_block</span><span class="p">(</span><span class="n">last_block</span><span class="p">):</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">next_block</span><span class="p">(</span><span class="n">last_block</span><span class="p">):</span>
     <span class="n">this_index</span> <span class="o">=</span> <span class="n">last_block</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">this_timestamp</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="n">this_data</span> <span class="o">=</span> <span class="s2">"Hey! I'm block "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">this_index</span><span class="p">)</span>
+    <span class="n">this_data</span> <span class="o">=</span> <span class="s2">&quot;Hey! I&#39;m block &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">this_index</span><span class="p">)</span>
     <span class="n">this_hash</span> <span class="o">=</span> <span class="n">last_block</span><span class="o">.</span><span class="n">hash</span>
     <span class="k">return</span> <span class="n">Block</span><span class="p">(</span><span class="n">this_index</span><span class="p">,</span> <span class="n">this_timestamp</span><span class="p">,</span> <span class="n">this_data</span><span class="p">,</span> <span class="n">this_hash</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create the blockchain and add the genesis block</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the blockchain and add the genesis block</span>
 <span class="n">blockchain</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_genesis_block</span><span class="p">()]</span>
 <span class="n">previous_block</span> <span class="o">=</span> <span class="n">blockchain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -1357,16 +1367,23 @@ h6:hover .anchor-link {
     <span class="n">block_to_add</span> <span class="o">=</span> <span class="n">next_block</span><span class="p">(</span><span class="n">previous_block</span><span class="p">)</span>
     <span class="n">blockchain</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block_to_add</span><span class="p">)</span>
     <span class="n">previous_block</span> <span class="o">=</span> <span class="n">block_to_add</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Block #</span><span class="si">{}</span><span class="s2"> has been added to the blockchain!"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">block_to_add</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s2">"Hash: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">block_to_add</span><span class="o">.</span><span class="n">hash</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Block #</span><span class="si">{}</span><span class="s2"> has been added to the blockchain!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">block_to_add</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Hash: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">block_to_add</span><span class="o">.</span><span class="n">hash</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Block #1 has been added to the blockchain!
 Block #2 has been added to the blockchain!
@@ -1393,31 +1410,39 @@ Hash: 5e42ea93c320918274453cbbcb0761a6a5c26fbf505b16340c256aae8d95a795
 </pre>
 </div>
 </div>
+
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
+
+</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
@@ -1454,6 +1479,7 @@ Hash: 5e42ea93c320918274453cbbcb0761a6a5c26fbf505b16340c256aae8d95a795
       <a href="/tag/blockchain/">blockchain</a>
       <a href="/tag/cryptocurency/">cryptocurency</a>
       <a href="/tag/python/">python</a>
+      <a href="/tag/jupyter/">jupyter</a>
     </p>
   </div>
 

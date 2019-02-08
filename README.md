@@ -3,21 +3,28 @@ This is repository with my blog [safjan.com](http://safjan.com).
 
 It is using Pelican - static site generator written in Python.
 
-## setup environment
+## setup environment - pip
 go to blog directory
-```
+```sh
 cd ~/blog
 ```
 
 create virtual env if none exist:
-```
+```sh
 pipenv --python 3.7
 ```
 
 install packages from Pipfile:
+```sh
+pipenv install pelican
 ```
-pipenv install
+
+## setup environment - conda
+```sh
+conda install -c conda-forge pelican typogrify
+conda install ipython markdown nbconvert jupyter beautifulsoup4 pylint
 ```
+
 
 ## install plugins and themes
 ### under linux
@@ -35,3 +42,5 @@ then:
 
 * create pelican-plugins directory in blog
 * symlink required plugins
+
+

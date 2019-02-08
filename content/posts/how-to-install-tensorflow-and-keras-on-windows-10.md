@@ -79,4 +79,3 @@ Using TensorFlow backend.
 >>> print(backend._BACKEND)
 tensorflow
 >>>
-```

@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's blog Atom">
+
+    <link href="https://safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's blog RSS">
+
+    <link rel="shortcut icon" href="/extra/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/extra/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I'm describing evolution model and design decisions. See the animation how the population was evolving through the epochs." />
+<meta name="keywords" content="machine learning, evolutionary">
+<meta property="og:site_name" content="Krystian Safjan's blog"/>
+<meta property="og:title" content="Darwin Approach to Traveling Salesman"/>
+<meta property="og:description" content="Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I'm describing evolution model and design decisions. See the animation how the population was evolving through the epochs."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/articles/posts/darwin-approach-to-traveling-salesman/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2019-01-12 06:00:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/krystian-safjan/">
+<meta property="article:section" content="Posts"/>
+<meta property="article:tag" content="machine learning"/>
+<meta property="article:tag" content="evolutionary"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Krystian Safjan's blog &ndash; Darwin Approach to Traveling Salesman</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="/images/profile.jpg" alt="" title="">
+      </a>
+      <h1><a href=""></a></h1>
+
+<p><hr>Independent Data Science Consultant.</br>I blog about Machine Learning, Deep Learning and NLP.<hr></p>
+      <nav>
+        <ul class="list">
+          <li><a href="/about-me/#about-me">About me</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/izikeros" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:ksafjan@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-mortar-board" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank"><i class="fa fa-mortar-board"></i></a></li>
+        <li><a class="sc-rss" href="/feeds/all.rss.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://safjan.com/feeds/all.atom.xml">    Atom
+</a>
+
+      <a href="https://safjan.com/feeds/all.rss.xml">    RSS
+</a>
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="darwin-approach-to-traveling-salesman">Darwin Approach to Traveling Salesman</h1>
+    <p>
+          Posted on sob. 12 styczeń 2019 in <a href="/category/posts.html">Posts</a>
+
+
+        &#8226; 6 min read
+    </p>
+  </header>
+
+
+  <div>
+    <!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#story-behind-this-post">Story behind this post</a></li>
+<li><a href="#traveling-salesman-problem-tsp">Traveling Salesman Problem (TSP)</a></li>
+<li><a href="#initial-note">Initial note</a></li>
+<li><a href="#solution-outline">Solution outline</a><ul>
+<li><a href="#adaptation">Adaptation</a></li>
+<li><a href="#natural-selection">Natural selection</a></li>
+<li><a href="#matching-for-the-reproduction">Matching for the reproduction</a></li>
+<li><a href="#create-children">Create children</a></li>
+<li><a href="#crossover">Crossover</a></li>
+<li><a href="#mutation">Mutation</a></li>
+</ul>
+</li>
+<li><a href="#evolution-in-action">Evolution in action</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#ideas-for-future-work">Ideas for future work:</a></li>
+<li><a href="#credits">Credits</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="story-behind-this-post"></a></p>
+<h1>Story behind this post</h1>
+<p>During my Christmas break I found blog post from Peter Brookes-Smith <a href="https://blog.objectivity.co.uk/darwin-and-the-travelling-salesperson/">Darwin and The Traveling Salesperson</a>. He wrote, that he was looking for some project for his holidays. He found the blog post that inspired him to start the project and solve the problem by himself without finishing the article. It was similar to my case. I had genetic algorithms in the back of my head for the long, long time. Now while having some spare time between Christmas and New Year - I decided to get my feed wet on that topic.</p>
+<p><a id="traveling-salesman-problem-tsp"></a></p>
+<h1>Traveling Salesman Problem (TSP)</h1>
+<p>The problem can be defined like this: having list of cities and finding the shortest route for salesman to visit each of them once and come back to the starting place.</p>
+<!-- ![TODO](tsp_animated_gif.gif) -->
+
+<p>For non-trivial cases of few cities, computational complexity for brute force search is high. The total number of unique routes (TNUR) is: <code>TNUR = 1/2*(n-1)!</code></p>
+<p>To help grasping the order of complexity - when number of cities grows beyond ~25, time required to brute force search for optimal solution would exceed age of known universe. </p>
+<!-- ![TODO](tps_time_complexity_vs_age_of_universe.gif) -->
+
+<p>The traveling salesman is a beautiful problem to test various optimization algorithms against it. The big portion of metaheuristic solutions came from the evolution algorithm family.</p>
+<p><a id="initial-note"></a></p>
+<h1>Initial note</h1>
+<p>This post is recording of almost naive attempt to apply evolution approach to solve the problem. Before writing this post, on purpose, I haven't done solid education on genetic algorithms so the terminology and methods might not correspond to ones established in the field. The positive side of this approach is that fun was not spoiled with existing solutions. This I meant as fun project not the conference paper. When the disclaimer was done, let's go to the problem solving.</p>
+<p><a id="solution-outline"></a></p>
+<h1>Solution outline</h1>
+<p>The idea for finding the best route using mechanisms that are available in nature in evolution process described by Karol Darwin is as follows:
+Algorithm initialization:</p>
+<ol>
+<li>Draw <strong>initial population</strong> of solutions - set of random routes (e.g. 500 routes). then, in the loop run epochs of evolution steps;</li>
+<li><strong>Adaptation</strong> - corresponds to minor improvements that organism is able to implement in order to better fit to the environment;</li>
+<li><strong>Natural selection</strong> - corresponds to challenges, threads posted by nature that strong organisms are able to handle and survive and weak units are lost;</li>
+<li><strong>Matching for reproduction</strong> - match members of the population in pairs to prepare for the reproduction</li>
+<li><strong>Create children</strong> - new organisms are born and their genome (route)consist of parts of routes coming from both parents (crossover mechanism). Add mutation to introduce further variation in the population;</li>
+<li><strong>Repeat the cycle</strong> - go to step 1, start new epoch.</li>
+</ol>
+<p><img alt="steps" src="/images/tsp/tsp_steps.png"></p>
+<p><strong>Figure 1. Steps of evolution algorithm</strong></p>
+<p><a id="adaptation"></a></p>
+<h2>Adaptation</h2>
+<p>I decided to include mechanism for minor, local improvements that in nature, organisms might be able to perform to better fit to the environment. The implementation of the adaptation is twofolds:
+1. Swap two consecutive cities on the list that represents the route and check if the change brought an improvement - if so, keep the change and check another pair of cities until the end of the list.
+2. Reverse three elements route segments and similarly, as in previous method - keep the change if the new, candidate route with reversed segment is shorter than version with non-reversed segment.
+Both are implemented "swapper" or "reverser" as moving along the list of cities in the route.
+<!-- <img alt="TODO" src="tsp_reverse_two.jpg"> -->
+<!-- <img alt="TODO" src="tsp_reverse_three.jpg"> --></p>
+<p><a id="natural-selection"></a></p>
+<h2>Natural selection</h2>
+<p>Natural selection allows to remove poor solutions and make room for new experimental variants of routes that inherit features from best solutions found so far. The implementation was to sort the solutions in the ascending order and keep only <code>10%</code> of the best solutions. </p>
+<p><a id="matching-for-the-reproduction"></a></p>
+<h2>Matching for the reproduction</h2>
+<p>"Elite" selected in the natural selection step is then used to create pairs of parents to be used in the single act of reproduction. The pairs were drawn randomly with returning, but the random distribution was not uniform. The shortest route of the solution, the higher chance that solution will be taken as a parent. The probability for selecting the solution was proportional to the inverse of the solution route length i.e. the shorter route - higher probability to be drawn as parent. Given organism could be selected as a pair element for multiple reproductions - which should be the case especially for best fitted solutions (ones with shortest route).</p>
+<p><a id="create-children"></a></p>
+<h2>Create children</h2>
+<p>In the process of reproduction always two children were born: one that was effect of crossover routes from mother and father and second, based on the same crossover but with mutation added.
+When drawing pairs, organism is assigned to the role of mother or father what is important only for the crossover process. </p>
+<p><a id="crossover"></a></p>
+<h2>Crossover</h2>
+<p>In crossover selected segment of given length (e.g. 5 cities) of the route from father is being injected into mother's route. The starting element of the segment in being found in mother's route, and the mother's route is divided into three parts: before "anchor" element, "anchor" element and after "anchor element. The "anchor" element is replaced by injection. In the next steps mother's route in cleaned up in order to remove duplicate cities (those that appeared in injection from the father). The cities from the injection were remove from the before anchor and from the after anchor part.</p>
+<!-- ![TODO](tsp_crossover.jpg) -->
+
+<p><a id="mutation"></a></p>
+<h2>Mutation</h2>
+<p>The children obtained by applying crossover is then duplicated to have second child that will be additionally mutated. Mutation is implemented as the random swap of two cities in the list.</p>
+<!-- ![TODO](tsp_mutation.jpg) -->
+
+<p><a id="evolution-in-action"></a></p>
+<h1>Evolution in action</h1>
+<p>The whole setup of the experiment is highly parametrized and gives endless opportunities to experiment with various setups. The results shown in this blog were produced for this parametrization:</p>
+<div class="highlight"><pre><span></span><span class="c1"># number of cities</span>
+<span class="n">num_cities</span> <span class="o">=</span> <span class="mi">80</span>
+
+<span class="c1"># size of initial population (number of initial random routes)</span>
+<span class="n">num_routes</span> <span class="o">=</span> <span class="mi">400</span>
+
+<span class="c1"># fraction of organisms that survives natural selection process</span>
+<span class="n">survival</span> <span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.1</span>
+</pre></div>
+
+
+<p>In the first step of implementation I was able to measure the effect of local adaptation and gains achieved with this mechanism. While running single swap of two elements and single reverse or three elements segment gains on random routes were up to 1%. Graphical representation of the route changes confirms that improvement was small - routes still have high degree of randomness and are far from being optimal.</p>
+<p>In the next step I brought this adaptation process to extreme number to check it's potential - what maximum improvements are possible here. Of course achieving stabilization of the results here would be difficult but I verified what will happen when we change number of two- and three elements reversing cycles from 1x to 100x times. The improvements achieved in this configuration were XX in average.</p>
+<p>The next step involved full process and proved crossover and mutation to be efficient for improving solution quality i.e. finding as short route as possible.</p>
+<p><img alt="best tour" src="/images/tsp/tsp_r-tour_animation.gif"></p>
+<p><strong>Figure 2. Visualization of best route found in each epoch</strong></p>
+<p><img alt="length" src="/images/tsp/tsp_r-len.png"></p>
+<p><strong>Figure 3. Length of shortest route found in given epoch of evolution process</strong></p>
+<p><a id="conclusion"></a></p>
+<h1>Conclusion</h1>
+<ol>
+<li>The experiment shown me the beauty of evolutionary approach - directed but random evolution leads to emergence of the order and optimized solutions (however not optimal solutions).</li>
+<li>The fitness of the solution is stabilizing after ~100 epochs. The population doesn't have sufficient new genomes and variation decreases. With this, ability to overcome imperfections in best route found so far drops significantly.   </li>
+<li>Being under impression of robustness of the evolutionary system I'm eager to try evaluational approach as alternative to Reinforcement learning such as described on <a href="https://blog.openai.com/evolution-strategies/">openai blog</a></li>
+<li>Technical one: even such a side project playing with numerical problem benefits from accompanying tests.Many annoying bugs that appeared during the implementation (mainly from global range of variables), and covering (at least partially) code with tests helped out to progress.</li>
+</ol>
+<p><a id="ideas-for-future-work"></a></p>
+<h1>Ideas for future work:</h1>
+<ul>
+<li>Deploy it in server-less mode of operation. Route calculations and transformations are great candidates for "lambda" functions.</li>
+<li>Use GPU to compute things in parallel</li>
+<li>Overcome stagnation of evolution by evolving several populations independently and allow for contact between populations from time to time - transfer some solutions from one to another population.</li>
+</ul>
+<p><a id="credits"></a></p>
+<h1>Credits</h1>
+<p><a id="cover-image-from-httpscommonswikimediaorgwikifilehigh_school_biology_1-13pdf-by-ck-12-foundation-on-cc-license"></a>
+Cover image from https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf by CK-12 Foundation on CC license</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/machine-learning/">machine learning</a>
+      <a href="/tag/evolutionary/">evolutionary</a>
+    </p>
+  </div>
+
+
+  <div class="related-posts">
+    <h4>    If you liked this article, you might also enjoy:
+</h4>
+    <ul class="related-posts">
+      <li><a href="/articles/posts/how-to-install-tensorflow-and-keras-on-windows-10/">How to install TensorFlow and Keras on Windows 10</a></li>
+    </ul>
+  </div>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'krystian-safjan';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Krystian Safjan </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's blog ",
+  "url" : "",
+  "image": "/images/profile.jpg",
+  "description": "Krystian Safjan's Thoughts and Writings"
+}
+</script>
+</body>
+</html>
