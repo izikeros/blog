@@ -1,5 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's blog - Krystian Safjan</title><link href="/" rel="alternate"></link><link href="https://safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>/</id><updated>2019-02-08T00:00:00+01:00</updated><subtitle>&lt;hr&gt;Data Scientist&lt;/br&gt;&lt;/br&gt;I blog about Machine Learning, Deep Learning and NLP&lt;hr&gt;</subtitle><entry><title>How to install TensorFlow and Keras on Windows 10</title><link href="/articles/posts/how-to-install-tensorflow-and-keras-on-windows-10/" rel="alternate"></link><published>2019-01-17T00:00:00+01:00</published><updated>2019-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:None,2019-01-17:/articles/posts/how-to-install-tensorflow-and-keras-on-windows-10/</id><summary type="html">&lt;p&gt;Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Quick guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's blog - Krystian Safjan</title><link href="/" rel="alternate"></link><link href="https://safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>/</id><updated>2019-02-16T00:00:00+01:00</updated><subtitle>&lt;hr&gt;Data Scientist&lt;/br&gt;&lt;/br&gt;I blog about Machine Learning, Deep Learning and NLP&lt;hr&gt;</subtitle><entry><title>Kaggle evaluation metrics used for regression problems</title><link href="/articles/posts/kaggle-evaluation-metrics-used-for-regression-problems/" rel="alternate"></link><published>2019-02-16T00:00:00+01:00</published><updated>2019-02-16T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:None,2019-02-16:/articles/posts/kaggle-evaluation-metrics-used-for-regression-problems/</id><summary type="html">&lt;p&gt;This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely: Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE).&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#prologue"&gt;Prologue&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#absolute-error---ae"&gt;Absolute Error - AE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#mean-absolute-error---mae"&gt;Mean Absolute Error - MAE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#weighted-mean-absolute-error---wmae"&gt;Weighted Mean Absolute Error - WMAE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pearson-correlation-coefficient"&gt;Pearson Correlation Coefficient&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#spearman%E2%80%99s-rank-correlation"&gt;Spearman’s Rank Correlation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#root-mean-squared-error---rmse"&gt;Root Mean Squared Error - RMSE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#root-mean-squared-logarithmic-error---rmsle"&gt;Root Mean Squared Logarithmic Error - RMSLE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#mean-columnwise-root-mean-squared-error---mcrmse"&gt;Mean Columnwise Root Mean Squared Error - MCRMSE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="prologue"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Prologue&lt;/h2&gt;
+&lt;p&gt;While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The &lt;a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics"&gt;sklearn.metrics&lt;/a&gt; provides plethora of metrics for suitable for distinct purposes.&lt;/p&gt;
+&lt;p&gt;In this series of posts I will discuss four groups of common machine learning tasks each requires specific metrics:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Regression&lt;/em&gt; - predict value of one or more variables that are continuous, e.g. predict stock price of given asset or predict temperature for next day.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Binary classification&lt;/em&gt; - assign sample to one of two classes - example: classify image as one containing "cat" or "dog"&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Multiple class classification&lt;/em&gt; - assign sample to one of many classes example: classify new article to category "sport", "politics", "economy", "pop-culture",...&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Other&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;a href="https://www.kaggle.com/competitions"&gt;Kaggle competitions&lt;/a&gt; give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There use to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems.&lt;/p&gt;
+&lt;p&gt;&lt;a id="absolute-error---ae"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Absolute Error - AE&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;The sum of the absolute value of each individual error.&lt;/strong&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\mathrm{AE} = \sum_{i=1}^n | y_i - \hat{y}_i |
+$$&lt;/div&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\mathrm{AE} = |e_i| = |y_i-\hat{y_i}|\)&lt;/span&gt;,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(n\)&lt;/span&gt; - number test of samples,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(y_i\)&lt;/span&gt; - actual variable value, &lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{y}_i\)&lt;/span&gt; - predicted variable value.&lt;/p&gt;
+&lt;p&gt;MAE can cause notable difference between public and private leaderboard calculations. One drawback of the Absolute Error metrics is that direct comparison of the metrics for model used to predict variables on different scales is not possible. E.g. when using model to financial predictions of S&amp;amp;P 500 index and using the same model to predict value of Microsoft stock price we cannot compare their performance using this metrics since units and ranges are different. The S&amp;amp;P 500 is expressed in points and stock price of asset is expressed in dollars. In this situation one can use (percentage error) to get evaluation metrics in common scale.&lt;/p&gt;
+&lt;p&gt;&lt;a id="mean-absolute-error---mae"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Mean Absolute Error - MAE&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Mean of the absolute value of each individual error.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The mean absolute error (MAE) is a quantity used to measure how close forecasts or predictions are to the eventual outcomes. The mean absolute error is given by formula:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\mathrm{MAE} = \frac{1}{n}\sum_{i=1}^n \left| y_i - \hat{y_i}\right| =\frac{1}{n}\sum_{i=1}^n \left| e_i \right|.
+$$&lt;/div&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(n\)&lt;/span&gt; - number test of samples,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(y_i\)&lt;/span&gt; - actual variable value, &lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{y}_i\)&lt;/span&gt; - predicted variable value.&lt;/p&gt;
+&lt;p&gt;see also:
+&lt;a href="http://climate.geog.udel.edu/~climate/publication_html/Pdf/WM_CR_05.pdf"&gt;Advantages of the mean absolute error (MAE) over the root mean square error (RMSE) in assessing average model performance&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="weighted-mean-absolute-error---wmae"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Weighted Mean Absolute Error - WMAE&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Weighted average of absolute errors.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;WMAE can be used as evaluation tool for better assessing the model performance with respect to the goals of the application. For example, in the case of recommending books or movies it could be possible that the accuracy of the predictions varies when focusing on past or recent products. In this situation, it is not reasonable that every error were treated equally, so more stress should be put in recent items.&lt;/p&gt;
+&lt;p&gt;WMAE can be also useful as a diagnosis tool that, using a "magnifying lens", can help to identify those cases where an algorithm is having trouble with. The formula for calculating WMAE is:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\textrm{WMAE} = \frac{1}{n} \sum_{i=1}^n w_i | y_i - \hat{y}_i |,
+$$&lt;/div&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(n\)&lt;/span&gt; - number test of samples,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(w_i\)&lt;/span&gt; - weights for sample &lt;span class="math"&gt;\(i\)&lt;/span&gt;,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(y_i\)&lt;/span&gt; - actual variable value,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{y}_i\)&lt;/span&gt; - predicted variable value.&lt;/p&gt;
+&lt;p&gt;&lt;a id="pearson-correlation-coefficient"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Pearson Correlation Coefficient&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Covariance of the two variables divided by the product of the standard deviation of each data sample.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It is the normalization of the covariance between the two variables to give an interpretable score. The Pearson correlation coefficient can be used to summarize the strength of the linear relationship between two data samples. The formula for calculating Pearson correlation coefficient is:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+p = \frac{cov(y_i, \hat{y}_i)}{std(y_i)  std(\hat{y}_i)}
+$$&lt;/div&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(cov()\)&lt;/span&gt; - is covariation function,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(std()\)&lt;/span&gt; - is standard deviation&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(y_i\)&lt;/span&gt; - actual variable value, &lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{y}_i\)&lt;/span&gt; - predicted variable value&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(p\)&lt;/span&gt; - Pearson correlation coefficient.&lt;/p&gt;
+&lt;p&gt;The use of mean and standard deviation in the calculation requires data samples to have a Gaussian or Gaussian-like distribution.&lt;/p&gt;
+&lt;p&gt;&lt;a id="spearman%E2%80%99s-rank-correlation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Spearman’s Rank Correlation&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each variable.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Two variables may be related by a nonlinear relationship, such that the relationship is stronger or weaker across the distribution of the variables. The two variables being considered may have a non-Gaussian distribution.&lt;/p&gt;
+&lt;p&gt;The Spearman’s correlation coefficient can be used to summarize the nonlinear relation between the two data samples. Raw scores &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; and &lt;span class="math"&gt;\(\hat{y}_i\)&lt;/span&gt; are converted to ranks respectively: &lt;span class="math"&gt;\(ry_i\)&lt;/span&gt; and &lt;span class="math"&gt;\(\hat{ry}_i\)&lt;/span&gt;. The formula for calculating Spearman's rank correlation coefficient is:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+r=\frac{cov(ry_i, \hat{ry}_i)}{std(ry_i)std(\hat{ry}_i)}
+$$&lt;/div&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(cov()\)&lt;/span&gt; - is covariation function,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(std()\)&lt;/span&gt; - is standard deviation,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(ry_i\)&lt;/span&gt; - rank of variable value, &lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{ry}_i\)&lt;/span&gt; - rank of predicted variable value,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(r\)&lt;/span&gt; - Spearman's correlation coefficient.&lt;/p&gt;
+&lt;p&gt;&lt;a id="root-mean-squared-error---rmse"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Root Mean Squared Error - RMSE&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;The square root of the mean/average of the square of all of the error.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The use of RMSE is very common and it makes an excellent general purpose error metric for numerical predictions. Compared to the similar Mean Absolute Error, RMSE amplifies and severely punishes large errors. The formula for calculating RMSE is:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\mathrm{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+$$&lt;/div&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(n\)&lt;/span&gt; - number test of samples,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(y_i\)&lt;/span&gt; - actual variable value, &lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{y}_i\)&lt;/span&gt; - predicted variable value.&lt;/p&gt;
+&lt;p&gt;&lt;a id="root-mean-squared-logarithmic-error---rmsle"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Root Mean Squared Logarithmic Error - RMSLE&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Root mean squared error of variables transformed to logarithmic scale&lt;/strong&gt;.
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\mathrm{RMSLE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(log(\hat{y}_i + 1) - log(y_i + 1))^2}
+$$&lt;/div&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(n\)&lt;/span&gt; - number of test samples,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{y}_i\)&lt;/span&gt; is the predicted variable,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(y_i\)&lt;/span&gt; is the actual variable,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(log(x)\)&lt;/span&gt; is the natural logarithm of &lt;span class="math"&gt;\(x\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The RMSLE is higher when the discrepancies between predicted and actual values are larger. Compared to Root Mean Squared Error (RMSE), RMSLE does not heavily penalize huge discrepancies between the predicted and actual values when both values are huge. In this cases only the percentage differences matter (difference of variable logarithms is equivalent to ratio of variables).&lt;/p&gt;
+&lt;p&gt;&lt;a id="mean-columnwise-root-mean-squared-error---mcrmse"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Mean Columnwise Root Mean Squared Error - MCRMSE&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Errors of each k-fold CV trials were averaged over n test samples across m target variables.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="math"&gt;$$
+MCRMSE = \frac{1}{m}\sum_{j=1}^{m}\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_
+{ij}-\hat{y}_{ij})^2}
+$$&lt;/div&gt;
+&lt;p&gt;
+Note that expression under square root is RMSE, thus we can write:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+MCRMSE = \frac{1}{m}\sum_{j=1}^{m}RMSE_j
+$$&lt;/div&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(m\)&lt;/span&gt; - number of predicted variables,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(n\)&lt;/span&gt; - number of test samples,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(y_{ij}\)&lt;/span&gt; - &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th actual value of &lt;span class="math"&gt;\(j\)&lt;/span&gt;-th variable,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\hat{y}_{ij}\)&lt;/span&gt; - &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th predicted value of &lt;span class="math"&gt;\(j\)&lt;/span&gt;-th variable.&lt;/p&gt;
+&lt;p&gt;&lt;a id="references"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="archive.org"&gt;Kaggle wiki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.ke.tu-darmstadt.de/lehre/arbeiten/studien/2015/Dong_Ying.pdf"&gt;Beating Kaggle the easy way, page 43&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/"&gt;How to Use Correlation to Understand the Relationship Between Variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://books.google.pl/books?id=bsEDCwAAQBAJ&amp;amp;pg=PA23&amp;amp;lpg=PA23&amp;amp;dq=%22Mean+Column+Wise+Root+Mean+Squared+Error%22&amp;amp;source=bl&amp;amp;ots=CXTjTNgehR&amp;amp;sig=ACfU3U0Jsn7QkzFecjR-EQC5mtD9p_lBCA&amp;amp;hl=en&amp;amp;sa=X&amp;amp;ved=2ahUKEwjAqYPixa_gAhXF8qYKHeGrDbYQ6AEwBXoECAAQAQ#v=onepage&amp;amp;q=%22Mean%20Column%20Wise%20Root%20Mean%20Squared%20Error%22&amp;amp;f=false"&gt;Mean Columnwise Root Mean Squared Error - google books&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="machine learning"></category><category term="evaluation"></category><category term="metrics"></category><category term="performance"></category></entry><entry><title>How to install TensorFlow and Keras on Windows 10</title><link href="/articles/posts/how-to-install-tensorflow-and-keras-on-windows-10/" rel="alternate"></link><published>2019-01-17T00:00:00+01:00</published><updated>2019-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:None,2019-01-17:/articles/posts/how-to-install-tensorflow-and-keras-on-windows-10/</id><summary type="html">&lt;p&gt;Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Quick guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA.
 &lt;!-- MarkdownTOC autolink="true" autoanchor="true" --&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#creating-conda-environment-for-working-with-tensorflow-and-keras"&gt;Creating Conda environment for working with TensorFlow and Keras&lt;/a&gt;&lt;/li&gt;
@@ -256,7 +454,7 @@ For that we will need to import &lt;code&gt;Path&lt;/code&gt; from &lt;code&gt;p
 &lt;blockquote&gt;
 &lt;p&gt;Cookiecutter takes a source directory tree and copies it into your new project. It replaces all the names that it finds surrounded by templating tags &lt;code&gt;{{&lt;/code&gt; and &lt;code&gt;}}&lt;/code&gt; with names that it finds in the file &lt;code&gt;cookiecutter.json&lt;/code&gt;. That’s basically it.&lt;/p&gt;
 &lt;p&gt;The replaced names can be file names, directory names, and strings inside files.&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="jupyter"></category><category term="python"></category><category term="notebook"></category><category term="howto"></category></entry><entry><title>What's cooking</title><link href="/articles/posts/whats-cooking/" rel="alternate"></link><published>2018-04-05T00:00:00+02:00</published><updated>2018-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:None,2018-04-05:/articles/posts/whats-cooking/</id><summary type="html">&lt;p&gt;Exploratory Data Anlysis of the Kaggle's "What's cooking" competition dataset to get understanding what kind of data we are dealing with and get intuition of existing dependecies.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;/blockquote&gt;</content><category term="jupyter"></category><category term="python"></category><category term="notebook"></category><category term="howto"></category><category term="machine learning"></category></entry><entry><title>What's cooking</title><link href="/articles/posts/whats-cooking/" rel="alternate"></link><published>2018-04-05T00:00:00+02:00</published><updated>2018-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:None,2018-04-05:/articles/posts/whats-cooking/</id><summary type="html">&lt;p&gt;Exploratory Data Anlysis of the Kaggle's "What's cooking" competition dataset to get understanding what kind of data we are dealing with and get intuition of existing dependecies.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -2237,7 +2435,7 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="python"></category><category term="jupyter"></category><category term="kaggle"></category><category term="NLP"></category><category term="EDA"></category></entry><entry><title>Blockchain implementation</title><link href="/articles/posts/blockchain-implementation/" rel="alternate"></link><published>2018-03-26T00:00:00+02:00</published><updated>2018-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:None,2018-03-26:/articles/posts/blockchain-implementation/</id><summary type="html">&lt;p&gt;Python implementation of blockchain in few lines of code.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+</content><category term="python"></category><category term="jupyter"></category><category term="kaggle"></category><category term="NLP"></category><category term="EDA"></category><category term="machine learning"></category></entry><entry><title>Blockchain implementation</title><link href="/articles/posts/blockchain-implementation/" rel="alternate"></link><published>2018-03-26T00:00:00+02:00</published><updated>2018-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:None,2018-03-26:/articles/posts/blockchain-implementation/</id><summary type="html">&lt;p&gt;Python implementation of blockchain in few lines of code.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
