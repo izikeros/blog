@@ -1,6 +1,7 @@
 ---
 Title: Top popular Zsh plugins on Github
 Date: '2018-03-22'
+Start: '2018-03-22'
 Tags: zsh, scrapping, python
 Category: Posts
 Image: /images/zsh/inside-work-tree.jpg

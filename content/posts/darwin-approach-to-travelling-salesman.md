@@ -1,11 +1,13 @@
 ---
-title: Darwin Approach to Traveling Salesman
-date: '2019-01-12'
-tags: machine learning, evolutionary, 
-category: Posts
-image: /images/head/cells_small.jpg
-summary: Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I'm describing evolution model and design decisions. See the animation how the population was evolving through the epochs.
-status: published
+Title: Darwin Approach to Traveling Salesman
+Date: '2019-01-12'
+Started: '2018-12-25'
+Modified: '2019-01-12'
+Tags: machine learning, evolutionary, 
+Category: Posts
+Image: /images/head/cells_small.jpg
+Summary: Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I'm describing evolution model and design decisions. See the animation how the population was evolving through the epochs.
+Status: published
 ---
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
