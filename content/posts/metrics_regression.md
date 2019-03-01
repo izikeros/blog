@@ -2,6 +2,7 @@
 Title: Kaggle evaluation metrics used for regression problems
 Date: 2019-02-16
 Start: 2019-02-05
+Modified: 2019-03-01
 Tags: machine learning, evaluation, metrics, performance
 Category: Posts
 Image: /images/head/performance_metrics.jpg
@@ -12,7 +13,6 @@ Status: published
 
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
-- [Prologue](#prologue)
 - [Absolute Error - AE](#absolute-error---ae)
 - [Mean Absolute Error - MAE](#mean-absolute-error---mae)
 - [Weighted Mean Absolute Error - WMAE](#weighted-mean-absolute-error---wmae)
@@ -24,9 +24,6 @@ Status: published
 - [References](#references)
 
 <!-- /MarkdownTOC -->
-
-<a id="prologue"></a>
-## Prologue
 
 While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The [sklearn.metrics](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics) provides plethora of metrics for suitable for distinct purposes.
 
@@ -59,6 +56,10 @@ $\hat{y}_i$ - predicted variable value.
 
 MAE can cause notable difference between public and private leaderboard calculations. One drawback of the Absolute Error metrics is that direct comparison of the metrics for model used to predict variables on different scales is not possible. E.g. when using model to financial predictions of S&P 500 index and using the same model to predict value of Microsoft stock price we cannot compare their performance using this metrics since units and ranges are different. The S&P 500 is expressed in points and stock price of asset is expressed in dollars. In this situation one can use (percentage error) to get evaluation metrics in common scale.
 
+Exemplary competition using Mean Absolute Error for model evaluation:
+
+- [Forecast Eurovision Voting](https://www.kaggle.com/c/Eurovision2010#Evaluation) - This competition requires contestants to forecast the voting for this year's Eurovision Song Contest in Norway on May 25th, 27th and 29th.
+
 <a id="mean-absolute-error---mae"></a>
 ## Mean Absolute Error - MAE
 **Mean of the absolute value of each individual error.**
@@ -73,14 +74,26 @@ Where:
 
 $n$ - number test of samples,
 
-$y_i$ - actual variable value, 
+$y_i​$ - actual variable value, 
 
 $\hat{y}_i$ - predicted variable value.
 
-see also:
-[Advantages of the mean absolute error (MAE) over the root mean square error (RMSE) in assessing average model performance](http://climate.geog.udel.edu/~climate/publication_html/Pdf/WM_CR_05.pdf)
+see also [paper](http://climate.geog.udel.edu/~climate/publication_html/Pdf/WM_CR_05.pdf): Advantages of the mean absolute error (MAE) over the root mean square error (RMSE) in assessing average model performance
+
+Five exemplary competitions using Mean Absolute Error for model evaluation:
+
+- [LANL Earthquake Prediction](https://www.kaggle.com/c/LANL-Earthquake-Prediction#evaluation) - Can you predict upcoming laboratory earthquakes?
+
+* [PUBG Finish Placement Prediction](https://www.kaggle.com/c/pubg-finish-placement-prediction#evaluation) - Can you predict the battle royale finish of PUBG Players?
+
+* [Allstate Claims Severity](https://www.kaggle.com/c/allstate-claims-severity#evaluation) - How severe is an insurance claim? 
+
+* [Loan Default Prediction - Imperial College London](https://www.kaggle.com/c/loan-default-prediction#evaluation) - Constructing an optimal portfolio of loans.
+
+* [Finding Elo](https://www.kaggle.com/c/finding-elo#evaluation) - Predict a chess player's FIDE Elo rating from one game.
 
 <a id="weighted-mean-absolute-error---wmae"></a>
+
 ## Weighted Mean Absolute Error - WMAE
 **Weighted average of absolute errors.**
 
@@ -102,8 +115,14 @@ $y_i$ - actual variable value,
 
 $\hat{y}_i$ - predicted variable value.
 
+Two exemplary competitions using Weighted Mean Absolute Error for model evaluation:
+
+* [The Winton Stock Market Challenge](https://www.kaggle.com/c/the-winton-stock-market-challenge#evaluation) - Join a multi-disciplinary team of research scientists.
+
+* [Walmart Recruiting - Store Sales Forecasting](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting#evaluation) - Use historical markdown data to predict store sales.
 
 <a id="pearson-correlation-coefficient"></a>
+
 ## Pearson Correlation Coefficient
 **Covariance of the two variables divided by the product of the standard deviation of each data sample.**
 
@@ -127,7 +146,12 @@ $p$ - Pearson correlation coefficient.
 
 The use of mean and standard deviation in the calculation requires data samples to have a Gaussian or Gaussian-like distribution.
 
+Exemplary competition using Pearson Correlation Coefficient for model evaluation:
+
+* [Merck Molecular Activity Challenge](https://www.kaggle.com/c/MerckActivity#evaluation) - Help develop safe and effective medicines by predicting molecular activity.
+
 <a id="spearman%E2%80%99s-rank-correlation"></a>
+
 ## Spearman’s Rank Correlation
 **Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each variable.**
 
@@ -151,6 +175,10 @@ $\hat{ry}_i$ - rank of predicted variable value,
 
 $r$ - Spearman's correlation coefficient.
 
+Exemplary competition using Spearman’s Rank Correlation for model evaluation:
+
+* Draper Satellite Image Chronology](https://www.kaggle.com/c/draper-satellite-image-chronology#evaluation) - Can you put order to space and time?
+
 <a id="root-mean-squared-error---rmse"></a>
 ## Root Mean Squared Error - RMSE
 **The square root of the mean/average of the square of all of the error.**
@@ -169,8 +197,22 @@ $y_i$ - actual variable value,
 
 $\hat{y}_i$ - predicted variable value.
 
+Five exemplary competition using Root Mean Squared Error for model evaluation:
+
+* [Elo Merchant Category Recommendation](https://www.kaggle.com/c/elo-merchant-category-recommendation#evaluation) - Help understand customer loyalty.
+
+* [Google Analytics Customer Revenue Prediction](https://www.kaggle.com/c/ga-customer-revenue-prediction#evaluation) - Predict how much GStore customers will spend.
+
+* [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques#evaluation) - Predict sales prices and practice feature engineering, RFs, and gradient boosting.
+
+* [Predict Future Sales](https://www.kaggle.com/c/competitive-data-science-predict-future-sales#evaluation) - Final project for "How to win a data science competition" Coursera course.
+
+* [New York City Taxi Fare Prediction](https://www.kaggle.com/c/new-york-city-taxi-fare-prediction#evaluation) - Can you predict a rider's taxi fare?
+
+
 
 <a id="root-mean-squared-logarithmic-error---rmsle"></a>
+
 ## Root Mean Squared Logarithmic Error - RMSLE
 **Root mean squared error of variables transformed to logarithmic scale**.
 $$
@@ -179,7 +221,7 @@ $$
 
 Where:
 
-$n$ - number of test samples,
+$n​$ - number of test samples,
 
 $\hat{y}_i$ is the predicted variable,
 
@@ -189,11 +231,22 @@ $log(x)$ is the natural logarithm of $x$.
 
 The RMSLE is higher when the discrepancies between predicted and actual values are larger. Compared to Root Mean Squared Error (RMSE), RMSLE does not heavily penalize huge discrepancies between the predicted and actual values when both values are huge. In this cases only the percentage differences matter (difference of variable logarithms is equivalent to ratio of variables).
 
+Exemplary competition using Root Mean Squared Logarithmic Error for model evaluation:
+
+* [Santander Value Prediction Challenge](https://www.kaggle.com/c/santander-value-prediction-challenge#evaluation) - Predict the value of transactions for potential customers.
+
+* [Mercari Price Suggestion Challenge](https://www.kaggle.com/c/mercari-price-suggestion-challenge#evaluation) - Can you automatically suggest product prices to online sellers?
+
+* [Recruit Restaurant Visitor Forecasting](https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting#evaluation) - Predict how many future visitors a restaurant will receive
+
+* [New York City Taxi Trip Duration](https://www.kaggle.com/c/nyc-taxi-trip-duration#evaluation) - Share code and data to improve ride time predictions
+
+* [Sberbank Russian Housing Market](https://www.kaggle.com/c/sberbank-russian-housing-market#evaluation) - Can you predict realty price fluctuations in Russia’s volatile economy?
 
 <a id="mean-columnwise-root-mean-squared-error---mcrmse"></a>
+
 ## Mean Columnwise Root Mean Squared Error - MCRMSE
 **Errors of each k-fold CV trials were averaged over n test samples across m target variables.**
-
 $$
 MCRMSE = \frac{1}{m}\sum_{j=1}^{m}\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_
 {ij}-\hat{y}_{ij})^2}
@@ -209,14 +262,19 @@ $m$ - number of predicted variables,
 
 $n$ - number of test samples,
 
-$y_{ij}$ - $i$-th actual value of $j$-th variable,
+$y_{ij}$ - $i$-th actual value of $j​$-th variable,
 
 $\hat{y}_{ij}$ - $i$-th predicted value of $j$-th variable.
 
+Exemplary competition using Mean Columnwise Root Mean Squared Error for model evaluation:
+
+- [Africa Soil Property Prediction Challenge](https://www.kaggle.com/c/afsis-soil-properties#evaluation) - Predict physical and chemical properties of soil using spectral measurements
 
 <a id="references"></a>
+
 ## References
 1. [Kaggle wiki](archive.org)
 2. [Beating Kaggle the easy way, page 43](https://www.ke.tu-darmstadt.de/lehre/arbeiten/studien/2015/Dong_Ying.pdf)
 3. [How to Use Correlation to Understand the Relationship Between Variables](https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/)
 4. [Mean Columnwise Root Mean Squared Error - google books](https://books.google.pl/books?id=bsEDCwAAQBAJ&pg=PA23&lpg=PA23&dq=%22Mean+Column+Wise+Root+Mean+Squared+Error%22&source=bl&ots=CXTjTNgehR&sig=ACfU3U0Jsn7QkzFecjR-EQC5mtD9p_lBCA&hl=en&sa=X&ved=2ahUKEwjAqYPixa_gAhXF8qYKHeGrDbYQ6AEwBXoECAAQAQ#v=onepage&q=%22Mean%20Column%20Wise%20Root%20Mean%20Squared%20Error%22&f=false)
+5. [Metrics to Understand Regression Models in Plain English: Part 1](https://towardsdatascience.com/metrics-to-understand-regression-models-in-plain-english-part-1-c902b2f4156f)

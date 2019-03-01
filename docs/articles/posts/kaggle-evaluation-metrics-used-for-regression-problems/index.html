@@ -34,7 +34,7 @@
 <meta property="og:url" content="/articles/posts/kaggle-evaluation-metrics-used-for-regression-problems/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2019-02-16 00:00:00+01:00"/>
-<meta property="article:modified_time" content=""/>
+<meta property="article:modified_time" content="2019-03-01 00:00:00+01:00"/>
 <meta property="article:author" content="/author/krystian-safjan/">
 <meta property="article:section" content="Posts"/>
 <meta property="article:tag" content="machine learning"/>
@@ -92,15 +92,16 @@
   <header>
     <h1 id="kaggle-evaluation-metrics-used-for-regression-problems">Kaggle evaluation metrics used for regression problems</h1>
     <p>
-<!--           Posted on sob. 16 luty 2019 in <a href="/category/posts.html">Posts</a>
+<!--           Posted on Sat 16 February 2019 in <a href="/category/posts.html">Posts</a>
  -->
       
-          Posted on sob. 16 luty 2019
+          Posted on Sat 16 February 2019
 
 
-        &nbsp; &#8226; &nbsp; 5 min read
+        &nbsp; &#8226; &nbsp; 7 min read
       <br/>
-<!--        -->
+<!--             Modified: 2019-03-01
+ -->
     </p>
   </header>
 
@@ -109,7 +110,6 @@
     <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 <ul>
-<li><a href="#prologue">Prologue</a></li>
 <li><a href="#absolute-error---ae">Absolute Error - AE</a></li>
 <li><a href="#mean-absolute-error---mae">Mean Absolute Error - MAE</a></li>
 <li><a href="#weighted-mean-absolute-error---wmae">Weighted Mean Absolute Error - WMAE</a></li>
@@ -122,8 +122,6 @@
 </ul>
 <!-- /MarkdownTOC -->
 
-<p><a id="prologue"></a></p>
-<h2>Prologue</h2>
 <p>While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">sklearn.metrics</a> provides plethora of metrics for suitable for distinct purposes.</p>
 <p>In this series of posts I will discuss four groups of common machine learning tasks each requires specific metrics:</p>
 <ol>
@@ -146,6 +144,10 @@ $$</div>
 <p><span class="math">\(y_i\)</span> - actual variable value, </p>
 <p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
 <p>MAE can cause notable difference between public and private leaderboard calculations. One drawback of the Absolute Error metrics is that direct comparison of the metrics for model used to predict variables on different scales is not possible. E.g. when using model to financial predictions of S&amp;P 500 index and using the same model to predict value of Microsoft stock price we cannot compare their performance using this metrics since units and ranges are different. The S&amp;P 500 is expressed in points and stock price of asset is expressed in dollars. In this situation one can use (percentage error) to get evaluation metrics in common scale.</p>
+<p>Exemplary competition using Mean Absolute Error for model evaluation:</p>
+<ul>
+<li><a href="https://www.kaggle.com/c/Eurovision2010#Evaluation">Forecast Eurovision Voting</a> - This competition requires contestants to forecast the voting for this year's Eurovision Song Contest in Norway on May 25th, 27th and 29th.</li>
+</ul>
 <p><a id="mean-absolute-error---mae"></a></p>
 <h2>Mean Absolute Error - MAE</h2>
 <p><strong>Mean of the absolute value of each individual error.</strong></p>
@@ -155,10 +157,27 @@ $$</div>
 $$</div>
 <p>Where:</p>
 <p><span class="math">\(n\)</span> - number test of samples,</p>
-<p><span class="math">\(y_i\)</span> - actual variable value, </p>
+<p><span class="math">\(y_i​\)</span> - actual variable value, </p>
 <p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
-<p>see also:
-<a href="http://climate.geog.udel.edu/~climate/publication_html/Pdf/WM_CR_05.pdf">Advantages of the mean absolute error (MAE) over the root mean square error (RMSE) in assessing average model performance</a></p>
+<p>see also <a href="http://climate.geog.udel.edu/~climate/publication_html/Pdf/WM_CR_05.pdf">paper</a>: Advantages of the mean absolute error (MAE) over the root mean square error (RMSE) in assessing average model performance</p>
+<p>Five exemplary competitions using Mean Absolute Error for model evaluation:</p>
+<ul>
+<li>
+<p><a href="https://www.kaggle.com/c/LANL-Earthquake-Prediction#evaluation">LANL Earthquake Prediction</a> - Can you predict upcoming laboratory earthquakes?</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/pubg-finish-placement-prediction#evaluation">PUBG Finish Placement Prediction</a> - Can you predict the battle royale finish of PUBG Players?</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/allstate-claims-severity#evaluation">Allstate Claims Severity</a> - How severe is an insurance claim? </p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/loan-default-prediction#evaluation">Loan Default Prediction - Imperial College London</a> - Constructing an optimal portfolio of loans.</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/finding-elo#evaluation">Finding Elo</a> - Predict a chess player's FIDE Elo rating from one game.</p>
+</li>
+</ul>
 <p><a id="weighted-mean-absolute-error---wmae"></a></p>
 <h2>Weighted Mean Absolute Error - WMAE</h2>
 <p><strong>Weighted average of absolute errors.</strong></p>
@@ -172,6 +191,15 @@ $$</div>
 <p><span class="math">\(w_i\)</span> - weights for sample <span class="math">\(i\)</span>,</p>
 <p><span class="math">\(y_i\)</span> - actual variable value,</p>
 <p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
+<p>Two exemplary competitions using Weighted Mean Absolute Error for model evaluation:</p>
+<ul>
+<li>
+<p><a href="https://www.kaggle.com/c/the-winton-stock-market-challenge#evaluation">The Winton Stock Market Challenge</a> - Join a multi-disciplinary team of research scientists.</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting#evaluation">Walmart Recruiting - Store Sales Forecasting</a> - Use historical markdown data to predict store sales.</p>
+</li>
+</ul>
 <p><a id="pearson-correlation-coefficient"></a></p>
 <h2>Pearson Correlation Coefficient</h2>
 <p><strong>Covariance of the two variables divided by the product of the standard deviation of each data sample.</strong></p>
@@ -186,6 +214,10 @@ $$</div>
 <p><span class="math">\(\hat{y}_i\)</span> - predicted variable value</p>
 <p><span class="math">\(p\)</span> - Pearson correlation coefficient.</p>
 <p>The use of mean and standard deviation in the calculation requires data samples to have a Gaussian or Gaussian-like distribution.</p>
+<p>Exemplary competition using Pearson Correlation Coefficient for model evaluation:</p>
+<ul>
+<li><a href="https://www.kaggle.com/c/MerckActivity#evaluation">Merck Molecular Activity Challenge</a> - Help develop safe and effective medicines by predicting molecular activity.</li>
+</ul>
 <p><a id="spearman%E2%80%99s-rank-correlation"></a></p>
 <h2>Spearman’s Rank Correlation</h2>
 <p><strong>Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each variable.</strong></p>
@@ -200,6 +232,10 @@ $$</div>
 <p><span class="math">\(ry_i\)</span> - rank of variable value, </p>
 <p><span class="math">\(\hat{ry}_i\)</span> - rank of predicted variable value,</p>
 <p><span class="math">\(r\)</span> - Spearman's correlation coefficient.</p>
+<p>Exemplary competition using Spearman’s Rank Correlation for model evaluation:</p>
+<ul>
+<li>Draper Satellite Image Chronology](https://www.kaggle.com/c/draper-satellite-image-chronology#evaluation) - Can you put order to space and time?</li>
+</ul>
 <p><a id="root-mean-squared-error---rmse"></a></p>
 <h2>Root Mean Squared Error - RMSE</h2>
 <p><strong>The square root of the mean/average of the square of all of the error.</strong></p>
@@ -211,6 +247,24 @@ $$</div>
 <p><span class="math">\(n\)</span> - number test of samples,</p>
 <p><span class="math">\(y_i\)</span> - actual variable value, </p>
 <p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
+<p>Five exemplary competition using Root Mean Squared Error for model evaluation:</p>
+<ul>
+<li>
+<p><a href="https://www.kaggle.com/c/elo-merchant-category-recommendation#evaluation">Elo Merchant Category Recommendation</a> - Help understand customer loyalty.</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/ga-customer-revenue-prediction#evaluation">Google Analytics Customer Revenue Prediction</a> - Predict how much GStore customers will spend.</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques#evaluation">House Prices: Advanced Regression Techniques</a> - Predict sales prices and practice feature engineering, RFs, and gradient boosting.</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/competitive-data-science-predict-future-sales#evaluation">Predict Future Sales</a> - Final project for "How to win a data science competition" Coursera course.</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/new-york-city-taxi-fare-prediction#evaluation">New York City Taxi Fare Prediction</a> - Can you predict a rider's taxi fare?</p>
+</li>
+</ul>
 <p><a id="root-mean-squared-logarithmic-error---rmsle"></a></p>
 <h2>Root Mean Squared Logarithmic Error - RMSLE</h2>
 <p><strong>Root mean squared error of variables transformed to logarithmic scale</strong>.
@@ -219,14 +273,33 @@ $$</div>
 \mathrm{RMSLE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(log(\hat{y}_i + 1) - log(y_i + 1))^2}
 $$</div>
 <p>Where:</p>
-<p><span class="math">\(n\)</span> - number of test samples,</p>
+<p><span class="math">\(n​\)</span> - number of test samples,</p>
 <p><span class="math">\(\hat{y}_i\)</span> is the predicted variable,</p>
 <p><span class="math">\(y_i\)</span> is the actual variable,</p>
 <p><span class="math">\(log(x)\)</span> is the natural logarithm of <span class="math">\(x\)</span>.</p>
 <p>The RMSLE is higher when the discrepancies between predicted and actual values are larger. Compared to Root Mean Squared Error (RMSE), RMSLE does not heavily penalize huge discrepancies between the predicted and actual values when both values are huge. In this cases only the percentage differences matter (difference of variable logarithms is equivalent to ratio of variables).</p>
+<p>Exemplary competition using Root Mean Squared Logarithmic Error for model evaluation:</p>
+<ul>
+<li>
+<p><a href="https://www.kaggle.com/c/santander-value-prediction-challenge#evaluation">Santander Value Prediction Challenge</a> - Predict the value of transactions for potential customers.</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/mercari-price-suggestion-challenge#evaluation">Mercari Price Suggestion Challenge</a> - Can you automatically suggest product prices to online sellers?</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting#evaluation">Recruit Restaurant Visitor Forecasting</a> - Predict how many future visitors a restaurant will receive</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/nyc-taxi-trip-duration#evaluation">New York City Taxi Trip Duration</a> - Share code and data to improve ride time predictions</p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/c/sberbank-russian-housing-market#evaluation">Sberbank Russian Housing Market</a> - Can you predict realty price fluctuations in Russia’s volatile economy?</p>
+</li>
+</ul>
 <p><a id="mean-columnwise-root-mean-squared-error---mcrmse"></a></p>
 <h2>Mean Columnwise Root Mean Squared Error - MCRMSE</h2>
-<p><strong>Errors of each k-fold CV trials were averaged over n test samples across m target variables.</strong></p>
+<p><strong>Errors of each k-fold CV trials were averaged over n test samples across m target variables.</strong>
+</p>
 <div class="math">$$
 MCRMSE = \frac{1}{m}\sum_{j=1}^{m}\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_
 {ij}-\hat{y}_{ij})^2}
@@ -240,8 +313,12 @@ $$</div>
 <p>Where:</p>
 <p><span class="math">\(m\)</span> - number of predicted variables,</p>
 <p><span class="math">\(n\)</span> - number of test samples,</p>
-<p><span class="math">\(y_{ij}\)</span> - <span class="math">\(i\)</span>-th actual value of <span class="math">\(j\)</span>-th variable,</p>
+<p><span class="math">\(y_{ij}\)</span> - <span class="math">\(i\)</span>-th actual value of <span class="math">\(j​\)</span>-th variable,</p>
 <p><span class="math">\(\hat{y}_{ij}\)</span> - <span class="math">\(i\)</span>-th predicted value of <span class="math">\(j\)</span>-th variable.</p>
+<p>Exemplary competition using Mean Columnwise Root Mean Squared Error for model evaluation:</p>
+<ul>
+<li><a href="https://www.kaggle.com/c/afsis-soil-properties#evaluation">Africa Soil Property Prediction Challenge</a> - Predict physical and chemical properties of soil using spectral measurements</li>
+</ul>
 <p><a id="references"></a></p>
 <h2>References</h2>
 <ol>
@@ -249,6 +326,7 @@ $$</div>
 <li><a href="https://www.ke.tu-darmstadt.de/lehre/arbeiten/studien/2015/Dong_Ying.pdf">Beating Kaggle the easy way, page 43</a></li>
 <li><a href="https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/">How to Use Correlation to Understand the Relationship Between Variables</a></li>
 <li><a href="https://books.google.pl/books?id=bsEDCwAAQBAJ&amp;pg=PA23&amp;lpg=PA23&amp;dq=%22Mean+Column+Wise+Root+Mean+Squared+Error%22&amp;source=bl&amp;ots=CXTjTNgehR&amp;sig=ACfU3U0Jsn7QkzFecjR-EQC5mtD9p_lBCA&amp;hl=en&amp;sa=X&amp;ved=2ahUKEwjAqYPixa_gAhXF8qYKHeGrDbYQ6AEwBXoECAAQAQ#v=onepage&amp;q=%22Mean%20Column%20Wise%20Root%20Mean%20Squared%20Error%22&amp;f=false">Mean Columnwise Root Mean Squared Error - google books</a></li>
+<li><a href="https://towardsdatascience.com/metrics-to-understand-regression-models-in-plain-english-part-1-c902b2f4156f">Metrics to Understand Regression Models in Plain English: Part 1</a></li>
 </ol>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
