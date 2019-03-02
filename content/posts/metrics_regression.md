@@ -10,6 +10,16 @@ Summary: This post describe evaluation metrics used in Kaggle competitions where
 Status: published
 ---
 
+While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The [sklearn.metrics](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics) provides plethora of metrics for suitable for distinct purposes.
+
+In this series of posts I will discuss four groups of common machine learning tasks each requires specific metrics:
+
+1. *Regression* - predict value of one or more variables that are continuous, e.g. predict stock price of given asset or predict temperature for next day.
+2. *Binary classification* - assign sample to one of two classes - example: classify image as one containing "cat" or "dog"
+3. *Multiple class classification* - assign sample to one of many classes example: classify new article to category "sport", "politics", "economy", "pop-culture",...
+4. *Other*
+
+The [Kaggle competitions](https://www.kaggle.com/competitions) give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There use to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems. Here metrics that are discussed in this post.
 
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
@@ -25,16 +35,7 @@ Status: published
 
 <!-- /MarkdownTOC -->
 
-While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The [sklearn.metrics](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics) provides plethora of metrics for suitable for distinct purposes.
 
-In this series of posts I will discuss four groups of common machine learning tasks each requires specific metrics:
-
-1. *Regression* - predict value of one or more variables that are continuous, e.g. predict stock price of given asset or predict temperature for next day.
-2. *Binary classification* - assign sample to one of two classes - example: classify image as one containing "cat" or "dog"
-3. *Multiple class classification* - assign sample to one of many classes example: classify new article to category "sport", "politics", "economy", "pop-culture",...
-4. *Other*
-
-The [Kaggle competitions](https://www.kaggle.com/competitions) give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There use to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems.
 
 <a id="absolute-error---ae"></a>
 ## Absolute Error - AE
