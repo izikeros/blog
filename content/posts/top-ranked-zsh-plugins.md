@@ -17,7 +17,7 @@ Stars is the way how users can 'bookmark' projects - this can serve as indicatio
 
 # Top 20 most popular plugins as of March 2018
 
-md_link                                                                               | description                                                                                                                                            | stars
+link                                                                               | description                                                                                                                                            | stars
 ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | -----
 [autojump](https://github.com/wting/autojump)                                         | A cd command that learns - easily navigate directories from the command line. Install autojump-zsh for best results.                                   | 6524
 [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)           | Add syntax highlighting to your Zsh. Make sure you load this _before_ zsh-users/zsh-history-substring-search or they will both break.                  | 4851
@@ -78,6 +78,7 @@ This package provides support for completing:
 ## 6. [zsh-completions](https://github.com/zsh-users/zsh-completions)
 This projects aims at gathering/developing new completion scripts that are not available in Zsh yet.
 Demo:
+
 ![zsh-completions-demo](https://raw.githubusercontent.com/supercrabtree/k/gh-pages/inside-work-tree.jpg)
 
 ## 7. [ansiweather](https://github.com/fcambus/ansiweather)

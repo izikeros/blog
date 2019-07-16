@@ -27,9 +27,12 @@ Use the names in the way that you will be sure which project it is. In case of m
 
 **Rule #3: Take care of internal structure of the project**
 There might be simple project that fits into one notebook and does not require any external files, but if you are doing something more complex e.g. using file with data and preprocessing the data - having well thought structure of the project might pay off. Please note that internal structure of the project depends on the use case. For my practice, I distinguish three use cases:
-	* End-to-end individual work. This is typically case of my side projects - if it's interesting enough it might evolve into one of the subsequent categories.
-	* Collaborative project. This can be work done for the client and deliverable could be further developed corroboratively to finally land as a product feature in production.
-	* Individual work but final notebook shares as result. This can be analysis on demand where notebook report is the deliverable or think of side-project/tutorial that you would like to publish on the blog.
+
+* End-to-end individual work. This is typically case of my side projects - if it is interesting enough it might evolve into one of the subsequent categories.
+	
+* Collaborative project. This can be work done for the client and deliverable could be further developed corroboratively to finally land as a product feature in production.
+	
+* Individual work but final notebook shares as result. This can be analysis on demand where notebook report is the deliverable or think of side-project/tutorial that you would like to publish on the blog.
 
 Depending in the use case project directory structure, data directory structure and notebook directory structure might differ but from my experience, for small to medium Data Science projects the structure similar to this should works well:
 ```
