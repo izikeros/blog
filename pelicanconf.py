@@ -28,7 +28,7 @@ FAVICON = '/extra/favicon.ico'
 ICONS_PATH = 'images/icons'
 
 SITEURL = 'https://safjan.com'
-SITEURL = ''    # use for local development
+#SITEURL = ''    # use for local development
 
 KEYWORDS = u'Krystian Safjan blog'
 
@@ -85,6 +85,8 @@ MENUITEMS = (('Home', '/index.html'),
              ('Categories', '/categories.html'),
              ('Tags', '/tags.html'),
              #('Popular', '/tags.html'),
+             #('CV','/Krystian_Safjan_CV.pdf'),
+             ('Resume','/Krystian_Safjan_resume_priv.pdf'),
              )
 
 DISQUS_SITENAME = 'krystian-safjan'
@@ -102,8 +104,11 @@ RELATIVE_URLS = False
 CACHE_CONTENT = False
 
 # article
-ARTICLE_URL = u'articles/{category}/{slug}/'
-ARTICLE_SAVE_AS = u'articles/{category}/{slug}/index.html'
+#ARTICLE_URL = u'articles/{category}/{slug}/'
+#ARTICLE_SAVE_AS = u'articles/{category}/{slug}/index.html'
+
+ARTICLE_URL = u'{slug}/'
+ARTICLE_SAVE_AS = u'{slug}/index.html'
 
 # page
 PAGE_URL = u'{slug}/'
