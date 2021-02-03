@@ -3,7 +3,7 @@ This is repository with my blog [safjan.com](http://safjan.com).
 
 It is using Pelican - static site generator written in Python.
 
-## setup environment - pip
+## setup environment with pipenv
 go to blog directory
 ```sh
 cd ~/blog
@@ -11,7 +11,7 @@ cd ~/blog
 
 create virtual env if none exist:
 ```sh
-pipenv --python 3.7
+pipenv --python 3.9
 ```
 
 install packages from Pipfile:
@@ -19,7 +19,7 @@ install packages from Pipfile:
 pipenv install pelican
 ```
 
-## setup environment - conda
+## setup environment with conda
 ```sh
 conda install -c conda-forge pelican typogrify
 conda install ipython markdown nbconvert jupyter beautifulsoup4 pylint
@@ -53,3 +53,11 @@ HTML("<style>.prompt{display: None;</style>")
 ```
 
 ### Collapse cells
+TODO
+
+## Activate environment
+pipenv shell
+
+## Upgrade environment
+pipenv upgrade
+
