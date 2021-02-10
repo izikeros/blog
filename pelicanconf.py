@@ -211,6 +211,7 @@ if MY_THEME == 'flex':
             'render_math',
             'neighbors',
             'related_posts',
+            'share_post',
             'sitemap'
             ]
 elif MY_THEME == 'elegant':
