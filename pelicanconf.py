@@ -14,10 +14,21 @@ AUTHOR = 'Krystian Safjan'
 SITENAME = "Krystian Safjan's blog"
 
 MY_THEME = 'flex' # flex | elegant
-
+IS_DEVELOPMENT = True
 # ---- Development settings
-SITEURL = 'https://safjan.com'
-SITEURL = ''
+if IS_DEVELOPMENT:
+	SITEURL = ''
+	RELATIVE_URLS = True
+	CACHE_CONTENT = False
+else:
+	# TODO: keep only development config here, use publishconf.py to produce publication content
+	SITEURL = 'https://safjan.com'
+	RELATIVE_URLS = False
+	CACHE_CONTENT = True
+	# -------------- Third party ------
+	DISQUS_SITENAME = 'krystian-safjan'
+	GOOGLE_ANALYTICS = 'UA-117080232-1'
+
 
 PATH = 'content'
 
@@ -29,7 +40,7 @@ GITHUB_URL = "https://github.com/izikeros"
 # ---- Side ----
 if MY_THEME == 'flex':
     # Note under profile image
-    SITESUBTITLE = '<hr>Data Scientist</br></br>I blog about Machine Learning, Deep Learning and NLP<hr>'
+    SITESUBTITLE = '<hr>I\'m Data Scientist @Nokia writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITELOGO = '/images/profile_new.jpg'
 
 # define landing page for elegant style
@@ -40,10 +51,14 @@ if MY_THEME == 'elegant':
 
 # --------------- RSS and Social Media ------------
 # Feed generation is usually not desired when developing
-FEED_DOMAIN = 'https://safjan.com'
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-FEED_ALL_RSS = 'feeds/all.rss.xml'
-
+if IS_DEVELOPMENT:
+	FEED_ALL_ATOM = None
+	FEED_ALL_RSS = None
+	CATEGORY_FEED_ATOM = None
+else:	
+	FEED_DOMAIN = 'https://safjan.com'
+	FEED_ALL_ATOM = 'feeds/all.atom.xml'
+	FEED_ALL_RSS = 'feeds/all.rss.xml'
 # Social widget
 # https://github.com/alexandrevicenzi/Flex/wiki/Flex-Menus
 # How to modify mine glyphs?
@@ -104,9 +119,9 @@ MENUITEMS = (('All Posts', '/archives.html'),
              ('Resume','/pdfs/Krystian_Safjan_resume_priv.pdf'),
              )
 HOME_HIDE_TAGS = True         # ??
-DEFAULT_PAGINATION = 8
+DEFAULT_PAGINATION = 20
 SUMMARY_MAX_LENGTH = 42
-DISPLAY_PAGES_ON_MENU = False  # ??
+DISPLAY_PAGES_ON_MENU = True  # Display in sidebar links to articles located in 'pages'
 
 from datetime import datetime
 COPYRIGHT_YEAR = datetime.now().year
@@ -144,16 +159,7 @@ TYPOGRIFY = True
 # Where to output the generated files
 OUTPUT_PATH = 'docs'
 
-# -------------- Third party --------------------
-#DISQUS_SITENAME = 'krystian-safjan'
-GOOGLE_ANALYTICS = 'UA-117080232-1'
-
 # -------------- Slugs and URLs --------------
-# url and path settings
-RELATIVE_URLS = False
-CACHE_CONTENT = False
-# Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
 
 # article
 ARTICLE_URL = '{slug}/'
