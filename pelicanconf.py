@@ -14,7 +14,7 @@ AUTHOR = 'Krystian Safjan'
 SITENAME = "Krystian Safjan's blog"
 
 MY_THEME = 'flex' # flex | elegant
-IS_DEVELOPMENT = True
+IS_DEVELOPMENT = False
 # ---- Development settings
 if IS_DEVELOPMENT:
 	SITEURL = ''
@@ -116,14 +116,13 @@ MENUITEMS = (('All Posts', '/archives.html'),
              ('Categories', '/categories.html'),
              ('Tags', '/tags.html'),
              ('Resume','/pdfs/Krystian_Safjan_resume_priv.pdf'),
+             ('Sitemap', '/sitemap.xml'),
              )
 HOME_HIDE_TAGS = True         # ??
 DEFAULT_PAGINATION = 20
 SUMMARY_MAX_LENGTH = 42
 DISPLAY_PAGES_ON_MENU = True  # Display in sidebar links to articles located in 'pages'
 
-from datetime import datetime
-COPYRIGHT_YEAR = datetime.now().year
 DEFAULT_DATE_FORMAT = '%Y-%m-%d'
 
 SHOW_ARTICLE_AUTHOR = False
@@ -197,6 +196,10 @@ TAG_URL = 'tag/{slug}/'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
 
 
+DEFAULT_METADATA = {
+    'status': 'draft',
+}
+
 # -------------- Plugins
 IGNORE_FILES = [".ipynb_checkpoints"]
 PLUGIN_PATHS = ['./pelican-plugins']
@@ -206,7 +209,7 @@ MARKUP = ("md", "ipynb")
 if MY_THEME == 'flex':
     PLUGINS = [
             'pelican-ipynb.markup',
-            'post_stats',
+            # 'post_stats',
             'representative_image',
             'render_math',
             'neighbors',
@@ -224,7 +227,10 @@ elif MY_THEME == 'elegant':
 # ----- SEO -----------
 SEO_REPORT = True 
 SEO_ENHANCER = True 
-SEO_ENHANCER_OPEN_GRAPH = False SITEMAP = {
+SEO_ENHANCER_OPEN_GRAPH = False 
+
+
+SITEMAP = {
     'format': 'xml',
     'priorities': {
         'articles': 0.6,
