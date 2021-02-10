@@ -65,11 +65,16 @@ pipenv upgrade
 ## TODO:
 - Normalize Yaml heading to articles and .nbdata files as well - write small python script for that job
 - Migrate to Pelican 4 style of plugins
-- update Flex theme (if needed)
-- keep no SITEURL prefix in pelicanconf but use publish to override
-- check status of enabled plugins such as tag_coud (is used?)
 - write new about me as professional (do not reveal too much personal, private-life related facts)
-- update pygments in Flex theme and run styles generation
+- add possibility to share the contents on social media using icons near the top of the article. Now: "Like this article? Share it with your friends!" - available
+  - See themes:
+    - https://github.com/mamcmanus/brutalist/tree/de551620221ec3f1958250adfaffbbc81e9b748c
+- add Last updated info (see: https://rasor.github.io/)
+- consider adding links to pages in sidebar: projects (tbd), publications (google scholar), cv (static), about me (already there)
+- add launch in binder to notebook-based articles (see: https://tobiasraabe.github.io/blog/numba-vectorize-and-guvectorize.html)
+- Add: "Krystian Safjan's Blog" (large font-size), and line below few job titles (Data Scientist | Team Leader | Researcher) (see: https://jackmckew.dev/)
+- Add What do You think for quick feedback from readers (see: https://jackmckew.dev/)
+- Move sidebar HTML to separate HTML files the is being included
 
 
 ## Customization examples:
