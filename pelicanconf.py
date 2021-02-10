@@ -211,6 +211,7 @@ if MY_THEME == 'flex':
             'render_math',
             'neighbors',
             'related_posts',
+            'sitemap'
             ]
 elif MY_THEME == 'elegant':
     PLUGINS = [
@@ -222,4 +223,16 @@ elif MY_THEME == 'elegant':
 # ----- SEO -----------
 SEO_REPORT = True 
 SEO_ENHANCER = True 
-SEO_ENHANCER_OPEN_GRAPH = False 
+SEO_ENHANCER_OPEN_GRAPH = False SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.6,
+        'indexes': 0.6,
+        'pages': 0.5,
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly',
+    }
+}
