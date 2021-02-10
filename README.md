@@ -61,3 +61,23 @@ pipenv shell
 ## Upgrade environment
 pipenv upgrade
 
+
+## TODO:
+- Normalize Yaml heading to articles and .nbdata files as well - write small python script for that job
+- Migrate to Pelican 4 style of plugins
+- update Flex theme (if needed)
+- keep no SITEURL prefix in pelicanconf but use publish to override
+- check status of enabled plugins such as tag_coud (is used?)
+- write new about me as professional (do not reveal too much personal, private-life related facts)
+- update pygments in Flex theme and run styles generation
+
+
+## Customization examples:
+
+### Theme customization, monokai for code blocks
+https://cassiobotaro.dev/post/ordenando-dicionario-por-valores/
+https://github.com/cassiobotaro/cassiobotaro.github.io
+(author moved blog to Hugo)
+
+### Using notebooks (probably)
+https://dvatvani.github.io/whatsapp-analysis.html#whatsapp-analysis
