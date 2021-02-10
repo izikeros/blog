@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet/less" type="text/css" href="https://safjan.com/theme/stylesheet/style.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js" type="text/javascript"></script>
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+        disabled="disabled"
+    href="https://safjan.com/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+            disabled="disabled"
+          href="https://safjan.com/theme/pygments/github.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://safjan.com/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/solid.css">
+
+    <link href="https://safjan.com/styles/custom.css" rel="stylesheet">
+
+    <link href="https://safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's blog Atom">
+
+    <link href="https://safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's blog RSS">
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->  
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="This post describes challenges with model performance evaluation when working with time-series type of data. Cross-validation is a handy technique that can be used to estimate accuracy of measured model performance scores e.g. by calculating spread of scores for different cross-validation folds. However, for the time-series type of data dedicated types of train-test dataset splits for cross validation needs to be used. This article presents train-tests splits method, inspired by bootstrapping that can be used for efficient model performance estimation." />
+<meta name="keywords" content="machine learning, statistics, probability">
+
+
+<meta property="og:site_name" content="Krystian Safjan's blog"/>
+<meta property="og:title" content="Use bootstraping to evaluate performance of ML model when working on time-series type of data"/>
+<meta property="og:description" content="This post describes challenges with model performance evaluation when working with time-series type of data. Cross-validation is a handy technique that can be used to estimate accuracy of measured model performance scores e.g. by calculating spread of scores for different cross-validation folds. However, for the time-series type of data dedicated types of train-test dataset splits for cross validation needs to be used. This article presents train-tests splits method, inspired by bootstrapping that can be used for efficient model performance estimation."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://safjan.com/drafts/bootstrap-for-time-series-model-performance-assessment.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2021-02-10 00:00:00+01:00"/>
+<meta property="article:modified_time" content="2020-02-11 00:00:00+01:00"/>
+<meta property="article:author" content="https://safjan.com/author/krystian-safjan/">
+<meta property="article:section" content="'Data Science'"/>
+<meta property="article:tag" content="machine learning"/>
+<meta property="article:tag" content="statistics"/>
+<meta property="article:tag" content="probability"/>
+<meta property="og:image" content="/images/profile_new.jpg">
+
+  <title>Krystian Safjan's blog &ndash; Use bootstraping to evaluate performance of ML model when working on time-series type of data</title>
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://safjan.com">
+        <img src="/images/profile_new.jpg" alt="" title="">
+      </a>
+
+      <h1>
+        <a href="https://safjan.com"></a>
+      </h1>
+
+<p><hr><p style="font-size:220%">Krystian Safjan's Blog</p><p>Data Scientist | Researcher | Team Leader</p></br></br>I'm working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr></p>
+
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://safjan.com">Home</a>
+
+      <a href="/archives.html">All Posts</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+      <a href="/sitemap.xml">Sitemap</a>
+
+      <a href="https://safjan.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="bootstrap-for-time-series-model-performance-assessment">Use bootstraping to evaluate performance of <span class="caps">ML</span> model when working on time-series type of&nbsp;data</h1>
+    <p>
+      <!-- Posted on: -->
+      2021-02-10 
+
+
+    <br/>
+<!--          Updated: 2020-02-11
+ -->
+   </p>
+  </header>
+
+
+  <div>
+    <h2>Prerequisites</h2>
+<p>This focuses on using bootstrapping to time-series data. There are references to other techniques such as cross-validation, k-fold split, bootstrap method that are not explained in details here. Please use material from references if there is need to familiarize with aforementioned&nbsp;methods.</p>
+<h2>Introduction</h2>
+<h3>Model performance&nbsp;evaluation</h3>
+<p>For model performance evaluation we typically use <em>&#8220;train&#8221;-&#8220;test&#8221;</em> split or three-fold split with additional <em>&#8220;validation&#8221;</em> (called also <em>evaluation</em> or <em>&#8220;dev&#8221;</em>) set. To allow utilizing more samples for training or determine quality of performance parameter estimation we use&nbsp;cross-validation.</p>
+<p>When applying typical cross-validation splits such as K-Fold. to time-series data we can easily introduce bias to our estimation of performance since in case of time series we would like to evaluate performance on the samples that are newer than those in training set. We try to predict future values (regression) or check classification performance on samples that are comes from future from the perspective of the training&nbsp;dataset.</p>
+<h3>Bootstrap method for parameter&nbsp;estimation</h3>
+<p>Often we use sample from larger population to estimate population parameters. E.g. estimate average height of 18 yo folks in given country. When calculating statistics from sample we have point estimates - single number that characterize measured property. We have to keep in back of the head that this number is calculated on the sample. How much this result is dependent on the sample we already taken. How the results will differ if we take different sample. How can we estimate with given confidence (say 95%) what is the range for real value (from whole population). To answer this question statistical method called bootstrap comes with&nbsp;help.</p>
+<blockquote>
+<p><strong>Bootstrapping</strong> is any test or metric that uses <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)#Replacement_of_selected_units">random sampling with replacement</a>, and falls under the broader class of <a href="https://en.wikipedia.org/wiki/Resampling_(statistics)">resampling</a> methods. Bootstrapping assigns measures of accuracy (bias, variance, <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence intervals</a>, prediction error, etc.) to sample estimates. (source: <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">wikipedia</a>)</p>
+</blockquote>
+<p><img alt="bootstrap method explained visually" src="/images/time_series_dev_set/bootstrap.png"></p>
+<p>Original Source: <a href="https://yashuseth.blog/2017/12/02/bootstrapping-a-resampling-method-in-statistics/">yashuseth.blog</a></p>
+<h3>Problem time-series data train-test&nbsp;split</h3>
+<p>When working with time-series data choice of samples for training and test set should be performed with care to best reflect trends that we want to model (training set) and have element of unknown if we have regression or classification type of&nbsp;problem.</p>
+<p><img alt="time series data example - dow john index" src="/images/time_series_dev_set/time_series_example.png"></p>
+<h3></h3>
+<p>There are few methods to approach this&nbsp;problem:</p>
+<ul>
+<li>timeserie split as in&nbsp;scikit-learn</li>
+<li>ref. medium&nbsp;article</li>
+<li>bootstrap-based</li>
+</ul>
+<h2>cv- superset approach&nbsp;(sklearn)</h2>
+<p>With this approach we taking different samples for testing in each train-test set. The weak-point of this approach is that there if very difeerent number of samples taken for the training. These different conditions for the training makes comparability of the resutls from each set&nbsp;questionable.</p>
+<p><img alt="time series split from scikit-learn" src="/images/time_series_dev_set/sphx_glr_plot_cv_indices_010.png"></p>
+<ul>
+<li>see: #&nbsp;https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html</li>
+</ul>
+<h2>cv - moving window - period&nbsp;fold</h2>
+<p>The moving window approach addressed issue with different number of training samples identified in case of previous approach, here however, number of training samples in each set is very limited to allow sweeping the dataset timeline with the train-test&nbsp;window.</p>
+<p>[<span class="caps">TODO</span> generate analogue plot, create notebook for that purpose]
+<img alt="moving widow time series split" src="/images/time_series_dev_set/sphx_glr_plot_cv_indices_010.png"></p>
+<h3>cv -&nbsp;bootstrap-based</h3>
+<p>In this approach we keep test samples following in time the training samples and try to generate different versions of train-test sets for&nbsp;bootstraping.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      </br></br>Tags:&nbsp;
+      <a href="https://safjan.com/tag/machine-learning/">machine learning</a>
+      <a href="https://safjan.com/tag/statistics/">statistics</a>
+      <a href="https://safjan.com/tag/probability/">probability</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/">Learn Bayesian methods in 4 steps - by reading and by&nbsp;doing</a></li>
+      <li><a href="https://safjan.com/data-science-command-line-tools/">Data Science Command line&nbsp;Tools</a></li>
+      <li><a href="https://safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/">Kaggle evaluation metrics used for regression&nbsp;problems</a></li>
+      <li><a href="https://safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/">How to install TensorFlow and Keras on Windows&nbsp;10</a></li>
+      <li><a href="https://safjan.com/darwin-approach-to-traveling-salesman/">Darwin Approach to Traveling&nbsp;Salesman</a></li>
+    </ul>
+  </div>
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'krystian-safjan';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+    <footer>
+<p>
+  &copy; 2021 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://safjan.com/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="false"
+          data-default-theme="light"
+          type="text/javascript">
+  </script>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's blog ",
+  "url" : "https://safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+
+</body>
+</html>
