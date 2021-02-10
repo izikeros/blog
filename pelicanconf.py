@@ -29,10 +29,9 @@ else:
 	DISQUS_SITENAME = 'krystian-safjan'
 	GOOGLE_ANALYTICS = 'UA-117080232-1'
 
-
 PATH = 'content'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Europe/Warsaw'
 
 DEFAULT_LANG = 'en'
 
@@ -40,7 +39,7 @@ GITHUB_URL = "https://github.com/izikeros"
 # ---- Side ----
 if MY_THEME == 'flex':
     # Note under profile image
-    SITESUBTITLE = '<hr>I\'m Data Scientist @Nokia writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
+    SITESUBTITLE = '<hr><p style="font-size:220%">Krystian Safjan\'s Blog</p><p>Data Scientist | Researcher | Team Leader</p></br></br>I\'m working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITELOGO = '/images/profile_new.jpg'
 
 # define landing page for elegant style
