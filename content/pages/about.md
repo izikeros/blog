@@ -6,4 +6,4 @@ Category: Pages
 image: /images/img2.jpg
 ---
 
- My name is Krystian Safjan, I live in beautiful Wrocław, Poland. I'm a husband, father consultant and researcher (in that order). If you are looking for someone who can explain and advice how Machine Learning can add value to your bussiness - let's get in touch.
+ My name is Krystian Safjan, I live in beautiful Wrocław, Poland. I'm a husband, father and researcher (trying to keep that order). If you are looking for someone who can explain and advice how Machine Learning can add value to your bussiness - let's get in touch.

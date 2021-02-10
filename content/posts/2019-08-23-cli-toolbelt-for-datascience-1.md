@@ -2,47 +2,50 @@
 title: Data Science Command line Tools
 started: 2019-07-04
 date: 2019-08-23
+modified: 2021-02-08 21:28
 tags: machine learning, linux
-category: Posts
+category: Linux
 image: /images/head/cli_tools.jpg
 status: published
-summary: 
+summary: Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.
 ---
 
-There are plenty of tools designed to ease life of Data Scientist. In this group, the special place has tools that are used from command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient workflows. This post 
+There are plenty of tools designed to ease life of Data Scientist. In this group, the special place has tools that are used from command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient workflows. 
+
 
 
 
 ![Diagram of cli tools for data science](/images/cli_tools_1/cli_tools.png)
 
+<a id="textutils-from-gnu-coreutils"></a>
 ## Textutils from GNU Coreutils
 From my experience, I have benefit most from mastering the GNU Coreutils. This is the collection of: shellutils, fileutils and textutils - and in this post I will be discussing the latter one. 
 
 *Table 1. Textutils - text processing tools, part of GNU Coreutils*
 
-|         command | description                                                  |
-| --------------: | ------------------------------------------------------------ |
-|             cat | merge, print files to standard output                        |
-|            comm | compare sorted files line by line; can find differences, unique lines for each compared files |
-|          csplit | divide files into parts using context                        |
-|             cut | remove sections from each line in file                       |
-| expand/unexpand | convert tab into spaces / convert spaces to tabs             |
-|             fmt | Simple text formatter                                        |
-|            fold | fold each input line to fit given line length                |
-|  head/tail/shuf | display starting lines of file / display file ending lines/get random lines from file |
-|            join | join lines from two files on common fields                   |
-|              nl | line numbering                                               |
-|           paste | merge lines                                                  |
-|            sort | sort lines of text file                                      |
-|           split | divide file into parts                                       |
-|             tac | merge, print in reverse order lines of files to standard output |
-|                 |                                                              |
-|              tr | translate or remove characters                               |
-|            uniq | Remove duplicated lines from file                            |
-|              wc | display number of characters, words and lines of given file  |
+| command                                       | description                                                  |
+| :-------------------------------------------- | ------------------------------------------------------------ |
+| **cat**                                       | merge, print files to standard output                        |
+| [**comm**](#comm)                             | compare sorted files line by line; can find differences, unique lines for each compared files |
+| **csplit**                                    | divide files into parts using context                        |
+| **cut**                                       | remove sections from each line in file                       |
+| **expand/unexpand**                           | convert tab into spaces / convert spaces to tabs             |
+| **fmt**                                       | simple text formatter                                        |
+| **fold**                                      | fold each input line to fit given line length                |
+| **[head](#head)/[tail](#tail)/[shuf](#shuf)** | display starting lines of file / display file ending lines/get random lines from file |
+| **join**                                      | join lines from two files on common fields                   |
+| **nl**                                        | line numbering                                               |
+| **paste**                                     | merge lines                                                  |
+| [**sort**](#sort)                             | sort lines of text file                                      |
+| **[split](split)**                            | divide file into parts                                       |
+| **tac**                                       | merge, print in reverse order lines of files to standard output |
+| **tr**                                        | translate or remove characters                               |
+| **[uniq](#uniq)**                             | remove duplicated lines from file                            |
+| **[wc](#wc)**                                 | display number of characters, words and lines of given file  |
 
 I will give a few examples of commands I use most often or ones that are exceptionally useful.
 
+<a id="comm"></a>
 ### comm
 The `comm` command is very handy when comes to compare lists stored in separate files. For example you have list of samples used for experiment #1 in one file and list of samples used in experiment #2 in another file.
 The `comm` command takes sorted files as input and calculate unique lines for FILE1 and for FILE2 and the result is represented respectively as `column 1` and `column 2`. Having unique lines in column 1 and 2, set of lines that appear in both files is calculated and result is represented by column 3. 
@@ -74,6 +77,7 @@ comm -13 file1 file2
 comm -12 file1 file2
 ```
 
+<a id="head"></a>
 ### head
 By default, `head` prints  the first 10 lines of each file provided as argument to standard output.  With more than one file, precede each with a header giving the file name. You can control how many lines is displayed with option `-n`:
 ```sh
@@ -85,15 +89,17 @@ You can also print all but last N lines by adding `-` sign. For example in order
 head -n -1 file.txt
 ```
 
+<a id="shuf"></a>
 ### shuf
 To quickly inspect content of dataset in text file you can use `head` which shows some filest lines of the file. If you would like to have more representative example of the content of the file, you can take random sample of lines from file with `shuf`:
 ```sh
 shuf -n 5 file.txt
 ```
 
+<a id="sort"></a>
 ### sort
 Here are options I often use for sort and unique operation:
-```
+```text
 -b, --ignore-leading-blanks
               ignore leading blanks
 
@@ -110,6 +116,7 @@ Here are options I often use for sort and unique operation:
 ```sh
 sort -bufi data.csv
 ```
+<a id="split"></a>
 ### split
 Sometimes there is a need to split dataset to smaller parts. E.g. when processing large files you can be hit by memory limitations or you want to speed up processing using parallel computing. To split file into N parts with equal number of lines, use: 
 ```sh
@@ -120,6 +127,7 @@ e.g.
 split -n l/10 data.csv
 ```
 This will create serie of files named: `xaa, xab, xac,...`. The default pattern of  `split` for file naming is PREFIXaa, PREFIXab,...; default PREFIX is `x`. You can provide your own prefix e.g.
+<a id="tail"></a>
 ### tail
 ```sh
 split l/10 data.csv part_
@@ -140,7 +148,7 @@ split l/3 data.csv parts/x
 ```
 
 Skipping header row can be done with tail
-```
+```sh
 tail -n +2 file.txt
 ```
 This syntax with usage of `+` sign might require explanation. Here is excerpt from the man page: 
@@ -153,9 +161,10 @@ the alternative solution involves `sed`:
 sed 1d file.txt
 ```
 
+<a id="uniq"></a>
 ### uniq
 used often with `sort` in a way:
-```
+```sh
 cat file.txt | sort | uniq
 ```
 If there are no special circumstances `cat` should be avoided:
@@ -163,17 +172,18 @@ If there are no special circumstances `cat` should be avoided:
 sort file.txt | uniq
 ```
 Moreover, `sort` has option `-u` which stands for *unique*. Therefore, to have unique lines it is sufficient to use:
-```
+```sh
 sort -u file.txt
 ```
 
+<a id="wc"></a>
 ### wc
 - count lines
-```
+```sh
 wc -l data.csv
 ```
 - count lines in multiple files at once
-```
+```sh
 wc -l *.csv
 ```
 

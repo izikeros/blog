@@ -2,9 +2,9 @@
 Title: Darwin Approach to Traveling Salesman
 Date: '2019-01-12'
 Started: '2018-12-25'
-Modified: '2019-01-12'
+Modified: '2021-02-08'
 Tags: machine learning, evolutionary, 
-Category: Posts
+Category: Exploring new ideas
 Image: /images/head/cells_small.jpg
 Summary: Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I'm describing evolution model and design decisions. See the animation how the population was evolving through the epochs.
 Status: published
@@ -38,7 +38,11 @@ The problem can be defined like this: having list of cities and finding the shor
 
 <!-- ![TODO](tsp_animated_gif.gif) -->
 
-For non-trivial cases of few cities, computational complexity for brute force search is high. The total number of unique routes (TNUR) is: `TNUR = 1/2*(n-1)!`
+For non-trivial cases of few cities, computational complexity for brute force search is high. The total number of unique routes ($TNUR$) is:
+
+$$
+\mathrm{TNUR} = \frac{1}{2}(n-1)!
+$$
 
 To help grasping the order of complexity - when number of cities grows beyond ~25, time required to brute force search for optimal solution would exceed age of known universe. 
 

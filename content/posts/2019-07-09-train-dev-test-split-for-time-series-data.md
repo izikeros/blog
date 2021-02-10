@@ -3,7 +3,7 @@ title: Train-, Dev-, Test-set split for time series data
 started: 2020-02-07
 date: '2019-07-09'
 tags: machine learning, statistics, probability
-Category: Posts
+Category: 'Data Science'
 image: /images/learn_bayes/probab_distrib.png
 status: draft
 Summary: 4 lines
