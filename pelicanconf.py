@@ -1,60 +1,55 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- #
 
-# https://github.com/amitness/amitness.github.io/blob/source/pelicanconf.py
-# https://github.com/alexandrevicenzi/blog
-# https://github.com/garybake/blog
-# https://github.com/cassiobotaro/cassiobotaro.github.io/blob/pelican/pelicanconf.py
+# Pelican documentation (latest)
+# https://docs.getpelican.com/en/latest/settings.html#basic-settings
+#
+# Trying to apply literate configurations (https://leanpub.com/lit-config/read)
 
-from __future__ import unicode_literals
 
-# Theme-specific settings
-SITENAME = u'Krystian Safjan\'s blog'
-DOMAIN = 'http://localhost:8000'
-SITE_AUTHOR = 'Krystian Safjan'
-AUTHOR = u'Krystian Safjan'
+# --Elegant theme
+# https://jackdewinter.github.io/
 
-# Note under profile image
-SITESUBTITLE = '<hr>Data Scientist</br></br>I blog about Machine Learning, Deep Learning and NLP<hr>'
 
-# Description thet goes to metadata
-SITEDESCRIPTION = '%s\'s Thoughts and Writings' % AUTHOR
+AUTHOR = 'Krystian Safjan'
+SITENAME = "Krystian Safjan's blog"
 
-INDEX_DESCRIPTION = 'A machine learning consultant with core expertise in Python and related technologies.'
+MY_THEME = 'flex' # flex | elegant
 
-SITELOGO = '/images/profile_new.jpg'
-FAVICON = '/extra/favicon.ico'
-
-ICONS_PATH = 'images/icons'
-
+# ---- Development settings
 SITEURL = 'https://safjan.com'
-#SITEURL = ''    # use for local development
+SITEURL = ''
 
-KEYWORDS = u'Krystian Safjan blog'
-
-# Path to content directory to be processed by Pelican.
 PATH = 'content'
 
-# Where to output the generated files
-OUTPUT_PATH = 'docs'
+TIMEZONE = 'Europe/Paris'
 
-THEME = './pelican-themes/Flex'
-#THEME = 'pelican-themes/Flex'
+DEFAULT_LANG = 'en'
 
-THEME_COLOR = '#FF8000'
+GITHUB_URL = "https://github.com/izikeros"
+# ---- Side ----
+if MY_THEME == 'flex':
+    # Note under profile image
+    SITESUBTITLE = '<hr>Data Scientist</br></br>I blog about Machine Learning, Deep Learning and NLP<hr>'
+    SITELOGO = '/images/profile_new.jpg'
 
-# languages settings
-TIMEZONE = 'Europe/Warsaw'
-DEFAULT_LANG = u'en'
+# define landing page for elegant style
+if MY_THEME == 'elegant':
+    LANDING_PAGE_TITLE='Krystian Safjan'
+    RECENT_ARTICLE_SUMMARY = True # Elegant
+    FEATURED_IMAGE = True
 
+# --------------- RSS and Social Media ------------
 # Feed generation is usually not desired when developing
 FEED_DOMAIN = 'https://safjan.com'
-
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 FEED_ALL_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
 # Social widget
+# https://github.com/alexandrevicenzi/Flex/wiki/Flex-Menus
+# How to modify mine glyphs?
+#   - 
+#   - 
+
 SOCIAL = (
     (
         'linkedin',
@@ -65,114 +60,149 @@ SOCIAL = (
         'https://github.com/izikeros'
     ),
     (
-        'envelope-o',
+        'envelope',
         'mailto:ksafjan@gmail.com'
     ),
-    (
-        'mortar-board',
-        'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
-    ),
+    # (
+    #     'mortar-board', #'mortar-board',
+    #     'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
+    # ),
     (
         'rss',
          '/feeds/all.rss.xml')
     # add Kaggle
     )
 
+LINKS = (
+    # (
+    #     'linkedin',
+    #     'https://pl.linkedin.com/in/krystiansafjan'
+    # ),
+    #     (
+    #     'github',
+    #     'https://github.com/izikeros'
+    # ),
+    # (
+    #     'email',
+    #     'mailto:ksafjan@gmail.com'
+    # ),
+    # (
+    #     'google scholar', #'mortar-board',
+    #     'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
+    # ),
+    # (
+    #     'rss',
+    #      '/feeds/all.rss.xml')
+    # add Kaggle
+    )
+# --------------- Layout ---------------------
 USE_FOLDER_AS_CATEGORY = False
 MAIN_MENU = True
-MENUITEMS = (('Home', '/index.html'),
-             ('Archives', '/archives.html'),
+MENUITEMS = (('All Posts', '/archives.html'),
              ('Categories', '/categories.html'),
              ('Tags', '/tags.html'),
-             #('Popular', '/tags.html'),
-             #('CV','/Krystian_Safjan_CV.pdf'),
-             ('Resume','/Krystian_Safjan_resume_priv.pdf'),
+             ('Resume','/pdfs/Krystian_Safjan_resume_priv.pdf'),
              )
+HOME_HIDE_TAGS = True         # ??
+DEFAULT_PAGINATION = 8
+SUMMARY_MAX_LENGTH = 42
+DISPLAY_PAGES_ON_MENU = False  # ??
 
-DISQUS_SITENAME = 'krystian-safjan'
+from datetime import datetime
+COPYRIGHT_YEAR = datetime.now().year
+DEFAULT_DATE_FORMAT = '%Y-%m-%d'
+
+SHOW_ARTICLE_AUTHOR = False
+SHOW_ARTICLE_CATEGORY = False
+SHOW_DATE_MODIFIED = True
+
+# ----------------- Resources ------------------
+STATIC_PATHS = [
+    'styles',
+    'images',
+    'robots.txt',
+    'favicon.ico',
+    '.nojekyll',
+    'pdfs',
+    'zipfiles']
+
+# ----------- Theme, CSS and other styling
+PYGMENTS_STYLE = "github" # github | monokai # FLEX
+if MY_THEME == 'elegant':
+    THEME = 'pelican-themes/elegant'   # flex | elegant
+    # NOTE: style customization for elegant:
+    # elegant/static/css/custom.css
+elif MY_THEME == 'flex':
+    THEME = 'pelican-themes/flex'   # flex | elegant
+    # THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
+    THEME_COLOR_ENABLE_USER_OVERRIDE = True
+    USE_LESS = True
+    CUSTOM_CSS = 'styles/custom.css'
+
+TYPOGRIFY = True
+
+# Where to output the generated files
+OUTPUT_PATH = 'docs'
+
+# -------------- Third party --------------------
+#DISQUS_SITENAME = 'krystian-safjan'
 GOOGLE_ANALYTICS = 'UA-117080232-1'
 
-#DEFAULT_PAGINATION = False
-DEFAULT_PAGINATION = 10
-SUMMARY_MAX_LENGTH = 42
-
-DISPLAY_PAGES_ON_MENU = True
-
-
+# -------------- Slugs and URLs --------------
 # url and path settings
 RELATIVE_URLS = False
 CACHE_CONTENT = False
+# Uncomment following line if you want document-relative URLs when developing
+#RELATIVE_URLS = True
 
 # article
-#ARTICLE_URL = u'articles/{category}/{slug}/'
-#ARTICLE_SAVE_AS = u'articles/{category}/{slug}/index.html'
-
-ARTICLE_URL = u'{slug}/'
-ARTICLE_SAVE_AS = u'{slug}/index.html'
+ARTICLE_URL = '{slug}/'
+ARTICLE_SAVE_AS = '{slug}/index.html'
 
 # page
-PAGE_URL = u'{slug}/'
-PAGE_SAVE_AS = u'{slug}/index.html'
+PAGE_URL = '{slug}/'
+PAGE_SAVE_AS = '{slug}/index.html'
 
 # author
-AUTHOR_URL = u'author/{slug}/'
-AUTHOR_SAVE_AS = u'author/{slug}/index.html'
+AUTHOR_URL = 'author/{slug}/'
+AUTHOR_SAVE_AS = 'author/{slug}/index.html'
 
 # authors
-AUTHORS_URL = u'authors/'
-AUTHORS_SAVE_AS = u'authors/index.html'
+AUTHORS_URL = 'authors/'
+AUTHORS_SAVE_AS = 'authors/index.html'
 
 # category
-CATEGORY_URL = u'category/{slug}.html'
-CATEGORY_SAVE_AS = u'category/{slug}.html'
+CATEGORY_URL = 'category/{slug}.html'
+CATEGORY_SAVE_AS = 'category/{slug}.html'
 
 # tag
-TAG_URL = u'tag/{slug}/'
-TAG_SAVE_AS = u'tag/{slug}/index.html'
+TAG_URL = 'tag/{slug}/'
+TAG_SAVE_AS = 'tag/{slug}/index.html'
 
-# Count of different font sizes in the tag cloud.
-TAG_CLOUD_STEPS = 4
 
-# Maximum number of tags in the cloud
-TAG_CLOUD_MAX_ITEMS = 100
-
-STATIC_PATHS = [
-    'images',
-    'downloads',
-    'extra/robots.txt',
-    'extra/favicon.ico'
-]
-#EXTRA_PATH_METADATA = {
-#    'extra/robots.txt': {'path': 'robots.txt'},
-#    'extra/favicon.ico': {'path': 'favicon.ico'}
-#}
-
+# -------------- Plugins
+IGNORE_FILES = [".ipynb_checkpoints"]
 PLUGIN_PATHS = ['./pelican-plugins']
-#PLUGIN_PATHS = ['C:/Users/safjan/projects/blog/pelican-plugins']
 
-#PLUGINS = ['pelican-ipynb.markup', 'tag_cloud', 'neighbors','post_stats','related_posts','representative_image']
-PLUGINS = [
-        'pelican-ipynb.markup',
-        'tag_cloud',
-        'neighbors',
-        'post_stats',
-        'related_posts',
-        'render_math',
-        'representative_image'
-        ]
-#PLUGINS = ['tag_cloud']
+MARKUP = ("md", "ipynb")
 
-# Sitemap Settings
-SITEMAP = {
-    'format': 'xml',
-    'priorities': {
-        'articles': 0.6,
-        'indexes': 0.6,
-        'pages': 0.5,
-    },
-    'changefreqs': {
-        'articles': 'monthly',
-        'indexes': 'daily',
-        'pages': 'monthly',
-    }
-}
+if MY_THEME == 'flex':
+    PLUGINS = [
+            'pelican-ipynb.markup',
+            'post_stats',
+            'representative_image',
+            'render_math',
+            'neighbors',
+            'related_posts',
+            ]
+elif MY_THEME == 'elegant':
+    PLUGINS = [
+            'pelican-ipynb.markup',
+            'post_stats',
+            'representative_image'
+            ]
+
+# ----- SEO -----------
+SEO_REPORT = True 
+SEO_ENHANCER = True 
+SEO_ENHANCER_OPEN_GRAPH = False 
