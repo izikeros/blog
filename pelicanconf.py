@@ -130,6 +130,18 @@ SHOW_ARTICLE_AUTHOR = False
 SHOW_ARTICLE_CATEGORY = False
 SHOW_DATE_MODIFIED = True
 
+#------- Footer ---------------------------
+from datetime import datetime
+COPYRIGHT_YEAR = datetime.now().year
+COPYRIGHT_NAME = AUTHOR
+CC_LICENSE = {
+    'name': 'Creative Commons Attribution-ShareAlike',
+    'version': '4.0',
+    'slug': 'by-sa'
+}
+
+
+
 # ----------------- Resources ------------------
 STATIC_PATHS = [
     'styles',
