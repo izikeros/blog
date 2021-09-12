@@ -14,7 +14,7 @@ AUTHOR = 'Krystian Safjan'
 SITENAME = "Krystian Safjan's blog"
 
 MY_THEME = 'flex' # flex | elegant
-IS_DEVELOPMENT = False
+IS_DEVELOPMENT = True
 # ---- Development settings
 if IS_DEVELOPMENT:
 	SITEURL = ''
