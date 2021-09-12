@@ -28,7 +28,7 @@
   <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/brands.css">
   <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/solid.css">
 
-    <link href="https://safjan.com/styles/custom.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://safjan.com/styles/custom.css">
 
     <link href="https://safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's blog Atom">
 
@@ -48,25 +48,27 @@
 <!-- End Google Analytics -->  
 
 
+ 
+
 <meta name="author" content="Krystian Safjan" />
 <meta name="description" content="Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works." />
 <meta name="keywords" content="machine learning, tensorflow, howto">
 
 
-<meta property="og:site_name" content="Krystian Safjan's blog"/>
-<meta property="og:title" content="How to install TensorFlow and Keras on Windows 10"/>
-<meta property="og:description" content="Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works."/>
-<meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/"/>
-<meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2019-01-17 00:00:00+01:00"/>
-<meta property="article:modified_time" content="2019-02-08 00:00:00+01:00"/>
-<meta property="article:author" content="https://safjan.com/author/krystian-safjan/">
-<meta property="article:section" content="'Howto'"/>
-<meta property="article:tag" content="machine learning"/>
-<meta property="article:tag" content="tensorflow"/>
-<meta property="article:tag" content="howto"/>
-<meta property="og:image" content="/images/profile_new.jpg">
+  <meta property="og:site_name" content="Krystian Safjan's blog"/>
+  <meta property="og:title" content="How to install TensorFlow and Keras on Windows 10"/>
+  <meta property="og:description" content="Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2019-01-17 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2019-02-08 00:00:00+01:00"/>
+  <meta property="article:author" content="https://safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="'Howto'"/>
+  <meta property="article:tag" content="machine learning"/>
+  <meta property="article:tag" content="tensorflow"/>
+  <meta property="article:tag" content="howto"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
 
   <title>Krystian Safjan's blog &ndash; How to install TensorFlow and Keras on Windows 10</title>
 
@@ -74,12 +76,12 @@
 <body class="light-theme">
   <aside>
     <div>
-      <a href="https://safjan.com">
+      <a href="https://safjan.com/">
         <img src="/images/profile_new.jpg" alt="" title="">
       </a>
 
       <h1>
-        <a href="https://safjan.com"></a>
+        <a href="https://safjan.com/"></a>
       </h1>
 
 <p><hr><p style="font-size:220%">Krystian Safjan's Blog</p><p>Data Scientist | Researcher | Team Leader</p></br></br>I'm working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr></p>
@@ -113,7 +115,7 @@
   <main>
 
     <nav>
-      <a href="https://safjan.com">Home</a>
+      <a href="https://safjan.com/">Home</a>
 
       <a href="/archives.html">All Posts</a>
       <a href="/categories.html">Categories</a>
@@ -132,7 +134,7 @@
     <h1 id="how-to-install-tensorflow-and-keras-on-windows-10">How to install TensorFlow and Keras on Windows&nbsp;10</h1>
     <p>
       <!-- Posted on: -->
-      2019-01-17 
+      January 17, 2019 
 
 
 
@@ -157,8 +159,9 @@
     <blockquote>
 <p><strong><span class="caps">EDIT</span> 2021</strong>: This post is partially depreciated by now since for TensorFlow 2.x <span class="caps">CPU</span> and <span class="caps">GPU</span> versions are intergated - there is no separate install and Keras is integrated with TensorFlow - no need to install separately unless you have good reasons for separate&nbsp;install.</p>
 </blockquote>
-<p>Quick guide on how to install TensorFlow cpu-only version - the case for machines without <span class="caps">GPU</span> supporting <span class="caps">CUDA</span>.
-<!-- MarkdownTOC autolink="true" autoanchor="true" --></p>
+<p>Quick guide on how to install TensorFlow cpu-only version - the case for machines without <span class="caps">GPU</span> supporting <span class="caps">CUDA</span>.</p>
+<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 <ul>
 <li><a href="#creating-conda-environment-for-working-with-tensorflow-and-keras">Creating Conda environment for working with TensorFlow and&nbsp;Keras</a></li>
 <li><a href="#installing-tensorflow">Installing&nbsp;TensorFlow</a></li>
@@ -169,69 +172,60 @@
 <p><a id="creating-conda-environment-for-working-with-tensorflow-and-keras"></a></p>
 <h1>Creating Conda environment for working with TensorFlow and&nbsp;Keras</h1>
 <p>Open <code>anaconda prompt</code> (hit <code>Win+Q</code>, type anaconda) and create conda&nbsp;virtualenv:</p>
-<div class="highlight"><pre><span></span>conda create -n tf_windows <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>conda create -n tf_windows <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6
+</code></pre></div>
 
 <p>this will create minimal&nbsp;environement</p>
 <p>When the environment is created, activate it. After that the environment’s name will be added before the&nbsp;prompt.</p>
-<div class="highlight"><pre><span></span>activate tf_windows
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>activate tf_windows
+</code></pre></div>
 
 <p><a id="installing-tensorflow"></a></p>
 <h1>Installing&nbsp;TensorFlow</h1>
 <p>Then install TensorFlow for <span class="caps">CPU</span>-only&nbsp;machines:</p>
-<div class="highlight"><pre><span></span>(tf_windows)&gt; pip install tensorflow
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(tf_windows)&gt; pip install tensorflow
+</code></pre></div>
 
 <p>There can be few variants of the <code>tensorflow</code> package installation. If you need to run <code>pip</code> behind corporate proxy, add proxy&nbsp;information:</p>
-<div class="highlight"><pre><span></span>(tf_windows)&gt; pip --proxy=&quot;proxy_url:port&quot; install tensorflow
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(tf_windows)&gt; pip --proxy=&quot;proxy_url:port&quot; install tensorflow
+</code></pre></div>
 
 <p>If you need <span class="caps">GPU</span>-enabled version (and your machine supports&nbsp;it)</p>
-<div class="highlight"><pre><span></span>(tf_windows)&gt; pip install tensorflow-gpu
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>(tf_windows)&gt; pip install tensorflow-gpu
+</code></pre></div>
 
 <p>To test if installation was successful, you might want to do&nbsp;check:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="n">tf_windows</span><span class="p">)</span><span class="o">&gt;</span><span class="n">python</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">tf_windows</span><span class="p">)</span><span class="o">&gt;</span><span class="n">python</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">)))</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>if everything was installed correctly, you should&nbsp;see:</p>
-<div class="highlight"><pre><span></span><span class="sa">b</span><span class="s1">&#39;Hello world!&#39;&#39;</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="sa">b</span><span class="s1">&#39;Hello world!&#39;&#39;</span>
+</code></pre></div>
 
 <p>On my machine I got warning when starting a new&nbsp;session:</p>
-<div class="highlight"><pre><span></span>2019-01-17 07:09:01.477724: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>2019-01-17 07:09:01.477724: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+</code></pre></div>
 
 <p>Don&#8217;t get scared by that, TensorFlow works, the information displayed means that it isn&#8217;t as fast as it could be.
 In order to suppress this you will need to build TensorFlow from sources using appropriate flags (see <a href="https://stackoverflow.com/questions/41293077/how-to-compile-tensorflow-with-sse4-2-and-avx-instructions?rq=1">StackOverflow answer</a>) for compilation otherwise you can ignore&nbsp;it.</p>
 <p><a id="installing-keras"></a></p>
 <h1>Installing&nbsp;Keras</h1>
 <p>The way that worked for me&nbsp;was:</p>
-<div class="highlight"><pre><span></span><span class="err">(tf_windows)&gt;conda install mingw libpython</span>
+<div class="highlight"><pre><span></span><code><span class="err">(tf_windows)&gt;conda install mingw libpython</span>
 <span class="err">(tf_windows)&gt;pip install --upgrade keras</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Using the <code>--upgrade</code> flag ensures that the latest version of Keras will be&nbsp;installed.</p>
 <p>Perform the test if Keras was installed&nbsp;correctly</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span>
 <span class="n">Using</span> <span class="n">TensorFlow</span> <span class="n">backend</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">_BACKEND</span><span class="p">)</span>
 <span class="n">tensorflow</span>
 <span class="o">&gt;&gt;&gt;</span>
-</pre></div>
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
@@ -321,7 +315,6 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   "description": ""
 }
 </script>
-
 
 </body>
 </html>

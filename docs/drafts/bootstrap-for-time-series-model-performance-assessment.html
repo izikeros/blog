@@ -28,7 +28,7 @@
   <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/brands.css">
   <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/solid.css">
 
-    <link href="https://safjan.com/styles/custom.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://safjan.com/styles/custom.css">
 
     <link href="https://safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's blog Atom">
 
@@ -48,25 +48,27 @@
 <!-- End Google Analytics -->  
 
 
+ 
+
 <meta name="author" content="Krystian Safjan" />
 <meta name="description" content="This post describes challenges with model performance evaluation when working with time-series type of data. Cross-validation is a handy technique that can be used to estimate accuracy of measured model performance scores e.g. by calculating spread of scores for different cross-validation folds. However, for the time-series type of data dedicated types of train-test dataset splits for cross validation needs to be used. This article presents train-tests splits method, inspired by bootstrapping that can be used for efficient model performance estimation." />
 <meta name="keywords" content="machine learning, statistics, probability">
 
 
-<meta property="og:site_name" content="Krystian Safjan's blog"/>
-<meta property="og:title" content="Use bootstraping to evaluate performance of ML model when working on time-series type of data"/>
-<meta property="og:description" content="This post describes challenges with model performance evaluation when working with time-series type of data. Cross-validation is a handy technique that can be used to estimate accuracy of measured model performance scores e.g. by calculating spread of scores for different cross-validation folds. However, for the time-series type of data dedicated types of train-test dataset splits for cross validation needs to be used. This article presents train-tests splits method, inspired by bootstrapping that can be used for efficient model performance estimation."/>
-<meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://safjan.com/drafts/bootstrap-for-time-series-model-performance-assessment.html"/>
-<meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2021-02-10 00:00:00+01:00"/>
-<meta property="article:modified_time" content="2020-02-11 00:00:00+01:00"/>
-<meta property="article:author" content="https://safjan.com/author/krystian-safjan/">
-<meta property="article:section" content="'Data Science'"/>
-<meta property="article:tag" content="machine learning"/>
-<meta property="article:tag" content="statistics"/>
-<meta property="article:tag" content="probability"/>
-<meta property="og:image" content="/images/profile_new.jpg">
+  <meta property="og:site_name" content="Krystian Safjan's blog"/>
+  <meta property="og:title" content="Use bootstraping to evaluate performance of ML model when working on time-series type of data"/>
+  <meta property="og:description" content="This post describes challenges with model performance evaluation when working with time-series type of data. Cross-validation is a handy technique that can be used to estimate accuracy of measured model performance scores e.g. by calculating spread of scores for different cross-validation folds. However, for the time-series type of data dedicated types of train-test dataset splits for cross validation needs to be used. This article presents train-tests splits method, inspired by bootstrapping that can be used for efficient model performance estimation."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://safjan.com/drafts/bootstrap-for-time-series-model-performance-assessment.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2021-02-10 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2020-02-11 00:00:00+01:00"/>
+  <meta property="article:author" content="https://safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="'Data Science'"/>
+  <meta property="article:tag" content="machine learning"/>
+  <meta property="article:tag" content="statistics"/>
+  <meta property="article:tag" content="probability"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
 
   <title>Krystian Safjan's blog &ndash; Use bootstraping to evaluate performance of ML model when working on time-series type of data</title>
 
@@ -74,12 +76,12 @@
 <body class="light-theme">
   <aside>
     <div>
-      <a href="https://safjan.com">
+      <a href="https://safjan.com/">
         <img src="/images/profile_new.jpg" alt="" title="">
       </a>
 
       <h1>
-        <a href="https://safjan.com"></a>
+        <a href="https://safjan.com/"></a>
       </h1>
 
 <p><hr><p style="font-size:220%">Krystian Safjan's Blog</p><p>Data Scientist | Researcher | Team Leader</p></br></br>I'm working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr></p>
@@ -113,7 +115,7 @@
   <main>
 
     <nav>
-      <a href="https://safjan.com">Home</a>
+      <a href="https://safjan.com/">Home</a>
 
       <a href="/archives.html">All Posts</a>
       <a href="/categories.html">Categories</a>
@@ -132,7 +134,7 @@
     <h1 id="bootstrap-for-time-series-model-performance-assessment">Use bootstraping to evaluate performance of <span class="caps">ML</span> model when working on time-series type of&nbsp;data</h1>
     <p>
       <!-- Posted on: -->
-      2021-02-10 
+      February 10, 2021 
 
 
     <br/>
@@ -144,25 +146,25 @@
 
   <div>
     <h2>Prerequisites</h2>
-<p>This focuses on using bootstrapping to time-series data. There are references to other techniques such as cross-validation, k-fold split, bootstrap method that are not explained in details here. Please use material from references if there is need to familiarize with aforementioned&nbsp;methods.</p>
+<p>This article focuses on using bootstrapping to time-series data. There are references to other techniques such as cross-validation, k-fold split, bootstrap method that are not explained in details here. Please use material from references if there is need to familiarize with aforementioned&nbsp;methods.</p>
 <h2>Introduction</h2>
 <h3>Model performance&nbsp;evaluation</h3>
-<p>For model performance evaluation we typically use <em>&#8220;train&#8221;-&#8220;test&#8221;</em> split or three-fold split with additional <em>&#8220;validation&#8221;</em> (called also <em>evaluation</em> or <em>&#8220;dev&#8221;</em>) set. To allow utilizing more samples for training or determine quality of performance parameter estimation we use&nbsp;cross-validation.</p>
-<p>When applying typical cross-validation splits such as K-Fold. to time-series data we can easily introduce bias to our estimation of performance since in case of time series we would like to evaluate performance on the samples that are newer than those in training set. We try to predict future values (regression) or check classification performance on samples that are comes from future from the perspective of the training&nbsp;dataset.</p>
+<p>For model performance evaluation we typically use <em>&#8220;train&#8221;-&#8220;test&#8221;</em> split or three-fold split with additional <em>&#8220;validation&#8221;</em> (called also <em>&#8220;evaluation&#8221;</em> or <em>&#8220;dev&#8221;</em>) set. To allow utilizing more samples for training or determine quality of performance parameter estimation we use&nbsp;cross-validation.</p>
+<p>When applying typical cross-validation splits such as K-Fold to time-series data we can easily introduce bias to our estimation of performance since in case of time series, we would like to evaluate performance on the samples that are newer than those in training set. We try to predict future values (regression) or check classification performance on samples that are comes from future from the perspective of the training dataset. From this article you can get ideas on how to split your time-series data samples in order to measure point statistics such as accuracy and confidence interval for this&nbsp;measurement.</p>
 <h3>Bootstrap method for parameter&nbsp;estimation</h3>
-<p>Often we use sample from larger population to estimate population parameters. E.g. estimate average height of 18 yo folks in given country. When calculating statistics from sample we have point estimates - single number that characterize measured property. We have to keep in back of the head that this number is calculated on the sample. How much this result is dependent on the sample we already taken. How the results will differ if we take different sample. How can we estimate with given confidence (say 95%) what is the range for real value (from whole population). To answer this question statistical method called bootstrap comes with&nbsp;help.</p>
+<p>Often we use sample from larger population to estimate population parameters. E.g. estimate average height of 18 years old folks in given country. When calculating statistics from sample, we have point estimates - single number that characterize measured property (e.g. accuracy, recall). We have to keep in mind that this number is calculated on the sample. How much this result is dependent on the sample we already taken? How the results will differ if we choose different sample? How can we estimate with given confidence (say 95%) what is the range for real value of measured parameter (in the whole population)? To answer this question statistical method called bootstrap comes with&nbsp;help.</p>
 <blockquote>
 <p><strong>Bootstrapping</strong> is any test or metric that uses <a href="https://en.wikipedia.org/wiki/Sampling_(statistics)#Replacement_of_selected_units">random sampling with replacement</a>, and falls under the broader class of <a href="https://en.wikipedia.org/wiki/Resampling_(statistics)">resampling</a> methods. Bootstrapping assigns measures of accuracy (bias, variance, <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence intervals</a>, prediction error, etc.) to sample estimates. (source: <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">wikipedia</a>)</p>
 </blockquote>
 <p><img alt="bootstrap method explained visually" src="/images/time_series_dev_set/bootstrap.png"></p>
 <p>Original Source: <a href="https://yashuseth.blog/2017/12/02/bootstrapping-a-resampling-method-in-statistics/">yashuseth.blog</a></p>
-<h3>Problem time-series data train-test&nbsp;split</h3>
+<h3>Problem with time-series data train-test&nbsp;split</h3>
 <p>When working with time-series data choice of samples for training and test set should be performed with care to best reflect trends that we want to model (training set) and have element of unknown if we have regression or classification type of&nbsp;problem.</p>
-<p><img alt="time series data example - dow john index" src="/images/time_series_dev_set/time_series_example.png"></p>
-<h3></h3>
+<p><img alt="time series data example - dow jones index" src="/images/time_series_dev_set/time_series_example.png"></p>
 <p>There are few methods to approach this&nbsp;problem:</p>
 <ul>
-<li>timeserie split as in&nbsp;scikit-learn</li>
+<li>Walk forward time serie split as in scikit-learn: <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html">TimeSeriesSplit</a></li>
+<li>Block</li>
 <li>ref. medium&nbsp;article</li>
 <li>bootstrap-based</li>
 </ul>
@@ -172,12 +174,15 @@
 <ul>
 <li>see: #&nbsp;https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html</li>
 </ul>
-<h2>cv - moving window - period&nbsp;fold</h2>
+<h2>Blocked cv (moving&nbsp;window)</h2>
 <p>The moving window approach addressed issue with different number of training samples identified in case of previous approach, here however, number of training samples in each set is very limited to allow sweeping the dataset timeline with the train-test&nbsp;window.</p>
 <p>[<span class="caps">TODO</span> generate analogue plot, create notebook for that purpose]
 <img alt="moving widow time series split" src="/images/time_series_dev_set/sphx_glr_plot_cv_indices_010.png"></p>
 <h3>cv -&nbsp;bootstrap-based</h3>
 <p>In this approach we keep test samples following in time the training samples and try to generate different versions of train-test sets for&nbsp;bootstraping.</p>
+<p>https://medium.com/@soumyachess1496/cross-validation-in-time-series-566ae4981ce4</p>
+<p>https://medium.com/eatpredlove/time-series-cross-validation-a-walk-forward-approach-in-python-8534dd1db51a</p>
+<p>https://medium.com/@samuel.monnier/cross-validation-tools-for-time-series-ffa1a5a09bf9</p>
   </div>
   <div class="tag-cloud">
     <p>
@@ -261,7 +266,6 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   "description": ""
 }
 </script>
-
 
 </body>
 </html>

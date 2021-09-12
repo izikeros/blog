@@ -28,7 +28,7 @@
   <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/brands.css">
   <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/solid.css">
 
-    <link href="https://safjan.com/styles/custom.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://safjan.com/styles/custom.css">
 
     <link href="https://safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's blog Atom">
 
@@ -48,24 +48,26 @@
 <!-- End Google Analytics -->  
 
 
+ 
+
 <meta name="author" content="Krystian Safjan" />
 <meta name="description" content="Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I’m describing evolution model and design decisions. See the animation how the population was evolving through the epochs." />
 <meta name="keywords" content="machine learning, evolutionary">
 
 
-<meta property="og:site_name" content="Krystian Safjan's blog"/>
-<meta property="og:title" content="Darwin Approach to Traveling Salesman"/>
-<meta property="og:description" content="Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I’m describing evolution model and design decisions. See the animation how the population was evolving through the epochs."/>
-<meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://safjan.com/darwin-approach-to-traveling-salesman/"/>
-<meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2019-01-12 00:00:00+01:00"/>
-<meta property="article:modified_time" content="2021-02-08 00:00:00+01:00"/>
-<meta property="article:author" content="https://safjan.com/author/krystian-safjan/">
-<meta property="article:section" content="Exploring new ideas"/>
-<meta property="article:tag" content="machine learning"/>
-<meta property="article:tag" content="evolutionary"/>
-<meta property="og:image" content="/images/profile_new.jpg">
+  <meta property="og:site_name" content="Krystian Safjan's blog"/>
+  <meta property="og:title" content="Darwin Approach to Traveling Salesman"/>
+  <meta property="og:description" content="Can evolutionary approach crash the problem that brute forcing will last far more that the age of universe? This post shows how to attack Traveling Salesman Problem using Darwin approach. I’m describing evolution model and design decisions. See the animation how the population was evolving through the epochs."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://safjan.com/darwin-approach-to-traveling-salesman/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2019-01-12 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2021-02-08 00:00:00+01:00"/>
+  <meta property="article:author" content="https://safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Exploring new ideas"/>
+  <meta property="article:tag" content="machine learning"/>
+  <meta property="article:tag" content="evolutionary"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
 
   <title>Krystian Safjan's blog &ndash; Darwin Approach to Traveling Salesman</title>
 
@@ -73,12 +75,12 @@
 <body class="light-theme">
   <aside>
     <div>
-      <a href="https://safjan.com">
+      <a href="https://safjan.com/">
         <img src="/images/profile_new.jpg" alt="" title="">
       </a>
 
       <h1>
-        <a href="https://safjan.com"></a>
+        <a href="https://safjan.com/"></a>
       </h1>
 
 <p><hr><p style="font-size:220%">Krystian Safjan's Blog</p><p>Data Scientist | Researcher | Team Leader</p></br></br>I'm working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr></p>
@@ -112,7 +114,7 @@
   <main>
 
     <nav>
-      <a href="https://safjan.com">Home</a>
+      <a href="https://safjan.com/">Home</a>
 
       <a href="/archives.html">All Posts</a>
       <a href="/categories.html">Categories</a>
@@ -131,7 +133,7 @@
     <h1 id="darwin-approach-to-traveling-salesman">Darwin Approach to Traveling&nbsp;Salesman</h1>
     <p>
       <!-- Posted on: -->
-      2019-01-12 
+      January 12, 2019 
 
 
 
@@ -213,9 +215,10 @@ Algorithm&nbsp;initialization:</p>
 <p>I decided to include mechanism for minor, local improvements that in nature, organisms might be able to perform to better fit to the environment. The implementation of the adaptation is twofolds:
 1. Swap two consecutive cities on the list that represents the route and check if the change brought an improvement - if so, keep the change and check another pair of cities until the end of the list.
 2. Reverse three elements route segments and similarly, as in previous method - keep the change if the new, candidate route with reversed segment is shorter than version with non-reversed segment.
-Both are implemented &#8220;swapper&#8221; or &#8220;reverser&#8221; as moving along the list of cities in the route.
-<!-- <img alt="TODO" src="tsp_reverse_two.jpg"> -->
-<!-- <img alt="TODO" src="tsp_reverse_three.jpg"> --></p>
+Both are implemented &#8220;swapper&#8221; or &#8220;reverser&#8221; as moving along the list of cities in the&nbsp;route.</p>
+<!-- ![TODO](tsp_reverse_two.jpg) -->
+<!-- ![TODO](tsp_reverse_three.jpg) -->
+
 <p><a id="natural-selection"></a></p>
 <h2>Natural&nbsp;selection</h2>
 <p>Natural selection allows to remove poor solutions and make room for new experimental variants of routes that inherit features from best solutions found so far. The implementation was to sort the solutions in the ascending order and keep only <code>10%</code> of the best&nbsp;solutions. </p>
@@ -239,7 +242,7 @@ When drawing pairs, organism is assigned to the role of mother or father what is
 <p><a id="evolution-in-action"></a></p>
 <h1>Evolution in&nbsp;action</h1>
 <p>The whole setup of the experiment is highly parametrized and gives endless opportunities to experiment with various setups. The results shown in this blog were produced for this&nbsp;parametrization:</p>
-<div class="highlight"><pre><span></span><span class="c1"># number of cities</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># number of cities</span>
 <span class="n">num_cities</span> <span class="o">=</span> <span class="mi">80</span>
 
 <span class="c1"># size of initial population (number of initial random routes)</span>
@@ -247,8 +250,7 @@ When drawing pairs, organism is assigned to the role of mother or father what is
 
 <span class="c1"># fraction of organisms that survives natural selection process</span>
 <span class="n">survival</span> <span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.1</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>In the first step of implementation I was able to measure the effect of local adaptation and gains achieved with this mechanism. While running single swap of two elements and single reverse or three elements segment gains on random routes were up to 1%. Graphical representation of the route changes confirms that improvement was small - routes still have high degree of randomness and are far from being&nbsp;optimal.</p>
 <p>In the next step I brought this adaptation process to extreme number to check it&#8217;s potential - what maximum improvements are possible here. Of course achieving stabilization of the results here would be difficult but I verified what will happen when we change number of two- and three elements reversing cycles from 1x to 100x times. The improvements achieved in this configuration were <span class="caps">XX</span> in&nbsp;average.</p>
@@ -426,7 +428,6 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   "description": ""
 }
 </script>
-
 
 </body>
 </html>
