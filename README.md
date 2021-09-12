@@ -54,8 +54,25 @@ then:
 * create pelican-plugins directory in blog
 * symlink required plugins
 
+## generate version to be published
+```sh
+make publish
+```
+It uses `pelicanconf.py` settings overwritten by `publishconf.py`.
+
+## generate development preview
+```sh
+pelican -lr
+```
+or
+
+```sh
+make devserver
+```
+
 
 ## Jupyter notebooks for content creation
+
 ### Hide prompt
 add code as below to the notebook (e.g. last cell) and execute
 ```python
