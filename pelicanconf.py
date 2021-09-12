@@ -27,7 +27,7 @@ else:
 	CACHE_CONTENT = True
 	# -------------- Third party ------
 	DISQUS_SITENAME = 'krystian-safjan'
-	GOOGLE_ANALYTICS = 'UA-117080232-1'
+	GOOGLE_ANALYTICS = 'UA-117080232-1' # G-RM2PKDCCYM
 
 PATH = 'content'
 
@@ -54,15 +54,15 @@ if IS_DEVELOPMENT:
 	FEED_ALL_ATOM = None
 	FEED_ALL_RSS = None
 	CATEGORY_FEED_ATOM = None
-else:	
+else:
 	FEED_DOMAIN = 'https://safjan.com'
 	FEED_ALL_ATOM = 'feeds/all.atom.xml'
 	FEED_ALL_RSS = 'feeds/all.rss.xml'
 # Social widget
 # https://github.com/alexandrevicenzi/Flex/wiki/Flex-Menus
 # How to modify mine glyphs?
-#   - 
-#   - 
+#   -
+#   -
 
 SOCIAL = (
     (
@@ -123,7 +123,8 @@ DEFAULT_PAGINATION = 20
 SUMMARY_MAX_LENGTH = 42
 DISPLAY_PAGES_ON_MENU = True  # Display in sidebar links to articles located in 'pages'
 
-DEFAULT_DATE_FORMAT = '%Y-%m-%d'
+# DEFAULT_DATE_FORMAT = '%Y-%m-%d'    # 2021-12-29
+DEFAULT_DATE_FORMAT = '%B %d, %Y'   # December 29, 2021
 
 SHOW_ARTICLE_AUTHOR = False
 SHOW_ARTICLE_CATEGORY = False
@@ -225,9 +226,9 @@ elif MY_THEME == 'elegant':
             ]
 
 # ----- SEO -----------
-SEO_REPORT = True 
-SEO_ENHANCER = True 
-SEO_ENHANCER_OPEN_GRAPH = False 
+SEO_REPORT = True
+SEO_ENHANCER = True
+SEO_ENHANCER_OPEN_GRAPH = False
 
 
 SITEMAP = {
