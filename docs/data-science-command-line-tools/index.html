@@ -10,16 +10,9 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet/less" type="text/css" href="https://safjan.com/theme/stylesheet/style.less">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/stylesheet/style.min.css">
 
-    <link id="dark-theme-style" rel="stylesheet" type="text/css"
-        disabled="disabled"
-    href="https://safjan.com/theme/stylesheet/dark-theme.min.css">
 
-    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
-            disabled="disabled"
-          href="https://safjan.com/theme/pygments/github.min.css">
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://safjan.com/theme/pygments/github.min.css">
 
@@ -45,10 +38,9 @@
   ga('create', 'UA-117080232-1', 'auto');
   ga('send', 'pageview');
 </script>
-<!-- End Google Analytics -->  
+<!-- End Google Analytics -->
 
 
- 
 
 <meta name="author" content="Krystian Safjan" />
 <meta name="description" content="Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts." />
@@ -103,6 +95,11 @@
             </a>
           </li>
           <li>
+            <a  class="sc-newspaper" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+              <i class="fas fa-newspaper"></i>
+            </a>
+          </li>
+          <li>
             <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
               <i class="fas fa-rss"></i>
             </a>
@@ -116,11 +113,11 @@
     <nav>
       <a href="https://safjan.com/">Home</a>
 
-      <a href="/archives.html">All Posts</a>
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
       <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
-      <a href="/sitemap.xml">Sitemap</a>
 
       <a href="https://safjan.com/feeds/all.atom.xml">Atom</a>
 
@@ -148,8 +145,6 @@
     <a href="https://www.reddit.com/submit?url=https%3A//safjan.com/data-science-command-line-tools/&title=Data%20Science%20Command%20line%C2%A0Tools" target="_blank" title="Share via Reddit">Reddit</a>
   </span>
     <br/>
-<!--          Updated: 2021-02-08
- -->
    </p>
   </header>
 
@@ -242,7 +237,7 @@
 <p>I will give a few examples of commands I use most often or ones that are exceptionally&nbsp;useful.</p>
 <p><a id="comm"></a></p>
 <h3>comm</h3>
-<p>The <code>comm</code> command is very handy when comes to compare lists stored in separate files. For example you have list of samples used for experiment #1 in one file and list of samples used in experiment #2 in another file.
+<p>The <code>comm</code> command is very handy when comes to compare lists stored in separate files. For example, you have list of samples used for experiment #1 in one file and list of samples used in experiment #2 in another file.
 The <code>comm</code> command takes sorted files as input and calculate unique lines for <span class="caps">FILE1</span> and for <span class="caps">FILE2</span> and the result is represented respectively as <code>column 1</code> and <code>column 2</code>. Having unique lines in column 1 and 2, set of lines that appear in both files is calculated and result is represented by column&nbsp;3. </p>
 <p>Columns description for <code>comm</code>:</p>
 <table>
@@ -316,7 +311,7 @@ comm -12 file1 file2
 
 <p><a id="split"></a></p>
 <h3>split</h3>
-<p>Sometimes there is a need to split dataset to smaller parts. E.g. when processing large files you can be hit by memory limitations or you want to speed up processing using parallel computing. To split file into N parts with equal number of lines,&nbsp;use: </p>
+<p>Sometimes there is a need to split dataset to smaller parts. E.g. when processing large files you can be hit by memory limitations, or you want to speed up processing using parallel computing. To split file into N parts with equal number of lines,&nbsp;use: </p>
 <div class="highlight"><pre><span></span><code>split -n l/N data.csv
 </code></pre></div>
 
@@ -330,7 +325,7 @@ comm -12 file1 file2
 <div class="highlight"><pre><span></span><code>split l/10 data.csv part_
 </code></pre></div>
 
-<p>and this will result in having files <code>part_aa, part_ab,...</code>.  Suffixes doesn&#8217;t have to be alphabetical: can be numeric (use switch <code>-d</code>) or even hex (use switch <code>-x</code>). What is particularly usefull - prefixes can be used to save resulting files in given location. Let&#8217;s take an example <code>dataset.csv</code> file located in data directory, we want to split this file into parts and save results in <code>parts</code> directory as shown&nbsp;below:</p>
+<p>and this will result in having files <code>part_aa, part_ab,...</code>.  Suffixes don&#8217;t have to be alphabetical: can be numeric (use switch <code>-d</code>) or even hex (use switch <code>-x</code>). What is particularly useful - prefixes can be used to save resulting files in given location. Let&#8217;s take an example <code>dataset.csv</code> file located in data directory, we want to split this file into parts and save results in <code>parts</code> directory as shown&nbsp;below:</p>
 <div class="highlight"><pre><span></span><code>data
 ├── dataset.csv
 └── parts
@@ -358,7 +353,7 @@ comm -12 file1 file2
 
 <p><a id="uniq"></a></p>
 <h3>uniq</h3>
-<p>used often with <code>sort</code> in a&nbsp;way:</p>
+<p>often used with <code>sort</code> in a&nbsp;way:</p>
 <div class="highlight"><pre><span></span><code>cat file.txt <span class="p">|</span> sort <span class="p">|</span> uniq
 </code></pre></div>
 
@@ -388,7 +383,7 @@ comm -12 file1 file2
   </div>
   <div class="tag-cloud">
     <p>
-      </br></br>Tags:&nbsp;
+      <br/><br/>Tags:&nbsp;
       <a href="https://safjan.com/tag/machine-learning/">machine learning</a>
       <a href="https://safjan.com/tag/linux/">linux</a>
     </p>
@@ -398,6 +393,9 @@ comm -12 file1 file2
   <div class="neighbors">
     <a class="btn float-left" href="https://safjan.com/spy-catch/" title="Finding the spy - post on Markov Chains and stochastic matrices">
       <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://safjan.com/interactive-plots-for-blogging/" title="Interactive plots for blogging">
+      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
@@ -435,14 +433,6 @@ comm -12 file1 file2
 </p>
 <p>
 Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-  <span class="footer-separator">|</span>
-  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
-  <script id="dark-theme-script"
-          src="https://safjan.com/theme/dark-theme/dark-theme.min.js"
-          data-enable-auto-detect-theme="false"
-          data-default-theme="light"
-          type="text/javascript">
-  </script>
 </p><p>
   <a rel="license"
      href="http://creativecommons.org/licenses/by-sa/4.0/"
