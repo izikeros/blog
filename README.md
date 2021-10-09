@@ -16,7 +16,7 @@ This is repository with my blog [safjan.com](http://safjan.com). It is created u
   - [generate version to be published](#generate-version-to-be-published)
   - [generate development preview](#generate-development-preview)
   - [Jupyter notebooks for content creation](#jupyter-notebooks-for-content-creation)
-    - [Notebook-based content creation checklist:](#notebook-based-content-creation-checklist)
+    - [Checklist for notebook-based content creation :](#checklist-for-notebook-based-content-creation-)
     - [Add badges that allows running notebooks in Google Colab or Binder](#add-badges-that-allows-running-notebooks-in-google-colab-or-binder)
     - [Figure and Table captions](#figure-and-table-captions)
     - [Hide prompt](#hide-prompt)
@@ -132,7 +132,7 @@ make devserver
 <a id="jupyter-notebooks-for-content-creation"></a>
 ## Jupyter notebooks for content creation
 
-<a id="notebook-based-content-creation-checklist"></a>
+<a id="checklist-for-notebook-based-content-creation-"></a>
 ### Checklist for notebook-based content creation :
 
 - [ ] skip notebook title header (title will be added by Pelican)
@@ -149,6 +149,7 @@ make devserver
 
 <a id="add-badges-that-allows-running-notebooks-in-google-colab-or-binder"></a>
 
+<a id="add-badges-that-allows-running-notebooks-in-google-colab-or-binder"></a>
 ### Add badges that allows running notebooks in Google Colab or Binder
 
 After article intro put the snippet of markdown code. See below example for the notebook named `2018-04-05-whats_cooking_NLP.ipynb`
@@ -287,3 +288,4 @@ Use `black --ipynb .` in `posts` directory to format notebooks (requires black w
 - styling for social icons is defined in `custom.css`
 - headline is hardcoded in `pelicanconf.py` in `SITESUBTITLE` variable
 - social icons `style.less`
+
