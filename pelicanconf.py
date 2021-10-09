@@ -246,9 +246,9 @@ IPYNB_PREPROCESSORS=[
         TagRemovePreprocessor(config=c)]                # Remove cells marked as 'remove_cell'
 
 # ----- SEO -----------
-SEO_REPORT = True
+SEO_REPORT = False
 SEO_ENHANCER = True
-SEO_ENHANCER_OPEN_GRAPH = False
+SEO_ENHANCER_OPEN_GRAPH = True
 
 
 SITEMAP = {
