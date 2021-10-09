@@ -231,6 +231,20 @@ elif MY_THEME == 'elegant':
             'representative_image'
             ]
 
+# Preprocessing - remove empty cells and cells tagged with "remove_cell"
+#  NOTE: Tag cells to remove with "remove_cell" (View -> Cell Toolbar -> Tags)
+from nbconvert.preprocessors import ExecutePreprocessor, RegexRemovePreprocessor, TagRemovePreprocessor
+from traitlets.config import Config
+c = Config()
+c.TagRemovePreprocessor.remove_cell_tags = ("remove_cell",)
+c.TagRemovePreprocessor.remove_all_outputs_tags = ('remove_output',)
+c.TagRemovePreprocessor.remove_input_tags = ('remove_input',)
+c.TagRemovePreprocessor.enabled = True
+IPYNB_PREPROCESSORS=[
+        # ExecutePreprocessor(timeout=300),               # Limit time in case preprocessor hangs
+        RegexRemovePreprocessor(patterns=['\s*\Z']),    # Remove empty cells (or cells with whitespaces only)
+        TagRemovePreprocessor(config=c)]                # Remove cells marked as 'remove_cell'
+
 # ----- SEO -----------
 SEO_REPORT = True
 SEO_ENHANCER = True
