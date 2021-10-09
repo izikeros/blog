@@ -81,10 +81,6 @@ SOCIAL = (
         'newspaper', #'mortar-board | newspaper',
         'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
     ),
-    # (
-    #     'mortar-board', #'mortar-board',
-    #     'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
-    # ),
     (
         'rss',
          '/feeds/all.rss.xml')
@@ -123,19 +119,25 @@ MENUITEMS = (('Articles', '/archives.html'),
              ('Resume','/pdfs/Krystian_Safjan_resume_priv.pdf'),
              # ('Sitemap', '/sitemap.xml'),
              )
-HOME_HIDE_TAGS = True         # ??
+
+
+HOME_HIDE_TAGS = True         # Shall the tags be hidden when displaying list of articles on home page?
 DEFAULT_PAGINATION = 20
 SUMMARY_MAX_LENGTH = 42
-DISPLAY_PAGES_ON_MENU = True  # Display in sidebar links to articles located in 'pages'
+DISPLAY_PAGES_ON_MENU = False  # Display in sidebar links to articles located in 'pages'
 
 # DEFAULT_DATE_FORMAT = '%Y-%m-%d'    # 2021-12-29
 DEFAULT_DATE_FORMAT = '%B %d, %Y'   # December 29, 2021
 
+# Article heading
 SHOW_ARTICLE_AUTHOR = False
 SHOW_ARTICLE_CATEGORY = False
 SHOW_DATE_MODIFIED = True
 
+DATE_FOR_ARTICLE_GROUPS = False
+
 DIRECT_TEMPLATES = ['index', 'categories', 'tags', 'archives', 'til']
+
 #------- Footer ---------------------------
 from datetime import datetime
 COPYRIGHT_YEAR = datetime.now().year
@@ -167,8 +169,8 @@ if MY_THEME == 'elegant':
 elif MY_THEME == 'flex':
     THEME = 'pelican-themes/flex'   # flex | elegant
     # THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
-    THEME_COLOR_ENABLE_USER_OVERRIDE = True
-    USE_LESS = True
+    THEME_COLOR_ENABLE_USER_OVERRIDE = False
+    USE_LESS = False
     CUSTOM_CSS = 'styles/custom.css'
 
 TYPOGRIFY = True
