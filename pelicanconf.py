@@ -135,6 +135,7 @@ SHOW_ARTICLE_AUTHOR = False
 SHOW_ARTICLE_CATEGORY = False
 SHOW_DATE_MODIFIED = True
 
+DIRECT_TEMPLATES = ['index', 'categories', 'tags', 'archives', 'til']
 #------- Footer ---------------------------
 from datetime import datetime
 COPYRIGHT_YEAR = datetime.now().year
