@@ -1,15 +1,15 @@
 ---
-Title: Top popular Zsh plugins on Github
+Title: Top popular Zsh plugins on GitHub
 Date: '2018-03-22'
 Start: '2018-03-22'
 Tags: zsh, scrapping, python, linux
 Category: Linux
 Image: /images/zsh/inside-work-tree.jpg
-Summary: There is an exhaustive but curated list of Zsh plugins posted on Github project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins). You can find there 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have highest number of stars.
+Summary: There is an exhaustive but curated list of Zsh plugins posted on GitHub project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins). You can find there 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have the highest number of stars.
 Status: published
 ---
 
-On Github project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) you can find 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. This post aims at identifying most popular plugins where popularity is measured with the number of stars that Github users added to given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on "Awesome Zsh plugins" website.
+On Github project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) you can find 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. This post aims at identifying most popular plugins where popularity is measured with the number of stars that GitHub users added to given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on "Awesome Zsh plugins" website.
 
 # What are Github stars?
 
@@ -44,7 +44,7 @@ autojump is a faster way to navigate your filesystem. It works by maintaining a 
 
 ## 2. [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
-This package provides Fish shell-like syntax highlighting for the Zsh. It enables highlighing of commands whilst they are typed at a Zsh prompt into an interactive terminal. This helps in reviewing commands before running them, particularly in catching syntax errors.
+This package provides Fish shell-like syntax highlighting for the Zsh. It enables highlighting of commands whilst they are typed at a Zsh prompt into an interactive terminal. This helps in reviewing commands before running them, particularly in catching syntax errors.
 Some examples:
 
 Before: ![Screenshot #1.1](https://raw.githubusercontent.com/zsh-users/zsh-syntax-highlighting/master/images/before1-smaller.png)
@@ -63,7 +63,7 @@ Example:
 
 ## 4. [blackbox](https://github.com/StackExchange/blackbox)
 
-This package allows to safely store secrets in a VCS repo (i.e. Git, Mercurial, Subversion or Perforce). These commands make it easy for you to Gnu Privacy Guard (GPG) encrypt specific files in a repo so they are "encrypted at rest" in your repository. However, the scripts make it easy to decrypt them when you need to view or edit them, and decrypt them for use in production. Originally written for Puppet, BlackBox now works with any Git or Mercurial repository.
+This package allows to safely store secrets in a VCS repo (i.e. Git, Mercurial, Subversion or Perforce). These commands make it easy for you to Gnu Privacy Guard (GPG) encrypt specific files in a repo, so they are "encrypted at rest" in your repository. However, the scripts make it easy to decrypt them when you need to view or edit them, and decrypt them for use in production. Originally written for Puppet, BlackBox now works with any Git or Mercurial repository.
 
 ## 5. [git-flow-completion](https://github.com/bobthecow/git-flow-completion)
 
@@ -105,7 +105,7 @@ Thanks to this mechanism, the user can intuitively and easily change the directo
 
 ## 10. [git-secret](https://github.com/sobolevn/git-secret)
 
-`git-secret` is a bash tool to store your private data inside a git repo. It encrypts data, using `gpg`, the tracked files with the public keys of all the users that you trust. So everyone of them can decrypt these files using only their personal secret key. Usage of private-public make it easier for everyone to manage access rights. There are no passwords that change. When someone is out - just delete their public key, re-encrypt the files, and they won’t be able to decrypt secrets anymore.
+`git-secret` is a bash tool to store your private data inside a git repo. It encrypts data, using `gpg`, the tracked files with the public keys of all the users that you trust. So every one of them can decrypt these files using only their personal secret key. Usage of private-public make it easier for everyone to manage access rights. There are no passwords that change. When someone is out - just delete their public key, re-encrypt the files, and they won’t be able to decrypt secrets anymore.
 [![git-secret terminal preview](https://asciinema.org/a/41811.png)](https://asciinema.org/a/41811?autoplay=1)
 
 On the list[0] there is 300+ projects that are falling into scope of this research, you can get complete dataset by downloading this CSV file: [CSV](/downloads/180322_results_sorted.csv).

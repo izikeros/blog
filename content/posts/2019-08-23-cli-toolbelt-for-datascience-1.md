@@ -47,7 +47,7 @@ I will give a few examples of commands I use most often or ones that are excepti
 
 <a id="comm"></a>
 ### comm
-The `comm` command is very handy when comes to compare lists stored in separate files. For example you have list of samples used for experiment #1 in one file and list of samples used in experiment #2 in another file.
+The `comm` command is very handy when comes to compare lists stored in separate files. For example, you have list of samples used for experiment #1 in one file and list of samples used in experiment #2 in another file.
 The `comm` command takes sorted files as input and calculate unique lines for FILE1 and for FILE2 and the result is represented respectively as `column 1` and `column 2`. Having unique lines in column 1 and 2, set of lines that appear in both files is calculated and result is represented by column 3. 
 
 
@@ -118,7 +118,7 @@ sort -bufi data.csv
 ```
 <a id="split"></a>
 ### split
-Sometimes there is a need to split dataset to smaller parts. E.g. when processing large files you can be hit by memory limitations or you want to speed up processing using parallel computing. To split file into N parts with equal number of lines, use: 
+Sometimes there is a need to split dataset to smaller parts. E.g. when processing large files you can be hit by memory limitations, or you want to speed up processing using parallel computing. To split file into N parts with equal number of lines, use: 
 ```sh
 split -n l/N data.csv
 ```
@@ -132,7 +132,7 @@ This will create serie of files named: `xaa, xab, xac,...`. The default pattern 
 ```sh
 split l/10 data.csv part_
 ```
-and this will result in having files `part_aa, part_ab,...`.  Suffixes doesn't have to be alphabetical: can be numeric (use switch `-d`) or even hex (use switch `-x`). What is particularly usefull - prefixes can be used to save resulting files in given location. Let's take an example `dataset.csv` file located in data directory, we want to split this file into parts and save results in `parts` directory as shown below:
+and this will result in having files `part_aa, part_ab,...`.  Suffixes don't have to be alphabetical: can be numeric (use switch `-d`) or even hex (use switch `-x`). What is particularly useful - prefixes can be used to save resulting files in given location. Let's take an example `dataset.csv` file located in data directory, we want to split this file into parts and save results in `parts` directory as shown below:
 
 ```text
 data
@@ -163,7 +163,7 @@ sed 1d file.txt
 
 <a id="uniq"></a>
 ### uniq
-used often with `sort` in a way:
+often used with `sort` in a way:
 ```sh
 cat file.txt | sort | uniq
 ```

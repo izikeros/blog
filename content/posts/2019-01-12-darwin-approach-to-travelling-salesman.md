@@ -137,7 +137,7 @@ The next step involved full process and proved crossover and mutation to be effi
 1. The experiment shown me the beauty of evolutionary approach - directed but random evolution leads to emergence of the order and optimized solutions (however not optimal solutions).
 2. The fitness of the solution is stabilizing after ~100 epochs. The population doesn't have sufficient new genomes and variation decreases. With this, ability to overcome imperfections in best route found so far drops significantly.   
 3. Being under impression of robustness of the evolutionary system I'm eager to try evaluational approach as alternative to Reinforcement learning such as described on [openai blog](https://blog.openai.com/evolution-strategies/)
-4. Technical one: even such a side project playing with numerical problem benefits from accompanying tests.Many annoying bugs that appeared during the implementation (mainly from global range of variables), and covering (at least partially) code with tests helped out to progress.
+4. Technical one: even such a side project playing with numerical problem benefits from accompanying tests. Many annoying bugs that appeared during the implementation (mainly from global range of variables), and covering (at least partially) code with tests helped out to progress.
 
 
 <a id="ideas-for-future-work"></a>
