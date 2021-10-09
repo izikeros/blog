@@ -116,11 +116,12 @@ LINKS = (
 # --------------- Layout ---------------------
 USE_FOLDER_AS_CATEGORY = False
 MAIN_MENU = True
-MENUITEMS = (('All Posts', '/archives.html'),
+MENUITEMS = (('Articles', '/archives.html'),
+             ('Notes', '/til.html'),
              ('Categories', '/categories.html'),
              ('Tags', '/tags.html'),
              ('Resume','/pdfs/Krystian_Safjan_resume_priv.pdf'),
-             ('Sitemap', '/sitemap.xml'),
+             # ('Sitemap', '/sitemap.xml'),
              )
 HOME_HIDE_TAGS = True         # ??
 DEFAULT_PAGINATION = 20
