@@ -77,6 +77,10 @@ SOCIAL = (
         'envelope',
         'mailto:ksafjan@gmail.com'
     ),
+    (
+        'newspaper', #'mortar-board | newspaper',
+        'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
+    ),
     # (
     #     'mortar-board', #'mortar-board',
     #     'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
