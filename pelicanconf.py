@@ -11,7 +11,7 @@
 
 
 AUTHOR = 'Krystian Safjan'
-SITENAME = "Krystian Safjan's blog"
+SITENAME = "Krystian Safjan's Blog"
 
 MY_THEME = 'flex' # flex | elegant
 IS_DEVELOPMENT = True
@@ -39,7 +39,9 @@ GITHUB_URL = "https://github.com/izikeros"
 # ---- Side ----
 if MY_THEME == 'flex':
     # Note under profile image
-    SITESUBTITLE = '<hr><p style="font-size:220%">Krystian Safjan\'s Blog</p><p>Data Scientist | Researcher | Team Leader</p></br></br>I\'m working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
+    # SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
+    SITETITLE = SITENAME    # Used in Flex theme
+    SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITELOGO = '/images/profile_new.jpg'
 
 # define landing page for elegant style
