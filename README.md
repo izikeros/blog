@@ -1,8 +1,6 @@
-
-
 # Blog
 
-This is repository with my blog [safjan.com](http://safjan.com). It is created using Pelican - static site generator written in Python.
+This is repository with blog [safjan.com](http://safjan.com). It is created using [Pelican](https://github.com/getpelican) - static site generator written in Python.
 
 <!-- MarkdownTOC levels='1,2,3' autolink="true" autoanchor="true" -->
 
@@ -31,6 +29,7 @@ This is repository with my blog [safjan.com](http://safjan.com). It is created u
   - [Black formatting](#black-formatting)
 - [Using notes category](#using-notes-category)
 - [Aside \(sidebar\)](#aside-sidebar)
+- [New metadata](#new-metadata)
 
 <!-- /MarkdownTOC -->
 
@@ -147,7 +146,6 @@ make devserver
 - [ ] hide input of trivial cells (such as imports). In extreme - hide all code cells.
 - [ ] have conclusion and lessons learned. If no conclusion then summary at least.
 
-<a id="add-badges-that-allows-running-notebooks-in-google-colab-or-binder"></a>
 
 <a id="add-badges-that-allows-running-notebooks-in-google-colab-or-binder"></a>
 ### Add badges that allows running notebooks in Google Colab or Binder
@@ -170,10 +168,6 @@ Use markdown cells. Examples of captions:
 
 *Table 1. Transition matrix - value in each matrix element $a_{ij}$ represents probability that the spy will move to country $j$ (the column) from country $i$ (the row).*
 ```
-
-
-
-<a id="hide-prompt"></a>
 
 <a id="hide-prompt"></a>
 ### Hide prompt
@@ -205,10 +199,6 @@ except:
     css_styling()
 ```
 
-
-
-<a id="todo"></a>
-
 <a id="todo"></a>
 # TODO:
 - [ ] 1. Normalize `yaml` heading to articles and `.nbdata` files as well - write small python script for that job
@@ -234,7 +224,6 @@ c.TagRemovePreprocessor.remove_cell_tags = ("remove_cell",)
 c.TagRemovePreprocessor.enabled = True
 IPYNB_PREPROCESSORS=[TagRemovePreprocessor(config=c)]
 ```
-<a id="customization-examples"></a>
 
 <a id="customization-examples"></a>
 ## Customization examples:
@@ -289,3 +278,11 @@ Use `black --ipynb .` in `posts` directory to format notebooks (requires black w
 - headline is hardcoded in `pelicanconf.py` in `SITESUBTITLE` variable
 - social icons `style.less`
 
+<a id="new-metadata"></a>
+# New metadata
+- suggested_tags
+- ignore_tags - list - Do not add these tags to the suggested tags. When manually editing article with front matter you can review tags and move suggested tags to tags (or til_tags) and move unfortunate tags to `ignore_tags` to avoid have them suggested next time when automated tag suggention will be running.
+- citation_needed
+- til_tags
+- til_category
+- image for article featured image (not `cover` or featured image)
