@@ -70,10 +70,7 @@ devserver:
 devserver-global:
 	$(PELICAN) -lr $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS) -b 0.0.0.0
 
-publish: clean
+publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
-	git add --all docs/
-	git commit -m "Blog update"
-	git push
 
 .PHONY: html help clean regenerate serve serve-global devserver publish
