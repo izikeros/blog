@@ -280,9 +280,4 @@ Use `black --ipynb .` in `posts` directory to format notebooks (requires black w
 
 <a id="new-metadata"></a>
 # New metadata
-- suggested_tags
-- ignore_tags - list - Do not add these tags to the suggested tags. When manually editing article with front matter you can review tags and move suggested tags to tags (or til_tags) and move unfortunate tags to `ignore_tags` to avoid have them suggested next time when automated tag suggention will be running.
-- citation_needed
-- til_tags
-- til_category
-- image for article featured image (not `cover` or featured image)
+see my fork of Flex new metadata
