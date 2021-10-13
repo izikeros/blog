@@ -3,7 +3,7 @@ Title: Kaggle evaluation metrics used for regression problems
 Date: 2019-02-16
 Start: 2019-02-05
 Modified: 2019-03-01
-Tags: machine learning, evaluation, metrics, performance
+Tags: machine learning, evaluation, metrics, model performance evaluation, Kaggle
 Category: Data Science
 Image: /images/head/performance_metrics.jpg
 Summary: This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely: Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE).
@@ -94,7 +94,6 @@ Five exemplary competitions using Mean Absolute Error for model evaluation:
 * [Finding Elo](https://www.kaggle.com/c/finding-elo#evaluation) - Predict a chess player's FIDE Elo rating from one game.
 
 <a id="weighted-mean-absolute-error---wmae"></a>
-
 ## Weighted Mean Absolute Error - WMAE
 **Weighted average of absolute errors.**
 
@@ -123,7 +122,6 @@ Two exemplary competitions using Weighted Mean Absolute Error for model evaluati
 * [Walmart Recruiting - Store Sales Forecasting](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting#evaluation) - Use historical markdown data to predict store sales.
 
 <a id="pearson-correlation-coefficient"></a>
-
 ## Pearson Correlation Coefficient
 **Covariance of the two variables divided by the product of the standard deviation of each data sample.**
 
@@ -152,7 +150,6 @@ Exemplary competition using Pearson Correlation Coefficient for model evaluation
 * [Merck Molecular Activity Challenge](https://www.kaggle.com/c/MerckActivity#evaluation) - Help develop safe and effective medicines by predicting molecular activity.
 
 <a id="spearman%E2%80%99s-rank-correlation"></a>
-
 ## Spearman’s Rank Correlation
 **Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each variable.**
 
@@ -211,9 +208,7 @@ Five exemplary competition using Root Mean Squared Error for model evaluation:
 * [New York City Taxi Fare Prediction](https://www.kaggle.com/c/new-york-city-taxi-fare-prediction#evaluation) - Can you predict a rider's taxi fare?
 
 
-
 <a id="root-mean-squared-logarithmic-error---rmsle"></a>
-
 ## Root Mean Squared Logarithmic Error - RMSLE
 **Root mean squared error of variables transformed to logarithmic scale**.
 $$
@@ -245,7 +240,6 @@ Exemplary competition using Root Mean Squared Logarithmic Error for model evalua
 * [Sberbank Russian Housing Market](https://www.kaggle.com/c/sberbank-russian-housing-market#evaluation) - Can you predict realty price fluctuations in Russia’s volatile economy?
 
 <a id="mean-columnwise-root-mean-squared-error---mcrmse"></a>
-
 ## Mean Columnwise Root Mean Squared Error - MCRMSE
 **Errors of each k-fold CV trials were averaged over n test samples across m target variables.**
 $$
@@ -272,7 +266,6 @@ Exemplary competition using Mean Columnwise Root Mean Squared Error for model ev
 - [Africa Soil Property Prediction Challenge](https://www.kaggle.com/c/afsis-soil-properties#evaluation) - Predict physical and chemical properties of soil using spectral measurements
 
 <a id="references"></a>
-
 ## References
 1. [Kaggle wiki](archive.org)
 2. [Beating Kaggle the easy way, page 43](https://www.ke.tu-darmstadt.de/lehre/arbeiten/studien/2015/Dong_Ying.pdf)
