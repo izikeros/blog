@@ -22,6 +22,8 @@ In the top of first markdown cell (e.g. with notebook description) add html code
   </div>
 </div>
 ```
-Source: ?
+Source: [Have two columns in Markdown](https://newbedev.com/have-two-columns-in-markdown)
 
-> **NOTE:** replace `Notebook title` and `../../gfx/project_logo_150px.jpg` with your data.
+> **NOTE:**
+> - replace `Notebook title` and `../../gfx/project_logo_150px.jpg` with your data.
+> - you can change the relative column widths by changing the 8 and/or 4 shown in the code above, just make sure the sum of those two numbers is always 12.
