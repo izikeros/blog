@@ -13,7 +13,7 @@
 AUTHOR = 'Krystian Safjan'
 SITENAME = "Krystian Safjan's Blog"
 
-MY_THEME = 'flex' # flex | elegant
+MY_THEME = 'flex' # flex | elegant, NOTE: this is nit name of the folder in pelican themes - search below for `THEME =` 
 IS_DEVELOPMENT = True
 # ---- Development settings
 if IS_DEVELOPMENT:
@@ -43,6 +43,7 @@ if MY_THEME == 'flex':
     SITETITLE = SITENAME    # Used in Flex theme
     SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITELOGO = '/images/profile_new.jpg'
+    DISPLAY_DATE_AFTER_TITLE = False # display date in the list of articles (tags, categories)
 
 # define landing page for elegant style
 if MY_THEME == 'elegant':
@@ -89,28 +90,7 @@ SOCIAL = (
     # add Kaggle
     )
 
-LINKS = (
-    # (
-    #     'linkedin',
-    #     'https://pl.linkedin.com/in/krystiansafjan'
-    # ),
-    #     (
-    #     'github',
-    #     'https://github.com/izikeros'
-    # ),
-    # (
-    #     'email',
-    #     'mailto:ksafjan@gmail.com'
-    # ),
-    # (
-    #     'google scholar', #'mortar-board',
-    #     'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
-    # ),
-    # (
-    #     'rss',
-    #      '/feeds/all.rss.xml')
-    # add Kaggle
-    )
+
 # --------------- Layout ---------------------
 USE_FOLDER_AS_CATEGORY = False
 MAIN_MENU = True
@@ -119,7 +99,6 @@ MENUITEMS = (('Articles', '/archives.html'),
              ('Categories', '/categories.html'),
              ('Tags', '/tags.html'),
              ('Resume','/pdfs/Krystian_Safjan_resume_priv.pdf'),
-             # ('Sitemap', '/sitemap.xml'),
              )
 
 
@@ -127,9 +106,7 @@ HOME_HIDE_TAGS = True         # Shall the tags be hidden when displaying list of
 DEFAULT_PAGINATION = 20
 SUMMARY_MAX_LENGTH = 42
 DISPLAY_PAGES_ON_MENU = False  # Display in sidebar links to articles located in 'pages'
-
-# DEFAULT_DATE_FORMAT = '%Y-%m-%d'    # 2021-12-29
-DEFAULT_DATE_FORMAT = '%B %d, %Y'   # December 29, 2021
+DEFAULT_DATE_FORMAT = '%B %d, %Y'   # '%B %d, %Y' -> December 29, 2021, '%Y-%m-%d' -> 2021-12-29
 
 # Article heading
 SHOW_ARTICLE_AUTHOR = False
@@ -151,7 +128,6 @@ CC_LICENSE = {
 }
 
 
-
 # ----------------- Resources ------------------
 STATIC_PATHS = [
     'styles',
@@ -160,7 +136,8 @@ STATIC_PATHS = [
     'favicon.ico',
     '.nojekyll',
     'pdfs',
-    'zipfiles']
+    'zipfiles',
+    'CNAME']
 
 # ----------- Theme, CSS and other styling
 PYGMENTS_STYLE = "github" # github | monokai # FLEX
@@ -169,7 +146,7 @@ if MY_THEME == 'elegant':
     # NOTE: style customization for elegant:
     # elegant/static/css/custom.css
 elif MY_THEME == 'flex':
-    THEME = 'pelican-themes/flex'   # flex | elegant
+    THEME = 'pelican-themes/Flex'   # flex | elegant
     # THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
     THEME_COLOR_ENABLE_USER_OVERRIDE = False
     USE_LESS = False
