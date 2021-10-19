@@ -63,9 +63,7 @@ else:
 	FEED_ALL_RSS = 'feeds/all.rss.xml'
 # Social widget
 # https://github.com/alexandrevicenzi/Flex/wiki/Flex-Menus
-# How to modify mine glyphs?
-#   -
-#   -
+
 
 SOCIAL = (
     (
@@ -81,7 +79,7 @@ SOCIAL = (
         'mailto:ksafjan@gmail.com'
     ),
     (
-        'newspaper', #'mortar-board | newspaper',
+        'newspaper', #'mortar-board | newspaper' or 'graduation-cap' 
         'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
     ),
     (
@@ -89,9 +87,10 @@ SOCIAL = (
          '/feeds/all.rss.xml')
     # add Kaggle
     )
-
+# https://fontawesome.com/v5.15/icons/graduation-cap?style=solid
 
 # --------------- Layout ---------------------
+# How main menu works: https://github.com/alexandrevicenzi/Flex/wiki/Flex-Menus
 USE_FOLDER_AS_CATEGORY = False
 MAIN_MENU = True
 MENUITEMS = (('Articles', '/archives.html'),
@@ -111,11 +110,13 @@ DEFAULT_DATE_FORMAT = '%B %d, %Y'   # '%B %d, %Y' -> December 29, 2021, '%Y-%m-%
 # Article heading
 SHOW_ARTICLE_AUTHOR = False
 SHOW_ARTICLE_CATEGORY = False
-SHOW_DATE_MODIFIED = True
+SHOW_DATE_MODIFIED = False
 
 DATE_FOR_ARTICLE_GROUPS = False
 
+
 DIRECT_TEMPLATES = ['index', 'categories', 'tags', 'archives', 'til']
+# DIRECT_TEMPLATES = ['index', 'categories', 'tags', 'archives']
 
 #------- Footer ---------------------------
 from datetime import datetime
@@ -153,6 +154,7 @@ elif MY_THEME == 'flex':
     CUSTOM_CSS = 'styles/custom.css'
 
 TYPOGRIFY = True
+TYPOGRIFY_IGNORE_TAGS = ["style", "script", "title", "code", "pre"]
 
 # Where to output the generated files
 OUTPUT_PATH = 'docs'
