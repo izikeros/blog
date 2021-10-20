@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2021-10-12T00:00:00+02:00</updated><subtitle>&lt;p&gt;Data Scientist | Researcher | Team Leader&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;I'm working at Nokia and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;</subtitle><entry><title>Add logo to notebook header cell</title><link href="https://www.safjan.com/add-logo-to-notebook-header/" rel="alternate"></link><published>2021-10-12T00:00:00+02:00</published><updated>2021-10-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-12:/add-logo-to-notebook-header/</id><summary type="html">&lt;p&gt;Instruction hot to add logo to notebook header cell to strenghten visual-identification of the&amp;nbsp;project&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the top of first markdown cell (e.g. with notebook description) add html&amp;nbsp;code:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2021-10-20T00:00:00+02:00</updated><subtitle>&lt;p&gt;Data Scientist | Researcher | Team Leader&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;I'm working at Nokia and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;</subtitle><entry><title>Git hooks</title><link href="https://www.safjan.com/git-hooks/" rel="alternate"></link><published>2021-10-20T00:00:00+02:00</published><updated>2021-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-20:/git-hooks/</id><summary type="html">&lt;p&gt;Example how to setup git hooks manually or with pre-commit&amp;nbsp;tool&lt;/p&gt;</summary><content type="html">&lt;p&gt;Git hook makes easier to keep order in the software project:
+- can help following agreed conventions related with e.g.
+    + code format, code quality
+    + workflow
+    + commit practices and&amp;nbsp;format&lt;/p&gt;
+&lt;h1&gt;Exemplary check before the&amp;nbsp;commit&lt;/h1&gt;
+&lt;p&gt;If not exists, create &lt;code&gt;hooks&lt;/code&gt; directory in the &lt;code&gt;.git&lt;/code&gt; folder of the demo and add these&amp;nbsp;files.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="na"&gt;.git&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;hooks&lt;/span&gt;
+&lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="nf"&gt;isort_hooks.py&lt;/span&gt;
+&lt;span class="err"&gt;└──&lt;/span&gt; &lt;span class="nf"&gt;pre-commit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;isort_hooks.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;isort.hooks&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;git_hook&lt;/span&gt;
+
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;git_hook&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;strict&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;modify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;pre-commit&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -e  &lt;span class="c1"&gt;# stop script execution when error encoutered&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Run flake8 check&lt;/span&gt;
+flake8 .
+
+&lt;span class="c1"&gt;# Sort imports with isort&lt;/span&gt;
+python ./.githooks/isort_hooks.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Alternatives&lt;/h1&gt;
+&lt;p&gt;There is tool &lt;a href="https://pre-commit.com/"&gt;pre-commit&lt;/a&gt; that ease installation and configuration of git hooks. Read my note on that: &lt;a href="./pre-commit-hooks/"&gt;Pre-commit&amp;nbsp;hooks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;References:
+- &lt;a href="https://githooks.com/"&gt;Git Hooks&lt;/a&gt; - user friendly description, tons of examples, reference links
+- &lt;a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks"&gt;Git Book on hooks&lt;/a&gt;&amp;nbsp;- &lt;/p&gt;
+&lt;p&gt;See&amp;nbsp;also:&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="hooks"></category><category term="pre-commit hooks"></category><category term="software project"></category><category term="project"></category></entry><entry><title>Time tracking apps</title><link href="https://www.safjan.com/time-tracking-apps/" rel="alternate"></link><published>2021-10-20T00:00:00+02:00</published><updated>2021-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-20:/time-tracking-apps/</id><summary type="html"></summary><content type="html">&lt;p&gt;In professional work both in corporation or as freelancer there might be a need to track - how much time you spent on different acctivities. There are already good apps that helps with&amp;nbsp;that.&lt;/p&gt;
+&lt;h1&gt;Solution that works best for&amp;nbsp;me&lt;/h1&gt;
+&lt;h2&gt;GTime&lt;/h2&gt;
+&lt;p&gt;Manually log time when starting new activity. Consider using it with free, open source &lt;a href="https://activitywatch.net/"&gt;ActivityWatch&lt;/a&gt; that will help you estimate time of acctivity if you miss&amp;nbsp;someting.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://mg.pov.lt/gtimelog/"&gt;GTime&lt;/a&gt; is simple, might be similar to time tracking &amp;#8220;Keep Focused&amp;#8221; I used on&amp;nbsp;Windows.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GTime screenshoot" src="https://linuxinsider.com/article_images/2019/85896_620x390.jpg"&gt;&lt;/p&gt;
+&lt;h3&gt;quick info on how to use&amp;nbsp;it&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Start the app and type in &amp;#8220;arrived.&amp;#8221; After finishing each activity throughout the workday, enter the name of the activity in the GTimeLog&amp;nbsp;prompt.&lt;/p&gt;
+&lt;p&gt;Naming the activity at the end of working on the task is a key principle. Activities, in general, are categorized as two types. One type is &lt;code&gt;tasks&lt;/code&gt; that count as billable work. The other type does not. To indicate which activities are not billable, add two asterisks to the activity name. The program calculates your time expenditures and creates an activity report that shows how much time you have spent working and taking&amp;nbsp;breaks.&lt;/p&gt;
+&lt;p&gt;GTimeLog is loaded with high-end features. For instance, it stores the time log in a simple plain text file. You can edit it by choosing Edit log from the menu (or pressing Ctrl-E). Every line contains a timestamp and the name of the activity that ended at the time. All other lines are ignored, so you can add&amp;nbsp;comments.&lt;/p&gt;
+&lt;p&gt;The application uses simple configuration options. These include commands to flag specific activities as not related to work, and the option to omit them completely in daily&amp;nbsp;reports.&lt;/p&gt;
+&lt;p&gt;The display involves three basic views. The first shows all the activities in chronological order, with starting and ending times. The second view groups all entries with the same title into one activity and just shows the total duration. The third view groups all entries from the same categories into one line with the total&amp;nbsp;duration.&lt;/p&gt;
+&lt;p&gt;GTimeLog lacks a built-in sync system between multiple machines. The workaround is to put its files into Dropbox and create a&amp;nbsp;symlink.&lt;/p&gt;
+&lt;p&gt;Download GTimeLog from the Python Package Index using this terminal command: &lt;code&gt;pip install gtimelog&lt;/code&gt; Packages are available in Debian and Ubuntu formats. The released version is notably&amp;nbsp;outdated&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;ActivityWatch&lt;/h2&gt;
+&lt;p&gt;open source, privacy-first, cross-platform, and a great alternative to services like RescueTime, ManicTime, and&amp;nbsp;WakaTime.&lt;/p&gt;
+&lt;p&gt;It can be used to keep track of your productivity, time spent on different projects, bad screen habits, or just to understand how you spend your&amp;nbsp;time.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ActivityWatch screenshoot 1" src="https://activitywatch.net/img/screenshot-v0.9.3-activity.png"&gt;
+&lt;img alt="ActivityWatch screenshoot 2" src="https://activitywatch.net/img/screenshot-v0.8.0b9-timeline.png"&gt;&lt;/p&gt;
+&lt;h1&gt;Alternatives&lt;/h1&gt;
+&lt;p&gt;Alternatives from &lt;a href="https://linuxinsider.com/story/8-great-linux-time-tracker-apps-to-keep-you-on-task-85896.html"&gt;linuxinsider&lt;/a&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://projecthamster.wordpress.com/about/"&gt;Hamster&lt;/a&gt; - standard in this category of software but for some reason I decided to use replacement:&amp;nbsp;GTime.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://rachota.sourceforge.net/en/index.html"&gt;Rachota Timetracker&lt;/a&gt; - portable, similar to&amp;nbsp;hamster&lt;/li&gt;
+&lt;li&gt;&lt;a href=""&gt;&lt;span class="caps"&gt;ARBTT&lt;/span&gt;&lt;/a&gt; - automated tracking open windows. “Automatic Rule-Based Time-Tracker.” The program recognizes active windows and tracks how long they are open. It calculates that time&amp;nbsp;interval.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Rest:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;KTimeTracker: Outdated, but Flexible and&amp;nbsp;Simple&lt;/li&gt;
+&lt;li&gt;GnoTime: Tracking Tool&amp;nbsp;Plus&lt;/li&gt;
+&lt;li&gt;TimeSlotTracker: Unconventional Yet&amp;nbsp;Useful&lt;/li&gt;
+&lt;li&gt;JTimeSched: Lean Design Meets Intuitive&amp;nbsp;Style&lt;/li&gt;
+&lt;li&gt;Kimai: open-source time-tracking for teams and&amp;nbsp;individuals.&lt;/li&gt;
+&lt;li&gt;Fanurio: time-tracking and billing app for&amp;nbsp;freelancers.&lt;/li&gt;
+&lt;li&gt;actiTIME: time-tracking and work management&amp;nbsp;system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here’s more information about these tools:&amp;nbsp;https://www.actitime.com/productivity-tools/linux-timesheet&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In the past, on Windows machine I used ManicTime for some time (when it was&amp;nbsp;free).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Poor-man&amp;#8217;s&amp;nbsp;solution&lt;/h2&gt;
+&lt;p&gt;Poor-man&amp;#8217;s solution might be capturing screen shoots periodicaly (e.g. every 5min) and then you can manually browse them and restore your activity in given day. Pros of this solution is that capturing the raw data (screenshots) might be fully automated, run in the background and do not need any involvement from your side. Cons is that you need to process the&amp;nbsp;screenshots.&lt;/p&gt;</content><category term="note"></category><category term="time tracking"></category><category term="time management"></category><category term="billing"></category><category term="tracing"></category><category term="monitoring time"></category><category term="monitoring productivity"></category><category term="monitoring"></category><category term="productivity"></category></entry><entry><title>Add logo to notebook header cell</title><link href="https://www.safjan.com/add-logo-to-notebook-header/" rel="alternate"></link><published>2021-10-12T00:00:00+02:00</published><updated>2021-10-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-12:/add-logo-to-notebook-header/</id><summary type="html">&lt;p&gt;Instruction hot to add logo to notebook header cell to strenghten visual-identification of the&amp;nbsp;project&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the top of first markdown cell (e.g. with notebook description) add html&amp;nbsp;code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;col-md-8&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;markdown&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Notebook title&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -20,7 +99,7 @@
 &lt;li&gt;&lt;code&gt;git add .&lt;/code&gt; stages new files and modifications, &lt;strong&gt;without deletions&lt;/strong&gt; (on the current directory and its&amp;nbsp;subdirectories).&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;git add -u&lt;/code&gt; stages modifications and deletions, &lt;strong&gt;without new&amp;nbsp;files&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;With git 2.0 &lt;code&gt;git add &amp;lt;path&amp;gt;&lt;/code&gt; is the same as &lt;code&gt;git add -A &amp;lt;path&amp;gt;&lt;/code&gt;.&lt;/p&gt;</content><category term="note"></category><category term="git"></category></entry><entry><title>Github pre-commit hooks</title><link href="https://www.safjan.com/github-pre-commit-hooks/" rel="alternate"></link><published>2021-10-08T00:00:00+02:00</published><updated>2021-10-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-08:/github-pre-commit-hooks/</id><summary type="html">&lt;p&gt;Pre-commit is convenient framework to manage git hooks. Uses configuration in yaml file, handle installation of required hooks and&amp;nbsp;tools.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Pre-commit is convenient framework to manage git hooks. Uses configuration in yaml file, handle installation of required hooks and&amp;nbsp;tools.&lt;/p&gt;
+&lt;p&gt;With git 2.0 &lt;code&gt;git add &amp;lt;path&amp;gt;&lt;/code&gt; is the same as &lt;code&gt;git add -A &amp;lt;path&amp;gt;&lt;/code&gt;.&lt;/p&gt;</content><category term="note"></category><category term="git"></category></entry><entry><title>Git pre-commit hooks</title><link href="https://www.safjan.com/git-pre-commit-hooks/" rel="alternate"></link><published>2021-10-08T00:00:00+02:00</published><updated>2021-10-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-08:/git-pre-commit-hooks/</id><summary type="html">&lt;p&gt;Pre-commit is convenient framework to manage git hooks. Uses configuration in yaml file, handle installation of required hooks and&amp;nbsp;tools.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Pre-commit is convenient framework to manage git hooks. Uses configuration in yaml file, handle installation of required hooks and&amp;nbsp;tools.&lt;/p&gt;
 &lt;h1&gt;Pre-commit&lt;/h1&gt;
 &lt;p&gt;repo with &lt;a href="https://github.com/pre-commit/pre-commit-hooks"&gt;hooks&lt;/a&gt; to be used with &lt;a href="https://pre-commit.com/"&gt;pre-commit&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Install&amp;nbsp;pre-commit&lt;/h2&gt;
@@ -283,7 +362,46 @@ See: &lt;a href=""&gt;Pyment&lt;/a&gt;, &lt;a href="./python-convert-docstring-s
 &lt;span class="c"&gt;## Generate pdoc HTML documentation for prolog package and open in browser&lt;/span&gt;
 &lt;span class="nf"&gt;doc_view&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
     pdoc --force --html --output-dir ./doc_myproject myproject &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; xdg-open ./doc_myproject/myproject/index.html
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="documentation"></category><category term="pdoc3"></category><category term="python"></category><category term="documentation generator"></category></entry><entry><title>Interactive plots for blogging</title><link href="https://www.safjan.com/interactive-plots-for-blogging/" rel="alternate"></link><published>2021-09-13T00:00:00+02:00</published><updated>2021-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-13:/interactive-plots-for-blogging/</id><summary type="html">&lt;p&gt;Using Plotly, Bokeh and Altair for interactive visualizations in the blog&amp;nbsp;posts&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="documentation"></category><category term="pdoc3"></category><category term="python"></category><category term="documentation generator"></category></entry><entry><title>Git autocommit on file changes</title><link href="https://www.safjan.com/git-autocommit-on-file-changes/" rel="alternate"></link><published>2021-09-14T00:00:00+02:00</published><updated>2021-09-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-14:/git-autocommit-on-file-changes/</id><summary type="html">&lt;p&gt;How to create automatical commits if any file in watched folder was&amp;nbsp;changed&lt;/p&gt;</summary><content type="html">&lt;p&gt;Motivation: I wanted to track history of the changes introduced in my notes folder. Didn&amp;#8217;t want to create commit, redact commit message after each change because, typically during the day I made multiple edits in notes ad prefer to minimize time spent on managing my notes. I&amp;#8217;m quickly jumping into the notes, adding something to existing notes or creating new. Remebering to commit each change is too much overhead for me. I started to look for the solution that will monitor my notes folder, and, if anything changed, create commmit. I found several solutions that serves for that&amp;nbsp;purpose.&lt;/p&gt;
+&lt;p&gt;For reference see: &lt;a href="https://stackoverflow.com/questions/420143/making-git-auto-commit"&gt;making-git-auto-commit&lt;/a&gt; on&amp;nbsp;StackOverflow.&lt;/p&gt;
+&lt;p&gt;My choice was gitwatch used as systemd&amp;nbsp;service.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://github.com/gitwatch/gitwatch"&gt;gitwatch&lt;/a&gt; # github: ★1k,&amp;nbsp;active&lt;/h1&gt;
+&lt;p&gt;A bash script to watch a file or folder and commit changes to a git&amp;nbsp;repo&lt;/p&gt;
+&lt;p&gt;Justification:
+- active with large community
+- There is an &lt;span class="caps"&gt;AUR&lt;/span&gt; package for Archlinux
+- does exactly what I want, nothing more
+- can be used as daemon that starts on&amp;nbsp;boot&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Usage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;gitwatch&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;secs&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;]&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;]&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;]]&lt;/span&gt;
+          &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;]&lt;/span&gt; &lt;span class="o"&gt;[-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;|-&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;lines&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;&lt;a href="https://github.com/jw0k/gwatch"&gt;gwatch&lt;/a&gt; github: ★22, low&amp;nbsp;activity&lt;/h1&gt;
+&lt;p&gt;A program that watches a folder for file modifications and commits them to a git repository&amp;nbsp;automatically&lt;/p&gt;
+&lt;p&gt;After gwatch is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (30s by default). After the timer expires, gwatch will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for gwatch to successfully create commits, a git repository must be initialized in the watched&amp;nbsp;folder.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="http://joeyh.name/code/etckeeper/"&gt;etckeeper&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: I don&amp;#8217;t need track&amp;nbsp;permissions&lt;/p&gt;
+&lt;p&gt;etckeeper is a collection of tools to let /etc be stored in a git, mercurial, darcs, or bzr repository. It hooks into apt (and other package managers including yum and pacman-g2) to automatically commit changes made to /etc during package upgrades. It tracks file metadata that revison control systems do not normally support, but that is important for /etc, such as the permissions of /etc/shadow. It&amp;#8217;s quite modular and configurable, while also being simple to use if you understand the basics of working with revision&amp;nbsp;control.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;etckeeper now has a website at&amp;nbsp;http://etckeeper.branchable.com/.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://arcanis.me/projects/git-etc"&gt;git-etc&lt;/a&gt; github: ★4, low activity, created 9 years ago, last commit in&amp;nbsp;2014&lt;/h1&gt;
+&lt;p&gt;Simple daemon that automatically creates git repository in the given directory and creates commit at the specified time&amp;nbsp;interval.&lt;/p&gt;
+&lt;p&gt;Has &lt;span class="caps"&gt;GUI&lt;/span&gt;, has &lt;span class="caps"&gt;AUR&lt;/span&gt;&amp;nbsp;package&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://github.com/grwlf/git-powercommit"&gt;Git&amp;nbsp;Powercommit&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Commit every changed submodule
+Commit every changed regular file or folder, aggregating the files that share a folder into a single&amp;nbsp;commit.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://github.com/bartman/git-wip"&gt;git-wip&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;git-wip is a script that will manage Work In Progress (or &lt;span class="caps"&gt;WIP&lt;/span&gt;) branches. &lt;span class="caps"&gt;WIP&lt;/span&gt; branches are mostly throw away but identify points of development between commits. The intent is to tie this script into your editor so that each time you save your file, the git-wip script captures that state in git. git-wip also helps you return back to a previous state of&amp;nbsp;development.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="http://inotify.aiken.cz/?section=incron&amp;amp;page=about&amp;amp;lang=en"&gt;inotify&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;This program is an &amp;#8220;inotify cron&amp;#8221; system. It consists of a daemon and a table manipulator. You can use it a similar way as the regular cron. The difference is that the inotify cron handles filesystem events rather than time&amp;nbsp;periods.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://facebook.github.io/watchman/"&gt;watchman&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Watchman exists to watch files and record when they change. It can also trigger actions (such as rebuilding assets) when matching files&amp;nbsp;change&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://github.com/nzvincent/nzvincent-github/blob/master/inotify-tools/inotify.sh"&gt;inotify.sh&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;This script uses inotifywatch to monitor files status and trigger commands.
+I designed this for Ansible playbook but you can use this on other development purposes.
+To install .eg apt-get install -y inotify-tools&amp;nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="autocommit"></category><category term="note taking"></category><category term="notes"></category></entry><entry><title>Interactive plots for blogging</title><link href="https://www.safjan.com/interactive-plots-for-blogging/" rel="alternate"></link><published>2021-09-13T00:00:00+02:00</published><updated>2021-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-13:/interactive-plots-for-blogging/</id><summary type="html">&lt;p&gt;Using Plotly, Bokeh and Altair for interactive visualizations in the blog&amp;nbsp;posts&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1744,10 +1862,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="95a778ee-f6f9-4a50-a27c-39ca290f541e"&gt;&lt;/div&gt;
+&lt;div id="2fc49888-c2bf-484d-90c0-1cf80d4ef712"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#95a778ee-f6f9-4a50-a27c-39ca290f541e');
+var element = $('#2fc49888-c2bf-484d-90c0-1cf80d4ef712');
 
 (function(root) {
   function now() {
