@@ -55,7 +55,7 @@ With this approach we taking different samples for testing in each train-test se
 ![time series split from scikit-learn](/images/time_series_dev_set/sphx_glr_plot_cv_indices_010.png)
 
   - see: #  https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html
-##  Blocked cv (moving window)
+## Blocked cv (moving window)
 
 The moving window approach addressed issue with different number of training samples identified in case of previous approach, here however, number of training samples in each set is very limited to allow sweeping the dataset timeline with the train-test window.
 

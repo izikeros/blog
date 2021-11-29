@@ -39,9 +39,9 @@ GITHUB_URL = "https://github.com/izikeros"
 # ---- Side ----
 if MY_THEME == 'flex':
     # Note under profile image
-    # SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
+    # SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Ernst ;amp& Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITETITLE = SITENAME    # Used in Flex theme
-    SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Nokia and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
+    SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITELOGO = '/images/profile_new.jpg'
     DISPLAY_DATE_AFTER_TITLE = False # display date in the list of articles (tags, categories)
 
@@ -79,7 +79,7 @@ SOCIAL = (
         'mailto:ksafjan@gmail.com'
     ),
     (
-        'newspaper', #'mortar-board | newspaper' or 'graduation-cap' 
+        'graduation-cap', #'mortar-board | newspaper' or 'graduation-cap' 
         'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
     ),
     (

@@ -1,5 +1,6 @@
 ---
 Title: Top popular Zsh plugins on GitHub
+Slug: top-popular-zsh-plugins-on-github
 Date: '2018-03-22'
 Start: '2018-03-22'
 Tags: zsh, scrapping, python, linux
@@ -8,6 +9,9 @@ Image: /images/zsh/inside-work-tree.jpg
 Summary: There is an exhaustive but curated list of Zsh plugins posted on GitHub project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins). You can find there 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have the highest number of stars.
 Status: published
 ---
+
+> **NOTE:** This article was written in 2018, for more recent version of the ranking see: [2021](../top-popular-zsh-plugins-on-github-2021/). 
+> There is serie of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/), [2019](../top-popular-zsh-plugins-on-github-2019/), [2021](../top-popular-zsh-plugins-on-github-2021/)
 
 On Github project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) you can find 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. This post aims at identifying most popular plugins where popularity is measured with the number of stars that GitHub users added to given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on "Awesome Zsh plugins" website.
 

@@ -1,11 +1,11 @@
 ---
 date: '2021-10-08'
 status: published
-suggested_tags: commit, github, hook, pre, sh, yaml
+suggested_tags: commit, github, hook, pre, sh, yaml, git
 summary: Pre-commit is convenient framework to manage git hooks. Uses configuration in yaml file, handle installation of required hooks and tools.
 tags: best practices, commit, git, github, hooks, management, project
-title: Github pre-commit hooks
-slug: github-pre-commit-hooks
+title: Git pre-commit hooks
+slug: git-pre-commit-hooks
 category: note
 ---
 
