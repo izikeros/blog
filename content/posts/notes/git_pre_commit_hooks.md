@@ -29,7 +29,7 @@ repos:
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
 -   repo: https://github.com/psf/black
-    sha: 19.3b0
+    sha: 21.12b0
     hooks:
     -   id: black
 ```
@@ -43,5 +43,57 @@ It's usually a good idea to run the hooks against all of the files when adding n
 pre-commit run --all-files
 ```
 
+upgrade pre-commit hooks to most recent version:
+```sh
+pre-commit autoupdate
+```
+
 see also: https://github.com/sds/overcommit
+
+## Example of set of hooks
+```yaml
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+# Use: `pre-commit autoupdate` to update the hooks
+
+# Hooks:
+# - JupyText - for syncing notebooks with python scripts
+# - black - for formatting
+# - pyupgrade - A tool to automatically upgrade syntax for newer versions of the language.
+# - flake8 - various checks
+# - trailing-whitespace
+# - end-of-file-fixer
+# - mixed-line-ending
+
+repos:
+# synchronize notebooks staged for commit with corresponding python scripts
+-   repo: https://github.com/mwouts/jupytext
+    rev: v1.13.4
+    hooks:
+    - id: jupytext
+      args: [--sync, --pipe, black]
+      additional_dependencies:
+        - black==21.12b0 # Matches black hook version
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: mixed-line-ending
+-   repo: https://github.com/psf/black
+    rev: 21.12b0
+    hooks:
+    -   id: black
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v2.29.1
+    hooks:
+    -   id: pyupgrade
+        args: [--py36-plus]
+-   repo: https://github.com/pycqa/flake8
+    rev: '4.0.1'  
+    hooks:
+    -   id: flake8
+        exclude: (__pycache__|.venv|tmp|notebooks)
+        #additional_dependencies: [flake8-docstrings]
+```
 

@@ -50,4 +50,13 @@ References:
 - [Git Hooks](https://githooks.com/) - user friendly description, tons of examples, reference links
 - [Git Book on hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) - 
 
+# Sharing git hooks with the team
+Nowadays you can do the following to set a directory that is under version control to be your git hooks directory, e.g., `MY_REPO_DIR/.githooks` would be
+```sh
+git config --local core.hooksPath .githooks/
+```
+Still not directly enforceable but, if you add a note in your README (or whatever), this requires a minimum of effort on each developer's part.
+Source: [Stackoverflow](https://stackoverflow.com/a/54281447/3247880)
+
 See also:
+- [Two Ways to Share Git Hooks with Your Team](https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/)

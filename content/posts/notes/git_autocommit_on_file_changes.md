@@ -31,6 +31,27 @@ gitwatch [-s <secs>] [-d <fmt>] [-r <remote> [-b <branch>]]
           [-m <msg>] [-l|-L <lines>] <target>
 ```
 
+## Notes for installation on Mac
+If running on OS X, you'll need to install the following Homebrew tools:
+```sh
+$ brew install fswatch
+$ brew install coreutils
+```
+and
+```sh
+$ brew install gitwatch
+```
+
+1. If installed to a path other than `/usr/bin/gitwatch`, modify `gitwatch@.service` to suit. In my case gitwatch was found in `/usr/local/bin/gitwatch`
+2. Create dir if it does not exist and copy systemd service file with `mkdir -p "$HOME/.config/systemd/user" && cp gitwatch@.service $HOME/.config/systemd/user`
+If you cannot find `gitwatch@.service` file take it from the github repository.
+
+3. Start and enable the service for a given path by running `systemctl --user --now enable gitwatch@$(systemd-escape "'-r url/to/repository' /path/to/folder").service`
+On macOS you need act differently
+- take .plist file from repo, adjust to your needs
+- copy modified plist to  /Library/LaunchDaemons/ with sudo
+- note: if there is proper gitwatch script path (I needed to change `gitwatch.sh` to `gitwatch`)
+
 # [gwatch](https://github.com/jw0k/gwatch) github: ★22, low activity
 A program that watches a folder for file modifications and commits them to a git repository automatically
 
