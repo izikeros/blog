@@ -1,5 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-01-25T00:00:00+01:00</updated><subtitle>&lt;p&gt;Data Scientist | Researcher | Team Leader&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;I'm working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;</subtitle><entry><title>How to get most of GitHub Copilot</title><link href="https://www.safjan.com/how-to-get-most-of-github-copilot/" rel="alternate"></link><published>2022-01-25T00:00:00+01:00</published><updated>2022-01-25T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-01-25:/how-to-get-most-of-github-copilot/</id><summary type="html">&lt;p&gt;This post describes techniques that help to get most accurate suggestions from the GitHub Copilot &amp;#8220;Your &lt;span class="caps"&gt;AI&lt;/span&gt; pair programmer&amp;#8221;. For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jup directly to section 4: &amp;#8220;How to get most of GitHub&amp;nbsp;Copilot&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;&lt;span class="caps"&gt;TLDR&lt;/span&gt;&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-02-11T00:00:00+01:00</updated><subtitle>&lt;p&gt;Data Scientist | Researcher | Team Leader&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;I'm working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;</subtitle><entry><title>15 tools for document Deskewing and Dewarping</title><link href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/tools-for-doc-deskewing-and-dewarping/</id><summary type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection or text segmentation can be scan or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article &amp;#8220;Summary and&amp;nbsp;recommendations&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes input for document processing tasks such as: &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection or text segmentation can be scan or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document).
+If you are looking for my recommendations go straight to the last section of this article &lt;a href="#summary-and-recommendations"&gt;Summary and recommendations&lt;/a&gt;. This article was inspired by list of &lt;span class="caps"&gt;OCR&lt;/span&gt;-related project posted on the list &lt;a href="https://github.com/zacharywhitley/awesome-ocr"&gt;awesome-ocr&lt;/a&gt;. To give readers intuition of popularity of the project - information about GiHub stars is added to each project (as of Feb 2022 - time of writing this article). To differentiate actively developed projects from ones that don&amp;#8217;t get commits anymore - date of last commit was&amp;nbsp;added.&lt;/p&gt;
+&lt;h2&gt;Typical approach for&amp;nbsp;deskewing&lt;/h2&gt;
+&lt;p&gt;The deskewing is typically realized by using Canny Edge Detection and Hough Transform to determine angle of rotation (skew) and then applying rotation in opposite&amp;nbsp;direction.&lt;/p&gt;
+&lt;h2&gt;Typical approach for&amp;nbsp;dewarping&lt;/h2&gt;
+&lt;p&gt;Reconstruction of spatial (3D) structure of the document is typically done using Deep Learning&amp;nbsp;approach. &lt;/p&gt;
+&lt;h2&gt;List of approaches presented in this&amp;nbsp;article&lt;/h2&gt;
+&lt;!-- MarkdownTOC autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#dewarping"&gt;Dewarping&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#page-dewarp-11k-stars"&gt;Page dewarp (1.1k&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#moran-579-stars"&gt;&lt;span class="caps"&gt;MORAN&lt;/span&gt; (579&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#dewarpnet-291-stars"&gt;DewarpNet (291&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#document-image-dewarping---algorithm-241-stars"&gt;Document Image Dewarping  - algorithm (241&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#unproject-text-104-stars"&gt;Unproject Text (104&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#docuwarp-stars-83"&gt;Docuwarp (stars&amp;nbsp;83)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#book-content-segmentation-and-dewarping-under-construction-11-stars"&gt;Book content segmentation and dewarping (under construction) (11&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#deskewing"&gt;Deskewing&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#unpaper-770-stars"&gt;Unpaper (770&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#alyn-222-stars"&gt;Alyn (222&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#deskew-211-stars"&gt;Deskew (211&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#galfardeskew-102-stars"&gt;galfar/deskew (102&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#skew-correction-12-stars"&gt;Skew correction (12&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#deskewing-stars-8"&gt;Deskewing (stars&amp;nbsp;8)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#text-deskewing-5-stars"&gt;Text deskewing (5&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#summary-and-recommendations"&gt;Summary and recommendations&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#what-to-use-for-deskewing"&gt;What to use for&amp;nbsp;Deskewing?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#what-to-use-for-unwarping-and-deskewing"&gt;What to use for Unwarping and&amp;nbsp;Deskewing?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#what-to-use-for-document-segmentation"&gt;What to use for Document&amp;nbsp;Segmentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="dewarping"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Dewarping&lt;/h1&gt;
+&lt;p&gt;&lt;a id="page-dewarp-11k-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Page dewarp (1.1k&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: Oct 2016, but reworked version is actively developed (last commit: 24 Jan&amp;nbsp;2022)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/mzucker/page_dewarp"&gt;page_dewarp&lt;/a&gt; - Page dewarping and thresholding using a &amp;#8220;cubic sheet&amp;#8221;&amp;nbsp;model&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://mzucker.github.io/images/page_dewarp/linguistics_thesis_a_before_after.png" alt="before and after dewarp" style="zoom:50%;" /&gt;&lt;/p&gt;
+&lt;p&gt;Read more here: [Page&amp;nbsp;dewarping]https://mzucker.github.io/2016/08/15/page-dewarping.html&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: It is written in Python but using Python&amp;nbsp;2.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Since original work of mzucker was written in Python 2 and not developed further there was initiative to renovate the original scripts and there is &lt;a href="https://github.com/lmmx/page-dewarp"&gt;page-dewarp&lt;/a&gt; which is also available on Pypi and it is pip installable (&lt;code&gt;pip install  page-dewarp&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a id="moran-579-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span class="caps"&gt;MORAN&lt;/span&gt; (579&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 30 Jul&amp;nbsp;2019&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/Canjie-Luo/MORAN_v2"&gt;MORAN_v2&lt;/a&gt;  - A Multi-Object Rectified Attention Network for Scene Text&amp;nbsp;Recognition&lt;/p&gt;
+&lt;p&gt;&lt;img alt="img" src="https://github.com/Canjie-Luo/MORAN_v2/raw/master/demo/MORAN_v2.gif"&gt;&lt;/p&gt;
+&lt;p&gt;Written in Python, using&amp;nbsp;PyTorch&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: The project is only free for academic research&amp;nbsp;purposes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a id="dewarpnet-291-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;DewarpNet (291&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 6 Sep&amp;nbsp;2021&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/cvlab-stonybrook/DewarpNet"&gt;DewarpNet&lt;/a&gt; - This repository contains the codes for &lt;a href="https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf"&gt;&lt;strong&gt;DewarpNet&lt;/strong&gt;&lt;/a&gt;&amp;nbsp;training.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/cvlab-stonybrook/DewarpNet/blob/master/dwnet.png"&gt;&lt;img src="https://github.com/cvlab-stonybrook/DewarpNet/raw/master/dwnet.png" alt="img" style="zoom:50%;" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://sagniklp.github.io/dewarpnet-webpage/"&gt;DewarpNet project web page&lt;/a&gt;. Here is how authors characterize their solution in the abstract of the&amp;nbsp;paper:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DewarpNet, a deep learning approach for document image unwarping from a single image. Our insight is that the 3D geometry of the document not only determines the warping of its texture but also causes the illumination effects. Therefore, our novelty resides on the explicit modeling of 3D shape for document paper in an end-to-end&amp;nbsp;pipeline. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view"&gt;DewarpNet pre-trained models&lt;/a&gt; are available for download from Google&amp;nbsp;Drive.&lt;/p&gt;
+&lt;p&gt;&lt;a id="document-image-dewarping---algorithm-241-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Document Image Dewarping  - algorithm (241&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 30 Sep&amp;nbsp;2019&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/xellows1305/Document-Image-Dewarping"&gt;Document-Image-Dewarping&lt;/a&gt;- Document image dewarping is approached by using text-lines and line&amp;nbsp;segments. &lt;/p&gt;
+&lt;p&gt;In this repository there is &lt;strong&gt;no public code&lt;/strong&gt; to use but just algorithm description and executable available for &lt;a href="http://ispl.synology.me:8480/sharing/uA2DTRA8U"&gt;download&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a id="unproject-text-104-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Unproject Text (104&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 13 Oct&amp;nbsp;2016&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/mzucker/unproject_text"&gt;unproject_text&lt;/a&gt; - &lt;strong&gt;Perspective recovery of text using transformed ellipses&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;It is not exactly dewarping but prerspective correction id more than determinig document rotation that is why it was place in the dewarping&amp;nbsp;section.&lt;/p&gt;
+&lt;p&gt;Written in Python, it is pretty lightweight: using numpy, scipy,&amp;nbsp;cv2,&amp;#8230;&lt;/p&gt;
+&lt;p&gt;In a nutshell, letters are replaced with ellipses and the axes of ellipses are used to determine what affine transformation is needed to correct&amp;nbsp;perspective:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://mzucker.github.io/images/unproject_text/example0_ellipses.png" alt="contours with areas" style="zoom:50%;" /&gt;&lt;/p&gt;
+&lt;p&gt;Image source: repository owner&amp;#8217;s &lt;a href="https://mzucker.github.io/2016/10/11/unprojecting-text-with-ellipses.html"&gt;writeup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;More information about method can be found in the &lt;a href="https://mzucker.github.io/2016/10/11/unprojecting-text-with-ellipses.html"&gt;article&lt;/a&gt; and &lt;a href="http://www.sciencedirect.com/science/article/pii/S0262885613001066"&gt;paper by Carlos Merino-Gracia et al.&lt;/a&gt;&amp;nbsp;.&lt;/p&gt;
+&lt;p&gt;&lt;a id="docuwarp-stars-83"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Docuwarp (stars&amp;nbsp;83)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 18 Oct&amp;nbsp;2021&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/thomasjhuang/deep-learning-for-document-dewarping"&gt;Docuwarp&lt;/a&gt; - An application of high resolution &lt;strong&gt;GANs to dewarp images&lt;/strong&gt; of perturbed documents.
+This project is focused on dewarping document images through the usage of pix2pixHD, a &lt;span class="caps"&gt;GAN&lt;/span&gt; that is useful for general image to image translation. The objective is to take images of documents that are warped, folded, crumpled, etc. and convert the image to a &amp;#8220;dewarped&amp;#8221; state by using pix2pixHD to train and perform&amp;nbsp;inference.&lt;/p&gt;
+&lt;p&gt;Written in&amp;nbsp;Python.&lt;/p&gt;
+&lt;p&gt;&lt;a id="book-content-segmentation-and-dewarping-under-construction-11-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Book content segmentation and dewarping (under construction) (11&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last update of code:&amp;nbsp;2018&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/RaymondMcGuire/BOOK-CONTENT-SEGMENTATION-AND-DEWARPING"&gt;Book Content Segmentation and Dewarping&lt;/a&gt; - Using &lt;strong&gt;&lt;span class="caps"&gt;FCN&lt;/span&gt; (fully convolution network) to segment the image&lt;/strong&gt; into 3 parts (left page,right page and&amp;nbsp;background).&lt;/p&gt;
+&lt;p&gt;Segmentation demo is available here:&amp;nbsp;https://raymondmgwx.github.io/?e=Project_BookContent&amp;amp;&amp;amp;theme=Image-Process-Content.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: that Data Augment and Dewarp Algorithm are in &lt;span class="caps"&gt;TODO&lt;/span&gt; of this&amp;nbsp;project.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a id="deskewing"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Deskewing&lt;/h1&gt;
+&lt;p&gt;&lt;a id="unpaper-770-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Unpaper (770&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 21 Jan&amp;nbsp;2022&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/unpaper/unpaper"&gt;unpaper&lt;/a&gt; is a &lt;strong&gt;post-processing tool for scanned sheets of paper&lt;/strong&gt;, especially for book pages that have been scanned from previously created&amp;nbsp;photocopies.&lt;/p&gt;
+&lt;p&gt;The main purpose is to make scanned book pages better readable on screen after conversion to &lt;span class="caps"&gt;PDF&lt;/span&gt;. Additionally, unpaper might be useful to enhance the quality of scanned pages before performing optical character recognition (&lt;span class="caps"&gt;OCR&lt;/span&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;unpaper tries to clean scanned images by removing dark edges that appeared through scanning or copying on areas outside the actual page content&lt;/strong&gt; (e.g. dark areas between the left-hand-side and the right-hand-side of a double- sided book-page&amp;nbsp;scan).&lt;/p&gt;
+&lt;p&gt;The program also tries to detect misaligned centering and rotation of pages and will &lt;strong&gt;automatically straighten each page&lt;/strong&gt; by rotating it to the correct angle. This process is called&amp;nbsp;&amp;#8220;deskewing&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;Written mostly in&amp;nbsp;C.&lt;/p&gt;
+&lt;p&gt;&lt;a id="alyn-222-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Alyn (222&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 14 Jun&amp;nbsp;2017&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/kakul/Alyn"&gt;Alyn&lt;/a&gt; - &lt;strong&gt;Skew detection and correction&lt;/strong&gt; in images containing text. It uses Canny Edge Detection and  Hough Transform to determine&amp;nbsp;skew.&lt;/p&gt;
+&lt;p&gt;How the Alyns&amp;#8217; skew detection works:
+- Converts the image to greyscale
+- Performs Canny Edge Detection on the Image
+- Calculates the Hough Transform values
+- Determines the peaks
+- Determines the deviation of each peaks from 45 degree angle
+- Segregates the detected peaks into bins
+- Chooses the probable skew angle using the value in the&amp;nbsp;bins&lt;/p&gt;
+&lt;p&gt;Alyn is written in Python can be installed with pip (&lt;code&gt;pip install allyn&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;a id="deskew-211-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Deskew (211&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit : 10 Feb&amp;nbsp;2022&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/sbrunner/deskew"&gt;deskew&lt;/a&gt; - Library used to &lt;strong&gt;deskew a scanned document&lt;/strong&gt;. Skew detection and correction in images containing text
+Written in Python, lightweight. Inspired by &lt;a href="#alyn-222-stars"&gt;Alyn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a id="galfardeskew-102-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;galfar/deskew (102&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 6 Jan&amp;nbsp;2022&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/galfar/deskew"&gt;galfar/deskew&lt;/a&gt; - Deskew is a &lt;strong&gt;command line tool&lt;/strong&gt; for deskewing scanned text documents. It uses Hough transform to detect &amp;#8220;text lines&amp;#8221; in the image. As an output, you get an image rotated so that the lines are&amp;nbsp;horizontal.&lt;/p&gt;
+&lt;p&gt;There are binaries built for these platforms: Win64, Win32, Linux 64bit, macOS, Linux ARMv7. &lt;span class="caps"&gt;GUI&lt;/span&gt; frontend for this &lt;span class="caps"&gt;CLI&lt;/span&gt; tool is available as well (Windows, Linux, and&amp;nbsp;macOS),&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: It is written in&amp;nbsp;Pascal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a id="skew-correction-12-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Skew correction (12&amp;nbsp;stars)&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/prajwalmylar/skew_correction"&gt;skew_correction&lt;/a&gt; - &lt;strong&gt;Deskewing images&lt;/strong&gt; with slanted content by finding the deviation using Canny Edge&amp;nbsp;Detection.&lt;/p&gt;
+&lt;p&gt;&lt;a id="deskewing-stars-8"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Deskewing (stars&amp;nbsp;8)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 12 Jan&amp;nbsp;2014&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/sauravbiswasiupr/deskewing"&gt;deskewing&lt;/a&gt; - Contains code to &lt;strong&gt;deskew images using MLPs, LSTMs and &lt;span class="caps"&gt;LLS&lt;/span&gt; transformations.&lt;/strong&gt;
+Written in&amp;nbsp;Python.&lt;/p&gt;
+&lt;p&gt;&lt;a id="text-deskewing-5-stars"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Text deskewing (5&amp;nbsp;stars)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Last commit: 9 Mar&amp;nbsp;2018&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/dehaisea/text_deskewing"&gt;text_deskewing&lt;/a&gt; - &lt;strong&gt;Rotate text images if they are not straight&lt;/strong&gt; for better text detection and recognition. Uses Canny Edge Detection and probabilistic Hough&amp;nbsp;Transform.&lt;/p&gt;
+&lt;p&gt;It is written in Python and the repository do not contains a lot of code - it is easy to follow and learn how those simple techniques can be used to desk the&amp;nbsp;text.&lt;/p&gt;
+&lt;p&gt;&lt;a id="summary-and-recommendations"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Summary and&amp;nbsp;recommendations&lt;/h1&gt;
+&lt;p&gt;&lt;a id="what-to-use-for-deskewing"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;What to use for&amp;nbsp;Deskewing?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;If you need &lt;strong&gt;deskew&lt;/strong&gt; and additionally &lt;strong&gt;clean-up&lt;/strong&gt; document from scanning artefacts use: &lt;a href="https://github.com/unpaper/unpaper"&gt;unpaper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;If you just need to &lt;strong&gt;correct rotation&lt;/strong&gt; of the document use: &lt;a href="https://github.com/kakul/Alyn"&gt;Alyn&lt;/a&gt; or &lt;a href="https://github.com/sbrunner/deskew"&gt;deskew&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;If you want to &lt;strong&gt;learn about using Edge Detection and Hough Transform&lt;/strong&gt; for document deskewing you might want to have look at: &lt;a href="https://github.com/dehaisea/text_deskewing"&gt;text_deskewing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="what-to-use-for-unwarping-and-deskewing"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;What to use for Unwarping and&amp;nbsp;Deskewing?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;For dewarping book pages that has &lt;strong&gt;smooth bendings&lt;/strong&gt; consider using &lt;a href="https://github.com/lmmx/page-dewarp"&gt;page-dewarp&lt;/a&gt; (renovated version of popular &lt;a href="https://github.com/mzucker/page_dewarp"&gt;page_dewarp&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;For more complex dewarping including e.g. &lt;strong&gt;folded pages&lt;/strong&gt; use Deep Learning based solutions such as: &lt;a href="https://github.com/cvlab-stonybrook/DewarpNet"&gt;DewarpNet&lt;/a&gt; or &lt;a href="https://github.com/thomasjhuang/deep-learning-for-document-dewarping"&gt;Docuwarp&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;If you are working with flat pages and you just need to &lt;strong&gt;correct perspective&lt;/strong&gt; &lt;a href="https://github.com/mzucker/unproject_text"&gt;unproject_text&lt;/a&gt; might be right tool for&amp;nbsp;you.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="what-to-use-for-document-segmentation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;What to use for Document&amp;nbsp;Segmentation&lt;/h2&gt;
+&lt;p&gt;Document segmentation was not in the scope of this article. You can check &lt;a href="https://github.com/zacharywhitley/awesome-ocr"&gt;awesome-ocr&lt;/a&gt; section on Document&amp;nbsp;Segmentation&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/zacharywhitley/awesome-ocr"&gt;awesome-ocr&lt;/a&gt; - rich collection of &lt;span class="caps"&gt;OCR&lt;/span&gt;-related projects and&amp;nbsp;tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Image used in the header of this article comes from the paper &lt;a href="https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf"&gt;DewarpNet: Single-Image Document Unwarping With Stacked 3D and 2D Regression Networks&lt;/a&gt;. &lt;em&gt;Sagnik Das, Ke Ma, Zhixin Shu, Dimitris Samaras, Roy Shilkrot&lt;/em&gt;; Proceedings of the &lt;span class="caps"&gt;IEEE&lt;/span&gt;/&lt;span class="caps"&gt;CVF&lt;/span&gt; International Conference on Computer Vision (&lt;span class="caps"&gt;ICCV&lt;/span&gt;), 2019, pp.&amp;nbsp;131-140&lt;/li&gt;
+&lt;li&gt;All other images in the article comes from the project owners or related sources (papers,&amp;nbsp;articles)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="'Data Science'"></category><category term="document intelligence"></category><category term="document processing"></category><category term="computer vision"></category><category term="digital image processing"></category><category term="canny edge detector"></category><category term="hough transform"></category><category term="deep learning"></category></entry><entry><title>How to get most of GitHub Copilot</title><link href="https://www.safjan.com/how-to-get-most-of-github-copilot/" rel="alternate"></link><published>2022-01-25T00:00:00+01:00</published><updated>2022-01-25T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-01-25:/how-to-get-most-of-github-copilot/</id><summary type="html">&lt;p&gt;This post describes techniques that help to get most accurate suggestions from the GitHub Copilot &amp;#8220;Your &lt;span class="caps"&gt;AI&lt;/span&gt; pair programmer&amp;#8221;. For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4: &amp;#8220;How to get most of GitHub&amp;nbsp;Copilot&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;&lt;span class="caps"&gt;TLDR&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;To get accurate autosuggestion from Copilot you&amp;nbsp;can:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Modify signature&lt;/strong&gt; of received suggestion to one that capture all relevant inputs and wait for new&amp;nbsp;suggestion.&lt;/li&gt;
@@ -8,15 +209,15 @@
 &lt;/ol&gt;
 &lt;h2&gt;Outline:&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;What is Github&amp;nbsp;Copilot?&lt;/li&gt;
+&lt;li&gt;What is GitHub&amp;nbsp;Copilot?&lt;/li&gt;
 &lt;li&gt;How to get&amp;nbsp;it?&lt;/li&gt;
 &lt;li&gt;How to use&amp;nbsp;it?&lt;/li&gt;
 &lt;li&gt;How to get most of GitHub&amp;nbsp;Copilot?&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2&gt;1. What is Github&amp;nbsp;Copilot?&lt;/h2&gt;
+&lt;h2&gt;1. What is GitHub&amp;nbsp;Copilot?&lt;/h2&gt;
 &lt;p&gt;In brief: &lt;a href="https://copilot.github.com/"&gt;GitHub Copilot&lt;/a&gt;, gives suggestions for whole lines or entire functions right inside your editor as you type. Currently, there is support for Visual Studio Code, Neovim, and JetBrains IDEs like PyCharm and IntelliJ &lt;span class="caps"&gt;IDEA&lt;/span&gt;.
-GitHub Copilot is powered by the OpenAI Codex &lt;span class="caps"&gt;AI&lt;/span&gt; system, and, as authors caimed, trained on public internet text and billions of lines of&amp;nbsp;code.&lt;/p&gt;
-&lt;p&gt;The way how it is used is that human programmer provides comment with intention what code he/she would like to get, and as autocomplete suggestion gets whole functions of classes. GitHub Copilot uses not only exact comment test but also context of the code that is expected to be&amp;nbsp;autogenerated.&lt;/p&gt;
+GitHub Copilot is powered by the OpenAI Codex &lt;span class="caps"&gt;AI&lt;/span&gt; system, and, as authors claimed, trained on public internet text and billions of lines of&amp;nbsp;code.&lt;/p&gt;
+&lt;p&gt;The way how it is used is that human programmer provides comment with intention what code he/she would like to get, and as autocomplete suggestion gets whole functions of classes. GitHub Copilot uses not only exact comment test but also context of the code that is expected to be&amp;nbsp;auto-generated.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="img" src="https://copilot.github.com/diagram.png"&gt;
 Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and Private Code and &lt;span class="caps"&gt;IDE&lt;/span&gt;. Image from:&amp;nbsp;copilot.github.com&lt;/p&gt;
 &lt;h2&gt;2. How to get&amp;nbsp;it?&lt;/h2&gt;
@@ -25,13 +226,13 @@ Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and P
 &lt;p&gt;Provide a docstring, comment, function name, or the piece of code itself, GitHub Copilot will use the context you’ve provided and generate code as&amp;nbsp;suggestion.&lt;/p&gt;
 &lt;h2&gt;4. How to get most of GitHub&amp;nbsp;Copilot?&lt;/h2&gt;
 &lt;p&gt;After using the GitHub Copilot service for almost three months, I was amazed how useful suggestions from Copilot can be. Of course, it is not ideal - suggestions are not always meeting my expectations. Sometimes it took few attempts to formulate my expectations to get the code that was looking good to me.
-What I learned by the time of writing this post, are the few simple rules that can increase accuracy of the suggestions. I will outline them below. I&amp;#8217;m using three main strategies to communicate my expectations with the Github Copilot&amp;nbsp;service:&lt;/p&gt;
+What I learned by the time of writing this post, are the few simple rules that can increase accuracy of the suggestions. I will outline them below. I&amp;#8217;m using three main strategies to communicate my expectations with the GitHub Copilot&amp;nbsp;service:&lt;/p&gt;
 &lt;h3&gt;Simple case - write short&amp;nbsp;comment&lt;/h3&gt;
-&lt;p&gt;For the simple cases: just write  comment that describe behaviour for the code that you want to get as suggestion.
-As example - we want to get a function that will return paths to all images in given directory and subdirectories. We are interested only in images of given type (specified file&amp;nbsp;extensions).&lt;/p&gt;
-&lt;p&gt;Here is first attempt to get code autocompletion from GitHub&amp;nbsp;copilot.&lt;/p&gt;
+&lt;p&gt;For the simple cases: just write  comment that describe behavior for the code that you want to get as suggestion.
+As example - we want to get a function that will return paths to all images in given directory and sub-directories. We are interested only in images of given type (specified file&amp;nbsp;extensions).&lt;/p&gt;
+&lt;p&gt;Here is first attempt to get code auto completion from GitHub&amp;nbsp;copilot.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="img" src="../images/copilot/copilot_1.gif"&gt;&lt;/p&gt;
-&lt;p&gt;Figure 2. Autosuggestion obtained as autocompletion to comment describing behaviour of the&amp;nbsp;function.&lt;/p&gt;
+&lt;p&gt;Figure 2. Autosuggestion obtained as auto completion to comment describing behavior of the&amp;nbsp;function.&lt;/p&gt;
 &lt;p&gt;The example above illustrate how we started with initial suggestion for the comment and how the suggested  comment was refined as suggestions were provided by Copilot. The first suggestion for the code was very near the expectation - one thing that is missing is the support for selecting file extensions of&amp;nbsp;interest.&lt;/p&gt;
 &lt;p&gt;Let&amp;#8217;s try to modify function signature and add list of extensions (and type hints):
 old signature&amp;nbsp;was:&lt;/p&gt;
@@ -71,7 +272,7 @@ old signature&amp;nbsp;was:&lt;/p&gt;
 &lt;p&gt;Starting with descriptive function name can work as well:
  &lt;img alt="img" src="../images/copilot/copilot_2.gif"&gt;&lt;/p&gt;
 &lt;h3&gt;More complex cases - write&amp;nbsp;pseudocode&lt;/h3&gt;
-&lt;p&gt;For the complex cases: write line of comment that describe behaviour for the code that you want to get as suggestion.&amp;nbsp;Example:&lt;/p&gt;
+&lt;p&gt;For the complex cases: write line of comment that describe behavior for the code that you want to get as suggestion.&amp;nbsp;Example:&lt;/p&gt;
 &lt;p&gt;Comment with purpose of the function and pseudocode describing elements of&amp;nbsp;solution&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Check if two nested lists have the same dictionaries&lt;/span&gt;
 &lt;span class="c1"&gt;# pseudocode:&lt;/span&gt;
@@ -536,7 +737,7 @@ Source: &lt;a href="https://stackoverflow.com/a/54281447/3247880"&gt;Stackoverfl
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;see also:&amp;nbsp;https://github.com/sds/overcommit&lt;/p&gt;
-&lt;h2&gt;Example of set of&amp;nbsp;hooks&lt;/h2&gt;
+&lt;h2&gt;Examplary set of&amp;nbsp;hooks&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# See https://pre-commit.com for more information&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="c1"&gt;# See https://pre-commit.com/hooks.html for more hooks&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="c1"&gt;# Use: `pre-commit autoupdate` to update the hooks&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -580,6 +781,36 @@ Source: &lt;a href="https://stackoverflow.com/a/54281447/3247880"&gt;Stackoverfl
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;flake8&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;exclude&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;(__pycache__|.venv|tmp|notebooks)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;#additional_dependencies: [flake8-docstrings]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Selection of hooks for organizing&amp;nbsp;imports&lt;/h2&gt;
+&lt;p&gt;Perhaps most used import organizer is &lt;a href="https://github.com/PyCQA/isort"&gt;isort&lt;/a&gt; (4.5k stars).
+The others are:
+- &lt;a href="https://github.com/asottile/reorder_python_imports"&gt;reorder_python_imports&lt;/a&gt; (423 stars)
+- &lt;a href="https://github.com/sqlalchemyorg/zimports"&gt;zimports&lt;/a&gt; (64 stars)
+- &lt;a href="https://github.com/miki725/importanize"&gt;importantize&lt;/a&gt; (57&amp;nbsp;stars)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# ------------ Sort imports ------------&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;repo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://github.com/pycqa/isort&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="w w-Error"&gt; &lt;/span&gt;&lt;span class="nt"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;5.10.1&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;hooks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;isort&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;isort (python)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;repo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://github.com/sqlalchemyorg/zimports/&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="w w-Error"&gt; &lt;/span&gt;&lt;span class="nt"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;v0.4.0&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;hooks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;zimports&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="w w-Error"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;repo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://github.com/asottile/reorder_python_imports&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;v2.7.1&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;hooks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;reorder-python-imports&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;repo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://github.com/miki725/importanize/&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;rev&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;master&amp;#39;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;hooks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;importanize&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;args&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;--verbose&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="best practices"></category><category term="commit"></category><category term="git"></category><category term="github"></category><category term="hooks"></category><category term="management"></category><category term="project"></category></entry><entry><title>Python convert docstring styles</title><link href="https://www.safjan.com/python-convert-docstring-styles/" rel="alternate"></link><published>2021-09-29T00:00:00+02:00</published><updated>2021-09-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-29:/python-convert-docstring-styles/</id><summary type="html">&lt;p&gt;Description of tools for converting docstring style in python&amp;nbsp;code&lt;/p&gt;</summary><content type="html">&lt;p&gt;When refacoring the project one might want to change docstring style e.g. from numpy-style to google-style. At this point tool like Pyment comes in&amp;nbsp;handy.&lt;/p&gt;
 &lt;h1&gt;&lt;a href="https://github.com/dadadel/pyment/"&gt;Pyment&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Currently, the managed styles in input/output are 
@@ -2339,10 +2570,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="4e2c11b4-2b76-4985-b1bc-576b43345f0d"&gt;&lt;/div&gt;
+&lt;div id="c8332ab5-9e8a-45db-b68c-62a831d04beb"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#4e2c11b4-2b76-4985-b1bc-576b43345f0d');
+var element = $('#c8332ab5-9e8a-45db-b68c-62a831d04beb');
 
 (function(root) {
   function now() {

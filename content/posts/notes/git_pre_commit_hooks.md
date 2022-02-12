@@ -50,7 +50,7 @@ pre-commit autoupdate
 
 see also: https://github.com/sds/overcommit
 
-## Example of set of hooks
+## Examplary set of hooks
 ```yaml
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
@@ -97,3 +97,37 @@ repos:
         #additional_dependencies: [flake8-docstrings]
 ```
 
+## Selection of hooks for organizing imports
+Perhaps most used import organizer is [isort](https://github.com/PyCQA/isort) (4.5k stars).
+The others are:
+- [reorder_python_imports](https://github.com/asottile/reorder_python_imports) (423 stars)
+- [zimports](https://github.com/sqlalchemyorg/zimports) (64 stars)
+- [importantize](https://github.com/miki725/importanize) (57 stars)
+```yaml
+  # ------------ Sort imports ------------
+   - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+
+   - repo: https://github.com/sqlalchemyorg/zimports/
+    rev: v0.4.0
+    hooks:
+      - id: zimports
+
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.7.1
+    hooks:
+      - id: reorder-python-imports
+
+  - repo: https://github.com/miki725/importanize/
+    rev: 'master'
+    hooks:
+      - id: importanize
+        args: [ --verbose ]
+
+
+
+
+```

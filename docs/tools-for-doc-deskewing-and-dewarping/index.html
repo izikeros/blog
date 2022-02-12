@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/styles/custom.css">
+
+    <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's Blog Atom">
+
+    <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scan or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article “Summary and recommendations”." />
+<meta name="keywords" content="document intelligence, document processing, computer vision, digital image processing, canny edge detector, hough transform, deep learning">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="15 tools for document Deskewing and Dewarping"/>
+  <meta property="og:description" content="Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scan or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article “Summary and recommendations”."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-02-11 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="'Data Science'"/>
+  <meta property="article:tag" content="document intelligence"/>
+  <meta property="article:tag" content="document processing"/>
+  <meta property="article:tag" content="computer vision"/>
+  <meta property="article:tag" content="digital image processing"/>
+  <meta property="article:tag" content="canny edge detector"/>
+  <meta property="article:tag" content="hough transform"/>
+  <meta property="article:tag" content="deep learning"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/dewarp_deskew.jpg">
+
+  <title>Krystian Safjan's Blog &ndash; 15 tools for document Deskewing and Dewarping</title>
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://www.safjan.com/">
+        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+      </a>
+
+      <h1>
+        <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+      </h1>
+
+<p><p>Data Scientist | Researcher | Team Leader</p><br/><br/>I'm working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr></p>
+
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://www.safjan.com/">Home</a>
+
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+      <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <p>
+      <!-- Posted on: -->
+      February 11, 2022 
+
+
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=15%20tools%20for%20document%20Deskewing%20and%C2%A0Dewarping&url=https%3A//www.safjan.com/tools-for-doc-deskewing-and-dewarping/&hashtags=document-intelligence,document-processing,computer-vision,digital-image-processing,canny-edge-detector,hough-transform,deep-learning" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/tools-for-doc-deskewing-and-dewarping/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=15%20tools%20for%20document%20Deskewing%20and%C2%A0Dewarping&u=https%3A//www.safjan.com/tools-for-doc-deskewing-and-dewarping/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/tools-for-doc-deskewing-and-dewarping/&title=15%20tools%20for%20document%20Deskewing%20and%C2%A0Dewarping" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+    <br/>
+   </p>
+  <h1 id="tools-for-doc-deskewing-and-dewarping">15 tools for document Deskewing and&nbsp;Dewarping</h1>
+  <div class="header-underline"></div>
+  </header>
+
+
+  <div>
+    <p>Sometimes input for document processing tasks such as: <span class="caps">OCR</span>, table detection or text segmentation can be scan or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document).
+If you are looking for my recommendations go straight to the last section of this article <a href="#summary-and-recommendations">Summary and recommendations</a>. This article was inspired by list of <span class="caps">OCR</span>-related project posted on the list <a href="https://github.com/zacharywhitley/awesome-ocr">awesome-ocr</a>. To give readers intuition of popularity of the project - information about GiHub stars is added to each project (as of Feb 2022 - time of writing this article). To differentiate actively developed projects from ones that don&#8217;t get commits anymore - date of last commit was&nbsp;added.</p>
+<h2>Typical approach for&nbsp;deskewing</h2>
+<p>The deskewing is typically realized by using Canny Edge Detection and Hough Transform to determine angle of rotation (skew) and then applying rotation in opposite&nbsp;direction.</p>
+<h2>Typical approach for&nbsp;dewarping</h2>
+<p>Reconstruction of spatial (3D) structure of the document is typically done using Deep Learning&nbsp;approach. </p>
+<h2>List of approaches presented in this&nbsp;article</h2>
+<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#dewarping">Dewarping</a><ul>
+<li><a href="#page-dewarp-11k-stars">Page dewarp (1.1k&nbsp;stars)</a></li>
+<li><a href="#moran-579-stars"><span class="caps">MORAN</span> (579&nbsp;stars)</a></li>
+<li><a href="#dewarpnet-291-stars">DewarpNet (291&nbsp;stars)</a></li>
+<li><a href="#document-image-dewarping---algorithm-241-stars">Document Image Dewarping  - algorithm (241&nbsp;stars)</a></li>
+<li><a href="#unproject-text-104-stars">Unproject Text (104&nbsp;stars)</a></li>
+<li><a href="#docuwarp-stars-83">Docuwarp (stars&nbsp;83)</a></li>
+<li><a href="#book-content-segmentation-and-dewarping-under-construction-11-stars">Book content segmentation and dewarping (under construction) (11&nbsp;stars)</a></li>
+</ul>
+</li>
+<li><a href="#deskewing">Deskewing</a><ul>
+<li><a href="#unpaper-770-stars">Unpaper (770&nbsp;stars)</a></li>
+<li><a href="#alyn-222-stars">Alyn (222&nbsp;stars)</a></li>
+<li><a href="#deskew-211-stars">Deskew (211&nbsp;stars)</a></li>
+<li><a href="#galfardeskew-102-stars">galfar/deskew (102&nbsp;stars)</a></li>
+<li><a href="#skew-correction-12-stars">Skew correction (12&nbsp;stars)</a></li>
+<li><a href="#deskewing-stars-8">Deskewing (stars&nbsp;8)</a></li>
+<li><a href="#text-deskewing-5-stars">Text deskewing (5&nbsp;stars)</a></li>
+</ul>
+</li>
+<li><a href="#summary-and-recommendations">Summary and recommendations</a><ul>
+<li><a href="#what-to-use-for-deskewing">What to use for&nbsp;Deskewing?</a></li>
+<li><a href="#what-to-use-for-unwarping-and-deskewing">What to use for Unwarping and&nbsp;Deskewing?</a></li>
+<li><a href="#what-to-use-for-document-segmentation">What to use for Document&nbsp;Segmentation</a></li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="dewarping"></a></p>
+<h1>Dewarping</h1>
+<p><a id="page-dewarp-11k-stars"></a></p>
+<h2>Page dewarp (1.1k&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: Oct 2016, but reworked version is actively developed (last commit: 24 Jan&nbsp;2022)</p>
+</blockquote>
+<p><a href="https://github.com/mzucker/page_dewarp">page_dewarp</a> - Page dewarping and thresholding using a &#8220;cubic sheet&#8221;&nbsp;model</p>
+<p><img src="https://mzucker.github.io/images/page_dewarp/linguistics_thesis_a_before_after.png" alt="before and after dewarp" style="zoom:50%;" /></p>
+<p>Read more here: [Page&nbsp;dewarping]https://mzucker.github.io/2016/08/15/page-dewarping.html</p>
+<blockquote>
+<p><span class="caps">NOTE</span>: It is written in Python but using Python&nbsp;2.</p>
+</blockquote>
+<p>Since original work of mzucker was written in Python 2 and not developed further there was initiative to renovate the original scripts and there is <a href="https://github.com/lmmx/page-dewarp">page-dewarp</a> which is also available on Pypi and it is pip installable (<code>pip install  page-dewarp</code>)</p>
+<p><a id="moran-579-stars"></a></p>
+<h2><span class="caps">MORAN</span> (579&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 30 Jul&nbsp;2019</p>
+</blockquote>
+<p><a href="https://github.com/Canjie-Luo/MORAN_v2">MORAN_v2</a>  - A Multi-Object Rectified Attention Network for Scene Text&nbsp;Recognition</p>
+<p><img alt="img" src="https://github.com/Canjie-Luo/MORAN_v2/raw/master/demo/MORAN_v2.gif"></p>
+<p>Written in Python, using&nbsp;PyTorch</p>
+<blockquote>
+<p><span class="caps">NOTE</span>: The project is only free for academic research&nbsp;purposes.</p>
+</blockquote>
+<p><a id="dewarpnet-291-stars"></a></p>
+<h2>DewarpNet (291&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 6 Sep&nbsp;2021</p>
+</blockquote>
+<p><a href="https://github.com/cvlab-stonybrook/DewarpNet">DewarpNet</a> - This repository contains the codes for <a href="https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf"><strong>DewarpNet</strong></a>&nbsp;training.</p>
+<p><a href="https://github.com/cvlab-stonybrook/DewarpNet/blob/master/dwnet.png"><img src="https://github.com/cvlab-stonybrook/DewarpNet/raw/master/dwnet.png" alt="img" style="zoom:50%;" /></a></p>
+<p><a href="https://sagniklp.github.io/dewarpnet-webpage/">DewarpNet project web page</a>. Here is how authors characterize their solution in the abstract of the&nbsp;paper:</p>
+<blockquote>
+<p>DewarpNet, a deep learning approach for document image unwarping from a single image. Our insight is that the 3D geometry of the document not only determines the warping of its texture but also causes the illumination effects. Therefore, our novelty resides on the explicit modeling of 3D shape for document paper in an end-to-end&nbsp;pipeline. </p>
+</blockquote>
+<p><a href="https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view">DewarpNet pre-trained models</a> are available for download from Google&nbsp;Drive.</p>
+<p><a id="document-image-dewarping---algorithm-241-stars"></a></p>
+<h2>Document Image Dewarping  - algorithm (241&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 30 Sep&nbsp;2019</p>
+</blockquote>
+<p><a href="https://github.com/xellows1305/Document-Image-Dewarping">Document-Image-Dewarping</a>- Document image dewarping is approached by using text-lines and line&nbsp;segments. </p>
+<p>In this repository there is <strong>no public code</strong> to use but just algorithm description and executable available for <a href="http://ispl.synology.me:8480/sharing/uA2DTRA8U">download</a>.</p>
+<p><a id="unproject-text-104-stars"></a></p>
+<h2>Unproject Text (104&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 13 Oct&nbsp;2016</p>
+</blockquote>
+<p><a href="https://github.com/mzucker/unproject_text">unproject_text</a> - <strong>Perspective recovery of text using transformed ellipses</strong>.</p>
+<p>It is not exactly dewarping but prerspective correction id more than determinig document rotation that is why it was place in the dewarping&nbsp;section.</p>
+<p>Written in Python, it is pretty lightweight: using numpy, scipy,&nbsp;cv2,&#8230;</p>
+<p>In a nutshell, letters are replaced with ellipses and the axes of ellipses are used to determine what affine transformation is needed to correct&nbsp;perspective:</p>
+<p><img src="https://mzucker.github.io/images/unproject_text/example0_ellipses.png" alt="contours with areas" style="zoom:50%;" /></p>
+<p>Image source: repository owner&#8217;s <a href="https://mzucker.github.io/2016/10/11/unprojecting-text-with-ellipses.html">writeup</a></p>
+<p>More information about method can be found in the <a href="https://mzucker.github.io/2016/10/11/unprojecting-text-with-ellipses.html">article</a> and <a href="http://www.sciencedirect.com/science/article/pii/S0262885613001066">paper by Carlos Merino-Gracia et al.</a>&nbsp;.</p>
+<p><a id="docuwarp-stars-83"></a></p>
+<h2>Docuwarp (stars&nbsp;83)</h2>
+<blockquote>
+<p>Last commit: 18 Oct&nbsp;2021</p>
+</blockquote>
+<p><a href="https://github.com/thomasjhuang/deep-learning-for-document-dewarping">Docuwarp</a> - An application of high resolution <strong>GANs to dewarp images</strong> of perturbed documents.
+This project is focused on dewarping document images through the usage of pix2pixHD, a <span class="caps">GAN</span> that is useful for general image to image translation. The objective is to take images of documents that are warped, folded, crumpled, etc. and convert the image to a &#8220;dewarped&#8221; state by using pix2pixHD to train and perform&nbsp;inference.</p>
+<p>Written in&nbsp;Python.</p>
+<p><a id="book-content-segmentation-and-dewarping-under-construction-11-stars"></a></p>
+<h2>Book content segmentation and dewarping (under construction) (11&nbsp;stars)</h2>
+<blockquote>
+<p>Last update of code:&nbsp;2018</p>
+</blockquote>
+<p><a href="https://github.com/RaymondMcGuire/BOOK-CONTENT-SEGMENTATION-AND-DEWARPING">Book Content Segmentation and Dewarping</a> - Using <strong><span class="caps">FCN</span> (fully convolution network) to segment the image</strong> into 3 parts (left page,right page and&nbsp;background).</p>
+<p>Segmentation demo is available here:&nbsp;https://raymondmgwx.github.io/?e=Project_BookContent&amp;&amp;theme=Image-Process-Content.</p>
+<blockquote>
+<p><span class="caps">NOTE</span>: that Data Augment and Dewarp Algorithm are in <span class="caps">TODO</span> of this&nbsp;project.</p>
+</blockquote>
+<p><a id="deskewing"></a></p>
+<h1>Deskewing</h1>
+<p><a id="unpaper-770-stars"></a></p>
+<h2>Unpaper (770&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 21 Jan&nbsp;2022</p>
+</blockquote>
+<p><a href="https://github.com/unpaper/unpaper">unpaper</a> is a <strong>post-processing tool for scanned sheets of paper</strong>, especially for book pages that have been scanned from previously created&nbsp;photocopies.</p>
+<p>The main purpose is to make scanned book pages better readable on screen after conversion to <span class="caps">PDF</span>. Additionally, unpaper might be useful to enhance the quality of scanned pages before performing optical character recognition (<span class="caps">OCR</span>).</p>
+<p><strong>unpaper tries to clean scanned images by removing dark edges that appeared through scanning or copying on areas outside the actual page content</strong> (e.g. dark areas between the left-hand-side and the right-hand-side of a double- sided book-page&nbsp;scan).</p>
+<p>The program also tries to detect misaligned centering and rotation of pages and will <strong>automatically straighten each page</strong> by rotating it to the correct angle. This process is called&nbsp;&#8220;deskewing&#8221;.</p>
+<p>Written mostly in&nbsp;C.</p>
+<p><a id="alyn-222-stars"></a></p>
+<h2>Alyn (222&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 14 Jun&nbsp;2017</p>
+</blockquote>
+<p><a href="https://github.com/kakul/Alyn">Alyn</a> - <strong>Skew detection and correction</strong> in images containing text. It uses Canny Edge Detection and  Hough Transform to determine&nbsp;skew.</p>
+<p>How the Alyns&#8217; skew detection works:
+- Converts the image to greyscale
+- Performs Canny Edge Detection on the Image
+- Calculates the Hough Transform values
+- Determines the peaks
+- Determines the deviation of each peaks from 45 degree angle
+- Segregates the detected peaks into bins
+- Chooses the probable skew angle using the value in the&nbsp;bins</p>
+<p>Alyn is written in Python can be installed with pip (<code>pip install allyn</code>).</p>
+<p><a id="deskew-211-stars"></a></p>
+<h2>Deskew (211&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit : 10 Feb&nbsp;2022</p>
+</blockquote>
+<p><a href="https://github.com/sbrunner/deskew">deskew</a> - Library used to <strong>deskew a scanned document</strong>. Skew detection and correction in images containing text
+Written in Python, lightweight. Inspired by <a href="#alyn-222-stars">Alyn</a>.</p>
+<p><a id="galfardeskew-102-stars"></a></p>
+<h2>galfar/deskew (102&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 6 Jan&nbsp;2022</p>
+</blockquote>
+<p><a href="https://github.com/galfar/deskew">galfar/deskew</a> - Deskew is a <strong>command line tool</strong> for deskewing scanned text documents. It uses Hough transform to detect &#8220;text lines&#8221; in the image. As an output, you get an image rotated so that the lines are&nbsp;horizontal.</p>
+<p>There are binaries built for these platforms: Win64, Win32, Linux 64bit, macOS, Linux ARMv7. <span class="caps">GUI</span> frontend for this <span class="caps">CLI</span> tool is available as well (Windows, Linux, and&nbsp;macOS),</p>
+<blockquote>
+<p><span class="caps">NOTE</span>: It is written in&nbsp;Pascal.</p>
+</blockquote>
+<p><a id="skew-correction-12-stars"></a></p>
+<h2>Skew correction (12&nbsp;stars)</h2>
+<p><a href="https://github.com/prajwalmylar/skew_correction">skew_correction</a> - <strong>Deskewing images</strong> with slanted content by finding the deviation using Canny Edge&nbsp;Detection.</p>
+<p><a id="deskewing-stars-8"></a></p>
+<h2>Deskewing (stars&nbsp;8)</h2>
+<blockquote>
+<p>Last commit: 12 Jan&nbsp;2014</p>
+</blockquote>
+<p><a href="https://github.com/sauravbiswasiupr/deskewing">deskewing</a> - Contains code to <strong>deskew images using MLPs, LSTMs and <span class="caps">LLS</span> transformations.</strong>
+Written in&nbsp;Python.</p>
+<p><a id="text-deskewing-5-stars"></a></p>
+<h2>Text deskewing (5&nbsp;stars)</h2>
+<blockquote>
+<p>Last commit: 9 Mar&nbsp;2018</p>
+</blockquote>
+<p><a href="https://github.com/dehaisea/text_deskewing">text_deskewing</a> - <strong>Rotate text images if they are not straight</strong> for better text detection and recognition. Uses Canny Edge Detection and probabilistic Hough&nbsp;Transform.</p>
+<p>It is written in Python and the repository do not contains a lot of code - it is easy to follow and learn how those simple techniques can be used to desk the&nbsp;text.</p>
+<p><a id="summary-and-recommendations"></a></p>
+<h1>Summary and&nbsp;recommendations</h1>
+<p><a id="what-to-use-for-deskewing"></a></p>
+<h2>What to use for&nbsp;Deskewing?</h2>
+<ul>
+<li>If you need <strong>deskew</strong> and additionally <strong>clean-up</strong> document from scanning artefacts use: <a href="https://github.com/unpaper/unpaper">unpaper</a></li>
+<li>If you just need to <strong>correct rotation</strong> of the document use: <a href="https://github.com/kakul/Alyn">Alyn</a> or <a href="https://github.com/sbrunner/deskew">deskew</a></li>
+<li>If you want to <strong>learn about using Edge Detection and Hough Transform</strong> for document deskewing you might want to have look at: <a href="https://github.com/dehaisea/text_deskewing">text_deskewing</a></li>
+</ul>
+<p><a id="what-to-use-for-unwarping-and-deskewing"></a></p>
+<h2>What to use for Unwarping and&nbsp;Deskewing?</h2>
+<ul>
+<li>For dewarping book pages that has <strong>smooth bendings</strong> consider using <a href="https://github.com/lmmx/page-dewarp">page-dewarp</a> (renovated version of popular <a href="https://github.com/mzucker/page_dewarp">page_dewarp</a>. </li>
+<li>For more complex dewarping including e.g. <strong>folded pages</strong> use Deep Learning based solutions such as: <a href="https://github.com/cvlab-stonybrook/DewarpNet">DewarpNet</a> or <a href="https://github.com/thomasjhuang/deep-learning-for-document-dewarping">Docuwarp</a>. </li>
+<li>If you are working with flat pages and you just need to <strong>correct perspective</strong> <a href="https://github.com/mzucker/unproject_text">unproject_text</a> might be right tool for&nbsp;you.</li>
+</ul>
+<p><a id="what-to-use-for-document-segmentation"></a></p>
+<h2>What to use for Document&nbsp;Segmentation</h2>
+<p>Document segmentation was not in the scope of this article. You can check <a href="https://github.com/zacharywhitley/awesome-ocr">awesome-ocr</a> section on Document&nbsp;Segmentation</p>
+<p><strong>References:</strong></p>
+<ul>
+<li><a href="https://github.com/zacharywhitley/awesome-ocr">awesome-ocr</a> - rich collection of <span class="caps">OCR</span>-related projects and&nbsp;tools</li>
+</ul>
+<p><strong>Credits:</strong></p>
+<ul>
+<li>Image used in the header of this article comes from the paper <a href="https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf">DewarpNet: Single-Image Document Unwarping With Stacked 3D and 2D Regression Networks</a>. <em>Sagnik Das, Ke Ma, Zhixin Shu, Dimitris Samaras, Roy Shilkrot</em>; Proceedings of the <span class="caps">IEEE</span>/<span class="caps">CVF</span> International Conference on Computer Vision (<span class="caps">ICCV</span>), 2019, pp.&nbsp;131-140</li>
+<li>All other images in the article comes from the project owners or related sources (papers,&nbsp;articles)</li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <br/><br/>Tags:&nbsp;
+      <a href="https://www.safjan.com/tag/document-intelligence/">document intelligence</a>
+      <a href="https://www.safjan.com/tag/document-processing/">document processing</a>
+      <a href="https://www.safjan.com/tag/computer-vision/">computer vision</a>
+      <a href="https://www.safjan.com/tag/digital-image-processing/">digital image processing</a>
+      <a href="https://www.safjan.com/tag/canny-edge-detector/">canny edge detector</a>
+      <a href="https://www.safjan.com/tag/hough-transform/">hough transform</a>
+      <a href="https://www.safjan.com/tag/deep-learning/">deep learning</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/how-to-get-most-of-github-copilot/" title="How to get most of GitHub Copilot">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'krystian-safjan';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+<!-- End Disqus -->
+</article>
+
+    <footer>
+<p>
+  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

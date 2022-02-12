@@ -214,8 +214,9 @@ except:
 - [ ] 13. Shall sitemap be link on the menu? Rather no
 - [ ] 14. Check for dead links
 - [ ] 15. Remove formatting cells from the end of notebook
-  - Tag cells to remove with "remove_cell" (`View -> Cell Toolbar -> Tags`)
-  - in pelicanconf.py add code that uses preprocessing:
+- "Next post" in notes moves to next post which can be blog post or note. Implement different button ("Next note") and implement logic for that. Need separate list of notes for that purpose.
+- Tag cells to remove with "remove_cell" (`View -> Cell Toolbar -> Tags`)
+- in pelicanconf.py add code that uses preprocessing:
 ```python
 from nbconvert.preprocessors import TagRemovePreprocessor
 from traitlets.config import Config
