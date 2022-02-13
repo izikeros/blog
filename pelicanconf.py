@@ -13,8 +13,9 @@
 AUTHOR = 'Krystian Safjan'
 SITENAME = "Krystian Safjan's Blog"
 
-MY_THEME = 'flex' # flex | elegant, NOTE: this is nit name of the folder in pelican themes - search below for `THEME =` 
+MY_THEME = 'flex' # flex | elegant, NOTE: this is nit name of the folder in pelican themes - search below for `THEME =`
 IS_DEVELOPMENT = True
+USE_APPLAUSE = True
 # ---- Development settings
 if IS_DEVELOPMENT:
 	SITEURL = ''
@@ -79,7 +80,7 @@ SOCIAL = (
         'mailto:ksafjan@gmail.com'
     ),
     (
-        'graduation-cap', #'mortar-board | newspaper' or 'graduation-cap' 
+        'graduation-cap', #'mortar-board | newspaper' or 'graduation-cap'
         'https://scholar.google.pl/citations?user=UlNJgMoAAAAJ'
     ),
     (
