@@ -57,7 +57,7 @@ Here is first attempt to get code auto completion from GitHub copilot.
 
  ![img](../images/copilot/copilot_1.gif)
 
-Figure 2. Autosuggestion obtained as auto completion to comment describing behavior of the function.
+Figure 2. Autosuggestion obtained as auto-completion to comment describing behavior of the function.
 
 The example above illustrate how we started with initial suggestion for the comment and how the suggested  comment was refined as suggestions were provided by Copilot. The first suggestion for the code was very near the expectation - one thing that is missing is the support for selecting file extensions of interest.
 

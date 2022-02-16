@@ -3,7 +3,7 @@ title: 15 tools for document Deskewing and Dewarping
 date: 2022-02-11
 status: Published
 tags: document intelligence, document processing, computer vision, digital image processing, canny edge detector, hough transform, deep learning
-summary: Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scan or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article "Summary and recommendations".
+summary: Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article "Summary and recommendations".
 slug: tools-for-doc-deskewing-and-dewarping
 category: 'Data Science'
 citation_needed: false
@@ -69,7 +69,7 @@ Read more here: [Page dewarping]https://mzucker.github.io/2016/08/15/page-dewarp
 
 >  NOTE: It is written in Python but using Python 2.
 
-Since original work of mzucker was written in Python 2 and not developed further there was initiative to renovate the original scripts and there is [page-dewarp](https://github.com/lmmx/page-dewarp) which is also available on Pypi and it is pip installable (`pip install  page-dewarp`)
+Since original work of mzucker was written in Python 2 and not developed further there was initiative to renovate the original scripts and there is [page-dewarp](https://github.com/lmmx/page-dewarp) which is also available on Pypi, and it is pip installable (`pip install page-dewarp`)
 
 <a id="moran-579-stars"></a>
 ## MORAN (579 stars)
@@ -112,7 +112,7 @@ In this repository there is **no public code** to use but just algorithm descrip
 
 [unproject_text](https://github.com/mzucker/unproject_text) - **Perspective recovery of text using transformed ellipses**.
 
- It is not exactly dewarping but prerspective correction id more than determinig document rotation that is why it was place in the dewarping section.
+ It is not exactly dewarping but perspective correction id more than determining document rotation that is why it was place in the dewarping section.
 
 Written in Python, it is pretty lightweight: using numpy, scipy, cv2,...
 
@@ -156,7 +156,7 @@ Segmentation demo is available here: https://raymondmgwx.github.io/?e=Project_Bo
 
  The main purpose is to make scanned book pages better readable on screen after conversion to PDF. Additionally, unpaper might be useful to enhance the quality of scanned pages before performing optical character recognition (OCR).
 
-**unpaper tries to clean scanned images by removing dark edges that appeared through scanning or copying on areas outside the actual page content** (e.g. dark areas between the left-hand-side and the right-hand-side of a double- sided book-page scan).
+**unpaper tries to clean scanned images by removing dark edges that appeared through scanning or copying on areas outside the actual page content** (e.g. dark areas between the left-hand-side and the right-hand-side of a double-sided book-page scan).
 
 The program also tries to detect misaligned centering and rotation of pages and will **automatically straighten each page** by rotating it to the correct angle. This process is called "deskewing".
 
@@ -174,7 +174,7 @@ How the Alyns' skew detection works:
 - Performs Canny Edge Detection on the Image
 - Calculates the Hough Transform values
 - Determines the peaks
-- Determines the deviation of each peaks from 45 degree angle
+- Determines the deviation of each peaks from 45-degree angle
 - Segregates the detected peaks into bins
 - Chooses the probable skew angle using the value in the bins
 
@@ -220,7 +220,7 @@ Written in Python.
 
 [text_deskewing](https://github.com/dehaisea/text_deskewing) - **Rotate text images if they are not straight** for better text detection and recognition. Uses Canny Edge Detection and probabilistic Hough Transform.
 
-It is written in Python and the repository do not contains a lot of code - it is easy to follow and learn how those simple techniques can be used to desk the text.
+It is written in Python and the repository do not contain a lot of code - it is easy to follow and learn how those simple techniques can be used to desk the text.
 
 
 

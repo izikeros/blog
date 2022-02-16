@@ -38,7 +38,7 @@ repos:
 run `pre-commit install` to set up the git hook scripts. Now pre-commit will run automatically on git commit
 
 ## Run against all files before commit (optional)
-It's usually a good idea to run the hooks against all of the files when adding new hooks (usually pre-commit will only run on the changed files during git hooks)
+It's usually a good idea to run the hooks against all the files when adding new hooks (usually pre-commit will only run on the changed files during git hooks)
 ```sh
 pre-commit run --all-files
 ```

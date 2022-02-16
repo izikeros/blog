@@ -8,7 +8,7 @@ summary: summary
 tags: documentation, pdoc3, python, documentation generator
 title: Python project documentation from the code with pdoc3
 ---
-Sphinx seems to be most common tool for generating documentation. If 
+Sphinx seems to be the most common tool for generating documentation. If 
 # Python documentation with pdoc3
 
 Generate html documentation:

@@ -10,12 +10,12 @@ citation_needed: false
 todo: 
 ---
 
-In professional work both in corporation or as freelancer there might be a need to track - how much time you spent on different acctivities. There are already good apps that helps with that.
+In professional work both in corporation or as freelancer there might be a need to track - how much time you spent on different activities. There are already good apps that helps with that.
 
 # Solution that works best for me
 
 ## GTime
-Manually log time when starting new activity. Consider using it with free, open source [ActivityWatch](https://activitywatch.net/) that will help you estimate time of acctivity if you miss someting.
+Manually log time when starting new activity. Consider using it with free, open source [ActivityWatch](https://activitywatch.net/) that will help you estimate time of activity if you miss something.
 
 [GTime](https://mg.pov.lt/gtimelog/) is simple, might be similar to time tracking "Keep Focused" I used on Windows.
 
@@ -68,4 +68,4 @@ https://www.actitime.com/productivity-tools/linux-timesheet
 > In the past, on Windows machine I used ManicTime for some time (when it was free).
 
 ## Poor-man's solution
-Poor-man's solution might be capturing screen shoots periodicaly (e.g. every 5min) and then you can manually browse them and restore your activity in given day. Pros of this solution is that capturing the raw data (screenshots) might be fully automated, run in the background and do not need any involvement from your side. Cons is that you need to process the screenshots.
+Poor-man's solution might be capturing screen shoots periodically (e.g. every 5min) and then you can manually browse them and restore your activity in given day. Pros of this solution is that capturing the raw data (screenshots) might be fully automated, run in the background and do not need any involvement from your side. Cons is that you need to process the screenshots.
