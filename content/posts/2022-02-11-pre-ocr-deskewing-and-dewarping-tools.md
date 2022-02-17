@@ -5,7 +5,7 @@ status: Published
 tags: document intelligence, document processing, computer vision, digital image processing, canny edge detector, hough transform, deep learning
 summary: Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article "Summary and recommendations".
 slug: tools-for-doc-deskewing-and-dewarping
-category: 'Data Science'
+category: Data Science
 citation_needed: false
 todo: Add credits to all images, copy images instead of hot linking 
 Image: /images/head/dewarp_deskew.jpg
@@ -215,6 +215,7 @@ Written in Python.
 
 <a id="text-deskewing-5-stars"></a>
 
+<a id="text-deskewing-5-stars"></a>
 ## Text deskewing (5 stars)
 > Last commit: 9 Mar 2018
 
@@ -236,6 +237,7 @@ It is written in Python and the repository do not contain a lot of code - it is 
 
 <a id="what-to-use-for-unwarping-and-deskewing"></a>
 
+<a id="what-to-use-for-unwarping-and-deskewing"></a>
 ## What to use for Unwarping and Deskewing?
 
 - For dewarping book pages that has **smooth bendings** consider using [page-dewarp](https://github.com/lmmx/page-dewarp) (renovated version of popular [page_dewarp](https://github.com/mzucker/page_dewarp). 
@@ -244,6 +246,7 @@ It is written in Python and the repository do not contain a lot of code - it is 
 
 <a id="what-to-use-for-document-segmentation"></a>
 
+<a id="what-to-use-for-document-segmentation"></a>
 ## What to use for Document Segmentation
 
 Document segmentation was not in the scope of this article. You can check [awesome-ocr](https://github.com/zacharywhitley/awesome-ocr) section on Document Segmentation
