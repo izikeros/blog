@@ -27,7 +27,7 @@ else:
 	RELATIVE_URLS = False
 	CACHE_CONTENT = True
 	# -------------- Third party ------
-	DISQUS_SITENAME = 'krystian-safjan'
+	#DISQUS_SITENAME = 'krystian-safjan'
 	GOOGLE_ANALYTICS = 'UA-117080232-1' # G-RM2PKDCCYM
 
 PATH = 'content'
