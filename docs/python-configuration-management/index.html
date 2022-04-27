@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+        <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css" />
+        <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/styles/custom.css">
+
+    <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's Blog Atom">
+
+    <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="" />
+<meta name="keywords" content="python, configuration, hydra, decouple">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Python configuration management"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/python-configuration-management/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-04-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="configuration"/>
+  <meta property="article:tag" content="hydra"/>
+  <meta property="article:tag" content="decouple"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+  <title>Krystian Safjan's Blog &ndash; Python configuration management</title>
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://www.safjan.com/">
+        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+      </a>
+
+      <h1>
+        <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+      </h1>
+
+<p><p>Data Scientist | Researcher | Team Leader</p><br/><br/>I'm working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr></p>
+
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://www.safjan.com/">Home</a>
+
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+      <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <p>
+      <!-- Posted on: -->
+      April 14, 2022 
+
+
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Python%20configuration%C2%A0management&url=https%3A//www.safjan.com/python-configuration-management/&hashtags=python,configuration,hydra,decouple" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/python-configuration-management/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Python%20configuration%C2%A0management&u=https%3A//www.safjan.com/python-configuration-management/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/python-configuration-management/&title=Python%20configuration%C2%A0management" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+    <br/>
+   </p>
+  <h1 id="python-configuration-management">Python configuration&nbsp;management</h1>
+  <div class="header-underline"></div>
+  </header>
+
+
+  <div>
+    <h2>hydra-core&nbsp;package</h2>
+<p><a href="https://hydra.cc/">Hydra</a> is a Python library that allows you to access parameters from a configuration file inside a Python&nbsp;script.</p>
+<p>Create exemplary <code>main.yaml</code> in directory <code>config</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">raw</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/raw/sample.csv</span><span class="w"></span>
+
+<span class="nt">processed</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/processed/processed.csv</span><span class="w"></span>
+
+<span class="nt">final</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/final/final.csv</span><span class="w"></span>
+</code></pre></div>
+
+<p>then we can access the value inside the configuration file by adding the decorator <code>@hydra.main</code> on a specific function. Inside this function, we can access the value under <code>processed</code> and <code>path</code> by using a dot notation: <code>config.processed.path</code> .</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This is the demo code that uses hydra to access the parameters in under the directory config.</span>
+<span class="sd">Author: Khuyen Tran</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">hydra</span>
+<span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span>
+<span class="kn">from</span> <span class="nn">hydra.utils</span> <span class="kn">import</span> <span class="n">to_absolute_path</span> <span class="k">as</span> <span class="n">abspath</span>
+
+<span class="nd">@hydra</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="s2">&quot;../config&quot;</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="s1">&#39;main&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function to process the data&quot;&quot;&quot;</span>
+
+    <span class="n">raw_path</span> <span class="o">=</span> <span class="n">abspath</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Process data using </span><span class="si">{</span><span class="n">raw_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columns used: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">use_columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">process_data</span><span class="p">()</span>
+</code></pre></div>
+
+<p>From:&nbsp;https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800</p>
+<h2>decouple&nbsp;package</h2>
+<blockquote>
+<p>Python Decouple: Strict separation of settings from&nbsp;code</p>
+</blockquote>
+<p>Decouple helps you to organize your settings so that you can change parameters without having to redeploy your&nbsp;app.</p>
+<p>It also makes it easy for you&nbsp;to:</p>
+<ul>
+<li>store parameters in ini or .env files;
+define comprehensive default&nbsp;values;</li>
+<li>properly convert values to the correct data&nbsp;type;</li>
+<li>have only one configuration module to rule all your instances.
+-It was originally designed for Django, but became an independent generic tool for separating settings from&nbsp;code.</li>
+</ul>
+<p>Envvars works, but since <code>os.environ</code> only returns strings, it’s&nbsp;tricky.</p>
+<p>Let’s say you have an envvar <code>DEBUG=False</code>. If you&nbsp;run:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;</span><span class="s">DEBUG</span><span class="s1">&#39;</span>]:
+    <span class="nv">print</span> <span class="nv">True</span>
+<span class="k">else</span>:
+    <span class="nv">print</span> <span class="nv">False</span>
+</code></pre></div>
+
+<p>It will print <code>True</code>, because <code>os.environ['DEBUG']</code> returns the string &#8220;False&#8221;. Since it’s a non-empty string, it will be evaluated as&nbsp;True.</p>
+<p>Decouple provides a solution that doesn’t look like a workaround: <code>config('DEBUG', cast=bool)</code>.</p>
+<p>From: package description on&nbsp;pypi</p>
+<h2>omegaconf</h2>
+<p>OmegaConf is a hierarchical configuration system, with support for merging configurations from multiple sources (<span class="caps">YAML</span> config files, dataclasses/objects and <span class="caps">CLI</span> arguments) providing a consistent <span class="caps">API</span> regardless of how the configuration was&nbsp;created.</p>
+  </div>
+
+     <div id="applause-container">
+        <applause-button color="#d9411e" style="width: 58px; height: 58px;"/>
+     </div>
+
+  <div class="tag-cloud">
+    <p>
+      <br/><br/>Tags:&nbsp;
+      <a href="https://www.safjan.com/tag/python/">python</a>
+      <a href="https://www.safjan.com/tag/configuration/">configuration</a>
+      <a href="https://www.safjan.com/tag/hydra/">hydra</a>
+      <a href="https://www.safjan.com/tag/decouple/">decouple</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/clone-partition-in-linux/" title="Clone partition in Linux">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/allow-arbitrary-types-pandasa-in-pydantic/" title="Alow arbitrary types (such as Pandas Dataframe) in Pydantic">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://www.safjan.com/serve-http-files-with-python-server/">Serve http files with python&nbsp;server</a></li>
+      <li><a href="https://www.safjan.com/python-add-parent-directory-to-path/">Python Add Parent Directory To&nbsp;Path</a></li>
+      <li><a href="https://www.safjan.com/python-get-file-and-path-parts-dirname-base-name-extension/">Python - get file and path parts (dirname, base name,&nbsp;extension)</a></li>
+      <li><a href="https://www.safjan.com/black-code-formatter/">Black code&nbsp;formatter</a></li>
+      <li><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/">Top popular Zsh plugins on GitHub&nbsp;(2021)</a></li>
+    </ul>
+  </div>
+
+
+</article>
+
+    <footer>
+<p>
+  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

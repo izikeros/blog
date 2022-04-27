@@ -65,7 +65,7 @@ Reconstruction of spatial (3D) structure of the document is typically done using
 
 <img src="https://mzucker.github.io/images/page_dewarp/linguistics_thesis_a_before_after.png" alt="before and after dewarp" style="zoom:50%;" />
 
-Read more here: [Page dewarping]https://mzucker.github.io/2016/08/15/page-dewarping.html
+Read more here: [Page dewarping](https://mzucker.github.io/2016/08/15/page-dewarping.html)
 
 >  NOTE: It is written in Python but using Python 2.
 

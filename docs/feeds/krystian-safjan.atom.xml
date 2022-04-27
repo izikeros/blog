@@ -1,5 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-03-03T00:00:00+01:00</updated><subtitle>&lt;p&gt;Data Scientist | Researcher | Team Leader&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;I'm working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;</subtitle><entry><title>Clone partition in Linux</title><link href="https://www.safjan.com/clone-partition-in-linux/" rel="alternate"></link><published>2022-03-03T00:00:00+01:00</published><updated>2022-03-03T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-03-03:/clone-partition-in-linux/</id><summary type="html">&lt;p&gt;how to clone disk partition in&amp;nbsp;Linux&lt;/p&gt;</summary><content type="html">&lt;h2&gt;clone&amp;nbsp;partition&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-04-27T00:00:00+02:00</updated><subtitle>&lt;p&gt;Data Scientist | Researcher | Team Leader&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;I'm working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;</subtitle><entry><title>Pandas dataframe schema and data types validation</title><link href="https://www.safjan.com/pandas-dataframe-validation/" rel="alternate"></link><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-27:/pandas-dataframe-validation/</id><summary type="html"></summary><content type="html">&lt;h1&gt;Contents&lt;/h1&gt;
+&lt;!-- MarkdownTOC levels='1,2,3' autolink=True --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#pandera-515-stars---column-validation-columns-types-dataframe-schema"&gt;Pandera (515 stars) - column validation (columns, types), DataFrame&amp;nbsp;Schema&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#dataenforce-59-stars---columns-presence-validation"&gt;Dataenforce (59 stars) - columns presence&amp;nbsp;validation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#for-type-hinting-column-names-check-dtype-check"&gt;for type hinting (column names check, dtype&amp;nbsp;check)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#for-validation"&gt;for&amp;nbsp;validation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#great-expectations---data-validation"&gt;Great expectations - data&amp;nbsp;validation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#automated-expectations-from-profiling"&gt;automated expectations from&amp;nbsp;profiling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pandas_schema-135-stars"&gt;pandas_schema (135&amp;nbsp;stars)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#other-data-validation-libraries"&gt;Other Data Validation&amp;nbsp;Libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#generic-python-object-data-validation"&gt;Generic Python object data&amp;nbsp;validation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pandas-specific-data-validation"&gt;pandas-specific data&amp;nbsp;validation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;Two things I found most usefull and use most is Pandera and&amp;nbsp;Dataenforce.&lt;/p&gt;
+&lt;h2&gt;Pandera (515 stars) - column validation (columns, types), DataFrame&amp;nbsp;Schema&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandera&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pa&lt;/span&gt;
+
+&lt;span class="n"&gt;schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrameSchema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;height_in_cm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;age_category&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;person_id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Usage for schema check&lt;/span&gt;
+&lt;span class="n"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df_dataset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Dataenforce (59 stars) - columns presence&amp;nbsp;validation&lt;/h2&gt;
+&lt;p&gt;used&amp;nbsp;for&lt;/p&gt;
+&lt;h3&gt;for type hinting (column names check, dtype&amp;nbsp;check)&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dataenforce&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;latitude&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;longitude&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+  &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;for&amp;nbsp;validation&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dataenforce&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;
+
+&lt;span class="nd"&gt;@validate&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
+  &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Github Link: &lt;a href="https://github.com/CedricFR/dataenforce"&gt;dataenforce&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Great expectations - data&amp;nbsp;validation&lt;/h2&gt;
+&lt;h3&gt;automated expectations from&amp;nbsp;profiling&lt;/h3&gt;
+&lt;p&gt;https://greatexpectations.io/blog/pandas-profiling-integration/
+great expectations + Pandas&amp;nbsp;Profiling&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandas_profiling&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ProfileReport&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Load your dataframe&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;yellow_tripdata_sample_2019-01.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Then run Pandas Profiling&lt;/span&gt;
+&lt;span class="n"&gt;profile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ProfileReport&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Pandas Profiling Report&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;explorative&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# And obtain an Expectation Suite from the profile report&lt;/span&gt;
+&lt;span class="n"&gt;suite&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;profile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_expectation_suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;suite_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;my_pandas_profiling_suite&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;pandas_schema (135&amp;nbsp;stars)&lt;/h2&gt;
+&lt;h2&gt;Other Data Validation&amp;nbsp;Libraries&lt;/h2&gt;
+&lt;p&gt;Here are a few other alternatives for validating Python data&amp;nbsp;structures.&lt;/p&gt;
+&lt;h3&gt;Generic Python object data&amp;nbsp;validation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;voloptuous&lt;/li&gt;
+&lt;li&gt;schema&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;pandas-specific data&amp;nbsp;validation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;opulent-pandas&lt;/li&gt;
+&lt;li&gt;PandasSchema&lt;/li&gt;
+&lt;li&gt;pandas-validator&amp;nbsp;(archived)&lt;/li&gt;
+&lt;li&gt;table_enforcer (13&amp;nbsp;stars)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category></entry><entry><title>Serve http files with python server</title><link href="https://www.safjan.com/serve-http-files-with-python-server/" rel="alternate"></link><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-27:/serve-http-files-with-python-server/</id><summary type="html"></summary><content type="html">&lt;p&gt;Sometimes there is a need to serve html page instead of just displaying it in the browser:
+- share content with other (allowing download)
+- serve http document with javascript when javascript can&amp;#8217;t be readed due to &lt;span class="caps"&gt;CORS&lt;/span&gt;&amp;nbsp;limitations.&lt;/p&gt;
+&lt;p&gt;From directory with the content you want to serve type in&amp;nbsp;terminal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python -m http.server &lt;span class="m"&gt;9000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Read more &lt;a href="https://www.askpython.com/python-modules/python-httpserver"&gt;here&lt;/a&gt; &lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="htttp"></category><category term="server"></category><category term="javascript"></category></entry><entry><title>Change extension for multiple files in Zsh</title><link href="https://www.safjan.com/change-extension-for-multiple-files-in-zsh/" rel="alternate"></link><published>2022-04-22T00:00:00+02:00</published><updated>2022-04-22T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-22:/change-extension-for-multiple-files-in-zsh/</id><summary type="html"></summary><content type="html">&lt;p&gt;In Zsh it is bit easier to perform this because of using &lt;code&gt;zmv&lt;/code&gt;. First you need to load &lt;code&gt;zmv&lt;/code&gt;. In zsh, run the following command once (or put them in your ~/.zshrc for the&amp;nbsp;future):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;autoload -U zmv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;change all extensions from &lt;code&gt;.lis&lt;/code&gt; to &lt;code&gt;.txt&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;zmv &lt;span class="s1"&gt;&amp;#39;(*).lis&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;$1.txt&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;^*.*&lt;/code&gt; means all files except the ones matching &lt;code&gt;*.*&lt;/code&gt;, it&amp;#8217;s a shortcut for &lt;code&gt;*~*.*&lt;/code&gt; (both are zsh extensions to the traditional pattern&amp;nbsp;syntax).&lt;/p&gt;
+&lt;p&gt;for all files set extension &lt;code&gt;.md&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;zmv &lt;span class="s1"&gt;&amp;#39;^*.*&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;$f.md&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Tip comming from from: &lt;a href="https://unix.stackexchange.com/a/68943"&gt;unix.stackexchange&lt;/a&gt;. Credits to: &lt;a href="https://unix.stackexchange.com/users/885/gilles-so-stop-being-evil"&gt;Gilles &amp;#8216;&lt;span class="caps"&gt;SO&lt;/span&gt;- stop being&amp;nbsp;evil&amp;#8217;&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="zsh"></category><category term="shell"></category><category term="zmv"></category></entry><entry><title>Use python TypedDict to type hint dictionaries</title><link href="https://www.safjan.com/use-python-typeddict-to-type-hint-dictionaries/" rel="alternate"></link><published>2022-04-22T00:00:00+02:00</published><updated>2022-04-22T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-22:/use-python-typeddict-to-type-hint-dictionaries/</id><summary type="html"></summary><content type="html">&lt;p&gt;Define types for the fields in dictionary using TypedDict as base class to inherit from and then use this class in&amp;nbsp;hints.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TypedDict&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;NameInfo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TypedDict&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;first_letter&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;NameInfo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;first_letter&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;from:&amp;nbsp;https://stackoverflow.com/a/54198204/3247880&lt;/p&gt;</content><category term="note"></category></entry><entry><title>Zsh loop over files and run command</title><link href="https://www.safjan.com/zsh-loop-over-files-and-run-command/" rel="alternate"></link><published>2022-04-22T00:00:00+02:00</published><updated>2022-04-22T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-22:/zsh-loop-over-files-and-run-command/</id><summary type="html"></summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt; file &lt;span class="k"&gt;in&lt;/span&gt; ~/folder/*&lt;span class="p"&gt;;&lt;/span&gt; gpg &lt;span class="nv"&gt;$file&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;from:&amp;nbsp;https://quintussential.com/archive/2019/01/26/Looping-over-files-in-zsh/&lt;/p&gt;</content><category term="note"></category><category term="zsh"></category><category term="loop"></category></entry><entry><title>Alow arbitrary types (such as Pandas Dataframe) in Pydantic</title><link href="https://www.safjan.com/allow-arbitrary-types-pandasa-in-pydantic/" rel="alternate"></link><published>2022-04-21T00:00:00+02:00</published><updated>2022-04-21T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-21:/allow-arbitrary-types-pandasa-in-pydantic/</id><summary type="html"></summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#solution-1---allow-arbitrary-types"&gt;Solution 1 - allow arbitrary&amp;nbsp;types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#solution-2---create-a-pythonic-type-hint-for-a-pddataframe"&gt;Solution 2 - create a pythonic type hint for a&amp;nbsp;pd.Dataframe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#see-also"&gt;See&amp;nbsp;also&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;h2&gt;Solution 1 - allow arbitrary&amp;nbsp;types&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydantic&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseModel&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SubModelInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;
+    &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;
+
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;arbitrary_types_allowed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Solution 2 - create a pythonic type hint for a&amp;nbsp;pd.Dataframe&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydantic&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseModel&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TypeVar&lt;/span&gt;
+
+&lt;span class="n"&gt;PandasDataFrame&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TypeVar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pandas.core.frame.DataFrame&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SubModelInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;PandasDataFrame&lt;/span&gt;
+    &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;PandasDataFrame&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;See&amp;nbsp;also&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.inwt-statistics.com/read-blog/pandas-dataframe-validation-with-pydantic.html"&gt;Pandas DataFrame Validation with&amp;nbsp;Pydantic&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hints from: &lt;a href="https://stackoverflow.com/questions/65412984/using-pandas-data-frame-as-a-type-in-pydantic"&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="pydantic"></category><category term="pandas"></category><category term="type hints"></category></entry><entry><title>Python configuration management</title><link href="https://www.safjan.com/python-configuration-management/" rel="alternate"></link><published>2022-04-14T00:00:00+02:00</published><updated>2022-04-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-14:/python-configuration-management/</id><summary type="html"></summary><content type="html">&lt;h2&gt;hydra-core&amp;nbsp;package&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://hydra.cc/"&gt;Hydra&lt;/a&gt; is a Python library that allows you to access parameters from a configuration file inside a Python&amp;nbsp;script.&lt;/p&gt;
+&lt;p&gt;Create exemplary &lt;code&gt;main.yaml&lt;/code&gt; in directory &lt;code&gt;config&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;raw&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;data/raw/sample.csv&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;processed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;data/processed/processed.csv&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;final&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;data/final/final.csv&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;then we can access the value inside the configuration file by adding the decorator &lt;code&gt;@hydra.main&lt;/code&gt; on a specific function. Inside this function, we can access the value under &lt;code&gt;processed&lt;/code&gt; and &lt;code&gt;path&lt;/code&gt; by using a dot notation: &lt;code&gt;config.processed.path&lt;/code&gt; .&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;This is the demo code that uses hydra to access the parameters in under the directory config.&lt;/span&gt;
+&lt;span class="sd"&gt;Author: Khuyen Tran&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;hydra&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;omegaconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DictConfig&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;hydra.utils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;to_absolute_path&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;abspath&lt;/span&gt;
+
+&lt;span class="nd"&gt;@hydra&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config_path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;../config&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;config_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;main&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;DictConfig&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Function to process the data&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="n"&gt;raw_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raw&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Process data using &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;raw_path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Columns used: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use_columns&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From:&amp;nbsp;https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800&lt;/p&gt;
+&lt;h2&gt;decouple&amp;nbsp;package&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Python Decouple: Strict separation of settings from&amp;nbsp;code&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Decouple helps you to organize your settings so that you can change parameters without having to redeploy your&amp;nbsp;app.&lt;/p&gt;
+&lt;p&gt;It also makes it easy for you&amp;nbsp;to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;store parameters in ini or .env files;
+define comprehensive default&amp;nbsp;values;&lt;/li&gt;
+&lt;li&gt;properly convert values to the correct data&amp;nbsp;type;&lt;/li&gt;
+&lt;li&gt;have only one configuration module to rule all your instances.
+-It was originally designed for Django, but became an independent generic tool for separating settings from&amp;nbsp;code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Envvars works, but since &lt;code&gt;os.environ&lt;/code&gt; only returns strings, it’s&amp;nbsp;tricky.&lt;/p&gt;
+&lt;p&gt;Let’s say you have an envvar &lt;code&gt;DEBUG=False&lt;/code&gt;. If you&amp;nbsp;run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;os&lt;/span&gt;.&lt;span class="nv"&gt;environ&lt;/span&gt;[&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;DEBUG&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;]:
+    &lt;span class="nv"&gt;print&lt;/span&gt; &lt;span class="nv"&gt;True&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;:
+    &lt;span class="nv"&gt;print&lt;/span&gt; &lt;span class="nv"&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It will print &lt;code&gt;True&lt;/code&gt;, because &lt;code&gt;os.environ['DEBUG']&lt;/code&gt; returns the string &amp;#8220;False&amp;#8221;. Since it’s a non-empty string, it will be evaluated as&amp;nbsp;True.&lt;/p&gt;
+&lt;p&gt;Decouple provides a solution that doesn’t look like a workaround: &lt;code&gt;config('DEBUG', cast=bool)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;From: package description on&amp;nbsp;pypi&lt;/p&gt;
+&lt;h2&gt;omegaconf&lt;/h2&gt;
+&lt;p&gt;OmegaConf is a hierarchical configuration system, with support for merging configurations from multiple sources (&lt;span class="caps"&gt;YAML&lt;/span&gt; config files, dataclasses/objects and &lt;span class="caps"&gt;CLI&lt;/span&gt; arguments) providing a consistent &lt;span class="caps"&gt;API&lt;/span&gt; regardless of how the configuration was&amp;nbsp;created.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="configuration"></category><category term="hydra"></category><category term="decouple"></category></entry><entry><title>Clone partition in Linux</title><link href="https://www.safjan.com/clone-partition-in-linux/" rel="alternate"></link><published>2022-03-03T00:00:00+01:00</published><updated>2022-03-03T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-03-03:/clone-partition-in-linux/</id><summary type="html">&lt;p&gt;how to clone disk partition in&amp;nbsp;Linux&lt;/p&gt;</summary><content type="html">&lt;h2&gt;clone&amp;nbsp;partition&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;dd &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;infile &lt;span class="p"&gt;|&lt;/span&gt; pv &amp;gt; outfile
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -15,7 +231,12 @@
 &lt;h2&gt;Restore&amp;nbsp;system&lt;/h2&gt;
 &lt;p&gt;To restore your&amp;nbsp;system:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gunzip -c /path/to/backup.img.gz &lt;span class="p"&gt;|&lt;/span&gt; dd &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sda
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="Linux"></category><category term="dd"></category><category term="pv"></category><category term="partition"></category><category term="disk"></category></entry><entry><title>Python - get file and path parts (dirname, base name, extension)</title><link href="https://www.safjan.com/python-get-file-and-path-parts-dirname-base-name-extension/" rel="alternate"></link><published>2022-02-15T00:00:00+01:00</published><updated>2022-02-15T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-15:/python-get-file-and-path-parts-dirname-base-name-extension/</id><summary type="html">&lt;p&gt;To split full file name (e.g. &lt;code&gt;/root/dir/sub/file.ext&lt;/code&gt;) with path into various parts you can use python build-in functions from the &lt;code&gt;os&lt;/code&gt; module.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="Linux"></category><category term="dd"></category><category term="pv"></category><category term="partition"></category><category term="disk"></category></entry><entry><title>Python Add Parent Directory To Path</title><link href="https://www.safjan.com/python-add-parent-directory-to-path/" rel="alternate"></link><published>2022-02-22T00:00:00+01:00</published><updated>2022-02-22T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-22:/python-add-parent-directory-to-path/</id><summary type="html"></summary><content type="html">&lt;p&gt;Adding parent path with the modules to import is sometimes useful in jupyter&amp;nbsp;notebooks.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Add parent directory to path&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;See also my GitHub &lt;a href=""&gt;gist&lt;/a&gt;.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="gist"></category><category term="snippet"></category><category term="jupyter"></category><category term="notebook"></category></entry><entry><title>Python - get file and path parts (dirname, base name, extension)</title><link href="https://www.safjan.com/python-get-file-and-path-parts-dirname-base-name-extension/" rel="alternate"></link><published>2022-02-15T00:00:00+01:00</published><updated>2022-02-15T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-15:/python-get-file-and-path-parts-dirname-base-name-extension/</id><summary type="html">&lt;p&gt;To split full file name (e.g. &lt;code&gt;/root/dir/sub/file.ext&lt;/code&gt;) with path into various parts you can use python build-in functions from the &lt;code&gt;os&lt;/code&gt; module.
 You can retrieve:
 - base name - just file name with extension (in our example: &lt;code&gt;file.ext …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;To split full file name (e.g. &lt;code&gt;/root/dir/sub/file.ext&lt;/code&gt;) with path into various parts you can use python build-in functions from the &lt;code&gt;os&lt;/code&gt; module.
 You can retrieve:
@@ -102,7 +323,7 @@ If you are looking for my recommendations go straight to the last section of thi
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="https://github.com/mzucker/page_dewarp"&gt;page_dewarp&lt;/a&gt; - Page dewarping and thresholding using a &amp;#8220;cubic sheet&amp;#8221;&amp;nbsp;model&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://mzucker.github.io/images/page_dewarp/linguistics_thesis_a_before_after.png" alt="before and after dewarp" style="zoom:50%;" /&gt;&lt;/p&gt;
-&lt;p&gt;Read more here: [Page&amp;nbsp;dewarping]https://mzucker.github.io/2016/08/15/page-dewarping.html&lt;/p&gt;
+&lt;p&gt;Read more here: &lt;a href="https://mzucker.github.io/2016/08/15/page-dewarping.html"&gt;Page&amp;nbsp;dewarping&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: It is written in Python but using Python&amp;nbsp;2.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2699,10 +2920,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="b06fbae4-8cb9-4a15-9b29-77bf1cc9d995"&gt;&lt;/div&gt;
+&lt;div id="38a92564-998c-449a-94b5-5a8dc174030c"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#b06fbae4-8cb9-4a15-9b29-77bf1cc9d995');
+var element = $('#38a92564-998c-449a-94b5-5a8dc174030c');
 
 (function(root) {
   function now() {
