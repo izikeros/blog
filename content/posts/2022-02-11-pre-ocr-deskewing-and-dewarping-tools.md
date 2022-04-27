@@ -170,6 +170,7 @@ Written mostly in C.
 [Alyn](https://github.com/kakul/Alyn) - **Skew detection and correction** in images containing text. It uses Canny Edge Detection and  Hough Transform to determine skew.
 
 How the Alyns' skew detection works:
+
 - Converts the image to greyscale
 - Performs Canny Edge Detection on the Image
 - Calculates the Hough Transform values
