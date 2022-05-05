@@ -15,7 +15,7 @@ todo:
 - [Pandera \(515 stars\) - column validation \(columns, types\), DataFrame Schema](#pandera-515-stars---column-validation-columns-types-dataframe-schema)
 - [Dataenforce \(59 stars\) - columns presence validation](#dataenforce-59-stars---columns-presence-validation)
   - [for type hinting \(column names check, dtype check\)](#for-type-hinting-column-names-check-dtype-check)
-  - [for validation](#for-validation)
+  - [to enforce validation at runtime](#to-enforce-validation-at-runtime)
 - [Great expectations - data validation](#great-expectations---data-validation)
   - [automated expectations from profiling](#automated-expectations-from-profiling)
 - [pandas_schema \(135 stars\)](#pandas_schema-135-stars)
@@ -42,6 +42,8 @@ schema = pa.DataFrameSchema(
 # Usage for schema check
 schema(df_dataset)
 ```
+Medium article ["Validate Your pandas DataFrame with Pandera](
+https://towardsdatascience.com/validate-your-pandas-dataframe-with-pandera-2995910e564)
 
 ## Dataenforce (59 stars) - columns presence validation
 used for
@@ -52,7 +54,7 @@ def process_data(data: Dataset["id": int, "name": object, "latitude": float, "lo
   pass
 ```
 
-### for validation
+### to enforce validation at runtime
 ```python
 from dataenforce import Dataset, validate
 
