@@ -126,8 +126,33 @@ The others are:
     hooks:
       - id: importanize
         args: [ --verbose ]
+```
+
+## Excluding
+If you don't want some directorie to be subject of pre-commit exclude them as in the example:
+```yaml
+-   repo: https://github.com/pycqa/flake8
+    rev: '4.0.1'  
+    hooks:
+    -   id: flake8
+        exclude: (__pycache__|.venv|tmp|notebooks)
+        #additional_dependencies: [flake8-docstrings]
+```
+
+use `files` to define pattern which files to include. E.g. `files: \.x$` - files ending with `.x` (?)
+
+for more advanced filtering see section "Filtering files with types" on: https://pre-commit.com/#advanced
 
 
 
+example:
 
 ```
+    files: ^foo/
+    types_or: [javascript, jsx, ts, tsx]
+```
+
+will match any of `foo/bar.js` / `foo/bar.jsx` / `foo/bar.ts` / `foo/bar.tsx` but not `baz.js`.
+
+
+
