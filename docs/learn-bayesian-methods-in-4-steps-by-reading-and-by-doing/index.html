@@ -1,253 +1,485 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" type="text/css" href="../theme/stylesheet/style.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../theme/stylesheet/style.min.css"
+    />
 
+    <link
+      id="pygments-light-theme"
+      rel="stylesheet"
+      type="text/css"
+      href="../theme/pygments/github.min.css"
+    />
 
-    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-          href="../theme/pygments/github.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../theme/font-awesome/css/fontawesome.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../theme/font-awesome/css/brands.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../theme/font-awesome/css/solid.css"
+    />
 
+    <link rel="stylesheet" type="text/css" href="../styles/custom.css" />
 
-        <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css" />
-        <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+    <meta name="author" content="Krystian Safjan" />
+    <meta
+      name="description"
+      content="This post propose 4-steps path for learning Byesian methods. First step is goint through the book: “Bayesian methods for hackers”, second, use complementary books for probability and statistics, third, read How to become a Bayesian in eight easy steps: An annotated reading list”, and last, go throught the book full of exercises: “Think Bayes”."
+    />
+    <meta
+      name="keywords"
+      content="machine learning, statistics, probability, howto"
+    />
 
-  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/solid.css">
+    <meta property="og:site_name" content="Krystian Safjan's Blog" />
+    <meta
+      property="og:title"
+      content="Learn Bayesian methods in 4 steps - by reading and by doing"
+    />
+    <meta
+      property="og:description"
+      content="This post propose 4-steps path for learning Byesian methods. First step is goint through the book: “Bayesian methods for hackers”, second, use complementary books for probability and statistics, third, read How to become a Bayesian in eight easy steps: An annotated reading list”, and last, go throught the book full of exercises: “Think Bayes”."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:url"
+      content="../learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:published_time"
+      content="2019-07-09 00:00:00+02:00"
+    />
+    <meta property="article:modified_time" content="" />
+    <meta property="article:author" content="../author/krystian-safjan/" />
+    <meta property="article:section" content="Howto" />
+    <meta property="article:tag" content="machine learning" />
+    <meta property="article:tag" content="statistics" />
+    <meta property="article:tag" content="probability" />
+    <meta property="article:tag" content="howto" />
+    <meta
+      property="og:image"
+      content="..//images/learn_bayes/probab_distrib.png"
+    />
 
-  <link rel="stylesheet" type="text/css" href="../styles/custom.css">
+    <title>
+      Krystian Safjan's Blog &ndash; Learn Bayesian methods in 4 steps - by
+      reading and by doing
+    </title>
 
+    <!-- Google Automatic Ads -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+      crossorigin="anonymous"
+    ></script>
+    <!-- End of Google Automatic Ads -->
+  </head>
+  <body class="light-theme">
+    <aside>
+      <div>
+        <a href="../">
+          <img
+            src="/images/profile_new.jpg"
+            alt="Krystian Safjan's Blog"
+            title="Krystian Safjan's Blog"
+            width="140"
+            height="140"
+          />
+        </a>
 
+        <h1>
+          <a href="../">Krystian Safjan's Blog</a>
+        </h1>
 
+        <p>
+          Data Scientist | Researcher | Team Leader<br /><br />
+          working at Ernst &amp; Young and writing about
+          <a href="/category/data-science.html"
+            >Data Science and Visualization</a
+          >, on
+          <a href="/category/data-science.html"
+            >Machine Learning, Deep Learning</a
+          >
+          and <a href="/tag/nlp/">NLP</a>. There are also some
+          <a href="/category/howto.html">howto</a> posts on tools and workflows.
+        </p>
 
-
-
-
-
-<meta name="author" content="Krystian Safjan" />
-<meta name="description" content="This post propose 4-steps path for learning Byesian methods. First step is goint through the book: “Bayesian methods for hackers”, second, use complementary books for probability and statistics, third, read How to become a Bayesian in eight easy steps: An annotated reading list”, and last, go throught the book full of exercises: “Think Bayes”." />
-<meta name="keywords" content="machine learning, statistics, probability, howto">
-
-
-  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
-  <meta property="og:title" content="Learn Bayesian methods in 4 steps - by reading and by doing"/>
-  <meta property="og:description" content="This post propose 4-steps path for learning Byesian methods. First step is goint through the book: “Bayesian methods for hackers”, second, use complementary books for probability and statistics, third, read How to become a Bayesian in eight easy steps: An annotated reading list”, and last, go throught the book full of exercises: “Think Bayes”."/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="../learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2019-07-09 00:00:00+02:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="../author/krystian-safjan/">
-  <meta property="article:section" content="Howto"/>
-  <meta property="article:tag" content="machine learning"/>
-  <meta property="article:tag" content="statistics"/>
-  <meta property="article:tag" content="probability"/>
-  <meta property="article:tag" content="howto"/>
-  <meta property="og:image" content="..//images/learn_bayes/probab_distrib.png">
-
-  <title>Krystian Safjan's Blog &ndash; Learn Bayesian methods in 4 steps - by reading and by doing</title>
-
-
-<!-- Google Automatic Ads -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
-     crossorigin="anonymous"></script>
-<!-- End of Google Automatic Ads -->
-
-
-</head>
-<body class="light-theme">
-  <aside>
-    <div>
-      <a href="../">
-        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
-      </a>
-
-      <h1>
-        <a href="../">Krystian Safjan's Blog</a>
-      </h1>
-
-<p><p>Data Scientist | Researcher | Team Leader</p><br/><br/>I'm working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr></p>
-
-
-      <ul class="social">
+        <ul class="social">
           <li>
-            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+            <a
+              class="sc-linkedin"
+              href="https://pl.linkedin.com/in/krystiansafjan"
+              target="_blank"
+            >
               <i class="fab fa-linkedin"></i>
             </a>
           </li>
           <li>
-            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+            <a
+              class="sc-github"
+              href="https://github.com/izikeros"
+              target="_blank"
+            >
               <i class="fab fa-github"></i>
             </a>
           </li>
           <li>
-            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+            <a
+              class="sc-envelope"
+              href="mailto:ksafjan@gmail.com"
+              target="_blank"
+            >
               <i class="fas fa-envelope"></i>
             </a>
           </li>
           <li>
-            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+            <a
+              class="sc-graduation-cap"
+              href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+              target="_blank"
+            >
               <i class="fas fa-graduation-cap"></i>
             </a>
           </li>
           <li>
-            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+            <a class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
               <i class="fas fa-rss"></i>
             </a>
           </li>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    </aside>
+    <main>
+      <nav>
+        <a href="../">Home</a>
 
-  </aside>
-  <main>
+        <a href="/archives.html">Articles</a>
+        <a href="/til.html">Notes</a>
+        <a href="/categories.html">Categories</a>
+        <a href="/tags.html">Tags</a>
+        <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+      </nav>
 
-    <nav>
-      <a href="../">Home</a>
+      <article class="single">
+        <header>
+          <p>
+            <!-- Posted on: -->
+            July 09, 2019
 
-      <a href="/archives.html">Articles</a>
-      <a href="/til.html">Notes</a>
-      <a href="/categories.html">Categories</a>
-      <a href="/tags.html">Tags</a>
-      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+            <span id="post-share-links">
+              &nbsp;&nbsp;&nbsp;Share on:
+              <a
+                href="https://twitter.com/intent/tweet?text=Learn%20Bayesian%20methods%20in%204%20steps%20-%20by%20reading%20and%20by%C2%A0doing&url=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/&hashtags=machine-learning,statistics,probability,howto"
+                target="_blank"
+                title="Share on Twitter"
+                >Twitter</a
+              >
+              |
+              <a
+                href="https://www.facebook.com/sharer/sharer.php?u=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/"
+                target="_blank"
+                title="Share on Facebook"
+                >Facebook</a
+              >
+              |
+              <a
+                href="https://news.ycombinator.com/submitlink?t=Learn%20Bayesian%20methods%20in%204%20steps%20-%20by%20reading%20and%20by%C2%A0doing&u=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/"
+                target="_blank"
+                title="Share on HackerNews"
+                >HackerNews</a
+              >
+              |
+              <a
+                href="https://www.reddit.com/submit?url=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/&title=Learn%20Bayesian%20methods%20in%204%20steps%20-%20by%20reading%20and%20by%C2%A0doing"
+                target="_blank"
+                title="Share via Reddit"
+                >Reddit</a
+              >
+            </span>
+            <br />
+          </p>
+          <h1 id="learn-bayesian-methods-in-4-steps-by-reading-and-by-doing">
+            Learn Bayesian methods in 4 steps - by reading and by&nbsp;doing
+          </h1>
+          <div class="header-underline"></div>
+        </header>
 
+        <div>
+          <h2>Background</h2>
+          <p>
+            When reading this article you probably have some experience with
+            machine learning models. You might have tried RandomForest, XGBoost,
+            etc.. They are easy to use but it is difficult to understand how
+            final predictions where done. This is sometime refereed as
+            predictions out of black box. Of course, there are techniques that
+            might help a bit e.g. extracting feature importance from the
+            trained&nbsp;models.
+          </p>
+          <p>
+            Bayesian methods are a great helper for understanding how actually
+            reasoning was done. These methods provides probabilistic models that
+            can describe the process that produced data we want to process.
+            Besides accurate predictions we often need understanding of what is
+            important in the process. Through understanding gain confidence in
+            used models. We need the convenience when moving with machine
+            learning from toy projects to real business applications. Bayesian
+            can offer such understanding and convenience and that is why these
+            methods are gaining&nbsp;attention.
+          </p>
+          <p>
+            In this blog post I will present 4 steps for Bayesian methods
+            mastery. The rough estimate is that you will need to dedicate around
+            100 hours to complete this 4-steps&nbsp;path.
+          </p>
+          <h2>
+            1. &#8220;Bayesian methods for hackers&#8221; - free book in form of
+            Jupyter notebooks with interactive&nbsp;content.
+          </h2>
+          <p>
+            <img
+              style="float: lefts"
+              src="/images/learn_bayes/bmh.jpg"
+              width="25%"
+              height="25%"
+            />
+          </p>
+          <p>
+            First chapter of &#8220;Bayesian methods for hackers&#8221; (<span
+              class="caps"
+              >BMH</span
+            >) will introduce you to Bayesian way of thinking. Understand
+            reducing uncertainty using observations. You will go through first
+            example that is showing statistical modeling of texting rate. The
+            following chapters explain, new techniques in details. New
+            techniques are immediately applied to solving
+            exemplary&nbsp;problems.
+          </p>
+          <p>
+            For myself, when progressing through the book, I felt that I need to
+            refresh my statistical knowledge and started looking for the proper
+            book. The math required to use these methods is already provided in
+            the book. Yet, I needed better understanding of different random
+            variable distributions. This is something that I already learned
+            years ago on university courses but i needed an&nbsp;refresher.
+          </p>
+          <h2>
+            2. Probability and Statistics books that will help you learn/refresh
+            math to build solid&nbsp;foundation.
+          </h2>
+          <p>
+            My choice for complementary probability and statistics books
+            was&nbsp;twofold:
+          </p>
+          <ul>
+            <li>
+              <p>
+                For light introduction, on college level:
+                <a href="https://leanpub.com/openintro-statistics"
+                  >Open Intro to statistics 4th edition</a
+                >
+                by D. Diez, M. Cetinkaya-Rundel, and Ch. Barr. According to my
+                needs, Chapter 4 &#8220;Distributions of random variables&#8221;
+                was pleasant to&nbsp;read.
+              </p>
+            </li>
+            <li>
+              <p>
+                For deep dive:
+                <a
+                  href="http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf"
+                  >Probability Theory: The Logic of Science: Principles and
+                  Elementary Applications&#8221;</a
+                >
+                by <span class="caps">E. T.</span> Jaynes. This book itself
+                could be a subject of learning for hundreds of hours, but
+                reading separate chapters or sections still should be&nbsp;fine.
+              </p>
+            </li>
+          </ul>
+          <h2>
+            3. &#8220;How to become a Bayesian in eight easy steps: An annotated
+            reading&nbsp;list&#8221;.
+          </h2>
+          <p>
+            <a href="https://psyarxiv.com/ph6sw"
+              ><span class="dquo">&#8220;</span>How to become a Bayesian in
+              eight easy steps: An annotated reading list&#8221;</a
+            >
+            by Etz, Alexander, et al., is a paper, not target on Computer
+            Scientists. Actually, it originates from field of psychology but is
+            written in domain-agnostic style, so reader from any discipline can
+            enjoy reading this. The paper has survey style, and use
+            classification of the covered papers in two dimensions: of
+            difficulty (from easy to hard), and focus (from theoretical to
+            practical). See Figure below, borrowed from the&nbsp;paper.
+          </p>
+          <p>
+            <img
+              src="/images/learn_bayes/readinglist.png"
+              width="45%"
+              height="45%"
+            />
+          </p>
+          <p>
+            The main paper and references are rather light reading and I found
+            it useful in building context for diving into
+            Bayesian&nbsp;analysis.
+          </p>
+          <h2>
+            4. Exercises to develop Bayesian thinking: &#8220;Think Bayes&#8221;
+            by Allen&nbsp;Downey.
+          </h2>
+          <p>
+            <img
+              style="float: left"
+              src="/images/learn_bayes/think_bayes_1.jpg"
+              width="25%"
+              height="25%"
+            />
+          </p>
+          <p>
+            Another great book to learn Bayesian thinking. It is divided to
+            smaller units than <span class="caps">BMH</span> what makes it
+            easier to digest for readers that are quickly loosing attention when
+            reading scientific stuff. When compared to
+            <span class="caps">BMH</span>, it has much more examples. Crashing
+            large number of cases is to me very good approach for training
+            Bayesian intuition and learning&nbsp;methods.
+          </p>
+          <p>
+            Will you give a try to Bayesian methods? If you have proposal of
+            alternative learning path - please share it in the&nbsp;comments.
+          </p>
+        </div>
 
-    </nav>
+        <div class="tag-cloud">
+          <p>
+            <br /><br />Tags:&nbsp;
+            <a href="../tag/machine-learning/">machine learning</a>
+            <a href="../tag/statistics/">statistics</a>
+            <a href="../tag/probability/">probability</a>
+            <a href="../tag/howto/">howto</a>
+          </p>
+        </div>
 
-<article class="single">
-  <header>
-      
-    <p>
-      <!-- Posted on: -->
-      July 09, 2019 
+        <div class="neighbors">
+          <a
+            class="btn float-left"
+            href="../kaggle-evaluation-metrics-used-for-regression-problems/"
+            title="Kaggle evaluation metrics used for regression problems"
+          >
+            <i class="fa fa-angle-left"></i> Previous Post
+          </a>
+          <a
+            class="btn float-right"
+            href="../top-popular-zsh-plugins-on-github-2019/"
+            title="Top popular Zsh plugins on GitHub (2019)"
+          >
+            Next Post <i class="fa fa-angle-right"></i>
+          </a>
+        </div>
 
+        <div class="related-posts">
+          <h4>You might enjoy</h4>
+          <ul class="related-posts">
+            <li>
+              <a href="../how-to-install-tensorflow-and-keras-on-windows-10/"
+                >How to install TensorFlow and Keras on Windows&nbsp;10</a
+              >
+            </li>
+            <li>
+              <a
+                href="../how-to-organize-data-science-project-based-on-jupyter-notebook/"
+                >How to organize Data Science project based on
+                Jupyter&nbsp;notebook</a
+              >
+            </li>
+            <li>
+              <a href="../data-science-command-line-tools/"
+                >Data Science Command line&nbsp;Tools</a
+              >
+            </li>
+            <li>
+              <a
+                href="../kaggle-evaluation-metrics-used-for-regression-problems/"
+                >Kaggle evaluation metrics used for regression&nbsp;problems</a
+              >
+            </li>
+            <li>
+              <a href="../darwin-approach-to-traveling-salesman/"
+                >Darwin Approach to Traveling&nbsp;Salesman</a
+              >
+            </li>
+          </ul>
+        </div>
+      </article>
 
+      <footer>
+        <p>
+          &copy; 2022 Krystian Safjan - This work is licensed under a
+          <a
+            rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US"
+            target="_blank"
+            >Creative Commons Attribution-ShareAlike</a
+          >
+        </p>
+        <p>
+          Built with
+          <a href="http://getpelican.com" target="_blank">Pelican</a> using
+          <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+        </p>
+        <p>
+          <a
+            rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/"
+            target="_blank"
+          >
+            <img
+              alt="Creative Commons License"
+              title="Creative Commons License"
+              style="border-width: 0"
+              src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+              width="80"
+              height="15"
+            />
+          </a>
+        </p>
+      </footer>
+    </main>
 
-  <span id="post-share-links">
-    &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Learn%20Bayesian%20methods%20in%204%20steps%20-%20by%20reading%20and%20by%C2%A0doing&url=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/&hashtags=machine-learning,statistics,probability,howto" target="_blank" title="Share on Twitter">Twitter</a>
-    |
-    <a href="https://www.facebook.com/sharer/sharer.php?u=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/" target="_blank" title="Share on Facebook">Facebook</a>
-    |
-    <a href="https://news.ycombinator.com/submitlink?t=Learn%20Bayesian%20methods%20in%204%20steps%20-%20by%20reading%20and%20by%C2%A0doing&u=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/" target="_blank" title="Share on HackerNews">HackerNews</a>
-    |
-    <a href="https://www.reddit.com/submit?url=/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/&title=Learn%20Bayesian%20methods%20in%204%20steps%20-%20by%20reading%20and%20by%C2%A0doing" target="_blank" title="Share via Reddit">Reddit</a>
-  </span>
-    <br/>
-   </p>
-  <h1 id="learn-bayesian-methods-in-4-steps-by-reading-and-by-doing">Learn Bayesian methods in 4 steps - by reading and by&nbsp;doing</h1>
-  <div class="header-underline"></div>
-  </header>
-
-
-  <div>
-    <h2>Background</h2>
-<p>When reading this article you probably have some experience with machine learning models. You might have tried RandomForest, XGBoost, etc.. They are easy to use but it is difficult to understand how final predictions where done. This is sometime refereed as predictions out of black box. Of course, there are techniques that might help a bit e.g. extracting feature importance from the trained&nbsp;models. </p>
-<p>Bayesian methods are a great helper for understanding how actually reasoning was done. These methods provides probabilistic models that can describe the process that produced data we want to process. Besides accurate predictions we often need understanding of what is important in the process. Through understanding gain confidence in used models. We need the convenience when moving with machine learning from toy projects to real business applications. Bayesian can offer such understanding and convenience and that is why these methods are gaining&nbsp;attention.</p>
-<p>In this blog post I will present 4 steps for Bayesian methods mastery. The rough estimate is that you will need to dedicate around 100 hours to complete this 4-steps&nbsp;path.</p>
-<h2>1. &#8220;Bayesian methods for hackers&#8221;  - free book in form of Jupyter notebooks with interactive&nbsp;content.</h2>
-<p><img style="float: lefts;" src="/images/learn_bayes/bmh.jpg" width="25%" height="25%"></p>
-<p>First chapter of &#8220;Bayesian methods for hackers&#8221; (<span class="caps">BMH</span>) will  introduce you to Bayesian way of thinking. Understand reducing uncertainty using observations. You will go through first example that is showing statistical modeling of texting rate. The following chapters explain, new techniques in details. New techniques are immediately applied to solving exemplary&nbsp;problems.</p>
-<p>For myself, when progressing through the book, I felt that I need to refresh my statistical knowledge and started looking for the proper book. The math required to use these methods is already provided in the book. Yet, I needed better understanding of different random variable distributions.  This is something that I already learned years ago on university courses but i needed an&nbsp;refresher.</p>
-<h2>2. Probability and Statistics books that will help you learn/refresh math to build solid&nbsp;foundation.</h2>
-<p>My choice for complementary probability and statistics books was&nbsp;twofold:</p>
-<ul>
-<li>
-<p>For light introduction, on college level: <a href="https://leanpub.com/openintro-statistics">Open Intro to statistics 4th edition</a>  by D. Diez, M. Cetinkaya-Rundel, and Ch. Barr. According to my needs, Chapter 4 &#8220;Distributions of random variables&#8221; was pleasant to&nbsp;read.</p>
-</li>
-<li>
-<p>For deep dive: <a href="http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf">Probability Theory: The Logic of Science: Principles and Elementary Applications&#8221;</a> by <span class="caps">E. T.</span> Jaynes. This book itself could be a subject of learning for hundreds of hours, but reading separate chapters or sections still should be&nbsp;fine.</p>
-</li>
-</ul>
-<h2>3. &#8220;How to become a Bayesian in eight easy steps: An annotated reading&nbsp;list&#8221;.</h2>
-<p><a href="https://psyarxiv.com/ph6sw"><span class="dquo">&#8220;</span>How to become a Bayesian in eight easy steps: An annotated reading list&#8221;</a> by Etz, Alexander, et al., is a paper, not target on Computer Scientists. Actually, it  originates from field of psychology but is written in domain-agnostic style, so reader from any discipline can enjoy reading this. The paper has survey style, and use classification of the covered papers in two dimensions: of difficulty (from easy to hard), and focus (from theoretical to practical). See Figure below, borrowed from the&nbsp;paper.</p>
-<p><img src="/images/learn_bayes/readinglist.png" width="45%" height="45%"></p>
-<p>The main paper and references are rather light reading and I found it useful in building context for diving into  Bayesian&nbsp;analysis.</p>
-<h2>4. Exercises to develop Bayesian thinking: &#8220;Think Bayes&#8221; by Allen&nbsp;Downey.</h2>
-<p><img style="float: left;" src="/images/learn_bayes/think_bayes_1.jpg" width="25%" height="25%"></p>
-<p>Another great book to learn Bayesian thinking. It is divided to smaller units than <span class="caps">BMH</span>  what makes it easier to digest for readers that are quickly loosing attention when reading scientific stuff. When compared to <span class="caps">BMH</span>, it has much more examples. Crashing large number of cases is to me very good approach for training Bayesian intuition and learning&nbsp;methods.</p>
-<p>Will you give a try to Bayesian methods? If you have proposal of alternative learning path - please share it in the&nbsp;comments.</p>
-  </div>
-
-     <div id="applause-container">
-        <applause-button color="#d9411e" style="width: 58px; height: 58px;"/>
-     </div>
-
-  <div class="tag-cloud">
-    <p>
-      <br/><br/>Tags:&nbsp;
-      <a href="../tag/machine-learning/">machine learning</a>
-      <a href="../tag/statistics/">statistics</a>
-      <a href="../tag/probability/">probability</a>
-      <a href="../tag/howto/">howto</a>
-    </p>
-  </div>
-
-
-  <div class="neighbors">
-    <a class="btn float-left" href="../kaggle-evaluation-metrics-used-for-regression-problems/" title="Kaggle evaluation metrics used for regression problems">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="../top-popular-zsh-plugins-on-github-2019/" title="Top popular Zsh plugins on GitHub (2019)">
-      Next Post <i class="fa fa-angle-right"></i>
-    </a>
-  </div>
-
-  <div class="related-posts">
-    <h4>You might enjoy</h4>
-    <ul class="related-posts">
-      <li><a href="../how-to-install-tensorflow-and-keras-on-windows-10/">How to install TensorFlow and Keras on Windows&nbsp;10</a></li>
-      <li><a href="../how-to-organize-data-science-project-based-on-jupyter-notebook/">How to organize Data Science project based on Jupyter&nbsp;notebook</a></li>
-      <li><a href="../data-science-command-line-tools/">Data Science Command line&nbsp;Tools</a></li>
-      <li><a href="../kaggle-evaluation-metrics-used-for-regression-problems/">Kaggle evaluation metrics used for regression&nbsp;problems</a></li>
-      <li><a href="../darwin-approach-to-traveling-salesman/">Darwin Approach to Traveling&nbsp;Salesman</a></li>
-    </ul>
-  </div>
-
-
-</article>
-
-    <footer>
-<p>
-  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
-</p>    </footer>
-  </main>
-
-
-
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "..",
-  "image": "/images/profile_new.jpg",
-  "description": ""
-}
-</script>
-
-</body>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Blog",
+        "name": " Krystian Safjan's Blog ",
+        "url": "..",
+        "image": "/images/profile_new.jpg",
+        "description": ""
+      }
+    </script>
+  </body>
 </html>

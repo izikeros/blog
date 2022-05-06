@@ -52,11 +52,11 @@ This package provides Fish shell-like syntax highlighting for the Zsh. It enable
 Some examples:
 
 Before: ![Screenshot #1.1](https://raw.githubusercontent.com/zsh-users/zsh-syntax-highlighting/master/images/before1-smaller.png)
-</br>
+<br>
 After: ![Screenshot #1.2](https://raw.githubusercontent.com/zsh-users/zsh-syntax-highlighting/master/images/after1-smaller.png)
 
 Before: ![Screenshot #3.1](https://raw.githubusercontent.com/zsh-users/zsh-syntax-highlighting/master/images/before3-smaller.png)
-</br>
+<br>
 After: ![Screenshot #3.2](https://raw.githubusercontent.com/zsh-users/zsh-syntax-highlighting/master/images/after3-smaller.png)
 
 ## 3. [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)

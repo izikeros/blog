@@ -15,7 +15,7 @@ SITENAME = "Krystian Safjan's Blog"
 
 MY_THEME = "flex"  # flex | elegant, NOTE: this is nit name of the folder in pelican themes - search below for `THEME =`
 IS_DEVELOPMENT = True
-USE_APPLAUSE = True
+USE_APPLAUSE = False
 # ---- Development settings
 if IS_DEVELOPMENT:
     SITEURL = ""
@@ -42,7 +42,20 @@ if MY_THEME == "flex":
     # Note under profile image
     # SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Ernst ;amp& Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITETITLE = SITENAME  # Used in Flex theme
-    SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
+    # Search for SITESUBTITLE usage in Flex/templates/base.html
+    SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
+                   'Ernst &amp; Young and writing about <a ' \
+                   'href="/category/data-science.html">Data Science and Visualization</a>, ' \
+                   'on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> ' \
+                   'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
+                   '<a href="/category/howto.html">howto</a> posts on tools and workflows.<hr>'
+
+    SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
+                   'Ernst &amp; Young and writing about <a ' \
+                   'href="/category/data-science.html">Data Science and Visualization</a>, ' \
+                   'on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> ' \
+                   'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
+                   '<a href="/category/howto.html">howto</a> posts on tools and workflows.'
     SITELOGO = "/images/profile_new.jpg"
     DISPLAY_DATE_AFTER_TITLE = (
         False  # display date in the list of articles (tags, categories)
