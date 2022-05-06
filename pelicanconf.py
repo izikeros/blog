@@ -150,6 +150,7 @@ STATIC_PATHS = [
     "pdfs",
     "zipfiles",
     "CNAME",
+    "ads.txt",
 ]
 
 # ----------- Theme, CSS and other styling
