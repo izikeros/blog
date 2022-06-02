@@ -1,564 +1,300 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://www.safjan.com/theme/stylesheet/style.min.css"
-    />
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <link
-      id="pygments-light-theme"
-      rel="stylesheet"
-      type="text/css"
-      href="https://www.safjan.com/theme/pygments/github.min.css"
-    />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://www.safjan.com/theme/font-awesome/css/brands.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://www.safjan.com/theme/font-awesome/css/solid.css"
-    />
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://www.safjan.com/theme/pygments/github.min.css">
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://www.safjan.com/styles/custom.css"
-    />
 
-    <link
-      href="https://www.safjan.com/feeds/all.atom.xml"
-      type="application/atom+xml"
-      rel="alternate"
-      title="Krystian Safjan's Blog Atom"
-    />
 
-    <link
-      href="https://www.safjan.com/feeds/all.rss.xml"
-      type="application/rss+xml"
-      rel="alternate"
-      title="Krystian Safjan's Blog RSS"
-    />
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
 
-    <!-- Google Analytics -->
-    <script type="text/javascript">
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "//www.google-analytics.com/analytics.js",
-        "ga"
-      );
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/styles/custom.css">
 
-      ga("create", "UA-117080232-1", "auto");
-      ga("send", "pageview");
-    </script>
-    <!-- End Google Analytics -->
+    <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's Blog Atom">
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta
-      name="description"
-      content="How to create automatically commits if any file in watched folder was changed"
-    />
-    <meta name="keywords" content="git, autocommit, note-taking, notes" />
+    <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's Blog RSS">
 
-    <meta property="og:site_name" content="Krystian Safjan's Blog" />
-    <meta property="og:title" content="Git autocommit on file changes" />
-    <meta
-      property="og:description"
-      content="How to create automatically commits if any file in watched folder was changed"
-    />
-    <meta property="og:locale" content="en_US" />
-    <meta
-      property="og:url"
-      content="https://www.safjan.com/git-autocommit-on-file-changes/"
-    />
-    <meta property="og:type" content="article" />
-    <meta
-      property="article:published_time"
-      content="2021-09-14 00:00:00+02:00"
-    />
-    <meta property="article:modified_time" content="" />
-    <meta
-      property="article:author"
-      content="https://www.safjan.com/author/krystian-safjan/"
-    />
-    <meta property="article:section" content="note" />
-    <meta property="article:tag" content="git" />
-    <meta property="article:tag" content="autocommit" />
-    <meta property="article:tag" content="note-taking" />
-    <meta property="article:tag" content="notes" />
-    <meta property="og:image" content="/images/profile_new.jpg" />
 
-    <title>Krystian Safjan's Blog &ndash; Git autocommit on file changes</title>
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    <!-- Google Automatic Ads -->
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
-      crossorigin="anonymous"
-    ></script>
-    <!-- End of Google Automatic Ads -->
-  </head>
-  <body class="light-theme">
-    <aside>
-      <div>
-        <a href="https://www.safjan.com/">
-          <img
-            src="/images/profile_new.jpg"
-            alt="Krystian Safjan's Blog"
-            title="Krystian Safjan's Blog"
-            width="140"
-            height="140"
-          />
-        </a>
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 
-        <h1>
-          <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
-        </h1>
 
-        <p>
-          Data Scientist | Researcher | Team Leader<br /><br />
-          working at Ernst &amp; Young and writing about
-          <a href="/category/data-science.html"
-            >Data Science and Visualization</a
-          >, on
-          <a href="/category/data-science.html"
-            >Machine Learning, Deep Learning</a
-          >
-          and <a href="/tag/nlp/">NLP</a>. There are also some
-          <a href="/category/howto.html">howto</a> posts on tools and workflows.
-        </p>
 
-        <ul class="social">
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="How to create automatically commits if any file in watched folder was changed" />
+<meta name="keywords" content="git, autocommit, note-taking, notes">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Git autocommit on file changes"/>
+  <meta property="og:description" content="How to create automatically commits if any file in watched folder was changed"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/git-autocommit-on-file-changes/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2021-09-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="article:tag" content="autocommit"/>
+  <meta property="article:tag" content="note-taking"/>
+  <meta property="article:tag" content="notes"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+  <title>Krystian Safjan's Blog &ndash; Git autocommit on file changes</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://www.safjan.com/">
+        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+      </a>
+
+      <h1>
+        <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+      </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+      <ul class="social">
           <li>
-            <a
-              class="sc-linkedin"
-              href="https://pl.linkedin.com/in/krystiansafjan"
-              target="_blank"
-            >
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
               <i class="fab fa-linkedin"></i>
             </a>
           </li>
           <li>
-            <a
-              class="sc-github"
-              href="https://github.com/izikeros"
-              target="_blank"
-            >
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
               <i class="fab fa-github"></i>
             </a>
           </li>
           <li>
-            <a
-              class="sc-envelope"
-              href="mailto:ksafjan@gmail.com"
-              target="_blank"
-            >
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
               <i class="fas fa-envelope"></i>
             </a>
           </li>
           <li>
-            <a
-              class="sc-graduation-cap"
-              href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
-              target="_blank"
-            >
+            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
               <i class="fas fa-graduation-cap"></i>
             </a>
           </li>
           <li>
-            <a class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
               <i class="fas fa-rss"></i>
             </a>
           </li>
-        </ul>
-      </div>
-    </aside>
-    <main>
-      <nav>
-        <a href="https://www.safjan.com/">Home</a>
+      </ul>
+    </div>
 
-        <a href="/archives.html">Articles</a>
-        <a href="/til.html">Notes</a>
-        <a href="/categories.html">Categories</a>
-        <a href="/tags.html">Tags</a>
-        <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+  </aside>
+  <main>
 
-        <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+    <nav>
+      <a href="https://www.safjan.com/">Home</a>
 
-        <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
-      </nav>
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
 
-      <article class="single">
-        <header>
-          <p>
-            <!-- Posted on: -->
-            September 14, 2021
+      <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
-            <span id="post-share-links">
-              &nbsp;&nbsp;&nbsp;Share on:
-              <a
-                href="https://twitter.com/intent/tweet?text=Git%20autocommit%20on%20file%C2%A0changes&url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&hashtags=git,autocommit,note-taking,notes"
-                target="_blank"
-                title="Share on Twitter"
-                >Twitter</a
-              >
-              |
-              <a
-                href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-autocommit-on-file-changes/"
-                target="_blank"
-                title="Share on Facebook"
-                >Facebook</a
-              >
-              |
-              <a
-                href="https://news.ycombinator.com/submitlink?t=Git%20autocommit%20on%20file%C2%A0changes&u=https%3A//www.safjan.com/git-autocommit-on-file-changes/"
-                target="_blank"
-                title="Share on HackerNews"
-                >HackerNews</a
-              >
-              |
-              <a
-                href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&title=Git%20autocommit%20on%20file%C2%A0changes"
-                target="_blank"
-                title="Share via Reddit"
-                >Reddit</a
-              >
-            </span>
-            <br />
-          </p>
-          <h1 id="git-autocommit-on-file-changes">
-            Git autocommit on file&nbsp;changes
-          </h1>
-          <div class="header-underline"></div>
-        </header>
+      <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
 
-        <div>
-          <p>
-            Motivation: I wanted to track history of the changes introduced in
-            my notes folder. Didn&#8217;t want to create commit, redact commit
-            message after each change because, typically during the day I made
-            multiple edits in notes ad prefer to minimize time spent on managing
-            my notes. I&#8217;m quickly jumping into the notes, adding something
-            to existing notes or creating new. Remembering to commit each change
-            is too much overhead for me. I started to look for the solution that
-            will monitor my notes folder, and, if anything changed, create
-            commit. I found several solutions that serve for that&nbsp;purpose.
-          </p>
-          <p>
-            For reference see:
-            <a
-              href="https://stackoverflow.com/questions/420143/making-git-auto-commit"
-              >making-git-auto-commit</a
-            >
-            on&nbsp;StackOverflow.
-          </p>
-          <p>My choice was gitwatch used as systemd&nbsp;service.</p>
-          <h1>
-            <a href="https://github.com/gitwatch/gitwatch">gitwatch</a> #
-            github: ★1k,&nbsp;active
-          </h1>
-          <p>
-            A bash script to watch a file or folder and commit changes to a
-            git&nbsp;repo
-          </p>
-          <p>
-            Justification: - active with large community - There is an
-            <span class="caps">AUR</span> package for Archlinux - does exactly
-            what I want, nothing more - can be used as daemon that starts
-            on&nbsp;boot
-          </p>
-          <div class="highlight">
-            <pre><span></span><code><span class="n">Usage</span><span class="o">:</span><span class="w"></span>
+<article class="single">
+  <header>
+      
+    <p>
+      <!-- Posted on: -->
+      September 14, 2021 
+
+
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Git%20autocommit%20on%20file%C2%A0changes&url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&hashtags=git,autocommit,note-taking,notes" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-autocommit-on-file-changes/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Git%20autocommit%20on%20file%C2%A0changes&u=https%3A//www.safjan.com/git-autocommit-on-file-changes/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&title=Git%20autocommit%20on%20file%C2%A0changes" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+    <br/>
+   </p>
+  <h1 id="git-autocommit-on-file-changes">Git autocommit on file&nbsp;changes</h1>
+  <div class="header-underline"></div>
+  </header>
+
+
+  <div>
+    <p>Motivation: I wanted to track history of the changes introduced in my notes folder. Didn&#8217;t want to create commit, redact commit message after each change because, typically during the day I made multiple edits in notes ad prefer to minimize time spent on managing my notes. I&#8217;m quickly jumping into the notes, adding something to existing notes or creating new. Remembering to commit each change is too much overhead for me. I started to look for the solution that will monitor my notes folder, and, if anything changed, create commit. I found several solutions that serve for that&nbsp;purpose.</p>
+<p>For reference see: <a href="https://stackoverflow.com/questions/420143/making-git-auto-commit">making-git-auto-commit</a> on&nbsp;StackOverflow.</p>
+<p>My choice was gitwatch used as systemd&nbsp;service.</p>
+<h1><a href="https://github.com/gitwatch/gitwatch">gitwatch</a> # github: ★1k,&nbsp;active</h1>
+<p>A bash script to watch a file or folder and commit changes to a git&nbsp;repo</p>
+<p>Justification:
+- active with large community
+- There is an <span class="caps">AUR</span> package for Archlinux
+- does exactly what I want, nothing more
+- can be used as daemon that starts on&nbsp;boot</p>
+<div class="highlight"><pre><span></span><code><span class="n">Usage</span><span class="o">:</span><span class="w"></span>
 <span class="n">gitwatch</span><span class="w"> </span><span class="o">[-</span><span class="n">s</span><span class="w"> </span><span class="o">&lt;</span><span class="n">secs</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">[-</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;</span><span class="n">fmt</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">[-</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="n">remote</span><span class="o">&gt;</span><span class="w"> </span><span class="o">[-</span><span class="n">b</span><span class="w"> </span><span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;]]</span><span class="w"></span>
 <span class="w">          </span><span class="o">[-</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;</span><span class="n">msg</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">[-</span><span class="n">l</span><span class="o">|-</span><span class="n">L</span><span class="w"> </span><span class="o">&lt;</span><span class="n">lines</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"></span>
-</code></pre>
-          </div>
+</code></pre></div>
 
-          <h2>Notes for installation on&nbsp;Mac</h2>
-          <p>
-            If running on <span class="caps">OS</span> X, you&#8217;ll need to
-            install the following Homebrew&nbsp;tools:
-          </p>
-          <div class="highlight">
-            <pre><span></span><code>$ brew install fswatch
+<h2>Notes for installation on&nbsp;Mac</h2>
+<p>If running on <span class="caps">OS</span> X, you&#8217;ll need to install the following Homebrew&nbsp;tools:</p>
+<div class="highlight"><pre><span></span><code>$ brew install fswatch
 $ brew install coreutils
-</code></pre>
-          </div>
+</code></pre></div>
 
-          <p>and</p>
-          <div class="highlight">
-            <pre><span></span><code>$ brew install gitwatch
-</code></pre>
-          </div>
+<p>and</p>
+<div class="highlight"><pre><span></span><code>$ brew install gitwatch
+</code></pre></div>
 
-          <ol>
-            <li>
-              If installed to a path other than <code>/usr/bin/gitwatch</code>,
-              modify <code>gitwatch@.service</code> to suit. In my case gitwatch
-              was found in <code>/usr/local/bin/gitwatch</code>
-            </li>
-            <li>
-              <p>
-                Create dir if it does not exist and copy systemd service file
-                with
-                <code
-                  >mkdir -p "$HOME/.config/systemd/user" &amp;&amp; cp
-                  gitwatch@.service $HOME/.config/systemd/user</code
-                >
-                If you cannot find <code>gitwatch@.service</code> file take it
-                from the github&nbsp;repository.
-              </p>
-            </li>
-            <li>
-              <p>
-                Start and enable the service for a given path by running
-                <code
-                  >systemctl --user --now enable gitwatch@$(systemd-escape "'-r
-                  url/to/repository' /path/to/folder").service</code
-                >
-                On macOS you need act&nbsp;differently
-              </p>
-            </li>
-            <li>take .plist file from repo, adjust to your&nbsp;needs</li>
-            <li>
-              copy modified plist to /Library/LaunchDaemons/ with&nbsp;sudo
-            </li>
-            <li>
-              note: if there is proper gitwatch script path (I needed to change
-              <code>gitwatch.sh</code> to <code>gitwatch</code>)
-            </li>
-          </ol>
-          <h1>
-            <a href="https://github.com/jw0k/gwatch">gwatch</a> github: ★22,
-            low&nbsp;activity
-          </h1>
-          <p>
-            A program that watches a folder for file modifications and commits
-            them to a git repository&nbsp;automatically
-          </p>
-          <p>
-            After gwatch is started it will watch a given folder and all of its
-            subfolders (recursively) for changes. If a change occurs, a timer
-            will be started (30s by default). After the timer expires, gwatch
-            will create a new git commit with all the modifications. The timer
-            is to prevent creating too many commits when there are a lot of
-            modifications. In order for gwatch to successfully create commits, a
-            git repository must be initialized in the watched&nbsp;folder.
-          </p>
-          <h1><a href="http://joeyh.name/code/etckeeper/">etckeeper</a></h1>
-          <blockquote>
-            <p>
-              <span class="caps">NOTE</span>: I don&#8217;t need
-              track&nbsp;permissions
-            </p>
-            <p>
-              etckeeper is a collection of tools to let /etc be stored in a git,
-              mercurial, darcs, or bzr repository. It hooks into apt (and other
-              package managers including yum and pacman-g2) to automatically
-              commit changes made to /etc during package upgrades. It tracks
-              file metadata that revision control systems do not normally
-              support, but that is important for /etc, such as the permissions
-              of /etc/shadow. It&#8217;s quite modular and configurable, while
-              also being simple to use if you understand the basics of working
-              with revision&nbsp;control.
-            </p>
-          </blockquote>
-          <p>
-            etckeeper now has a website
-            at&nbsp;http://etckeeper.branchable.com/.
-          </p>
-          <h1>
-            <a href="https://arcanis.me/projects/git-etc">git-etc</a> github:
-            ★4, low activity, created 9 years ago, last commit in&nbsp;2014
-          </h1>
-          <p>
-            Simple daemon that automatically creates git repository in the given
-            directory and creates commit at the specified time&nbsp;interval.
-          </p>
-          <p>
-            Has <span class="caps">GUI</span>, has
-            <span class="caps">AUR</span>&nbsp;package
-          </p>
-          <h1>
-            <a href="https://github.com/grwlf/git-powercommit"
-              >Git&nbsp;Powercommit</a
-            >
-          </h1>
-          <p>
-            Commit every changed submodule Commit every changed regular file or
-            folder, aggregating the files that share a folder into a
-            single&nbsp;commit.
-          </p>
-          <h1><a href="https://github.com/bartman/git-wip">git-wip</a></h1>
-          <p>
-            git-wip is a script that will manage Work In Progress (or
-            <span class="caps">WIP</span>) branches.
-            <span class="caps">WIP</span> branches are mostly throw away but
-            identify points of development between commits. The intent is to tie
-            this script into your editor so that each time you save your file,
-            the git-wip script captures that state in git. git-wip also helps
-            you return to a previous state of&nbsp;development.
-          </p>
-          <h1>
-            <a
-              href="http://inotify.aiken.cz/?section=incron&amp;page=about&amp;lang=en"
-              >inotify</a
-            >
-          </h1>
-          <p>
-            This program is an &#8220;inotify cron&#8221; system. It consists of
-            a daemon and a table manipulator. You can use it a similar way as
-            the regular cron. The difference is that the inotify cron handles
-            filesystem events rather than time&nbsp;periods.
-          </p>
-          <h1><a href="https://facebook.github.io/watchman/">watchman</a></h1>
-          <p>
-            Watchman exists to watch files and record when they change. It can
-            also trigger actions (such as rebuilding assets) when matching
-            files&nbsp;change
-          </p>
-          <h1>
-            <a
-              href="https://github.com/nzvincent/nzvincent-github/blob/master/inotify-tools/inotify.sh"
-              >inotify.sh</a
-            >
-          </h1>
-          <p>
-            This script uses inotifywatch to monitor files status and trigger
-            commands. Designed for Ansible playbook, but you can use this on
-            other development purposes. To install e.g.
-            <code>apt-get install -y inotify-tools</code>
-            see:&nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86
-          </p>
-        </div>
+<ol>
+<li>If installed to a path other than <code>/usr/bin/gitwatch</code>, modify <code>gitwatch@.service</code> to suit. In my case gitwatch was found in <code>/usr/local/bin/gitwatch</code></li>
+<li>
+<p>Create dir if it does not exist and copy systemd service file with <code>mkdir -p "$HOME/.config/systemd/user" &amp;&amp; cp gitwatch@.service $HOME/.config/systemd/user</code>
+If you cannot find <code>gitwatch@.service</code> file take it from the github&nbsp;repository.</p>
+</li>
+<li>
+<p>Start and enable the service for a given path by running <code>systemctl --user --now enable gitwatch@$(systemd-escape "'-r url/to/repository' /path/to/folder").service</code>
+On macOS you need act&nbsp;differently</p>
+</li>
+<li>take .plist file from repo, adjust to your&nbsp;needs</li>
+<li>copy modified plist to  /Library/LaunchDaemons/ with&nbsp;sudo</li>
+<li>note: if there is proper gitwatch script path (I needed to change <code>gitwatch.sh</code> to <code>gitwatch</code>)</li>
+</ol>
+<h1><a href="https://github.com/jw0k/gwatch">gwatch</a> github: ★22, low&nbsp;activity</h1>
+<p>A program that watches a folder for file modifications and commits them to a git repository&nbsp;automatically</p>
+<p>After gwatch is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (30s by default). After the timer expires, gwatch will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for gwatch to successfully create commits, a git repository must be initialized in the watched&nbsp;folder.</p>
+<h1><a href="http://joeyh.name/code/etckeeper/">etckeeper</a></h1>
+<blockquote>
+<p><span class="caps">NOTE</span>: I don&#8217;t need track&nbsp;permissions</p>
+<p>etckeeper is a collection of tools to let /etc be stored in a git, mercurial, darcs, or bzr repository. It hooks into apt (and other package managers including yum and pacman-g2) to automatically commit changes made to /etc during package upgrades. It tracks file metadata that revision control systems do not normally support, but that is important for /etc, such as the permissions of /etc/shadow. It&#8217;s quite modular and configurable, while also being simple to use if you understand the basics of working with revision&nbsp;control.</p>
+</blockquote>
+<p>etckeeper now has a website at&nbsp;http://etckeeper.branchable.com/.</p>
+<h1><a href="https://arcanis.me/projects/git-etc">git-etc</a> github: ★4, low activity, created 9 years ago, last commit in&nbsp;2014</h1>
+<p>Simple daemon that automatically creates git repository in the given directory and creates commit at the specified time&nbsp;interval.</p>
+<p>Has <span class="caps">GUI</span>, has <span class="caps">AUR</span>&nbsp;package</p>
+<h1><a href="https://github.com/grwlf/git-powercommit">Git&nbsp;Powercommit</a></h1>
+<p>Commit every changed submodule
+Commit every changed regular file or folder, aggregating the files that share a folder into a single&nbsp;commit.</p>
+<h1><a href="https://github.com/bartman/git-wip">git-wip</a></h1>
+<p>git-wip is a script that will manage Work In Progress (or <span class="caps">WIP</span>) branches. <span class="caps">WIP</span> branches are mostly throw away but identify points of development between commits. The intent is to tie this script into your editor so that each time you save your file, the git-wip script captures that state in git. git-wip also helps you return to a previous state of&nbsp;development.</p>
+<h1><a href="http://inotify.aiken.cz/?section=incron&amp;page=about&amp;lang=en">inotify</a></h1>
+<p>This program is an &#8220;inotify cron&#8221; system. It consists of a daemon and a table manipulator. You can use it a similar way as the regular cron. The difference is that the inotify cron handles filesystem events rather than time&nbsp;periods.</p>
+<h1><a href="https://facebook.github.io/watchman/">watchman</a></h1>
+<p>Watchman exists to watch files and record when they change. It can also trigger actions (such as rebuilding assets) when matching files&nbsp;change</p>
+<h1><a href="https://github.com/nzvincent/nzvincent-github/blob/master/inotify-tools/inotify.sh">inotify.sh</a></h1>
+<p>This script uses inotifywatch to monitor files status and trigger commands.
+Designed for Ansible playbook, but you can use this on other development purposes.
+To install e.g. <code>apt-get install -y inotify-tools</code>
+see:&nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86</p>
+  </div>
 
-        <div class="tag-cloud">
-          <p>
-            <br /><br />Tags:&nbsp;
-            <a href="https://www.safjan.com/tag/git/">git</a>
-            <a href="https://www.safjan.com/tag/autocommit/">autocommit</a>
-            <a href="https://www.safjan.com/tag/note-taking/">note-taking</a>
-            <a href="https://www.safjan.com/tag/notes/">notes</a>
-          </p>
-        </div>
 
-        <div class="neighbors">
-          <a
-            class="btn float-left"
-            href="https://www.safjan.com/interactive-plots-for-blogging/"
-            title="Interactive plots for blogging"
-          >
-            <i class="fa fa-angle-left"></i> Previous Post
-          </a>
-          <a
-            class="btn float-right"
-            href="https://www.safjan.com/python-documentation-with-pdoc3/"
-            title="Python project documentation from the code with pdoc3"
-          >
-            Next Post <i class="fa fa-angle-right"></i>
-          </a>
-        </div>
+  <div class="tag-cloud">
+    <p>
+      <br/><br/>Tags:&nbsp;
+      <a href="https://www.safjan.com/tag/git/">git</a>
+      <a href="https://www.safjan.com/tag/autocommit/">autocommit</a>
+      <a href="https://www.safjan.com/tag/note-taking/">note-taking</a>
+      <a href="https://www.safjan.com/tag/notes/">notes</a>
+    </p>
+  </div>
 
-        <div class="related-posts">
-          <h4>You might enjoy</h4>
-          <ul class="related-posts">
-            <li>
-              <a
-                href="https://www.safjan.com/git-delete-branches-merged-into-main-branch/"
-                >Git - delete branches that are merged into main&nbsp;branch</a
-              >
-            </li>
-            <li>
-              <a href="https://www.safjan.com/git-hooks/">Git&nbsp;hooks</a>
-            </li>
-            <li><a href="https://www.safjan.com/git-add/">Git&nbsp;add</a></li>
-            <li>
-              <a href="https://www.safjan.com/git-pre-commit-hooks/"
-                >Git pre-commit&nbsp;hooks</a
-              >
-            </li>
-          </ul>
-        </div>
-      </article>
 
-      <footer>
-        <p>
-          &copy; 2022 Krystian Safjan - This work is licensed under a
-          <a
-            rel="license"
-            href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US"
-            target="_blank"
-            >Creative Commons Attribution-ShareAlike</a
-          >
-        </p>
-        <p>
-          Built with
-          <a href="http://getpelican.com" target="_blank">Pelican</a> using
-          <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-        </p>
-        <p>
-          <a
-            rel="license"
-            href="http://creativecommons.org/licenses/by-sa/4.0/"
-            target="_blank"
-          >
-            <img
-              alt="Creative Commons License"
-              title="Creative Commons License"
-              style="border-width: 0"
-              src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-              width="80"
-              height="15"
-            />
-          </a>
-        </p>
-      </footer>
-    </main>
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/interactive-plots-for-blogging/" title="Interactive plots for blogging">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/python-documentation-with-pdoc3/" title="Python project documentation from the code with pdoc3">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
 
-    <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "Blog",
-        "name": " Krystian Safjan's Blog ",
-        "url": "https://www.safjan.com",
-        "image": "/images/profile_new.jpg",
-        "description": ""
-      }
-    </script>
-  </body>
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://www.safjan.com/git-delete-branches-merged-into-main-branch/">Git - delete branches that are merged into main&nbsp;branch</a></li>
+      <li><a href="https://www.safjan.com/git-hooks/">Git&nbsp;hooks</a></li>
+      <li><a href="https://www.safjan.com/git-add/">Git&nbsp;add</a></li>
+      <li><a href="https://www.safjan.com/git-pre-commit-hooks/">Git pre-commit&nbsp;hooks</a></li>
+    </ul>
+  </div>
+
+
+</article>
+
+    <footer>
+<p>
+  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
 </html>
