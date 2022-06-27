@@ -1,5 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-04-27T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Pandas dataframe schema and data types validation</title><link href="https://www.safjan.com/pandas-dataframe-validation/" rel="alternate"></link><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-27:/pandas-dataframe-validation/</id><summary type="html"></summary><content type="html">&lt;h1&gt;Contents&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-06-27T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Trading algorithms and trading strategies</title><link href="https://www.safjan.com/trading-algorithms/" rel="alternate"></link><published>2022-06-27T00:00:00+02:00</published><updated>2022-06-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-27:/trading-algorithms/</id><summary type="html">&lt;p&gt;This note contains collection of trading algorithms or links to&amp;nbsp;algos&lt;/p&gt;</summary><content type="html">&lt;p&gt;This note contains collection of trading algorithms or links to&amp;nbsp;algos&lt;/p&gt;
+&lt;!-- MarkdownTOC levels='2,3' autolink=True --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#momentum"&gt;Momentum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#mean-reversion"&gt;Mean-Reversion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#dynamic-hedging"&gt;Dynamic&amp;nbsp;Hedging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#volume-weighted-average-price-vwap"&gt;Volume-Weighted Average Price (&lt;span class="caps"&gt;VWAP&lt;/span&gt;)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#time-weighted-average-price-twap"&gt;Time weighted Average Price (&lt;span class="caps"&gt;TWAP&lt;/span&gt;)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#algorithm-libraries"&gt;Algorithm&amp;nbsp;libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#other-links"&gt;Other&amp;nbsp;links&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;h2&gt;Momentum&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Prices are up and we think they’ll continue to go up = Buy&lt;/strong&gt; (or vice versa).
+Statistically, most momentum strategies don’t win particularly often but when they do win their gains are fairly large. Win:lose rates of around 55% with gain:loss of around 70% are fairly common with profitable&amp;nbsp;algo’s.&lt;/p&gt;
+&lt;p&gt;The simplest &lt;span class="caps"&gt;TSM&lt;/span&gt; we can implement would require us to purchase the stock if it was up yesterday, and sell if it was down (if we’re holding it, otherwise we just&amp;nbsp;wait).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://www.kdnuggets.com/2020/01/get-started-algorithmic-finance.html)&lt;/li&gt;
+&lt;li&gt;Article with Description and code:&amp;nbsp;https://www.oreilly.com/content/algorithmic-trading-in-less-than-100-lines-of-python-code/&lt;/li&gt;
+&lt;li&gt;Moskowitz, Tobias, Yao Hua Ooi, and Lasse Heje Pedersen (2012): “Time Series Momentum.” Journal of Financial Economics, Vol. 104,&amp;nbsp;228-250.&lt;/li&gt;
+&lt;li&gt;See repo: &lt;a href="https://github.com/izikeros/trading-with-momentum"&gt;trading-with-momentum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mean-Reversion&lt;/h2&gt;
+&lt;p&gt;This is based on the idea that high and low prices of an asset will revert back to its mean (average) value. Once its price is below the mean, it is seen as an opportunity to buy the asset in hopes of the price going above its average. The average value of an asset constantly changes, so it requires constant&amp;nbsp;monitoring.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Prices are up but we think they’re due a pull-back = Sell&lt;/em&gt;&lt;/strong&gt; (or vice versa).
+ Conversely, most mean reversion strategies win more often than they lose however the gain to loss ratio is smaller. Win:lose rates of around 70% with gain:loss of around 55% are also pretty common with profitable&amp;nbsp;algo’s.&lt;/p&gt;
+&lt;h2&gt;Dynamic&amp;nbsp;Hedging&lt;/h2&gt;
+&lt;p&gt;from:&amp;nbsp;https://www.kdnuggets.com/2020/01/get-started-algorithmic-finance.html&lt;/p&gt;
+&lt;p&gt;One investment fund that makes some of its strategies public is Invictus Capital’s &lt;a href="https://invictuscapital.com/en/crypto10hedged"&gt;&lt;span class="caps"&gt;CRYPTO10&lt;/span&gt; Hedged fund&lt;/a&gt;, through their &lt;a href="https://cdn.invictuscapital.com/whitepapers/c10-litepaper.pdf"&gt;litepaper&lt;/a&gt;. In a one-line summary, the fund offers a “dynamic asset allocation strategy that dampens volatility and provides protection against&amp;nbsp;losses.”&lt;/p&gt;
+&lt;p&gt;The fund fundamentally rebalances 10 assets, which can be seen as 10 data sources, in a manner analogous to the &lt;span class="caps"&gt;FTSE&lt;/span&gt; Russell Capping Methodology, discussed in depth &lt;a href="https://research.ftserussell.com/products/downloads/Capping_Methodology_Guide.pdf"&gt;here&lt;/a&gt;, which looks like&amp;nbsp;this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="img" src="https://i.ibb.co/TtjTwRm/Screenshot-2019-12-22-at-4-03-45-PM.png"&gt;Parameters of their base strategy include a rebalancing period and the number of constituent assets. So, we have insights into the data sources used, the algorithmic strategy, and the parameters. The paper even goes into the basics of the fitness function&amp;nbsp;used:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="img" src="https://i.ibb.co/jVbgPDL/Screenshot-2019-12-22-at-4-12-41-PM.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the above, &lt;em&gt;a&lt;/em&gt;&lt;em&gt;i&lt;/em&gt; represents a weight, and &lt;em&gt;Xi&lt;/em&gt; represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least&amp;nbsp;risk.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Read more on &lt;a href="https://research.ftserussell.com/products/downloads/Capping_Methodology_Guide.pdf"&gt;&lt;span class="caps"&gt;FTSE&lt;/span&gt; Russell Capping&amp;nbsp;Methodology&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Volume-Weighted Average Price (&lt;span class="caps"&gt;VWAP&lt;/span&gt;)&lt;/h2&gt;
+&lt;p&gt;This strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using stock specific historical volume profiles. The aim is to execute the order close to the &lt;span class="caps"&gt;VWAP&lt;/span&gt;, thereby benefiting on the average&amp;nbsp;price.&lt;/p&gt;
+&lt;h2&gt;Time weighted Average Price (&lt;span class="caps"&gt;TWAP&lt;/span&gt;)&lt;/h2&gt;
+&lt;p&gt;Time-weighted average price strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using evenly divided time slots between a start and end time. The aim is to execute the order close to the average price between the start and end times, thereby minimizing market&amp;nbsp;impact.&lt;/p&gt;
+&lt;h2&gt;Algorithm&amp;nbsp;libraries&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.quantconnect.com/tutorials/strategy-library/strategy-library"&gt;quantconnect&amp;nbsp;strategy-library&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: These notes are bits collected from the internet. Proper attribution is&amp;nbsp;needed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Other&amp;nbsp;links&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/faizancodes/Algo-Trading-Strats"&gt;Algo-Trading-Strats&lt;/a&gt; - Application of various algorithmic strategies to produce max&amp;nbsp;alpha&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/sofienkaabar/Trend-Following-Strategies"&gt;sofienkaabar/Trend-Following-Strategies&lt;/a&gt; -&amp;nbsp;Trend-Following-Strategies-in-Python&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/sofienkaabar/Contrarian-Trading-Strategies"&gt;sofienkaabar/Contrarian-Trading-Strategies&lt;/a&gt; - Source Codes for &amp;#8220;Contrarian Trading Strategies in&amp;nbsp;Python&amp;#8221;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/sofienkaabar/The-Book-of-Trading-Strategies"&gt;sofienkaabar/The-Book-of-Trading-Strategies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/guiregueira/Crypto-Gamma-Scalping-"&gt;Crypto-Gamma-Scalping-&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Braavosi-Design/breakout-strategy"&gt;Braavosi-Design/breakout-strategy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="algotrading"></category><category term="crypto"></category><category term="algorithms"></category><category term="trading"></category><category term="strategies"></category></entry><entry><title>Lesser Known Backtesting Libraries</title><link href="https://www.safjan.com/lesser-known-backtesting-libraries/" rel="alternate"></link><published>2022-06-05T00:00:00+02:00</published><updated>2022-06-05T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-05:/lesser-known-backtesting-libraries/</id><summary type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article &amp;#8220;Summary and&amp;nbsp;recommendations&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Bt&lt;/h2&gt;
+&lt;p&gt;https://github.com/pmorissette/bt&lt;/p&gt;
+&lt;h2&gt;Blueshift&lt;/h2&gt;
+&lt;p&gt;To some extend free but not open source&amp;nbsp;https://blueshift.quantinsti.com/docs/&lt;/p&gt;
+&lt;h2&gt;AutoTrader&lt;/h2&gt;
+&lt;p&gt;A Python-based development platform for automated trading systems - from backtesting to optimisation to livetrading.
+AutoTrader AutoTrader is Python-based platform intended to help in the development, optimisation and deployment of automated trading&amp;nbsp;systems.&lt;/p&gt;
+&lt;h2&gt;Certis&amp;nbsp;!!!&lt;/h2&gt;
+&lt;p&gt;Certis - Certis, A High-Quality Backtesting Engine&amp;nbsp;https://github.com/Yeachan-Heo/Certis&lt;/p&gt;
+&lt;h2&gt;DeepCrypto&lt;/h2&gt;
+&lt;p&gt;Rapid Backtesting via Numba Simple &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Vectorized trading strategy maker bulitin live trading features&amp;nbsp;https://github.com/Yeachan-Heo/DeepCrypto&lt;/p&gt;
+&lt;h2&gt;TradingGym&lt;/h2&gt;
+&lt;p&gt;TradingGym is a toolkit for training and backtesting the reinforcement learning algorithms. This was inspired by OpenAI Gym and imitated the framework form. Not only traning env but also has backtesting and in the future will implement realtime trading env with Interactivate Broker &lt;span class="caps"&gt;API&lt;/span&gt; and so on.
+This training env originally design for tickdata, but also support for ohlc data format. &lt;span class="caps"&gt;WIP&lt;/span&gt;.&amp;nbsp;https://github.com/Yvictor/TradingGym&lt;/p&gt;
+&lt;h2&gt;vartests&lt;/h2&gt;
+&lt;p&gt;is a Python library to perform some statistical tests to evaluate Value at Risk (VaR) Models, such as:&amp;nbsp;https://github.com/rafa-rod/vartests&lt;/p&gt;
+&lt;h2&gt;backtesting-for-cryptocurrency-trading&lt;/h2&gt;
+&lt;p&gt;You can use this simple crypto backtesting script to ensure your trading strategy is successful Minimal setup required and works well with static &lt;span class="caps"&gt;TP&lt;/span&gt; and &lt;span class="caps"&gt;SL&lt;/span&gt; strategies. Trailing Stop Loss could imporove profitability if&amp;nbsp;added.&lt;/p&gt;
+&lt;p&gt;For a detailed guide on how to set this up go to the main guide You can use this to determine how profitable your Binance Volatility bot is&amp;nbsp;https://github.com/CyberPunkMetalHead/backtesting-for-cryptocurrency-trading&lt;/p&gt;
+&lt;h2&gt;Trade&amp;nbsp;Engine&lt;/h2&gt;
+&lt;p&gt;a library for demo trading | backtest and forward test simulation for python &amp;gt;= 3.8&amp;nbsp;https://github.com/xibalbas/trade-engine&lt;/p&gt;
+&lt;h2&gt;Epymetheus&amp;nbsp;!!!&lt;/h2&gt;
+&lt;p&gt;is a multi-asset backtesting framework. It features an intuitive user &lt;span class="caps"&gt;API&lt;/span&gt; that lets analysts try out their trade strategies right away.&amp;nbsp;https://github.com/epymetheus/epymetheus&lt;/p&gt;
+&lt;h2&gt;TradzQAI&lt;/h2&gt;
+&lt;p&gt;Trading environnement for &lt;span class="caps"&gt;RL&lt;/span&gt; agents, backtesting and training.&amp;nbsp;https://github.com/kkuette/TradzQAI&lt;/p&gt;
+&lt;h2&gt;Stock Analysis&amp;nbsp;Engine&lt;/h2&gt;
+&lt;p&gt;Build and tune investment algorithms for use with artificial intelligence (deep neural networks) with a distributed stack for running backtests using live pricing data on publicly traded companies with automated datafeeds from: &lt;span class="caps"&gt;IEX&lt;/span&gt; Cloud, Tradier and FinViz (includes: pricing, options, news, dividends, daily, intraday, screeners, statistics, financials, earnings, and more).&amp;nbsp;https://github.com/AlgoTraders/stock-analysis-engine&lt;/p&gt;
+&lt;h2&gt;BTGym&lt;/h2&gt;
+&lt;p&gt;Scalable event-driven &lt;span class="caps"&gt;RL&lt;/span&gt;-friendly backtesting library. Build on top of Backtrader with OpenAI Gym environment &lt;span class="caps"&gt;API&lt;/span&gt;.&amp;nbsp;https://github.com/Kismuz/btgym&lt;/p&gt;
+&lt;h2&gt;BakTst_Org&lt;/h2&gt;
+&lt;p&gt;Introduction: BakTst_Org is a prototype of the backtesting system used for &lt;span class="caps"&gt;BTC&lt;/span&gt; quantitative trading.&amp;nbsp;https://github.com/xiaoyao153379/BakTst_Org&lt;/p&gt;
+&lt;p&gt;faizancodes /&amp;nbsp;Stock-Portfolio-Backtester&lt;/p&gt;</content><category term="Data Science"></category><category term="document intelligence"></category><category term="document processing"></category><category term="computer vision"></category><category term="digital image processing"></category><category term="canny edge detector"></category><category term="hough transform"></category><category term="deep learning"></category></entry><entry><title>Pandas dataframe schema and data types validation</title><link href="https://www.safjan.com/pandas-dataframe-validation/" rel="alternate"></link><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-27:/pandas-dataframe-validation/</id><summary type="html"></summary><content type="html">&lt;h1&gt;Contents&lt;/h1&gt;
 &lt;!-- MarkdownTOC levels='1,2,3' autolink=True --&gt;
 
 &lt;ul&gt;
@@ -276,7 +365,35 @@ You can retrieve:
 &lt;p&gt;&lt;strong&gt;Reference:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Stack overflow - &lt;a href="https://stackoverflow.com/questions/678236"&gt;How to get the filename without the extension from a path in&amp;nbsp;Python?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="base name"></category><category term="dirname"></category><category term="file extension"></category><category term="path"></category><category term="python"></category></entry><entry><title>15 tools for document Deskewing and Dewarping</title><link href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/tools-for-doc-deskewing-and-dewarping/</id><summary type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article &amp;#8220;Summary and&amp;nbsp;recommendations&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection, or text segmentation can be scan, or photo taken from hand that does not have an ideal perspective - is rotated or spatially distorted in some way (warped document).
+&lt;/ul&gt;</content><category term="note"></category><category term="base name"></category><category term="dirname"></category><category term="file extension"></category><category term="path"></category><category term="python"></category></entry><entry><title>Most Popular Python Backtesting Libraries</title><link href="https://www.safjan.com/popular-backtesting-libraries/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/popular-backtesting-libraries/</id><summary type="html">&lt;p&gt;Popular&amp;nbsp;Backtesting&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;span class="caps"&gt;TODO&lt;/span&gt;: Add logarithmic scale git activity graph for all the&amp;nbsp;projects&lt;/p&gt;
+&lt;h2&gt;backtrader - 8.8k&amp;nbsp;stars&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/mementum/backtrader/graphs/code-frequency"&gt;cf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/mementum/backtrader"&gt;backtrader&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Lean -&amp;nbsp;6.2k&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/QuantConnect/Lean"&gt;Lean&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/QuantConnect/Lean/graphs/code-frequency"&gt;cf&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;PyAlgoTrade -&amp;nbsp;3.7k&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://gbeced.github.io/pyalgotrade/"&gt;PyAlgoTrade&lt;/a&gt;
+&lt;a href="https://github.com/gbeced/pyalgotrade/graphs/code-frequency"&gt;cf&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Jesse&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/jesse-ai/jesse"&gt;https://github.com/jesse-ai/jesse&lt;/a&gt;&amp;nbsp;3.9K&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/jesse-ai/jesse/graphs/code-frequency"&gt;cf&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;backtesting.py - 2.5k&amp;nbsp;stars&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/kernc/backtesting.py/graphs/code-frequency"&gt;cf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Backtest trading strategies with&amp;nbsp;Python.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/kernc/backtesting.py"&gt;backtesting.py&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;finmarketpy -&amp;nbsp;2.9k&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/cuemacro/finmarketpy/graphs/code-frequency"&gt;cf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;is a Python based library that enables you to analyze market data and also to backtest trading strategies using a simple to use &lt;span class="caps"&gt;API&lt;/span&gt;, which has prebuilt templates for you to define backtest. Included in the library
+&lt;a href="https://github.com/cuemacro/finmarketpy"&gt;finmarketpy&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;fastquant - 901&amp;nbsp;stars&lt;/h2&gt;
+&lt;p&gt;Bringing backtesting to the mainstream
+fastquant allows you to easily backtest investment strategies with as few as 3 lines of python code. Its goal is to promote data driven investments by making quantitative analysis in finance accessible to everyone.
+&lt;a href="https://github.com/enzoampil/fastquant"&gt;fastquant&lt;/a&gt;
+&lt;a href="https://github.com/enzoampil/fastquant/graphs/code-frequency"&gt;cf&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;zipline&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/quantopian/zipline/graphs/code-frequency"&gt;cf&lt;/a&gt;
+&lt;a href="https://github.com/quantopian/zipline"&gt;https://github.com/quantopian/zipline&lt;/a&gt;&amp;nbsp;15.2K&lt;/p&gt;</content><category term="Data Science"></category><category term="document intelligence"></category><category term="document processing"></category><category term="computer vision"></category><category term="digital image processing"></category><category term="canny edge detector"></category><category term="hough transform"></category><category term="deep learning"></category></entry><entry><title>15 tools for document Deskewing and Dewarping</title><link href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/tools-for-doc-deskewing-and-dewarping/</id><summary type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article &amp;#8220;Summary and&amp;nbsp;recommendations&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection, or text segmentation can be scan, or photo taken from hand that does not have an ideal perspective - is rotated or spatially distorted in some way (warped document).
 If you are looking for my recommendations go straight to the last section of this article &lt;a href="#summary-and-recommendations"&gt;Summary and recommendations&lt;/a&gt;. This article was inspired by a list of &lt;span class="caps"&gt;OCR&lt;/span&gt;-related projects posted on the list &lt;a href="https://github.com/zacharywhitley/awesome-ocr"&gt;awesome-ocr&lt;/a&gt;. To give readers intuition about the popularity of the project - information about GitHub stars is added to each project (as of Feb 2022 - time of writing this article). To differentiate actively developed projects from ones that don&amp;#8217;t get commits anymore - the date of the last commit was&amp;nbsp;added.&lt;/p&gt;
 &lt;h2&gt;The typical approach for&amp;nbsp;deskewing&lt;/h2&gt;
 &lt;p&gt;The deskewing is typically realized by using Canny Edge Detection and Hough Transform to determine the angle of rotation (skew) and then applying rotation in opposite&amp;nbsp;direction.&lt;/p&gt;
@@ -482,7 +599,8 @@ Written in&amp;nbsp;Python.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The image used in the header of this article comes from the paper &lt;a href="https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf"&gt;DewarpNet: Single-Image Document Unwarping With Stacked 3D and 2D Regression Networks&lt;/a&gt;. &lt;em&gt;Sagnik Das, Ke Ma, Zhixin Shu, Dimitris Samaras, Roy Shilkrot&lt;/em&gt;; Proceedings of the &lt;span class="caps"&gt;IEEE&lt;/span&gt;/&lt;span class="caps"&gt;CVF&lt;/span&gt; International Conference on Computer Vision (&lt;span class="caps"&gt;ICCV&lt;/span&gt;), 2019, pp.&amp;nbsp;131-140&lt;/li&gt;
 &lt;li&gt;All other images in the article come from the project owners or related sources (papers,&amp;nbsp;articles)&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Data Science"></category><category term="document intelligence"></category><category term="document processing"></category><category term="computer vision"></category><category term="digital image processing"></category><category term="canny edge detector"></category><category term="hough transform"></category><category term="deep learning"></category></entry><entry><title>How to get most of GitHub Copilot</title><link href="https://www.safjan.com/how-to-get-most-of-github-copilot/" rel="alternate"></link><published>2022-01-25T00:00:00+01:00</published><updated>2022-01-25T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-01-25:/how-to-get-most-of-github-copilot/</id><summary type="html">&lt;p&gt;This post describes techniques that help to get most accurate suggestions from the GitHub Copilot &amp;#8220;Your &lt;span class="caps"&gt;AI&lt;/span&gt; pair programmer&amp;#8221;. For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4: &amp;#8220;How to get most of GitHub&amp;nbsp;Copilot&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;&lt;span class="caps"&gt;TLDR&lt;/span&gt;&lt;/h2&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Data Science"></category><category term="document intelligence"></category><category term="document processing"></category><category term="computer vision"></category><category term="digital image processing"></category><category term="canny edge detector"></category><category term="hough transform"></category><category term="deep learning"></category></entry><entry><title>How to get most of GitHub Copilot</title><link href="https://www.safjan.com/how-to-get-most-of-github-copilot/" rel="alternate"></link><published>2022-01-25T00:00:00+01:00</published><updated>2022-01-25T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-01-25:/how-to-get-most-of-github-copilot/</id><summary type="html">&lt;p&gt;This post describes techniques that help to get most accurate suggestions from the GitHub Copilot &amp;#8220;Your &lt;span class="caps"&gt;AI&lt;/span&gt; pair programmer&amp;#8221;. For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4: &amp;#8220;How to get most of GitHub&amp;nbsp;Copilot&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;&lt;span class="caps"&gt;TLDR&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;To get accurate autosuggestion from Copilot you&amp;nbsp;can:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Modify signature&lt;/strong&gt; of received suggestion to one that capture all relevant inputs and wait for new&amp;nbsp;suggestion.&lt;/li&gt;
@@ -601,7 +719,8 @@ old signature&amp;nbsp;was:&lt;/p&gt;
 &lt;p&gt;I have started using Copilot in November 2021. When I had copilot plugin enabled I put more attention to use meaningful function names expecting the reward in form of auto-suggested code that will fit my&amp;nbsp;needs.&lt;/p&gt;
 &lt;p&gt;I found Copilot great for using python for automation tasks - many simple functions that somebody else for sure has written someday, but it is too expensive to search e.g. GitHub snippet or code. Copilot comes in handy as replacement of gists of basic functions for manipulating text, files,&amp;nbsp;etc.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;warp speed image comes from &lt;a href="https://videohive.net/item/warp-speed-effect-v10/47100"&gt;here&lt;/a&gt;&lt;/p&gt;</content><category term="Howto"></category><category term="github"></category><category term="coding"></category><category term="ai"></category></entry><entry><title>Git - delete branches that are merged into main branch</title><link href="https://www.safjan.com/git-delete-branches-merged-into-main-branch/" rel="alternate"></link><published>2021-12-16T00:00:00+01:00</published><updated>2022-02-17T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-12-16:/git-delete-branches-merged-into-main-branch/</id><summary type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True --&gt;
+&lt;p&gt;warp speed image comes from &lt;a href="https://videohive.net/item/warp-speed-effect-v10/47100"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Howto"></category><category term="github"></category><category term="coding"></category><category term="ai"></category></entry><entry><title>Git - delete branches that are merged into main branch</title><link href="https://www.safjan.com/git-delete-branches-merged-into-main-branch/" rel="alternate"></link><published>2021-12-16T00:00:00+01:00</published><updated>2022-02-17T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-12-16:/git-delete-branches-merged-into-main-branch/</id><summary type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#first---fetch-and-prune"&gt;First - fetch and prune&lt;/a&gt;&lt;ul&gt;
@@ -671,18 +790,18 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;li&gt;with&amp;nbsp;tox&lt;/li&gt;
 &lt;li&gt;in pre-commit&amp;nbsp;hooks&lt;/li&gt;
 &lt;li&gt;as external tool in&amp;nbsp;PyCharm&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="black"></category><category term="python"></category><category term="pyqa"></category></entry><entry><title>Top popular Zsh plugins on GitHub (2021)</title><link href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/" rel="alternate"></link><published>2021-11-29T00:00:00+01:00</published><updated>2021-11-29T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-11-29:/top-popular-zsh-plugins-on-github-2021/</id><summary type="html">&lt;p&gt;There is an exhaustive but curated list of Zsh plugins posted on GitHub project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt;. You can find there 1800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff, the number is a bit high to get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have the highest number of&amp;nbsp;stars.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
-&lt;p&gt;There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-zsh-plugins-on-github/"&gt;2018&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2019/"&gt;2019&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="black"></category><category term="python"></category><category term="pyqa"></category></entry><entry><title>Top popular Zsh plugins on GitHub (2021)</title><link href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/" rel="alternate"></link><published>2021-11-29T00:00:00+01:00</published><updated>2021-11-29T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-11-29:/top-popular-zsh-plugins-on-github-2021/</id><summary type="html">&lt;p&gt;There is an exhaustive but curated list of Zsh plugins posted on the GitHub project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt;. You can find there 1800+ links to plugins, themes, and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff, the number is a bit high to get orientation which plugins gained already good reputation from the Zsh users community. In this post, I will identify the most popular plugins - those which have the highest number of&amp;nbsp;stars.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
+&lt;p&gt;There is a series of articles dedicated to Zsh plugins: &lt;a href="../top-popular-zsh-plugins-on-github/"&gt;2018&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2019/"&gt;2019&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The collection &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article I&amp;#8217;m listing top-popular tools that might be interesting for Zsh users or in most cases any console users. I have divided them into four&amp;nbsp;categories:&lt;/p&gt;
+&lt;p&gt;The collection &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article, I&amp;#8217;m listing top-popular tools that might be interesting for Zsh users or in most cases any console users. I have divided them into four&amp;nbsp;categories:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Tools&lt;/strong&gt; - general tools that are popular among console lovers, in most cases not limited to&amp;nbsp;Zsh&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Frameworks - tools for managing Zsh configuration and&amp;nbsp;plugins&lt;/strong&gt; &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Prompts&lt;/strong&gt; - projects that helps to configure shell&amp;nbsp;prompts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prompts&lt;/strong&gt; - projects that help to configure shell&amp;nbsp;prompts&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Python tools&lt;/strong&gt; - tools that ease work with Python virtual&amp;nbsp;environments&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1&gt;GitHub Stars as indicator of project&amp;nbsp;popularity&lt;/h1&gt;
-&lt;p&gt;One of the ways to estimate project popularity is to look on number of stars. GitHub users often uses stars as kind of bookmark to mark interesting project to come back later. People that marked project with a star are called &amp;#8220;Star gazers&amp;#8221;. For sake of this article, to extract &amp;#8220;most popular&amp;#8221; plugin projects I have used&amp;nbsp;stars.&lt;/p&gt;
+&lt;h1&gt;GitHub Stars as an indicator of project&amp;nbsp;popularity&lt;/h1&gt;
+&lt;p&gt;One of the ways to estimate project popularity is to look at the number of stars. GitHub users often use stars as a kind of bookmark to mark interesting projects to come back to later. People that marked a project with a star are called &amp;#8220;Star gazers&amp;#8221;. For sake of this article, to extract the &amp;#8220;most popular&amp;#8221; plugin projects I have used&amp;nbsp;stars.&lt;/p&gt;
 &lt;h1&gt;Top popular plugins as of November&amp;nbsp;2021&lt;/h1&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -750,7 +869,7 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/zsh-users/zsh-syntax-highlighting"&gt;zsh-syntax-highlighting&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Fish shell like syntax highlighting for Zsh.&lt;/td&gt;
+&lt;td&gt;Fish shell-like syntax highlighting for Zsh.&lt;/td&gt;
 &lt;td&gt;13.1k&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -792,17 +911,17 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/table&gt;
 &lt;p&gt;I have selected two projects that I haven&amp;#8217;t described in previous years but I&amp;#8217;m happy user of&amp;nbsp;both.&lt;/p&gt;
 &lt;h1&gt;1. &lt;a href="https://github.com/so-fancy/diff-so-fancy"&gt;diff-so-fancy&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;As authors call it &lt;code&gt;diff-so-fancy&lt;/code&gt; strives to make your diffs &lt;strong&gt;human&lt;/strong&gt; readable instead of machine readable. This helps improve code quality and helps you spot defects faster and it does what it promises. See the screenshot that compares vanilla &lt;code&gt;git diff&lt;/code&gt; vs. &lt;code&gt;git&lt;/code&gt; and &lt;code&gt;diff-so-fancy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As authors call it &lt;code&gt;diff-so-fancy&lt;/code&gt; strives to make your diffs human-readable instead of machine-readable. This helps improve code quality and helps you spot defects faster and it does what it promises. See the screenshot that compares vanilla &lt;code&gt;git diff&lt;/code&gt; vs. &lt;code&gt;git&lt;/code&gt; and &lt;code&gt;diff-so-fancy&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://user-images.githubusercontent.com/3429760/32387617-44c873da-c082-11e7-829c-6160b853adcb.png"&gt;&lt;img alt="diff-highlight vs diff-so-fancy" src="https://user-images.githubusercontent.com/3429760/32387617-44c873da-c082-11e7-829c-6160b853adcb.png"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;You might have noticed that differences are spotted not only on line-level but also on&amp;nbsp;character-level.&lt;/p&gt;
+&lt;p&gt;You might have noticed that differences are spotted not only on line level but also on character&amp;nbsp;level.&lt;/p&gt;
 &lt;h1&gt;2. &lt;a href="https://github.com/jonas/tig"&gt;tig&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Tig is an ncurses-based text-mode interface for git. It functions mainly as a Git repository browser, but can also assist in staging changes for commit at chunk level. Tig allows for convenient staging files in interactive&amp;nbsp;mode:&lt;/p&gt;
+&lt;p&gt;Tig is a ncurses-based text-mode interface for git. It functions mainly as a Git repository browser, but can also assist in staging changes for commit at the chunk level. Tig allows for convenient staging files in an interactive&amp;nbsp;mode:&lt;/p&gt;
 &lt;p&gt;&lt;img src="../images/zsh/tig_status.jpg" alt="tig status view" style="zoom:50%;" /&gt;&lt;/p&gt;
-&lt;p&gt;In the main view you can interactively browse commit history and jump into inspecting selected&amp;nbsp;commit.&lt;/p&gt;
+&lt;p&gt;In the main view, you can interactively browse commit history and jump into inspecting selected&amp;nbsp;commit.&lt;/p&gt;
 &lt;p&gt;&lt;img src="../images/zsh/tig_main.jpg" alt="tig status view" style="zoom:50%;" /&gt;&lt;/p&gt;
-&lt;p&gt;Next to git-gui it is my favourite tool for staging git&amp;nbsp;changes.&lt;/p&gt;
+&lt;p&gt;Next to git-gui it is my favorite tool for staging git&amp;nbsp;changes.&lt;/p&gt;
 &lt;h1&gt;Frameworks&lt;/h1&gt;
-&lt;p&gt;Here is quick glance on most popular frameworks that manages configuration and plugins for Zsh. &lt;a href="(https://github.com/ohmyzsh/ohmyzsh)"&gt;Oh-my-zsh&lt;/a&gt; regins here having ~10x stars compared to the closest contender &lt;a href="https://github.com/sorin-ionescu/prezto"&gt;prezto&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Here is a quick glance at the most popular frameworks that manage configuration and plugins for Zsh. &lt;a href="(https://github.com/ohmyzsh/ohmyzsh)"&gt;Oh-my-zsh&lt;/a&gt; regins here having ~10x stars compared to the closest contender &lt;a href="https://github.com/sorin-ionescu/prezto"&gt;prezto&lt;/a&gt;. &lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -814,7 +933,7 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/ohmyzsh/ohmyzsh"&gt;ohmyzsh&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;A delightful community-driven (with 1900+ contributors) framework for managing your Zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python, etc), 140+ themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community.&lt;/td&gt;
+&lt;td&gt;A delightful community-driven (with 1900+ contributors) framework for managing your Zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python, etc), 140+ themes to spice up your morning, and an auto-update tool that makes it easy to keep up with the latest updates from the community.&lt;/td&gt;
 &lt;td&gt;136.8k&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -834,19 +953,19 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/dotphiles/dotzsh"&gt;dotzsh&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;A community driven framework for Zsh&lt;/td&gt;
+&lt;td&gt;A community-driven framework for Zsh&lt;/td&gt;
 &lt;td&gt;193&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/psyrendust/alf"&gt;alf&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Alf is an out of this world super fast and configurable framework for Zsh; it&amp;#8217;s modeled after Prezto and Antigen while utilizing Oh My Zsh under the covers; and offers standard defaults, aliases, functions, auto completion, automated updates and installable prompt themes and plugins.&lt;/td&gt;
+&lt;td&gt;Alf is an out-of-this-world super fast and configurable framework for Zsh; it&amp;#8217;s modeled after Prezto and Antigen while utilizing Oh My Zsh under the covers; and offers standard defaults, aliases, functions, auto-completion, automated updates, and installable prompt themes and plugins.&lt;/td&gt;
 &lt;td&gt;88&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1&gt;Prompts&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: That popular theme managers as powerlevel9k and powerlevel10k also provides highly configurable prompts but are not listed&amp;nbsp;here.&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;: Popular theme managers such as powerlevel9k and powerlevel10k also provides highly configurable prompts but are not listed&amp;nbsp;here.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -869,7 +988,7 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/sindresorhus/pure"&gt;pure&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Pretty, minimal and fast &lt;span class="caps"&gt;ZSH&lt;/span&gt; prompt&lt;/td&gt;
+&lt;td&gt;Pretty, minimal, and fast &lt;span class="caps"&gt;ZSH&lt;/span&gt; prompt&lt;/td&gt;
 &lt;td&gt;10.8k&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -904,7 +1023,7 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/olivierverdier/zsh-git-prompt"&gt;zsh-git-prompt&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Informative git prompt for zsh&lt;/td&gt;
+&lt;td&gt;Informative git prompt for Zsh&lt;/td&gt;
 &lt;td&gt;1.5k&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -914,7 +1033,7 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/geometry-zsh/geometry"&gt;geometry&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;geometry is a minimal, fully customizable and composable zsh prompt theme&lt;/td&gt;
+&lt;td&gt;geometry is a minimal, fully customizable, and composable zsh prompt theme&lt;/td&gt;
 &lt;td&gt;0.8k&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -925,7 +1044,7 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1&gt;Python&amp;nbsp;tools&lt;/h1&gt;
-&lt;p&gt;Since Python dominates in the code I write, I have added section for two projects that helps to manage virtual&amp;nbsp;environments.&lt;/p&gt;
+&lt;p&gt;Since Python dominates in the code I write, I have added a section for two projects that helps to manage virtual&amp;nbsp;environments.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -948,7 +1067,8 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1&gt;Final&amp;nbsp;words&lt;/h1&gt;
-&lt;p&gt;It is interesting how the number of start grows - the &lt;span class="caps"&gt;IT&lt;/span&gt; world includes more and more people every day. Lots of these people wish to optimise their work environment. Those who works often in console takes look on the helper tools listed on pages as &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; or &lt;a href="https://github.com/k4m4/terminals-are-sexy"&gt;Terminals Are Sexy&lt;/a&gt;. This article aimed to highlight projects gaining a lot of attention and brings added value to the awesome lists that are ordered alphabetically without information on number of&amp;nbsp;stars.&lt;/p&gt;</content><category term="Linux"></category><category term="zsh"></category><category term="scrapping"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Git hooks</title><link href="https://www.safjan.com/git-hooks/" rel="alternate"></link><published>2021-10-20T00:00:00+02:00</published><updated>2021-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-20:/git-hooks/</id><summary type="html">&lt;p&gt;Example how to set up git hooks manually or with pre-commit&amp;nbsp;tool&lt;/p&gt;</summary><content type="html">&lt;p&gt;Git hook makes easier to keep order in the software project:
+&lt;p&gt;It is interesting how the number of starts growing - the &lt;span class="caps"&gt;IT&lt;/span&gt; world includes more and more people every day. Lots of these people wish to optimize their work environment. Those who work often in console takes look at the helper tools listed on pages as &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; or &lt;a href="https://github.com/k4m4/terminals-are-sexy"&gt;Terminals Are Sexy&lt;/a&gt;. This article aimed to highlight projects gaining a lot of attention and brings added value to the awesome lists that are ordered alphabetically without information on the number of&amp;nbsp;stars.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="zsh"></category><category term="scrapping"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Git hooks</title><link href="https://www.safjan.com/git-hooks/" rel="alternate"></link><published>2021-10-20T00:00:00+02:00</published><updated>2021-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-20:/git-hooks/</id><summary type="html">&lt;p&gt;Example how to set up git hooks manually or with pre-commit&amp;nbsp;tool&lt;/p&gt;</summary><content type="html">&lt;p&gt;Git hook makes easier to keep order in the software project:
 - can help following agreed conventions related with e.g.
     + code format, code quality
     + workflow
@@ -2934,10 +3054,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="32fd3149-28ab-4abe-89a2-a7b21bf912fd"&gt;&lt;/div&gt;
+&lt;div id="42b8ce83-aefb-47bb-9f28-60e954995238"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#32fd3149-28ab-4abe-89a2-a7b21bf912fd');
+var element = $('#42b8ce83-aefb-47bb-9f28-60e954995238');
 
 (function(root) {
   function now() {
@@ -3758,11 +3878,11 @@ var element = $('#32fd3149-28ab-4abe-89a2-a7b21bf912fd');
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Exploring new ideas"></category><category term="python"></category><category term="jupyter"></category><category term="blogging"></category><category term="pelican"></category><category term="visualization"></category><category term="interactive"></category><category term="plotly"></category><category term="bokeh"></category><category term="altair"></category></entry><entry><title>Data Science Command line Tools</title><link href="https://www.safjan.com/data-science-command-line-tools/" rel="alternate"></link><published>2019-08-23T00:00:00+02:00</published><updated>2021-02-08T21:28:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-08-23:/data-science-command-line-tools/</id><summary type="html">&lt;p&gt;Description of &lt;span class="caps"&gt;GNU&lt;/span&gt; utils and other less standard tools that helps with processing data from &lt;span class="caps"&gt;CLI&lt;/span&gt; or with shell&amp;nbsp;scripts.&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are plenty of tools designed to ease life of Data Scientist. In this group, the special place has tools that are used from command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient&amp;nbsp;workflows. &lt;/p&gt;
+</content><category term="Exploring new ideas"></category><category term="python"></category><category term="jupyter"></category><category term="blogging"></category><category term="pelican"></category><category term="visualization"></category><category term="interactive"></category><category term="plotly"></category><category term="bokeh"></category><category term="altair"></category></entry><entry><title>Data Science Command-line Tools</title><link href="https://www.safjan.com/data-science-command-line-tools/" rel="alternate"></link><published>2019-08-23T00:00:00+02:00</published><updated>2021-02-08T21:28:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-08-23:/data-science-command-line-tools/</id><summary type="html">&lt;p&gt;Description of &lt;span class="caps"&gt;GNU&lt;/span&gt; utils and other less standard tools that helps with processing data from &lt;span class="caps"&gt;CLI&lt;/span&gt; or with shell&amp;nbsp;scripts.&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are plenty of tools designed to ease the life of a Data Scientist. In this group, the special place has tools that are used from the command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient&amp;nbsp;workflows. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="Diagram of cli tools for data science" src="/images/cli_tools_1/cli_tools.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a id="textutils-from-gnu-coreutils"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Textutils from &lt;span class="caps"&gt;GNU&lt;/span&gt;&amp;nbsp;Coreutils&lt;/h2&gt;
-&lt;p&gt;From my experience, I have benefit most from mastering the &lt;span class="caps"&gt;GNU&lt;/span&gt; Coreutils. This is the collection of: shellutils, fileutils and textutils - and in this post I will be discussing the latter&amp;nbsp;one. &lt;/p&gt;
+&lt;p&gt;From my experience, I have benefited most from mastering the &lt;span class="caps"&gt;GNU&lt;/span&gt; Coreutils. This is the collection of shellutils, fileutils, and textutils - and in this post, I will be discussing the latter&amp;nbsp;one. &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Table 1. Textutils - text processing tools, part of &lt;span class="caps"&gt;GNU&lt;/span&gt;&amp;nbsp;Coreutils&lt;/em&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -3786,7 +3906,7 @@ var element = $('#32fd3149-28ab-4abe-89a2-a7b21bf912fd');
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;strong&gt;cut&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;remove sections from each line in file&lt;/td&gt;
+&lt;td&gt;remove sections from each line in the file&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;strong&gt;expand/unexpand&lt;/strong&gt;&lt;/td&gt;
@@ -3798,7 +3918,7 @@ var element = $('#32fd3149-28ab-4abe-89a2-a7b21bf912fd');
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;strong&gt;fold&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;fold each input line to fit given line length&lt;/td&gt;
+&lt;td&gt;fold each input line to fit the given line length&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;strong&gt;&lt;a href="#head"&gt;head&lt;/a&gt;/&lt;a href="#tail"&gt;tail&lt;/a&gt;/&lt;a href="#shuf"&gt;shuf&lt;/a&gt;&lt;/strong&gt;&lt;/td&gt;
@@ -3818,7 +3938,7 @@ var element = $('#32fd3149-28ab-4abe-89a2-a7b21bf912fd');
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;a href="#sort"&gt;&lt;strong&gt;sort&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;sort lines of text file&lt;/td&gt;
+&lt;td&gt;sort lines of the text file&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;strong&gt;&lt;a href="split"&gt;split&lt;/a&gt;&lt;/strong&gt;&lt;/td&gt;
@@ -3834,19 +3954,19 @@ var element = $('#32fd3149-28ab-4abe-89a2-a7b21bf912fd');
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;strong&gt;&lt;a href="#uniq"&gt;uniq&lt;/a&gt;&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;remove duplicated lines from file&lt;/td&gt;
+&lt;td&gt;remove duplicated lines from the file&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;strong&gt;&lt;a href="#wc"&gt;wc&lt;/a&gt;&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;display number of characters, words and lines of given file&lt;/td&gt;
+&lt;td&gt;display the number of characters, words, and lines of the given file&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;I will give a few examples of commands I use most often or ones that are exceptionally&amp;nbsp;useful.&lt;/p&gt;
 &lt;p&gt;&lt;a id="comm"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;comm&lt;/h3&gt;
-&lt;p&gt;The &lt;code&gt;comm&lt;/code&gt; command is very handy when comes to compare lists stored in separate files. For example, you have list of samples used for experiment #1 in one file and list of samples used in experiment #2 in another file.
-The &lt;code&gt;comm&lt;/code&gt; command takes sorted files as input and calculate unique lines for &lt;span class="caps"&gt;FILE1&lt;/span&gt; and for &lt;span class="caps"&gt;FILE2&lt;/span&gt; and the result is represented respectively as &lt;code&gt;column 1&lt;/code&gt; and &lt;code&gt;column 2&lt;/code&gt;. Having unique lines in column 1 and 2, set of lines that appear in both files is calculated and result is represented by column&amp;nbsp;3. &lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;comm&lt;/code&gt; command is very handy when comes to comparing lists stored in separate files. For example, you have a list of samples used for experiment #1 in one file and a list of samples used in experiment #2 in another file.
+The &lt;code&gt;comm&lt;/code&gt; command takes sorted files as input and calculates unique lines for &lt;span class="caps"&gt;FILE1&lt;/span&gt; and for &lt;span class="caps"&gt;FILE2&lt;/span&gt; and the result is represented respectively as &lt;code&gt;column 1&lt;/code&gt; and &lt;code&gt;column 2&lt;/code&gt;. Having unique lines in column 1 and 2, the set of lines that appear in both files is calculated and the result is represented by column&amp;nbsp;3. &lt;/p&gt;
 &lt;p&gt;Columns description for &lt;code&gt;comm&lt;/code&gt;:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -3864,7 +3984,7 @@ The &lt;code&gt;comm&lt;/code&gt; command takes sorted files as input and calcul
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Having three columns calculated we can now suppress lines that appears in given column in order to get lines that fulfill desired&amp;nbsp;condition.&lt;/p&gt;
+&lt;p&gt;Having three columns calculated we can now suppress lines that appear in the given column in order to get lines that fulfill the desired&amp;nbsp;condition.&lt;/p&gt;
 &lt;p&gt;Meaning of the numbers used as &lt;code&gt;comm&lt;/code&gt; parameters:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;-1&lt;/code&gt;     suppress column 1 (lines unique to &lt;span class="caps"&gt;FILE1&lt;/span&gt;)&lt;/li&gt;
@@ -3884,17 +4004,17 @@ comm -12 file1 file2
 
 &lt;p&gt;&lt;a id="head"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;head&lt;/h3&gt;
-&lt;p&gt;By default, &lt;code&gt;head&lt;/code&gt; prints  the first 10 lines of each file provided as argument to standard output.  With more than one file, precede each with a header giving the file name. You can control how many lines is displayed with option &lt;code&gt;-n&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;By default, &lt;code&gt;head&lt;/code&gt; prints the first 10 lines of each file provided as an argument to standard output.  With more than one file, precede each with a header giving the file name. You can control how many lines are displayed with option &lt;code&gt;-n&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;head -n5 file.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;You can also print all but last N lines by adding &lt;code&gt;-&lt;/code&gt; sign. For example in order to have all lines but last&amp;nbsp;one:&lt;/p&gt;
+&lt;p&gt;You can also print all but the last N lines by adding &lt;code&gt;-&lt;/code&gt; sign. For example in order to have all lines but the last&amp;nbsp;one:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;head -n -1 file.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;a id="shuf"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;shuf&lt;/h3&gt;
-&lt;p&gt;To quickly inspect content of dataset in text file you can use &lt;code&gt;head&lt;/code&gt; which shows some filest lines of the file. If you would like to have more representative example of the content of the file, you can take random sample of lines from file with &lt;code&gt;shuf&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;To quickly inspect the content of the dataset in a text file you can use &lt;code&gt;head&lt;/code&gt; which shows some first lines of the file. If you would like to have more representative example of the content of the file, you can take random sample of lines from file with &lt;code&gt;shuf&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;shuf -n &lt;span class="m"&gt;5&lt;/span&gt; file.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -3987,7 +4107,8 @@ comm -12 file1 file2
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;wc -l *.csv
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;For special task - counting lines in very large files one can consider using replacement: &lt;a href="https://github.com/crioux/turbo-linecount"&gt;Super-Fast Multi-Threaded Line&amp;nbsp;Counter&lt;/a&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="machine learning"></category><category term="linux"></category></entry><entry><title>Finding the spy - post on Markov Chains and stochastic matrices</title><link href="https://www.safjan.com/spy-catch/" rel="alternate"></link><published>2019-08-10T00:00:00+02:00</published><updated>2019-08-10T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-08-10:/spy-catch/</id><summary type="html">&lt;p&gt;Using puzzle on tracing the high profile spy as excuse to showcase Markov Chains and demonstrate usage and properties e.g. Stationary&amp;nbsp;distribution&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;For special task - counting lines in very large files one can consider using replacement: &lt;a href="https://github.com/crioux/turbo-linecount"&gt;Super-Fast Multi-Threaded Line&amp;nbsp;Counter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="machine learning"></category><category term="linux"></category></entry><entry><title>Finding the spy - post on Markov Chains and stochastic matrices</title><link href="https://www.safjan.com/spy-catch/" rel="alternate"></link><published>2019-08-10T00:00:00+02:00</published><updated>2019-08-10T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-08-10:/spy-catch/</id><summary type="html">&lt;p&gt;Using puzzle on tracing the high profile spy as excuse to showcase Markov Chains and demonstrate usage and properties e.g. Stationary&amp;nbsp;distribution&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -7000,7 +7121,8 @@ There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-
 &lt;td align="right"&gt;2.7k&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</content><category term="Linux"></category><category term="zsh"></category><category term="scrapping"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Learn Bayesian methods in 4 steps - by reading and by doing</title><link href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/" rel="alternate"></link><published>2019-07-09T00:00:00+02:00</published><updated>2019-07-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-07-09:/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/</id><summary type="html">&lt;p&gt;This post propose 4-steps path for learning Byesian methods. First step is goint through the book: &amp;#8220;Bayesian methods for hackers&amp;#8221;, second, use complementary books for probability and statistics, third, read How to become a Bayesian in eight easy steps: An annotated reading list&amp;#8221;, and last, go throught the book full of exercises: &amp;#8220;Think&amp;nbsp;Bayes&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Background&lt;/h2&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="zsh"></category><category term="scrapping"></category><category term="python"></category><category term="linux"></category></entry><entry><title>Learn Bayesian methods in 4 steps - by reading and by doing</title><link href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/" rel="alternate"></link><published>2019-07-09T00:00:00+02:00</published><updated>2019-07-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-07-09:/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/</id><summary type="html">&lt;p&gt;This post propose 4-steps path for learning Byesian methods. First step is goint through the book: &amp;#8220;Bayesian methods for hackers&amp;#8221;, second, use complementary books for probability and statistics, third, read How to become a Bayesian in eight easy steps: An annotated reading list&amp;#8221;, and last, go throught the book full of exercises: &amp;#8220;Think&amp;nbsp;Bayes&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;When reading this article you probably have some experience with machine learning models. You might have tried RandomForest, XGBoost, etc.. They are easy to use but it is difficult to understand how final predictions where done. This is sometime refereed as predictions out of black box. Of course, there are techniques that might help a bit e.g. extracting feature importance from the trained&amp;nbsp;models. &lt;/p&gt;
 &lt;p&gt;Bayesian methods are a great helper for understanding how actually reasoning was done. These methods provides probabilistic models that can describe the process that produced data we want to process. Besides accurate predictions we often need understanding of what is important in the process. Through understanding gain confidence in used models. We need the convenience when moving with machine learning from toy projects to real business applications. Bayesian can offer such understanding and convenience and that is why these methods are gaining&amp;nbsp;attention.&lt;/p&gt;
 &lt;p&gt;In this blog post I will present 4 steps for Bayesian methods mastery. The rough estimate is that you will need to dedicate around 100 hours to complete this 4-steps&amp;nbsp;path.&lt;/p&gt;
@@ -7025,7 +7147,8 @@ There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-
 &lt;h2&gt;4. Exercises to develop Bayesian thinking: &amp;#8220;Think Bayes&amp;#8221; by Allen&amp;nbsp;Downey.&lt;/h2&gt;
 &lt;p&gt;&lt;img style="float: left;" src="/images/learn_bayes/think_bayes_1.jpg" width="25%" height="25%"&gt;&lt;/p&gt;
 &lt;p&gt;Another great book to learn Bayesian thinking. It is divided to smaller units than &lt;span class="caps"&gt;BMH&lt;/span&gt;  what makes it easier to digest for readers that are quickly loosing attention when reading scientific stuff. When compared to &lt;span class="caps"&gt;BMH&lt;/span&gt;, it has much more examples. Crashing large number of cases is to me very good approach for training Bayesian intuition and learning&amp;nbsp;methods.&lt;/p&gt;
-&lt;p&gt;Will you give a try to Bayesian methods? If you have proposal of alternative learning path - please share it in the&amp;nbsp;comments.&lt;/p&gt;</content><category term="Howto"></category><category term="machine learning"></category><category term="statistics"></category><category term="probability"></category><category term="howto"></category></entry><entry><title>Kaggle evaluation metrics used for regression problems</title><link href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/" rel="alternate"></link><published>2019-02-16T00:00:00+01:00</published><updated>2019-03-01T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-02-16:/kaggle-evaluation-metrics-used-for-regression-problems/</id><summary type="html">&lt;p&gt;This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely: Absolute Error (&lt;span class="caps"&gt;AE&lt;/span&gt;), Mean Absolute Error (&lt;span class="caps"&gt;MAE&lt;/span&gt;), Weighted Mean Absolute Error (&lt;span class="caps"&gt;WMAE&lt;/span&gt;), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (&lt;span class="caps"&gt;RMSE&lt;/span&gt;), Root Mean Squared Logarithmic Error (&lt;span class="caps"&gt;RMSLE&lt;/span&gt;), Mean Columnwise Root Mean Squared Error (&lt;span class="caps"&gt;MCRMSE&lt;/span&gt;).&lt;/p&gt;</summary><content type="html">&lt;p&gt;While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The &lt;a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics"&gt;sklearn.metrics&lt;/a&gt; provides plethora of metrics for suitable for distinct&amp;nbsp;purposes.&lt;/p&gt;
+&lt;p&gt;Will you give a try to Bayesian methods? If you have proposal of alternative learning path - please share it in the&amp;nbsp;comments.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Howto"></category><category term="machine learning"></category><category term="statistics"></category><category term="probability"></category><category term="howto"></category></entry><entry><title>Kaggle evaluation metrics used for regression problems</title><link href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/" rel="alternate"></link><published>2019-02-16T00:00:00+01:00</published><updated>2019-03-01T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-02-16:/kaggle-evaluation-metrics-used-for-regression-problems/</id><summary type="html">&lt;p&gt;This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely: Absolute Error (&lt;span class="caps"&gt;AE&lt;/span&gt;), Mean Absolute Error (&lt;span class="caps"&gt;MAE&lt;/span&gt;), Weighted Mean Absolute Error (&lt;span class="caps"&gt;WMAE&lt;/span&gt;), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (&lt;span class="caps"&gt;RMSE&lt;/span&gt;), Root Mean Squared Logarithmic Error (&lt;span class="caps"&gt;RMSLE&lt;/span&gt;), Mean Columnwise Root Mean Squared Error (&lt;span class="caps"&gt;MCRMSE&lt;/span&gt;).&lt;/p&gt;</summary><content type="html">&lt;p&gt;While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The &lt;a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics"&gt;sklearn.metrics&lt;/a&gt; provides plethora of metrics for suitable for distinct&amp;nbsp;purposes.&lt;/p&gt;
 &lt;p&gt;In this series of posts I will discuss four groups of common machine learning tasks each requires specific&amp;nbsp;metrics:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;em&gt;Regression&lt;/em&gt; - predict value of one or more variables that are continuous, e.g. predict stock price of given asset or predict temperature for next&amp;nbsp;day.&lt;/li&gt;
@@ -7246,6 +7369,7 @@ $$&lt;/div&gt;
 &lt;li&gt;&lt;a href="https://books.google.pl/books?id=bsEDCwAAQBAJ&amp;amp;pg=PA23&amp;amp;lpg=PA23&amp;amp;dq=%22Mean+Column+Wise+Root+Mean+Squared+Error%22&amp;amp;source=bl&amp;amp;ots=CXTjTNgehR&amp;amp;sig=ACfU3U0Jsn7QkzFecjR-EQC5mtD9p_lBCA&amp;amp;hl=en&amp;amp;sa=X&amp;amp;ved=2ahUKEwjAqYPixa_gAhXF8qYKHeGrDbYQ6AEwBXoECAAQAQ#v=onepage&amp;amp;q=%22Mean%20Column%20Wise%20Root%20Mean%20Squared%20Error%22&amp;amp;f=false"&gt;Mean Columnwise Root Mean Squared Error - google&amp;nbsp;books&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://towardsdatascience.com/metrics-to-understand-regression-models-in-plain-english-part-1-c902b2f4156f"&gt;Metrics to Understand Regression Models in Plain English: Part&amp;nbsp;1&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -7376,7 +7500,9 @@ In order to suppress this you will need to build TensorFlow from sources using a
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;backend&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_BACKEND&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;tensorflow&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="'Howto'"></category><category term="machine learning"></category><category term="tensorflow"></category><category term="howto"></category></entry><entry><title>Darwin Approach to Traveling Salesman</title><link href="https://www.safjan.com/darwin-approach-to-traveling-salesman/" rel="alternate"></link><published>2019-01-12T00:00:00+01:00</published><updated>2021-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-01-12:/darwin-approach-to-traveling-salesman/</id><summary type="html">&lt;p&gt;Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin&amp;#8217;s approach. I&amp;#8217;m describing the evolution model and design decisions. See the animation of how the population was evolving through the&amp;nbsp;epochs.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC autolink="true" autoanchor="true" --&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="'Howto'"></category><category term="machine learning"></category><category term="tensorflow"></category><category term="howto"></category></entry><entry><title>Darwin Approach to Traveling Salesman</title><link href="https://www.safjan.com/darwin-approach-to-traveling-salesman/" rel="alternate"></link><published>2019-01-12T00:00:00+01:00</published><updated>2021-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-01-12:/darwin-approach-to-traveling-salesman/</id><summary type="html">&lt;p&gt;Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin&amp;#8217;s approach. I&amp;#8217;m describing the evolution model and design decisions. See the animation of how the population was evolving through the&amp;nbsp;epochs.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#story-behind-this-post"&gt;Story behind this&amp;nbsp;post&lt;/a&gt;&lt;/li&gt;
@@ -7499,6 +7625,7 @@ When drawing pairs, the organism is assigned to the role of mother or father whi
 &lt;h1&gt;Credits&lt;/h1&gt;
 &lt;p&gt;&lt;a id="cover-image-from-httpscommonswikimediaorgwikifilehigh_school_biology_1-13pdf-by-ck-12-foundation-on-cc-license"&gt;&lt;/a&gt;
 Cover image from https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf by &lt;span class="caps"&gt;CK&lt;/span&gt;-12 Foundation on &lt;span class="caps"&gt;CC&lt;/span&gt;&amp;nbsp;license&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -7629,7 +7756,8 @@ For that we will need to import &lt;code&gt;Path&lt;/code&gt; from &lt;code&gt;p
 &lt;blockquote&gt;
 &lt;p&gt;Cookiecutter takes a source directory tree and copies it into your new project. It replaces all the names that it finds surrounded by templating tags &lt;code&gt;{{&lt;/code&gt; and &lt;code&gt;}}&lt;/code&gt; with names that it finds in the file &lt;code&gt;cookiecutter.json&lt;/code&gt;. That’s basically&amp;nbsp;it.&lt;/p&gt;
 &lt;p&gt;The replaced names can be file names, directory names, and strings inside&amp;nbsp;files.&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="Howto"></category><category term="jupyter"></category><category term="python"></category><category term="notebook"></category><category term="howto"></category><category term="machine learning"></category><category term="best practices"></category><category term="project management"></category></entry><entry><title>What’s cooking</title><link href="https://www.safjan.com/whats-cooking/" rel="alternate"></link><published>2018-04-05T00:00:00+02:00</published><updated>2018-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2018-04-05:/whats-cooking/</id><summary type="html">&lt;p&gt;Exploratory Data Analysis of the Kaggle&amp;#8217;s &amp;#8220;What&amp;#8217;s cooking&amp;#8221; competition dataset to get understanding what kind of data we are dealing with and get intuition of existing&amp;nbsp;dependencies.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Howto"></category><category term="jupyter"></category><category term="python"></category><category term="notebook"></category><category term="howto"></category><category term="machine learning"></category><category term="best practices"></category><category term="project management"></category></entry><entry><title>What’s cooking</title><link href="https://www.safjan.com/whats-cooking/" rel="alternate"></link><published>2018-04-05T00:00:00+02:00</published><updated>2018-02-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2018-04-05:/whats-cooking/</id><summary type="html">&lt;p&gt;Exploratory Data Analysis of the Kaggle&amp;#8217;s &amp;#8220;What&amp;#8217;s cooking&amp;#8221; competition dataset to get understanding what kind of data we are dealing with and get intuition of existing&amp;nbsp;dependencies.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -11033,12 +11161,12 @@ Hash: 8809656fa02eb3d003333a2342b665e657ccfe2cf8d43323ff9f2214c88cb048
 }
 &lt;/script&gt;
 </content><category term="Exploring new ideas"></category><category term="blockchain"></category><category term="cryptocurrency"></category><category term="python"></category><category term="jupyter"></category></entry><entry><title>Top popular Zsh plugins on GitHub</title><link href="https://www.safjan.com/top-popular-zsh-plugins-on-github/" rel="alternate"></link><published>2018-03-22T00:00:00+01:00</published><updated>2018-03-22T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2018-03-22:/top-popular-zsh-plugins-on-github/</id><summary type="html">&lt;p&gt;There is an exhaustive but curated list of Zsh plugins posted on GitHub project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt;. You can find there 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have the highest number of&amp;nbsp;stars.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;:&lt;/strong&gt; This article was written in 2018, for more recent version of the ranking see: &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;. 
-There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-zsh-plugins-on-github/"&gt;2018&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2019/"&gt;2019&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;:&lt;/strong&gt; This article was written in 2018, for a more recent version of the ranking see: &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;. 
+There is a serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-zsh-plugins-on-github/"&gt;2018&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2019/"&gt;2019&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;On Github project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; you can find 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. This post aims at identifying most popular plugins where popularity is measured with the number of stars that GitHub users added to given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on &amp;#8220;Awesome Zsh plugins&amp;#8221;&amp;nbsp;website.&lt;/p&gt;
+&lt;p&gt;On the GitHub project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; you can find 800+ links to plugins, themes, and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from the Zsh users community. This post aims at identifying the most popular plugins where popularity is measured by the number of stars that GitHub users added to the given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on &amp;#8220;Awesome Zsh plugins&amp;#8221;&amp;nbsp;website.&lt;/p&gt;
 &lt;h1&gt;What are Github&amp;nbsp;stars?&lt;/h1&gt;
-&lt;p&gt;Stars is the way how users can &amp;#8216;bookmark&amp;#8217; projects - this can serve as indication for others that project successfully grabbed someone&amp;#8217;s attention. The &lt;code&gt;stargazers&lt;/code&gt; statistics are available via &lt;a href="https://developer.github.com/v4/"&gt;GithubAPI&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Stars is the way how users can &amp;#8216;bookmark&amp;#8217; projects - this can serve as an indication for others that a project successfully grabbed someone&amp;#8217;s attention. The &lt;code&gt;stargazers&lt;/code&gt; statistics are available via &lt;a href="https://developer.github.com/v4/"&gt;GithubAPI&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;Top 20 most popular plugins as of March&amp;nbsp;2018&lt;/h1&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -11096,7 +11224,7 @@ There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/sobolevn/git-secret"&gt;git-secret&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;A bash-tool to store your private data inside a git repository.&lt;/td&gt;
+&lt;td&gt;A bash tool to store your private data inside a git repository.&lt;/td&gt;
 &lt;td&gt;823&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -11116,7 +11244,7 @@ There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;a href="https://github.com/lukechilds/zsh-nvm"&gt;nvm&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Zsh plugin for installing, updating and loading nvm.&lt;/td&gt;
+&lt;td&gt;Zsh plugin for installing, updating, and loading nvm.&lt;/td&gt;
 &lt;td&gt;421&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -11131,7 +11259,7 @@ There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Below you can find short description of 10 most popular&amp;nbsp;plugins&lt;/p&gt;
+&lt;p&gt;Below you can find a short description of the 10 most popular&amp;nbsp;plugins&lt;/p&gt;
 &lt;h2&gt;1. &lt;a href="https://github.com/wting/autojump"&gt;autojump&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;autojump is a faster way to navigate your filesystem. It works by maintaining a database of the directories you use the most from the command line. Directories must be visited first before they can be jumped to. It can be an alternative for &lt;a href="https://github.com/rupa/z"&gt;z&lt;/a&gt; or &lt;a href="https://github.com/clvv/fasd"&gt;fasd&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;2. &lt;a href="https://github.com/zsh-users/zsh-syntax-highlighting"&gt;syntax-highlighting&lt;/a&gt;&lt;/h2&gt;
@@ -11148,17 +11276,17 @@ After: &lt;img alt="Screenshot #3.2" src="https://raw.githubusercontent.com/zsh-
 Example:
 &lt;a href="https://asciinema.org/a/37390" target="_blank"&gt;&lt;img src="https://asciinema.org/a/37390.png" width="400" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;4. &lt;a href="https://github.com/StackExchange/blackbox"&gt;blackbox&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This package allows to safely store secrets in a &lt;span class="caps"&gt;VCS&lt;/span&gt; repo (i.e. Git, Mercurial, Subversion or Perforce). These commands make it easy for you to Gnu Privacy Guard (&lt;span class="caps"&gt;GPG&lt;/span&gt;) encrypt specific files in a repo, so they are &amp;#8220;encrypted at rest&amp;#8221; in your repository. However, the scripts make it easy to decrypt them when you need to view or edit them, and decrypt them for use in production. Originally written for Puppet, BlackBox now works with any Git or Mercurial&amp;nbsp;repository.&lt;/p&gt;
+&lt;p&gt;This package allows to safely store secrets in a &lt;span class="caps"&gt;VCS&lt;/span&gt; repo (i.e. Git, Mercurial, Subversion, or Perforce). These commands make it easy for you to Gnu Privacy Guard (&lt;span class="caps"&gt;GPG&lt;/span&gt;) to encrypt specific files in a repo, so they are &amp;#8220;encrypted at rest&amp;#8221; in your repository. However, the scripts make it easy to decrypt them when you need to view or edit them and decrypt them for use in production. Originally written for Puppet, BlackBox now works with any Git or Mercurial&amp;nbsp;repository.&lt;/p&gt;
 &lt;h2&gt;5. &lt;a href="https://github.com/bobthecow/git-flow-completion"&gt;git-flow-completion&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Bash, Zsh and Fish completion support for &lt;a href="http://github.com/nvie/gitflow"&gt;git-flow&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bash, Zsh, and Fish completion support for &lt;a href="http://github.com/nvie/gitflow"&gt;git-flow&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This package provides support for&amp;nbsp;completing:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;git-flow init and&amp;nbsp;version&lt;/li&gt;
-&lt;li&gt;feature, hotfix and release&amp;nbsp;branches&lt;/li&gt;
-&lt;li&gt;remote feature, hotfix and release branch&amp;nbsp;names&lt;/li&gt;
+&lt;li&gt;feature, hotfix, and release&amp;nbsp;branches&lt;/li&gt;
+&lt;li&gt;remote feature, hotfix, and release branch&amp;nbsp;names&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;6. &lt;a href="https://github.com/zsh-users/zsh-completions"&gt;zsh-completions&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This projects aims at gathering/developing new completion scripts that are not available in Zsh yet.&amp;nbsp;Demo:&lt;/p&gt;
+&lt;p&gt;This project aims at gathering/develop new completion scripts that are not available in Zsh yet.&amp;nbsp;Demo:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="zsh-completions-demo" src="https://raw.githubusercontent.com/supercrabtree/k/gh-pages/inside-work-tree.jpg"&gt;&lt;/p&gt;
 &lt;h2&gt;7. &lt;a href="https://github.com/fcambus/ansiweather"&gt;ansiweather&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;AnsiWeather is a Shell script for displaying the current weather conditions
@@ -11169,10 +11297,11 @@ in your terminal, with support for &lt;span class="caps"&gt;ANSI&lt;/span&gt; co
 &lt;p&gt;k is a Zsh script / plugin to make directory listings more readable, adding a bit of color and some git status information on files and directories.
 &lt;img alt="k" src="https://raw.githubusercontent.com/supercrabtree/k/gh-pages/inside-work-tree.jpg"&gt;&lt;/p&gt;
 &lt;h2&gt;9. &lt;a href="https://github.com/b4b4r07/enhancd"&gt;enhancd&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The new &lt;code&gt;cd&lt;/code&gt; command called &amp;#8220;enhancd&amp;#8221; enhanced the flexibility and usability for a user. enhancd will memorize all directories visited by a user and use it for the pathname resolution. If the log of enhancd have more than one directory path with the same name, enhancd will pass the candidate directories list to the filter within the &lt;code&gt;ENHANCD_FILTER&lt;/code&gt; environment variable in order to narrow it down to one&amp;nbsp;directory.&lt;/p&gt;
-&lt;p&gt;Thanks to this mechanism, the user can intuitively and easily change the directory you want to&amp;nbsp;go.&lt;/p&gt;
+&lt;p&gt;The new &lt;code&gt;cd&lt;/code&gt; command called &amp;#8220;enhancd&amp;#8221; enhanced the flexibility and usability for a user. enhancd will memorize all directories visited by a user and use it for the pathname resolution. If the log of enhancd has more than one directory path with the same name, enhancd will pass the candidate directories list to the filter within the &lt;code&gt;ENHANCD_FILTER&lt;/code&gt; environment variable in order to narrow it down to one&amp;nbsp;directory.&lt;/p&gt;
+&lt;p&gt;Thanks to this mechanism, the users can intuitively and easily change the directory they want to go&amp;nbsp;to.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="enhancd-demo" src="https://raw.githubusercontent.com/b4b4r07/screenshots/master/enhancd/demo.gif"&gt;&lt;/p&gt;
 &lt;h2&gt;10. &lt;a href="https://github.com/sobolevn/git-secret"&gt;git-secret&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;git-secret&lt;/code&gt; is a bash tool to store your private data inside a git repo. It encrypts data, using &lt;code&gt;gpg&lt;/code&gt;, the tracked files with the public keys of all the users that you trust. So every one of them can decrypt these files using only their personal secret key. Usage of private-public make it easier for everyone to manage access rights. There are no passwords that change. When someone is out - just delete their public key, re-encrypt the files, and they won’t be able to decrypt secrets anymore.
+&lt;p&gt;&lt;code&gt;git-secret&lt;/code&gt; is a bash tool to store your private data inside a git repo. It encrypts data, using &lt;code&gt;gpg&lt;/code&gt;, the tracked files with the public keys of all the users that you trust. So every one of them can decrypt these files using only their personal secret key. Usage of private-public makes it easier for everyone to manage access rights. There are no passwords that change. When someone is out - just delete their public key, re-encrypt the files, and they won’t be able to decrypt secrets anymore.
 &lt;a href="https://asciinema.org/a/41811?autoplay=1"&gt;&lt;img alt="git-secret terminal preview" src="https://asciinema.org/a/41811.png"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;On the list[0] there is 300+ projects that are falling into scope of this research, you can get complete dataset by downloading this &lt;span class="caps"&gt;CSV&lt;/span&gt; file: &lt;a href="/downloads/180322_results_sorted.csv"&gt;&lt;span class="caps"&gt;CSV&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;</content><category term="Linux"></category><category term="zsh"></category><category term="scrapping"></category><category term="python"></category><category term="linux"></category></entry></feed>
+&lt;p&gt;On the list[0] there are 300+ projects that are falling into the scope of this research, you can get the complete dataset by downloading this &lt;span class="caps"&gt;CSV&lt;/span&gt; file: &lt;a href="/downloads/180322_results_sorted.csv"&gt;&lt;span class="caps"&gt;CSV&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Linux"></category><category term="zsh"></category><category term="scrapping"></category><category term="python"></category><category term="linux"></category></entry></feed>

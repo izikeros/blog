@@ -43,12 +43,12 @@ if MY_THEME == "flex":
     # SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Ernst ;amp& Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
     SITETITLE = SITENAME  # Used in Flex theme
     # Search for SITESUBTITLE usage in Flex/templates/base.html
-    SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
-                   'Ernst &amp; Young and writing about <a ' \
-                   'href="/category/data-science.html">Data Science and Visualization</a>, ' \
-                   'on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> ' \
-                   'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
-                   '<a href="/category/howto.html">howto</a> posts on tools and workflows.<hr>'
+    # SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
+    #                'Ernst &amp; Young and writing about <a ' \
+    #                'href="/category/data-science.html">Data Science and Visualization</a>, ' \
+    #                'on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> ' \
+    #                'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
+    #                '<a href="/category/howto.html">howto</a> posts on tools and workflows.<hr>'
 
     SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
                    'Ernst &amp; Young and writing about <a ' \
@@ -189,7 +189,7 @@ AUTHOR_SAVE_AS = ""
 
 # authors
 AUTHORS_URL = "authors/"
-AUTHORS_SAVE_AS = "authors/index.html"
+#AUTHORS_SAVE_AS = "authors/index.html"
 AUTHORS_SAVE_AS = ""
 
 # category
@@ -228,7 +228,6 @@ elif MY_THEME == "elegant":
 # Preprocessing - remove empty cells and cells tagged with "remove_cell"
 #  NOTE: Tag cells to remove with "remove_cell" (View -> Cell Toolbar -> Tags)
 from nbconvert.preprocessors import (
-    ExecutePreprocessor,
     RegexRemovePreprocessor,
     TagRemovePreprocessor,
 )
@@ -240,7 +239,6 @@ c.TagRemovePreprocessor.remove_all_outputs_tags = ("remove_output",)
 c.TagRemovePreprocessor.remove_input_tags = ("remove_input",)
 c.TagRemovePreprocessor.enabled = True
 IPYNB_PREPROCESSORS = [
-    # ExecutePreprocessor(timeout=300),               # Limit time in case preprocessor hangs
     RegexRemovePreprocessor(
         patterns=["\s*\Z"]
     ),  # Remove empty cells (or cells with whitespaces only)

@@ -262,3 +262,7 @@ Document segmentation was not in the scope of this article. You can check [aweso
 
 - The image used in the header of this article comes from the paper [DewarpNet: Single-Image Document Unwarping With Stacked 3D and 2D Regression Networks](https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf). *Sagnik Das, Ke Ma, Zhixin Shu, Dimitris Samaras, Roy Shilkrot*; Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), 2019, pp. 131-140
 - All other images in the article come from the project owners or related sources (papers, articles)
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

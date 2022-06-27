@@ -44,3 +44,7 @@ The main paper and references are rather light reading and I found it useful in 
 Another great book to learn Bayesian thinking. It is divided to smaller units than BMH  what makes it easier to digest for readers that are quickly loosing attention when reading scientific stuff. When compared to BMH, it has much more examples. Crashing large number of cases is to me very good approach for training Bayesian intuition and learning methods.
 
 Will you give a try to Bayesian methods? If you have proposal of alternative learning path - please share it in the comments.
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

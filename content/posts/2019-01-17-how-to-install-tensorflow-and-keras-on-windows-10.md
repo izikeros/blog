@@ -85,3 +85,7 @@ Using TensorFlow backend.
 tensorflow
 >>>
 ```
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

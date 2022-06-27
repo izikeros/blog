@@ -1,5 +1,5 @@
 ---
-title: Data Science Command line Tools
+title: Data Science Command-line Tools
 started: 2019-07-04
 date: 2019-08-23
 modified: 2021-02-08 21:28
@@ -10,7 +10,7 @@ status: published
 summary: Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.
 ---
 
-There are plenty of tools designed to ease life of Data Scientist. In this group, the special place has tools that are used from command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient workflows. 
+There are plenty of tools designed to ease the life of a Data Scientist. In this group, the special place has tools that are used from the command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient workflows. 
 
 
 
@@ -19,7 +19,7 @@ There are plenty of tools designed to ease life of Data Scientist. In this group
 
 <a id="textutils-from-gnu-coreutils"></a>
 ## Textutils from GNU Coreutils
-From my experience, I have benefit most from mastering the GNU Coreutils. This is the collection of: shellutils, fileutils and textutils - and in this post I will be discussing the latter one. 
+From my experience, I have benefited most from mastering the GNU Coreutils. This is the collection of shellutils, fileutils, and textutils - and in this post, I will be discussing the latter one. 
 
 *Table 1. Textutils - text processing tools, part of GNU Coreutils*
 
@@ -28,27 +28,27 @@ From my experience, I have benefit most from mastering the GNU Coreutils. This i
 | **cat**                                       | merge, print files to standard output                        |
 | [**comm**](#comm)                             | compare sorted files line by line; can find differences, unique lines for each compared files |
 | **csplit**                                    | divide files into parts using context                        |
-| **cut**                                       | remove sections from each line in file                       |
+| **cut**                                       | remove sections from each line in the file                   |
 | **expand/unexpand**                           | convert tab into spaces / convert spaces to tabs             |
 | **fmt**                                       | simple text formatter                                        |
-| **fold**                                      | fold each input line to fit given line length                |
+| **fold**                                      | fold each input line to fit the given line length            |
 | **[head](#head)/[tail](#tail)/[shuf](#shuf)** | display starting lines of file / display file ending lines/get random lines from file |
 | **join**                                      | join lines from two files on common fields                   |
 | **nl**                                        | line numbering                                               |
 | **paste**                                     | merge lines                                                  |
-| [**sort**](#sort)                             | sort lines of text file                                      |
+| [**sort**](#sort)                             | sort lines of the text file                                  |
 | **[split](split)**                            | divide file into parts                                       |
 | **tac**                                       | merge, print in reverse order lines of files to standard output |
 | **tr**                                        | translate or remove characters                               |
-| **[uniq](#uniq)**                             | remove duplicated lines from file                            |
-| **[wc](#wc)**                                 | display number of characters, words and lines of given file  |
+| **[uniq](#uniq)**                             | remove duplicated lines from the file                        |
+| **[wc](#wc)**                                 | display the number of characters, words, and lines of the given file |
 
 I will give a few examples of commands I use most often or ones that are exceptionally useful.
 
 <a id="comm"></a>
 ### comm
-The `comm` command is very handy when comes to compare lists stored in separate files. For example, you have list of samples used for experiment #1 in one file and list of samples used in experiment #2 in another file.
-The `comm` command takes sorted files as input and calculate unique lines for FILE1 and for FILE2 and the result is represented respectively as `column 1` and `column 2`. Having unique lines in column 1 and 2, set of lines that appear in both files is calculated and result is represented by column 3. 
+The `comm` command is very handy when comes to comparing lists stored in separate files. For example, you have a list of samples used for experiment #1 in one file and a list of samples used in experiment #2 in another file.
+The `comm` command takes sorted files as input and calculates unique lines for FILE1 and for FILE2 and the result is represented respectively as `column 1` and `column 2`. Having unique lines in column 1 and 2, the set of lines that appear in both files is calculated and the result is represented by column 3. 
 
 
 Columns description for `comm`:
@@ -57,7 +57,7 @@ Columns description for `comm`:
 |-|-|-|
 |lines unique to FILE1|lines unique to FILE1|lines that appear in both files|
 
-Having three columns calculated we can now suppress lines that appears in given column in order to get lines that fulfill desired condition.
+Having three columns calculated we can now suppress lines that appear in the given column in order to get lines that fulfill the desired condition.
 
 Meaning of the numbers used as `comm` parameters:
 
@@ -79,19 +79,19 @@ comm -12 file1 file2
 
 <a id="head"></a>
 ### head
-By default, `head` prints  the first 10 lines of each file provided as argument to standard output.  With more than one file, precede each with a header giving the file name. You can control how many lines is displayed with option `-n`:
+By default, `head` prints the first 10 lines of each file provided as an argument to standard output.  With more than one file, precede each with a header giving the file name. You can control how many lines are displayed with option `-n`:
 ```sh
 head -n5 file.txt
 ```
 
-You can also print all but last N lines by adding `-` sign. For example in order to have all lines but last one:
+You can also print all but the last N lines by adding `-` sign. For example in order to have all lines but the last one:
 ```sh
 head -n -1 file.txt
 ```
 
 <a id="shuf"></a>
 ### shuf
-To quickly inspect content of dataset in text file you can use `head` which shows some filest lines of the file. If you would like to have more representative example of the content of the file, you can take random sample of lines from file with `shuf`:
+To quickly inspect the content of the dataset in a text file you can use `head` which shows some first lines of the file. If you would like to have more representative example of the content of the file, you can take random sample of lines from file with `shuf`:
 ```sh
 shuf -n 5 file.txt
 ```
@@ -188,3 +188,7 @@ wc -l *.csv
 ```
 
 For special task - counting lines in very large files one can consider using replacement: [Super-Fast Multi-Threaded Line Counter](https://github.com/crioux/turbo-linecount)
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

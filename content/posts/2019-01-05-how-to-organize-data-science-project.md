@@ -97,3 +97,7 @@ To bootstrap the software projects from a template one can use cookiecutter. You
 > Cookiecutter takes a source directory tree and copies it into your new project. It replaces all the names that it finds surrounded by templating tags `{{` and `}}` with names that it finds in the file `cookiecutter.json`. That’s basically it.
 >
 > The replaced names can be file names, directory names, and strings inside files.
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

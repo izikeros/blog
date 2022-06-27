@@ -179,3 +179,7 @@ I found Copilot great for using python for automation tasks - many simple functi
 **Credits:**
 
 warp speed image comes from [here](https://videohive.net/item/warp-speed-effect-v10/47100)
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

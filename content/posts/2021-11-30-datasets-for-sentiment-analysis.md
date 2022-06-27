@@ -26,3 +26,6 @@ Pang et al. (2002)
 Speriosu et al. (2011)
 Hartmann et al. (2019)
 
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

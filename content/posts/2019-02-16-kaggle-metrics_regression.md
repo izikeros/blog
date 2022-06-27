@@ -272,3 +272,7 @@ Exemplary competition using Mean Columnwise Root Mean Squared Error for model ev
 3. [How to Use Correlation to Understand the Relationship Between Variables](https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/)
 4. [Mean Columnwise Root Mean Squared Error - google books](https://books.google.pl/books?id=bsEDCwAAQBAJ&pg=PA23&lpg=PA23&dq=%22Mean+Column+Wise+Root+Mean+Squared+Error%22&source=bl&ots=CXTjTNgehR&sig=ACfU3U0Jsn7QkzFecjR-EQC5mtD9p_lBCA&hl=en&sa=X&ved=2ahUKEwjAqYPixa_gAhXF8qYKHeGrDbYQ6AEwBXoECAAQAQ#v=onepage&q=%22Mean%20Column%20Wise%20Root%20Mean%20Squared%20Error%22&f=false)
 5. [Metrics to Understand Regression Models in Plain English: Part 1](https://towardsdatascience.com/metrics-to-understand-regression-models-in-plain-english-part-1-c902b2f4156f)
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

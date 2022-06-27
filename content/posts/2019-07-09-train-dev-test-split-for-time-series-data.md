@@ -73,3 +73,7 @@ https://medium.com/@soumyachess1496/cross-validation-in-time-series-566ae4981ce4
 https://medium.com/eatpredlove/time-series-cross-validation-a-walk-forward-approach-in-python-8534dd1db51a
 
 https://medium.com/@samuel.monnier/cross-validation-tools-for-time-series-ffa1a5a09bf9
+
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
