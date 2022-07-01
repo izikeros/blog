@@ -3,7 +3,6 @@ title: Zsh loop over files and run command
 date: 2022-04-22
 status: published
 tags: zsh, loop
-summary: 
 slug: zsh-loop-over-files-and-run-command
 category: note
 citation_needed: false

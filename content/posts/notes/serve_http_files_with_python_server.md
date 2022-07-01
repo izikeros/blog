@@ -3,7 +3,6 @@ title: Serve http files with python server
 date: 2022-04-27
 status: published
 tags: python, htttp, server, javascript
-summary: 
 slug: serve-http-files-with-python-server
 category: note
 citation_needed: false

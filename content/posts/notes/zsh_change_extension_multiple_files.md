@@ -3,7 +3,6 @@ title: Change extension for multiple files in Zsh
 date: 2022-04-22
 status: published
 tags: zsh, shell, zmv
-summary: 
 slug: change-extension-for-multiple-files-in-zsh
 category: note
 citation_needed: false

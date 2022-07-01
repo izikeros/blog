@@ -3,7 +3,6 @@ title: Time tracking apps
 date: 2021-10-20
 status: published
 tags: time tracking, time management, billing, tracing, monitoring time, monitoring productivity, monitoring, productivity
-summary: 
 slug: time-tracking-apps
 category: note
 citation_needed: false

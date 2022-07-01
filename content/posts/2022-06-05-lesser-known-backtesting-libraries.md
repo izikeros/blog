@@ -2,32 +2,57 @@
 title: Lesser Known Backtesting Libraries
 date: 2022-06-05
 status: Published
-tags: document intelligence, document processing, computer vision, digital image processing, canny edge detector, hough transform, deep learning
-summary: Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article "Summary and recommendations".
+tags: trading, backtesting, crypto, algorythmic-trading, algotrading, quant
+summary: This article presents set of lesser-known but interesing libraries that can be used for backtesting trading strategies and trading algortithms in general.
 slug: lesser-known-backtesting-libraries
 category: Data Science
 citation_needed: false
-todo: Add credits to all images, copy images instead of hot linking 
-Image: /images/head/dewarp_deskew.jpg
+Image: /backtesting.jpg
 ---
+
+- [[#Bt|Bt]]
+- [[#Blueshift|Blueshift]]
+- [[#AutoTrader|AutoTrader]]
+- [[#Certis|Certis]]
+- [[#DeepCrypto|DeepCrypto]]
+- [[#TradingGym|TradingGym]]
+- [[#vartests|vartests]]
+- [[#backtesting-for-cryptocurrency-trading|backtesting-for-cryptocurrency-trading]]
+- [[#Trade Engine|Trade Engine]]
+- [[#Epymetheus|Epymetheus]]
+- [[#TradzQAI|TradzQAI]]
+- [[#Stock Analysis Engine|Stock Analysis Engine]]
+- [[#BTGym|BTGym]]
+- [[#BakTst_Org|BakTst_Org]]
+- [[#Credits|Credits]]
+
+
+
+
 ## Bt
+[Bt](https://github.com/pmorissette/bt) framework allows you to easily create strategies that mix and match different [`Algos`](https://pmorissette.github.io/bt/bt.html#bt.core.Algo "bt.core.Algo"). It aims to foster the creation of easily testable, re-usable and flexible blocks of strategy logic to facilitate the rapid development of complex trading strategies.
+
+> The goal: to save **quants** from re-inventing the wheel and let them focus on the important part of the job - strategy development.
+
 https://github.com/pmorissette/bt
 
+To recognize potential of this tool look at the [quick example](https://pmorissette.github.io/bt/#a-quick-example) provided by authors
+
+
 ## Blueshift
-To some extend free but not open source
+[Blueshift](https://blueshift.quantinsti.com/docs/) is to some extend free but not open source
 https://blueshift.quantinsti.com/docs/
 
 ## AutoTrader
 A Python-based development platform for automated trading systems - from backtesting to optimisation to livetrading.
 AutoTrader AutoTrader is Python-based platform intended to help in the development, optimisation and deployment of automated trading systems.
 
-## Certis !!!
-Certis - Certis, A High-Quality Backtesting Engine
-https://github.com/Yeachan-Heo/Certis
+## Certis
+[Certis](https://github.com/Yeachan-Heo/Certis) "A High-Quality Backtesting Engine". If you want to learn about architecture of backtesing software you can definitely peek into [Certis repository](https://github.com/Yeachan-Heo/Certis) or my fork with changes intended to better maintain the code [here](https://github.com/izikeros/Certis)
+
 
 ## DeepCrypto
-Rapid Backtesting via Numba Simple & Vectorized trading strategy maker bulitin live trading features
-https://github.com/Yeachan-Heo/DeepCrypto
+[DeepCrypto](https://github.com/Yeachan-Heo/DeepCrypto) Rapid Backtesting via Numba Simple & Vectorized trading strategy maker bulitin live trading features.
 
 ## TradingGym
 TradingGym is a toolkit for training and backtesting the reinforcement learning algorithms. This was inspired by OpenAI Gym and imitated the framework form. Not only traning env but also has backtesting and in the future will implement realtime trading env with Interactivate Broker API and so on.
@@ -35,13 +60,12 @@ This training env originally design for tickdata, but also support for ohlc data
 https://github.com/Yvictor/TradingGym
 
 
-
 ## vartests
- is a Python library to perform some statistical tests to evaluate Value at Risk (VaR) Models, such as:
+ is a Python library to perform some statistical tests to evaluate Value at Risk (VaR) Models.
 https://github.com/rafa-rod/vartests
 
 ## backtesting-for-cryptocurrency-trading
-You can use this simple crypto backtesting script to ensure your trading strategy is successful Minimal setup required and works well with static TP and SL strategies. Trailing Stop Loss could imporove profitability if added.
+You can use this simple crypto backtesting script to ensure your trading strategy is successful. Minimal setup required and works well with static TP and SL strategies. Trailing Stop Loss could imporove profitability if added.
 
 For a detailed guide on how to set this up go to the main guide You can use this to determine how profitable your Binance Volatility bot is
 https://github.com/CyberPunkMetalHead/backtesting-for-cryptocurrency-trading
@@ -50,7 +74,7 @@ https://github.com/CyberPunkMetalHead/backtesting-for-cryptocurrency-trading
 a library for demo trading | backtest and forward test simulation for python >= 3.8
 https://github.com/xibalbas/trade-engine
 
-## Epymetheus !!!
+## Epymetheus
 is a multi-asset backtesting framework. It features an intuitive user API that lets analysts try out their trade strategies right away.
 https://github.com/epymetheus/epymetheus
 
@@ -72,3 +96,6 @@ https://github.com/xiaoyao153379/BakTst_Org
 
 
 faizancodes / Stock-Portfolio-Backtester
+
+## Credits
+Heading photo from [unsplash](https://unsplash.com/photos/InWI1lteYfU) authored by [regularguy.eth](https://unsplash.com/@moneyphotos)
