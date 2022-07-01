@@ -3,12 +3,12 @@ title: Most Popular Python Backtesting Libraries
 date: 2022-02-11
 status: Published
 tags: document intelligence, document processing, computer vision, digital image processing, canny edge detector, hough transform, deep learning
-summary: Popular Backtesting
+summary: Popular backtesting libraries with stars as populatity indicator.
 slug: popular-backtesting-libraries
-category: Data Science
+category: Algorithmic Trading
 citation_needed: false
 todo: Add credits to all images, copy images instead of hot linking 
-Image: /images/head/dewarp_deskew.jpg
+Image: /images/head/backtesting.jpg
 ---
 
 TODO: Add logarithmic scale git activity graph for all the projects

@@ -5,9 +5,9 @@ status: Published
 tags: trading, backtesting, crypto, algorythmic-trading, algotrading, quant
 summary: This article presents set of lesser-known but interesing libraries that can be used for backtesting trading strategies and trading algortithms in general.
 slug: lesser-known-backtesting-libraries
-category: Data Science
+category: Algorithmic Trading
 citation_needed: false
-Image: /backtesting.jpg
+Image: /images/head/backtesting.jpg
 ---
 
 - [[#Bt|Bt]]

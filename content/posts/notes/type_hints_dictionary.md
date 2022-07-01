@@ -2,10 +2,7 @@
 title: Use python TypedDict to type hint dictionaries
 date: 2022-04-22
 status: published
-tags: 
-- python
-- type-hints
-- TypedDict
+tags: python, type-hints, TypedDict
 slug: use-python-typeddict-to-type-hint-dictionaries
 category: note
 citation_needed: false
