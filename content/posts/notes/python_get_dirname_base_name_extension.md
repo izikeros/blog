@@ -6,7 +6,7 @@ status: published
 tags: base name, dirname, file extension, path, python
 title: Python - get file and path parts (dirname, base name, extension)
 ---
-To split full file name (e.g. `/root/dir/sub/file.ext`) with path into various parts you can use python build-in functions from the `os` module.
+To split the full file name (e.g. `/root/dir/sub/file.ext`) with a path into various parts you can use python built-in functions from the `os` module.
 You can retrieve:
 - base name - just file name with extension (in our example: `file.ext`)
 - file path (in our example: `/root/dir/sub/`)

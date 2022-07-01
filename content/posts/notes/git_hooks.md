@@ -3,12 +3,12 @@ title: Git hooks
 date: 2021-10-20
 status: published
 tags: git, hooks, pre-commit hooks, software project, project
-summary: Example how to set up git hooks manually or with pre-commit tool
+summary: Example of how to set up git hooks manually or with pre-commit tool
 slug: git-hooks
 category: note
 citation_needed: false
 ---
-Git hook makes easier to keep order in the software project:
+Git hook makes it easier to keep order in the software project:
 - can help following agreed conventions related with e.g.
 	+ code format, code quality
 	+ workflow
@@ -44,10 +44,10 @@ python ./.githooks/isort_hooks.py
 ```
 
 # Alternatives
-There is tool [pre-commit](https://pre-commit.com/) that ease installation and configuration of git hooks. Read my note on that: [Pre-commit hooks](./pre-commit-hooks/)
+There is a tool [pre-commit](https://pre-commit.com/) that eases the installation and configuration of git hooks. Read my note on that: [Pre-commit hooks](./pre-commit-hooks/)
 
 References:
-- [Git Hooks](https://githooks.com/) - user friendly description, tons of examples, reference links
+- [Git Hooks](https://githooks.com/) - user-friendly description, tons of examples, reference links
 - [Git Book on hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) - 
 
 # Sharing git hooks with the team

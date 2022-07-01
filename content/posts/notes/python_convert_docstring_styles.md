@@ -37,8 +37,8 @@ pyment -w -o google myfile.py
 
 Input/output docstring style parameters: "javadoc", "reST", "numpydoc", "google" (default is "reST"). The input can be also `auto` for style auto-detection.
 
-You might want to limit operation to only conversion by using option `-t, --convert`. With this option existing docstrings will be converted but Pyment won't create missing ones.
+You might want to limit operation to only conversion by using option `-t, --convert`. With this option, existing docstrings will be converted but Pyment won't create missing ones.
 
 
 # References:
-[Reference documentation](https://github.com/dadadel/pyment/blob/master/doc/sphinx/source/pyment.rst)2021-10-18
+[Reference documentation](https://github.com/dadadel/pyment/blob/master/doc/sphinx/source/pyment.rst)

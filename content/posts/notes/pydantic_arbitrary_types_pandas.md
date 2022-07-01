@@ -10,13 +10,9 @@ citation_needed: false
 todo: 
 ---
 
-<!-- MarkdownTOC levels='2,3' autolink=True -->
+```toc
+```
 
-- [Solution 1 - allow arbitrary types](#solution-1---allow-arbitrary-types)
-- [Solution 2 - create a pythonic type hint for a pd.Dataframe](#solution-2---create-a-pythonic-type-hint-for-a-pddataframe)
-- [See also](#see-also)
-
-<!-- /MarkdownTOC -->
 
 
 ## Solution 1 - allow arbitrary types

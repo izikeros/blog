@@ -3,14 +3,14 @@ title: Add logo to notebook header cell
 date: 2021-10-12
 status: published
 tags: jupyter, howto, notebook, jupyter-notebook, project, visual-identification, logo
-summary: Instruction hot to add logo to notebook header cell to strenghten visual-identification of the project
+summary: Instruction hot to add a logo to notebook header cell to strengthen visual-identification of the project
 slug: add-logo-to-notebook-header
 category: note
 citation_needed: true
-todo: add screenshot with example
+todo: add a screenshot with an example
 ---
 
-In the top of first markdown cell (e.g. with notebook description) add html code:
+At the top of the first markdown cell (e.g. with notebook description) add HTML code:
 
 ```html
 <div class="row">

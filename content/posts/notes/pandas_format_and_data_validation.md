@@ -10,22 +10,10 @@ citation_needed: false
 todo: 
 ---
 # Contents
-<!-- MarkdownTOC levels='1,2,3' autolink=True -->
+```toc
+```
 
-- [Pandera \(515 stars\) - column validation \(columns, types\), DataFrame Schema](#pandera-515-stars---column-validation-columns-types-dataframe-schema)
-- [Dataenforce \(59 stars\) - columns presence validation](#dataenforce-59-stars---columns-presence-validation)
-  - [for type hinting \(column names check, dtype check\)](#for-type-hinting-column-names-check-dtype-check)
-  - [to enforce validation at runtime](#to-enforce-validation-at-runtime)
-- [Great expectations - data validation](#great-expectations---data-validation)
-  - [automated expectations from profiling](#automated-expectations-from-profiling)
-- [pandas_schema \(135 stars\)](#pandas_schema-135-stars)
-- [Other Data Validation Libraries](#other-data-validation-libraries)
-  - [Generic Python object data validation](#generic-python-object-data-validation)
-  - [pandas-specific data validation](#pandas-specific-data-validation)
-
-<!-- /MarkdownTOC -->
-
-Two things I found most usefull and use most is Pandera and Dataenforce.
+Two things I found most useful and use most are Pandera and Dataenforce.
 
 ## Pandera (515 stars) - column validation (columns, types), DataFrame Schema
 ```python

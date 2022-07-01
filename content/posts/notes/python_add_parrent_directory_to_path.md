@@ -9,7 +9,7 @@ category: note
 citation_needed: false
 todo: 
 ---
-Adding parent path with the modules to import is sometimes useful in jupyter notebooks.
+Adding a parent path with the modules to import is sometimes useful in Jupiter notebooks.
 
 ```python
 # Add parent directory to path

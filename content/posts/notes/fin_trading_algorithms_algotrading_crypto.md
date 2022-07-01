@@ -11,17 +11,9 @@ todo:
 ---
 This note contains collection of trading algorithms or links to algos
 
-<!-- MarkdownTOC levels='2,3' autolink=True -->
+```toc
+```
 
-- [Momentum](#momentum)
-- [Mean-Reversion](#mean-reversion)
-- [Dynamic Hedging](#dynamic-hedging)
-- [Volume-Weighted Average Price \(VWAP\)](#volume-weighted-average-price-vwap)
-- [Time weighted Average Price \(TWAP\)](#time-weighted-average-price-twap)
-- [Algorithm libraries](#algorithm-libraries)
-- [Other links](#other-links)
-
-<!-- /MarkdownTOC -->
 
 ## Momentum
 **Prices are up and we think they’ll continue to go up = Buy** (or vice versa).
@@ -69,7 +61,8 @@ Time-weighted average price strategy breaks up a large order and releases dynami
 
 - [quantconnect strategy-library](https://www.quantconnect.com/tutorials/strategy-library/strategy-library)
 
-> NOTE: These notes are bits collected from the internet. Proper attribution is needed.
+> **NOTE:** 
+> These notes are bits collected from the internet. Proper attribution is needed.
 
 ## Other links
 

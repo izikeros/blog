@@ -37,7 +37,7 @@ Image: /images/head/backtesting.jpg
 https://github.com/pmorissette/bt
 
 To recognize potential of this tool look at the [quick example](https://pmorissette.github.io/bt/#a-quick-example) provided by authors
-
+The one of the interesting things that this library offers is tree structure of strategies - support for creative combinig strategies.
 
 ## Blueshift
 [Blueshift](https://blueshift.quantinsti.com/docs/) is to some extend free but not open source

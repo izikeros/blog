@@ -9,7 +9,7 @@ citation_needed: false
 todo: 
 ---
 
-Define types for the fields in dictionary using TypedDict as base class to inherit from and then use this class in hints.
+Define types for the fields in a dictionary using TypedDict as a base class to inherit from and then use this class in hints.
 
 ```python
 from typing import TypedDict

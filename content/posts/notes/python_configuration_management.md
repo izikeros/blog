@@ -9,7 +9,15 @@ category: note
 citation_needed: true
 todo: 
 ---
+<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
+- [hydra-core package](#hydra-core-package)
+- [decouple package](#decouple-package)
+- [omegaconf](#omegaconf)
+
+<!-- /MarkdownTOC -->
+
+<a id="hydra-core-package"></a>
 ## hydra-core package
 [Hydra](https://hydra.cc/) is a Python library that allows you to access parameters from a configuration file inside a Python script.
 
@@ -53,6 +61,7 @@ if __name__ == '__main__':
 From: https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800
 
 
+<a id="decouple-package"></a>
 ## decouple package
 > Python Decouple: Strict separation of settings from code
 
@@ -81,5 +90,6 @@ Decouple provides a solution that doesn’t look like a workaround: `config('DEB
 
 From: package description on pypi
 
+<a id="omegaconf"></a>
 ## omegaconf
 OmegaConf is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.

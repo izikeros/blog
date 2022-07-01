@@ -21,7 +21,7 @@ See: [Pyment](), [Python convert docstring styles](./python-convert-docstring-st
 Currently, pure Markdown (with [extensions](https://python-markdown.github.io/extensions/#officially-supported-extensions), [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html), and [Google-style](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings) docstrings formats are supported, along with some reST directives.
 
 ## pycharm
-supports following styles for docstings:
+supports the following styles for docstrings:
 
 - plain (handwritten, no template or format enforcement)
 - [epytext](http://folk.uio.no/inf3330/scripting/doc/python/epydoc/epytext.html)

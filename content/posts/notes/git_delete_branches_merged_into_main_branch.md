@@ -9,16 +9,12 @@ tags: branch, delete, git, merged
 title: Git - delete branches that are merged into main branch
 ---
 
-<!-- MarkdownTOC levels='2,3' autolink=True -->
+```toc
+```
 
-- [First - fetch and prune](#first---fetch-and-prune)
-	- [How Do I Clean Outdated Branches?](#how-do-i-clean-outdated-branches)
-	- [Does Git Remote Prune Origin Delete the Local Branch?](#does-git-remote-prune-origin-delete-the-local-branch)
-- [Second - delete merged local branches](#second---delete-merged-local-branches)
 
-<!-- /MarkdownTOC -->
 
-When actively developing feature branches that are later merged into develop branch you might end-up with bunch of local branches that are not relevant anymore, does not have their remote counterparts and it would be good to remove them locally.
+When actively developing feature branches that are later merged into develop branch you might end up with a bunch of local branches that are not relevant anymore, and do not have their remote counterparts and it would be good to remove them locally.
 
 ## First - fetch and prune
 ```sh
@@ -37,7 +33,7 @@ git fetch --all && git remote prune
 No `git remote prune origin` will only delete the refs to remote branches that no longer exist. Git stores both local and remote refs. A repository will have `local/origin` and `remote/origin` ref collections. `git remote prune origin` will only prune the refs in `remote/origin`. This safely leaves local work in `local/origin.`
 To remove local branches you need to use `git branch -d` or replace `-d` with `-D`.
 
-**Credits:** Prune explanation comes from execellent article on [Git Prune](https://www.atlassian.com/git/tutorials/git-prune)
+**Credits:** Prune explanation comes from an excellent article on [Git Prune](https://www.atlassian.com/git/tutorials/git-prune)
 
 ## Second - delete merged local branches
 ```sh
