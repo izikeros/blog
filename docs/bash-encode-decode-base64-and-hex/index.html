@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/styles/custom.css">
+
+    <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's Blog Atom">
+
+    <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="Tools xxd - make a hexdump or do the reverse. base64 - base64 encode/decode data and print to standard output Encode hex echo &#34;hello&#34; | xxd -p 68656c6c6f0a Decode hex echo &#34;68656c6c6f0a&#34; | xxd -r -p Encode base64 echo &#34;hello&#34; | base64 aGVsbG8K Decode base64 echo …" />
+<meta name="keywords" content="base64, bash, decode, encode, hex">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Bash encode decode base64 and hex"/>
+  <meta property="og:description" content="Tools xxd - make a hexdump or do the reverse. base64 - base64 encode/decode data and print to standard output Encode hex echo &#34;hello&#34; | xxd -p 68656c6c6f0a Decode hex echo &#34;68656c6c6f0a&#34; | xxd -r -p Encode base64 echo &#34;hello&#34; | base64 aGVsbG8K Decode base64 echo …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/bash-encode-decode-base64-and-hex/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-05-20 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="base64"/>
+  <meta property="article:tag" content="bash"/>
+  <meta property="article:tag" content="decode"/>
+  <meta property="article:tag" content="encode"/>
+  <meta property="article:tag" content="hex"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+  <title>Krystian Safjan's Blog &ndash; Bash encode decode base64 and hex</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://www.safjan.com/">
+        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+      </a>
+
+      <h1>
+        <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+      </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://www.safjan.com/">Home</a>
+
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+      <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <p>
+      <!-- Posted on: -->
+      May 20, 2022 
+
+
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Bash%20encode%20decode%20base64%20and%C2%A0hex&url=https%3A//www.safjan.com/bash-encode-decode-base64-and-hex/&hashtags=base64,bash,decode,encode,hex" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/bash-encode-decode-base64-and-hex/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Bash%20encode%20decode%20base64%20and%C2%A0hex&u=https%3A//www.safjan.com/bash-encode-decode-base64-and-hex/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/bash-encode-decode-base64-and-hex/&title=Bash%20encode%20decode%20base64%20and%C2%A0hex" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+    <br/>
+   </p>
+  <h1 id="bash-encode-decode-base64-and-hex">Bash encode decode base64 and&nbsp;hex</h1>
+  <div class="header-underline"></div>
+  </header>
+
+
+  <div>
+    <h2>Tools</h2>
+<p><code>xxd</code> - make a hexdump or do the reverse.
+<code>base64</code> - base64 encode/decode data and print to standard&nbsp;output</p>
+<h2>Encode&nbsp;hex</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;hello&quot;</span> <span class="p">|</span> xxd -p
+68656c6c6f0a
+</code></pre></div>
+
+<h2>Decode&nbsp;hex</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;68656c6c6f0a&quot;</span> <span class="p">|</span> xxd -r -p
+</code></pre></div>
+
+<h2>Encode&nbsp;base64</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;hello&quot;</span> <span class="p">|</span> base64
+aGVsbG8K
+</code></pre></div>
+
+<h2>Decode&nbsp;base64</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;aGVsbG8K&quot;</span> <span class="p">|</span> base64 --decode
+</code></pre></div>
+
+<h2>Encode/decode <span class="caps">ROT13</span></h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;Hello&quot;</span> <span class="p">|</span> tr <span class="s1">&#39;[A-Za-z]&#39;</span> <span class="s1">&#39;[N-ZA-Mn-za-m]&#39;</span>
+</code></pre></div>
+
+<h2>Caesar cipher&nbsp;encoding</h2>
+<p>(from: https://gist.github.com/IQAndreas/030b8e91a8d9a407caa6)
+The Caesar Cipher shifts plaintext three letters to the left to create&nbsp;ciphertext.</p>
+<p>In this case, <code>tr '[A-Z]' '[X-ZA-W]'</code>, tr translates all occurrences of &#8216;A&#8217; to &#8216;X&#8217;, &#8216;B&#8217; to &#8216;Y&#8217;, &#8216;C&#8217; to &#8216;Z&#8217;, &#8216;D&#8217; to &#8216;A&#8217;,&nbsp;etc.</p>
+<p><code>[X-ZA-W]</code> just means that your output starts with the letter X and continues through the letter Z, then continues with the letter A through the letter W. You could also use <code>[XYZABCDEFGHIJKLMNOPQRSTUVW]</code> instead but tr understands the hyphen &#8216;-&#8216; to mean&nbsp;&#8216;through&#8217;.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&quot;</span> <span class="p">|</span> tr <span class="s1">&#39;[A-Z]&#39;</span> <span class="s1">&#39;[X-ZA-W]&#39;</span>
+QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
+</code></pre></div>
+
+<h2>Caesar cipher&nbsp;decoding</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD&quot;</span> <span class="p">|</span> tr <span class="s1">&#39;[X-ZA-W]&#39;</span> <span class="s1">&#39;[A-Z]&#39;</span>
+THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+</code></pre></div>
+  </div>
+
+
+  <div class="tag-cloud">
+    <p>
+      <br/><br/>Tags:&nbsp;
+      <a href="https://www.safjan.com/tag/base64/">base64</a>
+      <a href="https://www.safjan.com/tag/bash/">bash</a>
+      <a href="https://www.safjan.com/tag/decode/">decode</a>
+      <a href="https://www.safjan.com/tag/encode/">encode</a>
+      <a href="https://www.safjan.com/tag/hex/">hex</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/auto-documented-makefile/" title="Auto documented makefile">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/bash-determine-if-linux-or-macos/" title="Bash - determine if Linux or macOS">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://www.safjan.com/bash-determine-if-linux-or-macos/">Bash - determine if Linux or&nbsp;macOS</a></li>
+      <li><a href="https://www.safjan.com/bash-base-name-without-extension/">Bash base name (without&nbsp;extension)</a></li>
+      <li><a href="https://www.safjan.com/bash-coloring/">Bash&nbsp;coloring</a></li>
+      <li><a href="https://www.safjan.com/bash-continue-yes-no/">Bash continue: yes or&nbsp;no</a></li>
+      <li><a href="https://www.safjan.com/bash-default-argument/">Bash default&nbsp;argument</a></li>
+    </ul>
+  </div>
+
+
+</article>
+
+    <footer>
+<p>
+  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
