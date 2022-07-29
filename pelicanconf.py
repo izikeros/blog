@@ -110,12 +110,13 @@ MENUITEMS = (
 HOME_HIDE_TAGS = (
     True  # Shall the tags be hidden when displaying list of articles on home page?
 )
-DEFAULT_PAGINATION = 20
+DEFAULT_PAGINATION = 200
 SUMMARY_MAX_LENGTH = 42
 DISPLAY_PAGES_ON_MENU = False  # Display in sidebar links to articles located in 'pages'
 DEFAULT_DATE_FORMAT = (
     "%B %d, %Y"  # '%B %d, %Y' -> December 29, 2021, '%Y-%m-%d' -> 2021-12-29
 )
+
 
 # Article heading
 SHOW_ARTICLE_AUTHOR = False
@@ -199,7 +200,6 @@ CATEGORY_SAVE_AS = "category/{slug}.html"
 # tag
 TAG_URL = "tag/{slug}/"
 TAG_SAVE_AS = "tag/{slug}/index.html"
-
 
 DEFAULT_METADATA = {
     "status": "draft",

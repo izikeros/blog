@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} &ndash; {{ _('Things I Learned') }}{% endblock %}
+
+{% block content %}
+    <article class="single">
+        <header>
+            <h1 id="til">{{ _('Things I Learned') }}</h1>
+        </header>
+        <div>
+            <small>
+                This is set of my notes taken when I learned something.
+                Inspired by many "Today I Learned" or "Things I Learned" pages.
+            </small>
+        </div>
+
+        <div>
+            <dl>
+                {% for article in dates %}
+                    {% if article.category == 'note' %}
+                        <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                        </dd>
+                    {% endif %}
+                {% endfor %}
+            </dl>
+        </div>
+    </article>
+{% endblock %}
