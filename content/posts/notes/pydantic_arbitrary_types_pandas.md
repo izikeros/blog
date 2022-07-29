@@ -4,17 +4,22 @@ date: 2022-04-21
 status: published
 tags: pydantic, pandas, type hints
 summary: 
-slug: allow-arbitrary-types-pandasa-in-pydantic
+slug: allow-arbitrary-types-pandas-in-pydantic
 category: note
 citation_needed: false
 todo: 
 ---
 
-```toc
-```
+<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
+- [Solution 1 - allow arbitrary types](#solution-1---allow-arbitrary-types)
+- [Solution 2 - create a pythonic type hint for a pd.Dataframe](#solution-2---create-a-pythonic-type-hint-for-a-pddataframe)
+- [See also](#see-also)
+
+<!-- /MarkdownTOC -->
 
 
-
+<a id="solution-1---allow-arbitrary-types"></a>
 ## Solution 1 - allow arbitrary types
 ```python
 import pandas as pd
@@ -29,6 +34,7 @@ class SubModelInput(BaseModel):
         arbitrary_types_allowed = True
 ```
 
+<a id="solution-2---create-a-pythonic-type-hint-for-a-pddataframe"></a>
 ## Solution 2 - create a pythonic type hint for a pd.Dataframe
 ```python
 import pandas as pd
@@ -44,6 +50,7 @@ class SubModelInput(BaseModel):
     b: PandasDataFrame
 ```
 
+<a id="see-also"></a>
 ## See also
 [Pandas DataFrame Validation with Pydantic](
 https://www.inwt-statistics.com/read-blog/pandas-dataframe-validation-with-pydantic.html)

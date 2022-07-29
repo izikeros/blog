@@ -3,18 +3,27 @@ title: Trading algorithms and trading strategies
 date: 2022-06-27
 status: published
 tags: algotrading, crypto, algorithms, trading, strategies
-summary: This note contains collection of trading algorithms or links to algos
+summary: This note contains a collection of trading algorithms or links to algorithms
 slug: trading-algorithms
 category: note
 citation_needed: true
 todo: 
 ---
-This note contains collection of trading algorithms or links to algos
+This note contains a collection of trading algorithms or links to algorithms
 
-```toc
-```
+<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
+- [Momentum](#momentum)
+- [Mean-Reversion](#mean-reversion)
+- [Dynamic Hedging](#dynamic-hedging)
+- [Volume-Weighted Average Price \(VWAP\)](#volume-weighted-average-price-vwap)
+- [Algorithm libraries](#algorithm-libraries)
+- [Other links](#other-links)
+
+<!-- /MarkdownTOC -->
 
 
+<a id="momentum"></a>
 ## Momentum
 **Prices are up and we think they’ll continue to go up = Buy** (or vice versa).
 Statistically, most momentum strategies don’t win particularly often but when they do win their gains are fairly large. Win:lose rates of around 55% with gain:loss of around 70% are fairly common with profitable algo’s.
@@ -25,15 +34,17 @@ The simplest TSM we can implement would require us to purchase the stock if it w
 
 - https://www.kdnuggets.com/2020/01/get-started-algorithmic-finance.html)
 - Article with Description and code: https://www.oreilly.com/content/algorithmic-trading-in-less-than-100-lines-of-python-code/
-- Moskowitz, Tobias, Yao Hua Ooi, and Lasse Heje Pedersen (2012): “Time Series Momentum.” Journal of Financial Economics, Vol. 104, 228-250.
+- Moskowitz, Tobias, Yao Hua Ooi, and Lasse Heje Pedersen (2012): “Time Series Momentum.” Journal of Financial Economics, Vol. 104, 228-250. 
 - See repo: [trading-with-momentum](https://github.com/izikeros/trading-with-momentum)
 
+<a id="mean-reversion"></a>
 ## Mean-Reversion
 This is based on the idea that high and low prices of an asset will revert back to its mean (average) value. Once its price is below the mean, it is seen as an opportunity to buy the asset in hopes of the price going above its average. The average value of an asset constantly changes, so it requires constant monitoring.
 
 ***Prices are up but we think they’re due a pull-back = Sell*** (or vice versa).
  Conversely, most mean reversion strategies win more often than they lose however the gain to loss ratio is smaller. Win:lose rates of around 70% with gain:loss of around 55% are also pretty common with profitable algo’s.
 
+<a id="dynamic-hedging"></a>
 ## Dynamic Hedging
 from: https://www.kdnuggets.com/2020/01/get-started-algorithmic-finance.html
 
@@ -45,18 +56,20 @@ The fund fundamentally rebalances 10 assets, which can be seen as 10 data source
 
 ![img](https://i.ibb.co/jVbgPDL/Screenshot-2019-12-22-at-4-12-41-PM.png)
 
-In the above, *a**i* represents a weight, and *Xi* represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least risk.
+In the above, *a**i* represents weight, and *Xi* represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least risk.
 > Read more on [FTSE Russell Capping Methodology](https://research.ftserussell.com/products/downloads/Capping_Methodology_Guide.pdf)
 
 
+<a id="volume-weighted-average-price-vwap"></a>
 ## Volume-Weighted Average Price (VWAP)
 
 This strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using stock specific historical volume profiles. The aim is to execute the order close to the VWAP, thereby benefiting on the average price.
 
-## Time weighted Average Price (TWAP)
+Time-weighted Average Price (TWAP)
 
-Time-weighted average price strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using evenly divided time slots between a start and end time. The aim is to execute the order close to the average price between the start and end times, thereby minimizing market impact.
+The time-weighted average price strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using evenly divided time slots between a start and end time. The aim is to execute the order close to the average price between the start and end times, thereby minimizing market impact.
 
+<a id="algorithm-libraries"></a>
 ## Algorithm libraries
 
 - [quantconnect strategy-library](https://www.quantconnect.com/tutorials/strategy-library/strategy-library)
@@ -64,6 +77,7 @@ Time-weighted average price strategy breaks up a large order and releases dynami
 > **NOTE:** 
 > These notes are bits collected from the internet. Proper attribution is needed.
 
+<a id="other-links"></a>
 ## Other links
 
 - [Algo-Trading-Strats](https://github.com/faizancodes/Algo-Trading-Strats) - Application of various algorithmic strategies to produce max alpha

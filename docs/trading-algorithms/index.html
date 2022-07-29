@@ -44,13 +44,13 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="This note contains collection of trading algorithms or links to algos" />
+<meta name="description" content="This note contains a collection of trading algorithms or links to algorithms" />
 <meta name="keywords" content="algotrading, crypto, algorithms, trading, strategies">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Trading algorithms and trading strategies"/>
-  <meta property="og:description" content="This note contains collection of trading algorithms or links to algos"/>
+  <meta property="og:description" content="This note contains a collection of trading algorithms or links to algorithms"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/trading-algorithms/"/>
   <meta property="og:type" content="article"/>
@@ -162,10 +162,20 @@
 
 
   <div>
-    <p>This note contains collection of trading algorithms or links to&nbsp;algos</p>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
+    <p>This note contains a collection of trading algorithms or links to&nbsp;algorithms</p>
+<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
+<ul>
+<li><a href="#momentum">Momentum</a></li>
+<li><a href="#mean-reversion">Mean-Reversion</a></li>
+<li><a href="#dynamic-hedging">Dynamic&nbsp;Hedging</a></li>
+<li><a href="#volume-weighted-average-price-vwap">Volume-Weighted Average Price (<span class="caps">VWAP</span>)</a></li>
+<li><a href="#algorithm-libraries">Algorithm&nbsp;libraries</a></li>
+<li><a href="#other-links">Other&nbsp;links</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="momentum"></a></p>
 <h2>Momentum</h2>
 <p><strong>Prices are up and we think they’ll continue to go up = Buy</strong> (or vice versa).
 Statistically, most momentum strategies don’t win particularly often but when they do win their gains are fairly large. Win:lose rates of around 55% with gain:loss of around 70% are fairly common with profitable&nbsp;algo’s.</p>
@@ -174,27 +184,31 @@ Statistically, most momentum strategies don’t win particularly often but when 
 <ul>
 <li>https://www.kdnuggets.com/2020/01/get-started-algorithmic-finance.html)</li>
 <li>Article with Description and code:&nbsp;https://www.oreilly.com/content/algorithmic-trading-in-less-than-100-lines-of-python-code/</li>
-<li>Moskowitz, Tobias, Yao Hua Ooi, and Lasse Heje Pedersen (2012): “Time Series Momentum.” Journal of Financial Economics, Vol. 104,&nbsp;228-250.</li>
+<li>Moskowitz, Tobias, Yao Hua Ooi, and Lasse Heje Pedersen (2012): “Time Series Momentum.” Journal of Financial Economics, Vol. 104,&nbsp;228-250. </li>
 <li>See repo: <a href="https://github.com/izikeros/trading-with-momentum">trading-with-momentum</a></li>
 </ul>
+<p><a id="mean-reversion"></a></p>
 <h2>Mean-Reversion</h2>
 <p>This is based on the idea that high and low prices of an asset will revert back to its mean (average) value. Once its price is below the mean, it is seen as an opportunity to buy the asset in hopes of the price going above its average. The average value of an asset constantly changes, so it requires constant&nbsp;monitoring.</p>
 <p><strong><em>Prices are up but we think they’re due a pull-back = Sell</em></strong> (or vice versa).
  Conversely, most mean reversion strategies win more often than they lose however the gain to loss ratio is smaller. Win:lose rates of around 70% with gain:loss of around 55% are also pretty common with profitable&nbsp;algo’s.</p>
+<p><a id="dynamic-hedging"></a></p>
 <h2>Dynamic&nbsp;Hedging</h2>
 <p>from:&nbsp;https://www.kdnuggets.com/2020/01/get-started-algorithmic-finance.html</p>
 <p>One investment fund that makes some of its strategies public is Invictus Capital’s <a href="https://invictuscapital.com/en/crypto10hedged"><span class="caps">CRYPTO10</span> Hedged fund</a>, through their <a href="https://cdn.invictuscapital.com/whitepapers/c10-litepaper.pdf">litepaper</a>. In a one-line summary, the fund offers a “dynamic asset allocation strategy that dampens volatility and provides protection against&nbsp;losses.”</p>
 <p>The fund fundamentally rebalances 10 assets, which can be seen as 10 data sources, in a manner analogous to the <span class="caps">FTSE</span> Russell Capping Methodology, discussed in depth <a href="https://research.ftserussell.com/products/downloads/Capping_Methodology_Guide.pdf">here</a>, which looks like&nbsp;this:</p>
 <p><img alt="img" src="https://i.ibb.co/TtjTwRm/Screenshot-2019-12-22-at-4-03-45-PM.png">Parameters of their base strategy include a rebalancing period and the number of constituent assets. So, we have insights into the data sources used, the algorithmic strategy, and the parameters. The paper even goes into the basics of the fitness function&nbsp;used:</p>
 <p><img alt="img" src="https://i.ibb.co/jVbgPDL/Screenshot-2019-12-22-at-4-12-41-PM.png"></p>
-<p>In the above, <em>a</em><em>i</em> represents a weight, and <em>Xi</em> represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least&nbsp;risk.</p>
+<p>In the above, <em>a</em><em>i</em> represents weight, and <em>Xi</em> represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least&nbsp;risk.</p>
 <blockquote>
 <p>Read more on <a href="https://research.ftserussell.com/products/downloads/Capping_Methodology_Guide.pdf"><span class="caps">FTSE</span> Russell Capping&nbsp;Methodology</a></p>
 </blockquote>
+<p><a id="volume-weighted-average-price-vwap"></a></p>
 <h2>Volume-Weighted Average Price (<span class="caps">VWAP</span>)</h2>
 <p>This strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using stock specific historical volume profiles. The aim is to execute the order close to the <span class="caps">VWAP</span>, thereby benefiting on the average&nbsp;price.</p>
-<h2>Time weighted Average Price (<span class="caps">TWAP</span>)</h2>
-<p>Time-weighted average price strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using evenly divided time slots between a start and end time. The aim is to execute the order close to the average price between the start and end times, thereby minimizing market&nbsp;impact.</p>
+<p>Time-weighted Average Price (<span class="caps">TWAP</span>)</p>
+<p>The time-weighted average price strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using evenly divided time slots between a start and end time. The aim is to execute the order close to the average price between the start and end times, thereby minimizing market&nbsp;impact.</p>
+<p><a id="algorithm-libraries"></a></p>
 <h2>Algorithm&nbsp;libraries</h2>
 <ul>
 <li><a href="https://www.quantconnect.com/tutorials/strategy-library/strategy-library">quantconnect&nbsp;strategy-library</a></li>
@@ -203,6 +217,7 @@ Statistically, most momentum strategies don’t win particularly often but when 
 <p><strong><span class="caps">NOTE</span>:</strong> 
 These notes are bits collected from the internet. Proper attribution is&nbsp;needed.</p>
 </blockquote>
+<p><a id="other-links"></a></p>
 <h2>Other&nbsp;links</h2>
 <ul>
 <li><a href="https://github.com/faizancodes/Algo-Trading-Strats">Algo-Trading-Strats</a> - Application of various algorithmic strategies to produce max&nbsp;alpha</li>
@@ -237,6 +252,7 @@ These notes are bits collected from the internet. Proper attribution is&nbsp;nee
     <h4>You might enjoy</h4>
     <ul class="related-posts">
       <li><a href="https://www.safjan.com/lesser-known-backtesting-libraries/">Lesser Known Backtesting&nbsp;Libraries</a></li>
+      <li><a href="https://www.safjan.com/popular-backtesting-libraries/">Most Popular Python Backtesting&nbsp;Libraries</a></li>
     </ul>
   </div>
 

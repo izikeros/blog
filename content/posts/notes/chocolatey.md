@@ -8,11 +8,11 @@ title: Chocolatey
 ---
 
 > **NOTE:** 
-> there is already official tool from Microsoft for downloading and upgrading software as packages: [[winget]]
+> there is already an official tool from Microsoft for downloading and upgrading software as packages: [[winget]]
 
 ## install
 ### Step 1 — Opening and Configuring PowerShell
-Open powershell as admin
+Open Powershell as admin
 ```sh
 cd ~
 echo "type: RemoteSigned"
@@ -84,6 +84,4 @@ choco install pycharm-community virtualbox vlc sandboxie winamp vscode meld part
 ```
 
 ## other things to install
-(searchmyfiles)
-
-Album art downloader XUI, windirstat
+searchmyfiles, Album art downloader XUI, windirstat

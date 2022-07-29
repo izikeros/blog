@@ -3,7 +3,7 @@ category: note
 date: '2022-05-12'
 status: published
 slug: check-text-file-encoding
-tags: encoding, file, text
+tags: encoding, file, text, Linux
 title: Check text file encoding
 ---
 

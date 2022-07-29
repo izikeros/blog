@@ -7,9 +7,6 @@ tags: branch, delete, git
 title: How to delete a Git branch locally and remotely?
 ---
 
-
-
-
 delete branch locally
 ```sh
 git branch -d localBranchName
@@ -24,5 +21,3 @@ git push origin --delete remoteBranchName
 see also: 
 [[git_delete_branches_merged_into_main_branch]]
 
-
-[edit](subl://open/?url=file:///Users/krystian.safjan/vimwiki/tech/git_delete_branch.md)

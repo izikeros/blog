@@ -2,7 +2,7 @@
 title: Git autocommit on file changes
 date: 2021-09-14
 status: published
-tags: git, autocommit, note-taking, notes, automatic
+tags: git, autocommit, note-taking, notes, automatic, automation
 summary: How to create automatically commits if any file in watched folder was changed
 slug: git-autocommit-on-file-changes
 category: note
@@ -32,7 +32,7 @@ My choice was **gitwatch** used as systemd service.
 <!-- /MarkdownTOC -->
 
 <a id="gitwatch--github-%E2%98%851k-active"></a>
-# [gitwatch](https://github.com/gitwatch/gitwatch) # github: ★1k, active
+# [gitwatch](https://github.com/gitwatch/gitwatch) ![GitHub stars](https://img.shields.io/github/stars/gitwatch/gitwatch.svg?logo=github), active
 A bash script to watch a file or folder and commit changes to a git repo
 
 Justification for my choice:
@@ -70,7 +70,7 @@ On macOS you need to act differently
 - note: if there is a proper gitwatch script path (I needed to change `gitwatch.sh` to `gitwatch`)
 
 <a id="gwatch-github-%E2%98%8522-low-activity"></a>
-# [gwatch](https://github.com/jw0k/gwatch) github: ★22, low activity
+# [gwatch](https://github.com/jw0k/gwatch) ![GitHub stars](https://img.shields.io/github/stars/jw0k/gwatch.svg?logo=github) low activity
 A program that watches a folder for file modifications and commits them to a git repository automatically
 
 After gwatch is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (the 30s by default). After the timer expires, gwatch will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for gwatch to successfully create commits, a git repository must be initialized in the watched folder.

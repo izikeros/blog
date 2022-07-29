@@ -44,6 +44,5 @@ Example results:
 ```
 
 **Reference:**
-
-- Stack overflow - [How to get the filename without the extension from a path in Python?](https://stackoverflow.com/questions/678236)
+- Stackoverflow - [How to get the filename without the extension from a path in Python?](https://stackoverflow.com/questions/678236)
 

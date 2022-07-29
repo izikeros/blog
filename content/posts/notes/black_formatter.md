@@ -2,7 +2,7 @@
 title: Black code formatter
 date: 2021-11-29
 status: published
-tags: black, python, pyqa
+tags: black, python, pyqa, quality
 summary: notes on using black formatter
 slug: black-code-formatter
 category: note

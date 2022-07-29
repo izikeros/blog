@@ -3,7 +3,7 @@ category: note
 date: '2022-05-12'
 status: published
 slug: change-character-encoding
-tags: change, convert, text, character, encoding, iconv, utf-8
+tags: change, convert, text, character, encoding, iconv, utf-8, Linux
 title: Change the character encoding
 ---
 

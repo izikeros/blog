@@ -2,16 +2,16 @@
 title: Most Popular Python Backtesting Libraries
 date: 2022-02-11
 status: Published
-tags: document intelligence, document processing, computer vision, digital image processing, canny edge detector, hough transform, deep learning
-summary: Popular backtesting libraries with stars as populatity indicator.
+tags: backtesting, crypto, algotrading, finance, popularity
+summary: Popular backtesting libraries with stars as popularity indicators.
 slug: popular-backtesting-libraries
 category: note
 citation_needed: false
-todo: Add credits to all images, copy images instead of hot linking 
+todo: Add credits to all images, copy images instead of hotlinking 
 Image: /images/head/backtesting.jpg
 ---
 
-TODO: Add logarithmic scale git activity graph for all the projects
+#TODO: Add a logarithmic scale git activity graph for all the projects
 
 ## backtrader - 8.8k stars
 
