@@ -1,5 +1,5 @@
 ---
-title: Black code formatter
+title: Black - the code formatter
 date: 2021-11-29
 status: published
 tags: black, python, pyqa, quality

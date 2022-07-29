@@ -4,7 +4,7 @@ date: '2022-05-20'
 status: published
 slug: bash-encode-decode-base64-and-hex
 tags: base64, bash, decode, encode, hex
-title: Bash encode decode base64 and hex
+title: Bash - encode, decode base64 and hex
 ---
 
 ## Tools

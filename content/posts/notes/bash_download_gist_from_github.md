@@ -4,7 +4,7 @@ date: '2022-05-12'
 status: published
 slug: bash-download-gist-from-github
 tags: bash, download, gist, github
-title: Bash download gist from Github
+title: Bash - download gist from Github
 ---
 
 ## Download, output content to stdout

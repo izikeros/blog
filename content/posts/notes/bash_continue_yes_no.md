@@ -4,7 +4,7 @@ date: '2022-05-12'
 status: published
 slug: bash-continue-yes-no
 tags: bash, bash-continue-yes-no, continue
-title: Bash continue: yes or no
+title: Bash - continue: yes or no
 ---
 
 ```sh

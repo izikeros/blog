@@ -1,5 +1,5 @@
 ---
-title: Alow arbitrary types (such as Pandas Dataframe) in Pydantic
+title: Allow arbitrary types (such as Pandas Dataframe) in Pydantic
 date: 2022-04-21
 status: published
 tags: pydantic, pandas, type hints
@@ -56,4 +56,5 @@ class SubModelInput(BaseModel):
 https://www.inwt-statistics.com/read-blog/pandas-dataframe-validation-with-pydantic.html)
 
 
-Hints from: [stackoverflow](https://stackoverflow.com/questions/65412984/using-pandas-data-frame-as-a-type-in-pydantic)
+Hints from: [python - Using Pandas Data Frame as a Type in Pydantic - Stack Overflow](https://stackoverflow.com/questions/65412984/using-pandas-data-frame-as-a-type-in-pydantic)
+

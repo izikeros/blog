@@ -4,7 +4,7 @@ status: published
 suggested_tags: commit, github, hook, pre, sh, yaml, git
 summary: Pre-commit is a convenient framework to manage git hooks. Uses configuration in yaml file, handle the installation of required hooks and tools.
 tags: best-practices, commit, git, GitHub, hooks, management, project
-title: Git pre-commit hooks
+title: Pre-commit hooks
 slug: git-pre-commit-hooks
 category: note
 ---
@@ -37,7 +37,7 @@ repos:
 ## Install hooks
 run `pre-commit install` to set up the git hook scripts. Now pre-commit will run automatically on git commit
 
-## Run against all files before commit (optional)
+## Run against all files before committing (optional)
 It's usually a good idea to run the hooks against all the files when adding new hooks (usually pre-commit will only run on the changed files during git hooks)
 ```sh
 pre-commit run --all-files
@@ -50,7 +50,7 @@ pre-commit autoupdate
 
 see also: https://github.com/sds/overcommit
 
-## Examplary set of hooks
+Exemplary set of hooks
 ```yaml
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
@@ -98,7 +98,7 @@ repos:
 ```
 
 ## Selection of hooks for organizing imports
-Perhaps most used import organizer is [isort](https://github.com/PyCQA/isort) (4.5k stars).
+Perhaps the most used import organizer is [isort](https://github.com/PyCQA/isort) (4.5k stars).
 The others are:
 - [reorder_python_imports](https://github.com/asottile/reorder_python_imports) (423 stars)
 - [zimports](https://github.com/sqlalchemyorg/zimports) (64 stars)
@@ -129,7 +129,7 @@ The others are:
 ```
 
 ## Excluding
-If you don't want some directorie to be subject of pre-commit exclude them as in the example:
+If you don't want some directories to be subject to pre-commit exclude them as in the example:
 ```yaml
 -   repo: https://github.com/pycqa/flake8
     rev: '4.0.1'  

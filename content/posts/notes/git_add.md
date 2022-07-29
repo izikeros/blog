@@ -1,5 +1,5 @@
 ---
-title: Git add
+title: Git add - stage changes in various ways
 date: 2021-10-12
 status: published
 tags: git

@@ -4,7 +4,7 @@ date: '2022-05-12'
 status: published
 slug: bash-coloring
 tags: bash, coloring, cli, tui
-title: Bash coloring
+title: Bash - coloring output
 ---
 
 # Bash coloring

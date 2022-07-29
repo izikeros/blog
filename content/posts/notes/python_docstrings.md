@@ -6,7 +6,7 @@ status: published
 suggested_tags: docstring, python, style
 summary: Most popular conventions used in python docstrings and format support in various tools.
 tags: docstrings, python, style
-title: Python docstrings styles
+title: Python - docstrings styles
 ---
 
 # Docstring examples in various styles

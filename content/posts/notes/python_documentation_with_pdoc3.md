@@ -6,7 +6,7 @@ status: published
 suggested_tags: documentation, pdoc3, python
 summary: summary
 tags: documentation, pdoc3, python, documentation-generator, sphinx
-title: Python project documentation from the code with pdoc3
+title: Python - project documentation from the code with pdoc3
 ---
 Despite Sphinx seems to be the most common tool for generating documentation pdoc3 is an interesting option.
 

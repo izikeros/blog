@@ -4,7 +4,7 @@ date: '2022-05-12'
 status: published
 slug: bash-default-argument
 tags: default-argument, bash
-title: Bash default argument
+title: Bash - default argument for the script
 ---
 
 See the example of `somecommand.sh`:

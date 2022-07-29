@@ -44,13 +44,13 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="When actively developing feature branches that are later merged into develop branch you might end up with a bunch of local branches that are not relevant anymore, and do not have their remote counterparts and it would be good to remove them …" />
+<meta name="description" content="First - fetch and prune How Do I Clean Outdated Branches? Does Git Remote Prune Origin Delete the Local Branch? Second - delete merged local branches When actively developing feature branches that are later merged into develop branch you might end up with a …" />
 <meta name="keywords" content="branch, delete, git, merged">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
-  <meta property="og:title" content="Git - delete branches that are merged into main branch"/>
-  <meta property="og:description" content="When actively developing feature branches that are later merged into develop branch you might end up with a bunch of local branches that are not relevant anymore, and do not have their remote counterparts and it would be good to remove them …"/>
+  <meta property="og:title" content="Git - delete branches that are merged into the main branch"/>
+  <meta property="og:description" content="First - fetch and prune How Do I Clean Outdated Branches? Does Git Remote Prune Origin Delete the Local Branch? Second - delete merged local branches When actively developing feature branches that are later merged into develop branch you might end up with a …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/git-delete-branches-merged-into-main-branch/"/>
   <meta property="og:type" content="article"/>
@@ -64,7 +64,7 @@
   <meta property="article:tag" content="merged"/>
   <meta property="og:image" content="/images/profile_new.jpg">
 
-  <title>Krystian Safjan's Blog &ndash; Git - delete branches that are merged into main branch</title>
+  <title>Krystian Safjan's Blog &ndash; Git - delete branches that are merged into the main branch</title>
 
 
 <!-- Google Automatic Ads -->
@@ -145,26 +145,36 @@
 
   <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Git%20-%20delete%20branches%20that%20are%20merged%20into%20main%C2%A0branch&url=https%3A//www.safjan.com/git-delete-branches-merged-into-main-branch/&hashtags=branch,delete,git,merged" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Git%20-%20delete%20branches%20that%20are%20merged%20into%20the%20main%C2%A0branch&url=https%3A//www.safjan.com/git-delete-branches-merged-into-main-branch/&hashtags=branch,delete,git,merged" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-delete-branches-merged-into-main-branch/" target="_blank" title="Share on Facebook">Facebook</a>
     |
-    <a href="https://news.ycombinator.com/submitlink?t=Git%20-%20delete%20branches%20that%20are%20merged%20into%20main%C2%A0branch&u=https%3A//www.safjan.com/git-delete-branches-merged-into-main-branch/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    <a href="https://news.ycombinator.com/submitlink?t=Git%20-%20delete%20branches%20that%20are%20merged%20into%20the%20main%C2%A0branch&u=https%3A//www.safjan.com/git-delete-branches-merged-into-main-branch/" target="_blank" title="Share on HackerNews">HackerNews</a>
     |
-    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-delete-branches-merged-into-main-branch/&title=Git%20-%20delete%20branches%20that%20are%20merged%20into%20main%C2%A0branch" target="_blank" title="Share via Reddit">Reddit</a>
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-delete-branches-merged-into-main-branch/&title=Git%20-%20delete%20branches%20that%20are%20merged%20into%20the%20main%C2%A0branch" target="_blank" title="Share via Reddit">Reddit</a>
   </span>
     <br/>
    </p>
-  <h1 id="git-delete-branches-merged-into-main-branch">Git - delete branches that are merged into main&nbsp;branch</h1>
+  <h1 id="git-delete-branches-merged-into-main-branch">Git - delete branches that are merged into the main&nbsp;branch</h1>
   <div class="header-underline"></div>
   </header>
 
 
   <div>
-    <div class="highlight"><pre><span></span><code>
-</code></pre></div>
+    <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
+<ul>
+<li><a href="#first---fetch-and-prune">First - fetch and prune</a><ul>
+<li><a href="#how-do-i-clean-outdated-branches">How Do I Clean Outdated&nbsp;Branches?</a></li>
+<li><a href="#does-git-remote-prune-origin-delete-the-local-branch">Does Git Remote Prune Origin Delete the Local&nbsp;Branch?</a></li>
+</ul>
+</li>
+<li><a href="#second---delete-merged-local-branches">Second - delete merged local&nbsp;branches</a></li>
+</ul>
+<!-- /MarkdownTOC -->
 
 <p>When actively developing feature branches that are later merged into develop branch you might end up with a bunch of local branches that are not relevant anymore, and do not have their remote counterparts and it would be good to remove them&nbsp;locally.</p>
+<p><a id="first---fetch-and-prune"></a></p>
 <h2>First - fetch and&nbsp;prune</h2>
 <div class="highlight"><pre><span></span><code>$ git fetch -p
 </code></pre></div>
@@ -176,12 +186,15 @@
 <blockquote>
 <p><span class="caps">NOTE</span>: The generic <code>git prune</code> command is entirely different. it will delete locally detached&nbsp;commits.</p>
 </blockquote>
+<p><a id="how-do-i-clean-outdated-branches"></a></p>
 <h3>How Do I Clean Outdated&nbsp;Branches?</h3>
 <p><code>git fetch --prune</code> is the best utility for cleaning outdated branches. It will connect to a shared remote repository remote and fetch all remote branch refs. It will then delete remote refs that are no longer in use on the remote&nbsp;repository.</p>
+<p><a id="does-git-remote-prune-origin-delete-the-local-branch"></a></p>
 <h3>Does Git Remote Prune Origin Delete the Local&nbsp;Branch?</h3>
 <p>No <code>git remote prune origin</code> will only delete the refs to remote branches that no longer exist. Git stores both local and remote refs. A repository will have <code>local/origin</code> and <code>remote/origin</code> ref collections. <code>git remote prune origin</code> will only prune the refs in <code>remote/origin</code>. This safely leaves local work in <code>local/origin.</code>
 To remove local branches you need to use <code>git branch -d</code> or replace <code>-d</code> with <code>-D</code>.</p>
 <p><strong>Credits:</strong> Prune explanation comes from an excellent article on <a href="https://www.atlassian.com/git/tutorials/git-prune">Git&nbsp;Prune</a></p>
+<p><a id="second---delete-merged-local-branches"></a></p>
 <h2>Second - delete merged local&nbsp;branches</h2>
 <div class="highlight"><pre><span></span><code>$ git branch --merged origin/develop <span class="p">|</span> grep -v develop <span class="p">|</span> xargs git branch -d
 </code></pre></div>
@@ -204,7 +217,7 @@ To remove local branches you need to use <code>git branch -d</code> or replace <
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://www.safjan.com/black-code-formatter/" title="Black code formatter">
+    <a class="btn float-left" href="https://www.safjan.com/black-code-formatter/" title="Black - the code formatter">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
     <a class="btn float-right" href="https://www.safjan.com/how-to-get-most-of-github-copilot/" title="How to get most of GitHub Copilot">
@@ -217,9 +230,9 @@ To remove local branches you need to use <code>git branch -d</code> or replace <
     <ul class="related-posts">
       <li><a href="https://www.safjan.com/git-delete-branch/">How to delete a Git branch locally and&nbsp;remotely?</a></li>
       <li><a href="https://www.safjan.com/git-hooks/">Git&nbsp;hooks</a></li>
-      <li><a href="https://www.safjan.com/git-add/">Git&nbsp;add</a></li>
-      <li><a href="https://www.safjan.com/git-pre-commit-hooks/">Git pre-commit&nbsp;hooks</a></li>
-      <li><a href="https://www.safjan.com/git-autocommit-on-file-changes/">Git autocommit on file&nbsp;changes</a></li>
+      <li><a href="https://www.safjan.com/git-add/">Git add - stage changes in various&nbsp;ways</a></li>
+      <li><a href="https://www.safjan.com/git-pre-commit-hooks/">Pre-commit&nbsp;hooks</a></li>
+      <li><a href="https://www.safjan.com/git-autocommit-on-file-changes/">Git - autocommit on file&nbsp;changes</a></li>
     </ul>
   </div>
 

@@ -4,7 +4,7 @@ date: '2022-05-12'
 status: published
 slug: chocolatey
 tags: chocolatey, windows, packages, winget
-title: Chocolatey
+title: Chocolatey (Windows)
 ---
 
 > **NOTE:** 

@@ -2,7 +2,7 @@
 title: Trading algorithms and trading strategies
 date: 2022-06-27
 status: published
-tags: algotrading, crypto, algorithms, trading, strategies
+tags: algotrading, crypto, algorithms, trading, strategies, finance 
 summary: This note contains a collection of trading algorithms or links to algorithms
 slug: trading-algorithms
 category: note

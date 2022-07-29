@@ -6,7 +6,7 @@ status: published
 suggested_tags: convert, docstring, python, style
 summary: Description of tools for converting docstring style in python code
 tags: convert, docstring, python, style
-title: Python convert docstring styles
+title: Python - convert docstring styles
 ---
 
 When refactoring the project one might want to change docstring style e.g. from numpy-style to google-style. At this point tool like Pyment comes in handy.

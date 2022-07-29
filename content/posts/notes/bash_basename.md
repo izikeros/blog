@@ -4,7 +4,7 @@ date: '2022-05-12'
 status: published
 slug: bash-base-name-without-extension
 tags: base, basename, bash, extension, name
-title: Bash base name (without extension)
+title: Bash - file base name (without extension)
 ---
 
 ## file base name (without extension)
