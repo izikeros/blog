@@ -3,7 +3,7 @@ category: note
 date: '2022-05-12'
 status: published
 slug: bash-base-name-without-extension
-tags: base, basename, bash, extension, name
+tags: base, basename, bash, extension, name, bash/basename
 title: Bash - file base name (without extension)
 ---
 

@@ -5,7 +5,7 @@ date: '2022-06-03'
 modified: '2022-07-05'
 status: published
 slug: append-json-data-to-file-save-traces
-tags: append, data, json, trace, jsonlines, python
+tags: append-json, data, json, trace, jsonlines, python
 ---
 
 ## The JSON Lines standard

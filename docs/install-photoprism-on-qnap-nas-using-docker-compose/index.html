@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/styles/custom.css">
+
+    <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's Blog Atom">
+
+    <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="Instruction on how to install Photoprism on QNAP NAS using Docker Compose" />
+<meta name="keywords" content="nas, photoprism, linux, photo-gallery, docker, docker-compose, qnap">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Install Photoprism on QNAP NAS using Docker Compose"/>
+  <meta property="og:description" content="Instruction on how to install Photoprism on QNAP NAS using Docker Compose"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-08-08 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="nas"/>
+  <meta property="article:tag" content="photoprism"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="photo-gallery"/>
+  <meta property="article:tag" content="docker"/>
+  <meta property="article:tag" content="docker-compose"/>
+  <meta property="article:tag" content="qnap"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+  <title>Krystian Safjan's Blog &ndash; Install Photoprism on QNAP NAS using Docker Compose</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://www.safjan.com/">
+        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+      </a>
+
+      <h1>
+        <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+      </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://www.safjan.com/">Home</a>
+
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+      <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <p>
+      <!-- Posted on: -->
+      August 08, 2022 
+
+
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Install%20Photoprism%20on%20QNAP%20NAS%20using%20Docker%C2%A0Compose&url=https%3A//www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/&hashtags=nas,photoprism,linux,photo-gallery,docker,docker-compose,qnap" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Install%20Photoprism%20on%20QNAP%20NAS%20using%20Docker%C2%A0Compose&u=https%3A//www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/&title=Install%20Photoprism%20on%20QNAP%20NAS%20using%20Docker%C2%A0Compose" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+    <br/>
+   </p>
+  <h1 id="install-photoprism-on-qnap-nas-using-docker-compose">Install Photoprism on <span class="caps">QNAP</span> <span class="caps">NAS</span> using Docker&nbsp;Compose</h1>
+  <div class="header-underline"></div>
+  </header>
+
+
+  <div>
+    <h1>Install Photoprism on <span class="caps">QNAP</span> <span class="caps">NAS</span> using Docker&nbsp;Compose</h1>
+<p>Photoprism is a modern a searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on <span class="caps">QNAP</span> <span class="caps">NAS</span>. This article is meant to fill that&nbsp;gap.</p>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<h2>What is the&nbsp;photoprism</h2>
+<p>from the photoprism&nbsp;website:</p>
+<blockquote>
+<p>PhotoPrism® is an <span class="caps">AI</span>-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. You can run it at home, on a private server, or in the&nbsp;cloud.</p>
+</blockquote>
+<p><img alt="Screenshot" src="https://docs.photoprism.app/img/preview.jpg"></p>
+<h3>Feature&nbsp;Overview</h3>
+<blockquote>
+<ul>
+<li>Browse <a href="https://docs.photoprism.app/user-guide/organize/browse/">all your photos</a> and <a href="https://try.photoprism.app/videos">videos</a> without worrying about <a href="https://docs.photoprism.app/user-guide/settings/library/"><span class="caps">RAW</span> conversion, duplicates or video&nbsp;formats</a></li>
+<li>Easily find specific pictures using <a href="https://try.photoprism.app/browse?view=cards&amp;q=flower%20color%3Ared">powerful search&nbsp;filters</a></li>
+<li>Recognizes <a href="https://try.photoprism.app/people">the faces of your family and&nbsp;friends</a></li>
+<li><a href="https://try.photoprism.app/labels">Automatic classification</a> of pictures based on their content and&nbsp;location</li>
+<li><a href="https://try.photoprism.app/browse?view=cards&amp;q=type%3Alive">Play Live Photos</a> by hovering over them in <a href="https://try.photoprism.app/albums">albums</a> and search&nbsp;results</li>
+<li>Since the <a href="https://try.photoprism.app/">User Interface</a> is a  <a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps">Progressive Web App</a>, it provides a native app-like experience, and you can conveniently install it on the home screen of all major operating systems and mobile&nbsp;devices</li>
+<li>Includes 4 high-resolution <a href="https://try.photoprism.app/places">World Maps</a> to bring back the memories of your favorite&nbsp;trips</li>
+<li>Metadata is extracted and merged from Exif, <span class="caps">XMP</span>, and other sources such as Google&nbsp;Photos</li>
+<li>Many more image properties like <a href="https://try.photoprism.app/browse?view=cards&amp;q=color:red">Colors</a>, <a href="https://try.photoprism.app/browse?view=cards&amp;q=mono%3Atrue">Chroma</a>, and <a href="https://try.photoprism.app/review">Quality</a> can be searched as&nbsp;well</li>
+<li>Use  <a href="https://link.photoprism.app/photosync">PhotoSync</a> to securely backup iOS and Android phones in the&nbsp;background</li>
+<li>WebDAV clients such as Microsoft&#8217;s Windows Explorer and Apple&#8217;s Finder <a href="https://docs.photoprism.app/user-guide/sync/webdav/">can connect directly</a> to PhotoPrism, allowing you to open, edit, and delete files from your computer as if they were&nbsp;local</li>
+</ul>
+<p><strong><span class="caps">NOTE</span>:</strong> I haven&#8217;t found functionality to add other accounts than administrator. But in my case having only single user is perfectly&nbsp;fine. </p>
+</blockquote>
+<h2>Installation on <span class="caps">QNAP</span> <span class="caps">NAS</span> from the <span class="caps">CLI</span></h2>
+<h3>Prerequisites</h3>
+<p>This instruction assumes that you are familiar with using command line interface (<span class="caps">CLI</span>).</p>
+<ul>
+<li>ensure you have installed Container Station which is providing Docker on <span class="caps">QNAP</span> <span class="caps">NAS</span></li>
+<li>ensure that you have docker in the&nbsp;path</li>
+</ul>
+<h3>login to your <span class="caps">NAS</span> server via <span class="caps">SSH</span></h3>
+<p>from the terminal or use e.g. <code>putty</code> if working on&nbsp;Windows</p>
+<h3>Create photoprism&nbsp;directory</h3>
+<div class="highlight"><pre><span></span><code>mkdir /share/Container/photoprism
+<span class="nb">cd</span> photoprism
+</code></pre></div>
+
+<h3>Create <code>docker-compose.yml</code> file</h3>
+<p>download <code>docker-compose.yml</code> from the link provided in <a href="https://docs.photoprism.app/getting-started/docker-compose/">official documentation</a>&nbsp;:</p>
+<div class="highlight"><pre><span></span><code>wget https://dl.photoprism.app/docker/docker-compose.yml
+</code></pre></div>
+
+<p>Assuming that you keep your original photos in <code>/share/Multimedia/photos</code> modify volume mount for <code>photoprism/originals</code>. To do that, edit <code>volumes</code> part of the  <code>docker-compose.yml</code> file you just downloaded and provide proper mapping for the <code>/photoprism/originals</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># &quot;/host/folder:/photoprism/folder&quot;                 # Example</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/share/Multimedia/zdjecia:/photoprism/originals&quot;</span><span class="w"> </span><span class="c1"># Original media files </span><span class="w"></span>
+</code></pre></div>
+
+<blockquote>
+<p><strong><span class="caps">NOTE</span>:</strong> Other things you might want to modify in the <code>docker-compose.yml</code> are:
+- default password for the user admin (default is: <code>insecure</code>)
+- number of workers
+- disable Tensorflow (used for categorization of photos and face&nbsp;detection)</p>
+<p>For changing number of workers and disabling TensorFlow see the &#8220;Performance tuning&#8221; section&nbsp;bellow.</p>
+</blockquote>
+<h3>Create directories in <code>/share/Container/photoprism</code></h3>
+<div class="highlight"><pre><span></span><code>mkdir /share/Container/photoprism/database
+mkdir /share/Container/photoprism/import
+mkdir /share/Container/photoprism/originals
+mkdir /share/Container/photoprism/storage
+</code></pre></div>
+
+<h2>Run application in the&nbsp;container</h2>
+<p>Start the container. Pulling images might take few minutes depending on your Internet connection&nbsp;speed.</p>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
+
+<p>after that, Photoprism should be available&nbsp;under:</p>
+<div class="highlight"><pre><span></span><code>http://&lt;YOUR-NAS-IP&gt;:2342
+</code></pre></div>
+
+<p>You need to login as administrator with default password for the first time, after login remember to change that password in settings.
+<img alt="img" src="/images/photoprism/photoprism_change_password.png"></p>
+<h4>Using web-<span class="caps">UI</span></h4>
+<p>Now, you can trigger indexing your photos and videos using web-<span class="caps">UI</span> or from <span class="caps">CLI</span>.
+<img alt="img" src="/images/photoprism/photoprism_indexing.png"></p>
+<h4>Using <span class="caps">CLI</span></h4>
+<div class="highlight"><pre><span></span><code>docker <span class="nb">exec</span> -ti photoprism photoprism index
+</code></pre></div>
+
+<h3>Manual upgrading Photoprism to the latests&nbsp;version</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /share/Container/photoprism/
+docker pull photoprism/photoprism:latest
+docker stop photoprism
+docker-compose up -d
+</code></pre></div>
+
+<p>For automated updates check <a href="https://containrrr.dev/watchtower/">Watchtower</a></p>
+<h2>Adding new&nbsp;content</h2>
+<ul>
+<li>use upload via&nbsp;webDAV</li>
+<li>manually upload new pictures and videos to <code>/share/Multimedia/Import</code> and manually trigger import using <span class="caps">CLI</span>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>docker <span class="nb">exec</span> photoprism photoprism import
+</code></pre></div>
+
+<p>You can also consider automating import by adding <code>import</code> do the cron (e.g. every&nbsp;midnight)</p>
+<h2>Performance&nbsp;tuning</h2>
+<p>If you are experiencing performance problems you can reduce number of workers (from&nbsp;documentation):</p>
+<blockquote>
+<p>Try <a href="https://docs.photoprism.app/getting-started/config-options/#index-workers">reducing the number of workers</a> by setting <code>PHOTOPRISM_WORKERS</code> to a reasonably small value in <code>docker-compose.yml</code>, depending on the <span class="caps">CPU</span> performance and number of&nbsp;cores</p>
+</blockquote>
+<p>or disable&nbsp;TensorFlow:</p>
+<blockquote>
+<p>As a last measure, you can <a href="https://docs.photoprism.app/getting-started/config-options/#feature-flags">disable the use of TensorFlow</a> for image classification and facial recognition. You ca do it via web-<span class="caps">UI</span> settings, cli (<code>--disable-tensorflow</code> option) or set <code>PHOTOPRISM_DISABLE_TENSORFLOW</code> to <code>true</code> in <code>docker-compose.yml</code> and restart&nbsp;container.</p>
+</blockquote>
+<p><strong>Credits:</strong>
+I was able to launch this service thanks to the instructions found on reddit [1] provided by <a href="https://www.reddit.com/user/schol4stiker/">schol4stiker</a>.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.reddit.com/r/photoprism/comments/vph4ct/comment/ieobj8w/?utm_source=share&amp;utm_medium=web2x&amp;context=3">instruction from&nbsp;reddit</a></li>
+<li><a href="https://www.wundertech.net/how-to-setup-photoprism-on-a-synology-nas">How to Setup PhotoPrism on a Synology <span class="caps">NAS</span> in 2022 -&nbsp;WunderTech</a></li>
+</ol>
+  </div>
+
+
+  <div class="tag-cloud">
+    <p>
+      <br/><br/>Tags:&nbsp;
+      <a href="https://www.safjan.com/tag/nas/">nas</a>
+      <a href="https://www.safjan.com/tag/photoprism/">photoprism</a>
+      <a href="https://www.safjan.com/tag/linux/">linux</a>
+      <a href="https://www.safjan.com/tag/photo-gallery/">photo-gallery</a>
+      <a href="https://www.safjan.com/tag/docker/">docker</a>
+      <a href="https://www.safjan.com/tag/docker-compose/">docker-compose</a>
+      <a href="https://www.safjan.com/tag/qnap/">qnap</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/trading-algorithms/" title="Trading algorithms and trading strategies">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://www.safjan.com/bash-determine-if-linux-or-macos/">Bash - determine if script runs on Linux, macOS or other&nbsp;system</a></li>
+      <li><a href="https://www.safjan.com/awk/">Awk</a></li>
+      <li><a href="https://www.safjan.com/change-character-encoding/">Change the character&nbsp;encoding</a></li>
+      <li><a href="https://www.safjan.com/check-text-file-encoding/">Check text file&nbsp;encoding</a></li>
+      <li><a href="https://www.safjan.com/clone-partition-in-linux/">Clone partition in&nbsp;Linux</a></li>
+    </ul>
+  </div>
+
+
+</article>
+
+    <footer>
+<p>
+  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

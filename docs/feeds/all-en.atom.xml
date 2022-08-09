@@ -1,5 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-07-05T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Trading algorithms and trading strategies</title><link href="https://www.safjan.com/trading-algorithms/" rel="alternate"></link><published>2022-06-27T00:00:00+02:00</published><updated>2022-06-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-27:/trading-algorithms/</id><summary type="html">&lt;p&gt;This note contains a collection of trading algorithms or links to&amp;nbsp;algorithms&lt;/p&gt;</summary><content type="html">&lt;p&gt;This note contains a collection of trading algorithms or links to&amp;nbsp;algorithms&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-08-08T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Install Photoprism on QNAP NAS using Docker Compose</title><link href="https://www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/" rel="alternate"></link><published>2022-08-08T00:00:00+02:00</published><updated>2022-08-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-08:/install-photoprism-on-qnap-nas-using-docker-compose/</id><summary type="html">&lt;p&gt;Instruction on how to install Photoprism on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt; using Docker&amp;nbsp;Compose&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Install Photoprism on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt; using Docker&amp;nbsp;Compose&lt;/h1&gt;
+&lt;p&gt;Photoprism is a modern a searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt;. This article is meant to fill that&amp;nbsp;gap.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;What is the&amp;nbsp;photoprism&lt;/h2&gt;
+&lt;p&gt;from the photoprism&amp;nbsp;website:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PhotoPrism® is an &lt;span class="caps"&gt;AI&lt;/span&gt;-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. You can run it at home, on a private server, or in the&amp;nbsp;cloud.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="Screenshot" src="https://docs.photoprism.app/img/preview.jpg"&gt;&lt;/p&gt;
+&lt;h3&gt;Feature&amp;nbsp;Overview&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Browse &lt;a href="https://docs.photoprism.app/user-guide/organize/browse/"&gt;all your photos&lt;/a&gt; and &lt;a href="https://try.photoprism.app/videos"&gt;videos&lt;/a&gt; without worrying about &lt;a href="https://docs.photoprism.app/user-guide/settings/library/"&gt;&lt;span class="caps"&gt;RAW&lt;/span&gt; conversion, duplicates or video&amp;nbsp;formats&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Easily find specific pictures using &lt;a href="https://try.photoprism.app/browse?view=cards&amp;amp;q=flower%20color%3Ared"&gt;powerful search&amp;nbsp;filters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Recognizes &lt;a href="https://try.photoprism.app/people"&gt;the faces of your family and&amp;nbsp;friends&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://try.photoprism.app/labels"&gt;Automatic classification&lt;/a&gt; of pictures based on their content and&amp;nbsp;location&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://try.photoprism.app/browse?view=cards&amp;amp;q=type%3Alive"&gt;Play Live Photos&lt;/a&gt; by hovering over them in &lt;a href="https://try.photoprism.app/albums"&gt;albums&lt;/a&gt; and search&amp;nbsp;results&lt;/li&gt;
+&lt;li&gt;Since the &lt;a href="https://try.photoprism.app/"&gt;User Interface&lt;/a&gt; is a  &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps"&gt;Progressive Web App&lt;/a&gt;, it provides a native app-like experience, and you can conveniently install it on the home screen of all major operating systems and mobile&amp;nbsp;devices&lt;/li&gt;
+&lt;li&gt;Includes 4 high-resolution &lt;a href="https://try.photoprism.app/places"&gt;World Maps&lt;/a&gt; to bring back the memories of your favorite&amp;nbsp;trips&lt;/li&gt;
+&lt;li&gt;Metadata is extracted and merged from Exif, &lt;span class="caps"&gt;XMP&lt;/span&gt;, and other sources such as Google&amp;nbsp;Photos&lt;/li&gt;
+&lt;li&gt;Many more image properties like &lt;a href="https://try.photoprism.app/browse?view=cards&amp;amp;q=color:red"&gt;Colors&lt;/a&gt;, &lt;a href="https://try.photoprism.app/browse?view=cards&amp;amp;q=mono%3Atrue"&gt;Chroma&lt;/a&gt;, and &lt;a href="https://try.photoprism.app/review"&gt;Quality&lt;/a&gt; can be searched as&amp;nbsp;well&lt;/li&gt;
+&lt;li&gt;Use  &lt;a href="https://link.photoprism.app/photosync"&gt;PhotoSync&lt;/a&gt; to securely backup iOS and Android phones in the&amp;nbsp;background&lt;/li&gt;
+&lt;li&gt;WebDAV clients such as Microsoft&amp;#8217;s Windows Explorer and Apple&amp;#8217;s Finder &lt;a href="https://docs.photoprism.app/user-guide/sync/webdav/"&gt;can connect directly&lt;/a&gt; to PhotoPrism, allowing you to open, edit, and delete files from your computer as if they were&amp;nbsp;local&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;:&lt;/strong&gt; I haven&amp;#8217;t found functionality to add other accounts than administrator. But in my case having only single user is perfectly&amp;nbsp;fine. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Installation on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt; from the &lt;span class="caps"&gt;CLI&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;Prerequisites&lt;/h3&gt;
+&lt;p&gt;This instruction assumes that you are familiar with using command line interface (&lt;span class="caps"&gt;CLI&lt;/span&gt;).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ensure you have installed Container Station which is providing Docker on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;ensure that you have docker in the&amp;nbsp;path&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;login to your &lt;span class="caps"&gt;NAS&lt;/span&gt; server via &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;from the terminal or use e.g. &lt;code&gt;putty&lt;/code&gt; if working on&amp;nbsp;Windows&lt;/p&gt;
+&lt;h3&gt;Create photoprism&amp;nbsp;directory&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir /share/Container/photoprism
+&lt;span class="nb"&gt;cd&lt;/span&gt; photoprism
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Create &lt;code&gt;docker-compose.yml&lt;/code&gt; file&lt;/h3&gt;
+&lt;p&gt;download &lt;code&gt;docker-compose.yml&lt;/code&gt; from the link provided in &lt;a href="https://docs.photoprism.app/getting-started/docker-compose/"&gt;official documentation&lt;/a&gt;&amp;nbsp;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;wget https://dl.photoprism.app/docker/docker-compose.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Assuming that you keep your original photos in &lt;code&gt;/share/Multimedia/photos&lt;/code&gt; modify volume mount for &lt;code&gt;photoprism/originals&lt;/code&gt;. To do that, edit &lt;code&gt;volumes&lt;/code&gt; part of the  &lt;code&gt;docker-compose.yml&lt;/code&gt; file you just downloaded and provide proper mapping for the &lt;code&gt;/photoprism/originals&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# &amp;quot;/host/folder:/photoprism/folder&amp;quot;                 # Example&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/share/Multimedia/zdjecia:/photoprism/originals&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Original media files &lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;NOTE&lt;/span&gt;:&lt;/strong&gt; Other things you might want to modify in the &lt;code&gt;docker-compose.yml&lt;/code&gt; are:
+- default password for the user admin (default is: &lt;code&gt;insecure&lt;/code&gt;)
+- number of workers
+- disable Tensorflow (used for categorization of photos and face&amp;nbsp;detection)&lt;/p&gt;
+&lt;p&gt;For changing number of workers and disabling TensorFlow see the &amp;#8220;Performance tuning&amp;#8221; section&amp;nbsp;bellow.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Create directories in &lt;code&gt;/share/Container/photoprism&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir /share/Container/photoprism/database
+mkdir /share/Container/photoprism/import
+mkdir /share/Container/photoprism/originals
+mkdir /share/Container/photoprism/storage
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Run application in the&amp;nbsp;container&lt;/h2&gt;
+&lt;p&gt;Start the container. Pulling images might take few minutes depending on your Internet connection&amp;nbsp;speed.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker-compose up -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;after that, Photoprism should be available&amp;nbsp;under:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;http://&amp;lt;YOUR-NAS-IP&amp;gt;:2342
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You need to login as administrator with default password for the first time, after login remember to change that password in settings.
+&lt;img alt="img" src="/images/photoprism/photoprism_change_password.png"&gt;&lt;/p&gt;
+&lt;h4&gt;Using web-&lt;span class="caps"&gt;UI&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Now, you can trigger indexing your photos and videos using web-&lt;span class="caps"&gt;UI&lt;/span&gt; or from &lt;span class="caps"&gt;CLI&lt;/span&gt;.
+&lt;img alt="img" src="/images/photoprism/photoprism_indexing.png"&gt;&lt;/p&gt;
+&lt;h4&gt;Using &lt;span class="caps"&gt;CLI&lt;/span&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker &lt;span class="nb"&gt;exec&lt;/span&gt; -ti photoprism photoprism index
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Manual upgrading Photoprism to the latests&amp;nbsp;version&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /share/Container/photoprism/
+docker pull photoprism/photoprism:latest
+docker stop photoprism
+docker-compose up -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For automated updates check &lt;a href="https://containrrr.dev/watchtower/"&gt;Watchtower&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Adding new&amp;nbsp;content&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;use upload via&amp;nbsp;webDAV&lt;/li&gt;
+&lt;li&gt;manually upload new pictures and videos to &lt;code&gt;/share/Multimedia/Import&lt;/code&gt; and manually trigger import using &lt;span class="caps"&gt;CLI&lt;/span&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker &lt;span class="nb"&gt;exec&lt;/span&gt; photoprism photoprism import
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also consider automating import by adding &lt;code&gt;import&lt;/code&gt; do the cron (e.g. every&amp;nbsp;midnight)&lt;/p&gt;
+&lt;h2&gt;Performance&amp;nbsp;tuning&lt;/h2&gt;
+&lt;p&gt;If you are experiencing performance problems you can reduce number of workers (from&amp;nbsp;documentation):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Try &lt;a href="https://docs.photoprism.app/getting-started/config-options/#index-workers"&gt;reducing the number of workers&lt;/a&gt; by setting &lt;code&gt;PHOTOPRISM_WORKERS&lt;/code&gt; to a reasonably small value in &lt;code&gt;docker-compose.yml&lt;/code&gt;, depending on the &lt;span class="caps"&gt;CPU&lt;/span&gt; performance and number of&amp;nbsp;cores&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;or disable&amp;nbsp;TensorFlow:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As a last measure, you can &lt;a href="https://docs.photoprism.app/getting-started/config-options/#feature-flags"&gt;disable the use of TensorFlow&lt;/a&gt; for image classification and facial recognition. You ca do it via web-&lt;span class="caps"&gt;UI&lt;/span&gt; settings, cli (&lt;code&gt;--disable-tensorflow&lt;/code&gt; option) or set &lt;code&gt;PHOTOPRISM_DISABLE_TENSORFLOW&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; in &lt;code&gt;docker-compose.yml&lt;/code&gt; and restart&amp;nbsp;container.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;
+I was able to launch this service thanks to the instructions found on reddit [1] provided by &lt;a href="https://www.reddit.com/user/schol4stiker/"&gt;schol4stiker&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://www.reddit.com/r/photoprism/comments/vph4ct/comment/ieobj8w/?utm_source=share&amp;amp;utm_medium=web2x&amp;amp;context=3"&gt;instruction from&amp;nbsp;reddit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.wundertech.net/how-to-setup-photoprism-on-a-synology-nas"&gt;How to Setup PhotoPrism on a Synology &lt;span class="caps"&gt;NAS&lt;/span&gt; in 2022 -&amp;nbsp;WunderTech&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="note"></category><category term="nas"></category><category term="photoprism"></category><category term="linux"></category><category term="photo-gallery"></category><category term="docker"></category><category term="docker-compose"></category><category term="qnap"></category></entry><entry><title>Trading algorithms and trading strategies</title><link href="https://www.safjan.com/trading-algorithms/" rel="alternate"></link><published>2022-06-27T00:00:00+02:00</published><updated>2022-06-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-27:/trading-algorithms/</id><summary type="html">&lt;p&gt;This note contains a collection of trading algorithms or links to&amp;nbsp;algorithms&lt;/p&gt;</summary><content type="html">&lt;p&gt;This note contains a collection of trading algorithms or links to&amp;nbsp;algorithms&lt;/p&gt;
 &lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
 
 &lt;ul&gt;
@@ -63,7 +180,7 @@ These notes are bits collected from the internet. Proper attribution is&amp;nbsp
 &lt;li&gt;&lt;a href="https://github.com/sofienkaabar/The-Book-of-Trading-Strategies"&gt;sofienkaabar/The-Book-of-Trading-Strategies&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/guiregueira/Crypto-Gamma-Scalping-"&gt;Crypto-Gamma-Scalping-&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/Braavosi-Design/breakout-strategy"&gt;Braavosi-Design/breakout-strategy&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="algotrading"></category><category term="crypto"></category><category term="algorithms"></category><category term="trading"></category><category term="strategies"></category><category term="finance"></category></entry><entry><title>Lesser Known Backtesting Libraries</title><link href="https://www.safjan.com/lesser-known-backtesting-libraries/" rel="alternate"></link><published>2022-06-05T00:00:00+02:00</published><updated>2022-06-05T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-05:/lesser-known-backtesting-libraries/</id><summary type="html">&lt;p&gt;This article presents set of lesser-known but interesing libraries that can be used for backtesting trading strategies and trading algortithms in&amp;nbsp;general.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="finance/algotrading"></category><category term="finance/crypto"></category><category term="algorithm"></category><category term="trading"></category><category term="strategies"></category><category term="finance"></category></entry><entry><title>Lesser Known Backtesting Libraries</title><link href="https://www.safjan.com/lesser-known-backtesting-libraries/" rel="alternate"></link><published>2022-06-05T00:00:00+02:00</published><updated>2022-06-05T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-05:/lesser-known-backtesting-libraries/</id><summary type="html">&lt;p&gt;This article presents set of lesser-known but interesing libraries that can be used for backtesting trading strategies and trading algortithms in&amp;nbsp;general.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#bt"&gt;Bt&lt;/a&gt;&lt;/li&gt;
@@ -178,7 +295,7 @@ use&amp;nbsp;jsonlines&lt;/p&gt;
 
 &lt;p&gt;See also:
 - &lt;a href="http://ndjson.org/"&gt;&lt;span class="caps"&gt;NDJSON&lt;/span&gt;&lt;/a&gt; - Newline delimited &lt;span class="caps"&gt;JSON&lt;/span&gt;:
-- &lt;a href="https://github.com/ndjson/ndjson-spec"&gt;ndjson standard&amp;nbsp;specification&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="append"></category><category term="data"></category><category term="json"></category><category term="trace"></category><category term="jsonlines"></category><category term="python"></category></entry><entry><title>Bash - determine if script runs on Linux, macOS or other system</title><link href="https://www.safjan.com/bash-determine-if-linux-or-macos/" rel="alternate"></link><published>2022-06-03T00:00:00+02:00</published><updated>2022-06-03T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-03:/bash-determine-if-linux-or-macos/</id><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;uname -s&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+- &lt;a href="https://github.com/ndjson/ndjson-spec"&gt;ndjson standard&amp;nbsp;specification&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="append-json"></category><category term="data"></category><category term="json"></category><category term="trace"></category><category term="jsonlines"></category><category term="python"></category></entry><entry><title>Bash - determine if script runs on Linux, macOS or other system</title><link href="https://www.safjan.com/bash-determine-if-linux-or-macos/" rel="alternate"></link><published>2022-06-03T00:00:00+02:00</published><updated>2022-06-03T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-03:/bash-determine-if-linux-or-macos/</id><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;uname -s&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
     Linux*&lt;span class="o"&gt;)&lt;/span&gt;     &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Linux&lt;span class="p"&gt;;;&lt;/span&gt;
     Darwin*&lt;span class="o"&gt;)&lt;/span&gt;    &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Mac&lt;span class="p"&gt;;;&lt;/span&gt;
@@ -378,7 +495,7 @@ When the processing speed is critical, in many cases it is possible to replace &
 
 &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;%q\n&amp;#39;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="p"&gt;##*/&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;# to print to stdout, quoted for use as shell input&lt;/span&gt;
                            &lt;span class="c1"&gt;# ...useful to make hidden characters readable.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="base"></category><category term="basename"></category><category term="bash"></category><category term="extension"></category><category term="name"></category></entry><entry><title>Bash - coloring output</title><link href="https://www.safjan.com/bash-coloring/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-coloring/</id><summary type="html">&lt;h1&gt;Bash&amp;nbsp;coloring&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="base"></category><category term="basename"></category><category term="bash"></category><category term="extension"></category><category term="name"></category><category term="bash/basename"></category></entry><entry><title>Bash - coloring output</title><link href="https://www.safjan.com/bash-coloring/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-coloring/</id><summary type="html">&lt;h1&gt;Bash&amp;nbsp;coloring&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Text color variables&lt;/span&gt;
 &lt;span class="nv"&gt;txtund&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;tput sgr &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;          &lt;span class="c1"&gt;# Underline&lt;/span&gt;
 &lt;span class="nv"&gt;txtbld&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;tput bold&lt;span class="k"&gt;)&lt;/span&gt;             &lt;span class="c1"&gt;# Bold&lt;/span&gt;
@@ -795,7 +912,7 @@ great expectations + Pandas&amp;nbsp;Profiling&lt;/p&gt;
 &lt;li&gt;PandasSchema&lt;/li&gt;
 &lt;li&gt;pandas-validator&amp;nbsp;(archived)&lt;/li&gt;
 &lt;li&gt;table_enforcer (13&amp;nbsp;stars)&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="pandas"></category><category term="schema"></category><category term="validation"></category><category term="pandera"></category><category term="dataenforce"></category><category term="alternatives"></category><category term="alternative"></category><category term="great-expectations"></category><category term="pandas-schema"></category></entry><entry><title>Serve http files with python server</title><link href="https://www.safjan.com/serve-http-files-with-python-server/" rel="alternate"></link><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-27:/serve-http-files-with-python-server/</id><summary type="html">&lt;p&gt;Sometimes there is a need to serve &lt;span class="caps"&gt;HTML&lt;/span&gt; page instead of just displaying it in the browser:
+&lt;/ul&gt;</content><category term="note"></category><category term="pandas"></category><category term="pandas/schema"></category><category term="pandas/validation"></category><category term="pandera"></category><category term="dataenforce"></category><category term="alternatives"></category><category term="alternative"></category><category term="great-expectations"></category></entry><entry><title>Serve http files with python server</title><link href="https://www.safjan.com/serve-http-files-with-python-server/" rel="alternate"></link><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-27:/serve-http-files-with-python-server/</id><summary type="html">&lt;p&gt;Sometimes there is a need to serve &lt;span class="caps"&gt;HTML&lt;/span&gt; page instead of just displaying it in the browser:
 - share content with others (allowing download)
 - serve &lt;span class="caps"&gt;HTTP&lt;/span&gt; document with javascript when javascript can&amp;#8217;t be read due to &lt;span class="caps"&gt;CORS&lt;/span&gt;&amp;nbsp;limitations.&lt;/p&gt;
 &lt;p&gt;From the directory with …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes there is a need to serve &lt;span class="caps"&gt;HTML&lt;/span&gt; page instead of just displaying it in the browser:
@@ -888,7 +1005,7 @@ great expectations + Pandas&amp;nbsp;Profiling&lt;/p&gt;
 &lt;p&gt;&lt;a id="see-also"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;See&amp;nbsp;also&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://www.inwt-statistics.com/read-blog/pandas-dataframe-validation-with-pydantic.html"&gt;Pandas DataFrame Validation with&amp;nbsp;Pydantic&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Hints from: &lt;a href="https://stackoverflow.com/questions/65412984/using-pandas-data-frame-as-a-type-in-pydantic"&gt;python - Using Pandas Data Frame as a Type in Pydantic - Stack&amp;nbsp;Overflow&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="pydantic"></category><category term="pandas"></category><category term="type hints"></category></entry><entry><title>Python - configuration management</title><link href="https://www.safjan.com/python-configuration-management/" rel="alternate"></link><published>2022-04-14T00:00:00+02:00</published><updated>2022-04-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-14:/python-configuration-management/</id><summary type="html"></summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
+&lt;p&gt;Hints from: &lt;a href="https://stackoverflow.com/questions/65412984/using-pandas-data-frame-as-a-type-in-pydantic"&gt;python - Using Pandas Data Frame as a Type in Pydantic - Stack&amp;nbsp;Overflow&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="pydantic"></category><category term="pandas"></category><category term="type-hints"></category></entry><entry><title>Python - configuration management</title><link href="https://www.safjan.com/python-configuration-management/" rel="alternate"></link><published>2022-04-14T00:00:00+02:00</published><updated>2022-04-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-04-14:/python-configuration-management/</id><summary type="html"></summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#hydra-core-package"&gt;hydra-core&amp;nbsp;package&lt;/a&gt;&lt;/li&gt;
@@ -1047,7 +1164,7 @@ fastquant allows you to easily backtest investment strategies with as few as 3 l
 &lt;a href="https://github.com/enzoampil/fastquant/graphs/code-frequency"&gt;activity - github code&amp;nbsp;frequency&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;zipline&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/quantopian/zipline/graphs/code-frequency"&gt;activity - github code frequency&lt;/a&gt;
-&lt;a href="https://github.com/quantopian/zipline"&gt;https://github.com/quantopian/zipline&lt;/a&gt;&amp;nbsp;15.2K&lt;/p&gt;</content><category term="note"></category><category term="backtesting"></category><category term="crypto"></category><category term="algotrading"></category><category term="finance"></category><category term="popularity"></category></entry><entry><title>15 tools for document Deskewing and Dewarping</title><link href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/tools-for-doc-deskewing-and-dewarping/</id><summary type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article &amp;#8220;Summary and&amp;nbsp;recommendations&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection, or text segmentation can be scan, or photo taken from hand that does not have an ideal perspective - is rotated or spatially distorted in some way (warped document).
+&lt;a href="https://github.com/quantopian/zipline"&gt;https://github.com/quantopian/zipline&lt;/a&gt;&amp;nbsp;15.2K&lt;/p&gt;</content><category term="note"></category><category term="backtesting"></category><category term="finance/crypto"></category><category term="finance/algotrading"></category><category term="finance"></category><category term="popularity"></category></entry><entry><title>15 tools for document Deskewing and Dewarping</title><link href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/tools-for-doc-deskewing-and-dewarping/</id><summary type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article &amp;#8220;Summary and&amp;nbsp;recommendations&amp;#8221;.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sometimes input for document processing tasks such as &lt;span class="caps"&gt;OCR&lt;/span&gt;, table detection, or text segmentation can be scan, or photo taken from hand that does not have an ideal perspective - is rotated or spatially distorted in some way (warped document).
 If you are looking for my recommendations go straight to the last section of this article &lt;a href="#summary-and-recommendations"&gt;Summary and recommendations&lt;/a&gt;. This article was inspired by a list of &lt;span class="caps"&gt;OCR&lt;/span&gt;-related projects posted on the list &lt;a href="https://github.com/zacharywhitley/awesome-ocr"&gt;awesome-ocr&lt;/a&gt;. To give readers intuition about the popularity of the project - information about GitHub stars is added to each project (as of Feb 2022 - time of writing this article). To differentiate actively developed projects from ones that don&amp;#8217;t get commits anymore - the date of the last commit was&amp;nbsp;added.&lt;/p&gt;
 &lt;h2&gt;The typical approach for&amp;nbsp;deskewing&lt;/h2&gt;
 &lt;p&gt;The deskewing is typically realized by using Canny Edge Detection and Hough Transform to determine the angle of rotation (skew) and then applying rotation in opposite&amp;nbsp;direction.&lt;/p&gt;
@@ -1816,7 +1933,7 @@ Source: &lt;a href="https://stackoverflow.com/a/54281447/3247880"&gt;Stackoverfl
 &lt;p&gt;In the past, on Windows machine I used ManicTime for some time (when it was&amp;nbsp;free).&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Poor-man&amp;#8217;s&amp;nbsp;solution&lt;/h2&gt;
-&lt;p&gt;Poor-man&amp;#8217;s solution might be capturing screen shoots periodically (e.g. every 5min) and then you can manually browse them and restore your activity in given day. Pros of this solution is that capturing the raw data (screenshots) might be fully automated, run in the background and do not need any involvement from your side. Cons is that you need to process the&amp;nbsp;screenshots.&lt;/p&gt;</content><category term="note"></category><category term="time tracking"></category><category term="time management"></category><category term="billing"></category><category term="tracing"></category><category term="monitoring time"></category><category term="monitoring productivity"></category><category term="monitoring"></category><category term="productivity"></category></entry><entry><title>Add logo to notebook header cell</title><link href="https://www.safjan.com/add-logo-to-notebook-header/" rel="alternate"></link><published>2021-10-12T00:00:00+02:00</published><updated>2021-10-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-12:/add-logo-to-notebook-header/</id><summary type="html">&lt;p&gt;Instruction hot to add a logo to notebook header cell to strengthen visual-identification of the&amp;nbsp;project&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the top of the first markdown cell (e.g. with notebook description) add &lt;span class="caps"&gt;HTML&lt;/span&gt;&amp;nbsp;code:&lt;/p&gt;
+&lt;p&gt;Poor-man&amp;#8217;s solution might be capturing screen shoots periodically (e.g. every 5min) and then you can manually browse them and restore your activity in given day. Pros of this solution is that capturing the raw data (screenshots) might be fully automated, run in the background and do not need any involvement from your side. Cons is that you need to process the&amp;nbsp;screenshots.&lt;/p&gt;</content><category term="note"></category><category term="time tracking"></category><category term="time management"></category><category term="billing"></category><category term="tracing"></category><category term="monitoring time"></category><category term="monitoring productivity"></category><category term="monitoring"></category><category term="productivity"></category></entry><entry><title>Add logo to notebook header cell</title><link href="https://www.safjan.com/add-logo-to-notebook-header/" rel="alternate"></link><published>2021-10-12T00:00:00+02:00</published><updated>2021-10-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-12:/add-logo-to-notebook-header/</id><summary type="html">&lt;p&gt;Instruction on how to add a logo to notebook header cell to strengthen visual identification of the&amp;nbsp;project&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the top of the first markdown cell (e.g. with notebook description) add &lt;span class="caps"&gt;HTML&lt;/span&gt;&amp;nbsp;code:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;col-md-8&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;markdown&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
       &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Notebook title&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -2290,7 +2407,7 @@ On macOS you need to act&amp;nbsp;differently&lt;/p&gt;
 &lt;p&gt;This script uses inotifywatch to monitor file status and trigger commands.
 Designed for Ansible playbook, but you can use this for other development purposes.
 To install e.g. &lt;code&gt;apt-get install -y inotify-tools&lt;/code&gt;
-see:&amp;nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="autocommit"></category><category term="note-taking"></category><category term="notes"></category><category term="automatic"></category><category term="automation"></category></entry><entry><title>Interactive plots for blogging</title><link href="https://www.safjan.com/interactive-plots-for-blogging/" rel="alternate"></link><published>2019-09-13T00:00:00+02:00</published><updated>2019-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-09-13:/interactive-plots-for-blogging/</id><summary type="html">&lt;p&gt;Using Plotly, Bokeh and Altair for interactive visualizations in the blog&amp;nbsp;posts.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+see:&amp;nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="autocommit"></category><category term="note-taking"></category><category term="notes"></category><category term="automatic"></category><category term="automation"></category><category term="git/autocommit"></category></entry><entry><title>Interactive plots for blogging</title><link href="https://www.safjan.com/interactive-plots-for-blogging/" rel="alternate"></link><published>2019-09-13T00:00:00+02:00</published><updated>2019-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-09-13:/interactive-plots-for-blogging/</id><summary type="html">&lt;p&gt;Using Plotly, Bokeh and Altair for interactive visualizations in the blog&amp;nbsp;posts.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -3743,10 +3860,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="794be508-cbca-42be-9973-dfb0a46dc94c"&gt;&lt;/div&gt;
+&lt;div id="d25eb848-6640-4458-a729-612049acb92b"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#794be508-cbca-42be-9973-dfb0a46dc94c');
+var element = $('#d25eb848-6640-4458-a729-612049acb92b');
 
 (function(root) {
   function now() {

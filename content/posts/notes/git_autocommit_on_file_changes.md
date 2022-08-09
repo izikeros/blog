@@ -2,7 +2,7 @@
 title: Git - autocommit on file changes
 date: 2021-09-14
 status: published
-tags: git, autocommit, note-taking, notes, automatic, automation
+tags: git, autocommit, note-taking, notes, automatic, automation, git/autocommit
 summary: How to create automatically commits if any file in the watched folder was changed
 slug: git-autocommit-on-file-changes
 category: note

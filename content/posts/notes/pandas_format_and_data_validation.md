@@ -2,7 +2,7 @@
 title: Pandas dataframe schema and data types validation
 date: 2022-04-27
 status: published
-tags: pandas, schema, validation, pandera, dataenforce, alternatives, alternative, great-expectations, pandas-schema
+tags: pandas, pandas/schema, pandas/validation, pandera, dataenforce, alternatives, alternative, great-expectations,
 slug: pandas-dataframe-validation
 category: note
 citation_needed: false
