@@ -11,6 +11,7 @@ category: note
 # Install Photoprism on QNAP NAS using Docker Compose
 
 Photoprism is a modern a searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on QNAP NAS. This article is meant to fill that gap.
+Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other QNAP NAS models.
 ```toc
 ```
 
