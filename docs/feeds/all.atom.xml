@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-08-08T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Install Photoprism on QNAP NAS using Docker Compose</title><link href="https://www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/" rel="alternate"></link><published>2022-08-08T00:00:00+02:00</published><updated>2022-08-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-08:/install-photoprism-on-qnap-nas-using-docker-compose/</id><summary type="html">&lt;p&gt;Instruction on how to install Photoprism on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt; using Docker&amp;nbsp;Compose&lt;/p&gt;</summary><content type="html">&lt;p&gt;Photoprism is a modern, searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt;. This article is meant to fill that gap.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-08-16T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Reading CSV with Obsidian dataview and dataview js</title><link href="https://www.safjan.com/reading-csv-with-obsidian-dataview-dataviewjs/" rel="alternate"></link><published>2022-08-16T00:00:00+02:00</published><updated>2022-08-16T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-16:/reading-csv-with-obsidian-dataview-dataviewjs/</id><summary type="html">&lt;p&gt;The &lt;a href="https://github.com/blacksmithgu/obsidian-dataview"&gt;obsidian-dataview&lt;/a&gt; plugin allows reading data from the notes in the vault and data files such as &lt;span class="caps"&gt;CSV&lt;/span&gt;. Both &lt;code&gt;dataview&lt;/code&gt; and &lt;code&gt;dataviewjs&lt;/code&gt; can be used for that purpose. I&amp;#8217;m more fluent in using &lt;code&gt;dataview&lt;/code&gt; therefore I will dedicate more space to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a href="https://github.com/blacksmithgu/obsidian-dataview"&gt;obsidian-dataview&lt;/a&gt; plugin allows reading data from the notes in the vault and data files such as &lt;span class="caps"&gt;CSV&lt;/span&gt;. Both &lt;code&gt;dataview&lt;/code&gt; and &lt;code&gt;dataviewjs&lt;/code&gt; can be used for that purpose. I&amp;#8217;m more fluent in using &lt;code&gt;dataview&lt;/code&gt; therefore I will dedicate more space to this&amp;nbsp;solution&lt;/p&gt;
+&lt;h2&gt;Reading with&amp;nbsp;dataview&lt;/h2&gt;
+&lt;p&gt;Assume, that you have a &lt;span class="caps"&gt;CSV&lt;/span&gt; file &lt;code&gt;my_data.csv&lt;/code&gt; with&amp;nbsp;contents:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;eventDate;eventName
+2022-01-02;Birthday
+2022-01-07;Lake excursion
+2022-01-12;River
+2022-01-13;Sunrise
+2022-01-13;Sunset
+2022-01-16;Mountain Excursion
+2022-01-21;Evening at home
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Reading tabular data
+You can read and display the contents of that file as a table using &lt;code&gt;dataview&lt;/code&gt; code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;TABLE WITHOUT ID eventDate, eventName
+FROM csv(&amp;quot;my_data.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In this specific case, one column contains dates and you might want to display data in a specific format. In my case - I needed dates in &lt;code&gt;YYYY-MM-DD&lt;/code&gt; format. You can do date formatting on reading using &lt;code&gt;dateformat&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;TABLE WITHOUT ID dateformat(eventDate, &amp;quot;yyyy-MM-dd&amp;quot;) As eventDate, eventName
+FROM csv(&amp;quot;my_data.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Reading with&amp;nbsp;dataviewjs&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;myData&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;await&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Extras/photo_index/2022_photo_mini_dirs.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eventDate&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eventName&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;myData&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Reading &lt;span class="caps"&gt;CSV&lt;/span&gt; files with &lt;code&gt;dataviewjs&lt;/code&gt; is also possible. From the &lt;a href="https://blacksmithgu.github.io/obsidian-dataview/api/code-reference/#dviocsvpath-origin-file"&gt;official documentation&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Load a &lt;span class="caps"&gt;CSV&lt;/span&gt; from the given path (a link or string). Relative paths will be resolved relative to the optional origin file (defaulting to the current file if not provided). Return a dataview array, each element containing an object of the &lt;span class="caps"&gt;CSV&lt;/span&gt; values; if the file does not exist, return &lt;code&gt;undefined&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;await dv.io.csv("hello.csv") =&amp;gt; [{ column1: ..., column2: ...}, ...]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;My post on obsidian forum where I got wide explanations and ideas on how to work with &lt;span class="caps"&gt;CSV&lt;/span&gt; data: &lt;a href="https://forum.obsidian.md/t/find-rows-with-date-field-matching-date-of-daily-note-where-the-query-is-made/41437"&gt;Find rows with date field matching date of daily note where the query is made - Help - Obsidian&amp;nbsp;Forum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://forum.obsidian.md/u/mnvwvnm/summary"&gt;mnvwvnm&lt;/a&gt; and &lt;a href="https://forum.obsidian.md/u/scholarintraining/summary"&gt;scholarintraining&lt;/a&gt; users from &lt;a href="https://forum.obsidian.md"&gt;obsidian forum&lt;/a&gt; that helped me to understand how the reading &lt;span class="caps"&gt;CSV&lt;/span&gt; works and better understand dataview and&amp;nbsp;dataviewjs.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="obsidian"></category><category term="dataview"></category><category term="dataviewjs"></category><category term="csv"></category></entry><entry><title>Install Photoprism on QNAP NAS using Docker Compose</title><link href="https://www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/" rel="alternate"></link><published>2022-08-08T00:00:00+02:00</published><updated>2022-08-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-08:/install-photoprism-on-qnap-nas-using-docker-compose/</id><summary type="html">&lt;p&gt;Instruction on how to install Photoprism on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt; using Docker&amp;nbsp;Compose&lt;/p&gt;</summary><content type="html">&lt;p&gt;Photoprism is a modern, searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt;. This article is meant to fill that gap.
 Installation described here was done on &lt;span class="caps"&gt;TS&lt;/span&gt;-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other &lt;span class="caps"&gt;QNAP&lt;/span&gt; &lt;span class="caps"&gt;NAS&lt;/span&gt;&amp;nbsp;models.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -3860,10 +3900,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="5082575d-b3a4-484a-9c38-cc8cc7a7d550"&gt;&lt;/div&gt;
+&lt;div id="201d6a23-ceb5-432f-af4a-5364fa8b6707"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#5082575d-b3a4-484a-9c38-cc8cc7a7d550');
+var element = $('#201d6a23-ceb5-432f-af4a-5364fa8b6707');
 
 (function(root) {
   function now() {
