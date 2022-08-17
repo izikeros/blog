@@ -80,9 +80,12 @@ The time-weighted average price strategy breaks up a large order and releases dy
 <a id="other-links"></a>
 ## Other links
 
-- [Algo-Trading-Strats](https://github.com/faizancodes/Algo-Trading-Strats) - Application of various algorithmic strategies to produce max alpha
-- [sofienkaabar/Trend-Following-Strategies](https://github.com/sofienkaabar/Trend-Following-Strategies) - Trend-Following-Strategies-in-Python
-- [sofienkaabar/Contrarian-Trading-Strategies](https://github.com/sofienkaabar/Contrarian-Trading-Strategies) - Source Codes for "Contrarian Trading Strategies in Python"
-- [sofienkaabar/The-Book-of-Trading-Strategies](https://github.com/sofienkaabar/The-Book-of-Trading-Strategies)
-- [Crypto-Gamma-Scalping-](https://github.com/guiregueira/Crypto-Gamma-Scalping-)
-- [Braavosi-Design/breakout-strategy](https://github.com/Braavosi-Design/breakout-strategy)
+| link | description |
+| --- | --- |
+| [Algo-Trading-Strats](https://github.com/faizancodes/Algo-Trading-Strats)     |  Application of various algorithmic strategies to produce [[max_alpha|max alpha]]   |
+| [sofienkaabar/Trend-Following-Strategies](https://github.com/sofienkaabar/Trend-Following-Strategies) | code for the book [Trend Following Strategies in Python; Kaabar, Sofien](https://www.amazon.com/Trend-Following-Strategies-Python-Indicators/dp/B09KNGG1CC)|
+| [sofienkaabar/Contrarian-Trading-Strategies](https://github.com/sofienkaabar/Contrarian-Trading-Strategies) | code for the book [Contrarian Trading Strategies in Python; Kaabar, Sofien](https://www.amazon.com/Contrarian-Trading-Strategies-Python-Sofien/dp/B09VG3SH2P/)|
+|[sofienkaabar/The-Book-of-Trading-Strategies](https://github.com/sofienkaabar/The-Book-of-Trading-Strategies) | code for the book [The Book of Trading Strategies;  Kaabar, Sofien](https://www.amazon.com/Book-Trading-Strategies-Sofien-Kaabar/dp/B09919GQ22)|
+|[Crypto-Gamma-Scalping-](https://github.com/guiregueira/Crypto-Gamma-Scalping-)|Jupyter Notebook for sca;ping implementation and analysis, comments in Portugese|
+|[Braavosi-Design/breakout-strategy](https://github.com/Braavosi-Design/breakout-strategy)|d|
+|[70+ Trading Strategies (Free) – A List of Quantified Systems – Quantified Strategies For Traders](https://www.quantifiedstrategies.com/trading-strategies/) | multiple strategies described, often with accompanying backtesting |
