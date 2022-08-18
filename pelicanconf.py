@@ -167,7 +167,7 @@ elif MY_THEME == "flex":
     USE_LESS = False
     CUSTOM_CSS = "styles/custom.css"
 
-TYPOGRIFY = True
+TYPOGRIFY = False
 TYPOGRIFY_IGNORE_TAGS = ["style", "script", "title", "code", "pre"]
 
 # Where to output the generated files

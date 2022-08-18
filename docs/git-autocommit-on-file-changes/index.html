@@ -44,13 +44,13 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="How to create automatically commits if any file in the watched folder was changed" />
+<meta name="description" content="How to create automatically commits if any file in the watched folder was changed" />
 <meta name="keywords" content="git, autocommit, note-taking, notes, automatic, automation, git/autocommit">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
-  <meta property="og:title" content="Git - autocommit on file changes"/>
-  <meta property="og:description" content="How to create automatically commits if any file in the watched folder was changed"/>
+  <meta property="og:title" content="Git - autocommit on file changes"/>
+  <meta property="og:description" content="How to create automatically commits if any file in the watched folder was changed"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/git-autocommit-on-file-changes/"/>
   <meta property="og:type" content="article"/>
@@ -67,7 +67,7 @@
   <meta property="article:tag" content="git/autocommit"/>
   <meta property="og:image" content="/images/profile_new.jpg">
 
-  <title>Krystian Safjan's Blog &ndash; Git - autocommit on file changes</title>
+  <title>Krystian Safjan's Blog &ndash; Git - autocommit on file changes</title>
 
 
 <!-- Google Automatic Ads -->
@@ -148,38 +148,38 @@
 
   <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Git%20-%20autocommit%20on%20file%C2%A0changes&url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&hashtags=git,autocommit,note-taking,notes,automatic,automation,gitautocommit" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Git%20-%20autocommit%20on%20file%20changes&url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&hashtags=git,autocommit,note-taking,notes,automatic,automation,gitautocommit" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-autocommit-on-file-changes/" target="_blank" title="Share on Facebook">Facebook</a>
     |
-    <a href="https://news.ycombinator.com/submitlink?t=Git%20-%20autocommit%20on%20file%C2%A0changes&u=https%3A//www.safjan.com/git-autocommit-on-file-changes/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    <a href="https://news.ycombinator.com/submitlink?t=Git%20-%20autocommit%20on%20file%20changes&u=https%3A//www.safjan.com/git-autocommit-on-file-changes/" target="_blank" title="Share on HackerNews">HackerNews</a>
     |
-    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&title=Git%20-%20autocommit%20on%20file%C2%A0changes" target="_blank" title="Share via Reddit">Reddit</a>
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-autocommit-on-file-changes/&title=Git%20-%20autocommit%20on%20file%20changes" target="_blank" title="Share via Reddit">Reddit</a>
   </span>
     <br/>
    </p>
-  <h1 id="git-autocommit-on-file-changes">Git - autocommit on file&nbsp;changes</h1>
+  <h1 id="git-autocommit-on-file-changes">Git - autocommit on file changes</h1>
   <div class="header-underline"></div>
   </header>
 
 
   <div>
     <blockquote>
-<p><strong>Motivation:</strong> I wanted to track the history of the changes introduced in my notes folder. Didn&#8217;t want to create a commit, or redact the commit message after each change because typically during the day I made multiple edits in notes ad prefer to minimize time spent on managing my notes. I&#8217;m quickly jumping into the notes, adding something to existing notes, or creating new ones. Remembering to commit each change is too much overhead for me. I started to look for a solution that will monitor my notes folder, and, if anything changed, create a commit. I found several solutions that serve that&nbsp;purpose.</p>
+<p><strong>Motivation:</strong> I wanted to track the history of the changes introduced in my notes folder. Didn't want to create a commit, or redact the commit message after each change because typically during the day I made multiple edits in notes ad prefer to minimize time spent on managing my notes. I'm quickly jumping into the notes, adding something to existing notes, or creating new ones. Remembering to commit each change is too much overhead for me. I started to look for a solution that will monitor my notes folder, and, if anything changed, create a commit. I found several solutions that serve that purpose.</p>
 </blockquote>
-<p>For reference see <a href="https://stackoverflow.com/questions/420143/making-git-auto-commit">making-git-auto-commit</a> on&nbsp;StackOverflow.</p>
-<p>My choice was <strong>gitwatch</strong> used as systemd&nbsp;service.</p>
+<p>For reference see <a href="https://stackoverflow.com/questions/420143/making-git-auto-commit">making-git-auto-commit</a> on StackOverflow.</p>
+<p>My choice was <strong>gitwatch</strong> used as systemd service.</p>
 <!-- MarkdownTOC levels='1,2,3' autolink=True autoanchor=True -->
 
 <ul>
 <li><a href="#gitwatch--github-%E2%98%851k-active">gitwatch # github: ★1k, active</a><ul>
-<li><a href="#notes-for-installation-on-mac">Notes for installation on&nbsp;Mac</a></li>
+<li><a href="#notes-for-installation-on-mac">Notes for installation on Mac</a></li>
 </ul>
 </li>
-<li><a href="#gwatch-github-%E2%98%8522-low-activity">gwatch github: ★22, low&nbsp;activity</a></li>
+<li><a href="#gwatch-github-%E2%98%8522-low-activity">gwatch github: ★22, low activity</a></li>
 <li><a href="#etckeeper">etckeeper</a></li>
-<li><a href="#git-etc-github-%E2%98%854-low-activity-created-9-years-ago-last-commit-in-2014">git-etc github: ★4, low activity, created 9 years ago, last commit in&nbsp;2014</a></li>
-<li><a href="#git-powercommit">Git&nbsp;Powercommit</a></li>
+<li><a href="#git-etc-github-%E2%98%854-low-activity-created-9-years-ago-last-commit-in-2014">git-etc github: ★4, low activity, created 9 years ago, last commit in 2014</a></li>
+<li><a href="#git-powercommit">Git Powercommit</a></li>
 <li><a href="#git-wip">git-wip</a></li>
 <li><a href="#inotify">inotify</a></li>
 <li><a href="#watchman">watchman</a></li>
@@ -188,21 +188,21 @@
 <!-- /MarkdownTOC -->
 
 <p><a id="gitwatch--github-%E2%98%851k-active"></a></p>
-<h1><a href="https://github.com/gitwatch/gitwatch">gitwatch</a> <img alt="GitHub stars" src="https://img.shields.io/github/stars/gitwatch/gitwatch.svg?logo=github">,&nbsp;active</h1>
-<p>A bash script to watch a file or folder and commit changes to a git&nbsp;repo</p>
+<h1><a href="https://github.com/gitwatch/gitwatch">gitwatch</a> <img alt="GitHub stars" src="https://img.shields.io/github/stars/gitwatch/gitwatch.svg?logo=github">, active</h1>
+<p>A bash script to watch a file or folder and commit changes to a git repo</p>
 <p>Justification for my choice:
 - active with large community
-- There is an <span class="caps">AUR</span> package for Archlinux
+- There is an AUR package for Archlinux
 - does exactly what I want, nothing more
-- can be used as daemon that starts on&nbsp;boot</p>
+- can be used as daemon that starts on boot</p>
 <div class="highlight"><pre><span></span><code><span class="n">Usage</span><span class="o">:</span><span class="w"></span>
 <span class="n">gitwatch</span><span class="w"> </span><span class="o">[-</span><span class="n">s</span><span class="w"> </span><span class="o">&lt;</span><span class="n">secs</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">[-</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;</span><span class="n">fmt</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">[-</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="n">remote</span><span class="o">&gt;</span><span class="w"> </span><span class="o">[-</span><span class="n">b</span><span class="w"> </span><span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;]]</span><span class="w"></span>
 <span class="w">          </span><span class="o">[-</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;</span><span class="n">msg</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">[-</span><span class="n">l</span><span class="o">|-</span><span class="n">L</span><span class="w"> </span><span class="o">&lt;</span><span class="n">lines</span><span class="o">&gt;]</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 
 <p><a id="notes-for-installation-on-mac"></a></p>
-<h2>Notes for installation on&nbsp;Mac</h2>
-<p>If running on <span class="caps">OS</span> X, you&#8217;ll need to install the following Homebrew&nbsp;tools:</p>
+<h2>Notes for installation on Mac</h2>
+<p>If running on OS X, you'll need to install the following Homebrew tools:</p>
 <div class="highlight"><pre><span></span><code>$ brew install fswatch
 $ brew install coreutils
 </code></pre></div>
@@ -215,49 +215,49 @@ $ brew install coreutils
 <li>If installed to a path other than <code>/usr/bin/gitwatch</code>, modify <code>gitwatch@.service</code> to suit. In my case, gitwatch was found in <code>/usr/local/bin/gitwatch</code></li>
 <li>
 <p>Create dir if it does not exist and copy systemd service file with <code>mkdir -p "$HOME/.config/systemd/user" &amp;&amp; cp gitwatch@.service $HOME/.config/systemd/user</code>
-If you cannot find <code>gitwatch@.service</code> file take it from the github&nbsp;repository.</p>
+If you cannot find <code>gitwatch@.service</code> file take it from the github repository.</p>
 </li>
 <li>
 <p>Start and enable the service for a given path by running <code>systemctl --user --now enable gitwatch@$(systemd-escape "'-r url/to/repository' /path/to/folder").service</code>
-On macOS you need to act&nbsp;differently</p>
+On macOS you need to act differently</p>
 </li>
-<li>take <code>.plist</code> file from the repo, and adjust it to your&nbsp;needs</li>
-<li>copy modified plist to  /Library/LaunchDaemons/ with&nbsp;sudo</li>
+<li>take <code>.plist</code> file from the repo, and adjust it to your needs</li>
+<li>copy modified plist to  /Library/LaunchDaemons/ with sudo</li>
 <li>note: if there is a proper gitwatch script path (I needed to change <code>gitwatch.sh</code> to <code>gitwatch</code>)</li>
 </ol>
 <p><a id="gwatch-github-%E2%98%8522-low-activity"></a></p>
-<h1><a href="https://github.com/jw0k/gwatch">gwatch</a> <img alt="GitHub stars" src="https://img.shields.io/github/stars/jw0k/gwatch.svg?logo=github"> low&nbsp;activity</h1>
-<p>A program that watches a folder for file modifications and commits them to a git repository&nbsp;automatically</p>
-<p>After gwatch is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (the 30s by default). After the timer expires, gwatch will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for gwatch to successfully create commits, a git repository must be initialized in the watched&nbsp;folder.</p>
+<h1><a href="https://github.com/jw0k/gwatch">gwatch</a> <img alt="GitHub stars" src="https://img.shields.io/github/stars/jw0k/gwatch.svg?logo=github"> low activity</h1>
+<p>A program that watches a folder for file modifications and commits them to a git repository automatically</p>
+<p>After gwatch is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (the 30s by default). After the timer expires, gwatch will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for gwatch to successfully create commits, a git repository must be initialized in the watched folder.</p>
 <p><a id="etckeeper"></a></p>
 <h1><a href="http://joeyh.name/code/etckeeper/">etckeeper</a></h1>
 <blockquote>
-<p><span class="caps">NOTE</span>: I my case didn&#8217;t need to track&nbsp;permissions</p>
+<p>NOTE: I my case didn't need to track permissions</p>
 </blockquote>
-<p>etckeeper is a collection of tools to let /etc be stored in a git, mercurial, darcs, or bzr repository. It hooks into apt (and other package managers including yum and pacman-g2) to automatically commit changes made to /etc during package upgrades. It tracks file metadata that revision control systems do not normally support, but that is important for /etc, such as the permissions of /etc/shadow. It&#8217;s quite modular and configurable, while also being simple to use if you understand the basics of working with revision&nbsp;control.</p>
-<p>etckeeper now has a website at&nbsp;http://etckeeper.branchable.com/.</p>
+<p>etckeeper is a collection of tools to let /etc be stored in a git, mercurial, darcs, or bzr repository. It hooks into apt (and other package managers including yum and pacman-g2) to automatically commit changes made to /etc during package upgrades. It tracks file metadata that revision control systems do not normally support, but that is important for /etc, such as the permissions of /etc/shadow. It's quite modular and configurable, while also being simple to use if you understand the basics of working with revision control.</p>
+<p>etckeeper now has a website at http://etckeeper.branchable.com/.</p>
 <p><a id="git-etc-github-%E2%98%854-low-activity-created-9-years-ago-last-commit-in-2014"></a></p>
-<h1><a href="https://arcanis.me/projects/git-etc">git-etc</a> github: ★4, low activity, created 9 years ago, last commit in&nbsp;2014</h1>
-<p>A simple daemon that automatically creates git repository in the given directory and creates a commit at the specified time&nbsp;interval.</p>
-<p>Has <span class="caps">GUI</span>, has <span class="caps">AUR</span>&nbsp;package</p>
+<h1><a href="https://arcanis.me/projects/git-etc">git-etc</a> github: ★4, low activity, created 9 years ago, last commit in 2014</h1>
+<p>A simple daemon that automatically creates git repository in the given directory and creates a commit at the specified time interval.</p>
+<p>Has GUI, has AUR package</p>
 <p><a id="git-powercommit"></a></p>
-<h1><a href="https://github.com/grwlf/git-powercommit">Git&nbsp;Powercommit</a></h1>
-<p>Commit every changed submodule. Commit every changed regular file or folder, aggregating the files that share a folder into a single&nbsp;commit.</p>
+<h1><a href="https://github.com/grwlf/git-powercommit">Git Powercommit</a></h1>
+<p>Commit every changed submodule. Commit every changed regular file or folder, aggregating the files that share a folder into a single commit.</p>
 <p><a id="git-wip"></a></p>
 <h1><a href="https://github.com/bartman/git-wip">git-wip</a></h1>
-<p>git-wip is a script that will manage Work In Progress (or <span class="caps">WIP</span>) branches. <span class="caps">WIP</span> branches are mostly thrown away but identify points of development between commits. The intent is to tie this script into your editor so that each time you save your file, the git-wip script captures that state in git. git-wip also helps you return to a previous state of&nbsp;development.</p>
+<p>git-wip is a script that will manage Work In Progress (or WIP) branches. WIP branches are mostly thrown away but identify points of development between commits. The intent is to tie this script into your editor so that each time you save your file, the git-wip script captures that state in git. git-wip also helps you return to a previous state of development.</p>
 <p><a id="inotify"></a></p>
 <h1><a href="http://inotify.aiken.cz/?section=incron&amp;page=about&amp;lang=en">inotify</a></h1>
-<p>This program is an &#8220;inotify cron&#8221; system. It consists of a daemon and a table manipulator. You can use it a similar way as the regular cron. The difference is that the inotify cron handles filesystem events rather than time&nbsp;periods.</p>
+<p>This program is an "inotify cron" system. It consists of a daemon and a table manipulator. You can use it a similar way as the regular cron. The difference is that the inotify cron handles filesystem events rather than time periods.</p>
 <p><a id="watchman"></a></p>
 <h1><a href="https://facebook.github.io/watchman/">watchman</a></h1>
-<p>Watchman exists to watch files and record when they change. It can also trigger actions (such as rebuilding assets) when matching files&nbsp;change</p>
+<p>Watchman exists to watch files and record when they change. It can also trigger actions (such as rebuilding assets) when matching files change</p>
 <p><a id="inotifysh"></a></p>
 <h1><a href="https://github.com/nzvincent/nzvincent-github/blob/master/inotify-tools/inotify.sh">inotify.sh</a></h1>
 <p>This script uses inotifywatch to monitor file status and trigger commands.
 Designed for Ansible playbook, but you can use this for other development purposes.
 To install e.g. <code>apt-get install -y inotify-tools</code>
-see:&nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86</p>
+see: https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86</p>
   </div>
 
 
@@ -276,10 +276,10 @@ see:&nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86</p>
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://www.safjan.com/interactive-plots-for-blogging/" title="Interactive plots for blogging">
+    <a class="btn float-left" href="https://www.safjan.com/interactive-plots-for-blogging/" title="Interactive plots for blogging">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
-    <a class="btn float-right" href="https://www.safjan.com/python-documentation-with-pdoc3/" title="Python - project documentation from the code with pdoc3">
+    <a class="btn float-right" href="https://www.safjan.com/python-documentation-with-pdoc3/" title="Python - project documentation from the code with pdoc3">
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
@@ -287,11 +287,11 @@ see:&nbsp;https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86</p>
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://www.safjan.com/git-delete-branch/">How to delete a Git branch locally and&nbsp;remotely?</a></li>
-      <li><a href="https://www.safjan.com/git-delete-branches-merged-into-main-branch/">Git - delete branches that are merged into the main&nbsp;branch</a></li>
-      <li><a href="https://www.safjan.com/git-hooks/">Git&nbsp;hooks</a></li>
-      <li><a href="https://www.safjan.com/git-add/">Git add - stage changes in various&nbsp;ways</a></li>
-      <li><a href="https://www.safjan.com/git-pre-commit-hooks/">Pre-commit&nbsp;hooks</a></li>
+      <li><a href="https://www.safjan.com/git-delete-branch/">How to delete a Git branch locally and remotely?</a></li>
+      <li><a href="https://www.safjan.com/git-delete-branches-merged-into-main-branch/">Git - delete branches that are merged into the main branch</a></li>
+      <li><a href="https://www.safjan.com/git-hooks/">Git hooks</a></li>
+      <li><a href="https://www.safjan.com/git-add/">Git add - stage changes in various ways</a></li>
+      <li><a href="https://www.safjan.com/git-pre-commit-hooks/">Pre-commit hooks</a></li>
     </ul>
   </div>
 

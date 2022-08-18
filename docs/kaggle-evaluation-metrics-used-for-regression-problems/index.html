@@ -49,7 +49,7 @@
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
-  <meta property="og:title" content="Kaggle evaluation metrics used for regression problems"/>
+  <meta property="og:title" content="Kaggle evaluation metrics used for regression problems"/>
   <meta property="og:description" content="This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely: Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE)."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/"/>
@@ -65,7 +65,7 @@
   <meta property="article:tag" content="Kaggle"/>
   <meta property="og:image" content="https://www.safjan.com//images/head/performance_metrics.jpg">
 
-  <title>Krystian Safjan's Blog &ndash; Kaggle evaluation metrics used for regression problems</title>
+  <title>Krystian Safjan's Blog &ndash; Kaggle evaluation metrics used for regression problems</title>
 
 
 <!-- Google Automatic Ads -->
@@ -146,242 +146,242 @@
 
   <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Kaggle%20evaluation%20metrics%20used%20for%20regression%C2%A0problems&url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&hashtags=machine-learning,evaluation,metrics,model-performance-evaluation,kaggle" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Kaggle%20evaluation%20metrics%20used%20for%20regression%20problems&url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&hashtags=machine-learning,evaluation,metrics,model-performance-evaluation,kaggle" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/" target="_blank" title="Share on Facebook">Facebook</a>
     |
-    <a href="https://news.ycombinator.com/submitlink?t=Kaggle%20evaluation%20metrics%20used%20for%20regression%C2%A0problems&u=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    <a href="https://news.ycombinator.com/submitlink?t=Kaggle%20evaluation%20metrics%20used%20for%20regression%20problems&u=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/" target="_blank" title="Share on HackerNews">HackerNews</a>
     |
-    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&title=Kaggle%20evaluation%20metrics%20used%20for%20regression%C2%A0problems" target="_blank" title="Share via Reddit">Reddit</a>
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&title=Kaggle%20evaluation%20metrics%20used%20for%20regression%20problems" target="_blank" title="Share via Reddit">Reddit</a>
   </span>
     <br/>
    </p>
-  <h1 id="kaggle-evaluation-metrics-used-for-regression-problems">Kaggle evaluation metrics used for regression&nbsp;problems</h1>
+  <h1 id="kaggle-evaluation-metrics-used-for-regression-problems">Kaggle evaluation metrics used for regression problems</h1>
   <div class="header-underline"></div>
   </header>
 
 
   <div>
-    <p>While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">sklearn.metrics</a> provides plethora of metrics for suitable for distinct&nbsp;purposes.</p>
-<p>In this series of posts I will discuss four groups of common machine learning tasks each requires specific&nbsp;metrics:</p>
+    <p>While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">sklearn.metrics</a> provides plethora of metrics for suitable for distinct purposes.</p>
+<p>In this series of posts I will discuss four groups of common machine learning tasks each requires specific metrics:</p>
 <ol>
-<li><em>Regression</em> - predict value of one or more variables that are continuous, e.g. predict stock price of given asset or predict temperature for next&nbsp;day.</li>
-<li><em>Binary classification</em> - assign sample to one of two classes - example: classify image as one containing &#8220;cat&#8221; or&nbsp;&#8220;dog&#8221;</li>
-<li><em>Multiple class classification</em> - assign sample to one of many classes example: classify new article to category &#8220;sport&#8221;, &#8220;politics&#8221;, &#8220;economy&#8221;,&nbsp;&#8220;pop-culture&#8221;,&#8230;</li>
+<li><em>Regression</em> - predict value of one or more variables that are continuous, e.g. predict stock price of given asset or predict temperature for next day.</li>
+<li><em>Binary classification</em> - assign sample to one of two classes - example: classify image as one containing "cat" or "dog"</li>
+<li><em>Multiple class classification</em> - assign sample to one of many classes example: classify new article to category "sport", "politics", "economy", "pop-culture",...</li>
 <li><em>Other</em></li>
 </ol>
-<p>The <a href="https://www.kaggle.com/competitions">Kaggle competitions</a> give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There use to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems. Here metrics that are discussed in this&nbsp;post.</p>
+<p>The <a href="https://www.kaggle.com/competitions">Kaggle competitions</a> give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There use to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems. Here metrics that are discussed in this post.</p>
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 <ul>
-<li><a href="#absolute-error---ae">Absolute Error - <span class="caps">AE</span></a></li>
-<li><a href="#mean-absolute-error---mae">Mean Absolute Error - <span class="caps">MAE</span></a></li>
-<li><a href="#weighted-mean-absolute-error---wmae">Weighted Mean Absolute Error - <span class="caps">WMAE</span></a></li>
-<li><a href="#pearson-correlation-coefficient">Pearson Correlation&nbsp;Coefficient</a></li>
-<li><a href="#spearman%E2%80%99s-rank-correlation">Spearman’s Rank&nbsp;Correlation</a></li>
-<li><a href="#root-mean-squared-error---rmse">Root Mean Squared Error - <span class="caps">RMSE</span></a></li>
-<li><a href="#root-mean-squared-logarithmic-error---rmsle">Root Mean Squared Logarithmic Error - <span class="caps">RMSLE</span></a></li>
-<li><a href="#mean-columnwise-root-mean-squared-error---mcrmse">Mean Columnwise Root Mean Squared Error - <span class="caps">MCRMSE</span></a></li>
+<li><a href="#absolute-error---ae">Absolute Error - AE</a></li>
+<li><a href="#mean-absolute-error---mae">Mean Absolute Error - MAE</a></li>
+<li><a href="#weighted-mean-absolute-error---wmae">Weighted Mean Absolute Error - WMAE</a></li>
+<li><a href="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
+<li><a href="#spearman%E2%80%99s-rank-correlation">Spearman’s Rank Correlation</a></li>
+<li><a href="#root-mean-squared-error---rmse">Root Mean Squared Error - RMSE</a></li>
+<li><a href="#root-mean-squared-logarithmic-error---rmsle">Root Mean Squared Logarithmic Error - RMSLE</a></li>
+<li><a href="#mean-columnwise-root-mean-squared-error---mcrmse">Mean Columnwise Root Mean Squared Error - MCRMSE</a></li>
 <li><a href="#references">References</a></li>
 </ul>
 <!-- /MarkdownTOC -->
 
 <p><a id="absolute-error---ae"></a></p>
-<h2>Absolute Error - <span class="caps">AE</span></h2>
-<p><strong>The sum of the absolute value of each individual&nbsp;error.</strong>
+<h2>Absolute Error - AE</h2>
+<p><strong>The sum of the absolute value of each individual error.</strong>
 </p>
 <div class="math">$$
 \mathrm{AE} = \sum_{i=1}^n | y_i - \hat{y}_i |
 $$</div>
 <p>Where:</p>
 <p><span class="math">\(\mathrm{AE} = |e_i| = |y_i-\hat{y_i}|\)</span>,</p>
-<p><span class="math">\(n\)</span> - number test of&nbsp;samples,</p>
-<p><span class="math">\(y_i\)</span> - actual variable&nbsp;value, </p>
-<p><span class="math">\(\hat{y}_i\)</span> - predicted variable&nbsp;value.</p>
-<p><span class="caps">MAE</span> can cause notable difference between public and private leaderboard calculations. One drawback of the Absolute Error metrics is that direct comparison of the metrics for model used to predict variables on different scales is not possible. E.g. when using model to financial predictions of S&amp;P 500 index and using the same model to predict value of Microsoft stock price we cannot compare their performance using this metrics since units and ranges are different. The S&amp;P 500 is expressed in points and stock price of asset is expressed in dollars. In this situation one can use (percentage error) to get evaluation metrics in common&nbsp;scale.</p>
-<p>Exemplary competition using Mean Absolute Error for model&nbsp;evaluation:</p>
+<p><span class="math">\(n\)</span> - number test of samples,</p>
+<p><span class="math">\(y_i\)</span> - actual variable value, </p>
+<p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
+<p>MAE can cause notable difference between public and private leaderboard calculations. One drawback of the Absolute Error metrics is that direct comparison of the metrics for model used to predict variables on different scales is not possible. E.g. when using model to financial predictions of S&amp;P 500 index and using the same model to predict value of Microsoft stock price we cannot compare their performance using this metrics since units and ranges are different. The S&amp;P 500 is expressed in points and stock price of asset is expressed in dollars. In this situation one can use (percentage error) to get evaluation metrics in common scale.</p>
+<p>Exemplary competition using Mean Absolute Error for model evaluation:</p>
 <ul>
-<li><a href="https://www.kaggle.com/c/Eurovision2010#Evaluation">Forecast Eurovision Voting</a> - This competition requires contestants to forecast the voting for this year&#8217;s Eurovision Song Contest in Norway on May 25th, 27th and&nbsp;29th.</li>
+<li><a href="https://www.kaggle.com/c/Eurovision2010#Evaluation">Forecast Eurovision Voting</a> - This competition requires contestants to forecast the voting for this year's Eurovision Song Contest in Norway on May 25th, 27th and 29th.</li>
 </ul>
 <p><a id="mean-absolute-error---mae"></a></p>
-<h2>Mean Absolute Error - <span class="caps">MAE</span></h2>
-<p><strong>Mean of the absolute value of each individual&nbsp;error.</strong></p>
-<p>The mean absolute error (<span class="caps">MAE</span>) is a quantity used to measure how close forecasts or predictions are to the eventual outcomes. The mean absolute error is given by&nbsp;formula:</p>
+<h2>Mean Absolute Error - MAE</h2>
+<p><strong>Mean of the absolute value of each individual error.</strong></p>
+<p>The mean absolute error (MAE) is a quantity used to measure how close forecasts or predictions are to the eventual outcomes. The mean absolute error is given by formula:</p>
 <div class="math">$$
 \mathrm{MAE} = \frac{1}{n}\sum_{i=1}^n \left| y_i - \hat{y_i}\right| =\frac{1}{n}\sum_{i=1}^n \left| e_i \right|.
 $$</div>
 <p>Where:</p>
-<p><span class="math">\(n\)</span> - number test of&nbsp;samples,</p>
-<p><span class="math">\(y_i\)</span> - actual variable&nbsp;value, </p>
-<p><span class="math">\(\hat{y}_i\)</span> - predicted variable&nbsp;value.</p>
-<p>see also <a href="http://climate.geog.udel.edu/~climate/publication_html/Pdf/WM_CR_05.pdf">paper</a>: Advantages of the mean absolute error (<span class="caps">MAE</span>) over the root mean square error (<span class="caps">RMSE</span>) in assessing average model&nbsp;performance</p>
-<p>Five exemplary competitions using Mean Absolute Error for model&nbsp;evaluation:</p>
+<p><span class="math">\(n\)</span> - number test of samples,</p>
+<p><span class="math">\(y_i\)</span> - actual variable value, </p>
+<p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
+<p>see also <a href="http://climate.geog.udel.edu/~climate/publication_html/Pdf/WM_CR_05.pdf">paper</a>: Advantages of the mean absolute error (MAE) over the root mean square error (RMSE) in assessing average model performance</p>
+<p>Five exemplary competitions using Mean Absolute Error for model evaluation:</p>
 <ul>
 <li>
-<p><a href="https://www.kaggle.com/c/LANL-Earthquake-Prediction#evaluation"><span class="caps">LANL</span> Earthquake Prediction</a> - Can you predict upcoming laboratory&nbsp;earthquakes?</p>
+<p><a href="https://www.kaggle.com/c/LANL-Earthquake-Prediction#evaluation">LANL Earthquake Prediction</a> - Can you predict upcoming laboratory earthquakes?</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/pubg-finish-placement-prediction#evaluation"><span class="caps">PUBG</span> Finish Placement Prediction</a> - Can you predict the battle royale finish of <span class="caps">PUBG</span>&nbsp;Players?</p>
+<p><a href="https://www.kaggle.com/c/pubg-finish-placement-prediction#evaluation">PUBG Finish Placement Prediction</a> - Can you predict the battle royale finish of PUBG Players?</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/allstate-claims-severity#evaluation">Allstate Claims Severity</a> - How severe is an insurance&nbsp;claim? </p>
+<p><a href="https://www.kaggle.com/c/allstate-claims-severity#evaluation">Allstate Claims Severity</a> - How severe is an insurance claim? </p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/loan-default-prediction#evaluation">Loan Default Prediction - Imperial College London</a> - Constructing an optimal portfolio of&nbsp;loans.</p>
+<p><a href="https://www.kaggle.com/c/loan-default-prediction#evaluation">Loan Default Prediction - Imperial College London</a> - Constructing an optimal portfolio of loans.</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/finding-elo#evaluation">Finding Elo</a> - Predict a chess player&#8217;s <span class="caps">FIDE</span> Elo rating from one&nbsp;game.</p>
+<p><a href="https://www.kaggle.com/c/finding-elo#evaluation">Finding Elo</a> - Predict a chess player's FIDE Elo rating from one game.</p>
 </li>
 </ul>
 <p><a id="weighted-mean-absolute-error---wmae"></a></p>
-<h2>Weighted Mean Absolute Error - <span class="caps">WMAE</span></h2>
-<p><strong>Weighted average of absolute&nbsp;errors.</strong></p>
-<p><span class="caps">WMAE</span> can be used as evaluation tool for better assessing the model performance with respect to the goals of the application. For example, in the case of recommending books or movies it could be possible that the accuracy of the predictions varies when focusing on past or recent products. In this situation, it is not reasonable that every error were treated equally, so more stress should be put in recent&nbsp;items.</p>
-<p><span class="caps">WMAE</span> can be also useful as a diagnosis tool that, using a &#8220;magnifying lens&#8221;, can help to identify those cases where an algorithm is having trouble with. The formula for calculating <span class="caps">WMAE</span>&nbsp;is:</p>
+<h2>Weighted Mean Absolute Error - WMAE</h2>
+<p><strong>Weighted average of absolute errors.</strong></p>
+<p>WMAE can be used as evaluation tool for better assessing the model performance with respect to the goals of the application. For example, in the case of recommending books or movies it could be possible that the accuracy of the predictions varies when focusing on past or recent products. In this situation, it is not reasonable that every error were treated equally, so more stress should be put in recent items.</p>
+<p>WMAE can be also useful as a diagnosis tool that, using a "magnifying lens", can help to identify those cases where an algorithm is having trouble with. The formula for calculating WMAE is:</p>
 <div class="math">$$
 \textrm{WMAE} = \frac{1}{n} \sum_{i=1}^n w_i | y_i - \hat{y}_i |,
 $$</div>
 <p>where:</p>
-<p><span class="math">\(n\)</span> - number test of&nbsp;samples,</p>
+<p><span class="math">\(n\)</span> - number test of samples,</p>
 <p><span class="math">\(w_i\)</span> - weights for sample <span class="math">\(i\)</span>,</p>
-<p><span class="math">\(y_i\)</span> - actual variable&nbsp;value,</p>
-<p><span class="math">\(\hat{y}_i\)</span> - predicted variable&nbsp;value.</p>
-<p>Two exemplary competitions using Weighted Mean Absolute Error for model&nbsp;evaluation:</p>
+<p><span class="math">\(y_i\)</span> - actual variable value,</p>
+<p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
+<p>Two exemplary competitions using Weighted Mean Absolute Error for model evaluation:</p>
 <ul>
 <li>
-<p><a href="https://www.kaggle.com/c/the-winton-stock-market-challenge#evaluation">The Winton Stock Market Challenge</a> - Join a multi-disciplinary team of research&nbsp;scientists.</p>
+<p><a href="https://www.kaggle.com/c/the-winton-stock-market-challenge#evaluation">The Winton Stock Market Challenge</a> - Join a multi-disciplinary team of research scientists.</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting#evaluation">Walmart Recruiting - Store Sales Forecasting</a> - Use historical markdown data to predict store&nbsp;sales.</p>
+<p><a href="https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting#evaluation">Walmart Recruiting - Store Sales Forecasting</a> - Use historical markdown data to predict store sales.</p>
 </li>
 </ul>
 <p><a id="pearson-correlation-coefficient"></a></p>
-<h2>Pearson Correlation&nbsp;Coefficient</h2>
-<p><strong>Covariance of the two variables divided by the product of the standard deviation of each data&nbsp;sample.</strong></p>
-<p>It is the normalization of the covariance between the two variables to give an interpretable score. The Pearson correlation coefficient can be used to summarize the strength of the linear relationship between two data samples. The formula for calculating Pearson correlation coefficient&nbsp;is:</p>
+<h2>Pearson Correlation Coefficient</h2>
+<p><strong>Covariance of the two variables divided by the product of the standard deviation of each data sample.</strong></p>
+<p>It is the normalization of the covariance between the two variables to give an interpretable score. The Pearson correlation coefficient can be used to summarize the strength of the linear relationship between two data samples. The formula for calculating Pearson correlation coefficient is:</p>
 <div class="math">$$
 p = \frac{cov(y_i, \hat{y}_i)}{std(y_i)  std(\hat{y}_i)}
 $$</div>
 <p>where:</p>
-<p><span class="math">\(cov()\)</span> - is covariation&nbsp;function,</p>
-<p><span class="math">\(std()\)</span> - is standard&nbsp;deviation</p>
-<p><span class="math">\(y_i\)</span> - actual variable&nbsp;value, </p>
-<p><span class="math">\(\hat{y}_i\)</span> - predicted variable&nbsp;value</p>
-<p><span class="math">\(p\)</span> - Pearson correlation&nbsp;coefficient.</p>
-<p>The use of mean and standard deviation in the calculation requires data samples to have a Gaussian or Gaussian-like&nbsp;distribution.</p>
-<p>Exemplary competition using Pearson Correlation Coefficient for model&nbsp;evaluation:</p>
+<p><span class="math">\(cov()\)</span> - is covariation function,</p>
+<p><span class="math">\(std()\)</span> - is standard deviation</p>
+<p><span class="math">\(y_i\)</span> - actual variable value, </p>
+<p><span class="math">\(\hat{y}_i\)</span> - predicted variable value</p>
+<p><span class="math">\(p\)</span> - Pearson correlation coefficient.</p>
+<p>The use of mean and standard deviation in the calculation requires data samples to have a Gaussian or Gaussian-like distribution.</p>
+<p>Exemplary competition using Pearson Correlation Coefficient for model evaluation:</p>
 <ul>
-<li><a href="https://www.kaggle.com/c/MerckActivity#evaluation">Merck Molecular Activity Challenge</a> - Help develop safe and effective medicines by predicting molecular&nbsp;activity.</li>
+<li><a href="https://www.kaggle.com/c/MerckActivity#evaluation">Merck Molecular Activity Challenge</a> - Help develop safe and effective medicines by predicting molecular activity.</li>
 </ul>
 <p><a id="spearman%E2%80%99s-rank-correlation"></a></p>
-<h2>Spearman’s Rank&nbsp;Correlation</h2>
-<p><strong>Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each&nbsp;variable.</strong></p>
-<p>Two variables may be related by a nonlinear relationship, such that the relationship is stronger or weaker across the distribution of the variables. The two variables being considered may have a non-Gaussian&nbsp;distribution.</p>
-<p>The Spearman’s correlation coefficient can be used to summarize the nonlinear relation between the two data samples. Raw scores <span class="math">\(y_i\)</span> and <span class="math">\(\hat{y}_i\)</span> are converted to ranks respectively: <span class="math">\(ry_i\)</span> and <span class="math">\(\hat{ry}_i\)</span>. The formula for calculating Spearman&#8217;s rank correlation coefficient&nbsp;is:</p>
+<h2>Spearman’s Rank Correlation</h2>
+<p><strong>Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each variable.</strong></p>
+<p>Two variables may be related by a nonlinear relationship, such that the relationship is stronger or weaker across the distribution of the variables. The two variables being considered may have a non-Gaussian distribution.</p>
+<p>The Spearman’s correlation coefficient can be used to summarize the nonlinear relation between the two data samples. Raw scores <span class="math">\(y_i\)</span> and <span class="math">\(\hat{y}_i\)</span> are converted to ranks respectively: <span class="math">\(ry_i\)</span> and <span class="math">\(\hat{ry}_i\)</span>. The formula for calculating Spearman's rank correlation coefficient is:</p>
 <div class="math">$$
 r=\frac{cov(ry_i, \hat{ry}_i)}{std(ry_i)std(\hat{ry}_i)}
 $$</div>
 <p>where:</p>
-<p><span class="math">\(cov()\)</span> - is covariation&nbsp;function,</p>
-<p><span class="math">\(std()\)</span> - is standard&nbsp;deviation,</p>
-<p><span class="math">\(ry_i\)</span> - rank of variable&nbsp;value, </p>
-<p><span class="math">\(\hat{ry}_i\)</span> - rank of predicted variable&nbsp;value,</p>
-<p><span class="math">\(r\)</span> - Spearman&#8217;s correlation&nbsp;coefficient.</p>
-<p>Exemplary competition using Spearman’s Rank Correlation for model&nbsp;evaluation:</p>
+<p><span class="math">\(cov()\)</span> - is covariation function,</p>
+<p><span class="math">\(std()\)</span> - is standard deviation,</p>
+<p><span class="math">\(ry_i\)</span> - rank of variable value, </p>
+<p><span class="math">\(\hat{ry}_i\)</span> - rank of predicted variable value,</p>
+<p><span class="math">\(r\)</span> - Spearman's correlation coefficient.</p>
+<p>Exemplary competition using Spearman’s Rank Correlation for model evaluation:</p>
 <ul>
-<li>Draper Satellite Image Chronology](https://www.kaggle.com/c/draper-satellite-image-chronology#evaluation) - Can you put order to space and&nbsp;time?</li>
+<li>Draper Satellite Image Chronology](https://www.kaggle.com/c/draper-satellite-image-chronology#evaluation) - Can you put order to space and time?</li>
 </ul>
 <p><a id="root-mean-squared-error---rmse"></a></p>
-<h2>Root Mean Squared Error - <span class="caps">RMSE</span></h2>
-<p><strong>The square root of the mean/average of the square of all of the&nbsp;error.</strong></p>
-<p>The use of <span class="caps">RMSE</span> is very common and it makes an excellent general purpose error metric for numerical predictions. Compared to the similar Mean Absolute Error, <span class="caps">RMSE</span> amplifies and severely punishes large errors. The formula for calculating <span class="caps">RMSE</span>&nbsp;is:</p>
+<h2>Root Mean Squared Error - RMSE</h2>
+<p><strong>The square root of the mean/average of the square of all of the error.</strong></p>
+<p>The use of RMSE is very common and it makes an excellent general purpose error metric for numerical predictions. Compared to the similar Mean Absolute Error, RMSE amplifies and severely punishes large errors. The formula for calculating RMSE is:</p>
 <div class="math">$$
 \mathrm{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
 $$</div>
 <p>where:</p>
-<p><span class="math">\(n\)</span> - number test of&nbsp;samples,</p>
-<p><span class="math">\(y_i\)</span> - actual variable&nbsp;value, </p>
-<p><span class="math">\(\hat{y}_i\)</span> - predicted variable&nbsp;value.</p>
-<p>Five exemplary competition using Root Mean Squared Error for model&nbsp;evaluation:</p>
+<p><span class="math">\(n\)</span> - number test of samples,</p>
+<p><span class="math">\(y_i\)</span> - actual variable value, </p>
+<p><span class="math">\(\hat{y}_i\)</span> - predicted variable value.</p>
+<p>Five exemplary competition using Root Mean Squared Error for model evaluation:</p>
 <ul>
 <li>
-<p><a href="https://www.kaggle.com/c/elo-merchant-category-recommendation#evaluation">Elo Merchant Category Recommendation</a> - Help understand customer&nbsp;loyalty.</p>
+<p><a href="https://www.kaggle.com/c/elo-merchant-category-recommendation#evaluation">Elo Merchant Category Recommendation</a> - Help understand customer loyalty.</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/ga-customer-revenue-prediction#evaluation">Google Analytics Customer Revenue Prediction</a> - Predict how much GStore customers will&nbsp;spend.</p>
+<p><a href="https://www.kaggle.com/c/ga-customer-revenue-prediction#evaluation">Google Analytics Customer Revenue Prediction</a> - Predict how much GStore customers will spend.</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques#evaluation">House Prices: Advanced Regression Techniques</a> - Predict sales prices and practice feature engineering, RFs, and gradient&nbsp;boosting.</p>
+<p><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques#evaluation">House Prices: Advanced Regression Techniques</a> - Predict sales prices and practice feature engineering, RFs, and gradient boosting.</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/competitive-data-science-predict-future-sales#evaluation">Predict Future Sales</a> - Final project for &#8220;How to win a data science competition&#8221; Coursera&nbsp;course.</p>
+<p><a href="https://www.kaggle.com/c/competitive-data-science-predict-future-sales#evaluation">Predict Future Sales</a> - Final project for "How to win a data science competition" Coursera course.</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/new-york-city-taxi-fare-prediction#evaluation">New York City Taxi Fare Prediction</a> - Can you predict a rider&#8217;s taxi&nbsp;fare?</p>
+<p><a href="https://www.kaggle.com/c/new-york-city-taxi-fare-prediction#evaluation">New York City Taxi Fare Prediction</a> - Can you predict a rider's taxi fare?</p>
 </li>
 </ul>
 <p><a id="root-mean-squared-logarithmic-error---rmsle"></a></p>
-<h2>Root Mean Squared Logarithmic Error - <span class="caps">RMSLE</span></h2>
+<h2>Root Mean Squared Logarithmic Error - RMSLE</h2>
 <p><strong>Root mean squared error of variables transformed to logarithmic scale</strong>.
 </p>
 <div class="math">$$
 \mathrm{RMSLE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(log(\hat{y}_i + 1) - log(y_i + 1))^2}
 $$</div>
 <p>Where:</p>
-<p><span class="math">\(n\)</span> - number of test&nbsp;samples,</p>
-<p><span class="math">\(\hat{y}_i\)</span> is the predicted&nbsp;variable,</p>
-<p><span class="math">\(y_i\)</span> is the actual&nbsp;variable,</p>
+<p><span class="math">\(n\)</span> - number of test samples,</p>
+<p><span class="math">\(\hat{y}_i\)</span> is the predicted variable,</p>
+<p><span class="math">\(y_i\)</span> is the actual variable,</p>
 <p><span class="math">\(log(x)\)</span> is the natural logarithm of <span class="math">\(x\)</span>.</p>
-<p>The <span class="caps">RMSLE</span> is higher when the discrepancies between predicted and actual values are larger. Compared to Root Mean Squared Error (<span class="caps">RMSE</span>), <span class="caps">RMSLE</span> does not heavily penalize huge discrepancies between the predicted and actual values when both values are huge. In this cases only the percentage differences matter (difference of variable logarithms is equivalent to ratio of&nbsp;variables).</p>
-<p>Exemplary competition using Root Mean Squared Logarithmic Error for model&nbsp;evaluation:</p>
+<p>The RMSLE is higher when the discrepancies between predicted and actual values are larger. Compared to Root Mean Squared Error (RMSE), RMSLE does not heavily penalize huge discrepancies between the predicted and actual values when both values are huge. In this cases only the percentage differences matter (difference of variable logarithms is equivalent to ratio of variables).</p>
+<p>Exemplary competition using Root Mean Squared Logarithmic Error for model evaluation:</p>
 <ul>
 <li>
-<p><a href="https://www.kaggle.com/c/santander-value-prediction-challenge#evaluation">Santander Value Prediction Challenge</a> - Predict the value of transactions for potential&nbsp;customers.</p>
+<p><a href="https://www.kaggle.com/c/santander-value-prediction-challenge#evaluation">Santander Value Prediction Challenge</a> - Predict the value of transactions for potential customers.</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/mercari-price-suggestion-challenge#evaluation">Mercari Price Suggestion Challenge</a> - Can you automatically suggest product prices to online&nbsp;sellers?</p>
+<p><a href="https://www.kaggle.com/c/mercari-price-suggestion-challenge#evaluation">Mercari Price Suggestion Challenge</a> - Can you automatically suggest product prices to online sellers?</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting#evaluation">Recruit Restaurant Visitor Forecasting</a> - Predict how many future visitors a restaurant will&nbsp;receive</p>
+<p><a href="https://www.kaggle.com/c/recruit-restaurant-visitor-forecasting#evaluation">Recruit Restaurant Visitor Forecasting</a> - Predict how many future visitors a restaurant will receive</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/nyc-taxi-trip-duration#evaluation">New York City Taxi Trip Duration</a> - Share code and data to improve ride time&nbsp;predictions</p>
+<p><a href="https://www.kaggle.com/c/nyc-taxi-trip-duration#evaluation">New York City Taxi Trip Duration</a> - Share code and data to improve ride time predictions</p>
 </li>
 <li>
-<p><a href="https://www.kaggle.com/c/sberbank-russian-housing-market#evaluation">Sberbank Russian Housing Market</a> - Can you predict realty price fluctuations in Russia’s volatile&nbsp;economy?</p>
+<p><a href="https://www.kaggle.com/c/sberbank-russian-housing-market#evaluation">Sberbank Russian Housing Market</a> - Can you predict realty price fluctuations in Russia’s volatile economy?</p>
 </li>
 </ul>
 <p><a id="mean-columnwise-root-mean-squared-error---mcrmse"></a></p>
-<h2>Mean Columnwise Root Mean Squared Error - <span class="caps">MCRMSE</span></h2>
-<p><strong>Errors of each k-fold <span class="caps">CV</span> trials were averaged over n test samples across m target&nbsp;variables.</strong>
+<h2>Mean Columnwise Root Mean Squared Error - MCRMSE</h2>
+<p><strong>Errors of each k-fold CV trials were averaged over n test samples across m target variables.</strong>
 </p>
 <div class="math">$$
 MCRMSE = \frac{1}{m}\sum_{j=1}^{m}\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_
 {ij}-\hat{y}_{ij})^2}
 $$</div>
 <p>
-Note that expression under square root is <span class="caps">RMSE</span>, thus we can&nbsp;write:
+Note that expression under square root is RMSE, thus we can write:
 </p>
 <div class="math">$$
 MCRMSE = \frac{1}{m}\sum_{j=1}^{m}RMSE_j
 $$</div>
 <p>Where:</p>
-<p><span class="math">\(m\)</span> - number of predicted&nbsp;variables,</p>
-<p><span class="math">\(n\)</span> - number of test&nbsp;samples,</p>
-<p><span class="math">\(y_{ij}\)</span> - <span class="math">\(i\)</span>-th actual value of <span class="math">\(j\)</span>-th&nbsp;variable,</p>
-<p><span class="math">\(\hat{y}_{ij}\)</span> - <span class="math">\(i\)</span>-th predicted value of <span class="math">\(j\)</span>-th&nbsp;variable.</p>
-<p>Exemplary competition using Mean Columnwise Root Mean Squared Error for model&nbsp;evaluation:</p>
+<p><span class="math">\(m\)</span> - number of predicted variables,</p>
+<p><span class="math">\(n\)</span> - number of test samples,</p>
+<p><span class="math">\(y_{ij}\)</span> - <span class="math">\(i\)</span>-th actual value of <span class="math">\(j\)</span>-th variable,</p>
+<p><span class="math">\(\hat{y}_{ij}\)</span> - <span class="math">\(i\)</span>-th predicted value of <span class="math">\(j\)</span>-th variable.</p>
+<p>Exemplary competition using Mean Columnwise Root Mean Squared Error for model evaluation:</p>
 <ul>
-<li><a href="https://www.kaggle.com/c/afsis-soil-properties#evaluation">Africa Soil Property Prediction Challenge</a> - Predict physical and chemical properties of soil using spectral&nbsp;measurements</li>
+<li><a href="https://www.kaggle.com/c/afsis-soil-properties#evaluation">Africa Soil Property Prediction Challenge</a> - Predict physical and chemical properties of soil using spectral measurements</li>
 </ul>
 <p><a id="references"></a></p>
 <h2>References</h2>
 <ol>
-<li><a href="archive.org">Kaggle&nbsp;wiki</a></li>
-<li><a href="https://www.ke.tu-darmstadt.de/lehre/arbeiten/studien/2015/Dong_Ying.pdf">Beating Kaggle the easy way, page&nbsp;43</a></li>
-<li><a href="https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/">How to Use Correlation to Understand the Relationship Between&nbsp;Variables</a></li>
-<li><a href="https://books.google.pl/books?id=bsEDCwAAQBAJ&amp;pg=PA23&amp;lpg=PA23&amp;dq=%22Mean+Column+Wise+Root+Mean+Squared+Error%22&amp;source=bl&amp;ots=CXTjTNgehR&amp;sig=ACfU3U0Jsn7QkzFecjR-EQC5mtD9p_lBCA&amp;hl=en&amp;sa=X&amp;ved=2ahUKEwjAqYPixa_gAhXF8qYKHeGrDbYQ6AEwBXoECAAQAQ#v=onepage&amp;q=%22Mean%20Column%20Wise%20Root%20Mean%20Squared%20Error%22&amp;f=false">Mean Columnwise Root Mean Squared Error - google&nbsp;books</a></li>
-<li><a href="https://towardsdatascience.com/metrics-to-understand-regression-models-in-plain-english-part-1-c902b2f4156f">Metrics to Understand Regression Models in Plain English: Part&nbsp;1</a></li>
+<li><a href="archive.org">Kaggle wiki</a></li>
+<li><a href="https://www.ke.tu-darmstadt.de/lehre/arbeiten/studien/2015/Dong_Ying.pdf">Beating Kaggle the easy way, page 43</a></li>
+<li><a href="https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/">How to Use Correlation to Understand the Relationship Between Variables</a></li>
+<li><a href="https://books.google.pl/books?id=bsEDCwAAQBAJ&amp;pg=PA23&amp;lpg=PA23&amp;dq=%22Mean+Column+Wise+Root+Mean+Squared+Error%22&amp;source=bl&amp;ots=CXTjTNgehR&amp;sig=ACfU3U0Jsn7QkzFecjR-EQC5mtD9p_lBCA&amp;hl=en&amp;sa=X&amp;ved=2ahUKEwjAqYPixa_gAhXF8qYKHeGrDbYQ6AEwBXoECAAQAQ#v=onepage&amp;q=%22Mean%20Column%20Wise%20Root%20Mean%20Squared%20Error%22&amp;f=false">Mean Columnwise Root Mean Squared Error - google books</a></li>
+<li><a href="https://towardsdatascience.com/metrics-to-understand-regression-models-in-plain-english-part-1-c902b2f4156f">Metrics to Understand Regression Models in Plain English: Part 1</a></li>
 </ol>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
@@ -462,10 +462,10 @@ $$</div>
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://www.safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/" title="How to install TensorFlow and Keras on Windows 10">
+    <a class="btn float-left" href="https://www.safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/" title="How to install TensorFlow and Keras on Windows 10">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
-    <a class="btn float-right" href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/" title="Learn Bayesian methods in 4 steps - by reading and by doing">
+    <a class="btn float-right" href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/" title="Learn Bayesian methods in 4 steps - by reading and by doing">
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
@@ -473,11 +473,11 @@ $$</div>
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://www.safjan.com/whats-cooking/">What&#8217;s&nbsp;cooking</a></li>
-      <li><a href="https://www.safjan.com/data-science-command-line-tools/">Data Science Command-line&nbsp;Tools</a></li>
-      <li><a href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/">Learn Bayesian methods in 4 steps - by reading and by&nbsp;doing</a></li>
-      <li><a href="https://www.safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/">How to install TensorFlow and Keras on Windows&nbsp;10</a></li>
-      <li><a href="https://www.safjan.com/darwin-approach-to-traveling-salesman/">Darwin Approach to Traveling&nbsp;Salesman</a></li>
+      <li><a href="https://www.safjan.com/whats-cooking/">What's cooking</a></li>
+      <li><a href="https://www.safjan.com/data-science-command-line-tools/">Data Science Command-line Tools</a></li>
+      <li><a href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/">Learn Bayesian methods in 4 steps - by reading and by doing</a></li>
+      <li><a href="https://www.safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/">How to install TensorFlow and Keras on Windows 10</a></li>
+      <li><a href="https://www.safjan.com/darwin-approach-to-traveling-salesman/">Darwin Approach to Traveling Salesman</a></li>
     </ul>
   </div>
 
