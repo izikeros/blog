@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-08-17T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>List unlinked (orphaned) notes in Obsidian</title><link href="https://www.safjan.com/list-unlinked-orphaned-notes-obsidian/" rel="alternate"></link><published>2022-08-17T00:00:00+02:00</published><updated>2022-08-17T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-17:/list-unlinked-orphaned-notes-obsidian/</id><summary type="html">&lt;p&gt;Here is how you can create dynamic list of unlinked notes (files) using dataview&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-08-31T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>How to convert HTML to clean markdown</title><link href="https://www.safjan.com/how-to-convert-html-to-clean-markdown/" rel="alternate"></link><published>2022-08-31T00:00:00+02:00</published><updated>2022-08-31T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-31:/how-to-convert-html-to-clean-markdown/</id><summary type="html">&lt;p&gt;Instruction on how to convert HTML document to markdown with cleaning the output from the clutter&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have collected source material in form of HTML pages that I would like to keep in one place as knowledge base (technically: create &lt;a href="https://obsidian.md/"&gt;Obsidian&lt;/a&gt; vault for these pages). But first I needed to convert them all to Markdown. First tool to use that came into my mind was using &lt;a href="https://pandoc.org/"&gt;Pandoc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I started with basic syntax to check what is my baseline:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pandoc -i index.html -o index.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The text were converted to markdown but had some additional elements that wish not to see in the output markdown document. 
+- remaining after div elements, iframes
+- references in curly brackets
+- raw HTML comments as codefences blocks&lt;/p&gt;
+&lt;p&gt;Here is an example of the clutter in my Markdown document.&lt;/p&gt;
+&lt;pre&gt;
+::: iframe
+:::
+
+::: site-container
+::: site-header
+::: wrap
+::: title-area
+[Page Title](../../../index.html)
+:::
+
+::: {.widget-area .header-widget-area}
+::: {#nav_menu-27 .section .widget .widget_nav_menu}
+::: widget-wrap
+-   [[Articles](../../../blog/index.html)]{#menu-item-2360}
+-   [[Books ](../../index.html)]{#menu-item-8729}
+:::
+:::
+:::
+:::
+:::
+
+::: site-inner
+::: content-sidebar-wrap
+::: {.content role="main"}
+::: entry-header
+
+-   "Happiness doesn't just flow from success, it actually causes it".
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;!--&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/pre&gt;
+
+&lt;p&gt;Using &lt;code&gt;--strict, -s&lt;/code&gt; mode adds YAML frontmatter with metadata - which contains few fields that I want to keep.&lt;/p&gt;
+&lt;h2&gt;My final solution&lt;/h2&gt;
+&lt;p&gt;To remove parts that remained in Markdown document you can use &lt;code&gt;grep&lt;/code&gt; and &lt;code&gt;sed&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pandoc -s -i index.html -t markdown &lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+grep -v &lt;span class="s2"&gt;&amp;quot;^:&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+grep -v &lt;span class="s1"&gt;&amp;#39;^```&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+grep -v &lt;span class="s1"&gt;&amp;#39;&amp;lt;!-- --&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+sed -e &lt;span class="s1"&gt;&amp;#39;:again&amp;#39;&lt;/span&gt; -e N -e &lt;span class="s1"&gt;&amp;#39;$!b again&amp;#39;&lt;/span&gt; -e &lt;span class="s1"&gt;&amp;#39;s/{[^}]*}//g&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt;! index.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The sed is used to remove content in curly brackets spanning multiple lines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# Linux
+sed &amp;#39;:again;$!N;$!b again; s/{[^}]*}//g&amp;#39;
+
+# macOS
+sed -e &amp;#39;:again&amp;#39; -e N -e &amp;#39;$!b again&amp;#39; -e &amp;#39;s/{[^}]*}//g&amp;#39; file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;solution by &lt;a href="https://unix.stackexchange.com/users/53604/john1024"&gt;John1024&lt;/a&gt; from: &lt;a href="https://unix.stackexchange.com/a/166878/359426"&gt;Linux Stack Exchange&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Note&lt;/h2&gt;
+&lt;p&gt;You can further experiment with Markdown variants supported by pandoc.&lt;/p&gt;
+&lt;p&gt;In addition to pandoc’s extended Markdown, the following Markdown variants are supported:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;markdown_phpextra&lt;/code&gt; (PHP Markdown Extra)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;markdown_github&lt;/code&gt; (deprecated GitHub-Flavored Markdown)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;markdown_mmd&lt;/code&gt; (MultiMarkdown)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;markdown_strict&lt;/code&gt; (Markdown.pl)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;commonmark&lt;/code&gt; (CommonMark)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gfm&lt;/code&gt; (Github-Flavored Markdown)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;commonmark_x&lt;/code&gt; (CommonMark with many pandoc extensions)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="markdown"></category><category term="pandoc"></category><category term="conversion"></category><category term="cli"></category></entry><entry><title>List unlinked (orphaned) notes in Obsidian</title><link href="https://www.safjan.com/list-unlinked-orphaned-notes-obsidian/" rel="alternate"></link><published>2022-08-17T00:00:00+02:00</published><updated>2022-08-17T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-17:/list-unlinked-orphaned-notes-obsidian/</id><summary type="html">&lt;p&gt;Here is how you can create dynamic list of unlinked notes (files) using dataview&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```dataview
 LIST FROM &amp;quot;&amp;quot;
 WHERE length(file.inlinks) = 0 AND length(file.outlinks) = 0
@@ -3969,10 +4046,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="3f343fa6-20af-4c95-838b-1594c329e435"&gt;&lt;/div&gt;
+&lt;div id="5a9fa8b5-560a-4098-8785-af5e75959a2a"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#3f343fa6-20af-4c95-838b-1594c329e435');
+var element = $('#5a9fa8b5-560a-4098-8785-af5e75959a2a');
 
 (function(root) {
   function now() {
