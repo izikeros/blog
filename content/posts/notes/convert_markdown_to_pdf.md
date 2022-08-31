@@ -9,7 +9,7 @@ title: Convert markdown to pdf
 
 
 ## With pagination
-convert with pandoc to pdf
+convert with [Pandoc](https://pandoc.org/) to PDF
 ```sh
 pandoc \
 --from=markdown \
@@ -38,7 +38,10 @@ wkhtmltopdf \
 -s A5 \
 book.html book_html.pdf
 ```
-Experiment with page size to impact margins and font size
 
-see: https://blog.scottlowe.org/2018/09/27/a-markdown-to-pdf-workflow-on-linux/
+> **NOTE:** Experiment with page size to impact margins and font size
+
+## See also: 
+- [A Markdown-to-PDF Workflow on Linux - Scott's Weblog - The weblog of an IT pro focusing on cloud computing, Kubernetes, Linux, containers, and networking](https://blog.scottlowe.org/2018/09/27/a-markdown-to-pdf-workflow-on-linux/)
+- [[convert_html_to_markdown]]
 

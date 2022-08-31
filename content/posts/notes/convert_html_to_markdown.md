@@ -2,8 +2,8 @@
 title: How to convert HTML to clean markdown
 date: 2022-08-31
 status: published
-tags: markdown, pandoc, conversion, cli
-summary: Instruction on how to convert HTML document to markdown with cleaning the output from the clutter
+tags: html, markdown, pandoc, conversion, cli, grep, sed
+summary: Instruction on how to convert HTML document to markdown with cleaning the output from the clutter.
 slug: how-to-convert-html-to-clean-markdown
 category: note
 citation_needed: false
@@ -96,3 +96,7 @@ In addition to pandoc’s extended Markdown, the following Markdown variants are
 -   `commonmark` (CommonMark)
 -   `gfm` (Github-Flavored Markdown)
 -   `commonmark_x` (CommonMark with many pandoc extensions)
+
+
+## See also:
+[[convert_markdown_to_pdf]]
