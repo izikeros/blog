@@ -14,7 +14,8 @@ Image: /images/head/rss_banner_small.jpg
 >
 Websites usually use RSS feeds to publish frequently updated information, such as blog entries, news headlines, episodes of audio and video series, or for distributing podcasts. An RSS document (called "feed", "web feed", or "channel") includes full or summarized text, and metadata, like publishing date and author's name. RSS formats are specified using a generic XML file.
 >
-*> (source: Wikipedia)*
+> *(source: Wikipedia)*
+
 
 > **Did you know?:** In 2000, at the age of 14, [Aaron Swartz](https://www.rollingstone.com/culture/culture-news/the-brilliant-life-and-tragic-death-of-aaron-swartz-177191/?sub_action=logged_in) co-authored RSS version 1.0, and shortly thereafter joined a working group at the World Wide Web Consortium to help develop common data formats used on the World Wide Web.
 
