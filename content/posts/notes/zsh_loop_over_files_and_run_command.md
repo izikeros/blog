@@ -1,6 +1,7 @@
 ---
 title: Zsh - loop over files and run command
 date: 2022-04-22
+modified: 2022-04-22
 status: published
 tags: zsh, loop
 slug: zsh-loop-over-files-and-run-command

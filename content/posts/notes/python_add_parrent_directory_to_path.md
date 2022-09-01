@@ -1,6 +1,7 @@
 ---
 title: Python Add Parent Directory To Path
 date: 2022-02-22
+modified: 2022-02-22
 status: published
 tags: python, gist, snippet, jupyter, notebook
 summary: 

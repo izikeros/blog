@@ -1,6 +1,7 @@
 ---
 category: note
 date: '2022-05-12'
+modified: '2022-05-12'
 status: published
 slug: bash-default-argument
 tags: default-argument, bash

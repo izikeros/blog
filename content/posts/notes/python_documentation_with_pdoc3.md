@@ -1,6 +1,7 @@
 ---
 category: note
 date: '2021-09-28'
+modified: '2021-09-28'
 slug: python-documentation-with-pdoc3
 status: published
 suggested_tags: documentation, pdoc3, python

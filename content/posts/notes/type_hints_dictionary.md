@@ -1,6 +1,7 @@
 ---
 title: Use python TypedDict to type hint dictionaries
 date: 2022-04-22
+modified: 2022-04-22
 status: published
 tags: python, type-hints, TypedDict
 slug: use-python-typeddict-to-type-hint-dictionaries

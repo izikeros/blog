@@ -1,6 +1,7 @@
 ---
 title: Black - the code formatter
 date: 2021-11-29
+modified: 2022-09-01
 status: published
 tags: black, python, pyqa, quality
 summary: notes on using black formatter
@@ -12,7 +13,7 @@ todo:
 
 Black is a non-configurable code formatter.
 
-## Install black for Jupiter notebook
+## Install Black for Jupyter notebook
 ```sh
 jupyter nbextension install https://github.com/drillan/jupyter-black/archive/master.zip --user
 jupyter nbextension enable jupyter-black-master/jupyter-black

@@ -1,6 +1,7 @@
 ---
-title: Serve http files with python server
+title: Serve HTTP files with python server
 date: 2022-04-27
+modified:2022-04-27
 status: published
 tags: python, htttp, server, javascript
 slug: serve-http-files-with-python-server

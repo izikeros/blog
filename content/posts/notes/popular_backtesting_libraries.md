@@ -1,6 +1,7 @@
 ---
 title: Most Popular Python Backtesting Libraries
 date: 2022-02-11
+modified: 2022-02-11
 status: Published
 tags: backtesting, finance/crypto, finance/algotrading, finance, popularity
 summary: Popular backtesting libraries with stars as popularity indicators.

@@ -2,6 +2,7 @@
 title: Pytest check if lists are equal
 category: note
 date: '2022-05-12'
+modified: '2022-05-12'
 status: published
 slug: pytest-check-lists-equal
 tags: pytest, python, assert

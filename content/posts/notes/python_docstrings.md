@@ -1,6 +1,7 @@
 ---
 category: note
 date: '2021-09-29'
+modified: '2021-09-29'
 slug: python-docstrings-styles
 status: published
 suggested_tags: docstring, python, style

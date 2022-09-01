@@ -1,15 +1,15 @@
 ---
 date: '2021-10-08'
+modified: 2022-09-01
 status: published
-suggested_tags: commit, github, hook, pre, sh, yaml, git
-summary: Pre-commit is a convenient framework to manage git hooks. Uses configuration in yaml file, handle the installation of required hooks and tools.
+summary: Pre-commit is a convenient framework to manage git hooks. Uses configuration in the yaml file, handle the installation of required hooks and tools.
 tags: best-practices, commit, git, GitHub, hooks, management, project
 title: Pre-commit hooks
 slug: git-pre-commit-hooks
 category: note
 ---
 
-Pre-commit is convenient framework to manage git hooks. Uses configuration in yaml file, handle installation of required hooks and tools.
+Pre-commit is a convenient framework to manage git hooks. Uses configuration in YAML file, handles the installation of required hooks and tools.
 
 # Pre-commit
 repo with [hooks](https://github.com/pre-commit/pre-commit-hooks) to be used with [pre-commit](https://pre-commit.com/)
@@ -43,14 +43,14 @@ It's usually a good idea to run the hooks against all the files when adding new 
 pre-commit run --all-files
 ```
 
-upgrade pre-commit hooks to most recent version:
+upgrade pre-commit hooks to the most recent version:
 ```sh
 pre-commit autoupdate
 ```
 
 see also: https://github.com/sds/overcommit
 
-Exemplary set of hooks
+An exemplary set of hooks
 ```yaml
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks

@@ -1,6 +1,7 @@
 ---
 title: Clone partition in Linux
 date: 2022-03-03
+modified: 2022-03-03
 status: published
 tags: Linux, dd, pv, partition, disk
 summary: how to clone disk partition in Linux
@@ -15,7 +16,7 @@ todo:
 dd if=infile | pv > outfile
 ```
 
-## create disk image:
+## create a disk image:
 (from arch wiki: https://wiki.archlinux.org/index.php/Dd#Disk_cloning_and_restore)
 ```sh
 dd if=/dev/sda conv=sync,noerror bs=64K | gzip -c  > /path/to/backup.img.gz

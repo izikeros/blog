@@ -2,6 +2,7 @@
 title: Auto documented makefile
 category: note
 date: '2022-05-12'
+modified: '2022-05-12'
 status: published
 slug: auto-documented-makefile
 tags: auto-documented, makefile, documentation, help, make-help

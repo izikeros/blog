@@ -1,6 +1,7 @@
 ---
 category: note
 date: '2021-09-29'
+modified: '2021-09-29'
 slug: python-convert-docstring-styles
 status: published
 suggested_tags: convert, docstring, python, style

@@ -2,6 +2,7 @@
 title: Man alternatives, CLI command usage explanations, and cheatsheets
 category: note
 date: '2022-05-12'
+modified: '2022-05-12'
 status: published
 slug: man-alternatives-usage-explanations-and-cheatsheets
 tags: software/alternatives, cheatsheet, man, someday, rofi, cli

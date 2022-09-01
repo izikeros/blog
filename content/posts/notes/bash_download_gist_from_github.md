@@ -1,10 +1,11 @@
 ---
 category: note
 date: '2022-05-12'
+modified: '2022-05-12'
 status: published
 slug: bash-download-gist-from-github
 tags: bash, download, gist, github
-title: Bash - download gist from Github
+title: Bash - download gist from GitHub
 ---
 
 ## Download, output content to stdout
@@ -13,7 +14,7 @@ title: Bash - download gist from Github
 curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6bad20/raw/
 ```
 
-## Download, save the output to file `my_file`
+## Download, and save the output to file `my_file`
 ```
 curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6bad20/raw/ -o my_file
 ```

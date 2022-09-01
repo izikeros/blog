@@ -1,6 +1,7 @@
 ---
 title: Git hooks
 date: 2021-10-20
+modified: 2021-10-20
 status: published
 tags: git, hooks, pre-commit hooks, software project, project
 summary: Example of how to set up git hooks manually or with pre-commit tool

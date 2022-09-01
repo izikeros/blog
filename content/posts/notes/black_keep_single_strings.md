@@ -1,6 +1,7 @@
 ---
 category: note
 date: '2022-05-12'
+modified: '2022-05-12'
 status: published
 slug: black-keep-single-quotes-strings
 tags: black, single-string, quotation-mark

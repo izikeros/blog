@@ -1,6 +1,7 @@
 ---
 title: List unlinked (orphaned) notes in Obsidian
 date: 2022-08-17
+modified: 2022-08-17
 status: published
 tags: obsidian, dataview, orphaned-notes
 slug: list-unlinked-orphaned-notes-obsidian

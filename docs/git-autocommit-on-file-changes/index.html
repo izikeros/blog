@@ -46,8 +46,8 @@
 <meta name="description" content="How to create automatically commits if any file in the watched folder was changed" />
 <meta name="keywords" content="git, autocommit, note-taking, notes, automatic, automation, git/autocommit">
 <meta expr:content="2021-09-14 00:00:00+02:00" itemprop='datePublished'/>
-<meta expr:content="" itemprop='dateModified'/>
-<meta property="article:modified_time" content=""/>
+<meta expr:content="2022-09-01 00:00:00+02:00" itemprop='dateModified'/>
+<meta property="article:modified_time" content="2022-09-01 00:00:00+02:00"/>
 <meta property="article:published_time" content="2021-09-14 00:00:00+02:00"/>
 <script type="application/ld+json">
 {
@@ -55,7 +55,7 @@
   "@type": "BlogPosting",
   "headline": "Git - autocommit on file changes",
   "datePublished": "2021-09-14 00:00:00+02:00",
-  "dateModified": ""
+  "dateModified": "2022-09-01 00:00:00+02:00"
 }
 </script>
 
@@ -68,7 +68,7 @@
   <meta property="og:url" content="https://www.safjan.com/git-autocommit-on-file-changes/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2021-09-14 00:00:00+02:00"/>
-  <meta property="article:modified_time" content=""/>
+  <meta property="article:modified_time" content="2022-09-01 00:00:00+02:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="git"/>
@@ -234,43 +234,43 @@ $ brew install coreutils
 </code></pre></div>
 
 <ol>
-<li>If installed to a path other than <code>/usr/bin/gitwatch</code>, modify <code>gitwatch@.service</code> to suit. In my case, gitwatch was found in <code>/usr/local/bin/gitwatch</code></li>
+<li>If installed to a path other than <code>/usr/bin/gitwatch</code>, modify <code>gitwatch@.service</code> to suit. In my case, <code>gitwatch</code> was found in <code>/usr/local/bin/gitwatch</code></li>
 <li>
 <p>Create dir if it does not exist and copy systemd service file with <code>mkdir -p "$HOME/.config/systemd/user" &amp;&amp; cp gitwatch@.service $HOME/.config/systemd/user</code>
-If you cannot find <code>gitwatch@.service</code> file take it from the github repository.</p>
+If you cannot find <code>gitwatch@.service</code> file take it from the GitHub repository.</p>
 </li>
 <li>
 <p>Start and enable the service for a given path by running <code>systemctl --user --now enable gitwatch@$(systemd-escape "'-r url/to/repository' /path/to/folder").service</code>
 On macOS you need to act differently</p>
 </li>
 <li>take <code>.plist</code> file from the repo, and adjust it to your needs</li>
-<li>copy modified plist to  /Library/LaunchDaemons/ with sudo</li>
-<li>note: if there is a proper gitwatch script path (I needed to change <code>gitwatch.sh</code> to <code>gitwatch</code>)</li>
+<li>copy modified plist to `/Library/LaunchDaemons/`` with sudo</li>
+<li>note: if there is a proper <code>gitwatch</code> script path (I needed to change <code>gitwatch.sh</code> to <code>gitwatch</code>)</li>
 </ol>
 <p><a id="gwatch-github-%E2%98%8522-low-activity"></a></p>
 <h1><a href="https://github.com/jw0k/gwatch">gwatch</a> <img alt="GitHub stars" src="https://img.shields.io/github/stars/jw0k/gwatch.svg?logo=github"> low activity</h1>
 <p>A program that watches a folder for file modifications and commits them to a git repository automatically</p>
-<p>After gwatch is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (the 30s by default). After the timer expires, gwatch will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for gwatch to successfully create commits, a git repository must be initialized in the watched folder.</p>
+<p>After <code>gwatch</code> is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (the 30s by default). After the timer expires, <code>gwatch</code> will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for <code>gwatch</code> to successfully create commits, a git repository must be initialized in the watched folder.</p>
 <p><a id="etckeeper"></a></p>
 <h1><a href="http://joeyh.name/code/etckeeper/">etckeeper</a></h1>
 <blockquote>
-<p>NOTE: I my case didn't need to track permissions</p>
+<p>NOTE: In my case, I didn't need to track permissions</p>
 </blockquote>
-<p>etckeeper is a collection of tools to let /etc be stored in a git, mercurial, darcs, or bzr repository. It hooks into apt (and other package managers including yum and pacman-g2) to automatically commit changes made to /etc during package upgrades. It tracks file metadata that revision control systems do not normally support, but that is important for /etc, such as the permissions of /etc/shadow. It's quite modular and configurable, while also being simple to use if you understand the basics of working with revision control.</p>
-<p>etckeeper now has a website at http://etckeeper.branchable.com/.</p>
+<p><code>etckeeper</code> is a collection of tools to let <code>/etc</code> be stored in a git, mercurial, darcs, or bzr repository. It hooks into apt (and other package managers including yum and pacman-g2) to automatically commit changes made to <code>/etc</code> during package upgrades. It tracks file metadata that revision control systems do not normally support, but that is important for <code>/etc</code>, such as the permissions of <code>/etc/shadow</code>. It's quite modular and configurable, while also being simple to use if you understand the basics of working with revision control.</p>
+<p><code>etckeeper</code> now has a website at http://etckeeper.branchable.com/.</p>
 <p><a id="git-etc-github-%E2%98%854-low-activity-created-9-years-ago-last-commit-in-2014"></a></p>
 <h1><a href="https://arcanis.me/projects/git-etc">git-etc</a> github: ★4, low activity, created 9 years ago, last commit in 2014</h1>
-<p>A simple daemon that automatically creates git repository in the given directory and creates a commit at the specified time interval.</p>
+<p>A simple daemon that automatically creates a git repository in the given directory and creates a commit at the specified time interval.</p>
 <p>Has GUI, has AUR package</p>
 <p><a id="git-powercommit"></a></p>
 <h1><a href="https://github.com/grwlf/git-powercommit">Git Powercommit</a></h1>
 <p>Commit every changed submodule. Commit every changed regular file or folder, aggregating the files that share a folder into a single commit.</p>
 <p><a id="git-wip"></a></p>
 <h1><a href="https://github.com/bartman/git-wip">git-wip</a></h1>
-<p>git-wip is a script that will manage Work In Progress (or WIP) branches. WIP branches are mostly thrown away but identify points of development between commits. The intent is to tie this script into your editor so that each time you save your file, the git-wip script captures that state in git. git-wip also helps you return to a previous state of development.</p>
+<p><code>git-wip</code> is a script that will manage Work In Progress (or WIP) branches. WIP branches are mostly thrown away but identify points of development between commits. The intent is to tie this script into your editor so that each time you save your file, the <code>git-wip</code> script captures that state in git. <code>git-wip</code> also helps you return to a previous state of development.</p>
 <p><a id="inotify"></a></p>
 <h1><a href="http://inotify.aiken.cz/?section=incron&amp;page=about&amp;lang=en">inotify</a></h1>
-<p>This program is an "inotify cron" system. It consists of a daemon and a table manipulator. You can use it a similar way as the regular cron. The difference is that the inotify cron handles filesystem events rather than time periods.</p>
+<p>This program is an "inotify cron" system. It consists of a daemon and a table manipulator. You can use it in a similar way as the regular cron. The difference is that the inotify cron handles filesystem events rather than time periods.</p>
 <p><a id="watchman"></a></p>
 <h1><a href="https://facebook.github.io/watchman/">watchman</a></h1>
 <p>Watchman exists to watch files and record when they change. It can also trigger actions (such as rebuilding assets) when matching files change</p>

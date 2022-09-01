@@ -1,6 +1,7 @@
 ---
 title: Reading CSV with Obsidian dataview and dataviewjs
 date: 2022-08-16
+modified: 2022-08-16
 status: published
 tags: obsidian, dataview, dataviewjs, csv
 slug: reading-csv-with-obsidian-dataview-dataviewjs

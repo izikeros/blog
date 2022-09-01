@@ -1,6 +1,7 @@
 ---
 category: note
 date: '2022-06-03'
+modified: '2022-06-03'
 status: published
 slug: bash-determine-if-linux-or-macos
 tags: bash, determine, linux, macos

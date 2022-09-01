@@ -1,6 +1,7 @@
 ---
 title: Python - configuration management
 date: 2022-04-14
+modified: 2022-04-14
 status: published
 tags: python, configuration, hydra, decouple
 summary: 
