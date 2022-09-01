@@ -1,8 +1,8 @@
 ---
 Title: How to organize Data Science project based on Jupyter notebook
 Date: '2019-01-05'
-Start: '2019-01-05'
 Modified: '2021-10-09'
+Start: '2019-01-05'
 Tags: jupyter, python, notebook, howto, machine learning, best practices, project management
 Category: Howto
 Image:  /images/head/books.jpg

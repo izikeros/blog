@@ -1,6 +1,7 @@
 ---
 category: note
 date: '2022-05-12'
+modified: '2022-09-01'
 status: published
 slug: bash-coloring
 tags: bash, coloring, cli, tui
@@ -28,3 +29,5 @@ st_clean="$bldwht\[clean \]$txtrst"
 st_dirty="$bldred\[dirty \]$txtrst"
 st_n_git="$bldorg\[not repo\]$txtrst"
 ```
+
+*precise source unknown, found on Internet some time ago.*

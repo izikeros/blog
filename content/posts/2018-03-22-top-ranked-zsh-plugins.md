@@ -2,6 +2,7 @@
 Title: Top popular Zsh plugins on GitHub
 Slug: top-popular-zsh-plugins-on-github
 Date: '2018-03-22'
+modified: 2022-09-01
 Start: '2018-03-22'
 Tags: zsh, scrapping, python, linux
 Category: Linux

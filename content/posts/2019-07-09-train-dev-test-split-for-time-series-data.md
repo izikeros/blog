@@ -2,7 +2,7 @@
 title: Use bootstraping to evaluate performance of ML model when working on time-series type of data
 started: 2021-02-07
 date: '2021-02-10'
-modified: '2020-02-11'
+modified: 2022-09-01
 tags: machine learning, statistics, probability
 Category: 'Data Science'
 slug: bootstrap-for-time-series-model-performance-assessment

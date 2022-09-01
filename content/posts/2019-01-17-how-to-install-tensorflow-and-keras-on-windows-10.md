@@ -1,8 +1,8 @@
 ---
 Title: How to install TensorFlow and Keras on Windows 10
 Date: '2019-01-17'
-Start: '2019-01-17' 
 Modified: '2019-02-08'
+Start: '2019-01-17' 
 Tags: machine learning, tensorflow, howto
 Category: 'Howto'
 Image: /images/head/keras+tensorflow.jpg

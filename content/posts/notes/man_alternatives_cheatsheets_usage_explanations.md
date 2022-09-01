@@ -4,7 +4,7 @@ category: note
 date: '2022-05-12'
 status: published
 slug: man-alternatives-usage-explanations-and-cheatsheets
-tags: alternatives, cheatsheet, man, someday, rofi, cli
+tags: software/alternatives, cheatsheet, man, someday, rofi, cli
 ---
 
 ## [tldr](https://tldr.sh/) ![GitHub stars](https://img.shields.io/github/stars/tldr-pages/tldr.svg?logo=github) 

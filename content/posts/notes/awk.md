@@ -3,7 +3,7 @@ category: note
 date: '2022-05-12'
 status: published
 slug: awk
-tags: awk, gawk, mawk, snippet, alternative, Linux
+tags: awk, gawk, mawk, snippet, software/alternatives, Linux
 title: Awk
 ---
 

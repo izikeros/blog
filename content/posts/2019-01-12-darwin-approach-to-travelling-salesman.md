@@ -1,8 +1,8 @@
 ---
 Title: Darwin Approach to Traveling Salesman
 Date: '2019-01-12'
-Started: '2018-12-25'
 Modified: '2021-02-08'
+Started: '2018-12-25'
 Tags: machine learning, evolutionary, 
 Category: Exploring new ideas
 Image: /images/head/cells_small.jpg
@@ -11,7 +11,7 @@ Status: published
 ---
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
-- [Story behind this post](#story-behind-this-post)
+- [The story behind this post](#the-story-behind-this-post)
 - [Traveling Salesman Problem \(TSP\)](#traveling-salesman-problem-tsp)
 - [Initial note](#initial-note)
 - [Solution outline](#solution-outline)
@@ -28,7 +28,7 @@ Status: published
 
 <!-- /MarkdownTOC -->
 
-<a id="story-behind-this-post"></a>
+<a id="the-story-behind-this-post"></a>
 # The story behind this post
 During my Christmas break, I found a blog post from Peter Brookes-Smith [Darwin and The Traveling Salesperson](https://blog.objectivity.co.uk/darwin-and-the-travelling-salesperson/). He wrote, that he was looking for some project for his holidays. He found the blog post that inspired him to start the project and solve the problem by himself without finishing the article. It was similar to my case. I had genetic algorithms in the back of my head for a long, long time. Now while having some spare time between Christmas and New Year - I decided to get my feet wet on that topic.
 
