@@ -7,19 +7,19 @@ tags: bash, log, logging, syslog
 summary: Instruction on how to write message to sysystem log from the bash scipt using logger-utility
 slug: write-a-syslog-entry-from-a-bash-script
 category: note
-citation_needed: true
 ---
 
-If you want you bash script write message to syslog you can use `logger` utility. Here is and example of usage.
+If you want your bash script to write message to syslog you can use `logger` utility. Here is an example of usage.
 ```sh
 logger -t runonce -p local3.info "$file"
 ```
 where:
  - `-t` is a tag for the line
  - `-p` priority (`local3.info` - INFO level message)
- - last argument `"$file"` is message
+ - the last argument `"$file"` is the message
 
-For more information on See the man page for `logger`
+For more information see the man page for `logger`:
+
 ```
 LOGGER(1)                                                                                   General Commands Manual                                                                                   LOGGER(1)
 
