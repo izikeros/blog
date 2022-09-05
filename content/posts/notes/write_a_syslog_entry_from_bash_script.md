@@ -4,7 +4,7 @@ date: 2022-09-02
 modified: 2022-09-02
 status: published
 tags: bash, log, logging, syslog
-summary: Instruction on how to write message to sysystem log from the bash scipt using logger-utility
+summary: Instruction on how to write a message to system log from the bash script using logger-utility
 slug: write-a-syslog-entry-from-a-bash-script
 category: note
 ---
