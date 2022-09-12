@@ -1,6 +1,7 @@
 ---
 title: The Best Self-Hosted, Open Source RSS Feed Readers in 2022
 date: 2022-08-31
+modified: 2022-08-31
 status: published
 tags: rss, news, feed-reader, self-hosted, 
 summary: Best self-hosted RSS Feed Readers selected by popularity and project activity.

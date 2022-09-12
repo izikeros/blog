@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-09-02T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Write a syslog entry from a bash script</title><link href="https://www.safjan.com/write-a-syslog-entry-from-a-bash-script/" rel="alternate"></link><published>2022-09-02T00:00:00+02:00</published><updated>2022-09-02T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-09-02:/write-a-syslog-entry-from-a-bash-script/</id><summary type="html">&lt;p&gt;Instruction on how to write a message to system log from the bash script using logger-utility&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you want your bash script to write message to syslog you can use &lt;code&gt;logger&lt;/code&gt; utility. Here is an example of usage.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-09-12T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Automated signal segmentation, trend detection, and classification</title><link href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/" rel="alternate"></link><published>2022-09-12T00:00:00+02:00</published><updated>2022-09-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-09-12:/automated-trend-detection-and-signal-segmentation/</id><summary type="html">&lt;p&gt;This post presents the trend-classifier package that can be used for signal segmentation into parts where the trend is coherent.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Problem statement&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Partition time series into segments, where the signal in the segment has a consistent trend (e.g. up-trend, down-trend)&lt;/li&gt;
+&lt;li&gt;Characterise trend in the segment, e.g. provide coefficients of the equation describing the trend in the segment.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Windowing Approach&lt;/h2&gt;
+&lt;p&gt;The discussed solution is based on the concept of analyzing signals using a sliding window with a fixed length. The consecutive windows can overlap.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="trend lines within the window" src="../images/trend_segmentation/trend_in_windows.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;For each window perform linear regression to find the line that best fits the signal. If the parameters of a linear regression between two windows do not differ too much, the signal covered by these two windows is considered as belonging to the same segment with a coherent trend.&lt;/p&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;p&gt;Let's say, we wanted to do segmentation of the time series on segments with similar trends. For that task, you can use &lt;a href="https://pypi.org/project/trend-classifier/"&gt;trend-classifier&lt;/a&gt; Python library. It is pip installable (&lt;code&gt;pip3 install trend-classifier&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Here is an example that gets the time series data from YahooFinance and performs the analysis.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;yfinance&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;yf&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;trend_classifier&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Segmenter&lt;/span&gt;
+
+&lt;span class="c1"&gt;# download the data from yahoo finance&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AAPL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2018-09-15&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2022-09-05&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;progress&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;x_in&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;y_in&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Adj Close&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;seg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Segmenter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_in&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_in&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;calculate_segments&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, you can plot the time series with trend lines and segment boundaries with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot_segments&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="segmentation example" src="../images/trend_segmentation/screenshoot_1.jpg"&gt;
+Figure 1. Visualization of the signal segmentation based on the trend.&lt;/p&gt;
+&lt;p&gt;You can inspect details about each segment (e.g. positive value for slope indicates an up-trend and a negative down-trend). To see info about the segment with index &lt;code&gt;3&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;devtools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;
+&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can have information about all segments in tabular form using &lt;code&gt;Segmenter.segments.to_dataframe()&lt;/code&gt; method which produces Pandas DataFrame.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_dataframe&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Controlling generalization&lt;/h2&gt;
+&lt;p&gt;There is a parameter that controls the "generalization" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behavior, when initializing &lt;code&gt;Segmenter()&lt;/code&gt; (e.g. &lt;code&gt;Segmenter(x_in, y_in, n=20)&lt;/code&gt; use various values for &lt;code&gt;n&lt;/code&gt; parameter. The larger &lt;code&gt;n&lt;/code&gt; the generalization is stronger (fewer segments).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="segmentation for n=20" src="../images/trend_segmentation/segments_n_20.jpg"&gt;
+Figure 2. Signal segmentation with fine granularity (weak generalization), n=20.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="segmentation for n=80" src="../images/trend_segmentation/segments_n_80.jpg"&gt;
+Figure 3. Signal segmentation with rough granularity (strong generalization), n=80.&lt;/p&gt;
+&lt;h2&gt;An exemplary application of trend detection and segmentation&lt;/h2&gt;
+&lt;p&gt;This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:
+- up-trend
+- down-trend
+- the signal is in a horizontal channel&lt;/p&gt;
+&lt;p&gt;We can write a very basic classifier based on the slope parameter. If the slope is positive, or higher than the threshold value, consider this segment with an up-trend. There are also separate rules for down-trend and horizontal-trend types.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;segment_classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;segment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;th&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;segment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;slope&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;th&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;segment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;slope&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;th&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;down&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;horiz&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, we can use this function to get indices of trends in a given type, and plot them.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;up_idx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;segment_classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;down_idx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;segment_classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;down&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;horiz_idx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;segment_classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;horiz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot_segment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;up_idx&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="up-trend" src="../images/trend_segmentation/uptrend.jpg"&gt;
+Figure 4. Segments classified as "up-trend".&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot_segment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;down_idx&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="down-trend" src="../images/trend_segmentation/downtrend.jpg"&gt;
+Figure 4. Segments classified as "down-trend".&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;seg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot_segment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;horiz_idx&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="horizontal-trend" src="../images/trend_segmentation/horiz_trend.jpg"&gt;
+Figure 4. Segments classified as "horizontal-trend".&lt;/p&gt;
+&lt;p&gt;The classification function used in the example was very simple and one can implement more robust function e.g. one, that uses other than &lt;code&gt;slope&lt;/code&gt; data stored in the segment object.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;This article describes the &lt;a href="https://pypi.org/project/trend-classifier/"&gt;trend-classifier&lt;/a&gt; library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
+- there is a trade-off between the efficiency (best fit) and the generalization (number of segments) - the smaller window size (parameter &lt;code&gt;n&lt;/code&gt; of the &lt;code&gt;Segmenter()&lt;/code&gt;) the better fit but also more resulting segments and less generalization.
+- arbitrary (but configurable) threshold values are used to determine if the window is a continuation of the trend from the previous window or if it should be a new segment with a different trend)
+- since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.&lt;/p&gt;</content><category term="Howto"></category><category term="trend"></category><category term="segmentation"></category><category term="algotrading"></category></entry><entry><title>Write a syslog entry from a bash script</title><link href="https://www.safjan.com/write-a-syslog-entry-from-a-bash-script/" rel="alternate"></link><published>2022-09-02T00:00:00+02:00</published><updated>2022-09-02T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-09-02:/write-a-syslog-entry-from-a-bash-script/</id><summary type="html">&lt;p&gt;Instruction on how to write a message to system log from the bash script using logger-utility&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you want your bash script to write message to syslog you can use &lt;code&gt;logger&lt;/code&gt; utility. Here is an example of usage.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;logger -t runonce -p local3.info &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -179,19 +266,25 @@ sed -e &amp;#39;:again&amp;#39; -e N -e &amp;#39;$!b again&amp;#39; -e &amp;#39;
 &lt;h2&gt;Runners-up&lt;/h2&gt;
 &lt;h3&gt;&lt;a href="https://github.com/pietheinstrengholt/rssmonster"&gt;RSSMonster&lt;/a&gt; &lt;img alt="github stars shield" src="https://img.shields.io/github/stars/pietheinstrengholt/rssmonster.svg?logo=github"&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;a href="https://github.com/sismics/reader"&gt;Sismics Reader&lt;/a&gt; &lt;img alt="github stars shield" src="https://img.shields.io/github/stars/sismics/reader.svg?logo=github"&gt;&lt;/h3&gt;</content><category term="Howto"></category><category term="rss"></category><category term="news"></category><category term="feed-reader"></category><category term="self-hosted"></category></entry><entry><title>List unlinked (orphaned) notes in Obsidian</title><link href="https://www.safjan.com/list-unlinked-orphaned-notes-obsidian/" rel="alternate"></link><published>2022-08-17T00:00:00+02:00</published><updated>2022-08-17T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-17:/list-unlinked-orphaned-notes-obsidian/</id><summary type="html">&lt;p&gt;Here is how you can create dynamic list of unlinked notes (files) using dataview&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```dataview
-LIST FROM &amp;quot;&amp;quot;
+&lt;pre&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;LIST FROM &amp;quot;&amp;quot;
 WHERE length(file.inlinks) = 0 AND length(file.outlinks) = 0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;```&lt;/p&gt;
-&lt;p&gt;Credits to &lt;a href="https://forum.obsidian.md/u/riddyrayes/summary"&gt;riddyrayes&lt;/a&gt; for the solution posted on obsidian forum &lt;a href="https://forum.obsidian.md/t/find-orphan-notes/817/15"&gt;Find orphan notes - Feature archive …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is how you can create dynamic list of unlinked notes (files) using dataview&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```dataview
-LIST FROM &amp;quot;&amp;quot;
+
+&lt;/pre&gt;
+
+&lt;p&gt;Credits to &lt;a href="https://forum.obsidian.md/u/riddyrayes/summary"&gt;riddyrayes&lt;/a&gt; for the solution posted on obsidian forum &lt;a href="https://forum.obsidian.md/t/find-orphan-notes/817/15"&gt;Find orphan notes - Feature archive - Obsidian …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is how you can create dynamic list of unlinked notes (files) using dataview&lt;/p&gt;
+&lt;pre&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;LIST FROM &amp;quot;&amp;quot;
 WHERE length(file.inlinks) = 0 AND length(file.outlinks) = 0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;```&lt;/p&gt;
+
+&lt;/pre&gt;
+
 &lt;p&gt;Credits to &lt;a href="https://forum.obsidian.md/u/riddyrayes/summary"&gt;riddyrayes&lt;/a&gt; for the solution posted on obsidian forum &lt;a href="https://forum.obsidian.md/t/find-orphan-notes/817/15"&gt;Find orphan notes - Feature archive - Obsidian Forum&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="obsidian"></category><category term="dataview"></category><category term="orphaned-notes"></category></entry><entry><title>Reading CSV with Obsidian dataview and dataviewjs</title><link href="https://www.safjan.com/reading-csv-with-obsidian-dataview-dataviewjs/" rel="alternate"></link><published>2022-08-16T00:00:00+02:00</published><updated>2022-08-16T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-16:/reading-csv-with-obsidian-dataview-dataviewjs/</id><summary type="html">&lt;p&gt;The &lt;a href="https://github.com/blacksmithgu/obsidian-dataview"&gt;obsidian-dataview&lt;/a&gt; plugin allows reading data from the notes in the vault and data files such as CSV. Both &lt;code&gt;dataview&lt;/code&gt; and &lt;code&gt;dataviewjs&lt;/code&gt; can be used for that purpose. I'm more fluent in using &lt;code&gt;dataview&lt;/code&gt; therefore I will dedicate more space to this …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a href="https://github.com/blacksmithgu/obsidian-dataview"&gt;obsidian-dataview&lt;/a&gt; plugin allows reading data from the notes in the vault and data files such as CSV. Both &lt;code&gt;dataview&lt;/code&gt; and &lt;code&gt;dataviewjs&lt;/code&gt; can be used for that purpose. I'm more fluent in using &lt;code&gt;dataview&lt;/code&gt; therefore I will dedicate more space to this solution&lt;/p&gt;
 &lt;h2&gt;Reading with dataview&lt;/h2&gt;
 &lt;p&gt;Assume, that you have a CSV file &lt;code&gt;my_data.csv&lt;/code&gt; with contents:&lt;/p&gt;
@@ -4203,10 +4296,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="469a65d0-ea26-436e-8040-15ba691689f7"&gt;&lt;/div&gt;
+&lt;div id="9438700d-525b-401c-899a-90ad8372e795"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#469a65d0-ea26-436e-8040-15ba691689f7');
+var element = $('#9438700d-525b-401c-899a-90ad8372e795');
 
 (function(root) {
   function now() {
@@ -8152,7 +8245,7 @@ $$x^T A^t$$
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Exploring new ideas"></category><category term="python"></category><category term="jupyter"></category><category term="statistics"></category><category term="markov chains"></category></entry><entry><title>Top popular Zsh plugins on GitHub (2019)</title><link href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2019/" rel="alternate"></link><published>2019-07-14T00:00:00+02:00</published><updated>2019-07-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-07-14:/top-popular-zsh-plugins-on-github-2019/</id><summary type="html">&lt;p&gt;On Github project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; you can find 1700+ links to plugins, themes and Zsh plugin managers/frameworks. The number of tools listed on that page is high and it is difficult to get orientation which plugins gained already good reputation from Zsh users community. This post aims at identifying most popular tools where popularity is measured with the number of stars that Github users added to given plugin or tool.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
+</content><category term="Exploring new ideas"></category><category term="python"></category><category term="jupyter"></category><category term="statistics"></category><category term="markov chains"></category></entry><entry><title>Top popular Zsh plugins on GitHub (2019)</title><link href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2019/" rel="alternate"></link><published>2019-07-14T00:00:00+02:00</published><updated>2022-09-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-07-14:/top-popular-zsh-plugins-on-github-2019/</id><summary type="html">&lt;p&gt;On Github project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; you can find 1700+ links to plugins, themes and Zsh plugin managers/frameworks. The number of tools listed on that page is high and it is difficult to get orientation which plugins gained already good reputation from Zsh users community. This post aims at identifying most popular tools where popularity is measured with the number of stars that Github users added to given plugin or tool.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This article was written in 2019, for more recent version of the ranking see: &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;. 
 There is serie of articles dedicated to Zsh plugins: &lt;a href="../top-popular-zsh-plugins-on-github/"&gt;2018&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2019/"&gt;2019&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Here is a list of command line tools and Zsh plugins improving experience when working in text mode. List was created using resources from &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt;. The Github collection is called "Zsh plugins" but in fact it is not strictly limited to Zsh plugins but contains a lot of CLI tools that are not Zsh plugins. I have made already similar list 1.5 year ago - you can find results here: &lt;a href="http://safjan.com/articles/posts/top-popular-zsh-plugins-on-github"&gt;top zsh plugins&lt;/a&gt;.&lt;/p&gt;

@@ -1,6 +1,7 @@
 ---
 title: How to get most of GitHub Copilot
 date: 2022-01-25
+modified: 2022-01-25
 status: Published
 tags: github, coding, ai
 summary: This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4: "How to get most of GitHub Copilot".
