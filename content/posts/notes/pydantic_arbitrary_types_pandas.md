@@ -8,7 +8,6 @@ summary:
 slug: allow-arbitrary-types-pandas-in-pydantic
 category: note
 citation_needed: false
-todo: 
 ---
 
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->

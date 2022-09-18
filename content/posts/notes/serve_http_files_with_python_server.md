@@ -7,7 +7,6 @@ tags: python, htttp, server, javascript
 slug: serve-http-files-with-python-server
 category: note
 citation_needed: false
-todo: 
 ---
 
 Sometimes there is a need to serve HTML page instead of just displaying it in the browser:

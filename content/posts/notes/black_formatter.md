@@ -8,7 +8,6 @@ summary: notes on using black formatter
 slug: black-code-formatter
 category: note
 citation_needed: false
-todo: 
 ---
 
 Black is a non-configurable code formatter.

@@ -8,7 +8,6 @@ summary:
 slug: python-configuration-management
 category: note
 citation_needed: true
-todo: 
 ---
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 

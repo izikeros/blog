@@ -8,7 +8,6 @@ summary: This note contains a collection of trading algorithms or links to algor
 slug: trading-algorithms
 category: note
 citation_needed: true
-todo: 
 ---
 This note contains a collection of trading algorithms or links to algorithms
 

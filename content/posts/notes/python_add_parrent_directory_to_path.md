@@ -8,7 +8,6 @@ summary:
 slug: python-add-parent-directory-to-path
 category: note
 citation_needed: false
-todo: 
 ---
 Adding a parent path with the modules to import is sometimes useful in Jupiter notebooks.
 

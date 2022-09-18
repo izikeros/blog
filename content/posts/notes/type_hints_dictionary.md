@@ -7,7 +7,6 @@ tags: python, type-hints, TypedDict
 slug: use-python-typeddict-to-type-hint-dictionaries
 category: note
 citation_needed: false
-todo: 
 ---
 
 Define types for the fields in a dictionary using TypedDict as a base class to inherit from and then use this class in hints.

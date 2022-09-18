@@ -8,7 +8,6 @@ summary: How to create automatically commits if any file in the watched folder w
 slug: git-autocommit-on-file-changes
 category: note
 citation_needed: false
-todo: 
 ---
 
 > **Motivation:** I wanted to track the history of the changes introduced in my notes folder. Didn't want to create a commit, or redact the commit message after each change because typically during the day I made multiple edits in notes ad prefer to minimize time spent on managing my notes. I'm quickly jumping into the notes, adding something to existing notes, or creating new ones. Remembering to commit each change is too much overhead for me. I started to look for a solution that will monitor my notes folder, and, if anything changed, create a commit. I found several solutions that serve that purpose.

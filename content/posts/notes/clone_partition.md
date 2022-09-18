@@ -8,7 +8,6 @@ summary: how to clone disk partition in Linux
 slug: clone-partition-in-linux
 category: note
 citation_needed: false
-todo: 
 ---
 
 ## clone partition

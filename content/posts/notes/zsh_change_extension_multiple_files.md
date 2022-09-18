@@ -7,7 +7,6 @@ tags: zsh, shell, zmv
 slug: change-extension-for-multiple-files-in-zsh
 category: note
 citation_needed: false
-todo: 
 ---
 
 In Zsh it is a bit easier to perform this because of using `zmv`. First, you need to load `zmv`. In zsh, run the following command once (or put them in your ~/.zshrc for the future):
