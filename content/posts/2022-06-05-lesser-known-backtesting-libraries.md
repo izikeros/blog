@@ -32,9 +32,7 @@ Image: /images/head/backtesting.jpg
 
 <!-- /MarkdownTOC -->
 
-This article describe lesser-known python libraries/scripts that can be used for backtesting. Here is list of most popular backtesting libraries that are exclued from scope of this article:
-
-
+This article describe lesser-known python libraries/scripts that can be used for backtesting. [Here](https://safjan.com/popular-backtesting-libraries/) is list of most popular backtesting libraries that are excluded from scope of this article.
 
 <a id="bt"></a>
 ## Bt
@@ -43,12 +41,13 @@ This article describe lesser-known python libraries/scripts that can be used for
 > The goal: to save **quants** from re-inventing the wheel and let them focus on the important part of the job - strategy development.
 
 
-To recognize potential of this tool look at the [quick example](https://pmorissette.github.io/bt/#a-quick-example) provided by authors
+To recognise potential of this tool look at the [quick example](https://pmorissette.github.io/bt/#a-quick-example) provided by authors
 The one of the interesting things that this library offers is tree structure of strategies - support for creative combining strategies.
 
 <a id="blueshift"></a>
 ## Blueshift
-[Blueshift](https://blueshift.quantinsti.com/docs/) is to some extend free but not open source
+[Blueshift](https://blueshift.quantinsti.com/docs/) is to some extend free but not open source. You can research your ideas, backtest them, and take your strategies live with a broker of your choice on Blueshift. Blueshift helps you turn your ideas in to trading strategies.
+ Research and backtesting on the platform are free. Live strategy deployment is also free for a limited period.
 
 <a id="autotrader"></a>
 ## AutoTrader

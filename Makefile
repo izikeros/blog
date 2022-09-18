@@ -55,6 +55,12 @@ clean:
 regenerate:
 	"$(PELICAN)" -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
+e2e:
+	pipenv shell
+	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
+	git add "$(OUTPUTDIR)" && git commit -m "Blog content update" && git push
+	echo "Blog regenerated, and pushed to remote."
+
 venv:
 	pipenv shell
 
