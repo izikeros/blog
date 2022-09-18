@@ -76,7 +76,7 @@ This training environment originally design for tick-data, but also support for 
 ## backtesting-for-cryptocurrency-trading
 [backtesting-for-cryptocurrency-trading](https://github.com/CyberPunkMetalHead/backtesting-for-cryptocurrency-trading) - you can use this simple crypto backtesting script to ensure your trading strategy is successful. Minimal setup required and works well with static TP and SL strategies. Trailing Stop Loss could improve profitability if added.
 
-For a detailed guide on how to set this up go to the main guide. You can use this to determine how profitable your Binance Volatility bot is.
+You can use this to determine how profitable your Binance Volatility bot is.
 <a id="trade-engine"></a>
 ## Trade Engine
 [Trade Engine](https://github.com/xibalbas/trade-engine) - a library for demo trading or backtest and forward test simulation.

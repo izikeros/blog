@@ -80,6 +80,6 @@ publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 
 push:
-	git add "$(OUTPUTDIR)" && git commit -m "Blog content update" && git push
+	git add . && git commit -m "Blog content update" && git push
 
-.PHONY: html help clean regenerate serve serve-global devserver publish
+.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push
