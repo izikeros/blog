@@ -12,7 +12,7 @@ todo: Add credits to all images, copy images instead of hotlinking
 todo: Add a logarithmic scale git activity graph for all the projects
 Image: /images/head/backtesting.jpg
 ---
-Here is a list of most popular (popularity measured with number of github stars) backtesting libraries related to Python ecosystem.
+Here is a list of most popular (popularity measured with number of GitHub stars) backtesting libraries related to Python ecosystem.
 
 <!-- MarkdownTOC levels='2,3' autolink="true" autoanchor="true" -->
 
@@ -53,7 +53,6 @@ Here is a list of most popular (popularity measured with number of github stars)
 
 <a id="backtestingpy---25k-stars"></a>
 ## backtesting.py - 2.5k stars
-
 [activity - github code frequency](https://github.com/kernc/backtesting.py/graphs/code-frequency)
 
 Backtest trading strategies with Python.
@@ -62,7 +61,6 @@ Backtest trading strategies with Python.
 
 <a id="finmarketpy---29k"></a>
 ## finmarketpy - 2.9k
-
 [activity - github code frequency](https://github.com/cuemacro/finmarketpy/graphs/code-frequency)
 
 is a Python based library that enables you to analyze market data and also to backtest trading strategies using a simple to use API, which has prebuilt templates for you to define backtest. Included in the library
@@ -80,3 +78,6 @@ fastquant allows you to easily backtest investment strategies with as few as 3 l
 [activity - github code frequency](https://github.com/quantopian/zipline/graphs/code-frequency)
 [https://github.com/quantopian/zipline](https://github.com/quantopian/zipline) 
 Despite large popularity it is put in the end of the list because it is not maintained anymore. However, community took-over the project and created fork that is being actively maintained and developed. Meet: [zipline-reloaded](https://github.com/stefan-jansen/zipline-reloaded)
+
+
+See also: [Lesser Known Backtesting Libraries](https://safjan.com/lesser-known-backtesting-libraries/#lesser-known-backtesting-libraries)

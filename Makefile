@@ -56,8 +56,9 @@ regenerate:
 	"$(PELICAN)" -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 e2e:
-	pipenv shell
+	echo "Building blog for publish"
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
+	echo "Updating repo (git add, commit, push)"
 	git add "$(OUTPUTDIR)" && git commit -m "Blog content update" && git push
 	echo "Blog regenerated, and pushed to remote."
 

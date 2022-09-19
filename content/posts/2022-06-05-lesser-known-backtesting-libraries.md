@@ -42,12 +42,12 @@ This article describe lesser-known python libraries/scripts that can be used for
 
 
 To recognise potential of this tool look at the [quick example](https://pmorissette.github.io/bt/#a-quick-example) provided by authors
-The one of the interesting things that this library offers is tree structure of strategies - support for creative combining strategies.
-
+The one of the interesting things that this library offers is [**tree structure of strategies**](https://pmorissette.github.io/bt/tree.html) - support for creative combining strategies.
+The other reading focuses of composing optimal portfolio: [Flexible Backtesting with BT. Introducing bt — the open-sourced… | by Richard L | Medium](https://medium.com/@richardhwlin/flexible-backtesting-with-bt-7295c0dde5dd)
 <a id="blueshift"></a>
 ## Blueshift
 [Blueshift](https://blueshift.quantinsti.com/docs/) is to some extend free but not open source. You can research your ideas, backtest them, and take your strategies live with a broker of your choice on Blueshift. Blueshift helps you turn your ideas in to trading strategies.
- Research and backtesting on the platform are free. Live strategy deployment is also free for a limited period.
+Research and backtesting on the platform are free. Live strategy deployment is also free for a limited period.
 
 <a id="autotrader"></a>
 ## AutoTrader
@@ -110,6 +110,10 @@ You can use this to determine how profitable your Binance Volatility bot is.
 ## Stock-Portfolio-Backtester
 [Stock-Portfolio-Backtester](https://github.com/faizancodes/Stock-Portfolio-Backtester)
 Efficient way to backtest optimized portfolio allocations for proper hedging techniques.
+
+## Closing Thoughts
+- I would like to look closer at [Epymetheus](https://github.com/epymetheus/epymetheus)
+- I will definitely experiment with vectorbt
 
 <a id="credits"></a>
 ## Credits
