@@ -4,7 +4,7 @@ date: '2022-06-03'
 modified: '2022-06-03'
 status: published
 slug: bash-determine-if-linux-or-macos
-tags: bash, determine, linux, macos
+tags: bash, determine, Linux, macos
 title: Bash - determine if script runs on Linux, macOS or other system
 ---
 

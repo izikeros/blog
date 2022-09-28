@@ -7,6 +7,7 @@ slug: bash-download-gist-from-github
 tags: bash, download, gist, github
 title: Bash - download gist from GitHub
 ---
+up::[[MOC_bash]]
 
 ## Download, output content to stdout
 

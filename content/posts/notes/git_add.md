@@ -9,6 +9,7 @@ slug: git-add
 category: note
 citation_needed: false
 ---
+up:: [[MOC_git]]]
 
 - `git add -A` stages **all changes**
 - `git add .` stages new files and modifications, **without deletions** (on the current directory and its subdirectories).

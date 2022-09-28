@@ -8,6 +8,7 @@ title: Pre-commit hooks
 slug: git-pre-commit-hooks
 category: note
 ---
+up:: [[MOC_git]]
 
 Pre-commit is a convenient framework to manage git hooks. Uses configuration in YAML file, handles the installation of required hooks and tools.
 

@@ -9,6 +9,7 @@ slug: black-code-formatter
 category: note
 citation_needed: false
 ---
+up::[[MOC_python]]
 
 Black is a non-configurable code formatter.
 

@@ -8,6 +8,8 @@ summary: Instruction on how to write a message to system log from the bash scrip
 slug: write-a-syslog-entry-from-a-bash-script
 category: note
 ---
+up::[[MOC_bash]]
+up::[[MOC_linux]]
 
 If you want your bash script to write message to syslog you can use `logger` utility. Here is an example of usage.
 ```sh

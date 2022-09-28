@@ -3,7 +3,7 @@ title: Data Science Command-line Tools
 started: 2019-07-04
 date: 2019-08-23
 modified: 2021-02-08 21:28
-tags: machine learning, linux
+tags: machine learning, Linux
 category: Linux
 image: /images/head/cli_tools.jpg
 status: published
