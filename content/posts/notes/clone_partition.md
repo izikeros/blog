@@ -31,3 +31,5 @@ To restore your system:
 ```sh
 gunzip -c /path/to/backup.img.gz | dd of=/dev/sda
 ```
+
+up::[[MOC_linux]]

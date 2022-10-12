@@ -71,8 +71,6 @@ The time-weighted average price strategy breaks up a large order and releases dy
 
 See also:  [STOP Using Moving Averages! Anchored VWAP is the FUTURE in Day Trading - YouTube](https://www.youtube.com/watch?v=m7cL-TMKZpE)
 
-
-
 <a id="algorithm-libraries"></a>
 ## Algorithm libraries
 
@@ -98,24 +96,4 @@ See also:  [STOP Using Moving Averages! Anchored VWAP is the FUTURE in Day Tradi
 [[heikin_ashi_candles_trading_scalping_strategy|Heikin-Ashi-based strategies]]
 
 
-## Trading strats
-- (TOP 5) Minimalist Trading HACKS To Make You A MASTER Forex & Stock Trader [UVjRQuUuaO4]
-- 10 RSI Strategies Used By The Top 1% ｜ How To Day Trade With RSI For Beginners [Y1bVbEusITM]
-- 8 Lessons After 10,000 Hours Of Live Forex Trading (Beginner Trading Mistakes To Avoid) [84miZWIlZO4]
-- Day Trading & Swing Trading Rules To Live By (Technical Analysis Course For Beginners) [p0W9pM-auOg]
-- Fibonacci Trading Was Hard, Until I Discovered These Game Changing HACKS (Strategies Included) [_lACakJCIeM]
-- How To Scan & Find Explosive Stocks To Day Trade (TradingView Stock Screener Strategy) [5FYolSPZFBA]
-- MACD Trading Was Hard, Until I Discovered These KEY Clues ｜ MACD Strategies For Beginners [32MZOOvYm-Y]
-- Risk & Money Management Trading Strategies Used By PROs (Only 1% Apply These...) [M4xjNtdZaWA]
-- Smart Money Concepts For Beginners： The Blueprint To Trade Like Banks [7NZXUvNduc0]
-- Stop Memorizing Candlestick Formations! Use This MINIMALIST Trading Strategy Instead [_2R6Rxil33U]
-- TOP 10 BEST Bollinger Bands Trading Strategies In 2022 (For Forex & Stock Market) [97747Uz_Ly0]
-- TOP 10 BEST Trading Indicators ENTRIES For Day Trading & Scalping (For Beginners) [oHdqIxAwV80]
-- TOP 10 Commodity Day Trading & Swing Trading Rules To Live By In 2022 (For Beginners) [ko-o0N_4L6I]
-- TOP 10 Day Trading & Swing Trading Rules From Market Wizards (For Beginners) [b52qvCHL3hM]
-- TOP 10 Divergence Trading Strategies For Beginners ｜ How To Trade Divergences Effortlessly [m4s92G6pzjY]
-- TOP 3 Entry Indicators For Day Trading & Swing Trading (for Beginners) [tO1tQyDy090]
-- The 10-Minute Talk That Will Make You An ALPHA Trader (Habits, Mindset & Motivation) [-2uhIRgvJXk]
-- The Problem With Technical Analysis In Day Trading That No One Is Talking About [AbLIKe2mmQY]
-- The Trend Line Strategy You Cannot Afford To Miss (Instantly Improve Your Trading) [ScfR6QBz8E4]
-- Trading Indicators The TOP 1% Use For Dynamic Support And Resistance Levels (Forex & Stock Market) [GDsCzQhsBbg]
+[[trading_strategies_playlist]]

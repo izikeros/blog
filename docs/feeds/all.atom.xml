@@ -1,5 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-09-18T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Automated signal segmentation, trend detection, and classification</title><link href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/" rel="alternate"></link><published>2022-09-12T00:00:00+02:00</published><updated>2022-09-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-09-12:/automated-trend-detection-and-signal-segmentation/</id><summary type="html">&lt;p&gt;This post presents the trend-classifier package that can be used for signal segmentation into parts where the trend is coherent.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Problem statement&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2022-10-12T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Tutorial - Install Calibre web on QNAP NAS</title><link href="https://www.safjan.com/install-calibre-web-qnap-nas-tutorial/" rel="alternate"></link><published>2022-10-12T00:00:00+02:00</published><updated>2022-10-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-10-12:/install-calibre-web-qnap-nas-tutorial/</id><summary type="html">&lt;p&gt;Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using a &lt;a href="https://calibre-ebook.com/"&gt;Calibre&lt;/a&gt; database.&lt;/p&gt;
+&lt;p&gt;This tutorial shows how to install &lt;a href="https://github.com/janeczku/calibre-web"&gt;calibre-web&lt;/a&gt; on QNAP-NAS. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="main screen of calibre-web" src="https://github.com/janeczku/calibre-web/wiki/images/main_screen.png"&gt;&lt;/p&gt;
+&lt;p&gt;The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using a &lt;a href="https://calibre-ebook.com/"&gt;Calibre&lt;/a&gt; database.&lt;/p&gt;
+&lt;p&gt;This tutorial shows how to install &lt;a href="https://github.com/janeczku/calibre-web"&gt;calibre-web&lt;/a&gt; on QNAP-NAS. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="main screen of calibre-web" src="https://github.com/janeczku/calibre-web/wiki/images/main_screen.png"&gt;&lt;/p&gt;
+&lt;p&gt;The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to a wide variety of other QNAP NAS models.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Caution&lt;/strong&gt;: This is a simple setup assuming that service will be used only within the LAN by the trusted users and therefore access management, other networking, and security matters are not in the scope of this tutorial.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- MarkdownTOC autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#software"&gt;Software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#installation"&gt;Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#install-service-from-docker-container-via-container-station"&gt;Install service from Docker Container via Container Station&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configuration"&gt;Configuration&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#environment"&gt;Environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#shared-folders"&gt;Shared Folders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#network"&gt;Network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#device"&gt;Device&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-container"&gt;Create Container&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#container-initialization"&gt;container initialization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#caliber-web-initial-setup"&gt;Caliber-web initial setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#post-installation"&gt;Post installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#change-admin-password"&gt;Change admin password&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#library-change"&gt;Library change&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#alternatives"&gt;Alternatives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#credits"&gt;Credits&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="software"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Software&lt;/h2&gt;
+&lt;p&gt;We will be using &lt;a href="https://hub.docker.com/r/linuxserver/calibre-web/"&gt;dockerized version&lt;/a&gt; of &lt;a href="https://github.com/janeczku/calibre-web"&gt;janeczku/calibre-web&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a id="installation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;&lt;a id="install-service-from-docker-container-via-container-station"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Install service from Docker Container via Container Station&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Search for the &lt;code&gt;calibre-web&lt;/code&gt; docker image in the &lt;code&gt;Create&lt;/code&gt; tab of the Container Station.&lt;/li&gt;
+&lt;li&gt;The popup window for version selection should be displayed. Select &lt;code&gt;latest&lt;/code&gt; unless you have good reason to use an older version. Click &lt;code&gt;Install&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You need to confirm your intent to install calibre-web on another popup window.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="configuration"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Configuration&lt;/h3&gt;
+&lt;p&gt;Before the service will be started you need to configure it properly to provide information about where your Calibre book library (or multiple libraries) is located, configure the IP where the service will be available, etc.&lt;/p&gt;
+&lt;p&gt;We are using the docker image from linuxserver, the configuration proposed in this tutorial is based on suggestions from &lt;a href="https://hub.docker.com/r/linuxserver/calibre-web/"&gt;linuxserver/calibre-web&lt;/a&gt; on how to run the service using the docker command-line.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run -d &lt;span class="se"&gt;\&lt;/span&gt;
+  --name&lt;span class="o"&gt;=&lt;/span&gt;calibre-web &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="nv"&gt;PUID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1000&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="nv"&gt;PGID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1000&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="nv"&gt;TZ&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Europe/London &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="nv"&gt;DOCKER_MODS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;linuxserver/mods:universal-calibre &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="c1"&gt;#optional` \&lt;/span&gt;
+  -e &lt;span class="nv"&gt;OAUTHLIB_RELAX_TOKEN_SCOPE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="c1"&gt;#optional` \&lt;/span&gt;
+  -p &lt;span class="m"&gt;8083&lt;/span&gt;:8083 &lt;span class="se"&gt;\&lt;/span&gt;
+  -v /path/to/data:/config &lt;span class="se"&gt;\&lt;/span&gt;
+  -v /path/to/calibre/library:/books &lt;span class="se"&gt;\&lt;/span&gt;
+  --restart unless-stopped &lt;span class="se"&gt;\&lt;/span&gt;
+  lscr.io/linuxserver/calibre-web:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The configuration is divided into sections. We will touch: &lt;code&gt;Environment&lt;/code&gt;, &lt;code&gt;Shared folders&lt;/code&gt; and &lt;code&gt;Network&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="environment"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Environment&lt;/h4&gt;
+&lt;p&gt;Set the time zone that suits you the most.
+&lt;img alt="environment section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_environment.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;my settings for env&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;PUID=1000
+PGID=1000
+TZ=Europe/London
+DOCKER_MODS=linuxserver/calibre-web:calibre
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="shared-folders"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Shared Folders&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="shared section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_shared_folders.jpg"&gt;
+I suggest to create directory &lt;code&gt;calibre&lt;/code&gt; in &lt;code&gt;/share/Container&lt;/code&gt; - it will be placeholder for configuration and libraries.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;create folder &lt;code&gt;/share/Container/calibre/config&lt;/code&gt; - for configuration&lt;/li&gt;
+&lt;li&gt;create folder &lt;code&gt;/share/Container/calibre/books&lt;/code&gt; - as a folder that will contain one or more calibre libraries. If you have your Calibre library already on the NAS but in the different location you can use symbolic links pointing at your calibre libraries. Example of two libraries:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/share/Container/calibre/books/fiction&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/share/Container/calibre/books/cooking&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Inside of these folders you should see directories corresponding to author names and &lt;code&gt;metadata.db&lt;/code&gt; file.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;CAUTION:&lt;/strong&gt; QNAP's container station cannot change the shared folder settings using the Web GUI after the container is created.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've created shared folder mappings:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Container&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;calibre&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;calibre&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Container&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;calibre&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Container&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;calibre&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books_it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books_it&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Container&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;calibre&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books_life&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books_life&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Container&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;calibre&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books_ml&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;books_ml&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="network"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Network&lt;/h4&gt;
+&lt;p&gt;Set the calibre-web container IP address to e.g. 192.168.1.230.&lt;/p&gt;
+&lt;p&gt;&lt;a id="device"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Device&lt;/h4&gt;
+&lt;p&gt;no need to modify anything&lt;/p&gt;
+&lt;p&gt;&lt;a id="create-container"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Create Container&lt;/h3&gt;
+&lt;p&gt;When the customizations in configuration are done, press the "Create" button and the summary of settings will be displayed.
+&lt;img alt="summary - part 1 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="summary - part 2 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;When creation starts, you will be redirected  to the creation screen of Container Station. While creating, you need to wait until the number (1 in the example below) near the top right of the Container Station window (right next to the IoT icon) disappears.
+&lt;img alt="status of calibre-web container configuration" src="/images/calibre_web_qnap/calibre_web_status.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="container-initialization"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;container initialization&lt;/h3&gt;
+&lt;p&gt;In the example above, we have set auto-start in the creation panel, so when the container is created, it will start running. Initialization happens when the container is first run.&lt;/p&gt;
+&lt;p&gt;On the "Overview" tab of the container station, click the corresponding container name to display the status&lt;/p&gt;
+&lt;p&gt;Caliber-web is not yet accessible during initialization, so we have to wait.&lt;/p&gt;
+&lt;p&gt;If the following message is displayed, it seems that initialization is completed and access from the Web is possible.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;INFO in web : Starting Calibre Web ...
+INFO in server : Starting Gevent server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="calibre-web container initialization" src="/images/calibre_web_qnap/calibreweb_starting_container_console.jpg"&gt;
+&lt;a id="caliber-web-initial-setup"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Caliber-web initial setup&lt;/h3&gt;
+&lt;p&gt;Once Caliber-web is available, access the container's server from a web browser.&lt;/p&gt;
+&lt;p&gt;In this example the IP address of the container is 192.168.1.230. The port number used by calibre-web has not changed, so it is 8083. In other words, access http://192.168.1.230:8083/.&lt;/p&gt;
+&lt;p&gt;When accessing for the first time, basic settings are required.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set e.g.  &lt;code&gt;/books_life&lt;/code&gt; as the location of library database.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The setting is applied by pressing the "Save" button. Then, log-in using the "Login" button.&lt;/p&gt;
+&lt;p&gt;By default, as described in https://hub.docker.com/r/linuxserver/calibre-web/, log-in with username &lt;code&gt;admin&lt;/code&gt; and password &lt;code&gt;admin123&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you can log in, you should be able to see the library you set during initialization.&lt;/p&gt;
+&lt;p&gt;&lt;a id="post-installation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Post installation&lt;/h2&gt;
+&lt;p&gt;&lt;a id="change-admin-password"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Change admin password&lt;/h3&gt;
+&lt;p&gt;To change the admin user's password after logging in, click the lowercase username &lt;code&gt;admin&lt;/code&gt; with the person icon in the upper right corner of the window to switch to the change profile screen. &lt;/p&gt;
+&lt;p&gt;&lt;a id="library-change"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Library change&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;To change the library after logging in, select the circular icon "Admin" in the upper right (to the left of the upper-body icon, where admin in lowercase is your username).&lt;/li&gt;
+&lt;li&gt;To change the library, select &lt;code&gt;Configuration -&amp;gt; Basic Configuration&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Here, change the library to e.g. &lt;code&gt;/books_it&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Press the "Submit" button to confirm your changes.&lt;/li&gt;
+&lt;li&gt;Click the calibre-web icon on the upper left to display the library, and the changed library should be displayed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="alternatives"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Alternatives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;you can install calibre-web using docker-compose instead of using container station. This is not covered by this tutorial, see docker-compose file on &lt;a href="https://hub.docker.com/r/linuxserver/calibre-web/"&gt;Docker Hub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;you can use other front-ends for accessing calibre via web. Examples are e.g.: &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/seblucas/cops"&gt; seblucas/cops&lt;/a&gt; -  Calibre OPDS (and HTML) PHP Server : web-based light alternative to "Calibre content server"/"Calibre2OPDS" to serve ebooks (epub, mobi, pdf, ...)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="credits"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;p&gt;Article &lt;a href="https://kunsen.net/2019/10/26/post-2468/"&gt;Run Calibre-web on QNAP NAS&lt;/a&gt; (in Japanese) helped me with my first setup of calibre web. This tutorial is heavily based on that article.&lt;/p&gt;
+&lt;p&gt;X::[[nas_qnap_photoprism]]&lt;/p&gt;</content><category term="note"></category><category term="calibre"></category><category term="calibre-web"></category><category term="docker"></category></entry><entry><title>Automated signal segmentation, trend detection, and classification</title><link href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/" rel="alternate"></link><published>2022-09-12T00:00:00+02:00</published><updated>2022-09-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-09-12:/automated-trend-detection-and-signal-segmentation/</id><summary type="html">&lt;p&gt;This post presents the trend-classifier package that can be used for signal segmentation into parts where the trend is coherent.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Problem statement&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Partition time series into segments, where the signal in the segment has a consistent trend (e.g. up-trend, down-trend)&lt;/li&gt;
 &lt;li&gt;Characterise trend in the segment, e.g. provide coefficients of the equation describing the trend in the segment.&lt;/li&gt;
@@ -86,9 +247,7 @@ Figure 4. Segments classified as "horizontal-trend".&lt;/p&gt;
 &lt;p&gt;This article describes the &lt;a href="https://pypi.org/project/trend-classifier/"&gt;trend-classifier&lt;/a&gt; library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
 - there is a trade-off between the efficiency (best fit) and the generalization (number of segments) - the smaller window size (parameter &lt;code&gt;n&lt;/code&gt; of the &lt;code&gt;Segmenter()&lt;/code&gt;) the better fit but also more resulting segments and less generalization.
 - arbitrary (but configurable) threshold values are used to determine if the window is a continuation of the trend from the previous window or if it should be a new segment with a different trend)
-- since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.&lt;/p&gt;</content><category term="Howto"></category><category term="trend"></category><category term="segmentation"></category><category term="algotrading"></category></entry><entry><title>Write a syslog entry from a bash script</title><link href="https://www.safjan.com/write-a-syslog-entry-from-a-bash-script/" rel="alternate"></link><published>2022-09-02T00:00:00+02:00</published><updated>2022-09-02T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-09-02:/write-a-syslog-entry-from-a-bash-script/</id><summary type="html">&lt;p&gt;Instruction on how to write a message to system log from the bash script using logger-utility&lt;/p&gt;</summary><content type="html">&lt;p&gt;up::[[MOC_bash]]
-up::[[MOC_linux]]&lt;/p&gt;
-&lt;p&gt;If you want your bash script to write message to syslog you can use &lt;code&gt;logger&lt;/code&gt; utility. Here is an example of usage.&lt;/p&gt;
+- since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.&lt;/p&gt;</content><category term="Howto"></category><category term="trend"></category><category term="segmentation"></category><category term="algotrading"></category></entry><entry><title>Write a syslog entry from a bash script</title><link href="https://www.safjan.com/write-a-syslog-entry-from-a-bash-script/" rel="alternate"></link><published>2022-09-02T00:00:00+02:00</published><updated>2022-09-02T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-09-02:/write-a-syslog-entry-from-a-bash-script/</id><summary type="html">&lt;p&gt;Instruction on how to write a message to system log from the bash script using logger-utility&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you want your bash script to write message to syslog you can use &lt;code&gt;logger&lt;/code&gt; utility. Here is an example of usage.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;logger -t runonce -p local3.info &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -137,7 +296,10 @@ up::[[MOC_linux]]&lt;/p&gt;
 &lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nt"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;logger&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;utility&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;conforms&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;IEEE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Std&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;1003&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;2-1992&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="nt"&gt;POSIX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;2&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="nt"&gt;BSD&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;3&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="bash"></category><category term="log"></category><category term="logging"></category><category term="syslog"></category></entry><entry><title>How to convert HTML to clean markdown</title><link href="https://www.safjan.com/how-to-convert-html-to-clean-markdown/" rel="alternate"></link><published>2022-08-31T00:00:00+02:00</published><updated>2022-08-31T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-31:/how-to-convert-html-to-clean-markdown/</id><summary type="html">&lt;p&gt;Instruction on how to convert HTML document to markdown with cleaning the output from the clutter.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have collected source material in form of HTML pages that I would like to keep in one place as knowledge base (technically: create &lt;a href="https://obsidian.md/"&gt;Obsidian&lt;/a&gt; vault for these pages). But first I needed to convert them all to Markdown. First tool to use that came into my mind was using &lt;a href="https://pandoc.org/"&gt;Pandoc&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;up::[[MOC_Bash]]
+up::[[MOC_linux]]&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="log"></category><category term="logging"></category><category term="syslog"></category></entry><entry><title>How to convert HTML to clean markdown</title><link href="https://www.safjan.com/how-to-convert-html-to-clean-markdown/" rel="alternate"></link><published>2022-08-31T00:00:00+02:00</published><updated>2022-08-31T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-31:/how-to-convert-html-to-clean-markdown/</id><summary type="html">&lt;p&gt;Instruction on how to convert HTML document to markdown with cleaning the output from the clutter.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have collected source material in form of HTML pages that I would like to keep in one place as knowledge base (technically: create &lt;a href="https://obsidian.md/"&gt;Obsidian&lt;/a&gt; vault for these pages). But first I needed to convert them all to Markdown. First tool to use that came into my mind was using &lt;a href="https://pandoc.org/"&gt;Pandoc&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I started with basic syntax to check what is my baseline:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pandoc -i index.html -o index.md
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -337,15 +499,37 @@ You can read and display the contents of that file as a table using &lt;code&gt;
 &lt;li&gt;&lt;a href="https://forum.obsidian.md/u/mnvwvnm/summary"&gt;mnvwvnm&lt;/a&gt; and &lt;a href="https://forum.obsidian.md/u/scholarintraining/summary"&gt;scholarintraining&lt;/a&gt; users from &lt;a href="https://forum.obsidian.md"&gt;obsidian forum&lt;/a&gt; that helped me to understand how the reading CSV works and better understand dataview and dataviewjs.&lt;/li&gt;
 &lt;/ul&gt;</content><category term="note"></category><category term="obsidian"></category><category term="obsidian/dataview"></category><category term="obsidian/dataviewjs"></category><category term="csv"></category></entry><entry><title>Install Photoprism on QNAP NAS using Docker Compose</title><link href="https://www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/" rel="alternate"></link><published>2022-08-08T00:00:00+02:00</published><updated>2022-08-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-08-08:/install-photoprism-on-qnap-nas-using-docker-compose/</id><summary type="html">&lt;p&gt;Instruction on how to install Photoprism on QNAP NAS using Docker Compose&lt;/p&gt;</summary><content type="html">&lt;p&gt;Photoprism is a modern, searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on QNAP NAS. This article is meant to fill that gap.
 Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other QNAP NAS models.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- MarkdownTOC autolink="true" autoanchor="true" --&gt;
 
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#what-is-the-photoprism"&gt;What is the photoprism&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#feature-overview"&gt;Feature Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#installation-on-qnap-nas-from-the-cli"&gt;Installation on QNAP NAS from the CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#prerequisites"&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#login-to-your-nas-server-via-ssh"&gt;login to your NAS server via SSH&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-photoprism-directory"&gt;Create photoprism directory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-docker-composeyml-file"&gt;Create &lt;code&gt;docker-compose.yml&lt;/code&gt; file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-directories-in-sharecontainerphotoprism"&gt;Create directories in &lt;code&gt;/share/Container/photoprism&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#run-application-in-the-container"&gt;Run application in the container&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#using-web-ui"&gt;Using web-UI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#using-cli"&gt;Using CLI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#manual-upgrading-photoprism-to-the-latests-version"&gt;Manual upgrading Photoprism to the latests version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#adding-new-content"&gt;Adding new content&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#performance-tuning"&gt;Performance tuning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="what-is-the-photoprism"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;What is the photoprism&lt;/h2&gt;
 &lt;p&gt;from the photoprism website:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;PhotoPrism® is an AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. You can run it at home, on a private server, or in the cloud.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img alt="Screenshot" src="https://docs.photoprism.app/img/preview.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="feature-overview"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Feature Overview&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
@@ -363,20 +547,25 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; I haven't found functionality to add other accounts than administrator. But in my case having only single user is perfectly fine. &lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;&lt;a id="installation-on-qnap-nas-from-the-cli"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Installation on QNAP NAS from the CLI&lt;/h2&gt;
+&lt;p&gt;&lt;a id="prerequisites"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Prerequisites&lt;/h3&gt;
 &lt;p&gt;This instruction assumes that you are familiar with using command line interface (CLI).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ensure you have installed Container Station which is providing Docker on QNAP NAS&lt;/li&gt;
 &lt;li&gt;ensure that you have docker in the path&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;a id="login-to-your-nas-server-via-ssh"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;login to your NAS server via SSH&lt;/h3&gt;
 &lt;p&gt;from the terminal or use e.g. &lt;code&gt;putty&lt;/code&gt; if working on Windows&lt;/p&gt;
+&lt;p&gt;&lt;a id="create-photoprism-directory"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Create photoprism directory&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir /share/Container/photoprism
 &lt;span class="nb"&gt;cd&lt;/span&gt; photoprism
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;a id="create-docker-composeyml-file"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Create &lt;code&gt;docker-compose.yml&lt;/code&gt; file&lt;/h3&gt;
 &lt;p&gt;download &lt;code&gt;docker-compose.yml&lt;/code&gt; from the link provided in &lt;a href="https://docs.photoprism.app/getting-started/docker-compose/"&gt;official documentation&lt;/a&gt; :&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;wget https://dl.photoprism.app/docker/docker-compose.yml
@@ -395,6 +584,7 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 - disable Tensorflow (used for categorization of photos and face detection)&lt;/p&gt;
 &lt;p&gt;For changing number of workers and disabling TensorFlow see the "Performance tuning" section bellow.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;&lt;a id="create-directories-in-sharecontainerphotoprism"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Create directories in &lt;code&gt;/share/Container/photoprism&lt;/code&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir /share/Container/photoprism/database
 mkdir /share/Container/photoprism/import
@@ -402,6 +592,7 @@ mkdir /share/Container/photoprism/originals
 mkdir /share/Container/photoprism/storage
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;a id="run-application-in-the-container"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Run application in the container&lt;/h2&gt;
 &lt;p&gt;Start the container. Pulling images might take few minutes depending on your Internet connection speed.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker-compose up -d
@@ -413,13 +604,16 @@ mkdir /share/Container/photoprism/storage
 
 &lt;p&gt;You need to login as administrator with default password for the first time, after login remember to change that password in settings.
 &lt;img alt="img" src="/images/photoprism/photoprism_change_password.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="using-web-ui"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Using web-UI&lt;/h4&gt;
 &lt;p&gt;Now, you can trigger indexing your photos and videos using web-UI or from CLI.
 &lt;img alt="img" src="/images/photoprism/photoprism_indexing.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="using-cli"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Using CLI&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker &lt;span class="nb"&gt;exec&lt;/span&gt; -ti photoprism photoprism index
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;a id="manual-upgrading-photoprism-to-the-latests-version"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Manual upgrading Photoprism to the latests version&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /share/Container/photoprism/
 docker pull photoprism/photoprism:latest
@@ -428,6 +622,7 @@ docker-compose up -d
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;For automated updates check &lt;a href="https://containrrr.dev/watchtower/"&gt;Watchtower&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="adding-new-content"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Adding new content&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;use upload via webDAV&lt;/li&gt;
@@ -437,6 +632,7 @@ docker-compose up -d
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You can also consider automating import by adding &lt;code&gt;import&lt;/code&gt; do the cron (e.g. every midnight)&lt;/p&gt;
+&lt;p&gt;&lt;a id="performance-tuning"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Performance tuning&lt;/h2&gt;
 &lt;p&gt;If you are experiencing performance problems you can reduce number of workers (from documentation):&lt;/p&gt;
 &lt;blockquote&gt;
@@ -448,6 +644,7 @@ docker-compose up -d
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;
 I was able to launch this service thanks to the instructions found on reddit [1] provided by &lt;a href="https://www.reddit.com/user/schol4stiker/"&gt;schol4stiker&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a id="references"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="https://www.reddit.com/r/photoprism/comments/vph4ct/comment/ieobj8w/?utm_source=share&amp;amp;utm_medium=web2x&amp;amp;context=3"&gt;instruction from reddit&lt;/a&gt;&lt;/li&gt;
@@ -549,29 +746,7 @@ These notes are bits collected from the internet. Proper attribution is needed.&
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;[[heikin_ashi_candles_trading_scalping_strategy|Heikin-Ashi-based strategies]]&lt;/p&gt;
-&lt;h2&gt;Trading strats&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;(TOP 5) Minimalist Trading HACKS To Make You A MASTER Forex &amp;amp; Stock Trader [UVjRQuUuaO4]&lt;/li&gt;
-&lt;li&gt;10 RSI Strategies Used By The Top 1% ｜ How To Day Trade With RSI For Beginners [Y1bVbEusITM]&lt;/li&gt;
-&lt;li&gt;8 Lessons After 10,000 Hours Of Live Forex Trading (Beginner Trading Mistakes To Avoid) [84miZWIlZO4]&lt;/li&gt;
-&lt;li&gt;Day Trading &amp;amp; Swing Trading Rules To Live By (Technical Analysis Course For Beginners) [p0W9pM-auOg]&lt;/li&gt;
-&lt;li&gt;Fibonacci Trading Was Hard, Until I Discovered These Game Changing HACKS (Strategies Included) [_lACakJCIeM]&lt;/li&gt;
-&lt;li&gt;How To Scan &amp;amp; Find Explosive Stocks To Day Trade (TradingView Stock Screener Strategy) [5FYolSPZFBA]&lt;/li&gt;
-&lt;li&gt;MACD Trading Was Hard, Until I Discovered These KEY Clues ｜ MACD Strategies For Beginners [32MZOOvYm-Y]&lt;/li&gt;
-&lt;li&gt;Risk &amp;amp; Money Management Trading Strategies Used By PROs (Only 1% Apply These...) [M4xjNtdZaWA]&lt;/li&gt;
-&lt;li&gt;Smart Money Concepts For Beginners： The Blueprint To Trade Like Banks [7NZXUvNduc0]&lt;/li&gt;
-&lt;li&gt;Stop Memorizing Candlestick Formations! Use This MINIMALIST Trading Strategy Instead [_2R6Rxil33U]&lt;/li&gt;
-&lt;li&gt;TOP 10 BEST Bollinger Bands Trading Strategies In 2022 (For Forex &amp;amp; Stock Market) [97747Uz_Ly0]&lt;/li&gt;
-&lt;li&gt;TOP 10 BEST Trading Indicators ENTRIES For Day Trading &amp;amp; Scalping (For Beginners) [oHdqIxAwV80]&lt;/li&gt;
-&lt;li&gt;TOP 10 Commodity Day Trading &amp;amp; Swing Trading Rules To Live By In 2022 (For Beginners) [ko-o0N_4L6I]&lt;/li&gt;
-&lt;li&gt;TOP 10 Day Trading &amp;amp; Swing Trading Rules From Market Wizards (For Beginners) [b52qvCHL3hM]&lt;/li&gt;
-&lt;li&gt;TOP 10 Divergence Trading Strategies For Beginners ｜ How To Trade Divergences Effortlessly [m4s92G6pzjY]&lt;/li&gt;
-&lt;li&gt;TOP 3 Entry Indicators For Day Trading &amp;amp; Swing Trading (for Beginners) [tO1tQyDy090]&lt;/li&gt;
-&lt;li&gt;The 10-Minute Talk That Will Make You An ALPHA Trader (Habits, Mindset &amp;amp; Motivation) [-2uhIRgvJXk]&lt;/li&gt;
-&lt;li&gt;The Problem With Technical Analysis In Day Trading That No One Is Talking About [AbLIKe2mmQY]&lt;/li&gt;
-&lt;li&gt;The Trend Line Strategy You Cannot Afford To Miss (Instantly Improve Your Trading) [ScfR6QBz8E4]&lt;/li&gt;
-&lt;li&gt;Trading Indicators The TOP 1% Use For Dynamic Support And Resistance Levels (Forex &amp;amp; Stock Market) [GDsCzQhsBbg]&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="finance/algotrading"></category><category term="finance/crypto"></category><category term="algorithm"></category><category term="trading"></category><category term="strategies"></category><category term="finance"></category></entry><entry><title>Lesser Known Backtesting Libraries</title><link href="https://www.safjan.com/lesser-known-backtesting-libraries/" rel="alternate"></link><published>2022-06-05T00:00:00+02:00</published><updated>2022-09-18T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-05:/lesser-known-backtesting-libraries/</id><summary type="html">&lt;p&gt;This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
+&lt;p&gt;[[trading_strategies_playlist]]&lt;/p&gt;</content><category term="note"></category><category term="finance/algotrading"></category><category term="finance/crypto"></category><category term="algorithm"></category><category term="trading"></category><category term="strategies"></category><category term="finance"></category></entry><entry><title>Lesser Known Backtesting Libraries</title><link href="https://www.safjan.com/lesser-known-backtesting-libraries/" rel="alternate"></link><published>2022-06-05T00:00:00+02:00</published><updated>2022-09-18T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-05:/lesser-known-backtesting-libraries/</id><summary type="html">&lt;p&gt;This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#bt"&gt;Bt&lt;/a&gt;&lt;/li&gt;
@@ -712,7 +887,7 @@ use jsonlines&lt;/p&gt;
 
 &lt;p&gt;See also:
 - &lt;a href="http://ndjson.org/"&gt;NDJSON&lt;/a&gt; - Newline delimited JSON:
-- &lt;a href="https://github.com/ndjson/ndjson-spec"&gt;ndjson standard specification&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="append-json"></category><category term="data"></category><category term="json"></category><category term="trace"></category><category term="jsonlines"></category><category term="python"></category></entry><entry><title>Bash - determine if script runs on Linux, macOS or other system</title><link href="https://www.safjan.com/bash-determine-if-linux-or-macos/" rel="alternate"></link><published>2022-06-03T00:00:00+02:00</published><updated>2022-06-03T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-03:/bash-determine-if-linux-or-macos/</id><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;uname -s&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+- &lt;a href="https://github.com/ndjson/ndjson-spec"&gt;ndjson standard specification&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="append-json"></category><category term="data"></category><category term="json"></category><category term="trace"></category><category term="jsonlines"></category><category term="python"></category></entry><entry><title>Bash - determine if script runs on Linux, macOS or other system</title><link href="https://www.safjan.com/bash-determine-if-linux-or-macos/" rel="alternate"></link><published>2022-06-03T00:00:00+02:00</published><updated>2022-06-03T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-03:/bash-determine-if-linux-or-macos/</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;uname -s&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
     Linux*&lt;span class="o"&gt;)&lt;/span&gt;     &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Linux&lt;span class="p"&gt;;;&lt;/span&gt;
     Darwin*&lt;span class="o"&gt;)&lt;/span&gt;    &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Mac&lt;span class="p"&gt;;;&lt;/span&gt;
@@ -720,11 +895,33 @@ use jsonlines&lt;/p&gt;
     MINGW*&lt;span class="o"&gt;)&lt;/span&gt;     &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;MinGw&lt;span class="p"&gt;;;&lt;/span&gt;
     *&lt;span class="o"&gt;)&lt;/span&gt;          &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UNKNOWN:&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;esac&lt;/span&gt;
+
 &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$machine&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Mac&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="c1"&gt;# code for macOS platform        &lt;/span&gt;
+&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;expr substr &lt;span class="k"&gt;$(&lt;/span&gt;uname -s&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Linux&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="c1"&gt;# code …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;uname -s&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
+    Linux*&lt;span class="o"&gt;)&lt;/span&gt;     &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Linux&lt;span class="p"&gt;;;&lt;/span&gt;
+    Darwin*&lt;span class="o"&gt;)&lt;/span&gt;    &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Mac&lt;span class="p"&gt;;;&lt;/span&gt;
+    CYGWIN*&lt;span class="o"&gt;)&lt;/span&gt;    &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Cygwin&lt;span class="p"&gt;;;&lt;/span&gt;
+    MINGW*&lt;span class="o"&gt;)&lt;/span&gt;     &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;MinGw&lt;span class="p"&gt;;;&lt;/span&gt;
+    *&lt;span class="o"&gt;)&lt;/span&gt;          &lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UNKNOWN:&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;unameOut&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;esac&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;machine&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$machine&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Mac&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="c1"&gt;# code for macOS platform        &lt;/span&gt;
+&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;expr substr &lt;span class="k"&gt;$(&lt;/span&gt;uname -s&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Linux&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="c1"&gt;# code for GNU/Linux platform&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;
-The solution from &lt;a href="https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux"&gt;bash - How to check if running in Cygwin, Mac or Linux? - Stack Overflow&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="determine"></category><category term="Linux"></category><category term="macos"></category></entry><entry><title>Bash - encode, decode base64 and hex</title><link href="https://www.safjan.com/bash-encode-decode-base64-and-hex/" rel="alternate"></link><published>2022-05-20T00:00:00+02:00</published><updated>2022-05-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-20:/bash-encode-decode-base64-and-hex/</id><summary type="html">&lt;h2&gt;Tools&lt;/h2&gt;
+The solution from &lt;a href="https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux"&gt;bash - How to check if running in Cygwin, Mac or Linux? - Stack Overflow&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;up::[[MOC_Bash]]&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="determine"></category><category term="Linux"></category><category term="macos"></category></entry><entry><title>Bash - encode, decode base64 and hex</title><link href="https://www.safjan.com/bash-encode-decode-base64-and-hex/" rel="alternate"></link><published>2022-05-20T00:00:00+02:00</published><updated>2022-05-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-20:/bash-encode-decode-base64-and-hex/</id><summary type="html">&lt;h2&gt;Tools&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;xxd&lt;/code&gt; - make a hexdump or do the reverse.
 &lt;code&gt;base64&lt;/code&gt; - base64 encode/decode data and print to standard output&lt;/p&gt;
 &lt;h2&gt;Encode hex&lt;/h2&gt;
@@ -940,7 +1137,8 @@ When the processing speed is critical, in many cases it is possible to replace A
 &lt;span class="nv"&gt;st_n_git&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$bldorg&lt;/span&gt;&lt;span class="s2"&gt;\[not repo\]&lt;/span&gt;&lt;span class="nv"&gt;$txtrst&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;em&gt;precise source unknown, found on Internet some time ago.&lt;/em&gt;&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="coloring"></category><category term="cli"></category><category term="tui"></category></entry><entry><title>Bash - continue: yes or no</title><link href="https://www.safjan.com/bash-continue-yes-no/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-continue-yes-no/</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;do_backup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;y                      &lt;span class="c1"&gt;# In batch mode =&amp;gt; Default is Yes&lt;/span&gt;
+&lt;p&gt;&lt;em&gt;precise source unknown, found on Internet some time ago.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;up::[[MOC_Bash]]&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="coloring"></category><category term="cli"></category><category term="tui"></category></entry><entry><title>Bash - continue: yes or no</title><link href="https://www.safjan.com/bash-continue-yes-no/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-continue-yes-no/</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;do_backup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;y                      &lt;span class="c1"&gt;# In batch mode =&amp;gt; Default is Yes&lt;/span&gt;
 &lt;span class="o"&gt;[[&lt;/span&gt; -t &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;                     &lt;span class="c1"&gt;# If TTY =&amp;gt; Prompt the question&lt;/span&gt;
 &lt;span class="nb"&gt;read&lt;/span&gt; -r -n &lt;span class="m"&gt;1&lt;/span&gt; -p &lt;span class="s1"&gt;$&amp;#39;\e[1;32m&lt;/span&gt;
 &lt;span class="s1"&gt;Continue with backup? (Y/n)\e[0m &amp;#39;&lt;/span&gt; do_backup  &lt;span class="c1"&gt;# Store the answer in $do_xxxx&lt;/span&gt;
@@ -954,7 +1152,7 @@ When the processing speed is critical, in many cases it is possible to replace A
 &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;gist&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="bash-continue-yes-no"></category><category term="continue"></category></entry><entry><title>Bash - default argument for the script</title><link href="https://www.safjan.com/bash-default-argument/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-default-argument/</id><summary type="html">&lt;p&gt;See the example of &lt;code&gt;somecommand.sh&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;up::[[MOC_Bash]]&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="bash-continue-yes-no"></category><category term="continue"></category></entry><entry><title>Bash - default argument for the script</title><link href="https://www.safjan.com/bash-default-argument/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-default-argument/</id><summary type="html">&lt;p&gt;See the example of &lt;code&gt;somecommand.sh&lt;/code&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/usr/bin/env bash&lt;/span&gt;
 
 &lt;span class="nv"&gt;ARG1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;foo&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
@@ -1000,8 +1198,8 @@ Thu Mar &lt;span class="m"&gt;29&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt; 
-This solution is taken from &lt;a href="https://stackoverflow.com/a/33419280/3247880"&gt;How to write a bash script that takes optional input arguments? - Stack Overflow&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="default-argument"></category><category term="bash"></category></entry><entry><title>Bash - download gist from GitHub</title><link href="https://www.safjan.com/bash-download-gist-from-github/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-download-gist-from-github/</id><summary type="html">&lt;p&gt;up::[[MOC_bash]]&lt;/p&gt;
-&lt;h2&gt;Download, output content to stdout&lt;/h2&gt;
+This solution is taken from &lt;a href="https://stackoverflow.com/a/33419280/3247880"&gt;How to write a bash script that takes optional input arguments? - Stack Overflow&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;up::[[MOC_Bash]]&lt;/p&gt;</content><category term="note"></category><category term="default-argument"></category><category term="bash"></category></entry><entry><title>Bash - download gist from GitHub</title><link href="https://www.safjan.com/bash-download-gist-from-github/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-download-gist-from-github/</id><summary type="html">&lt;h2&gt;Download, output content to stdout&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6bad20/raw/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -1009,8 +1207,11 @@ This solution is taken from &lt;a href="https://stackoverflow.com/a/33419280/324
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6bad20/raw/ -o my_file
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# curl options to use …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;up::[[MOC_bash]]&lt;/p&gt;
-&lt;h2&gt;Download, output content to stdout&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# curl options to use&lt;/span&gt;
+curl -LJO
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Options …&lt;/h3&gt;</summary><content type="html">&lt;h2&gt;Download, output content to stdout&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6bad20/raw/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -1041,7 +1242,9 @@ curl -LJO
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HTTP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tells&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;specified&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Disposition&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;instead&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;extracting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="bash"></category><category term="download"></category><category term="gist"></category><category term="github"></category></entry><entry><title>Black - keep single quotes for strings</title><link href="https://www.safjan.com/black-keep-single-quotes-strings/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/black-keep-single-quotes-strings/</id><summary type="html">&lt;p&gt;See: &lt;a href="https://github.com/psf/black/issues/594"&gt;Add --single-quote option · Issue #594 · psf/black · GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;up::[[MOC_Bash]]&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="download"></category><category term="gist"></category><category term="github"></category></entry><entry><title>Black - keep single quotes for strings</title><link href="https://www.safjan.com/black-keep-single-quotes-strings/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/black-keep-single-quotes-strings/</id><summary type="html">&lt;p&gt;See: &lt;a href="https://github.com/psf/black/issues/594"&gt;Add --single-quote option · Issue #594 · psf/black · GitHub&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Currently, it requires everyone who uses single quotes to run black and then have a second tool (we use pre-commit double-quote-string-fixer) to ensure that single quotes are being used consistently.&lt;/p&gt;
 &lt;p&gt;From black documentation …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See: &lt;a href="https://github.com/psf/black/issues/594"&gt;Add --single-quote option · Issue #594 · psf/black · GitHub&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Currently, it requires everyone who uses single quotes to run black and then have a second tool (we use pre-commit double-quote-string-fixer) to ensure that single quotes are being used consistently.&lt;/p&gt;
@@ -1247,7 +1450,8 @@ brew install poppler
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;see also: 
-[[git_delete_branches_merged_into_main_branch]]&lt;/p&gt;</content><category term="note"></category><category term="branch"></category><category term="delete"></category><category term="git"></category></entry><entry><title>Man alternatives, CLI command usage explanations, and cheatsheets</title><link href="https://www.safjan.com/man-alternatives-usage-explanations-and-cheatsheets/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/man-alternatives-usage-explanations-and-cheatsheets/</id><summary type="html">&lt;h2&gt;&lt;a href="https://tldr.sh/"&gt;tldr&lt;/a&gt; &lt;img alt="GitHub stars" src="https://img.shields.io/github/stars/tldr-pages/tldr.svg?logo=github"&gt;&lt;/h2&gt;
+[[git_delete_branches_merged_into_main_branch]]&lt;/p&gt;
+&lt;p&gt;up:: [[MOC_git]]]&lt;/p&gt;</content><category term="note"></category><category term="branch"></category><category term="delete"></category><category term="git"></category></entry><entry><title>Man alternatives, CLI command usage explanations, and cheatsheets</title><link href="https://www.safjan.com/man-alternatives-usage-explanations-and-cheatsheets/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/man-alternatives-usage-explanations-and-cheatsheets/</id><summary type="html">&lt;h2&gt;&lt;a href="https://tldr.sh/"&gt;tldr&lt;/a&gt; &lt;img alt="GitHub stars" src="https://img.shields.io/github/stars/tldr-pages/tldr.svg?logo=github"&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Simplified and community-driven man pages&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1567,16 +1771,16 @@ define comprehensive default values;&lt;/li&gt;
 &lt;h2&gt;Restore system&lt;/h2&gt;
 &lt;p&gt;To restore your system:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gunzip -c /path/to/backup.img.gz &lt;span class="p"&gt;|&lt;/span&gt; dd &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sda
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="Linux"></category><category term="dd"></category><category term="pv"></category><category term="partition"></category><category term="disk"></category></entry><entry><title>Python Add Parent Directory To Path</title><link href="https://www.safjan.com/python-add-parent-directory-to-path/" rel="alternate"></link><published>2022-02-22T00:00:00+01:00</published><updated>2022-02-22T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-22:/python-add-parent-directory-to-path/</id><summary type="html"></summary><content type="html">&lt;p&gt;Adding a parent path with the modules to import is sometimes useful in Jupiter notebooks.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;up::[[MOC_linux]]&lt;/p&gt;</content><category term="note"></category><category term="Linux"></category><category term="dd"></category><category term="pv"></category><category term="partition"></category><category term="disk"></category></entry><entry><title>Python Add Parent Directory To Path</title><link href="https://www.safjan.com/python-add-parent-directory-to-path/" rel="alternate"></link><published>2022-02-22T00:00:00+01:00</published><updated>2022-02-22T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-22:/python-add-parent-directory-to-path/</id><summary type="html"></summary><content type="html">&lt;p&gt;Adding a parent path with the modules to import is sometimes useful in Jupiter notebooks.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Add parent directory to path&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;See also my GitHub &lt;a href=""&gt;gist&lt;/a&gt;.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="gist"></category><category term="snippet"></category><category term="jupyter"></category><category term="notebook"></category></entry><entry><title>Python - get file and path parts (dirname, base name, extension)</title><link href="https://www.safjan.com/python-get-file-and-path-parts-dirname-base-name-extension/" rel="alternate"></link><published>2022-02-15T00:00:00+01:00</published><updated>2022-02-15T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-15:/python-get-file-and-path-parts-dirname-base-name-extension/</id><summary type="html">&lt;p&gt;up::[[MOC_python]]&lt;/p&gt;
-&lt;p&gt;To split the full file name (e.g. &lt;code&gt;/root/dir/sub/file.ext&lt;/code&gt;) with a path into various parts you can use python built-in functions from the &lt;code&gt;os&lt;/code&gt; module.
+&lt;p&gt;See also my GitHub &lt;a href=""&gt;gist&lt;/a&gt;.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="gist"></category><category term="snippet"></category><category term="jupyter"></category><category term="notebook"></category></entry><entry><title>Python - get file and path parts (dirname, base name, extension)</title><link href="https://www.safjan.com/python-get-file-and-path-parts-dirname-base-name-extension/" rel="alternate"></link><published>2022-02-15T00:00:00+01:00</published><updated>2022-02-15T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-15:/python-get-file-and-path-parts-dirname-base-name-extension/</id><summary type="html">&lt;p&gt;To split the full file name (e.g. &lt;code&gt;/root/dir/sub/file.ext&lt;/code&gt;) with a path into various parts you can use python built-in functions from the &lt;code&gt;os&lt;/code&gt; module.
 You can retrieve:
-- base name - just file name with extension …&lt;/p&gt;</summary><content type="html">&lt;p&gt;up::[[MOC_python]]&lt;/p&gt;
-&lt;p&gt;To split the full file name (e.g. &lt;code&gt;/root/dir/sub/file.ext&lt;/code&gt;) with a path into various parts you can use python built-in functions from the &lt;code&gt;os&lt;/code&gt; module.
+- base name - just file name with extension (in our example …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To split the full file name (e.g. &lt;code&gt;/root/dir/sub/file.ext&lt;/code&gt;) with a path into various parts you can use python built-in functions from the &lt;code&gt;os&lt;/code&gt; module.
 You can retrieve:
 - base name - just file name with extension (in our example: &lt;code&gt;file.ext&lt;/code&gt;)
 - file path (in our example: &lt;code&gt;/root/dir/sub/&lt;/code&gt;)
@@ -1611,7 +1815,8 @@ You can retrieve:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Reference:&lt;/strong&gt;
-- Stackoverflow - &lt;a href="https://stackoverflow.com/questions/678236"&gt;How to get the filename without the extension from a path in Python?&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="base name"></category><category term="dir-name"></category><category term="file extension"></category><category term="path"></category><category term="python"></category></entry><entry><title>Most Popular Python Backtesting Libraries</title><link href="https://www.safjan.com/popular-backtesting-libraries/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/popular-backtesting-libraries/</id><summary type="html">&lt;p&gt;Popular backtesting libraries with stars as popularity indicators.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a list of the most popular (popularity measured by the number of GitHub stars) backtesting libraries related to Python ecosystem.&lt;/p&gt;
+- Stackoverflow - &lt;a href="https://stackoverflow.com/questions/678236"&gt;How to get the filename without the extension from a path in Python?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;up::[[MOC_python]]&lt;/p&gt;</content><category term="note"></category><category term="base name"></category><category term="dir-name"></category><category term="file extension"></category><category term="path"></category><category term="python"></category></entry><entry><title>Most Popular Python Backtesting Libraries</title><link href="https://www.safjan.com/popular-backtesting-libraries/" rel="alternate"></link><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-02-11:/popular-backtesting-libraries/</id><summary type="html">&lt;p&gt;Popular backtesting libraries with stars as popularity indicators.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a list of the most popular (popularity measured by the number of GitHub stars) backtesting libraries related to Python ecosystem.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels='2,3' autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
@@ -2067,8 +2272,8 @@ To remove local branches you need to use &lt;code&gt;git branch -d&lt;/code&gt; 
 &lt;p&gt;&lt;code&gt;--merged origin/develop&lt;/code&gt; - branches merged into remote develop
 &lt;code&gt;grep -v develop&lt;/code&gt; - for safety reasons: exclude develop from the list of branches to delete&lt;/p&gt;
 &lt;p&gt;Read more here:
-https://stackoverflow.com/questions/16590160/remove-branches-not-on-remote&lt;/p&gt;</content><category term="note"></category><category term="branch"></category><category term="delete"></category><category term="git"></category><category term="merged"></category></entry><entry><title>Black - the code formatter</title><link href="https://www.safjan.com/black-code-formatter/" rel="alternate"></link><published>2021-11-29T00:00:00+01:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-11-29:/black-code-formatter/</id><summary type="html">&lt;p&gt;notes on using black formatter&lt;/p&gt;</summary><content type="html">&lt;p&gt;up::[[MOC_python]]&lt;/p&gt;
-&lt;p&gt;Black is a non-configurable code formatter.&lt;/p&gt;
+https://stackoverflow.com/questions/16590160/remove-branches-not-on-remote&lt;/p&gt;
+&lt;p&gt;up:: [[MOC_git]]]&lt;/p&gt;</content><category term="note"></category><category term="branch"></category><category term="delete"></category><category term="git"></category><category term="merged"></category></entry><entry><title>Black - the code formatter</title><link href="https://www.safjan.com/black-code-formatter/" rel="alternate"></link><published>2021-11-29T00:00:00+01:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-11-29:/black-code-formatter/</id><summary type="html">&lt;p&gt;notes on using black formatter&lt;/p&gt;</summary><content type="html">&lt;p&gt;Black is a non-configurable code formatter.&lt;/p&gt;
 &lt;h2&gt;Install Black for Jupyter notebook&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;jupyter nbextension install https://github.com/drillan/jupyter-black/archive/master.zip --user
 jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-master/jupyter-black
@@ -2090,7 +2295,8 @@ jupyter nbextension &lt;span class="nb"&gt;enable&lt;/span&gt; jupyter-black-mas
 &lt;li&gt;with tox&lt;/li&gt;
 &lt;li&gt;in pre-commit hooks&lt;/li&gt;
 &lt;li&gt;as an external tool in PyCharm&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="black"></category><category term="python"></category><category term="pyqa"></category><category term="quality"></category></entry><entry><title>Top popular Zsh plugins on GitHub (2021)</title><link href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/" rel="alternate"></link><published>2021-11-29T00:00:00+01:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-11-29:/top-popular-zsh-plugins-on-github-2021/</id><summary type="html">&lt;p&gt;There is long list of Zsh plugins posted on the GitHub project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt;. The 1800+ plugins is a bit high number to get orientation which gained already good reputation from the Zsh users community. In this post, I will identify the most popular plugins - those which have the highest number of stars.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
+&lt;/ul&gt;
+&lt;p&gt;up::[[MOC_python]]&lt;/p&gt;</content><category term="note"></category><category term="black"></category><category term="python"></category><category term="pyqa"></category><category term="quality"></category></entry><entry><title>Top popular Zsh plugins on GitHub (2021)</title><link href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/" rel="alternate"></link><published>2021-11-29T00:00:00+01:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-11-29:/top-popular-zsh-plugins-on-github-2021/</id><summary type="html">&lt;p&gt;There is long list of Zsh plugins posted on the GitHub project &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt;. The 1800+ plugins is a bit high number to get orientation which gained already good reputation from the Zsh users community. In this post, I will identify the most popular plugins - those which have the highest number of stars.&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
 &lt;p&gt;There is a series of articles dedicated to Zsh plugins: &lt;a href="../top-popular-zsh-plugins-on-github/"&gt;2018&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2019/"&gt;2019&lt;/a&gt;, &lt;a href="../top-popular-zsh-plugins-on-github-2021/"&gt;2021&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The collection &lt;a href="https://github.com/unixorn/awesome-zsh-plugins"&gt;Awesome Zsh plugins&lt;/a&gt; of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users or in most cases any console users. I have divided them into four categories:&lt;/p&gt;
@@ -2412,7 +2618,8 @@ python ./.githooks/isort_hooks.py
 &lt;p&gt;Still not directly enforceable but, if you add a note in your README (or whatever), this requires a minimum of effort on each developer's part.
 Source: &lt;a href="https://stackoverflow.com/a/54281447/3247880"&gt;Stackoverflow&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;See also:
-- &lt;a href="https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/"&gt;Two Ways to Share Git Hooks with Your Team&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="hooks"></category><category term="pre-commit_hooks"></category><category term="software/project"></category><category term="project"></category></entry><entry><title>Time tracking apps</title><link href="https://www.safjan.com/time-tracking-apps/" rel="alternate"></link><published>2021-10-20T00:00:00+02:00</published><updated>2021-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-20:/time-tracking-apps/</id><summary type="html">&lt;p&gt;In professional work both in corporation or as freelancer there might be a need to track - how much time you spent on different activities. There are already good apps that helps with that.&lt;/p&gt;
+- &lt;a href="https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/"&gt;Two Ways to Share Git Hooks with Your Team&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;up:: [[MOC_git]]]&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="hooks"></category><category term="pre-commit_hooks"></category><category term="software/project"></category><category term="project"></category></entry><entry><title>Time tracking apps</title><link href="https://www.safjan.com/time-tracking-apps/" rel="alternate"></link><published>2021-10-20T00:00:00+02:00</published><updated>2021-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-20:/time-tracking-apps/</id><summary type="html">&lt;p&gt;In professional work both in corporation or as freelancer there might be a need to track - how much time you spent on different activities. There are already good apps that helps with that.&lt;/p&gt;
 &lt;h1&gt;Solution that works best for me&lt;/h1&gt;
 &lt;h2&gt;GTime&lt;/h2&gt;
 &lt;p&gt;Manually log …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In professional work both in corporation or as freelancer there might be a need to track - how much time you spent on different activities. There are already good apps that helps with that.&lt;/p&gt;
@@ -2475,13 +2682,13 @@ https://www.actitime.com/productivity-tools/linux-timesheet&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt;
 - replace &lt;code&gt;Notebook title&lt;/code&gt; and &lt;code&gt;../../gfx/project_logo_150px.jpg&lt;/code&gt; with your data.
 - you can change the relative column widths by changing the 8 and/or 4 shown in the code above, just make sure the sum of those two numbers is always 12.&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="note"></category><category term="jupyter"></category><category term="howto"></category><category term="notebook"></category><category term="jupyter-notebook"></category><category term="project/logo"></category><category term="visual-identification"></category><category term="logo"></category></entry><entry><title>Git add - stage changes in various ways</title><link href="https://www.safjan.com/git-add/" rel="alternate"></link><published>2021-10-12T00:00:00+02:00</published><updated>2021-10-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-12:/git-add/</id><summary type="html">&lt;p&gt;various options to stage git files with &lt;code&gt;git add&lt;/code&gt; command&lt;/p&gt;</summary><content type="html">&lt;p&gt;up:: [[MOC_git]]]&lt;/p&gt;
-&lt;ul&gt;
+&lt;/blockquote&gt;</content><category term="note"></category><category term="jupyter"></category><category term="howto"></category><category term="notebook"></category><category term="jupyter-notebook"></category><category term="project/logo"></category><category term="visual-identification"></category><category term="logo"></category></entry><entry><title>Git add - stage changes in various ways</title><link href="https://www.safjan.com/git-add/" rel="alternate"></link><published>2021-10-12T00:00:00+02:00</published><updated>2021-10-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-12:/git-add/</id><summary type="html">&lt;p&gt;various options to stage git files with &lt;code&gt;git add&lt;/code&gt; command&lt;/p&gt;</summary><content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;git add -A&lt;/code&gt; stages &lt;strong&gt;all changes&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;git add .&lt;/code&gt; stages new files and modifications, &lt;strong&gt;without deletions&lt;/strong&gt; (on the current directory and its subdirectories).&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;git add -u&lt;/code&gt; stages modifications and deletions, &lt;strong&gt;without new files&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;With git 2.0 &lt;code&gt;git add &amp;lt;path&amp;gt;&lt;/code&gt; is the same as &lt;code&gt;git add -A &amp;lt;path&amp;gt;&lt;/code&gt;.&lt;/p&gt;</content><category term="note"></category><category term="git"></category></entry><entry><title>Pre-commit hooks</title><link href="https://www.safjan.com/git-pre-commit-hooks/" rel="alternate"></link><published>2021-10-08T00:00:00+02:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-08:/git-pre-commit-hooks/</id><summary type="html">&lt;p&gt;Pre-commit is a convenient framework to manage git hooks. Uses configuration in the yaml file, handle the installation of required hooks and tools.&lt;/p&gt;</summary><content type="html">&lt;p&gt;up:: [[MOC_git]]&lt;/p&gt;
+&lt;p&gt;With git 2.0 &lt;code&gt;git add &amp;lt;path&amp;gt;&lt;/code&gt; is the same as &lt;code&gt;git add -A &amp;lt;path&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;up:: [[MOC_git]]]&lt;/p&gt;</content><category term="note"></category><category term="git"></category></entry><entry><title>Pre-commit hooks</title><link href="https://www.safjan.com/git-pre-commit-hooks/" rel="alternate"></link><published>2021-10-08T00:00:00+02:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-10-08:/git-pre-commit-hooks/</id><summary type="html">&lt;p&gt;Pre-commit is a convenient framework to manage git hooks. Uses configuration in the yaml file, handle the installation of required hooks and tools.&lt;/p&gt;</summary><content type="html">&lt;p&gt;up:: [[MOC_git]]&lt;/p&gt;
 &lt;p&gt;Pre-commit is a convenient framework to manage git hooks. Uses configuration in YAML file, handles the installation of required hooks and tools.&lt;/p&gt;
 &lt;h1&gt;Pre-commit&lt;/h1&gt;
 &lt;p&gt;repo with &lt;a href="https://github.com/pre-commit/pre-commit-hooks"&gt;hooks&lt;/a&gt; to be used with &lt;a href="https://pre-commit.com/"&gt;pre-commit&lt;/a&gt;&lt;/p&gt;
@@ -2608,8 +2815,8 @@ The others are:
     types_or: [javascript, jsx, ts, tsx]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;will match any of &lt;code&gt;foo/bar.js&lt;/code&gt; / &lt;code&gt;foo/bar.jsx&lt;/code&gt; / &lt;code&gt;foo/bar.ts&lt;/code&gt; / &lt;code&gt;foo/bar.tsx&lt;/code&gt; but not &lt;code&gt;baz.js&lt;/code&gt;.&lt;/p&gt;</content><category term="note"></category><category term="best-practices"></category><category term="commit"></category><category term="git"></category><category term="GitHub"></category><category term="hooks"></category><category term="management"></category><category term="project"></category></entry><entry><title>Python - convert docstring styles</title><link href="https://www.safjan.com/python-convert-docstring-styles/" rel="alternate"></link><published>2021-09-29T00:00:00+02:00</published><updated>2021-09-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-29:/python-convert-docstring-styles/</id><summary type="html">&lt;p&gt;Description of tools for converting docstring style in python code&lt;/p&gt;</summary><content type="html">&lt;p&gt;up::[[MOC_python]]
-When refactoring the project one might want to change docstring style e.g. from numpy-style to google-style. At this point tool like Pyment comes in handy.&lt;/p&gt;
+&lt;p&gt;will match any of &lt;code&gt;foo/bar.js&lt;/code&gt; / &lt;code&gt;foo/bar.jsx&lt;/code&gt; / &lt;code&gt;foo/bar.ts&lt;/code&gt; / &lt;code&gt;foo/bar.tsx&lt;/code&gt; but not &lt;code&gt;baz.js&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;up:: [[MOC_git]]]&lt;/p&gt;</content><category term="note"></category><category term="best-practices"></category><category term="commit"></category><category term="git"></category><category term="GitHub"></category><category term="hooks"></category><category term="management"></category><category term="project"></category></entry><entry><title>Python - convert docstring styles</title><link href="https://www.safjan.com/python-convert-docstring-styles/" rel="alternate"></link><published>2021-09-29T00:00:00+02:00</published><updated>2021-09-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-29:/python-convert-docstring-styles/</id><summary type="html">&lt;p&gt;Description of tools for converting docstring style in python code&lt;/p&gt;</summary><content type="html">&lt;p&gt;When refactoring the project one might want to change docstring style e.g. from numpy-style to google-style. At this point tool like Pyment comes in handy.&lt;/p&gt;
 &lt;h1&gt;&lt;a href="https://github.com/dadadel/pyment/"&gt;Pyment&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Currently, the managed styles in input/output are 
 - javadoc,
@@ -2632,7 +2839,8 @@ pyment -w myfile.py  &lt;span class="c1"&gt;# will overwrite the file&lt;/span&g
 &lt;p&gt;Input/output docstring style parameters: "javadoc", "reST", "numpydoc", "google" (default is "reST"). The input can be also &lt;code&gt;auto&lt;/code&gt; for style auto-detection.&lt;/p&gt;
 &lt;p&gt;You might want to limit operation to only conversion by using option &lt;code&gt;-t, --convert&lt;/code&gt;. With this option, existing docstrings will be converted but Pyment won't create missing ones.&lt;/p&gt;
 &lt;h1&gt;References:&lt;/h1&gt;
-&lt;p&gt;&lt;a href="https://github.com/dadadel/pyment/blob/master/doc/sphinx/source/pyment.rst"&gt;Reference documentation&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="convert"></category><category term="docstring"></category><category term="python"></category><category term="style"></category></entry><entry><title>Python - docstrings styles</title><link href="https://www.safjan.com/python-docstrings-styles/" rel="alternate"></link><published>2021-09-29T00:00:00+02:00</published><updated>2021-09-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-29:/python-docstrings-styles/</id><summary type="html">&lt;p&gt;Most popular conventions used in python docstrings and format support in various tools.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Docstring examples in various styles&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://github.com/dadadel/pyment/blob/master/doc/sphinx/source/pyment.rst"&gt;Reference documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;up::[[MOC_python]]&lt;/p&gt;</content><category term="note"></category><category term="convert"></category><category term="docstring"></category><category term="python"></category><category term="style"></category></entry><entry><title>Python - docstrings styles</title><link href="https://www.safjan.com/python-docstrings-styles/" rel="alternate"></link><published>2021-09-29T00:00:00+02:00</published><updated>2021-09-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-29:/python-docstrings-styles/</id><summary type="html">&lt;p&gt;Most popular conventions used in python docstrings and format support in various tools.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Docstring examples in various styles&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://queirozf.com/entries/python-docstrings-reference-examples"&gt;Reference&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;Support across the tools I use&lt;/h1&gt;
 &lt;h2&gt;pyment&lt;/h2&gt;
@@ -2826,8 +3034,8 @@ See: &lt;a href=""&gt;Pyment&lt;/a&gt;, &lt;a href="./python-convert-docstring-s
 &lt;span class="s1"&gt;pass&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;```&lt;/p&gt;</content><category term="note"></category><category term="docstrings"></category><category term="python"></category><category term="style"></category></entry><entry><title>Python - project documentation from the code with pdoc3</title><link href="https://www.safjan.com/python-documentation-with-pdoc3/" rel="alternate"></link><published>2021-09-28T00:00:00+02:00</published><updated>2021-09-28T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-28:/python-documentation-with-pdoc3/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;p&gt;X:: [[sphinx_for_documentation]] [[mkdocs]]&lt;/p&gt;
-&lt;p&gt;Despite Sphinx seems to be the most common tool for generating documentation pdoc3 is an interesting option.&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;p&gt;up::[[MOC_python]]&lt;/p&gt;</content><category term="note"></category><category term="docstrings"></category><category term="python"></category><category term="style"></category></entry><entry><title>Python - project documentation from the code with pdoc3</title><link href="https://www.safjan.com/python-documentation-with-pdoc3/" rel="alternate"></link><published>2021-09-28T00:00:00+02:00</published><updated>2021-09-28T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-28:/python-documentation-with-pdoc3/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;p&gt;Despite Sphinx seems to be the most common tool for generating documentation pdoc3 is an interesting option.&lt;/p&gt;
 &lt;p&gt;Generate html documentation:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pdoc --force --html --output-dir ./doc_myproject myproject
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2845,7 +3053,9 @@ See: &lt;a href=""&gt;Pyment&lt;/a&gt;, &lt;a href="./python-convert-docstring-s
 &lt;span class="c"&gt;## Generate pdoc HTML documentation for prolog package and open in browser&lt;/span&gt;
 &lt;span class="nf"&gt;doc_view&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
     pdoc --force --html --output-dir ./doc_myproject myproject &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; xdg-open ./doc_myproject/myproject/index.html
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="documentation"></category><category term="pdoc3"></category><category term="python"></category><category term="documentation-generator"></category><category term="sphinx"></category></entry><entry><title>Git - autocommit on file changes</title><link href="https://www.safjan.com/git-autocommit-on-file-changes/" rel="alternate"></link><published>2021-09-14T00:00:00+02:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-14:/git-autocommit-on-file-changes/</id><summary type="html">&lt;p&gt;How to create automatically commits if any file in the watched folder was changed&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;X:: [[sphinx_for_documentation]] [[mkdocs]]&lt;/p&gt;</content><category term="note"></category><category term="documentation"></category><category term="pdoc3"></category><category term="python"></category><category term="documentation-generator"></category><category term="sphinx"></category></entry><entry><title>Git - autocommit on file changes</title><link href="https://www.safjan.com/git-autocommit-on-file-changes/" rel="alternate"></link><published>2021-09-14T00:00:00+02:00</published><updated>2022-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-09-14:/git-autocommit-on-file-changes/</id><summary type="html">&lt;p&gt;How to create automatically commits if any file in the watched folder was changed&lt;/p&gt;</summary><content type="html">&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Motivation:&lt;/strong&gt; I wanted to track the history of the changes introduced in my notes folder. Didn't want to create a commit, or redact the commit message after each change because typically during the day I made multiple edits in notes ad prefer to minimize time spent on managing my notes. I'm quickly jumping into the notes, adding something to existing notes, or creating new ones. Remembering to commit each change is too much overhead for me. I started to look for a solution that will monitor my notes folder, and, if anything changed, create a commit. I found several solutions that serve that purpose.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;For reference see &lt;a href="https://stackoverflow.com/questions/420143/making-git-auto-commit"&gt;making-git-auto-commit&lt;/a&gt; on StackOverflow.&lt;/p&gt;
@@ -2853,11 +3063,11 @@ See: &lt;a href=""&gt;Pyment&lt;/a&gt;, &lt;a href="./python-convert-docstring-s
 &lt;!-- MarkdownTOC levels='1,2,3' autolink=True autoanchor=True --&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#gitwatch--github-%E2%98%851k-active"&gt;gitwatch # github: ★1k, active&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#gitwatch--active"&gt;gitwatch , active&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#notes-for-installation-on-mac"&gt;Notes for installation on Mac&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#gwatch-github-%E2%98%8522-low-activity"&gt;gwatch github: ★22, low activity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#gwatch-low-activity"&gt;gwatch  low activity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#etckeeper"&gt;etckeeper&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#git-etc-github-%E2%98%854-low-activity-created-9-years-ago-last-commit-in-2014"&gt;git-etc github: ★4, low activity, created 9 years ago, last commit in 2014&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#git-powercommit"&gt;Git Powercommit&lt;/a&gt;&lt;/li&gt;
@@ -2868,7 +3078,7 @@ See: &lt;a href=""&gt;Pyment&lt;/a&gt;, &lt;a href="./python-convert-docstring-s
 &lt;/ul&gt;
 &lt;!-- /MarkdownTOC --&gt;
 
-&lt;p&gt;&lt;a id="gitwatch--github-%E2%98%851k-active"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="gitwatch--active"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;&lt;a href="https://github.com/gitwatch/gitwatch"&gt;gitwatch&lt;/a&gt; &lt;img alt="GitHub stars" src="https://img.shields.io/github/stars/gitwatch/gitwatch.svg?logo=github"&gt;, active&lt;/h1&gt;
 &lt;p&gt;A bash script to watch a file or folder and commit changes to a git repo&lt;/p&gt;
 &lt;p&gt;Justification for my choice:
@@ -2906,7 +3116,7 @@ On macOS you need to act differently&lt;/p&gt;
 &lt;li&gt;copy modified plist to `/Library/LaunchDaemons/`` with sudo&lt;/li&gt;
 &lt;li&gt;note: if there is a proper &lt;code&gt;gitwatch&lt;/code&gt; script path (I needed to change &lt;code&gt;gitwatch.sh&lt;/code&gt; to &lt;code&gt;gitwatch&lt;/code&gt;)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;a id="gwatch-github-%E2%98%8522-low-activity"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="gwatch-low-activity"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;&lt;a href="https://github.com/jw0k/gwatch"&gt;gwatch&lt;/a&gt; &lt;img alt="GitHub stars" src="https://img.shields.io/github/stars/jw0k/gwatch.svg?logo=github"&gt; low activity&lt;/h1&gt;
 &lt;p&gt;A program that watches a folder for file modifications and commits them to a git repository automatically&lt;/p&gt;
 &lt;p&gt;After &lt;code&gt;gwatch&lt;/code&gt; is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (the 30s by default). After the timer expires, &lt;code&gt;gwatch&lt;/code&gt; will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for &lt;code&gt;gwatch&lt;/code&gt; to successfully create commits, a git repository must be initialized in the watched folder.&lt;/p&gt;
@@ -2938,7 +3148,8 @@ On macOS you need to act differently&lt;/p&gt;
 &lt;p&gt;This script uses inotifywatch to monitor file status and trigger commands.
 Designed for Ansible playbook, but you can use this for other development purposes.
 To install e.g. &lt;code&gt;apt-get install -y inotify-tools&lt;/code&gt;
-see: https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="autocommit"></category><category term="note-taking"></category><category term="notes"></category><category term="automatic"></category><category term="automation"></category><category term="git/autocommit"></category></entry><entry><title>Interactive plots for blogging</title><link href="https://www.safjan.com/interactive-plots-for-blogging/" rel="alternate"></link><published>2019-09-13T00:00:00+02:00</published><updated>2019-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-09-13:/interactive-plots-for-blogging/</id><summary type="html">&lt;p&gt;Using Plotly, Bokeh and Altair for interactive visualizations in the blog posts.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+see: https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86&lt;/p&gt;
+&lt;p&gt;up:: [[MOC_git]]]&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="autocommit"></category><category term="note-taking"></category><category term="notes"></category><category term="automatic"></category><category term="automation"></category><category term="git/autocommit"></category></entry><entry><title>Interactive plots for blogging</title><link href="https://www.safjan.com/interactive-plots-for-blogging/" rel="alternate"></link><published>2019-09-13T00:00:00+02:00</published><updated>2019-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2019-09-13:/interactive-plots-for-blogging/</id><summary type="html">&lt;p&gt;Using Plotly, Bokeh and Altair for interactive visualizations in the blog posts.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -4391,10 +4602,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="8a075dec-94c3-423d-bfed-5401b0c166cc"&gt;&lt;/div&gt;
+&lt;div id="a8d8c670-b81c-4a1a-a156-6df62481cc32"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#8a075dec-94c3-423d-bfed-5401b0c166cc');
+var element = $('#a8d8c670-b81c-4a1a-a156-6df62481cc32');
 
 (function(root) {
   function now() {

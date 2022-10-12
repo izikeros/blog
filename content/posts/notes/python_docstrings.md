@@ -216,3 +216,5 @@ def foo(var1, var2, *args, long_var_name='hi', **kwargs):
     # after closing the docstring.
     pass
  ```
+
+ up::[[MOC_python]]

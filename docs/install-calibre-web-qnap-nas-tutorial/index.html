@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/styles/custom.css">
+
+    <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's Blog Atom">
+
+    <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117080232-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using a Calibre database. This tutorial shows how to install calibre-web on QNAP-NAS. The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should …" />
+<meta name="keywords" content="calibre, calibre-web, docker">
+<meta expr:content="2022-10-12 00:00:00+02:00" itemprop='datePublished'/>
+<meta expr:content="2022-10-12 00:00:00+02:00" itemprop='dateModified'/>
+<meta property="article:modified_time" content="2022-10-12 00:00:00+02:00"/>
+<meta property="article:published_time" content="2022-10-12 00:00:00+02:00"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tutorial - Install Calibre web on QNAP NAS",
+  "datePublished": "2022-10-12 00:00:00+02:00",
+  "dateModified": "2022-10-12 00:00:00+02:00"
+}
+</script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Tutorial - Install Calibre web on QNAP NAS"/>
+  <meta property="og:description" content="Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using a Calibre database. This tutorial shows how to install calibre-web on QNAP-NAS. The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/install-calibre-web-qnap-nas-tutorial/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-10-12 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2022-10-12 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="calibre"/>
+  <meta property="article:tag" content="calibre-web"/>
+  <meta property="article:tag" content="docker"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content="https://www.safjan.com/"/>
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Tutorial - Install Calibre web on QNAP NAS"/>
+
+
+  <title>Tutorial - Install Calibre web on QNAP NAS</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://www.safjan.com/">
+        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+      </a>
+
+      <h1>
+        <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+      </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://www.safjan.com/">Home</a>
+
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+      <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <p>
+      <!-- Posted on: -->
+      October 12, 2022 
+
+
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Tutorial%20-%20Install%20Calibre%20web%20on%20QNAP%20NAS&url=https%3A//www.safjan.com/install-calibre-web-qnap-nas-tutorial/&hashtags=calibre,calibre-web,docker" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/install-calibre-web-qnap-nas-tutorial/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Tutorial%20-%20Install%20Calibre%20web%20on%20QNAP%20NAS&u=https%3A//www.safjan.com/install-calibre-web-qnap-nas-tutorial/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/install-calibre-web-qnap-nas-tutorial/&title=Tutorial%20-%20Install%20Calibre%20web%20on%20QNAP%20NAS" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+    <br/>
+   </p>
+  <h1 id="install-calibre-web-qnap-nas-tutorial">Tutorial - Install Calibre web on QNAP NAS</h1>
+  <div class="header-underline"></div>
+  </header>
+
+
+  <div>
+    <p>Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using a <a href="https://calibre-ebook.com/">Calibre</a> database.</p>
+<p>This tutorial shows how to install <a href="https://github.com/janeczku/calibre-web">calibre-web</a> on QNAP-NAS. </p>
+<p><img alt="main screen of calibre-web" src="https://github.com/janeczku/calibre-web/wiki/images/main_screen.png"></p>
+<p>The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to a wide variety of other QNAP NAS models.</p>
+<blockquote>
+<p><strong>Caution</strong>: This is a simple setup assuming that service will be used only within the LAN by the trusted users and therefore access management, other networking, and security matters are not in the scope of this tutorial.</p>
+</blockquote>
+<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#software">Software</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#install-service-from-docker-container-via-container-station">Install service from Docker Container via Container Station</a></li>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#environment">Environment</a></li>
+<li><a href="#shared-folders">Shared Folders</a></li>
+<li><a href="#network">Network</a></li>
+<li><a href="#device">Device</a></li>
+</ul>
+</li>
+<li><a href="#create-container">Create Container</a></li>
+<li><a href="#container-initialization">container initialization</a></li>
+<li><a href="#caliber-web-initial-setup">Caliber-web initial setup</a></li>
+<li><a href="#post-installation">Post installation</a></li>
+<li><a href="#change-admin-password">Change admin password</a></li>
+<li><a href="#library-change">Library change</a></li>
+<li><a href="#alternatives">Alternatives</a></li>
+<li><a href="#credits">Credits</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="software"></a></p>
+<h2>Software</h2>
+<p>We will be using <a href="https://hub.docker.com/r/linuxserver/calibre-web/">dockerized version</a> of <a href="https://github.com/janeczku/calibre-web">janeczku/calibre-web</a> </p>
+<p><a id="installation"></a></p>
+<h2>Installation</h2>
+<p><a id="install-service-from-docker-container-via-container-station"></a></p>
+<h3>Install service from Docker Container via Container Station</h3>
+<ul>
+<li>Search for the <code>calibre-web</code> docker image in the <code>Create</code> tab of the Container Station.</li>
+<li>The popup window for version selection should be displayed. Select <code>latest</code> unless you have good reason to use an older version. Click <code>Install</code>.</li>
+<li>You need to confirm your intent to install calibre-web on another popup window.</li>
+</ul>
+<p><a id="configuration"></a></p>
+<h3>Configuration</h3>
+<p>Before the service will be started you need to configure it properly to provide information about where your Calibre book library (or multiple libraries) is located, configure the IP where the service will be available, etc.</p>
+<p>We are using the docker image from linuxserver, the configuration proposed in this tutorial is based on suggestions from <a href="https://hub.docker.com/r/linuxserver/calibre-web/">linuxserver/calibre-web</a> on how to run the service using the docker command-line.</p>
+<div class="highlight"><pre><span></span><code>docker run -d <span class="se">\</span>
+  --name<span class="o">=</span>calibre-web <span class="se">\</span>
+  -e <span class="nv">PUID</span><span class="o">=</span><span class="m">1000</span> <span class="se">\</span>
+  -e <span class="nv">PGID</span><span class="o">=</span><span class="m">1000</span> <span class="se">\</span>
+  -e <span class="nv">TZ</span><span class="o">=</span>Europe/London <span class="se">\</span>
+  -e <span class="nv">DOCKER_MODS</span><span class="o">=</span>linuxserver/mods:universal-calibre <span class="sb">`</span><span class="c1">#optional` \</span>
+  -e <span class="nv">OAUTHLIB_RELAX_TOKEN_SCOPE</span><span class="o">=</span><span class="m">1</span> <span class="sb">`</span><span class="c1">#optional` \</span>
+  -p <span class="m">8083</span>:8083 <span class="se">\</span>
+  -v /path/to/data:/config <span class="se">\</span>
+  -v /path/to/calibre/library:/books <span class="se">\</span>
+  --restart unless-stopped <span class="se">\</span>
+  lscr.io/linuxserver/calibre-web:latest
+</code></pre></div>
+
+<p>The configuration is divided into sections. We will touch: <code>Environment</code>, <code>Shared folders</code> and <code>Network</code></p>
+<p><a id="environment"></a></p>
+<h4>Environment</h4>
+<p>Set the time zone that suits you the most.
+<img alt="environment section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_environment.jpg"></p>
+<p>my settings for env</p>
+<div class="highlight"><pre><span></span><code>PUID=1000
+PGID=1000
+TZ=Europe/London
+DOCKER_MODS=linuxserver/calibre-web:calibre
+</code></pre></div>
+
+<p><a id="shared-folders"></a></p>
+<h4>Shared Folders</h4>
+<p><img alt="shared section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_shared_folders.jpg">
+I suggest to create directory <code>calibre</code> in <code>/share/Container</code> - it will be placeholder for configuration and libraries.</p>
+<ul>
+<li>create folder <code>/share/Container/calibre/config</code> - for configuration</li>
+<li>create folder <code>/share/Container/calibre/books</code> - as a folder that will contain one or more calibre libraries. If you have your Calibre library already on the NAS but in the different location you can use symbolic links pointing at your calibre libraries. Example of two libraries:<ul>
+<li><code>/share/Container/calibre/books/fiction</code></li>
+<li><code>/share/Container/calibre/books/cooking</code></li>
+</ul>
+</li>
+</ul>
+<p>Inside of these folders you should see directories corresponding to author names and <code>metadata.db</code> file.</p>
+<blockquote>
+<p><strong>CAUTION:</strong> QNAP's container station cannot change the shared folder settings using the Web GUI after the container is created.</p>
+</blockquote>
+<p>I've created shared folder mappings:</p>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">calibre</span><span class="w"></span>
+<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">config</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">config</span><span class="w"> </span>
+<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_it</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_it</span><span class="w"></span>
+<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_life</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_life</span><span class="w"></span>
+<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_ml</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_ml</span><span class="w"></span>
+</code></pre></div>
+
+<p><a id="network"></a></p>
+<h4>Network</h4>
+<p>Set the calibre-web container IP address to e.g. 192.168.1.230.</p>
+<p><a id="device"></a></p>
+<h4>Device</h4>
+<p>no need to modify anything</p>
+<p><a id="create-container"></a></p>
+<h3>Create Container</h3>
+<p>When the customizations in configuration are done, press the "Create" button and the summary of settings will be displayed.
+<img alt="summary - part 1 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg"></p>
+<p><img alt="summary - part 2 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg"></p>
+<p>When creation starts, you will be redirected  to the creation screen of Container Station. While creating, you need to wait until the number (1 in the example below) near the top right of the Container Station window (right next to the IoT icon) disappears.
+<img alt="status of calibre-web container configuration" src="/images/calibre_web_qnap/calibre_web_status.jpg"></p>
+<p><a id="container-initialization"></a></p>
+<h3>container initialization</h3>
+<p>In the example above, we have set auto-start in the creation panel, so when the container is created, it will start running. Initialization happens when the container is first run.</p>
+<p>On the "Overview" tab of the container station, click the corresponding container name to display the status</p>
+<p>Caliber-web is not yet accessible during initialization, so we have to wait.</p>
+<p>If the following message is displayed, it seems that initialization is completed and access from the Web is possible.</p>
+<div class="highlight"><pre><span></span><code>INFO in web : Starting Calibre Web ...
+INFO in server : Starting Gevent server
+</code></pre></div>
+
+<p><img alt="calibre-web container initialization" src="/images/calibre_web_qnap/calibreweb_starting_container_console.jpg">
+<a id="caliber-web-initial-setup"></a></p>
+<h3>Caliber-web initial setup</h3>
+<p>Once Caliber-web is available, access the container's server from a web browser.</p>
+<p>In this example the IP address of the container is 192.168.1.230. The port number used by calibre-web has not changed, so it is 8083. In other words, access http://192.168.1.230:8083/.</p>
+<p>When accessing for the first time, basic settings are required.</p>
+<ul>
+<li>Set e.g.  <code>/books_life</code> as the location of library database.</li>
+</ul>
+<p>The setting is applied by pressing the "Save" button. Then, log-in using the "Login" button.</p>
+<p>By default, as described in https://hub.docker.com/r/linuxserver/calibre-web/, log-in with username <code>admin</code> and password <code>admin123</code>.</p>
+<p>If you can log in, you should be able to see the library you set during initialization.</p>
+<p><a id="post-installation"></a></p>
+<h2>Post installation</h2>
+<p><a id="change-admin-password"></a></p>
+<h3>Change admin password</h3>
+<p>To change the admin user's password after logging in, click the lowercase username <code>admin</code> with the person icon in the upper right corner of the window to switch to the change profile screen. </p>
+<p><a id="library-change"></a></p>
+<h3>Library change</h3>
+<ul>
+<li>To change the library after logging in, select the circular icon "Admin" in the upper right (to the left of the upper-body icon, where admin in lowercase is your username).</li>
+<li>To change the library, select <code>Configuration -&gt; Basic Configuration</code>.</li>
+<li>Here, change the library to e.g. <code>/books_it</code>.</li>
+<li>Press the "Submit" button to confirm your changes.</li>
+<li>Click the calibre-web icon on the upper left to display the library, and the changed library should be displayed.</li>
+</ul>
+<p><a id="alternatives"></a></p>
+<h2>Alternatives</h2>
+<ul>
+<li>you can install calibre-web using docker-compose instead of using container station. This is not covered by this tutorial, see docker-compose file on <a href="https://hub.docker.com/r/linuxserver/calibre-web/">Docker Hub</a></li>
+<li>you can use other front-ends for accessing calibre via web. Examples are e.g.: <ul>
+<li><a href="https://github.com/seblucas/cops"> seblucas/cops</a> -  Calibre OPDS (and HTML) PHP Server : web-based light alternative to "Calibre content server"/"Calibre2OPDS" to serve ebooks (epub, mobi, pdf, ...)</li>
+</ul>
+</li>
+</ul>
+<p><a id="credits"></a></p>
+<h2>Credits</h2>
+<p>Article <a href="https://kunsen.net/2019/10/26/post-2468/">Run Calibre-web on QNAP NAS</a> (in Japanese) helped me with my first setup of calibre web. This tutorial is heavily based on that article.</p>
+<p>X::[[nas_qnap_photoprism]]</p>
+  </div>
+
+
+  <div class="tag-cloud">
+    <p>
+      <br/><br/>Tags:&nbsp;
+      <a href="https://www.safjan.com/tag/calibre/">calibre</a>
+      <a href="https://www.safjan.com/tag/calibre-web/">calibre-web</a>
+      <a href="https://www.safjan.com/tag/docker/">docker</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/" title="Automated signal segmentation, trend detection, and classification">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/">Install Photoprism on QNAP NAS using Docker Compose</a></li>
+    </ul>
+  </div>
+
+
+</article>
+
+    <footer>
+<p>
+  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

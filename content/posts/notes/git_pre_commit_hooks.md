@@ -155,5 +155,6 @@ example:
 
 will match any of `foo/bar.js` / `foo/bar.jsx` / `foo/bar.ts` / `foo/bar.tsx` but not `baz.js`.
 
+up:: [[MOC_git]]]
 
 

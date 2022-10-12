@@ -42,7 +42,7 @@ book.html book_html.pdf
 
 > **NOTE:** Experiment with page size to impact margins and font size
 
-## See also: 
+## See also:
 - [A Markdown-to-PDF Workflow on Linux - Scott's Weblog - The weblog of an IT pro focusing on cloud computing, Kubernetes, Linux, containers, and networking](https://blog.scottlowe.org/2018/09/27/a-markdown-to-pdf-workflow-on-linux/)
 - [[convert_html_to_markdown]]
 

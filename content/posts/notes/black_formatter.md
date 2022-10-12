@@ -9,8 +9,6 @@ slug: black-code-formatter
 category: note
 citation_needed: false
 ---
-up::[[MOC_python]]
-
 Black is a non-configurable code formatter.
 
 ## Install Black for Jupyter notebook
@@ -34,3 +32,5 @@ line-length = 119
 - with tox
 - in pre-commit hooks
 - as an external tool in PyCharm
+
+up::[[MOC_python]]

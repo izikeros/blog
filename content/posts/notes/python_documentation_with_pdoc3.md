@@ -9,7 +9,6 @@ summary: summary
 tags: documentation, pdoc3, python, documentation-generator, sphinx
 title: Python - project documentation from the code with pdoc3
 ---
-X:: [[sphinx_for_documentation]] [[mkdocs]]
 
 Despite Sphinx seems to be the most common tool for generating documentation pdoc3 is an interesting option.
 
@@ -36,3 +35,4 @@ doc:
 doc_view:
 	pdoc --force --html --output-dir ./doc_myproject myproject && xdg-open ./doc_myproject/myproject/index.html
 ```
+X:: [[sphinx_for_documentation]] [[mkdocs]]

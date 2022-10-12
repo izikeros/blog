@@ -18,4 +18,5 @@ then
 	echo "doing backup"
 fi
 ```
-gist
+
+up::[[MOC_Bash]]

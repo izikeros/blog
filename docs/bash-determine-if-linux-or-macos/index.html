@@ -43,7 +43,7 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="unameOut=&#34;$(uname -s)&#34; case &#34;${unameOut}&#34; in Linux*) machine=Linux;; Darwin*) machine=Mac;; CYGWIN*) machine=Cygwin;; MINGW*) machine=MinGw;; *) machine=&#34;UNKNOWN:${unameOut}&#34; esac echo ${machine} Credits: The solution from bash - How to check if running in Cygwin, Mac or Linux? - Stack Overflow" />
+<meta name="description" content="unameOut=&#34;$(uname -s)&#34; case &#34;${unameOut}&#34; in Linux*) machine=Linux;; Darwin*) machine=Mac;; CYGWIN*) machine=Cygwin;; MINGW*) machine=MinGw;; *) machine=&#34;UNKNOWN:${unameOut}&#34; esac echo ${machine} if [ &#34;$machine&#34; == &#34;Mac&#34; ]; then # code for macOS platform elif [ &#34;$(expr substr $(uname -s) 1 5)&#34; == &#34;Linux&#34; ]; then # code …" />
 <meta name="keywords" content="bash, determine, Linux, macos">
 <meta expr:content="2022-06-03 00:00:00+02:00" itemprop='datePublished'/>
 <meta expr:content="2022-06-03 00:00:00+02:00" itemprop='dateModified'/>
@@ -63,7 +63,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Bash - determine if script runs on Linux, macOS or other system"/>
-  <meta property="og:description" content="unameOut=&#34;$(uname -s)&#34; case &#34;${unameOut}&#34; in Linux*) machine=Linux;; Darwin*) machine=Mac;; CYGWIN*) machine=Cygwin;; MINGW*) machine=MinGw;; *) machine=&#34;UNKNOWN:${unameOut}&#34; esac echo ${machine} Credits: The solution from bash - How to check if running in Cygwin, Mac or Linux? - Stack Overflow"/>
+  <meta property="og:description" content="unameOut=&#34;$(uname -s)&#34; case &#34;${unameOut}&#34; in Linux*) machine=Linux;; Darwin*) machine=Mac;; CYGWIN*) machine=Cygwin;; MINGW*) machine=MinGw;; *) machine=&#34;UNKNOWN:${unameOut}&#34; esac echo ${machine} if [ &#34;$machine&#34; == &#34;Mac&#34; ]; then # code for macOS platform elif [ &#34;$(expr substr $(uname -s) 1 5)&#34; == &#34;Linux&#34; ]; then # code …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/bash-determine-if-linux-or-macos/"/>
   <meta property="og:type" content="article"/>
@@ -191,11 +191,19 @@
     MINGW*<span class="o">)</span>     <span class="nv">machine</span><span class="o">=</span>MinGw<span class="p">;;</span>
     *<span class="o">)</span>          <span class="nv">machine</span><span class="o">=</span><span class="s2">&quot;UNKNOWN:</span><span class="si">${</span><span class="nv">unameOut</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="k">esac</span>
+
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">machine</span><span class="si">}</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$machine</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;Mac&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># code for macOS platform        </span>
+<span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="k">$(</span>expr substr <span class="k">$(</span>uname -s<span class="k">)</span> <span class="m">1</span> <span class="m">5</span><span class="k">)</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;Linux&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># code for GNU/Linux platform</span>
+<span class="k">fi</span>
 </code></pre></div>
 
 <p><strong>Credits:</strong>
 The solution from <a href="https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux">bash - How to check if running in Cygwin, Mac or Linux? - Stack Overflow</a></p>
+<p>up::[[MOC_Bash]]</p>
   </div>
 
 

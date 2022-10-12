@@ -9,10 +9,12 @@ slug: git-add
 category: note
 citation_needed: false
 ---
-up:: [[MOC_git]]]
+
 
 - `git add -A` stages **all changes**
 - `git add .` stages new files and modifications, **without deletions** (on the current directory and its subdirectories).
 - `git add -u` stages modifications and deletions, **without new files**
 
 With git 2.0 `git add <path>` is the same as `git add -A <path>`.
+
+up:: [[MOC_git]]]

@@ -22,3 +22,4 @@ git push origin --delete remoteBranchName
 see also: 
 [[git_delete_branches_merged_into_main_branch]]
 
+up:: [[MOC_git]]]

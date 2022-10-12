@@ -18,9 +18,9 @@ My choice was **gitwatch** used as systemd service.
 
 <!-- MarkdownTOC levels='1,2,3' autolink=True autoanchor=True -->
 
-- [gitwatch # github: ★1k, active](#gitwatch--github-%E2%98%851k-active)
+- [gitwatch , active](#gitwatch--active)
     - [Notes for installation on Mac](#notes-for-installation-on-mac)
-- [gwatch github: ★22, low activity](#gwatch-github-%E2%98%8522-low-activity)
+- [gwatch  low activity](#gwatch-low-activity)
 - [etckeeper](#etckeeper)
 - [git-etc github: ★4, low activity, created 9 years ago, last commit in 2014](#git-etc-github-%E2%98%854-low-activity-created-9-years-ago-last-commit-in-2014)
 - [Git Powercommit](#git-powercommit)
@@ -31,7 +31,7 @@ My choice was **gitwatch** used as systemd service.
 
 <!-- /MarkdownTOC -->
 
-<a id="gitwatch--github-%E2%98%851k-active"></a>
+<a id="gitwatch--active"></a>
 # [gitwatch](https://github.com/gitwatch/gitwatch) ![GitHub stars](https://img.shields.io/github/stars/gitwatch/gitwatch.svg?logo=github), active
 A bash script to watch a file or folder and commit changes to a git repo
 
@@ -69,7 +69,7 @@ On macOS you need to act differently
 - copy modified plist to `/Library/LaunchDaemons/`` with sudo
 - note: if there is a proper `gitwatch` script path (I needed to change `gitwatch.sh` to `gitwatch`)
 
-<a id="gwatch-github-%E2%98%8522-low-activity"></a>
+<a id="gwatch-low-activity"></a>
 # [gwatch](https://github.com/jw0k/gwatch) ![GitHub stars](https://img.shields.io/github/stars/jw0k/gwatch.svg?logo=github) low activity
 A program that watches a folder for file modifications and commits them to a git repository automatically
 
@@ -114,3 +114,5 @@ This script uses inotifywatch to monitor file status and trigger commands.
 Designed for Ansible playbook, but you can use this for other development purposes.
 To install e.g. `apt-get install -y inotify-tools`
 see: https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86
+
+up:: [[MOC_git]]]

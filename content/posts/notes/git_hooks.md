@@ -61,3 +61,5 @@ Source: [Stackoverflow](https://stackoverflow.com/a/54281447/3247880)
 
 See also:
 - [Two Ways to Share Git Hooks with Your Team](https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/)
+
+up:: [[MOC_git]]]

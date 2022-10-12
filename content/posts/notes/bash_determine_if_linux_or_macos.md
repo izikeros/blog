@@ -17,8 +17,17 @@ case "${unameOut}" in
     MINGW*)     machine=MinGw;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
+
 echo ${machine}
+
+if [ "$machine" == "Mac" ]; then
+    # code for macOS platform        
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # code for GNU/Linux platform
+fi
 ```
 
 **Credits:**
 The solution from [bash - How to check if running in Cygwin, Mac or Linux? - Stack Overflow](https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux)
+
+up::[[MOC_Bash]]

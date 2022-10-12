@@ -188,15 +188,37 @@
   <div>
     <p>Photoprism is a modern, searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on QNAP NAS. This article is meant to fill that gap.
 Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other QNAP NAS models.</p>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
+<!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
+<ul>
+<li><a href="#what-is-the-photoprism">What is the photoprism</a></li>
+<li><a href="#feature-overview">Feature Overview</a></li>
+<li><a href="#installation-on-qnap-nas-from-the-cli">Installation on QNAP NAS from the CLI</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#login-to-your-nas-server-via-ssh">login to your NAS server via SSH</a></li>
+<li><a href="#create-photoprism-directory">Create photoprism directory</a></li>
+<li><a href="#create-docker-composeyml-file">Create <code>docker-compose.yml</code> file</a></li>
+<li><a href="#create-directories-in-sharecontainerphotoprism">Create directories in <code>/share/Container/photoprism</code></a></li>
+<li><a href="#run-application-in-the-container">Run application in the container</a><ul>
+<li><a href="#using-web-ui">Using web-UI</a></li>
+<li><a href="#using-cli">Using CLI</a></li>
+</ul>
+</li>
+<li><a href="#manual-upgrading-photoprism-to-the-latests-version">Manual upgrading Photoprism to the latests version</a></li>
+<li><a href="#adding-new-content">Adding new content</a></li>
+<li><a href="#performance-tuning">Performance tuning</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="what-is-the-photoprism"></a></p>
 <h2>What is the photoprism</h2>
 <p>from the photoprism website:</p>
 <blockquote>
 <p>PhotoPrism® is an AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. You can run it at home, on a private server, or in the cloud.</p>
 </blockquote>
 <p><img alt="Screenshot" src="https://docs.photoprism.app/img/preview.jpg"></p>
+<p><a id="feature-overview"></a></p>
 <h3>Feature Overview</h3>
 <blockquote>
 <ul>
@@ -214,20 +236,25 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 </ul>
 <p><strong>NOTE:</strong> I haven't found functionality to add other accounts than administrator. But in my case having only single user is perfectly fine. </p>
 </blockquote>
+<p><a id="installation-on-qnap-nas-from-the-cli"></a></p>
 <h2>Installation on QNAP NAS from the CLI</h2>
+<p><a id="prerequisites"></a></p>
 <h3>Prerequisites</h3>
 <p>This instruction assumes that you are familiar with using command line interface (CLI).</p>
 <ul>
 <li>ensure you have installed Container Station which is providing Docker on QNAP NAS</li>
 <li>ensure that you have docker in the path</li>
 </ul>
+<p><a id="login-to-your-nas-server-via-ssh"></a></p>
 <h3>login to your NAS server via SSH</h3>
 <p>from the terminal or use e.g. <code>putty</code> if working on Windows</p>
+<p><a id="create-photoprism-directory"></a></p>
 <h3>Create photoprism directory</h3>
 <div class="highlight"><pre><span></span><code>mkdir /share/Container/photoprism
 <span class="nb">cd</span> photoprism
 </code></pre></div>
 
+<p><a id="create-docker-composeyml-file"></a></p>
 <h3>Create <code>docker-compose.yml</code> file</h3>
 <p>download <code>docker-compose.yml</code> from the link provided in <a href="https://docs.photoprism.app/getting-started/docker-compose/">official documentation</a> :</p>
 <div class="highlight"><pre><span></span><code>wget https://dl.photoprism.app/docker/docker-compose.yml
@@ -246,6 +273,7 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 - disable Tensorflow (used for categorization of photos and face detection)</p>
 <p>For changing number of workers and disabling TensorFlow see the "Performance tuning" section bellow.</p>
 </blockquote>
+<p><a id="create-directories-in-sharecontainerphotoprism"></a></p>
 <h3>Create directories in <code>/share/Container/photoprism</code></h3>
 <div class="highlight"><pre><span></span><code>mkdir /share/Container/photoprism/database
 mkdir /share/Container/photoprism/import
@@ -253,6 +281,7 @@ mkdir /share/Container/photoprism/originals
 mkdir /share/Container/photoprism/storage
 </code></pre></div>
 
+<p><a id="run-application-in-the-container"></a></p>
 <h2>Run application in the container</h2>
 <p>Start the container. Pulling images might take few minutes depending on your Internet connection speed.</p>
 <div class="highlight"><pre><span></span><code>docker-compose up -d
@@ -264,13 +293,16 @@ mkdir /share/Container/photoprism/storage
 
 <p>You need to login as administrator with default password for the first time, after login remember to change that password in settings.
 <img alt="img" src="/images/photoprism/photoprism_change_password.png"></p>
+<p><a id="using-web-ui"></a></p>
 <h4>Using web-UI</h4>
 <p>Now, you can trigger indexing your photos and videos using web-UI or from CLI.
 <img alt="img" src="/images/photoprism/photoprism_indexing.png"></p>
+<p><a id="using-cli"></a></p>
 <h4>Using CLI</h4>
 <div class="highlight"><pre><span></span><code>docker <span class="nb">exec</span> -ti photoprism photoprism index
 </code></pre></div>
 
+<p><a id="manual-upgrading-photoprism-to-the-latests-version"></a></p>
 <h3>Manual upgrading Photoprism to the latests version</h3>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> /share/Container/photoprism/
 docker pull photoprism/photoprism:latest
@@ -279,6 +311,7 @@ docker-compose up -d
 </code></pre></div>
 
 <p>For automated updates check <a href="https://containrrr.dev/watchtower/">Watchtower</a></p>
+<p><a id="adding-new-content"></a></p>
 <h2>Adding new content</h2>
 <ul>
 <li>use upload via webDAV</li>
@@ -288,6 +321,7 @@ docker-compose up -d
 </code></pre></div>
 
 <p>You can also consider automating import by adding <code>import</code> do the cron (e.g. every midnight)</p>
+<p><a id="performance-tuning"></a></p>
 <h2>Performance tuning</h2>
 <p>If you are experiencing performance problems you can reduce number of workers (from documentation):</p>
 <blockquote>
@@ -299,6 +333,7 @@ docker-compose up -d
 </blockquote>
 <p><strong>Credits:</strong>
 I was able to launch this service thanks to the instructions found on reddit [1] provided by <a href="https://www.reddit.com/user/schol4stiker/">schol4stiker</a>.</p>
+<p><a id="references"></a></p>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.reddit.com/r/photoprism/comments/vph4ct/comment/ieobj8w/?utm_source=share&amp;utm_medium=web2x&amp;context=3">instruction from reddit</a></li>

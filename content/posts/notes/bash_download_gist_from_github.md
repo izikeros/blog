@@ -7,7 +7,6 @@ slug: bash-download-gist-from-github
 tags: bash, download, gist, github
 title: Bash - download gist from GitHub
 ---
-up::[[MOC_bash]]
 
 ## Download, output content to stdout
 
@@ -46,3 +45,4 @@ curl -LJO
        (HTTP) This option tells the -O, --remote-name option to use the server-specified
        Content-Disposition filename instead of extracting a filename from the URL.
 ```
+up::[[MOC_Bash]]
