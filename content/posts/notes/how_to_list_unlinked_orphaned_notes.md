@@ -18,3 +18,5 @@ WHERE length(file.inlinks) = 0 AND length(file.outlinks) = 0
 </pre>
 
 Credits to [riddyrayes](https://forum.obsidian.md/u/riddyrayes/summary) for the solution posted on obsidian forum [Find orphan notes - Feature archive - Obsidian Forum](https://forum.obsidian.md/t/find-orphan-notes/817/15)
+
+up::[[obsidian]]
