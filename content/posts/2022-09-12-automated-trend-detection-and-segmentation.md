@@ -66,7 +66,7 @@ seg.segments.to_dataframe()
 ```
 
 ## Controlling generalization
-There is a parameter that controls the "generalization" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behavior, when initializing `Segmenter()` (e.g. `Segmenter(x_in, y_in, n=20)` use various values for `n` parameter. The larger `n` the generalization is stronger (fewer segments).
+There is a parameter that controls the "generalisation" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behaviour, when initialising `Segmenter()` (e.g. `Segmenter(x_in, y_in, n=20)` use various values for `n` parameter. The larger `n` the generalisation is stronger (fewer segments).
 
 ![segmentation for n=20](../images/trend_segmentation/segments_n_20.jpg)
 Figure 2. Signal segmentation with fine granularity (weak generalization), n=20.
@@ -122,7 +122,10 @@ Figure 4. Segments classified as "horizontal-trend".
 The classification function used in the example was very simple and one can implement more robust function e.g. one, that uses other than `slope` data stored in the segment object.
 
 ## Summary
-This article describes the [trend-classifier](https://pypi.org/project/trend-classifier/) library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
-- there is a trade-off between the efficiency (best fit) and the generalization (number of segments) - the smaller window size (parameter `n` of the `Segmenter()`) the better fit but also more resulting segments and less generalization.
+This article describes the [trend-classifier](https://pypi.org/project/trend-classifier/) library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analysed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
+- there is a trade-off between the efficiency (best fit) and the generalisation (number of segments) - the smaller window size (parameter `n` of the `Segmenter()`) the better fit but also more resulting segments and less generalisation.
 - arbitrary (but configurable) threshold values are used to determine if the window is a continuation of the trend from the previous window or if it should be a new segment with a different trend)
 - since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

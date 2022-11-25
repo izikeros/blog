@@ -102,4 +102,4 @@ Bringing backtesting to the mainstream - [fastquant](https://github.com/enzoampi
 See also: [Lesser Known Backtesting Libraries](https://safjan.com/lesser-known-backtesting-libraries/#lesser-known-backtesting-libraries)
 
 [[2022-06-05-lesser-known-backtesting-libraries|Lesser Known Backtesting Libraries]]
-[[python_backtesting_libraries]]
+[[Backtesting]]

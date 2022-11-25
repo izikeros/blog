@@ -1,7 +1,7 @@
 ---
 title: Lesser Known Backtesting Libraries
 date: 2022-06-05
-modified: 2022-09-18
+modified: 2022-10-20
 status: Published
 tags: trading, backtesting, crypto, algorithmic-trading, algotrading, quant
 summary: This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.
@@ -17,23 +17,25 @@ Image: /images/head/backtesting.jpg
 - [AutoTrader](#autotrader)
 - [Blueshift](#blueshift)
 - [Certis](#certis)
+- [Epymetheus](#epymetheus)
 - [DeepCrypto](#deepcrypto)
 - [TradingGym](#tradinggym)
 - [vartests](#vartests)
 - [backtesting-for-cryptocurrency-trading](#backtesting-for-cryptocurrency-trading)
 - [Trade Engine](#trade-engine)
-- [Epymetheus](#epymetheus)
 - [TradzQAI](#tradzqai)
 - [Stock Analysis Engine](#stock-analysis-engine)
 - [BTGym](#btgym)
 - [BakTst_Org](#baktst_org)
 - [Stock-Portfolio-Backtester](#stock-portfolio-backtester)
+- [QSTrader](#qstrader)
+- [gemini](#gemini)
 - [Closing Thoughts](#closing-thoughts)
 - [Credits](#credits)
 
 <!-- /MarkdownTOC -->
 
-This article describes lesser-known python libraries/scripts that can be used for backtesting. [Here](https://safjan.com/popular-backtesting-libraries/) is a list of the most popular backtesting libraries that are excluded from the scope of this article.
+This article describes lesser-known python libraries/scripts that can be used for backtesting. [Here](https://safjan.com/popular-backtesting-libraries/) is a list of the most popular backtesting libraries that are excluded from the scope of this article. Actively developed libraries are in the top of the list.
 
 <a id="bt"></a>
 ## Bt
@@ -47,6 +49,7 @@ This article describes lesser-known python libraries/scripts that can be used fo
 To recognise potential of this tool look at the [quick example](https://pmorissette.github.io/bt/#a-quick-example) provided by authors
 The one of the interesting things that this library offers is [**tree structure of strategies**](https://pmorissette.github.io/bt/tree.html) - support for creative combining strategies.
 The other reading focuses of composing optimal portfolio: [Flexible Backtesting with BT. Introducing bt — the open-sourced… | by Richard L | Medium](https://medium.com/@richardhwlin/flexible-backtesting-with-bt-7295c0dde5dd)
+**NOTE**: at the time of writing, Bt is in alpha stage
 <a id="autotrader"></a>
 ## AutoTrader
 ![github stars shield](https://img.shields.io/github/stars/kieran-mackle/AutoTrader.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/kieran-mackle/AutoTrader)
@@ -62,7 +65,14 @@ Research and backtesting on the platform are free. Live strategy deployment is a
 ## Certis
 ![github stars shield](https://img.shields.io/github/stars/Yeachan-Heo/Certis.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/Yeachan-Heo/Certis)
 
-[Certis](https://github.com/Yeachan-Heo/Certis) "A High-Quality Backtesting Engine". If you want to learn about the architecture of backtesting software you can definitely peek into [Certis repository](https://github.com/Yeachan-Heo/Certis)
+[Certis](https://github.com/Yeachan-Heo/Certis) A Backtesting Engine. If you want to learn about the architecture of backtesting software you can definitely peek into [Certis repository](https://github.com/Yeachan-Heo/Certis)
+
+<a id="epymetheus"></a>
+## Epymetheus
+![github stars shield](https://img.shields.io/github/stars/epymetheus/epymetheus.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/epymetheus/epymetheus)
+
+[Epymetheus](https://github.com/epymetheus/epymetheus) is a multi-asset backtesting framework. It features an intuitive user API that lets analysts try out their trade strategies right away.
+
 <a id="deepcrypto"></a>
 ## DeepCrypto
 ![github stars shield](https://img.shields.io/github/stars/Yeachan-Heo/DeepCrypto.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/Yeachan-Heo/DeepCrypto)
@@ -95,13 +105,6 @@ You can use this to determine how profitable your Binance Volatility bot is.
 
 [Trade Engine](https://github.com/xibalbas/trade-engine) - a library for demo trading or backtest and forward test simulation.
 
-<a id="epymetheus"></a>
-## Epymetheus
-![github stars shield](https://img.shields.io/github/stars/epymetheus/epymetheus.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/epymetheus/epymetheus)
-
-[Epymetheus](https://github.com/epymetheus/epymetheus) is a multi-asset backtesting framework. It features an intuitive user API that lets analysts try out their trade strategies right away.
-
-
 <a id="tradzqai"></a>
 ## TradzQAI
 ![github stars shield](https://img.shields.io/github/stars/kkuette/TradzQAI.svg?logo=github)
@@ -129,17 +132,23 @@ You can use this to determine how profitable your Binance Volatility bot is.
 
 [BakTst_Org](https://github.com/xiaoyao153379/BakTst_Org) is a prototype of the backtesting system used for BTC quantitative trading.
 
-
 <a id="stock-portfolio-backtester"></a>
 ## Stock-Portfolio-Backtester
-![github stars shield](https://img.shields.io/github/stars/faizancodes/Stock-Portfolio-Backtester.svg?logo=github)
+![github stars shield](https://img.shields.io/github/stars/faizancodes/Stock-Portfolio-Backtester.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/faizancodes/Stock-Portfolio-Backtester)
 
 [Stock-Portfolio-Backtester](https://github.com/faizancodes/Stock-Portfolio-Backtester)
 Efficient way to backtest optimized portfolio allocations for proper hedging techniques.
 
+<a id="qstrader"></a>
 ## QSTrader
 ![github stars shield](https://img.shields.io/github/stars/mhallsmoore/qstrader.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/mhallsmoore/qstrader)
 [QSTrader](https://github.com/mhallsmoore/qstrader) is a free Python-based open-source modular schedule-driven backtesting framework for long-short equities and ETF-based systematic trading strategies.
+
+<a id="gemini"></a>
+## gemini
+![github stars shield](https://img.shields.io/github/stars/anfederico/gemini.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/mhallsmoore/qstrader)
+[gemini](https://github.com/anfederico/gemini) - Backtesting for sleepless cryptocurrency markets
+
 <a id="closing-thoughts"></a>
 ## Closing Thoughts
 I would like to look closer at [Epymetheus](https://github.com/epymetheus/epymetheus)
@@ -147,3 +156,5 @@ I would like to look closer at [Epymetheus](https://github.com/epymetheus/epymet
 <a id="credits"></a>
 ## Credits
 Heading photo from [unsplash](https://unsplash.com/photos/InWI1lteYfU) authored by [regularguy.eth](https://unsplash.com/@moneyphotos)
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

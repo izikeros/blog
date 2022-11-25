@@ -78,5 +78,5 @@ The [Feed Readers](https://github.com/awesome-selfhosted/awesome-selfhosted#feed
 ### [Sismics Reader](https://github.com/sismics/reader) ![github stars shield](https://img.shields.io/github/stars/sismics/reader.svg?logo=github)
 
 
-
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 

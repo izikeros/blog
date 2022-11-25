@@ -21,6 +21,12 @@ citation_needed: true
 ## hydra-core package
 [Hydra](https://hydra.cc/) is a Python library that allows you to access parameters from a configuration file inside a Python script.
 
+Features:
+- composite configs
+- various options for launching:
+	- easy config modifications from cli
+	- multiruns
+
 Create exemplary `main.yaml` in directory `config`
 ```yaml
 raw: 
@@ -92,4 +98,54 @@ From: package description on pypi
 
 <a id="omegaconf"></a>
 ## omegaconf
-OmegaConf is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.
+[OmegaConf](https://github.com/omry/omegaconf) is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.
+
+ > OmegaConf is also the backbone for the more advanced [Hydra](https://hydra.cc/) framework.
+ 
+ 
+Documentation v2.2: [Installation — OmegaConf 2.2.4.dev0 documentation](https://omegaconf.readthedocs.io/en/2.2_branch/usage.html)
+
+## Upsilonconf
+Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the `antlr` dependency). It is also very similar to the (discontinued) [AttrDict](https://github.com/bcj/AttrDict) library. In the meantime, there is also the [ml_collections](https://github.com/google/ml_collections) library, which seems to build on similar ideas as this project.
+
+## ml_collections
+[google/ml_collections](https://github.com/google/ml_collections)
+ML Collections is a library of Python Collections designed for ML use cases.
+The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
+### Features
+
+-   Dot-based access to fields.
+-   Locking mechanism to prevent spelling mistakes.
+-   Lazy computation.
+-   FrozenConfigDict() class which is immutable and hashable.
+-   Type safety.
+-   "Did you mean" functionality.
+-   Human readable printing (with valid references and cycles), using valid YAML format.
+-   Fields can be passed as keyword arguments using the `**` operator.
+-   There is one exception to the strong type-safety of the ConfigDict: `int` values can be passed in to fields of type `float`. In such a case, the value is type-converted to a `float` before being stored. (Back in the day of Python 2, there was a similar exception to allow both `str` and `unicode` values in string fields.)
+
+### [](https://github.com/google/ml_collections#basic-usage)Basic Usage
+
+```python
+from ml_collections import config_dict
+
+cfg = config_dict.ConfigDict()
+cfg.float_field = 12.6
+cfg.integer_field = 123
+cfg.another_integer_field = 234
+cfg.nested = config_dict.ConfigDict()
+cfg.nested.string_field = 'tom'
+
+print(cfg.integer_field)  # Prints 123.
+print(cfg['integer_field'])  # Prints 123 as well.
+
+try:
+  cfg.integer_field = 'tom'  # Raises TypeError as this field is an integer.
+except TypeError as e:
+  print(e)
+
+cfg.float_field = 12  # Works: `Int` types can be assigned to `Float`.
+cfg.nested.string_field = u'bob'  # `String` fields can store Unicode strings.
+
+print(cfg)
+```

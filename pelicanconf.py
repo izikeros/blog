@@ -28,7 +28,7 @@ else:
     CACHE_CONTENT = True
     # -------------- Third party ------
     # DISQUS_SITENAME = 'krystian-safjan'
-    GOOGLE_ANALYTICS = "UA-117080232-1"  # G-RM2PKDCCYM
+    GOOGLE_ANALYTICS = "G-RM2PKDCCYM" # v3:"UA-117080232-1"   v4:"G-RM2PKDCCYM"
 
 PATH = "content"
 

@@ -22,4 +22,16 @@ git push origin --delete remoteBranchName
 see also: 
 [[git_delete_branches_merged_into_main_branch]]
 
+### Helper -  list branches
+
+All branches
+```
+git branch -a
+```
+
+Remote branches
+```
+git branch -r
+```
+
 up:: [[MOC_git]]]

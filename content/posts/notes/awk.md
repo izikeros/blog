@@ -45,6 +45,7 @@ gawk -F',' 'NR<10 {for (i=1;i<=80;i++){printf "%d ", $i}print""}' file.txt
 https://stackoverflow.com/questions/1729824/an-efficient-way-to-transpose-a-file-in-bash
 
 ## sum column
+assuming column delimiter comma (`,`) and summing values in column #57
 ```sh
 awk -F',' '{sum+=$57;} END{print sum;}' file.txt
 ```

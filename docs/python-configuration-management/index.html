@@ -194,6 +194,11 @@
 <p><a id="hydra-core-package"></a></p>
 <h2>hydra-core package</h2>
 <p><a href="https://hydra.cc/">Hydra</a> is a Python library that allows you to access parameters from a configuration file inside a Python script.</p>
+<p>Features:
+- composite configs
+- various options for launching:
+    - easy config modifications from cli
+    - multiruns</p>
 <p>Create exemplary <code>main.yaml</code> in directory <code>config</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">raw</span><span class="p">:</span><span class="w"> </span>
 <span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/raw/sample.csv</span><span class="w"></span>
@@ -244,10 +249,10 @@ define comprehensive default values;</li>
 </ul>
 <p>Envvars works, but since <code>os.environ</code> only returns strings, it’s tricky.</p>
 <p>Let’s say you have an envvar <code>DEBUG=False</code>. If you run:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;</span><span class="s">DEBUG</span><span class="s1">&#39;</span>]:
-    <span class="nv">print</span> <span class="nv">True</span>
-<span class="k">else</span>:
-    <span class="nv">print</span> <span class="nv">False</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;DEBUG&#39;</span>]:<span class="w"></span>
+<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">True</span><span class="w"></span>
+<span class="k">else</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">False</span><span class="w"></span>
 </code></pre></div>
 
 <p>It will print <code>True</code>, because <code>os.environ['DEBUG']</code> returns the string "False". Since it’s a non-empty string, it will be evaluated as True.</p>
@@ -255,7 +260,52 @@ define comprehensive default values;</li>
 <p>From: package description on pypi</p>
 <p><a id="omegaconf"></a></p>
 <h2>omegaconf</h2>
-<p>OmegaConf is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.</p>
+<p><a href="https://github.com/omry/omegaconf">OmegaConf</a> is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.</p>
+<blockquote>
+<p>OmegaConf is also the backbone for the more advanced <a href="https://hydra.cc/">Hydra</a> framework.</p>
+</blockquote>
+<p>Documentation v2.2: <a href="https://omegaconf.readthedocs.io/en/2.2_branch/usage.html">Installation — OmegaConf 2.2.4.dev0 documentation</a></p>
+<h2>Upsilonconf</h2>
+<p>Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the <code>antlr</code> dependency). It is also very similar to the (discontinued) <a href="https://github.com/bcj/AttrDict">AttrDict</a> library. In the meantime, there is also the <a href="https://github.com/google/ml_collections">ml_collections</a> library, which seems to build on similar ideas as this project.</p>
+<h2>ml_collections</h2>
+<p><a href="https://github.com/google/ml_collections">google/ml_collections</a>
+ML Collections is a library of Python Collections designed for ML use cases.
+The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</code> are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.</p>
+<h3>Features</h3>
+<ul>
+<li>Dot-based access to fields.</li>
+<li>Locking mechanism to prevent spelling mistakes.</li>
+<li>Lazy computation.</li>
+<li>FrozenConfigDict() class which is immutable and hashable.</li>
+<li>Type safety.</li>
+<li>"Did you mean" functionality.</li>
+<li>Human readable printing (with valid references and cycles), using valid YAML format.</li>
+<li>Fields can be passed as keyword arguments using the <code>**</code> operator.</li>
+<li>There is one exception to the strong type-safety of the ConfigDict: <code>int</code> values can be passed in to fields of type <code>float</code>. In such a case, the value is type-converted to a <code>float</code> before being stored. (Back in the day of Python 2, there was a similar exception to allow both <code>str</code> and <code>unicode</code> values in string fields.)</li>
+</ul>
+<h3><a href="https://github.com/google/ml_collections#basic-usage"></a>Basic Usage</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ml_collections</span> <span class="kn">import</span> <span class="n">config_dict</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">float_field</span> <span class="o">=</span> <span class="mf">12.6</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">another_integer_field</span> <span class="o">=</span> <span class="mi">234</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">string_field</span> <span class="o">=</span> <span class="s1">&#39;tom&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span><span class="p">)</span>  <span class="c1"># Prints 123.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;integer_field&#39;</span><span class="p">])</span>  <span class="c1"># Prints 123 as well.</span>
+
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span> <span class="o">=</span> <span class="s1">&#39;tom&#39;</span>  <span class="c1"># Raises TypeError as this field is an integer.</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="n">cfg</span><span class="o">.</span><span class="n">float_field</span> <span class="o">=</span> <span class="mi">12</span>  <span class="c1"># Works: `Int` types can be assigned to `Float`.</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">string_field</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;bob&#39;</span>  <span class="c1"># `String` fields can store Unicode strings.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+</code></pre></div>
   </div>
 
 

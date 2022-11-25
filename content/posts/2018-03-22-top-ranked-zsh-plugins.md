@@ -113,7 +113,7 @@ Thanks to this mechanism, the users can intuitively and easily change the direct
 `git-secret` is a bash tool to store your private data inside a git repo. It encrypts data, using `gpg`, the tracked files with the public keys of all the users that you trust. So every one of them can decrypt these files using only their personal secret key. Usage of private-public makes it easier for everyone to manage access rights. There are no passwords that change. When someone is out - just delete their public key, re-encrypt the files, and they won’t be able to decrypt secrets anymore.
 [![git-secret terminal preview](https://asciinema.org/a/41811.png)](https://asciinema.org/a/41811?autoplay=1)
 
-On the list[0] there are 300+ projects that are falling into the scope of this research, you can get the complete dataset by downloading this CSV file: [CSV](/downloads/180322_results_sorted.csv).
+On the list there are 300+ projects that are falling into the scope of this research, you can get the complete dataset by downloading this CSV file: [CSV](/downloads/180322_results_sorted.csv).
 
 
 
