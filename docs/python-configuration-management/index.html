@@ -201,13 +201,13 @@
     - multiruns</p>
 <p>Create exemplary <code>main.yaml</code> in directory <code>config</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">raw</span><span class="p">:</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/raw/sample.csv</span><span class="w"></span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/raw/sample.csv</span>
 
-<span class="nt">processed</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/processed/processed.csv</span><span class="w"></span>
+<span class="nt">processed</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/processed/processed.csv</span>
 
-<span class="nt">final</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/final/final.csv</span><span class="w"></span>
+<span class="nt">final</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/final/final.csv</span>
 </code></pre></div>
 
 <p>then we can access the value inside the configuration file by adding the decorator <code>@hydra.main</code> on a specific function. Inside this function, we can access the value under <code>processed</code> and <code>path</code> by using a dot notation: <code>config.processed.path</code> .</p>
@@ -222,7 +222,7 @@
 
 <span class="nd">@hydra</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="s2">&quot;../config&quot;</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="s1">&#39;main&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function to process the data&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to process the data&quot;&quot;&quot;</span>
 
     <span class="n">raw_path</span> <span class="o">=</span> <span class="n">abspath</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Process data using </span><span class="si">{</span><span class="n">raw_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -249,10 +249,10 @@ define comprehensive default values;</li>
 </ul>
 <p>Envvars works, but since <code>os.environ</code> only returns strings, it’s tricky.</p>
 <p>Let’s say you have an envvar <code>DEBUG=False</code>. If you run:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;DEBUG&#39;</span>]:<span class="w"></span>
-<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">True</span><span class="w"></span>
-<span class="k">else</span>:<span class="w"></span>
-<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">False</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;DEBUG&#39;</span>]:
+<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">True</span>
+<span class="k">else</span>:
+<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">False</span>
 </code></pre></div>
 
 <p>It will print <code>True</code>, because <code>os.environ['DEBUG']</code> returns the string "False". Since it’s a non-empty string, it will be evaluated as True.</p>
@@ -332,11 +332,11 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
+      <li><a href="https://www.safjan.com/difference-between-numba-jit-and-njit-decorators/">Difference between numba jit and njit decorators</a></li>
       <li><a href="https://www.safjan.com/append-json-data-to-file-save-traces/">Append JSON data to file, save the traces</a></li>
       <li><a href="https://www.safjan.com/pytest-check-lists-equal/">Pytest check if lists are equal</a></li>
       <li><a href="https://www.safjan.com/serve-http-files-with-python-server/">Serve HTTP files with python server</a></li>
       <li><a href="https://www.safjan.com/use-python-typeddict-to-type-hint-dictionaries/">Use python TypedDict to type hint dictionaries</a></li>
-      <li><a href="https://www.safjan.com/python-add-parent-directory-to-path/">Python Add Parent Directory To Path</a></li>
     </ul>
   </div>
 
@@ -345,7 +345,7 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
 
     <footer>
 <p>
-  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
 Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme

@@ -228,18 +228,18 @@
 <h3>Configuration</h3>
 <p>Before the service will be started you need to configure it properly to provide information about where your Calibre book library (or multiple libraries) is located, configure the IP where the service will be available, etc.</p>
 <p>We are using the docker image from linuxserver, the configuration proposed in this tutorial is based on suggestions from <a href="https://hub.docker.com/r/linuxserver/calibre-web/">linuxserver/calibre-web</a> on how to run the service using the docker command-line.</p>
-<div class="highlight"><pre><span></span><code>docker run -d <span class="se">\</span>
-  --name<span class="o">=</span>calibre-web <span class="se">\</span>
-  -e <span class="nv">PUID</span><span class="o">=</span><span class="m">1000</span> <span class="se">\</span>
-  -e <span class="nv">PGID</span><span class="o">=</span><span class="m">1000</span> <span class="se">\</span>
-  -e <span class="nv">TZ</span><span class="o">=</span>Europe/London <span class="se">\</span>
-  -e <span class="nv">DOCKER_MODS</span><span class="o">=</span>linuxserver/mods:universal-calibre <span class="sb">`</span><span class="c1">#optional` \</span>
-  -e <span class="nv">OAUTHLIB_RELAX_TOKEN_SCOPE</span><span class="o">=</span><span class="m">1</span> <span class="sb">`</span><span class="c1">#optional` \</span>
-  -p <span class="m">8083</span>:8083 <span class="se">\</span>
-  -v /path/to/data:/config <span class="se">\</span>
-  -v /path/to/calibre/library:/books <span class="se">\</span>
-  --restart unless-stopped <span class="se">\</span>
-  lscr.io/linuxserver/calibre-web:latest
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="o">=</span>calibre-web<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">PUID</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">PGID</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">TZ</span><span class="o">=</span>Europe/London<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">DOCKER_MODS</span><span class="o">=</span>linuxserver/mods:universal-calibre<span class="w"> </span><span class="sb">`</span><span class="c1">#optional` \</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">OAUTHLIB_RELAX_TOKEN_SCOPE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="sb">`</span><span class="c1">#optional` \</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8083</span>:8083<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/path/to/data:/config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/path/to/calibre/library:/books<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>lscr.io/linuxserver/calibre-web:latest
 </code></pre></div>
 
 <p>The configuration is divided into sections. We will touch: <code>Environment</code>, <code>Shared folders</code> and <code>Network</code></p>
@@ -271,11 +271,11 @@ I suggest to create directory <code>calibre</code> in <code>/share/Container</co
 <p><strong>CAUTION:</strong> QNAP's container station cannot change the shared folder settings using the Web GUI after the container is created.</p>
 </blockquote>
 <p>I've created shared folder mappings:</p>
-<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">calibre</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">calibre</span>
 <span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">config</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">config</span><span class="w"> </span>
-<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_it</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_it</span><span class="w"></span>
-<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_life</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_life</span><span class="w"></span>
-<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_ml</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_ml</span><span class="w"></span>
+<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_it</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_it</span>
+<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_life</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_life</span>
+<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_ml</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_ml</span>
 </code></pre></div>
 
 <p><a id="network"></a></p>
@@ -357,6 +357,9 @@ INFO in server : Starting Gevent server
     <a class="btn float-left" href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/" title="Automated signal segmentation, trend detection, and classification">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
+    <a class="btn float-right" href="https://www.safjan.com/what-is-the-difference-between-matthews-correlation-coefficient-and-f1-metrics/" title="What is the difference between Matthews correlation coefficient and F1 metrics">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
   </div>
 
   <div class="related-posts">
@@ -371,7 +374,7 @@ INFO in server : Starting Gevent server
 
     <footer>
 <p>
-  &copy; 2022 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>
 <p>
 Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
