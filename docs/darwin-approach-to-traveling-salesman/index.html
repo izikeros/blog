@@ -45,8 +45,8 @@
 <meta name="description" content="Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin&#39;s approach. I&#39;m describing the evolution model and design decisions. See the animation of how the population was evolving through the epochs." />
 <meta name="keywords" content="machine learning, evolutionary">
 <meta expr:content="2019-01-12 00:00:00+01:00" itemprop='datePublished'/>
-<meta expr:content="2021-02-08 00:00:00+01:00" itemprop='dateModified'/>
-<meta property="article:modified_time" content="2021-02-08 00:00:00+01:00"/>
+<meta expr:content="2023-01-11 00:00:00+01:00" itemprop='dateModified'/>
+<meta property="article:modified_time" content="2023-01-11 00:00:00+01:00"/>
 <meta property="article:published_time" content="2019-01-12 00:00:00+01:00"/>
 <script type="application/ld+json">
 {
@@ -54,7 +54,7 @@
   "@type": "BlogPosting",
   "headline": "Darwin Approach to Traveling Salesman",
   "datePublished": "2019-01-12 00:00:00+01:00",
-  "dateModified": "2021-02-08 00:00:00+01:00"
+  "dateModified": "2023-01-11 00:00:00+01:00"
 }
 </script>
 
@@ -67,7 +67,7 @@
   <meta property="og:url" content="https://www.safjan.com/darwin-approach-to-traveling-salesman/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2019-01-12 00:00:00+01:00"/>
-  <meta property="article:modified_time" content="2021-02-08 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-01-11 00:00:00+01:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
   <meta property="article:section" content="Exploring new ideas"/>
   <meta property="article:tag" content="machine learning"/>
@@ -184,6 +184,7 @@
 
 <ul>
 <li><a href="#the-story-behind-this-post">The story behind this post</a></li>
+<li><a href="#introduction">Introduction</a></li>
 <li><a href="#traveling-salesman-problem-tsp">Traveling Salesman Problem (TSP)</a></li>
 <li><a href="#initial-note">Initial note</a></li>
 <li><a href="#solution-outline">Solution outline</a><ul>
@@ -197,7 +198,17 @@
 </li>
 <li><a href="#evolution-in-action">Evolution in action</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
-<li><a href="#ideas-for-future-work">Ideas for future work:</a></li>
+<li><a href="#alternative-algorithms">Alternative algorithms</a><ul>
+<li><a href="#1-brute-force-algorithm">1.  Brute Force algorithm</a></li>
+<li><a href="#2-dynamic-programming-dp">2.  Dynamic Programming (DP)</a></li>
+<li><a href="#3-greedy-algorithm">3.  Greedy algorithm</a></li>
+<li><a href="#4-branch-and-bound">4.  Branch and Bound</a></li>
+<li><a href="#5-ant-colony-optimization-aco">5.  Ant Colony Optimization (ACO)</a></li>
+<li><a href="#6-simulated-annealing-sa">6.  Simulated Annealing (SA)</a></li>
+<li><a href="#7-artificial-neural-network-ann">7.  Artificial Neural Network (ANN)</a></li>
+</ul>
+</li>
+<li><a href="#ideas-for-future-work">Ideas for future work</a></li>
 <li><a href="#credits">Credits</a></li>
 </ul>
 <!-- /MarkdownTOC -->
@@ -205,6 +216,9 @@
 <p><a id="the-story-behind-this-post"></a></p>
 <h1>The story behind this post</h1>
 <p>During my Christmas break, I found a blog post from Peter Brookes-Smith <a href="https://blog.objectivity.co.uk/darwin-and-the-travelling-salesperson/">Darwin and The Traveling Salesperson</a>. He wrote, that he was looking for some project for his holidays. He found the blog post that inspired him to start the project and solve the problem by himself without finishing the article. It was similar to my case. I had genetic algorithms in the back of my head for a long, long time. Now while having some spare time between Christmas and New Year - I decided to get my feet wet on that topic.</p>
+<p><a id="introduction"></a></p>
+<h1>Introduction</h1>
+<p>Are you familiar with the Traveling Salesman Problem (TSP)? It's a classic problem in computer science where a salesman is tasked with visiting a set of cities once and returning to the starting place, with the goal of finding the shortest possible route. Tackling the TSP problem can be very challenging, particularly as the number of cities increases. In this blog post, we will explore how to use genetic algorithms to solve TSP problem. We'll take an in-depth look at the different steps involved in the algorithm, along with the results obtained. We'll also provide an overview of the other algorithms that are used to solve TSP, and the comparison with genetic algorithm. Our goal is to provide an easy-to-follow guide that will help you understand the basics of using genetic algorithms to solve TSP, and to inspire you to try your hand at this fascinating problem.</p>
 <p><a id="traveling-salesman-problem-tsp"></a></p>
 <h1>Traveling Salesman Problem (TSP)</h1>
 <p>The problem can be defined like this: having a list of cities and finding the shortest route for a salesman to visit each of them once and come back to the starting place.</p>
@@ -292,8 +306,33 @@ When drawing pairs, the organism is assigned to the role of mother or father whi
 <li>Being under the impression of the robustness of the evolutionary system I'm eager to try the evolutional approach as an alternative to Reinforcement learning such as described on <a href="https://blog.openai.com/evolution-strategies/">openai blog</a></li>
 <li>Technical one: even such a side project playing with numerical problems benefits from accompanying tests. Many annoying bugs that appeared during the implementation (mainly from a global range of variables), and covering (at least partially) code with tests helped out to progress.</li>
 </ol>
+<p><a id="alternative-algorithms"></a></p>
+<h1>Alternative algorithms</h1>
+<p>There are several other algorithms that can be used to solve the Traveling Salesman Problem (TSP):</p>
+<p><a id="1-brute-force-algorithm"></a></p>
+<h2>1.  Brute Force algorithm</h2>
+<p>It is the most simple algorithm for solving TSP problem, where it checks all possible routes one by one and select the one with the minimum distance. However, the time complexity is high, and it is not efficient for a large number of cities.</p>
+<p><a id="2-dynamic-programming-dp"></a></p>
+<h2>2.  Dynamic Programming (DP)</h2>
+<p>It is a method of solving problems by breaking them down into smaller overlapping sub-problems and solving each of them independently. DP can be used to solve TSP by building a table of all possible sub-tours, and the optimal solution is constructed using the entries in the table.</p>
+<p><a id="3-greedy-algorithm"></a></p>
+<h2>3.  Greedy algorithm</h2>
+<p>It is a simple, intuitive and efficient algorithm. Greedy algorithm solves TSP problem by building a solution incrementally, choosing the next city to add to the tour based on the nearest neighbor criterion.</p>
+<p><a id="4-branch-and-bound"></a></p>
+<h2>4.  Branch and Bound</h2>
+<p>It is a method that allows us to explore all possible solutions while avoiding the ones that are obviously suboptimal. Branch and Bound uses the concept of lower bound and upper bound to prune the branches that cannot give a better solution than the best solution found so far.</p>
+<p><a id="5-ant-colony-optimization-aco"></a></p>
+<h2>5.  Ant Colony Optimization (ACO)</h2>
+<p>It is a swarm intelligence-based algorithm. The ACO algorithm simulates the behavior of ants searching for the shortest path from their colony to a food source. The ants leave pheromones on the path they travel, and the path with the highest concentration of pheromones is likely to be the shortest path.</p>
+<p><a id="6-simulated-annealing-sa"></a></p>
+<h2>6.  Simulated Annealing (SA)</h2>
+<p>It is a probabilistic technique for approximating the global optimum of a given function. SA algorithm starts with a random solution and then repeatedly makes small changes to the solution in the hope of finding a better solution.</p>
+<p><a id="7-artificial-neural-network-ann"></a></p>
+<h2>7.  Artificial Neural Network (ANN)</h2>
+<p>it is a machine learning algorithm that can be used to model the TSP problem and find an approximate solution. ANN algorithm learns from historical data, and</p>
+<p>There is website with multiple algorithms and animated solutions of TSP problem: <a href="https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/">11 Animated Algorithms for the Traveling Salesman Problem</a></p>
 <p><a id="ideas-for-future-work"></a></p>
-<h1>Ideas for future work:</h1>
+<h1>Ideas for future work</h1>
 <ul>
 <li>Deploy it in the server-less mode of operation. Route calculations and transformations are great candidates for "lambda" functions.</li>
 <li>Use GPU to compute things in parallel</li>

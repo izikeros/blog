@@ -3,7 +3,7 @@ title: What is the difference between Matthews correlation coefficient and F1 me
 date: 2023-01-05
 modified: 2023-01-05
 status: published
-tags: machine-learning, classification, metrics, ChatGPT
+tags: machine-learning, classification, metrics
 summary: Description of the difference between Matthews correlation coefficient and F1
 category: note
 citation_needed: false
