@@ -1,15 +1,13 @@
 ---
 Category: Howto
 Status: published
-Summary: In this blog post, we discussed the importance of visual text exploration as part of preprocessing before classification. We analyzed modern tools and techniques that can be used for visual exploration of text data and provided generic ideas for textual data inspection that can be applied in many text-exploration tasks. We covered techniques such as wordcloud, Sentiment Analysis, topic modeling and textual data cleaning, which are widely used by researchers to analyze text data and extract insights. Additionally, we also explained how to use these techniques with popular libraries and packages. The post also concludes with a summary of the importance and benefits of visual text exploration and encourages readers to try out the tools and techniques for their own text exploration projects.
+Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
 date: 2023-01-11
-image: /images/img2.jpg
+image: /images/head/visual_text_exploration_wordcloud.jpg
 tags: NLP, python
 title: Visual Text Exploration as Part of Preprocessing Before Classification
 slug: visual-text-exploration-as-part-of-preprocessing-before-classification
 ---
-
-Give me an outline for the blog post on "Visual Text Exploration as Part of Preprocessing Before Classification". Visual text data exploration can help with the early detection of patterns occurring in data set and bring ideas for processing actions that have to be taken. This post analyses modern tools that can be used for visual exploration and provide generic ideas for textual data inspection that can be applied in many text-exploration tasks.
 
 ## Introduction
 The process of text classification is a common task in natural language processing and machine learning. In order to classify text data, it's essential to preprocess the data first. One of the key aspects of preprocessing is to explore the data in order to understand its characteristics, identify patterns and outliers, and determine which techniques and methods should be used to clean and prepare the data for classification.
@@ -78,3 +76,7 @@ Here are some references and additional resources that readers can use to learn 
 7.  "TextBlob: Simplified Text Processing" by Steven Loria, [http://textblob.readthedocs.io/en/dev/](http://textblob.readthedocs.io/en/dev/)
 
 If you have any further questions or would like to learn more about visual text exploration, I recommend consulting these resources as they provide detailed information on various techniques and tools that can be used to explore text data.
+
+**Credits:**
+
+Header graphics from www.wordle.net, [User:Ragettho](https://commons.wikimedia.org/wiki/User:Ragettho "User:Ragettho") found on [wikimedia](https://commons.wikimedia.org/wiki/File:Wikinews_word_cloud.jpg)

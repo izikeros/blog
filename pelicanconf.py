@@ -35,6 +35,9 @@ PATH = "content"
 TIMEZONE = "Europe/Warsaw"
 
 DEFAULT_LANG = "en"
+DATE_FORMATS = {
+    'en': '%Y-%m-%d',
+}
 
 GITHUB_URL = "https://github.com/izikeros"
 # ---- Side ----

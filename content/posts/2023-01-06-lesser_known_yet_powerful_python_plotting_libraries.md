@@ -17,7 +17,7 @@ There are a few widely used plotting libraries used in python projects: [matplot
 - [1. HoloViews](#1-holoviews)
 - [2. Bqplot](#2-bqplot)
 - [3. Plotnine](#3-plotnine)
-- [4. Geoplotlib)](#4-geoplotlib)
+- [4. Geoplotlib](#4-geoplotlib)
 - [5. Pygal](#5-pygal)
 - [6. Vincent](#6-vincent)
 - [7. PyNGL](#7-pyngl)
@@ -56,9 +56,7 @@ In short, plotnine is a great library for creating powerful, flexible, and custo
 
 [Gallery — plotnine 0.10.1 documentation](https://plotnine.readthedocs.io/en/stable/gallery.html)
 
-![]() A library for creating interactive web-based plots and dashboards using Plotly, which allows you to create highly customizable and interactive plots.
-
-### 4. [Geoplotlib]([http://www.geoplotlib.org/examples.html](https://github.com/andrea-cuttone/geoplotlib)) ![GitHub stars shield](https://img.shields.io/github/stars/andrea-cuttone/geoplotlib.svg?logo=github)
+### 4. [Geoplotlib](https://github.com/andrea-cuttone/geoplotlib) ![GitHub stars shield](https://img.shields.io/github/stars/andrea-cuttone/geoplotlib.svg?logo=github)
 A library for creating geospatial visualizations, which can be used to create maps, choropleths, and other types of geospatial plots.
 
 ### 5. [Pygal](https://www.pygal.org/en/stable/) ![GitHub stars shield](https://img.shields.io/github/stars/Kozea/pygal.svg?logo=github)

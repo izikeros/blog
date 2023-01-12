@@ -63,7 +63,8 @@ e2e:
 	echo "Blog regenerated, and pushed to remote."
 
 venv:
-	pipenv shell
+	echo "Type:"
+	echo ". ~/.virtualenvs/blog/bin/activate"
 
 serve:
 	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
