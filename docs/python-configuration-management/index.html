@@ -182,17 +182,22 @@
 
 
   <div>
-    <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+    <p>Python is a powerful programming language that is widely used in a variety of applications, from web development and data science to machine learning and AI. One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.</p>
+<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
 <ul>
-<li><a href="#hydra-core-package">hydra-core package</a></li>
-<li><a href="#decouple-package">decouple package</a></li>
+<li><a href="#hydra">hydra</a></li>
+<li><a href="#decouple">decouple</a></li>
 <li><a href="#omegaconf">omegaconf</a></li>
+<li><a href="#upsilonconf">Upsilonconf</a></li>
+<li><a href="#ml_collections">ml_collections</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#basic-usage-of-ml_collections">Basic Usage of ml_collections</a></li>
 </ul>
 <!-- /MarkdownTOC -->
 
-<p><a id="hydra-core-package"></a></p>
-<h2>hydra-core package</h2>
+<p><a id="hydra"></a></p>
+<h2>hydra</h2>
 <p><a href="https://hydra.cc/">Hydra</a> is a Python library that allows you to access parameters from a configuration file inside a Python script.</p>
 <p>Features:
 - composite configs
@@ -233,8 +238,8 @@
 </code></pre></div>
 
 <p>From: https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800</p>
-<p><a id="decouple-package"></a></p>
-<h2>decouple package</h2>
+<p><a id="decouple"></a></p>
+<h2>decouple</h2>
 <blockquote>
 <p>Python Decouple: Strict separation of settings from code</p>
 </blockquote>
@@ -265,12 +270,15 @@ define comprehensive default values;</li>
 <p>OmegaConf is also the backbone for the more advanced <a href="https://hydra.cc/">Hydra</a> framework.</p>
 </blockquote>
 <p>Documentation v2.2: <a href="https://omegaconf.readthedocs.io/en/2.2_branch/usage.html">Installation — OmegaConf 2.2.4.dev0 documentation</a></p>
+<p><a id="upsilonconf"></a></p>
 <h2>Upsilonconf</h2>
 <p>Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the <code>antlr</code> dependency). It is also very similar to the (discontinued) <a href="https://github.com/bcj/AttrDict">AttrDict</a> library. In the meantime, there is also the <a href="https://github.com/google/ml_collections">ml_collections</a> library, which seems to build on similar ideas as this project.</p>
+<p><a id="ml_collections"></a></p>
 <h2>ml_collections</h2>
 <p><a href="https://github.com/google/ml_collections">google/ml_collections</a>
 ML Collections is a library of Python Collections designed for ML use cases.
-The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</code> are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.</p>
+The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</code> are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
+<a id="features"></a></p>
 <h3>Features</h3>
 <ul>
 <li>Dot-based access to fields.</li>
@@ -283,7 +291,8 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
 <li>Fields can be passed as keyword arguments using the <code>**</code> operator.</li>
 <li>There is one exception to the strong type-safety of the ConfigDict: <code>int</code> values can be passed in to fields of type <code>float</code>. In such a case, the value is type-converted to a <code>float</code> before being stored. (Back in the day of Python 2, there was a similar exception to allow both <code>str</code> and <code>unicode</code> values in string fields.)</li>
 </ul>
-<h3><a href="https://github.com/google/ml_collections#basic-usage"></a>Basic Usage</h3>
+<p><a id="basic-usage-of-ml_collections"></a></p>
+<h3><a href="https://github.com/google/ml_collections#basic-usage">Basic Usage of ml_collections</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ml_collections</span> <span class="kn">import</span> <span class="n">config_dict</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>

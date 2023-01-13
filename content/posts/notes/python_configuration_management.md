@@ -9,16 +9,22 @@ slug: python-configuration-management
 category: note
 citation_needed: true
 ---
+Python is a powerful programming language that is widely used in a variety of applications, from web development and data science to machine learning and AI. One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.
+
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
-- [hydra-core package](#hydra-core-package)
-- [decouple package](#decouple-package)
+- [hydra](#hydra)
+- [decouple](#decouple)
 - [omegaconf](#omegaconf)
+- [Upsilonconf](#upsilonconf)
+- [ml_collections](#ml_collections)
+  - [Features](#features)
+  - [Basic Usage of ml_collections](#basic-usage-of-ml_collections)
 
 <!-- /MarkdownTOC -->
 
-<a id="hydra-core-package"></a>
-## hydra-core package
+<a id="hydra"></a>
+## hydra
 [Hydra](https://hydra.cc/) is a Python library that allows you to access parameters from a configuration file inside a Python script.
 
 Features:
@@ -67,8 +73,8 @@ if __name__ == '__main__':
 From: https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800
 
 
-<a id="decouple-package"></a>
-## decouple package
+<a id="decouple"></a>
+## decouple
 > Python Decouple: Strict separation of settings from code
 
 Decouple helps you to organize your settings so that you can change parameters without having to redeploy your app.
@@ -105,13 +111,16 @@ From: package description on pypi
  
 Documentation v2.2: [Installation — OmegaConf 2.2.4.dev0 documentation](https://omegaconf.readthedocs.io/en/2.2_branch/usage.html)
 
+<a id="upsilonconf"></a>
 ## Upsilonconf
 Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the `antlr` dependency). It is also very similar to the (discontinued) [AttrDict](https://github.com/bcj/AttrDict) library. In the meantime, there is also the [ml_collections](https://github.com/google/ml_collections) library, which seems to build on similar ideas as this project.
 
+<a id="ml_collections"></a>
 ## ml_collections
 [google/ml_collections](https://github.com/google/ml_collections)
 ML Collections is a library of Python Collections designed for ML use cases.
 The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
+<a id="features"></a>
 ### Features
 
 -   Dot-based access to fields.
@@ -124,7 +133,8 @@ The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" d
 -   Fields can be passed as keyword arguments using the `**` operator.
 -   There is one exception to the strong type-safety of the ConfigDict: `int` values can be passed in to fields of type `float`. In such a case, the value is type-converted to a `float` before being stored. (Back in the day of Python 2, there was a similar exception to allow both `str` and `unicode` values in string fields.)
 
-### [](https://github.com/google/ml_collections#basic-usage)Basic Usage
+<a id="basic-usage-of-ml_collections"></a>
+### [Basic Usage of ml_collections](https://github.com/google/ml_collections#basic-usage)
 
 ```python
 from ml_collections import config_dict
