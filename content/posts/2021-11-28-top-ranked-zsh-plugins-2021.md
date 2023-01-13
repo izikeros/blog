@@ -1,9 +1,9 @@
 ---
 Title: Top popular Zsh plugins on GitHub (2021)
 slug: top-popular-zsh-plugins-on-github-2021
-Date: '2021-11-29'
+Date: 2021-11-29
 modified: 2022-09-01
-Start: '2021-11-25'
+Start: 2021-11-25
 Tags: zsh, scrapping, python, Linux
 Category: Linux
 Image: /images/zsh/inside-work-tree.jpg

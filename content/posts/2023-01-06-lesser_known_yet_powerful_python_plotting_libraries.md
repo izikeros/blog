@@ -1,9 +1,9 @@
 ---
 title: 10 Lesser-known, yet powerful python plotting libraries
-date: 2023-01-06
+date: 2022-09-30
 modified: 2023-01-06
 status: published
-tags: python, plotting, visualization, ChatGPT 
+tags: python, plotting, visualization 
 slug: lesser-known-yet-powerful-python-plotting-libraries
 summary: The most widely used libraries for plotting in python are matplotlib, Plotly, seaborn, and bokeh. This article describes 10 other powerful plotting libraries available in Python that can be used to create high-quality plots and visualizations.
 category: Howto
@@ -101,3 +101,5 @@ PyQwt addresses the problem of integrating [PyQt](http://www.riverbankcomputing
 
 <img src="https://images.plot.ly/logo/new-branding/plotly-logomark.png" style="max-height: 100px;" alt="Plotly Express logo"> 
 It is not a new plotting library but a high-level interface to Plotly, which allows you to create interactive plots and visualizations with minimal code.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

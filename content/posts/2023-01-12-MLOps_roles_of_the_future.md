@@ -1,7 +1,7 @@
 ---
 Title: MLOps roles of the future
 Slug: mlops_roles_of_the_future
-Date: 2023-01-12
+Date: 2022-10-28
 modified: 2023-01-12
 Start: 2023-01-12
 Tags: mlops, devops, machine-learning, interview, job, job-search, roles
@@ -45,3 +45,5 @@ With the growing concern about bias and fairness in AI models, there is an incre
     
 
 Keep in mind that these are just a few examples, and the field of MLOps is still evolving, so new specializations may emerge as the field continues to develop.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

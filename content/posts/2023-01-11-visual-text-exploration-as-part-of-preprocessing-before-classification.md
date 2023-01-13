@@ -2,7 +2,8 @@
 Category: Howto
 Status: published
 Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
-date: 2023-01-11
+date: 2022-10-11
+modified: 2022-01-11
 image: /images/head/visual_text_exploration_wordcloud.jpg
 tags: NLP, python
 title: Visual Text Exploration as Part of Preprocessing Before Classification
@@ -80,3 +81,5 @@ If you have any further questions or would like to learn more about visual text 
 **Credits:**
 
 Header graphics from www.wordle.net, [User:Ragettho](https://commons.wikimedia.org/wiki/User:Ragettho "User:Ragettho") found on [wikimedia](https://commons.wikimedia.org/wiki/File:Wikinews_word_cloud.jpg)
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

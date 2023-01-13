@@ -1,7 +1,7 @@
 ---
 Title: Is MLOps a good career?
 Slug: is-mlops-good-career
-Date: 2023-01-12
+Date: 2022-10-22
 modified: 2023-01-12
 Start: 2023-01-12
 Tags: mlops, devops, machine-learning, interview, job, job-search, roles, career 
@@ -106,3 +106,6 @@ It's important to keep in mind that while these downsides exist, they do not nec
 **Credits:**
 
 Heading image from [Unsplash](https://unsplash.com/photos/dmLIDt7xZNA) by [Allec Gomes](https://unsplash.com/@allecgomes)
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

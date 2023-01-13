@@ -9,7 +9,7 @@ Image: /images/head/keras+tensorflow.jpg
 Summary: Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works.
 Status: published
 ---
-> **EDIT 2021**: This post is partially depreciated by now since for TensorFlow 2.x CPU and GPU versions are intergated - there is no separate install and Keras is integrated with TensorFlow - no need to install separately unless you have good reasons for separate install.
+> **EDIT 2021**: This post is partially depreciated by now since for TensorFlow 2.x CPU and GPU versions are integrated - there is no separate install and Keras is integrated with TensorFlow - no need to install separately unless you have good reasons for separate install.
 
 Quick guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA.
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->

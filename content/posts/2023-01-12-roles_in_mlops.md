@@ -1,7 +1,7 @@
 ---
 Title: Roles in MLOps
 Slug: roles-in-mlops
-Date: 2023-01-12
+Date: 2022-11-12
 modified: 2023-01-12
 Start: 2023-01-12
 Tags: mlops, devops, machine-learning, interview, job, job-search, roles
@@ -60,3 +60,5 @@ Please note that some of the roles and responsibilities may overlap depending on
 **Credits:**
 
 Header image from [Unsplash](https://unsplash.com/photos/wJK9eTiEZHY) by [Natalie Pedigo](https://unsplash.com/@nataliepedigo)
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
