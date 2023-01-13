@@ -8,6 +8,7 @@ slug: serve-http-files-with-python-server
 category: note
 citation_needed: false
 ---
+up::[[python]]
 
 Sometimes there is a need to serve HTML page instead of just displaying it in the browser:
 - share content with others (allowing download)

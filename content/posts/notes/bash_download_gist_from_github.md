@@ -45,4 +45,4 @@ curl -LJO
        (HTTP) This option tells the -O, --remote-name option to use the server-specified
        Content-Disposition filename instead of extracting a filename from the URL.
 ```
-up::[[MOC_Bash]]
+up::[[MOC_Shell_Bash_Zsh]]

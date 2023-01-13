@@ -62,5 +62,5 @@ STANDARDS
 BSD 4.3
 ```
 
-up::[[MOC_Bash]]
+up::[[MOC_Shell_Bash_Zsh]]
 up::[[MOC_linux]]

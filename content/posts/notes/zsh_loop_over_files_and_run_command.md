@@ -8,6 +8,7 @@ slug: zsh-loop-over-files-and-run-command
 category: note
 citation_needed: false
 ---
+up::[[MOC_Shell_Bash_Zsh]]
 
 ```sh
 for file in ~/folder/*; gpg $file

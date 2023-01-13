@@ -186,7 +186,7 @@
   <div>
     <h2>Introduction</h2>
 <p><a href="https://nim-lang.org/">Nim</a> is a statically-typed, imperative programming language that is designed to be efficient, expressive, and easy to learn. It is often compared to other programming languages like Python, C, and Go. One of the great things about Nim is that it can be used to create efficient command-line tools, web servers, and desktop applications.</p>
-<p>In this tutorial, we will go over how to set up <a href="https://code.visualstudio.com/">Visual Studio Code</a> (VS Code) as a Nim IDE (Integrated Development Environment) from scratch. This includes downloading VSCode, installing the Nim extension, and configuring the necessary settings for debugging and code completion.</p>
+<p>In this tutorial, we will go over how to set up <a href="https://code.visualstudio.com/">Visual Studio Code</a> (VS Code) as a Nim IDE (Integrated Development Environment) from scratch. This includes downloading VS Code, installing the Nim extension, and configuring the necessary settings for debugging and code completion.</p>
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 <ul>
@@ -207,25 +207,86 @@
 <h2>Installation steps</h2>
 <p><a id="1-download-and-install-vscode"></a></p>
 <h3>1. Download and Install VSCode</h3>
-<p>The first step is to download and install VSCode. You can do this by visiting the VSCode website (<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>) and selecting the appropriate download for your operating system. Once the download is complete, simply follow the instructions to install VSCode on your computer.</p>
+<p>The first step is to download and install VS Code. You can do this by visiting the VS Code website (<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>) and selecting the appropriate download for your operating system. Once the download is complete, simply follow the instructions to install VSCode on your computer.</p>
 <p><a id="2-install-the-nim-extension"></a></p>
 <h3>2 Install the Nim Extension</h3>
-<p>Once VSCode is installed, open it and press <kbd>Ctrl+Shift+X</kbd> (<kbd>Cmd+Shift+X</kbd> on Mac) to open the Extensions pane. Search for "Nim" and select the "Nim" extension by "pragmagic" and click on the install button. This extension provides syntax highlighting, code completion, and other features for Nim development.</p>
+<p>Once VS Code is installed, open it and press <kbd>Ctrl+Shift+X</kbd> (<kbd>Cmd+Shift+X</kbd> on macOS) to open the Extensions pane. Search for <code>"Nim"</code> and select the "Nim" extension by "Konstantin Zaitsev" and click on the install button. This extension provides syntax highlighting, code completion, and other features for Nim development.</p>
 <p><a id="3-configure-the-settings"></a></p>
 <h3>3. Configure the Settings</h3>
-<p>Now that the Nim extension is installed, you can configure the settings to make your Nim development experience even better. In VSCode, go to <code>File &gt; Preferences &gt; Settings</code> and search for "Nim". From here, you can configure settings such as the path to the Nim compiler, the formatting of the code, and the behavior of the code completion.</p>
+<p>Now that the Nim extension is installed, you can configure the settings to make your Nim development experience even better. In VSCode, go to <code>File &gt; Preferences &gt; Settings</code> (<code>Code &gt; Settings &gt; Settings</code> on macOS) and search for "Nim". From here, you can configure settings such as the path to the Nim compiler, the formatting of the code, and the behavior of the code completion.</p>
 <p><a id="4-download-nim"></a></p>
 <h3>4. Download Nim</h3>
-<p>You will also have to download the Nim compiler, which you can do from the official website (<a href="https://nim-lang.org/install.html">https://nim-lang.org/install.html</a>). Once downloaded, you can add the bin path of the Nim compiler to your environment variable.</p>
+<p>You will also have to download the Nim compiler, which you can do from the official website (<a href="https://nim-lang.org/install.html">https://nim-lang.org/install.html</a>). Once downloaded, you can add the bin path of the Nim compiler to your environment variable. On macOS, you can <code>brew install nim</code>. 
+Check if Nim is installed with:</p>
+<div class="highlight"><pre><span></span><code>nim<span class="w"> </span>--version
+</code></pre></div>
+
+<p>you should see something like this:</p>
+<div class="highlight"><pre><span></span><code>Nim Compiler Version 1.6.10 [MacOSX: amd64]
+Compiled at 2022-11-21
+Copyright (c) 2006-2021 by Andreas Rumpf
+
+active boot switches: -d:release -d:nimUseLinenoise
+</code></pre></div>
+
+<p>Now write and compile first program. Create text file <code>hello.nim</code> with content:</p>
+<div class="highlight"><pre><span></span><code><span class="n">echo</span><span class="w"> </span><span class="s">&quot;Hello world!&quot;</span>
+</code></pre></div>
+
+<p>Then compile:</p>
+<div class="highlight"><pre><span></span><code><span class="n">nim</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="n">hello</span><span class="p">.</span><span class="n">nim</span>
+</code></pre></div>
+
+<p>output</p>
+<div class="highlight"><pre><span></span><code><span class="nl">Hint</span><span class="p">:</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="s1">&#39;/usr/local/Cellar/nim/1.6.10/nim/config/nim.cfg&#39;</span><span class="w"> </span><span class="o">[</span><span class="n">Conf</span><span class="o">]</span>
+<span class="nl">Hint</span><span class="p">:</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="s1">&#39;/usr/local/Cellar/nim/1.6.10/nim/config/config.nims&#39;</span><span class="w"> </span><span class="o">[</span><span class="n">Conf</span><span class="o">]</span>
+<span class="p">.........................................................</span>
+<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">std</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">digitsutils</span><span class="p">.</span><span class="n">nim</span>
+<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="k">system</span><span class="o">/</span><span class="n">dollars</span><span class="p">.</span><span class="n">nim</span>
+<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="k">system</span><span class="o">/</span><span class="n">io</span><span class="p">.</span><span class="n">nim</span>
+<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="k">system</span><span class="p">.</span><span class="n">nim</span>
+<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="n">hello</span><span class="p">.</span><span class="n">nim</span>
+<span class="nl">Hint</span><span class="p">:</span><span class="w">  </span><span class="o">[</span><span class="n">Link</span><span class="o">]</span>
+<span class="nl">Hint</span><span class="p">:</span><span class="w"> </span><span class="nl">gc</span><span class="p">:</span><span class="w"> </span><span class="n">refc</span><span class="p">;</span><span class="w"> </span><span class="nl">opt</span><span class="p">:</span><span class="w"> </span><span class="k">none</span><span class="w"> </span><span class="p">(</span><span class="n">DEBUG</span><span class="w"> </span><span class="n">BUILD</span><span class="p">,</span><span class="w"> </span><span class="err">`</span><span class="o">-</span><span class="nl">d</span><span class="p">:</span><span class="k">release</span><span class="err">`</span><span class="w"> </span><span class="n">generates</span><span class="w"> </span><span class="n">faster</span><span class="w"> </span><span class="n">code</span><span class="p">)</span>
+<span class="mi">26644</span><span class="w"> </span><span class="n">lines</span><span class="p">;</span><span class="w"> </span><span class="mf">0.776</span><span class="n">s</span><span class="p">;</span><span class="w"> </span><span class="mf">31.555</span><span class="n">MiB</span><span class="w"> </span><span class="n">peakmem</span><span class="p">;</span><span class="w"> </span><span class="nl">proj</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">krystian</span><span class="p">.</span><span class="n">safjan</span><span class="o">/</span><span class="n">hello</span><span class="p">.</span><span class="n">nim</span><span class="p">;</span><span class="w"> </span><span class="k">out</span><span class="err">:</span><span class="w"> </span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">krystian</span><span class="p">.</span><span class="n">safjan</span><span class="o">/</span><span class="n">hello</span><span class="w"> </span><span class="o">[</span><span class="n">SuccessX</span><span class="o">]</span>
+</code></pre></div>
+
+<p>Time to run it:</p>
+<div class="highlight"><pre><span></span><code>./hello
+</code></pre></div>
+
+<p>output:</p>
+<div class="highlight"><pre><span></span><code>Hello world!
+</code></pre></div>
+
 <p><a id="5-create-a-new-nim-file"></a></p>
 <h3>5. Create a new Nim file</h3>
-<p>Now that everything is set up, you can create a new Nim file by going to <code>File &gt; New File</code> and then saving the file with a <code>.nim</code> file extension. You can now start writing Nim code, and use the features provided by the extension such as syntax highlighting, code completion, and debugging.</p>
+<p>Now that everything is set up in the system, you can create a new Nim file in VS Code by going to <code>File &gt; New File</code> and then saving the file with a <code>.nim</code> file extension. You can now start writing Nim code, and use the features provided by the extension such as syntax highlighting, code completion, and debugging.</p>
+<p>For example, create file <code>hello2.nim</code> with content:</p>
+<div class="highlight"><pre><span></span><code>echo &quot;Hello world!!!&quot;
+</code></pre></div>
+
+<p>and hit the Run button (triangle), and in the output window you should see:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">Running</span><span class="o">]</span><span class="w"> </span><span class="n">nim</span><span class="w"> </span><span class="n">compile</span><span class="w"> </span><span class="o">--</span><span class="nl">verbosity</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="o">--</span><span class="nl">hints</span><span class="p">:</span><span class="k">off</span><span class="w"> </span><span class="o">--</span><span class="n">run</span><span class="w"> </span><span class="ss">&quot;/Users/krystian.safjan/hello2.nim&quot;</span>
+
+<span class="n">Hello</span><span class="w"> </span><span class="n">world</span><span class="err">!!!</span>
+
+
+
+<span class="o">[</span><span class="n">Done</span><span class="o">]</span><span class="w"> </span><span class="n">exited</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">code</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">0.959</span><span class="w"> </span><span class="n">seconds</span>
+</code></pre></div>
+
 <p><a id="6-debugging"></a></p>
 <h3>6. Debugging</h3>
-<p>VSCode provides an inbuilt debugging feature, you can use it for debugging your Nim code. You can use the <kbd>F5</kbd> key to start debugging, and the extension also provides support for breakpoints and watch variables.</p>
+<p>For the information on debugging in VS Code, you can refer to the official documentation <a href="https://code.visualstudio.com/docs/editor/debugging">Debugging in Visual Studio Code</a> and guide specific for the Nim language: <a href="https://github.com/jasonprogrammer/nim-debug-example">A walkthrough for setting up debugging of Nim code in VSCode</a></p>
 <p><a id="conclusion"></a></p>
 <h2>Conclusion</h2>
-<p>In conclusion, setting up VSCode as a Nim IDE is relatively easy, and provides a great development experience. The Nim extension provides a wide range of features that make Nim development much more efficient and enjoyable. For more information on debugging in VSCode, you can refer to the official documentation (<a href="https://code.visualstudio.com/docs/editor/debugging">https://code.visualstudio.com/docs/editor/debugging</a>).</p>
+<p>In conclusion, setting up VSCode as a Nim IDE is relatively easy, and provides a great development experience. The Nim extension provides a wide range of features that make Nim development much more efficient and enjoyable. </p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/nim-lang/Nim/wiki/Editor-Support">Editor Support · nim-lang/Nim Wiki · GitHub</a></li>
+<li><a href="https://github.com/jasonprogrammer/nim-debug-example">A walkthrough for setting up debugging of Nim code in VSCode</a></li>
+</ul>
 <p><strong>Credits:</strong></p>
 <p>Heading photo from <a href="https://unsplash.com/photos/w7ZyuGYNpRQ">Unsplash</a> by <a href="https://unsplash.com/@ikukevk">Kevin Ku</a></p>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>

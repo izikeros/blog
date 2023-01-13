@@ -19,4 +19,4 @@ then
 fi
 ```
 
-up::[[MOC_Bash]]
+up::[[MOC_Shell_Bash_Zsh]]

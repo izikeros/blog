@@ -15,7 +15,7 @@ prompt: Give me detailed instructions how to prepare vscode as NIM IDE starting 
 ## Introduction
 [Nim](https://nim-lang.org/) is a statically-typed, imperative programming language that is designed to be efficient, expressive, and easy to learn. It is often compared to other programming languages like Python, C, and Go. One of the great things about Nim is that it can be used to create efficient command-line tools, web servers, and desktop applications.
 
-In this tutorial, we will go over how to set up [Visual Studio Code](https://code.visualstudio.com/) (VS Code) as a Nim IDE (Integrated Development Environment) from scratch. This includes downloading VSCode, installing the Nim extension, and configuring the necessary settings for debugging and code completion.
+In this tutorial, we will go over how to set up [Visual Studio Code](https://code.visualstudio.com/) (VS Code) as a Nim IDE (Integrated Development Environment) from scratch. This includes downloading VS Code, installing the Nim extension, and configuring the necessary settings for debugging and code completion.
 
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
@@ -34,31 +34,101 @@ In this tutorial, we will go over how to set up [Visual Studio Code](https://cod
 ## Installation steps
 <a id="1-download-and-install-vscode"></a>
 ### 1. Download and Install VSCode
-The first step is to download and install VSCode. You can do this by visiting the VSCode website ([https://code.visualstudio.com/](https://code.visualstudio.com/)) and selecting the appropriate download for your operating system. Once the download is complete, simply follow the instructions to install VSCode on your computer.
+The first step is to download and install VS Code. You can do this by visiting the VS Code website ([https://code.visualstudio.com/](https://code.visualstudio.com/)) and selecting the appropriate download for your operating system. Once the download is complete, simply follow the instructions to install VSCode on your computer.
 
 <a id="2-install-the-nim-extension"></a>
 ### 2 Install the Nim Extension
-Once VSCode is installed, open it and press <kbd>Ctrl+Shift+X</kbd> (<kbd>Cmd+Shift+X</kbd> on Mac) to open the Extensions pane. Search for "Nim" and select the "Nim" extension by "pragmagic" and click on the install button. This extension provides syntax highlighting, code completion, and other features for Nim development.
+Once VS Code is installed, open it and press <kbd>Ctrl+Shift+X</kbd> (<kbd>Cmd+Shift+X</kbd> on macOS) to open the Extensions pane. Search for `"Nim"` and select the "Nim" extension by "Konstantin Zaitsev" and click on the install button. This extension provides syntax highlighting, code completion, and other features for Nim development.
 
 <a id="3-configure-the-settings"></a>
 ### 3. Configure the Settings
-Now that the Nim extension is installed, you can configure the settings to make your Nim development experience even better. In VSCode, go to `File > Preferences > Settings` and search for "Nim". From here, you can configure settings such as the path to the Nim compiler, the formatting of the code, and the behavior of the code completion.
+Now that the Nim extension is installed, you can configure the settings to make your Nim development experience even better. In VSCode, go to `File > Preferences > Settings` (`Code > Settings > Settings` on macOS) and search for "Nim". From here, you can configure settings such as the path to the Nim compiler, the formatting of the code, and the behavior of the code completion.
 
 <a id="4-download-nim"></a>
 ### 4. Download Nim
-You will also have to download the Nim compiler, which you can do from the official website ([https://nim-lang.org/install.html](https://nim-lang.org/install.html)). Once downloaded, you can add the bin path of the Nim compiler to your environment variable.
+You will also have to download the Nim compiler, which you can do from the official website ([https://nim-lang.org/install.html](https://nim-lang.org/install.html)). Once downloaded, you can add the bin path of the Nim compiler to your environment variable. On macOS, you can `brew install nim`. 
+Check if Nim is installed with:
+```sh
+nim --version
+```
+
+you should see something like this:
+
+```
+Nim Compiler Version 1.6.10 [MacOSX: amd64]
+Compiled at 2022-11-21
+Copyright (c) 2006-2021 by Andreas Rumpf
+
+active boot switches: -d:release -d:nimUseLinenoise
+```
+
+Now write and compile first program. Create text file `hello.nim` with content:
+```nim
+echo "Hello world!"
+```
+
+Then compile:
+```nim
+nim c hello.nim
+```
+
+output
+```
+Hint: used config file '/usr/local/Cellar/nim/1.6.10/nim/config/nim.cfg' [Conf]
+Hint: used config file '/usr/local/Cellar/nim/1.6.10/nim/config/config.nims' [Conf]
+.........................................................
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/std/private/digitsutils.nim
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/system/dollars.nim
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/system/io.nim
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/system.nim
+CC: hello.nim
+Hint:  [Link]
+Hint: gc: refc; opt: none (DEBUG BUILD, `-d:release` generates faster code)
+26644 lines; 0.776s; 31.555MiB peakmem; proj: /Users/krystian.safjan/hello.nim; out: /Users/krystian.safjan/hello [SuccessX]
+```
+
+Time to run it:
+```sh
+./hello
+```
+output:
+```
+Hello world!
+```
 
 <a id="5-create-a-new-nim-file"></a>
 ### 5. Create a new Nim file
-Now that everything is set up, you can create a new Nim file by going to `File > New File` and then saving the file with a `.nim` file extension. You can now start writing Nim code, and use the features provided by the extension such as syntax highlighting, code completion, and debugging.
+Now that everything is set up in the system, you can create a new Nim file in VS Code by going to `File > New File` and then saving the file with a `.nim` file extension. You can now start writing Nim code, and use the features provided by the extension such as syntax highlighting, code completion, and debugging.
+
+For example, create file `hello2.nim` with content:
+```
+echo "Hello world!!!"
+```
+
+and hit the Run button (triangle), and in the output window you should see:
+```
+[Running] nim compile --verbosity:0 --hints:off --run "/Users/krystian.safjan/hello2.nim"
+
+Hello world!!!
+
+  
+
+[Done] exited with code=0 in 0.959 seconds
+```
+
 
 <a id="6-debugging"></a>
 ### 6. Debugging
-VSCode provides an inbuilt debugging feature, you can use it for debugging your Nim code. You can use the <kbd>F5</kbd> key to start debugging, and the extension also provides support for breakpoints and watch variables.
+For the information on debugging in VS Code, you can refer to the official documentation [Debugging in Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging) and guide specific for the Nim language: [A walkthrough for setting up debugging of Nim code in VSCode](https://github.com/jasonprogrammer/nim-debug-example)
 
 <a id="conclusion"></a>
 ## Conclusion
-In conclusion, setting up VSCode as a Nim IDE is relatively easy, and provides a great development experience. The Nim extension provides a wide range of features that make Nim development much more efficient and enjoyable. For more information on debugging in VSCode, you can refer to the official documentation ([https://code.visualstudio.com/docs/editor/debugging](https://code.visualstudio.com/docs/editor/debugging)).
+In conclusion, setting up VSCode as a Nim IDE is relatively easy, and provides a great development experience. The Nim extension provides a wide range of features that make Nim development much more efficient and enjoyable. 
+
+
+## References
+- [Editor Support · nim-lang/Nim Wiki · GitHub](https://github.com/nim-lang/Nim/wiki/Editor-Support)
+- [A walkthrough for setting up debugging of Nim code in VSCode](https://github.com/jasonprogrammer/nim-debug-example)
 
 
 **Credits:**

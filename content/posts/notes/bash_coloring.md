@@ -32,4 +32,4 @@ st_n_git="$bldorg\[not repo\]$txtrst"
 
 *precise source unknown, found on Internet some time ago.*
 
-up::[[MOC_Bash]]
+up::[[MOC_Shell_Bash_Zsh]]
