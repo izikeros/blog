@@ -5,7 +5,7 @@ Date: 2023-01-16
 modified: 2023-01-16
 Start: 2023-01-16
 Tags: pandas, python, pandas/schema
-Category: Machine Learning
+Category: Data Science
 Image: /images/zsh/inside-work-tree.jpg
 Summary: summary
 Status: draft
