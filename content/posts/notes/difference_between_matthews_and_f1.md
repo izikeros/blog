@@ -1,5 +1,6 @@
 ---
 title: What is the difference between Matthews correlation coefficient and F1 metrics
+slug: difference-between-matthews-and-f1
 date: 2023-01-05
 modified: 2023-01-05
 status: published

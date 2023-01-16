@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://www.safjan.com/styles/custom.css">
+
+    <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Krystian Safjan's Blog Atom">
+
+    <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+<meta name="author" content="Krystian Safjan" />
+<meta name="description" content="Docker is a popular tool that allows you to package, deploy, and run your applications in containers. In this tutorial, we will show you how to use Docker to deploy an MLFlow server on your local machine. Prerequisites Docker should be installed …" />
+<meta name="keywords" content="mlflow, machine-learning, mlops, docker">
+<meta expr:content="2023-01-16 00:00:00+01:00" itemprop='datePublished'/>
+<meta expr:content="2023-01-16 00:00:00+01:00" itemprop='dateModified'/>
+<meta property="article:modified_time" content="2023-01-16 00:00:00+01:00"/>
+<meta property="article:published_time" content="2023-01-16 00:00:00+01:00"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploying MLFlow on Local Machine using Docker",
+  "datePublished": "2023-01-16 00:00:00+01:00",
+  "dateModified": "2023-01-16 00:00:00+01:00"
+}
+</script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Deploying MLFlow on Local Machine using Docker"/>
+  <meta property="og:description" content="Docker is a popular tool that allows you to package, deploy, and run your applications in containers. In this tutorial, we will show you how to use Docker to deploy an MLFlow server on your local machine. Prerequisites Docker should be installed …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/deploying-mlflow-on-local-machine-using-docker/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-01-16 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-01-16 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="mlflow"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="mlops"/>
+  <meta property="article:tag" content="docker"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content="https://www.safjan.com/"/>
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Deploying MLFlow on Local Machine using Docker"/>
+
+
+  <title>Deploying MLFlow on Local Machine using Docker</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://www.safjan.com/">
+        <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+      </a>
+
+      <h1>
+        <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+      </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+      <ul class="social">
+          <li>
+            <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-github" href="https://github.com/izikeros" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-envelope" href="mailto:ksafjan@gmail.com" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ" target="_blank">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+          </li>
+          <li>
+            <a  class="sc-rss" href="/feeds/all.rss.xml" target="_blank">
+              <i class="fas fa-rss"></i>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://www.safjan.com/">Home</a>
+
+      <a href="/archives.html">Articles</a>
+      <a href="/til.html">Notes</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+      <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <p>
+      <!-- Posted on: -->
+      2023-01-16 
+
+
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Deploying%20MLFlow%20on%20Local%20Machine%20using%20Docker&url=https%3A//www.safjan.com/deploying-mlflow-on-local-machine-using-docker/&hashtags=mlflow,machine-learning,mlops,docker" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/deploying-mlflow-on-local-machine-using-docker/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Deploying%20MLFlow%20on%20Local%20Machine%20using%20Docker&u=https%3A//www.safjan.com/deploying-mlflow-on-local-machine-using-docker/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/deploying-mlflow-on-local-machine-using-docker/&title=Deploying%20MLFlow%20on%20Local%20Machine%20using%20Docker" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+    <br/>
+   </p>
+  <h1 id="deploying-mlflow-on-local-machine-using-docker">Deploying MLFlow on Local Machine using Docker</h1>
+  <div class="header-underline"></div>
+  </header>
+
+
+  <div>
+    <p>Docker is a popular tool that allows you to package, deploy, and run your applications in containers. In this tutorial, we will show you how to use Docker to deploy an MLFlow server on your local machine.</p>
+<h3>Prerequisites</h3>
+<ul>
+<li><a href="https://www.docker.com/">Docker</a> should be installed on your local machine. If it's not installed please follow <a href="https://docs.docker.com/get-docker/">these instructions</a> to install it.</li>
+</ul>
+<h3>Steps</h3>
+<h4>1. Pull the MLFlow Docker Image</h4>
+<p>The first step is to pull the MLFlow Docker image from the official repository. You can do this by running the following command in your terminal:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>mlflow/mlflow
+</code></pre></div>
+
+<p>This command downloads the latest MLFlow image from the Docker Hub.</p>
+<h4>2. Run the MLFlow Image as a Container</h4>
+<p>Once you have the MLFlow image, you can run it as a container by executing the following command:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>mlflow/mlflow
+</code></pre></div>
+
+<p>This command starts a container from the <code>mlflow/mlflow</code> image and maps port 5000 on the host to port 5000 in the container. The <code>--rm</code> flag tells Docker to remove the container when it exits.</p>
+<h4>3. Access the MLFlow Web UI</h4>
+<p>Once the container is running, you can access the MLFlow web UI by opening a web browser and navigating to <code>http://localhost:5000</code>. You should see the MLFlow web UI, as shown below:</p>
+<p><img alt="MLFlow Web UI" src="https://mlflow.org/docs/latest/images/mlflow_tracking.png"></p>
+<h4>4. Run MLFlow commands</h4>
+<p>You can also use the container to run your MLFlow commands by running:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="c1">--rm -p 5000:5000 mlflow/mlflow mlflow [command]</span>
+</code></pre></div>
+
+<p>This command runs the specified <code>mlflow [command]</code> in the container.</p>
+<h4>5. Configure the Tracking URI</h4>
+<p>To use the container as a remote server, you need to configure the tracking URI. You can set the tracking URI to the container's IP address, which you can find by running</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="o">=</span><span class="s1">&#39;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39;</span><span class="w"> </span>container_name_or_id
+</code></pre></div>
+
+<h4>6. Stop the Container</h4>
+<p>To stop the container, you can find the container id by running <code>docker ps</code> then stop the container by running <code>docker stop container_id</code></p>
+<h4>7. Persist Data</h4>
+<p>To persist the data, you can use volumes. For example, you can run</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>-v<span class="w"> </span>/path/on/host:/path/on/container<span class="w"> </span>mlflow/mlflow<span class="sb">`</span><span class="w"> </span>
+</code></pre></div>
+
+<p>to map the host directory <code>/path/on/host</code> to the container directory <code>/path/on/container</code>.</p>
+<h3>Conclusion</h3>
+<p>In this tutorial, we have shown you how to use Docker to deploy an MLFlow server on your local machine. This is a quick and easy way to set up an MLFlow server, but please note that running MLFlow on Docker on your local machine will not give you the ability to scale horizontally or ensure high availability. You may want to consider using cloud-based MLFlow services or deploying MLFlow on a virtual machine for more production-ready</p>
+  </div>
+
+
+  <div class="tag-cloud">
+    <p>
+      <br/><br/>Tags:&nbsp;
+      <a href="https://www.safjan.com/tag/mlflow/">mlflow</a>
+      <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+      <a href="https://www.safjan.com/tag/mlops/">mlops</a>
+      <a href="https://www.safjan.com/tag/docker/">docker</a>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/machine-learning-vs-software_development/" title="The difference between Machine Learning Development and traditional Software Development">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://www.safjan.com/how-to-experiment-with-mlflow-locally-on-laptop-or-pc/">How to experiment with MLFlow locally on laptop or PC? Instructions for the local setup.</a></li>
+      <li><a href="https://www.safjan.com/machine-learning-vs-software_development/">The difference between Machine Learning Development and traditional Software Development</a></li>
+      <li><a href="https://www.safjan.com/mlops-certifications-a-comprehensive-guide/">MLOps Certifications: A Comprehensive Guide</a></li>
+      <li><a href="https://www.safjan.com/roles-in-mlops/">Roles in MLOps</a></li>
+      <li><a href="https://www.safjan.com/50-questions-for-MLOps-engineer-job-interview/">50 questions for MLOps engineer job interview</a></li>
+    </ul>
+  </div>
+
+
+</article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

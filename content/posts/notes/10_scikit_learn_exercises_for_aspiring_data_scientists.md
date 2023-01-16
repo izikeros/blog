@@ -1,5 +1,6 @@
 ---
 title: 10 scikit-learn exercises for aspiring data scientists
+slug: 10-scikit-learn-exercises-for-aspiring-data-scientists
 date: 2023-01-13
 modified: 2023-01-13
 status: published
