@@ -3,7 +3,7 @@ Title: MLOps Roadmap
 Slug: mlops-roadmap
 Date: 2023-01-14
 Modified: 2023-01-16
-Status: published
+Status: draft
 Tags: mlops, learning 
 Category: note
 ---

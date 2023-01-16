@@ -8,7 +8,7 @@ Tags: pandas, python, pandas/schema
 Category: Machine Learning
 Image: /images/zsh/inside-work-tree.jpg
 Summary: summary
-Status: published
+Status: draft
 prompt:
 ---
 

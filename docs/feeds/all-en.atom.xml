@@ -63,149 +63,7 @@
 &lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;
 Here are two articles that broaden the perspective of this post.
 - &lt;a href="https://www.datarevenue.com/en-blog/software-development-vs-machine-learning-engineering"&gt;Software Development vs. Machine Learning Engineering&lt;/a&gt; - discuss difference between proof-of-concept and production model building, different flavours of software.
-- &lt;a href="https://billcrichmond.medium.com/machine-learning-vs-traditional-software-development-96923dc5ffbc"&gt;Machine Learning vs Traditional Software Development | by Bill Richmond | Medium&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="mlops"></category><category term="software-development"></category><category term="software-maintenence"></category><category term="machine-learning"></category></entry><entry><title>Pandas Schema Validation</title><link href="https://www.safjan.com/pandas-schema-validation/" rel="alternate"></link><published>2023-01-16T00:00:00+01:00</published><updated>2023-01-16T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-16:/pandas-schema-validation/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;p&gt;TODO: validate the text for libraries, validate code snippets, consider adding errors, mention decorators&lt;/p&gt;
-&lt;h1&gt;Introduction to Pandas Dataframe Schema Validation&lt;/h1&gt;
-&lt;p&gt;Pandas is a widely used library for data manipulation and analysis in Python. To ensure the data is in the correct format and conforms to certain constraints, schema validation is crucial. This process can be useful in various situations such as when importing data from external sources or before performing further analysis or machine learning tasks.&lt;/p&gt;
-&lt;p&gt;There are several tools and methods available for schema validation in pandas such as &lt;code&gt;pandas_schema&lt;/code&gt;, &lt;code&gt;great_expectations&lt;/code&gt;, &lt;code&gt;pandera&lt;/code&gt; and &lt;code&gt;data-enforce&lt;/code&gt;. &lt;a href="https://pandas-schema.readthedocs.io/"&gt;pandas_schema&lt;/a&gt; and &lt;a href="https://docs.greatexpectations.io/en/latest/index.html"&gt;great_expectations&lt;/a&gt;  are widely used libraries for pandas data validation. &lt;a href="https://pandera.readthedocs.io/en/latest/"&gt;pandera&lt;/a&gt;  and &lt;a href="https://data-enforce.readthedocs.io/en/latest/"&gt;data-enforce&lt;/a&gt;  are also popular libraries for pandas data validation.&lt;/p&gt;
-&lt;p&gt;In this article, we will overview the available tools and methods for schema validation in pandas and provide example code snippets and links to further resources. We will also discuss the advantages and disadvantages of each tool and provide recommendations for when to use them.&lt;/p&gt;
-&lt;h2&gt;Overview of Available Tools and Methods&lt;/h2&gt;
-&lt;p&gt;The tools and methods discussed below accompanying exemplary code snippets. You can use the following contents of a &lt;code&gt;data.csv&lt;/code&gt; that comply with the schema used in this article:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;name,age,gender,col1,col2,col3,col4,col5
-Alice,25,female,1,2.5,text1,True,2022-01-01
-Bob,30,male,2,3.5,text2,False,2022-02-01
-Charlie,35,male,3,4.5,text3,True,2022-03-01
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This file contains a dataframe with 8 columns: name, age, gender, col1, col2, col3, col4 and col5.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;name and gender are of type object&lt;/li&gt;
-&lt;li&gt;age is of type int&lt;/li&gt;
-&lt;li&gt;col1,col2 are of type int and float respectively&lt;/li&gt;
-&lt;li&gt;col3 is of type object&lt;/li&gt;
-&lt;li&gt;col4 is of type boolean&lt;/li&gt;
-&lt;li&gt;col5 is of type datetime&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This file can be used in the examples above to perform data validation using different libraries and methods.&lt;/p&gt;
-&lt;p&gt;Here is an example of the contents of a &lt;code&gt;data2.csv&lt;/code&gt; file that does not comply with the schema used in the article:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;name,age,gender,col1,col2,col3,col4,col5
-Alice,25,female,1,2.5,text1,True,2022-01-01
-Bob,30,male,2,3.5,text2,False,2022-02-01
-Charlie,35,male,3,4.5,text3,True,2022-03-01
-David,170,male,4,5.5,text4,True,2022-04-01
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This file contains a dataframe with 8 columns: name, age, gender, col1, col2, col3, col4 and col5.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The age of David is 170 which is out of range of the schema defined in the article which is range(0, 150)&lt;/li&gt;
-&lt;li&gt;This file will not comply with the schema defined in the article and will raise an error when trying to validate it using the code provided in the article&lt;/li&gt;
-&lt;li&gt;This file can be used to demonstrate the validation process and how it will raise errors for invalid data.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Built-in Attributes&lt;/h3&gt;
-&lt;p&gt;Pandas provides built-in attributes such as &lt;code&gt;.dtypes&lt;/code&gt; and &lt;code&gt;.shape&lt;/code&gt; that can be used to check the data types and dimensions of a DataFrame. Here's an example of using these attributes to check that a DataFrame has the expected number of rows and columns, and that the columns have the expected data types:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Check that the DataFrame has the expected number of rows and columns&lt;/span&gt;
-&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Check that the columns have the expected data types&lt;/span&gt;
-&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;col1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;col2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;col3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;col4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;bool&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;col5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;Pandas Schema&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;pandas_schema&lt;/code&gt; is a library that allows you to specify constraints on a DataFrame and then validate that the DataFrame conforms to those constraints. Here's an example of using the &lt;code&gt;pandas_schema&lt;/code&gt; library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandas_schema&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandas_schema.validation&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LeadingWhitespaceValidation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TrailingWhitespaceValidation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IsDtypeValidation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;InListValidation&lt;/span&gt;
-
-&lt;span class="n"&gt;schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;
-    &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;LeadingWhitespaceValidation&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;TrailingWhitespaceValidation&lt;/span&gt;&lt;span class="p"&gt;()]),&lt;/span&gt;
-    &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;age&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;IsDtypeValidation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;InListValidation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;150&lt;/span&gt;&lt;span class="p"&gt;))]),&lt;/span&gt;
-    &lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;gender&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;InListValidation&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;male&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;female&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])])&lt;/span&gt;
-&lt;span class="p"&gt;])&lt;/span&gt;
-
-&lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;schema&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;Great Expectations&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;great_expectations&lt;/code&gt; is a library that allows you to define and validate schemas using a more human-readable syntax. Here's an example of using the &lt;code&gt;great_expectations&lt;/code&gt; library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;great_expectations&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ge&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Define the schema&lt;/span&gt;
-&lt;span class="n"&gt;schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;columns&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;col1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;expect_type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;int&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;col2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;expect_type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;float&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;col3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;expect_type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;string&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;col4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;expect_type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;bool&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;col5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;expect_type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;datetime&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Validate the DataFrame against the schema&lt;/span&gt;
-&lt;span class="n"&gt;validation_result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Check for any validation errors&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;validation_result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Data validation successful&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Validation errors:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validation_result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;Pandera&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;pandera&lt;/code&gt; is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the &lt;code&gt;pandera&lt;/code&gt; library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandera&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pa&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Define the schema&lt;/span&gt;
-&lt;span class="n"&gt;schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrameSchema&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Float&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Boolean&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Datetime&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;})&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Validate the DataFrame against the schema&lt;/span&gt;
-&lt;span class="n"&gt;schema&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;Data-enforce&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;data-enforce&lt;/code&gt; is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the &lt;code&gt;data-enforce&lt;/code&gt; library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;data_enforce&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;de&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data.csv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Define the schema&lt;/span&gt;
-&lt;span class="n"&gt;schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Float&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Boolean&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;col5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Datetime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Validate the DataFrame against the schema&lt;/span&gt;
-&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;enforce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;These are just a few examples of the tools and methods available for schema validation in pandas. For more information on the topic, you might want to check out these resources:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://towardsdatascience.com/data-validation-with-pandas-a5f8b5b7c5b8"&gt;Data validation with pandas&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://towardsdatascience.com/pandas-dataframe-schema-validation-with-great_expectations-2c1d1f28c7f8"&gt;Pandas DataFrame Schema Validation with great_expectations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://realpython.com/pandas-schema-validation/"&gt;Pandas Schema: Validate Data with Less Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://pandera.readthedocs.io/en/latest/validation.html"&gt;Pandera: Dataframe validation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://data-enforce.readthedocs.io/en/latest/dataframe.html"&gt;Data-enforce: Dataframe validation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Comparison and Discussion&lt;/h2&gt;
-&lt;p&gt;Each of these tools has its own advantages and disadvantages depending on the specific use case.&lt;/p&gt;
-&lt;p&gt;The built-in attributes such as &lt;code&gt;.dtypes&lt;/code&gt; and &lt;code&gt;.shape&lt;/code&gt; may be sufficient for simple validation tasks, but they lack advanced functionality such as custom validation logic and integration with other data pipeline tools.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;pandas_schema&lt;/code&gt; and &lt;code&gt;great_expectations&lt;/code&gt; libraries offer more advanced functionality such as custom validation logic and integration with other data pipeline tools, and they have a more human-readable syntax. &lt;code&gt;pandera&lt;/code&gt; and &lt;code&gt;data-enforce&lt;/code&gt; libraries also offer more advanced functionality than the built-in attributes and they have a more human-readable syntax.&lt;/p&gt;
-&lt;p&gt;The choice of tool will depend on the complexity of the schema and the specific requirements of the project. If the schema is simple and you only need to check data types and dimensions, the built-in attributes may be sufficient. However, if you need more advanced functionality such as custom validation logic or integration with other data pipeline tools, &lt;code&gt;pandas_schema&lt;/code&gt;, &lt;code&gt;great_expectations&lt;/code&gt;, &lt;code&gt;pandera&lt;/code&gt; or &lt;code&gt;data-enforce&lt;/code&gt; libraries are better choices.&lt;/p&gt;
-&lt;p&gt;Overall, it is recommended to use &lt;code&gt;great_expectations&lt;/code&gt; for more complex projects, as it has more functionality and a more human-readable syntax. However, if you're looking for a more lightweight solution &lt;code&gt;pandas_schema&lt;/code&gt;, &lt;code&gt;pandera&lt;/code&gt; and &lt;code&gt;data-enforce&lt;/code&gt; are also good options.&lt;/p&gt;</content><category term="Machine Learning"></category><category term="pandas"></category><category term="python"></category><category term="pandas/schema"></category></entry><entry><title>When Bayesian methods are not the best option?</title><link href="https://www.safjan.com/when-the-bayesian-methods-are-not-the-best-option/" rel="alternate"></link><published>2023-01-16T00:00:00+01:00</published><updated>2023-01-16T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-16:/when-the-bayesian-methods-are-not-the-best-option/</id><summary type="html">&lt;p&gt;Bayesian methods are a powerful tool for probabilistic modeling and inference, but they may not be the best choice in certain situations. Here are a few examples of when it might be better to use alternative methods:&lt;/p&gt;
+- &lt;a href="https://billcrichmond.medium.com/machine-learning-vs-traditional-software-development-96923dc5ffbc"&gt;Machine Learning vs Traditional Software Development | by Bill Richmond | Medium&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="mlops"></category><category term="software-development"></category><category term="software-maintenence"></category><category term="machine-learning"></category></entry><entry><title>When Bayesian methods are not the best option?</title><link href="https://www.safjan.com/when-the-bayesian-methods-are-not-the-best-option/" rel="alternate"></link><published>2023-01-16T00:00:00+01:00</published><updated>2023-01-16T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-16:/when-the-bayesian-methods-are-not-the-best-option/</id><summary type="html">&lt;p&gt;Bayesian methods are a powerful tool for probabilistic modeling and inference, but they may not be the best choice in certain situations. Here are a few examples of when it might be better to use alternative methods:&lt;/p&gt;
 &lt;p&gt;&lt;a id="when-the-data-is-scarce-or-the-model-is-very-complex"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;When the data is scarce …&lt;/h2&gt;</summary><content type="html">&lt;p&gt;Bayesian methods are a powerful tool for probabilistic modeling and inference, but they may not be the best choice in certain situations. Here are a few examples of when it might be better to use alternative methods:&lt;/p&gt;
 &lt;p&gt;&lt;a id="when-the-data-is-scarce-or-the-model-is-very-complex"&gt;&lt;/a&gt;&lt;/p&gt;
@@ -259,25 +117,7 @@ David,170,male,4,5.5,text4,True,2022-04-01
 &lt;h3&gt;4. Using a Kubernetes-based deployment&lt;/h3&gt;
 &lt;p&gt;You can use Kubernetes, an open-source container orchestration system, to deploy MLFlow on a cluster of machines. This allows you to scale your server horizontally and ensures high availability.&lt;/p&gt;
 &lt;p&gt;Ultimately, the best option for you will depend on your specific use case, budget, and technical requirements.&lt;/p&gt;
-&lt;p&gt;Docker container + mounted volumes for persistence of data served best for my case.&lt;/p&gt;</content><category term="note"></category><category term="mlops"></category><category term="mlflow"></category><category term="machine-learning"></category></entry><entry><title>MLOps Roadmap</title><link href="https://www.safjan.com/mlops-roadmap/" rel="alternate"></link><published>2023-01-14T00:00:00+01:00</published><updated>2023-01-16T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-14:/mlops-roadmap/</id><summary type="html">&lt;ol&gt;
-&lt;li&gt;Data Management: Understand the data pipeline, data governance, and data quality.&lt;/li&gt;
-&lt;li&gt;Experimentation: Learn about experimentation frameworks, version control, and reproducibility.&lt;/li&gt;
-&lt;li&gt;Model Development: Understand model development life cycle, model training, and tuning.&lt;/li&gt;
-&lt;li&gt;Model Deployment: Learn about model deployment, A/B testing, and canary …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;ol&gt;
-&lt;li&gt;Data Management: Understand the data pipeline, data governance, and data quality.&lt;/li&gt;
-&lt;li&gt;Experimentation: Learn about experimentation frameworks, version control, and reproducibility.&lt;/li&gt;
-&lt;li&gt;Model Development: Understand model development life cycle, model training, and tuning.&lt;/li&gt;
-&lt;li&gt;Model Deployment: Learn about model deployment, A/B testing, and canary releases.&lt;/li&gt;
-&lt;li&gt;Model Monitoring: Understand how to monitor models in production, and how to detect and diagnose issues.&lt;/li&gt;
-&lt;li&gt;Automation: Learn about automation tools, such as Jenkins and Ansible, to automate ML workflows.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;graph&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;TD&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Data_Management&lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Experimentation&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Experimentation&lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Model_Development&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Model_Development&lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Model_Deployment&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Model_Deployment&lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Model_Monitoring&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Model_Monitoring&lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Automation&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="mlops"></category><category term="learning"></category></entry><entry><title>10 scikit-learn exercises for aspiring data scientists</title><link href="https://www.safjan.com/10-scikit-learn-exercises-for-aspiring-data-scientists/" rel="alternate"></link><published>2023-01-13T00:00:00+01:00</published><updated>2023-01-13T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-13:/10-scikit-learn-exercises-for-aspiring-data-scientists/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here are ideas for 10 scikit-learn exercises for aspiring Data Scientists:&lt;/p&gt;
+&lt;p&gt;Docker container + mounted volumes for persistence of data served best for my case.&lt;/p&gt;</content><category term="note"></category><category term="mlops"></category><category term="mlflow"></category><category term="machine-learning"></category></entry><entry><title>10 scikit-learn exercises for aspiring data scientists</title><link href="https://www.safjan.com/10-scikit-learn-exercises-for-aspiring-data-scientists/" rel="alternate"></link><published>2023-01-13T00:00:00+01:00</published><updated>2023-01-13T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-13:/10-scikit-learn-exercises-for-aspiring-data-scientists/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here are ideas for 10 scikit-learn exercises for aspiring Data Scientists:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Build a linear regression model to predict housing prices using the &lt;a href="https://www.kaggle.com/c/boston-housing"&gt;Boston Housing dataset&lt;/a&gt;. Relevant scikit-learn tools: &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"&gt;LinearRegression&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Train a decision tree classifier to classify iris species using the &lt;a href="https://archive.ics.uci.edu/ml/datasets/iris"&gt;Iris dataset&lt;/a&gt;. Relevant scikit-learn tools: &lt;a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"&gt;DecisionTreeClassifier&lt;/a&gt;&lt;/li&gt;
@@ -7200,10 +7040,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="c5bec694-3c42-4b80-adec-96f830f0cc97"&gt;&lt;/div&gt;
+&lt;div id="be24b57d-7a5a-4691-8db2-47ea8620fbe0"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#c5bec694-3c42-4b80-adec-96f830f0cc97');
+var element = $('#be24b57d-7a5a-4691-8db2-47ea8620fbe0');
 
 (function(root) {
   function now() {
