@@ -7,6 +7,7 @@ Status: published
 Tags: mlops 
 Category: note
 prompt: Give markdown article with hyperlinks on 3 Pieces of Popular MLOps Advice to Ignore — and What to Do Instead. In the article discuss three advices for mlops that are false helpers or are not the best option nowadays. Propose alternative solution to each of these three.
+prompt2: the three pieces of the advice boils down to diversification. Can you give me other (other that diversification) three examples of popular yet harmful mlops advices?
 summary: Discover 3 common MLOps advice to avoid and learn better alternatives to improve your machine learning operations. Learn to use modular, polyglot and multi-cloud approach.
 ---
 
