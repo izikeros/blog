@@ -12,14 +12,11 @@ summary: Description of GNU utils and other less standard tools that helps with 
 
 There are plenty of tools designed to ease the life of a Data Scientist. In this group, the special place has tools that are used from the command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient workflows. 
 
-
-
-
 ![Diagram of cli tools for data science](/images/cli_tools_1/cli_tools.png)
 
 <a id="textutils-from-gnu-coreutils"></a>
 ## Textutils from GNU Coreutils
-From my experience, I have benefited most from mastering the GNU Coreutils. This is the collection of shellutils, fileutils, and textutils - and in this post, I will be discussing the latter one. 
+From my experience, I have benefited most from mastering the GNU Coreutils. This is the collection of shellutils, fileutils, and textutils - and in this post, I will be discussing the latter. 
 
 *Table 1. Textutils - text processing tools, part of GNU Coreutils*
 
@@ -91,7 +88,7 @@ head -n -1 file.txt
 
 <a id="shuf"></a>
 ### shuf
-To quickly inspect the content of the dataset in a text file you can use `head` which shows some first lines of the file. If you would like to have more representative example of the content of the file, you can take random sample of lines from file with `shuf`:
+To quickly inspect the content of the dataset in a text file you can use `head` which shows some first lines of the file. If you would like to have a more representative example of the content of the file, you can take a random sample of lines from the file with `shuf`:
 ```sh
 shuf -n 5 file.txt
 ```
@@ -118,7 +115,7 @@ sort -bufi data.csv
 ```
 <a id="split"></a>
 ### split
-Sometimes there is a need to split dataset to smaller parts. E.g. when processing large files you can be hit by memory limitations, or you want to speed up processing using parallel computing. To split file into N parts with equal number of lines, use: 
+Sometimes there is a need to split datasets into smaller parts. For E.g. when processing large files you can be hit by memory limitations, or you want to speed up processing using parallel computing. To split the file into N parts with the equal number of lines, use: 
 ```sh
 split -n l/N data.csv
 ```
@@ -126,13 +123,13 @@ e.g.
 ```sh
 split -n l/10 data.csv
 ```
-This will create serie of files named: `xaa, xab, xac,...`. The default pattern of  `split` for file naming is PREFIXaa, PREFIXab,...; default PREFIX is `x`. You can provide your own prefix e.g.
+This will create series of files named: `xaa, xab, xac,...`. The default pattern of  `split` for file naming is PREFIXaa, PREFIXab,...; default PREFIX is `x`. You can provide your own prefix e.g.
 <a id="tail"></a>
 ### tail
 ```sh
 split l/10 data.csv part_
 ```
-and this will result in having files `part_aa, part_ab,...`.  Suffixes don't have to be alphabetical: can be numeric (use switch `-d`) or even hex (use switch `-x`). What is particularly useful - prefixes can be used to save resulting files in given location. Let's take an example `dataset.csv` file located in data directory, we want to split this file into parts and save results in `parts` directory as shown below:
+and this will result in having files `part_aa, part_ab,...`.  Suffixes don't have to be alphabetical: can be numeric (use switch `-d`) or even hex (use switch `-x`). What is particularly useful - prefixes can be used to save resulting files in a given location. Let's take an example `dataset.csv` file located in the data directory, we want to split this file into parts and save results in `parts` directory as shown below:
 
 ```text
 data
@@ -142,19 +139,19 @@ data
     ├── xab
     └── xac
 ```
-To achieve this create parts directory and modify the prefix to `parts/x`:
+To achieve this create a parts directory and modify the prefix to `parts/x`:
 ```sh
 split l/3 data.csv parts/x
 ```
 
-Skipping header row can be done with tail
+Skipping the header row can be done with the tail
 ```sh
 tail -n +2 file.txt
 ```
-This syntax with usage of `+` sign might require explanation. Here is excerpt from the man page: 
+This syntax with the usage of `+` sign might require explanation. Here is an excerpt from the man page: 
 > -n N means output the last N lines, instead of the last 10; or use +N to output lines starting with the Nth.
 
-The usage of `+` sign can be considered as inverting the argument and telling tail to print everything but the first x-1 lines. Note that `tail -n +1` would print the whole file, `tail -n +2` everything but the first line, etc.
+The usage of `+` sign can be considered as inverting the argument and telling the tail to print everything but the first x-1 lines. Note that `tail -n +1` would print the whole file, `tail -n +2` everything but the first line, etc.
 
 the alternative solution involves `sed`:
 ```sh
@@ -171,7 +168,7 @@ If there are no special circumstances `cat` should be avoided:
 ```sh
 sort file.txt | uniq
 ```
-Moreover, `sort` has option `-u` which stands for *unique*. Therefore, to have unique lines it is sufficient to use:
+Moreover, `sort` has the option `-u` which stands for *unique*. Therefore, to have unique lines it is sufficient to use:
 ```sh
 sort -u file.txt
 ```
@@ -187,7 +184,7 @@ wc -l data.csv
 wc -l *.csv
 ```
 
-For special task - counting lines in very large files one can consider using replacement: [Super-Fast Multi-Threaded Line Counter](https://github.com/crioux/turbo-linecount)
+For special tasks - counting lines in very large files one can consider using replacement: [Super-Fast Multi-Threaded Line Counter](https://github.com/crioux/turbo-linecount)
 
 
 

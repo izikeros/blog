@@ -18,8 +18,8 @@ IS_DEVELOPMENT = True
 USE_APPLAUSE = False
 # ---- Development settings
 if IS_DEVELOPMENT:
-    SITEURL = ""
-    RELATIVE_URLS = True
+    SITEURL = "http://127.0.0.1:8000/"  # was: ""
+    RELATIVE_URLS = False               # was: True
     CACHE_CONTENT = False
 else:
     # TODO: keep only development config here, use publishconf.py to produce publication content
@@ -263,7 +263,9 @@ IPYNB_PREPROCESSORS = [
 SEO_REPORT = False
 SEO_ENHANCER = True
 SEO_ENHANCER_OPEN_GRAPH = True
-
+SEO_ENHANCER_TWITTER_CARDS = False # Subfeature of SEO enhancer
+SEO_ARTICLES_LIMIT = 10
+SEO_PAGES_LIMIT = 10
 
 SITEMAP = {
     "format": "xml",

@@ -77,7 +77,8 @@
   <meta property="og:image" content="https://www.safjan.com/images/head/trend_detection_head.jpg">
 
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:image" content="https://www.safjan.com/images/head/trend_detection_head.jpg"/>
+    <meta property="twitter:image" content="https://www.safjan.com/images/head/trend_detection_head.jpg">
+
     <meta name="twitter:label1" content="Est. reading time"/>
     <meta name="twitter:data1" content="4 min."/>
     <meta name="twitter:site" content="@izikeros"/>
@@ -189,7 +190,7 @@
 </ol>
 <h2>Windowing Approach</h2>
 <p>The discussed solution is based on the concept of analyzing signals using a sliding window with a fixed length. The consecutive windows can overlap.</p>
-<p><img alt="trend lines within the window" src="../images/trend_segmentation/trend_in_windows.jpg"></p>
+<p><img alt="trend lines within the window" src="/images/trend_segmentation/trend_in_windows.jpg"></p>
 <p>For each window perform linear regression to find the line that best fits the signal. If the parameters of a linear regression between two windows do not differ too much, the signal covered by these two windows is considered as belonging to the same segment with a coherent trend.</p>
 <h2>Example</h2>
 <p>Let's say, we wanted to do segmentation of the time series on segments with similar trends. For that task, you can use <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> Python library. It is pip installable (<code>pip3 install trend-classifier</code>).</p>
@@ -211,7 +212,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segments</span><span class="p">()</span>
 </code></pre></div>
 
-<p><img alt="segmentation example" src="../images/trend_segmentation/screenshoot_1.jpg">
+<p><img alt="segmentation example" src="/images/trend_segmentation/screenshoot_1.jpg">
 Figure 1. Visualization of the signal segmentation based on the trend.</p>
 <p>You can inspect details about each segment (e.g. positive value for slope indicates an up-trend and a negative down-trend). To see info about the segment with index <code>3</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">devtools</span> <span class="kn">import</span> <span class="n">debug</span>
@@ -223,10 +224,10 @@ Figure 1. Visualization of the signal segmentation based on the trend.</p>
 </code></pre></div>
 
 <h2>Controlling generalization</h2>
-<p>There is a parameter that controls the "generalisation" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behaviour, when initialising <code>Segmenter()</code> (e.g. <code>Segmenter(x_in, y_in, n=20)</code> use various values for <code>n</code> parameter. The larger <code>n</code> the generalisation is stronger (fewer segments).</p>
+<p>There is a parameter that controls the "generalization" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behavior, when initializing <code>Segmenter()</code> (e.g. <code>Segmenter(x_in, y_in, n=20)</code> use various values for <code>n</code> parameter. The larger <code>n</code> the generalization is stronger (fewer segments).</p>
 <p><img alt="segmentation for n=20" src="../images/trend_segmentation/segments_n_20.jpg">
 Figure 2. Signal segmentation with fine granularity (weak generalization), n=20.</p>
-<p><img alt="segmentation for n=80" src="../images/trend_segmentation/segments_n_80.jpg">
+<p><img alt="segmentation for n=80" src="/images/trend_segmentation/segments_n_80.jpg">
 Figure 3. Signal segmentation with rough granularity (strong generalization), n=80.</p>
 <h2>An exemplary application of trend detection and segmentation</h2>
 <p>This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:
@@ -252,22 +253,22 @@ Figure 3. Signal segmentation with rough granularity (strong generalization), n=
 <div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">up_idx</span><span class="p">)</span>
 </code></pre></div>
 
-<p><img alt="up-trend" src="../images/trend_segmentation/uptrend.jpg">
+<p><img alt="up-trend" src="/images/trend_segmentation/uptrend.jpg">
 Figure 4. Segments classified as "up-trend".</p>
 <div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">down_idx</span><span class="p">)</span>
 </code></pre></div>
 
-<p><img alt="down-trend" src="../images/trend_segmentation/downtrend.jpg">
+<p><img alt="down-trend" src="/images/trend_segmentation/downtrend.jpg">
 Figure 4. Segments classified as "down-trend".</p>
 <div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">horiz_idx</span><span class="p">)</span>
 </code></pre></div>
 
-<p><img alt="horizontal-trend" src="../images/trend_segmentation/horiz_trend.jpg">
+<p><img alt="horizontal-trend" src="/images/trend_segmentation/horiz_trend.jpg">
 Figure 4. Segments classified as "horizontal-trend".</p>
-<p>The classification function used in the example was very simple and one can implement more robust function e.g. one, that uses other than <code>slope</code> data stored in the segment object.</p>
+<p>The classification function used in the example was very simple and one can implement a more robust function e.g. one, that uses other than <code>slope</code> data stored in the segment object.</p>
 <h2>Summary</h2>
-<p>This article describes the <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analysed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
-- there is a trade-off between the efficiency (best fit) and the generalisation (number of segments) - the smaller window size (parameter <code>n</code> of the <code>Segmenter()</code>) the better fit but also more resulting segments and less generalisation.
+<p>This article describes the <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
+- there is a trade-off between the efficiency (best fit) and the generalization (number of segments) - the smaller window size (parameter <code>n</code> of the <code>Segmenter()</code>) the better fit but also more resulting segments and less generalization.
 - arbitrary (but configurable) threshold values are used to determine if the window is a continuation of the trend from the previous window or if it should be a new segment with a different trend)
 - since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.</p>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>

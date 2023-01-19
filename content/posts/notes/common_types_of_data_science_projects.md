@@ -6,7 +6,7 @@ Modified: 2023-01-19
 Status: published
 Tags: machine-learning, project, software-maintenence, software-development, software-project, jupyter
 Category: note
-prompt: I would like make separate article on types of data science projects mentioned above. Give me long, markdown article with hyperlinks and references to learn more about it. Use hyperlinks on crucial terms and tools. In the end provide also HTML page description for this article (less than 160 characters).
+prompt: I would like to make a separate article on the types of data science projects mentioned above. Give me a long, markdown article with hyperlinks and references to learn more about it. Use hyperlinks on crucial terms and tools. In the end, provide also an HTML page description for this article (less than 160 characters).
 summary: Learn about common types of data science projects and best practices for approaching them. From end-to-end individual work to production-ready projects, this guide covers it all.
 ---
 

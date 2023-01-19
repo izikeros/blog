@@ -7,13 +7,13 @@ Start: 2021-11-25
 Tags: zsh, scrapping, python, Linux
 Category: Linux
 Image: images/zsh/inside-work-tree.jpg
-Summary: There is long list of Zsh plugins posted on the GitHub project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins). The 1800+ plugins is a bit high number to get orientation which gained already good reputation from the Zsh users community. In this post, I will identify the most popular plugins - those which have the highest number of stars.
+Summary: Explore the most popular Zsh plugins from the 1800+ options on the Awesome Zsh plugins GitHub project. See which ones have the highest number of stars from the Zsh community.
 Status: published
 ---
 
 > There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/), [2019](../top-popular-zsh-plugins-on-github-2019/), [2021](../top-popular-zsh-plugins-on-github-2021/)
 
-The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users or in most cases any console users. I have divided them into four categories:
+The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users or in most cases console users. I have divided them into four categories:
 
 - **Tools** - general tools that are popular among console lovers, in most cases not limited to Zsh
 - **Frameworks - tools for managing Zsh configuration and plugins** 
@@ -50,7 +50,7 @@ One of the ways to estimate project popularity is to look at the number of stars
 | [navi](https://github.com/denisidoro/navi)                   | An interactive cheatsheet tool for the command-line          | 10.0k |
 | [peco](https://github.com/peco/peco)                         | Simplistic interactive filtering tool                        | 6.6k  |
 
-I have selected two projects that I haven't described in previous years but I'm happy user of both.
+I have selected two projects that I haven't described in previous years but I'm a happy user of both.
 
 # 1. [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 
@@ -58,17 +58,17 @@ As authors call it `diff-so-fancy` strives to make your diffs human-readable ins
 
 [![diff-highlight vs diff-so-fancy](https://user-images.githubusercontent.com/3429760/32387617-44c873da-c082-11e7-829c-6160b853adcb.png)](https://user-images.githubusercontent.com/3429760/32387617-44c873da-c082-11e7-829c-6160b853adcb.png)
 
-You might have noticed that differences are spotted not only on line level but also on character level.
+You might have noticed that differences are spotted not only on the line level but also on the character level.
 
 # 2. [tig](https://github.com/jonas/tig)
 
 Tig is a ncurses-based text-mode interface for git. It functions mainly as a Git repository browser, but can also assist in staging changes for commit at the chunk level. Tig allows for convenient staging files in an interactive mode:
 
-<img src="../images/zsh/tig_status.jpg" alt="tig status view" style="zoom:50%;" />
+<img src="/images/zsh/tig_status.jpg" alt="tig status view" style="zoom:50%;" />
 
 In the main view, you can interactively browse commit history and jump into inspecting selected commit.
 
-<img src="../images/zsh/tig_main.jpg" alt="tig status view" style="zoom:50%;" />
+<img src="/images/zsh/tig_main.jpg" alt="tig status view" style="zoom:50%;" />
 
 Next to git-gui it is my favorite tool for staging git changes.
 

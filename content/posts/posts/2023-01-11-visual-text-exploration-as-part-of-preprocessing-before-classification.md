@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Machine Learning
 Status: published
 Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
 date: 2022-10-11

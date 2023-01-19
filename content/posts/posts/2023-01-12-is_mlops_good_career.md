@@ -5,7 +5,7 @@ Date: 2022-10-22
 modified: 2023-01-12
 Start: 2023-01-12
 Tags: mlops, devops, machine-learning, interview, job, job-search, roles, career 
-Category: Howto
+Category: MLOps
 Image: images/head/is_mlops_good_career.jpg
 Summary: Is a career in MLOps right for you? Learn about the pros and cons of this growing field, including high demand, high earning potential, exciting work, and career growth opportunities.
 Status: published
@@ -94,7 +94,7 @@ MLOps is still a relatively new field and there is a lack of standardization in 
     
 <a id="5-difficulty-in-finding-the-right-team"></a>
 ### 5.  Difficulty in finding the right team
-MLOps requires the collaboration between different teams such as machine learning engineers, data engineers, data scientists, DevOps engineers and model governance. Finding the right team can be difficult and may take time.
+MLOps requires collaboration between different teams such as machine learning engineers, data engineers, data scientists, DevOps engineers, and model governance. Finding the right team can be difficult and may take time.
     
 <a id="6-limited-career-mobility"></a>
 ### 6.  Limited career mobility

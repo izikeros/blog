@@ -9,6 +9,7 @@ summary: The most widely used libraries for plotting in python are matplotlib, P
 category: Howto
 image: images/head/lesser_known_plotting_libraries.jpg
 citation_needed: false
+todo: get rid of hotlinking
 ---
 There are a few widely used plotting libraries used in python projects: [matplotlib](https://matplotlib.org/), [plotly](https://plotly.com/python/), [seaborn](https://seaborn.pydata.org/) , and [Bokeh](https://docs.bokeh.org/en/latest/index.html). However, the python ecosystem is not limited to these libraries. Many powerful and lesser-known plotting libraries in Python can be used to create high-quality plots and visualizations. 
 

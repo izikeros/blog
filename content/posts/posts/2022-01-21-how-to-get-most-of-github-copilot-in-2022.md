@@ -36,7 +36,7 @@ GitHub Copilot is powered by the OpenAI Codex AI system, and, as authors claimed
 
 The way how it is used is that human programmer provides comment with intention what code he/she would like to get, and as autocomplete suggestion gets whole functions of classes. GitHub Copilot uses not only exact comment test but also context of the code that is expected to be auto-generated.
 
-![img](https://copilot.github.com/diagram.png)
+![img](/images/copilot/diagram-github-copilot-739x355-3516979431.png)
 Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and Private Code and IDE. Image from: copilot.github.com
 
 ## 2. How to get it?
@@ -56,7 +56,7 @@ As example - we want to get a function that will return paths to all images in g
 
 Here is first attempt to get code auto completion from GitHub copilot.
 
- ![img](../images/copilot/copilot_1.gif)
+ ![img](/images/copilot/copilot_1.gif)
 
 Figure 2. Autosuggestion obtained as auto-completion to comment describing behavior of the function.
 
@@ -108,7 +108,7 @@ Other examples of functions that short comment can sufficiently describe respons
 ## Simple case - write function name
 
 Starting with descriptive function name can work as well:
- ![img](../images/copilot/copilot_2.gif)
+ ![img](/images/copilot/copilot_2.gif)
 
 
 
@@ -155,7 +155,7 @@ def check_lists_equal_nested(list_1: list, list_2: list) -> bool:
 
     return True
 ```
- ![img](../images/copilot/copilot_1.gif)
+ ![img](/images/copilot/copilot_1.gif)
 
 ## More complex cases - write pseudocode
 

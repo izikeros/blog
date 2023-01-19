@@ -5,7 +5,7 @@ Date: 2022-11-12
 modified: 2023-01-12
 Start: 2023-01-12
 Tags: mlops, devops, machine-learning, interview, job, job-search, roles
-Category: Howto
+Category: MLOps
 Image: images/head/roles_in_mlops.jpg
 Summary: Learn about the different roles in MLOps and the responsibilities of each role, including Model Deployment Engineer, Data pipeline Engineer, Model Monitoring Engineer, Model Governance Engineer, Machine Learning Infra Engineer and Machine Learning Platform Engineer.
 Status: published
@@ -40,37 +40,37 @@ The generic **MLOps Engineer** role can be broken down into several more specifi
 **Model Deployment Engineer** is responsible for deploying and managing machine learning models in production. They work closely with machine learning engineers and DevOps engineers to ensure that models are properly deployed, scaled, and maintained in a production environment.
 
 
-<img src="../images/mlops_roles/model_deployment_engineer.png" height=150 alt="Model Deployment Engineer">    
+<img src="/images/mlops_roles/model_deployment_engineer.png" height=150 alt="Model Deployment Engineer">    
     
 ### 2. Data Pipeline Engineer
 **Data pipeline Engineer** is responsible for building and maintaining data pipeline that feeds the machine learning models. They work closely with data engineers to ensure that data is properly collected, stored, and processed before it is used for training models.
 
 
-<img src="../images/mlops_roles/data_pipeline_engineer.png" height=150 alt="Data Pipeline Engineer">    
+<img src="/images/mlops_roles/data_pipeline_engineer.png" height=150 alt="Data Pipeline Engineer">    
 
 ### 3.  Model Monitoring Engineer
 **Model Monitoring Engineer** responsible for monitoring the performance and health of machine learning models in production. They work closely with machine learning engineers, data engineers, and DevOps engineers to ensure that models are properly monitored, troubleshot, and maintained in a production environment.
 
 
-<img src="../images/mlops_roles/model_monitoring_engineer.png" height=150 alt="Model Monitoring Engineer">  
+<img src="/images/mlops_roles/model_monitoring_engineer.png" height=150 alt="Model Monitoring Engineer">  
 
 ### 4.  Model Governance Engineer
 **Model Governance Engineer** is responsible for managing and controlling the lifecycle of machine learning models. They work closely with data scientists, machine learning engineers, and DevOps engineers to ensure that models are properly versioned, tracked, and audited.
 
 
-<img src="../images/mlops_roles/model_governance_engineer.png" height=150 alt="Model Governance Engineer">  
+<img src="/images/mlops_roles/model_governance_engineer.png" height=150 alt="Model Governance Engineer">  
 
 ### 5.  Machine Learning Infra Engineer
 **Machine Learning Infra Engineer** is responsible for building and maintaining the infrastructure that supports machine learning models in production. They work closely with machine learning engineers, data engineers, and DevOps engineers to ensure that the infrastructure is properly configured, scaled, and maintained in a production environment.
 
 
-<img src="../images/mlops_roles/machine_learning_infra_engineer.png" height=150 alt="Machine Learning Infra Engineer">  
+<img src="/images/mlops_roles/machine_learning_infra_engineer.png" height=150 alt="Machine Learning Infra Engineer">  
 
 ### 6.  Machine Learning Platform Engineer
 **Machine Learning Platform Engineer** is responsible for building and maintaining the platform that supports machine learning models in production. They work closely with machine learning engineers, data engineers, and DevOps engineers to ensure that the platform is properly configured, scaled, and maintained in a production environment.
 
 
-<img src="../images/mlops_roles/machine_learning_platform_engineer.png" height=150 alt="Machine Learning Platform Engineer">  
+<img src="/images/mlops_roles/machine_learning_platform_engineer.png" height=150 alt="Machine Learning Platform Engineer">  
 
 
 Some of the roles and responsibilities may overlap depending on the organization and the specific requirements of the project.

@@ -76,7 +76,8 @@
   <meta property="og:image" content="https://www.safjan.com/images/head/cli_tools.jpg">
 
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:image" content="https://www.safjan.com/images/head/cli_tools.jpg"/>
+    <meta property="twitter:image" content="https://www.safjan.com/images/head/cli_tools.jpg">
+
     <meta name="twitter:label1" content="Est. reading time"/>
     <meta name="twitter:data1" content="4 min."/>
     <meta name="twitter:site" content="@izikeros"/>
@@ -185,7 +186,7 @@
 <p><img alt="Diagram of cli tools for data science" src="/images/cli_tools_1/cli_tools.png"></p>
 <p><a id="textutils-from-gnu-coreutils"></a></p>
 <h2>Textutils from GNU Coreutils</h2>
-<p>From my experience, I have benefited most from mastering the GNU Coreutils. This is the collection of shellutils, fileutils, and textutils - and in this post, I will be discussing the latter one. </p>
+<p>From my experience, I have benefited most from mastering the GNU Coreutils. This is the collection of shellutils, fileutils, and textutils - and in this post, I will be discussing the latter. </p>
 <p><em>Table 1. Textutils - text processing tools, part of GNU Coreutils</em></p>
 <table>
 <thead>
@@ -317,7 +318,7 @@ comm<span class="w"> </span>-12<span class="w"> </span>file1<span class="w"> </s
 
 <p><a id="shuf"></a></p>
 <h3>shuf</h3>
-<p>To quickly inspect the content of the dataset in a text file you can use <code>head</code> which shows some first lines of the file. If you would like to have more representative example of the content of the file, you can take random sample of lines from file with <code>shuf</code>:</p>
+<p>To quickly inspect the content of the dataset in a text file you can use <code>head</code> which shows some first lines of the file. If you would like to have a more representative example of the content of the file, you can take a random sample of lines from the file with <code>shuf</code>:</p>
 <div class="highlight"><pre><span></span><code>shuf<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>file.txt
 </code></pre></div>
 
@@ -342,7 +343,7 @@ comm<span class="w"> </span>-12<span class="w"> </span>file1<span class="w"> </s
 
 <p><a id="split"></a></p>
 <h3>split</h3>
-<p>Sometimes there is a need to split dataset to smaller parts. E.g. when processing large files you can be hit by memory limitations, or you want to speed up processing using parallel computing. To split file into N parts with equal number of lines, use: </p>
+<p>Sometimes there is a need to split datasets into smaller parts. For E.g. when processing large files you can be hit by memory limitations, or you want to speed up processing using parallel computing. To split the file into N parts with the equal number of lines, use: </p>
 <div class="highlight"><pre><span></span><code>split<span class="w"> </span>-n<span class="w"> </span>l/N<span class="w"> </span>data.csv
 </code></pre></div>
 
@@ -350,13 +351,13 @@ comm<span class="w"> </span>-12<span class="w"> </span>file1<span class="w"> </s
 <div class="highlight"><pre><span></span><code>split<span class="w"> </span>-n<span class="w"> </span>l/10<span class="w"> </span>data.csv
 </code></pre></div>
 
-<p>This will create serie of files named: <code>xaa, xab, xac,...</code>. The default pattern of  <code>split</code> for file naming is PREFIXaa, PREFIXab,...; default PREFIX is <code>x</code>. You can provide your own prefix e.g.
+<p>This will create series of files named: <code>xaa, xab, xac,...</code>. The default pattern of  <code>split</code> for file naming is PREFIXaa, PREFIXab,...; default PREFIX is <code>x</code>. You can provide your own prefix e.g.
 <a id="tail"></a></p>
 <h3>tail</h3>
 <div class="highlight"><pre><span></span><code>split<span class="w"> </span>l/10<span class="w"> </span>data.csv<span class="w"> </span>part_
 </code></pre></div>
 
-<p>and this will result in having files <code>part_aa, part_ab,...</code>.  Suffixes don't have to be alphabetical: can be numeric (use switch <code>-d</code>) or even hex (use switch <code>-x</code>). What is particularly useful - prefixes can be used to save resulting files in given location. Let's take an example <code>dataset.csv</code> file located in data directory, we want to split this file into parts and save results in <code>parts</code> directory as shown below:</p>
+<p>and this will result in having files <code>part_aa, part_ab,...</code>.  Suffixes don't have to be alphabetical: can be numeric (use switch <code>-d</code>) or even hex (use switch <code>-x</code>). What is particularly useful - prefixes can be used to save resulting files in a given location. Let's take an example <code>dataset.csv</code> file located in the data directory, we want to split this file into parts and save results in <code>parts</code> directory as shown below:</p>
 <div class="highlight"><pre><span></span><code>data
 ├── dataset.csv
 └── parts
@@ -365,19 +366,19 @@ comm<span class="w"> </span>-12<span class="w"> </span>file1<span class="w"> </s
     └── xac
 </code></pre></div>
 
-<p>To achieve this create parts directory and modify the prefix to <code>parts/x</code>:</p>
+<p>To achieve this create a parts directory and modify the prefix to <code>parts/x</code>:</p>
 <div class="highlight"><pre><span></span><code>split<span class="w"> </span>l/3<span class="w"> </span>data.csv<span class="w"> </span>parts/x
 </code></pre></div>
 
-<p>Skipping header row can be done with tail</p>
+<p>Skipping the header row can be done with the tail</p>
 <div class="highlight"><pre><span></span><code>tail<span class="w"> </span>-n<span class="w"> </span>+2<span class="w"> </span>file.txt
 </code></pre></div>
 
-<p>This syntax with usage of <code>+</code> sign might require explanation. Here is excerpt from the man page: </p>
+<p>This syntax with the usage of <code>+</code> sign might require explanation. Here is an excerpt from the man page: </p>
 <blockquote>
 <p>-n N means output the last N lines, instead of the last 10; or use +N to output lines starting with the Nth.</p>
 </blockquote>
-<p>The usage of <code>+</code> sign can be considered as inverting the argument and telling tail to print everything but the first x-1 lines. Note that <code>tail -n +1</code> would print the whole file, <code>tail -n +2</code> everything but the first line, etc.</p>
+<p>The usage of <code>+</code> sign can be considered as inverting the argument and telling the tail to print everything but the first x-1 lines. Note that <code>tail -n +1</code> would print the whole file, <code>tail -n +2</code> everything but the first line, etc.</p>
 <p>the alternative solution involves <code>sed</code>:</p>
 <div class="highlight"><pre><span></span><code>sed<span class="w"> </span>1d<span class="w"> </span>file.txt
 </code></pre></div>
@@ -392,7 +393,7 @@ comm<span class="w"> </span>-12<span class="w"> </span>file1<span class="w"> </s
 <div class="highlight"><pre><span></span><code>sort<span class="w"> </span>file.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 </code></pre></div>
 
-<p>Moreover, <code>sort</code> has option <code>-u</code> which stands for <em>unique</em>. Therefore, to have unique lines it is sufficient to use:</p>
+<p>Moreover, <code>sort</code> has the option <code>-u</code> which stands for <em>unique</em>. Therefore, to have unique lines it is sufficient to use:</p>
 <div class="highlight"><pre><span></span><code>sort<span class="w"> </span>-u<span class="w"> </span>file.txt
 </code></pre></div>
 
@@ -410,7 +411,7 @@ comm<span class="w"> </span>-12<span class="w"> </span>file1<span class="w"> </s
 <div class="highlight"><pre><span></span><code>wc<span class="w"> </span>-l<span class="w"> </span>*.csv
 </code></pre></div>
 
-<p>For special task - counting lines in very large files one can consider using replacement: <a href="https://github.com/crioux/turbo-linecount">Super-Fast Multi-Threaded Line Counter</a></p>
+<p>For special tasks - counting lines in very large files one can consider using replacement: <a href="https://github.com/crioux/turbo-linecount">Super-Fast Multi-Threaded Line Counter</a></p>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
   </div>
 
@@ -437,10 +438,10 @@ comm<span class="w"> </span>-12<span class="w"> </span>file1<span class="w"> </s
     <h4>You might enjoy</h4>
     <ul class="related-posts">
       <li><a href="https://www.safjan.com/common-types-of-data-science-projects/">Common Types of Data Science Projects</a></li>
+      <li><a href="https://www.safjan.com/evaluation-of-interpretability-for-explainable-ai/">Evaluation of interpretability for Explainable AI</a></li>
       <li><a href="https://www.safjan.com/histogram-intersection/">Histogram intersection</a></li>
       <li><a href="https://www.safjan.com/random-forest-understand-and-tweak/">Tools that Helps to Understand and Tweak Random Forest Classifier</a></li>
       <li><a href="https://www.safjan.com/How-to-use-Polish-wordnet-in-python/">How to use the Polish WordNet in Python?</a></li>
-      <li><a href="https://www.safjan.com/creating-command-line-tools-from-machine-learning-models/">Creating Command Line Tools from Machine Learning Models</a></li>
     </ul>
   </div>
 
