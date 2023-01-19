@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -192,33 +195,27 @@
 
 <p><a id="solution-1---allow-arbitrary-types"></a></p>
 <h2>Solution 1 - allow arbitrary types</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-
-
-<span class="k">class</span> <span class="nc">SubModelInput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
-    <span class="n">b</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
-
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
-        <span class="n">arbitrary_types_allowed</span> <span class="o">=</span> <span class="kc">True</span>
-</code></pre></div>
-
+<p>```python
+import pandas as pd
+from pydantic import BaseModel</p>
+<p>class SubModelInput(BaseModel):
+    a: pd.DataFrame
+    b: pd.DataFrame</p>
+<pre><code>class Config:
+    arbitrary_types_allowed = True
+</code></pre>
+<p>```</p>
 <p><a id="solution-2---create-a-pythonic-type-hint-for-a-pddataframe"></a></p>
 <h2>Solution 2 - create a pythonic type hint for a pd.Dataframe</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
-
-<span class="n">PandasDataFrame</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;pandas.core.frame.DataFrame&#39;</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">SubModelInput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">:</span> <span class="n">PandasDataFrame</span>
-    <span class="n">b</span><span class="p">:</span> <span class="n">PandasDataFrame</span>
-</code></pre></div>
-
+<p>```python
+import pandas as pd
+from pydantic import BaseModel</p>
+<p>from typing import TypeVar</p>
+<p>PandasDataFrame = TypeVar('pandas.core.frame.DataFrame')</p>
+<p>class SubModelInput(BaseModel):
+    a: PandasDataFrame
+    b: PandasDataFrame
+```</p>
 <p><a id="see-also"></a></p>
 <h2>See also</h2>
 <p><a href="https://www.inwt-statistics.com/read-blog/pandas-dataframe-validation-with-pydantic.html">Pandas DataFrame Validation with Pydantic</a></p>

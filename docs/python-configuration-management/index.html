@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -204,39 +207,34 @@
 - various options for launching:
     - easy config modifications from cli
     - multiruns</p>
-<p>Create exemplary <code>main.yaml</code> in directory <code>config</code></p>
-<div class="highlight"><pre><span></span><code><span class="nt">raw</span><span class="p">:</span><span class="w"> </span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/raw/sample.csv</span>
-
-<span class="nt">processed</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/processed/processed.csv</span>
-
-<span class="nt">final</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/final/final.csv</span>
-</code></pre></div>
-
+<p>Create exemplary <code>main.yaml</code> in directory <code>config</code>
+```yaml
+raw: 
+  path: data/raw/sample.csv</p>
+<p>processed:
+  path: data/processed/processed.csv</p>
+<p>final:
+  path: data/final/final.csv
+```</p>
 <p>then we can access the value inside the configuration file by adding the decorator <code>@hydra.main</code> on a specific function. Inside this function, we can access the value under <code>processed</code> and <code>path</code> by using a dot notation: <code>config.processed.path</code> .</p>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This is the demo code that uses hydra to access the parameters in under the directory config.</span>
-<span class="sd">Author: Khuyen Tran</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">hydra</span>
-<span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span>
-<span class="kn">from</span> <span class="nn">hydra.utils</span> <span class="kn">import</span> <span class="n">to_absolute_path</span> <span class="k">as</span> <span class="n">abspath</span>
-
-<span class="nd">@hydra</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="s2">&quot;../config&quot;</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="s1">&#39;main&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to process the data&quot;&quot;&quot;</span>
-
-    <span class="n">raw_path</span> <span class="o">=</span> <span class="n">abspath</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Process data using </span><span class="si">{</span><span class="n">raw_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columns used: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">use_columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">process_data</span><span class="p">()</span>
-</code></pre></div>
-
+<p>```python
+"""
+This is the demo code that uses hydra to access the parameters in under the directory config.
+Author: Khuyen Tran
+"""</p>
+<p>import hydra
+from omegaconf import DictConfig
+from hydra.utils import to_absolute_path as abspath</p>
+<p>@hydra.main(config_path="../config", config_name='main')
+def process_data(config: DictConfig):
+    """Function to process the data"""</p>
+<pre><code>raw_path = abspath(config.raw.path)
+print(f"Process data using {raw_path}")
+print(f"Columns used: {config.process.use_columns}")
+</code></pre>
+<p>if <strong>name</strong> == '<strong>main</strong>':
+    process_data()
+```</p>
 <p>From: https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800</p>
 <p><a id="decouple"></a></p>
 <h2>decouple</h2>
@@ -253,14 +251,12 @@ define comprehensive default values;</li>
 -It was originally designed for Django, but became an independent generic tool for separating settings from code.</li>
 </ul>
 <p>Envvars works, but since <code>os.environ</code> only returns strings, it’s tricky.</p>
-<p>Let’s say you have an envvar <code>DEBUG=False</code>. If you run:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;DEBUG&#39;</span>]:
-<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">True</span>
-<span class="k">else</span>:
-<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">False</span>
-</code></pre></div>
-
-<p>It will print <code>True</code>, because <code>os.environ['DEBUG']</code> returns the string "False". Since it’s a non-empty string, it will be evaluated as True.</p>
+<p>Let’s say you have an envvar <code>DEBUG=False</code>. If you run:
+<code>if os.environ['DEBUG']:
+    print True
+else:
+    print False</code>
+It will print <code>True</code>, because <code>os.environ['DEBUG']</code> returns the string "False". Since it’s a non-empty string, it will be evaluated as True.</p>
 <p>Decouple provides a solution that doesn’t look like a workaround: <code>config('DEBUG', cast=bool)</code>.</p>
 <p>From: package description on pypi</p>
 <p><a id="omegaconf"></a></p>
@@ -293,28 +289,24 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
 </ul>
 <p><a id="basic-usage-of-ml_collections"></a></p>
 <h3><a href="https://github.com/google/ml_collections#basic-usage">Basic Usage of ml_collections</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ml_collections</span> <span class="kn">import</span> <span class="n">config_dict</span>
-
-<span class="n">cfg</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">float_field</span> <span class="o">=</span> <span class="mf">12.6</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span> <span class="o">=</span> <span class="mi">123</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">another_integer_field</span> <span class="o">=</span> <span class="mi">234</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">string_field</span> <span class="o">=</span> <span class="s1">&#39;tom&#39;</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span><span class="p">)</span>  <span class="c1"># Prints 123.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;integer_field&#39;</span><span class="p">])</span>  <span class="c1"># Prints 123 as well.</span>
-
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span> <span class="o">=</span> <span class="s1">&#39;tom&#39;</span>  <span class="c1"># Raises TypeError as this field is an integer.</span>
-<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-
-<span class="n">cfg</span><span class="o">.</span><span class="n">float_field</span> <span class="o">=</span> <span class="mi">12</span>  <span class="c1"># Works: `Int` types can be assigned to `Float`.</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">string_field</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;bob&#39;</span>  <span class="c1"># `String` fields can store Unicode strings.</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
-</code></pre></div>
+<p>```python
+from ml_collections import config_dict</p>
+<p>cfg = config_dict.ConfigDict()
+cfg.float_field = 12.6
+cfg.integer_field = 123
+cfg.another_integer_field = 234
+cfg.nested = config_dict.ConfigDict()
+cfg.nested.string_field = 'tom'</p>
+<p>print(cfg.integer_field)  # Prints 123.
+print(cfg['integer_field'])  # Prints 123 as well.</p>
+<p>try:
+  cfg.integer_field = 'tom'  # Raises TypeError as this field is an integer.
+except TypeError as e:
+  print(e)</p>
+<p>cfg.float_field = 12  # Works: <code>Int</code> types can be assigned to <code>Float</code>.
+cfg.nested.string_field = u'bob'  # <code>String</code> fields can store Unicode strings.</p>
+<p>print(cfg)
+```</p>
   </div>
 
 

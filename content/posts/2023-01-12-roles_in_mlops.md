@@ -16,7 +16,7 @@ MLOps (Machine Learning Operations) is a practice that combines the principles o
 
 1.  **Data Engineer**
 Data Engineer is responsible for data collection, storage, and processing. They ensure that data is properly labeled, annotated, and cleaned before it is used for training models.
-    
+
 2. **Machine Learning Engineer**
 Machine Learning Engineer is responsible for designing, developing, and deploying machine learning models. They work closely with data engineers and data scientists to ensure that models are properly trained and optimized.
     
@@ -37,25 +37,43 @@ MLOps Enginner is responsible for coordinating and managing the end-to-end machi
 The generic **MLOps Engineer** role can be broken down into several more specific roles:
 
 ### 1.  Model Deployment Engineer
-**Model Deployment Engineer** is responsible for deploying and managing machine learning models in production. They work closely with machine learning engineers and devops engineers to ensure that models are properly deployed, scaled, and maintained in a production environment.
-    
-### 2. Data pipeline Engineer
-**Data pipeline Engineer** is responsible for building and maintaining data pipeline that feeds the machine learning models. They work closely with data engineers to ensure that data is properly collected, stored, and processed before it is used for training models.
-    
-### 3.  Model Monitoring Engineer
-**Model Monitoring Engineer** responsible for monitoring the performance and health of machine learning models in production. They work closely with machine learning engineers, data engineers, and devops engineers to ensure that models are properly monitored, troubleshot, and maintained in a production environment.
-    
-### 4.  Model Governance Engineer
-**Model Governance Engineer** is responsible for managing and controlling the lifecycle of machine learning models. They work closely with data scientists, machine learning engineers, and devops engineers to ensure that models are properly versioned, tracked, and audited.
-    
-### 5.  Machine Learning Infra Engineer
-**Machine Learning Infra Engineer** is responsible for building and maintaining the infrastructure that supports machine learning models in production. They work closely with machine learning engineers, data engineers, and devops engineers to ensure that the infrastructure is properly configured, scaled, and maintained in a production environment.
-    
-### 6.  Machine Learning Platform Engineer
-**Machine Learning Platform Engineer** is responsible for building and maintaining the platform that supports machine learning models in production. They work closely with machine learning engineers, data engineers, and devops engineers to ensure that the platform is properly configured, scaled, and maintained in a production environment.
-    
+**Model Deployment Engineer** is responsible for deploying and managing machine learning models in production. They work closely with machine learning engineers and DevOps engineers to ensure that models are properly deployed, scaled, and maintained in a production environment.
 
-Please note that some of the roles and responsibilities may overlap depending on the organization and the specific requirements of the project.
+
+<img src="../images/mlops_roles/model_deployment_engineer.png" height=150 alt="Model Deployment Engineer">    
+    
+### 2. Data Pipeline Engineer
+**Data pipeline Engineer** is responsible for building and maintaining data pipeline that feeds the machine learning models. They work closely with data engineers to ensure that data is properly collected, stored, and processed before it is used for training models.
+
+
+<img src="../images/mlops_roles/data_pipeline_engineer.png" height=150 alt="Data Pipeline Engineer">    
+
+### 3.  Model Monitoring Engineer
+**Model Monitoring Engineer** responsible for monitoring the performance and health of machine learning models in production. They work closely with machine learning engineers, data engineers, and DevOps engineers to ensure that models are properly monitored, troubleshot, and maintained in a production environment.
+
+
+<img src="../images/mlops_roles/model_monitoring_engineer.png" height=150 alt="Model Monitoring Engineer">  
+
+### 4.  Model Governance Engineer
+**Model Governance Engineer** is responsible for managing and controlling the lifecycle of machine learning models. They work closely with data scientists, machine learning engineers, and DevOps engineers to ensure that models are properly versioned, tracked, and audited.
+
+
+<img src="../images/mlops_roles/model_governance_engineer.png" height=150 alt="Model Governance Engineer">  
+
+### 5.  Machine Learning Infra Engineer
+**Machine Learning Infra Engineer** is responsible for building and maintaining the infrastructure that supports machine learning models in production. They work closely with machine learning engineers, data engineers, and DevOps engineers to ensure that the infrastructure is properly configured, scaled, and maintained in a production environment.
+
+
+<img src="../images/mlops_roles/machine_learning_infra_engineer.png" height=150 alt="Machine Learning Infra Engineer">  
+
+### 6.  Machine Learning Platform Engineer
+**Machine Learning Platform Engineer** is responsible for building and maintaining the platform that supports machine learning models in production. They work closely with machine learning engineers, data engineers, and DevOps engineers to ensure that the platform is properly configured, scaled, and maintained in a production environment.
+
+
+<img src="../images/mlops_roles/machine_learning_platform_engineer.png" height=150 alt="Machine Learning Platform Engineer">  
+
+
+Some of the roles and responsibilities may overlap depending on the organization and the specific requirements of the project.
 
 **Credits:**
 

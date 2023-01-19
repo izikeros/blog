@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -42,7 +45,7 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="do_backup=y # In batch mode =&gt; Default is Yes [[ -t 0 ]] &amp;&amp; # If TTY =&gt; Prompt the question read -r -n 1 -p $&#39;\e[1;32m Continue with backup? (Y/n)\e[0m &#39; do_backup # Store the answer in $do_xxxx if [[ $do_backup =~ ^(y|Y|)$ ]] # Do if …" />
+<meta name="description" content="sh do_backup=y # In batch mode =&gt; Default is Yes [[ -t 0 ]] &amp;&amp; # If TTY =&gt; Prompt the question read -r -n 1 -p $&#39;\e[1;32m Continue with backup? (Y/n)\e[0m &#39; do_backup # Store the answer in $do_xxxx if [[ $do_backup =~ ^(y|Y|)$ ]] # Do …" />
 <meta name="keywords" content="bash, bash-continue-yes-no, continue">
 <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='datePublished'/>
 <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='dateModified'/>
@@ -62,7 +65,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Bash - continue: yes or no"/>
-  <meta property="og:description" content="do_backup=y # In batch mode =&gt; Default is Yes [[ -t 0 ]] &amp;&amp; # If TTY =&gt; Prompt the question read -r -n 1 -p $&#39;\e[1;32m Continue with backup? (Y/n)\e[0m &#39; do_backup # Store the answer in $do_xxxx if [[ $do_backup =~ ^(y|Y|)$ ]] # Do if …"/>
+  <meta property="og:description" content="sh do_backup=y # In batch mode =&gt; Default is Yes [[ -t 0 ]] &amp;&amp; # If TTY =&gt; Prompt the question read -r -n 1 -p $&#39;\e[1;32m Continue with backup? (Y/n)\e[0m &#39; do_backup # Store the answer in $do_xxxx if [[ $do_backup =~ ^(y|Y|)$ ]] # Do …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/bash-continue-yes-no/"/>
   <meta property="og:type" content="article"/>
@@ -181,16 +184,15 @@
 
 
   <div>
-    <div class="highlight"><pre><span></span><code><span class="nv">do_backup</span><span class="o">=</span>y<span class="w">                      </span><span class="c1"># In batch mode =&gt; Default is Yes</span>
-<span class="o">[[</span><span class="w"> </span>-t<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">                     </span><span class="c1"># If TTY =&gt; Prompt the question</span>
-<span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">$&#39;\e[1;32m</span>
-<span class="s1">Continue with backup? (Y/n)\e[0m &#39;</span><span class="w"> </span>do_backup<span class="w">  </span><span class="c1"># Store the answer in $do_xxxx</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$do_backup</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">(</span>y<span class="p">|</span>Y<span class="p">|</span><span class="o">)</span>$<span class="w"> </span><span class="o">]]</span><span class="w">  </span><span class="c1"># Do if &#39;y&#39; or &#39;Y&#39; or empty</span>
-<span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;doing backup&quot;</span>
-<span class="k">fi</span>
-</code></pre></div>
-
+    <p><code>sh
+do_backup=y                      # In batch mode =&gt; Default is Yes
+[[ -t 0 ]] &amp;&amp;                     # If TTY =&gt; Prompt the question
+read -r -n 1 -p $'\e[1;32m
+Continue with backup? (Y/n)\e[0m ' do_backup  # Store the answer in $do_xxxx
+if [[ $do_backup =~ ^(y|Y|)$ ]]  # Do if 'y' or 'Y' or empty
+then
+    echo "doing backup"
+fi</code></p>
 <p>up::[[MOC_Shell_Bash_Zsh]]</p>
   </div>
 

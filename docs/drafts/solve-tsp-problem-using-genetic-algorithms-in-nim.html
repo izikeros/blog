@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -193,117 +196,106 @@
 </li>
 </ol>
 <p>Here is a basic example of how this could be implemented in NIM:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="n">random</span>
-
-<span class="k">type</span>
-<span class="w">  </span><span class="n">Tour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">seq</span><span class="o">[</span><span class="nb">int</span><span class="o">]</span>
-
-<span class="kd">var</span>
-<span class="w">  </span><span class="n">population</span><span class="p">:</span><span class="w"> </span><span class="nb">seq</span><span class="o">[</span><span class="n">Tour</span><span class="o">]</span>
-
-<span class="k">proc</span><span class="w"> </span><span class="nf">createInitialPopulation</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">numCities</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="p">):</span>
-<span class="w">  </span><span class="n">population</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newSeq</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">0</span><span class="p">..</span><span class="o">&lt;</span><span class="n">n</span><span class="p">:</span>
-<span class="w">    </span><span class="n">population</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomPermutation</span><span class="p">(</span><span class="n">numCities</span><span class="p">)</span>
-
-<span class="k">proc</span><span class="w"> </span><span class="nf">evaluateFitness</span><span class="p">(</span><span class="n">tour</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span><span class="p">):</span><span class="w"> </span><span class="nb">float</span><span class="w"> </span><span class="o">=</span>
-<span class="w">  </span><span class="c"># calculate total distance traveled by tour</span>
-<span class="w">  </span><span class="c"># return as a float</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">distance</span>
-
-<span class="k">proc</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">population</span><span class="p">:</span><span class="w"> </span><span class="nb">seq</span><span class="o">[</span><span class="n">Tour</span><span class="o">]</span><span class="p">):</span><span class="w"> </span><span class="n">Tour</span><span class="w"> </span><span class="o">=</span>
-<span class="w">  </span><span class="c"># implement selection operator (e.g. roulette wheel selection)</span>
-
-<span class="k">proc</span><span class="w"> </span><span class="nf">crossover</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span><span class="p">):</span><span class="w"> </span><span class="n">Tour</span><span class="w"> </span><span class="o">=</span>
-<span class="w">  </span><span class="c"># implement crossover operator (e.g. two-point crossover)</span>
-
-<span class="k">proc</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">tour</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span><span class="p">):</span>
-<span class="w">  </span><span class="c"># implement mutation operator (e.g. swap mutation)</span>
-
-<span class="k">proc</span><span class="w"> </span><span class="nf">solveTSP</span><span class="p">(</span><span class="n">numCities</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">populationSize</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">numGenerations</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="p">):</span>
-<span class="w">  </span><span class="n">createInitialPopulation</span><span class="p">(</span><span class="n">populationSize</span><span class="p">,</span><span class="w"> </span><span class="n">numCities</span><span class="p">)</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">0</span><span class="p">..</span><span class="o">&lt;</span><span class="n">numGenerations</span><span class="p">:</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">tour</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">population</span><span class="p">:</span>
-<span class="w">      </span><span class="n">evaluateFitness</span><span class="p">(</span><span class="n">tour</span><span class="p">)</span>
-<span class="w">    </span><span class="c"># sort population by fitness</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">0</span><span class="p">..</span><span class="o">&lt;</span><span class="n">populationSize</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
-<span class="w">      </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
-<span class="w">      </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
-<span class="w">      </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crossover</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
-<span class="w">      </span><span class="n">mutate</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="w">      </span><span class="n">population</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span>
-<span class="w">  </span><span class="c"># return the best tour in the final population</span>
-</code></pre></div>
-
-<p>Here is an example implementation of the <code>select</code> procedure using roulette wheel selection in NIM:</p>
-<div class="highlight"><pre><span></span><code><span class="k">proc</span><span class="w"> </span><span class="nv">select</span><span class="p">(</span><span class="nv">population</span><span class="p">:</span><span class="w"> </span><span class="nv">seq</span><span class="p">[</span><span class="nv">Tour</span><span class="p">]):</span><span class="w"> </span><span class="nv">Tour</span><span class="w"> </span><span class="o">=</span>
-<span class="w">  </span><span class="no">var</span>
-<span class="w">    </span><span class="kd">totalFitness</span><span class="p">,</span><span class="w"> </span><span class="nv">randNum</span><span class="p">:</span><span class="w"> </span><span class="nv">float</span>
-<span class="w">    </span><span class="nl">runningSum:</span><span class="w"> </span><span class="nf">float</span>
-<span class="w">    </span><span class="nl">i:</span><span class="w"> </span><span class="no">int</span>
-<span class="w">  </span><span class="kd">totalFitness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
-<span class="w">  </span><span class="no">for</span><span class="w"> </span><span class="kd">tour</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">population</span><span class="p">:</span>
-<span class="w">    </span><span class="nf">totalFitness</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nv">evaluateFitness</span><span class="p">(</span><span class="nv">tour</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">randNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">totalFitness</span>
-<span class="w">  </span><span class="nf">runningSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
-<span class="w">  </span><span class="nf">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="mi">0</span><span class="nv">..</span><span class="o">&lt;</span><span class="nv">len</span><span class="p">(</span><span class="nv">population</span><span class="p">):</span>
-<span class="w">    </span><span class="nf">runningSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nv">evaluateFitness</span><span class="p">(</span><span class="nv">population</span><span class="p">[</span><span class="nv">i</span><span class="p">])</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nv">runningSum</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nv">randNum</span><span class="p">:</span>
-<span class="w">      </span><span class="nf">return</span><span class="w"> </span><span class="nv">population</span><span class="p">[</span><span class="nv">i</span><span class="p">]</span>
-</code></pre></div>
-
+<p>```nim
+import random</p>
+<p>type
+  Tour = seq[int]</p>
+<p>var
+  population: seq[Tour]</p>
+<p>proc createInitialPopulation(n: int, numCities: int):
+  population = newSeq(n)
+  for i in 0..&lt;n:
+    population[i] = randomPermutation(numCities)</p>
+<p>proc evaluateFitness(tour: Tour): float =
+  # calculate total distance traveled by tour
+  # return as a float
+  return distance</p>
+<p>proc select(population: seq[Tour]): Tour =
+  # implement selection operator (e.g. roulette wheel selection)</p>
+<p>proc crossover(a: Tour, b: Tour): Tour =
+  # implement crossover operator (e.g. two-point crossover)</p>
+<p>proc mutate(tour: Tour):
+  # implement mutation operator (e.g. swap mutation)</p>
+<p>proc solveTSP(numCities: int, populationSize: int, numGenerations: int):
+  createInitialPopulation(populationSize, numCities)
+  for i in 0..&lt;numGenerations:
+    for tour in population:
+      evaluateFitness(tour)
+    # sort population by fitness
+    for j in 0..&lt;populationSize/2:
+      a = select(population)
+      b = select(population)
+      c = crossover(a, b)
+      mutate(c)
+      population[j] = c
+  # return the best tour in the final population</p>
+<p>```</p>
+<p>Here is an example implementation of the <code>select</code> procedure using roulette wheel selection in NIM:
+```
+proc select(population: seq[Tour]): Tour =
+  var
+    totalFitness, randNum: float
+    runningSum: float
+    i: int
+  totalFitness = 0.0
+  for tour in population:
+    totalFitness += evaluateFitness(tour)
+  randNum = random() * totalFitness
+  runningSum = 0.0
+  for i in 0..<len(population):
+    runningSum += evaluateFitness(population[i])
+    if runningSum >= randNum:
+      return population[i]</p>
+<p>```</p>
 <p>This implementation uses the <code>random()</code> function to generate a random number between 0 and 1, and then uses that number to select a tour from the population. The <code>evaluateFitness(tour: Tour)</code> function is used to calculate the fitness of each tour, and the roulette wheel selection is implemented by iterating through the population, adding the fitness of each tour to a running sum, and returning the tour when the running sum exceeds the randomly generated number.</p>
 <p>Please note that this is just an example, and that there are many different ways to implement roulette wheel selection. Also in this example I am assuming that evaluateFitness(tour: Tour) returns a value between 0 and 1 as fitness of a tour.</p>
-<p>Here is an example implementation of the <code>evaluateFitness</code> procedure in NIM:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
-
-<span class="n">proc</span> <span class="n">evaluateFitness</span><span class="p">(</span><span class="n">tour</span><span class="p">:</span> <span class="n">Tour</span><span class="p">):</span> <span class="nb">float</span> <span class="o">=</span>
-  <span class="n">var</span>
-    <span class="n">distance</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">i</span><span class="p">:</span> <span class="nb">int</span>
-  <span class="n">distance</span> <span class="o">=</span> <span class="mf">0.0</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mf">0.</span><span class="o">.&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">tour</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-    <span class="n">city1</span> <span class="o">=</span> <span class="n">tour</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">city2</span> <span class="o">=</span> <span class="n">tour</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">distance</span> <span class="o">+=</span> <span class="n">euclideanDistance</span><span class="p">(</span><span class="n">city1</span><span class="p">,</span> <span class="n">city2</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">distance</span>
-
-<span class="n">proc</span> <span class="n">euclideanDistance</span><span class="p">(</span><span class="n">city1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">city2</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="nb">float</span> <span class="o">=</span>
-  <span class="n">var</span>
-    <span class="n">xd</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">yd</span><span class="p">:</span> <span class="nb">float</span>
-  <span class="n">xd</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">city1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">city2</span><span class="p">]</span>
-  <span class="n">yd</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">city1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">city2</span><span class="p">]</span>
-  <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xd</span> <span class="o">*</span> <span class="n">xd</span> <span class="o">+</span> <span class="n">yd</span> <span class="o">*</span> <span class="n">yd</span><span class="p">)</span>
-</code></pre></div>
-
+<p>Here is an example implementation of the <code>evaluateFitness</code> procedure in NIM:
+```
+import math</p>
+<p>proc evaluateFitness(tour: Tour): float =
+  var
+    distance: float
+    i: int
+  distance = 0.0
+  for i in 0..&lt;len(tour)-1:
+    city1 = tour[i]
+    city2 = tour[i+1]
+    distance += euclideanDistance(city1, city2)
+  return distance</p>
+<p>proc euclideanDistance(city1: int, city2: int): float =
+  var
+    xd: float
+    yd: float
+  xd = x[city1] - x[city2]
+  yd = y[city1] - y[city2]
+  return math.sqrt(xd * xd + yd * yd)</p>
+<p>```</p>
 <p>In this example, <code>euclideanDistance(city1: int, city2: int)</code> calculates the euclidean distance between two cities using the coordinates of the cities. The <code>evaluateFitness</code> procedure iterates through the tour, calculating the total distance traveled by adding up the euclidean distance between each consecutive city in the tour.</p>
 <p>Please note that this is just an example, and that there are many different ways to calculate the distance between cities. Also, this example assumes that the x and y coordinates of each city are stored in arrays <code>x</code> and <code>y</code> respectively and also the tour is a list of integers where each integer represents a city.</p>
-<div class="highlight"><pre><span></span><code><span class="k">proc</span><span class="w"> </span><span class="nf">crossover</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span><span class="p">):</span><span class="w"> </span><span class="n">Tour</span><span class="w"> </span><span class="o">=</span>
-<span class="w">  </span><span class="kd">var</span>
-<span class="w">    </span><span class="n">i</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span>
-<span class="w">    </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span>
-<span class="w">    </span><span class="n">offspring</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span>
-<span class="w">  </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">  </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randint</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">  </span><span class="n">offspring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="mf">0</span><span class="p">..</span><span class="n">r1</span><span class="o">]</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">r1</span><span class="p">..</span><span class="n">r2</span><span class="p">:</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">b</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="ow">notin</span><span class="w"> </span><span class="n">offspring</span><span class="p">:</span>
-<span class="w">      </span><span class="n">offspring</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">0</span><span class="p">..</span><span class="o">&lt;</span><span class="n">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="ow">notin</span><span class="w"> </span><span class="n">offspring</span><span class="p">:</span>
-<span class="w">      </span><span class="n">offspring</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">offspring</span>
-
-<span class="k">proc</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">tour</span><span class="p">:</span><span class="w"> </span><span class="n">Tour</span><span class="p">):</span>
-<span class="w">  </span><span class="kd">var</span>
-<span class="w">    </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span>
-<span class="w">    </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span>
-<span class="w">  </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">(</span><span class="n">tour</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">  </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">(</span><span class="n">tour</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">  </span><span class="n">tour</span><span class="o">[</span><span class="n">r1</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">tour</span><span class="o">[</span><span class="n">r2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tour</span><span class="o">[</span><span class="n">r2</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">tour</span><span class="o">[</span><span class="n">r1</span><span class="o">]</span>
-</code></pre></div>
-
+<p>```nim
+proc crossover(a: Tour, b: Tour): Tour =
+  var
+    i: int
+    r1, r2: int
+    offspring: Tour
+  r1 = randint(0, len(a)-1)
+  r2 = randint(r1, len(a)-1)
+  offspring = a[0..r1]
+  for i in r1..r2:
+    if b[i] notin offspring:
+      offspring.add(b[i])
+  for i in 0..&lt;len(a):
+    if a[i] notin offspring:
+      offspring.add(a[i])
+  return offspring</p>
+<p>proc mutate(tour: Tour):
+  var
+    i, j: int
+    r1, r2: int
+  r1 = randint(0, len(tour)-1)
+  r2 = randint(0, len(tour)-1)
+  tour[r1], tour[r2] = tour[r2], tour[r1]</p>
+<p>```</p>
 <p>The <code>crossover</code> procedure implements a two-point crossover operator. It takes two tours, <code>a</code> and <code>b</code>, as input and creates an offspring tour by taking the sub-tour from <code>a</code> between two randomly selected points and adding any missing cities from <code>b</code> to the offspring.</p>
 <p>The <code>mutate</code> procedure implements a swap mutation operator. It takes a tour as input and randomly selects two positions in the tour and swap the elements at those positions.</p>
 <p>Please note that this is just an example, and that there are many different ways to implement crossover and mutation operators. Also, in this example I am using <code>randint(a:int, b:int)</code> function which returns random integer between a and b (inclusive)</p>

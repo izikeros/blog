@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -190,128 +193,144 @@
 <h1>Pre-commit</h1>
 <p>repo with <a href="https://github.com/pre-commit/pre-commit-hooks">hooks</a> to be used with <a href="https://pre-commit.com/">pre-commit</a></p>
 <h2>Install pre-commit</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pre-commit
-</code></pre></div>
-
+<p><code>sh
+pip install pre-commit</code></p>
 <h2>Create config file e.g.:</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">repos</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pre-commit/pre-commit-hooks</span>
-<span class="w">    </span><span class="nt">sha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2.3.0</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">check-yaml</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">end-of-file-fixer</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trailing-whitespace</span>
-<span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/psf/black</span>
-<span class="w">    </span><span class="nt">sha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21.12b0</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">black</span>
-</code></pre></div>
-
+<p><code>yaml
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    sha: v2.3.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+-   repo: https://github.com/psf/black
+    sha: 21.12b0
+    hooks:
+    -   id: black</code></p>
 <h2>Install hooks</h2>
 <p>run <code>pre-commit install</code> to set up the git hook scripts. Now pre-commit will run automatically on git commit</p>
 <h2>Run against all files before committing (optional)</h2>
-<p>It's usually a good idea to run the hooks against all the files when adding new hooks (usually pre-commit will only run on the changed files during git hooks)</p>
-<div class="highlight"><pre><span></span><code>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
-</code></pre></div>
-
-<p>upgrade pre-commit hooks to the most recent version:</p>
-<div class="highlight"><pre><span></span><code>pre-commit<span class="w"> </span>autoupdate
-</code></pre></div>
-
+<p>It's usually a good idea to run the hooks against all the files when adding new hooks (usually pre-commit will only run on the changed files during git hooks)
+<code>sh
+pre-commit run --all-files</code></p>
+<p>upgrade pre-commit hooks to the most recent version:
+<code>sh
+pre-commit autoupdate</code></p>
 <p>see also: https://github.com/sds/overcommit</p>
-<p>An exemplary set of hooks</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># See https://pre-commit.com for more information</span>
-<span class="c1"># See https://pre-commit.com/hooks.html for more hooks</span>
-<span class="c1"># Use: `pre-commit autoupdate` to update the hooks</span>
-
-<span class="c1"># Hooks:</span>
-<span class="c1"># - JupyText - for syncing notebooks with python scripts</span>
-<span class="c1"># - black - for formatting</span>
-<span class="c1"># - pyupgrade - A tool to automatically upgrade syntax for newer versions of the language.</span>
-<span class="c1"># - flake8 - various checks</span>
-<span class="c1"># - trailing-whitespace</span>
-<span class="c1"># - end-of-file-fixer</span>
-<span class="c1"># - mixed-line-ending</span>
-
-<span class="nt">repos</span><span class="p">:</span>
-<span class="c1"># synchronize notebooks staged for commit with corresponding python scripts</span>
-<span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/mwouts/jupytext</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.13.4</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jupytext</span>
-<span class="w">      </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">--sync</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--pipe</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">black</span><span class="p p-Indicator">]</span>
-<span class="w">      </span><span class="nt">additional_dependencies</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">black==21.12b0</span><span class="w"> </span><span class="c1"># Matches black hook version</span>
-<span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pre-commit/pre-commit-hooks</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v4.0.1</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trailing-whitespace</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">end-of-file-fixer</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mixed-line-ending</span>
-<span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/psf/black</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21.12b0</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">black</span>
-<span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/asottile/pyupgrade</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2.29.1</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyupgrade</span>
-<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">--py36-plus</span><span class="p p-Indicator">]</span>
-<span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pycqa/flake8</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;4.0.1&#39;</span><span class="w">  </span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flake8</span>
-<span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(__pycache__|.venv|tmp|notebooks)</span>
-<span class="w">        </span><span class="c1">#additional_dependencies: [flake8-docstrings]</span>
-</code></pre></div>
-
+<p>An exemplary set of hooks
+```yaml</p>
+<h1>See https://pre-commit.com for more information</h1>
+<h1>See https://pre-commit.com/hooks.html for more hooks</h1>
+<h1>Use: <code>pre-commit autoupdate</code> to update the hooks</h1>
+<h1>Hooks:</h1>
+<h1>- JupyText - for syncing notebooks with python scripts</h1>
+<h1>- black - for formatting</h1>
+<h1>- pyupgrade - A tool to automatically upgrade syntax for newer versions of the language.</h1>
+<h1>- flake8 - various checks</h1>
+<h1>- trailing-whitespace</h1>
+<h1>- end-of-file-fixer</h1>
+<h1>- mixed-line-ending</h1>
+<p>repos:</p>
+<h1>synchronize notebooks staged for commit with corresponding python scripts</h1>
+<ul>
+<li>repo: https://github.com/mwouts/jupytext
+    rev: v1.13.4
+    hooks:<ul>
+<li>id: jupytext
+  args: [--sync, --pipe, black]
+  additional_dependencies:<ul>
+<li>black==21.12b0 # Matches black hook version</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:<ul>
+<li>id: trailing-whitespace</li>
+<li>id: end-of-file-fixer</li>
+<li>id: mixed-line-ending</li>
+</ul>
+</li>
+<li>repo: https://github.com/psf/black
+    rev: 21.12b0
+    hooks:<ul>
+<li>id: black</li>
+</ul>
+</li>
+<li>repo: https://github.com/asottile/pyupgrade
+    rev: v2.29.1
+    hooks:<ul>
+<li>id: pyupgrade
+    args: [--py36-plus]</li>
+</ul>
+</li>
+<li>repo: https://github.com/pycqa/flake8
+    rev: '4.0.1'<br />
+    hooks:<ul>
+<li>id: flake8
+    exclude: (<strong>pycache</strong>|.venv|tmp|notebooks)
+    #additional_dependencies: [flake8-docstrings]
+```</li>
+</ul>
+</li>
+</ul>
 <h2>Selection of hooks for organizing imports</h2>
 <p>Perhaps the most used import organizer is <a href="https://github.com/PyCQA/isort">isort</a> (4.5k stars).
 The others are:
 - <a href="https://github.com/asottile/reorder_python_imports">reorder_python_imports</a> (423 stars)
 - <a href="https://github.com/sqlalchemyorg/zimports">zimports</a> (64 stars)
-- <a href="https://github.com/miki725/importanize">importantize</a> (57 stars)</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1"># ------------ Sort imports ------------</span>
-<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pycqa/isort</span>
-<span class="w">   </span><span class="w w-Error"> </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.10.1</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">isort</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">isort (python)</span>
-
-<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/sqlalchemyorg/zimports/</span>
-<span class="w">   </span><span class="w w-Error"> </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.4.0</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zimports</span>
-
-<span class="w"> </span><span class="w w-Error"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/asottile/reorder_python_imports</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2.7.1</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reorder-python-imports</span>
-
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/miki725/importanize/</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;master&#39;</span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">importanize</span>
-<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">--verbose</span><span class="w"> </span><span class="p p-Indicator">]</span>
-</code></pre></div>
-
+- <a href="https://github.com/miki725/importanize">importantize</a> (57 stars)
+```yaml
+  # ------------ Sort imports ------------
+   - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)</p>
+<ul>
+<li>
+<p>repo: https://github.com/sqlalchemyorg/zimports/
+    rev: v0.4.0
+    hooks:</p>
+<ul>
+<li>id: zimports</li>
+</ul>
+</li>
+<li>
+<p>repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.7.1
+    hooks:</p>
+<ul>
+<li>id: reorder-python-imports</li>
+</ul>
+</li>
+<li>
+<p>repo: https://github.com/miki725/importanize/
+    rev: 'master'
+    hooks:</p>
+<ul>
+<li>id: importanize
+    args: [ --verbose ]
+```</li>
+</ul>
+</li>
+</ul>
 <h2>Excluding</h2>
-<p>If you don't want some directories to be subject to pre-commit exclude them as in the example:</p>
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pycqa/flake8</span>
-<span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;4.0.1&#39;</span><span class="w">  </span>
-<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">   </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flake8</span>
-<span class="w">        </span><span class="nt">exclude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(__pycache__|.venv|tmp|notebooks)</span>
-<span class="w">        </span><span class="c1">#additional_dependencies: [flake8-docstrings]</span>
-</code></pre></div>
-
+<p>If you don't want some directories to be subject to pre-commit exclude them as in the example:
+<code>yaml
+-   repo: https://github.com/pycqa/flake8
+    rev: '4.0.1'  
+    hooks:
+    -   id: flake8
+        exclude: (__pycache__|.venv|tmp|notebooks)
+        #additional_dependencies: [flake8-docstrings]</code></p>
 <p>use <code>files</code> to define pattern which files to include. E.g. <code>files: \.x$</code> - files ending with <code>.x</code> (?)</p>
 <p>for more advanced filtering see section "Filtering files with types" on: https://pre-commit.com/#advanced</p>
 <p>example:</p>
-<div class="highlight"><pre><span></span><code>    files: ^foo/
-    types_or: [javascript, jsx, ts, tsx]
-</code></pre></div>
-
+<p><code>files: ^foo/
+    types_or: [javascript, jsx, ts, tsx]</code></p>
 <p>will match any of <code>foo/bar.js</code> / <code>foo/bar.jsx</code> / <code>foo/bar.ts</code> / <code>foo/bar.tsx</code> but not <code>baz.js</code>.</p>
 <p>up:: [[MOC_git]]]</p>
   </div>

@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -217,65 +220,50 @@
 <p><a id="4-download-nim"></a></p>
 <h3>4. Download Nim</h3>
 <p>You will also have to download the Nim compiler, which you can do from the official website (<a href="https://nim-lang.org/install.html">https://nim-lang.org/install.html</a>). Once downloaded, you can add the bin path of the Nim compiler to your environment variable. On macOS, you can <code>brew install nim</code>. 
-Check if Nim is installed with:</p>
-<div class="highlight"><pre><span></span><code>nim<span class="w"> </span>--version
-</code></pre></div>
-
+Check if Nim is installed with:
+<code>sh
+nim --version</code></p>
 <p>you should see something like this:</p>
-<div class="highlight"><pre><span></span><code>Nim Compiler Version 1.6.10 [MacOSX: amd64]
+<p>```
+Nim Compiler Version 1.6.10 [MacOSX: amd64]
 Compiled at 2022-11-21
-Copyright (c) 2006-2021 by Andreas Rumpf
-
-active boot switches: -d:release -d:nimUseLinenoise
-</code></pre></div>
-
-<p>Now write and compile first program. Create text file <code>hello.nim</code> with content:</p>
-<div class="highlight"><pre><span></span><code><span class="n">echo</span><span class="w"> </span><span class="s">&quot;Hello world!&quot;</span>
-</code></pre></div>
-
-<p>Then compile:</p>
-<div class="highlight"><pre><span></span><code><span class="n">nim</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="n">hello</span><span class="p">.</span><span class="n">nim</span>
-</code></pre></div>
-
-<p>output</p>
-<div class="highlight"><pre><span></span><code><span class="nl">Hint</span><span class="p">:</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="s1">&#39;/usr/local/Cellar/nim/1.6.10/nim/config/nim.cfg&#39;</span><span class="w"> </span><span class="o">[</span><span class="n">Conf</span><span class="o">]</span>
-<span class="nl">Hint</span><span class="p">:</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="s1">&#39;/usr/local/Cellar/nim/1.6.10/nim/config/config.nims&#39;</span><span class="w"> </span><span class="o">[</span><span class="n">Conf</span><span class="o">]</span>
-<span class="p">.........................................................</span>
-<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">std</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">digitsutils</span><span class="p">.</span><span class="n">nim</span>
-<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="k">system</span><span class="o">/</span><span class="n">dollars</span><span class="p">.</span><span class="n">nim</span>
-<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="k">system</span><span class="o">/</span><span class="n">io</span><span class="p">.</span><span class="n">nim</span>
-<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">Cellar</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="mf">1.6.10</span><span class="o">/</span><span class="n">nim</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="k">system</span><span class="p">.</span><span class="n">nim</span>
-<span class="nl">CC</span><span class="p">:</span><span class="w"> </span><span class="n">hello</span><span class="p">.</span><span class="n">nim</span>
-<span class="nl">Hint</span><span class="p">:</span><span class="w">  </span><span class="o">[</span><span class="n">Link</span><span class="o">]</span>
-<span class="nl">Hint</span><span class="p">:</span><span class="w"> </span><span class="nl">gc</span><span class="p">:</span><span class="w"> </span><span class="n">refc</span><span class="p">;</span><span class="w"> </span><span class="nl">opt</span><span class="p">:</span><span class="w"> </span><span class="k">none</span><span class="w"> </span><span class="p">(</span><span class="n">DEBUG</span><span class="w"> </span><span class="n">BUILD</span><span class="p">,</span><span class="w"> </span><span class="err">`</span><span class="o">-</span><span class="nl">d</span><span class="p">:</span><span class="k">release</span><span class="err">`</span><span class="w"> </span><span class="n">generates</span><span class="w"> </span><span class="n">faster</span><span class="w"> </span><span class="n">code</span><span class="p">)</span>
-<span class="mi">26644</span><span class="w"> </span><span class="n">lines</span><span class="p">;</span><span class="w"> </span><span class="mf">0.776</span><span class="n">s</span><span class="p">;</span><span class="w"> </span><span class="mf">31.555</span><span class="n">MiB</span><span class="w"> </span><span class="n">peakmem</span><span class="p">;</span><span class="w"> </span><span class="nl">proj</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">krystian</span><span class="p">.</span><span class="n">safjan</span><span class="o">/</span><span class="n">hello</span><span class="p">.</span><span class="n">nim</span><span class="p">;</span><span class="w"> </span><span class="k">out</span><span class="err">:</span><span class="w"> </span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">krystian</span><span class="p">.</span><span class="n">safjan</span><span class="o">/</span><span class="n">hello</span><span class="w"> </span><span class="o">[</span><span class="n">SuccessX</span><span class="o">]</span>
-</code></pre></div>
-
-<p>Time to run it:</p>
-<div class="highlight"><pre><span></span><code>./hello
-</code></pre></div>
-
-<p>output:</p>
-<div class="highlight"><pre><span></span><code>Hello world!
-</code></pre></div>
-
+Copyright (c) 2006-2021 by Andreas Rumpf</p>
+<p>active boot switches: -d:release -d:nimUseLinenoise
+```</p>
+<p>Now write and compile first program. Create text file <code>hello.nim</code> with content:
+<code>nim
+echo "Hello world!"</code></p>
+<p>Then compile:
+<code>nim
+nim c hello.nim</code></p>
+<p>output
+<code>Hint: used config file '/usr/local/Cellar/nim/1.6.10/nim/config/nim.cfg' [Conf]
+Hint: used config file '/usr/local/Cellar/nim/1.6.10/nim/config/config.nims' [Conf]
+.........................................................
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/std/private/digitsutils.nim
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/system/dollars.nim
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/system/io.nim
+CC: ../../usr/local/Cellar/nim/1.6.10/nim/lib/system.nim
+CC: hello.nim
+Hint:  [Link]
+Hint: gc: refc; opt: none (DEBUG BUILD, `-d:release` generates faster code)
+26644 lines; 0.776s; 31.555MiB peakmem; proj: /Users/krystian.safjan/hello.nim; out: /Users/krystian.safjan/hello [SuccessX]</code></p>
+<p>Time to run it:
+<code>sh
+./hello</code>
+output:
+<code>Hello world!</code></p>
 <p><a id="5-create-a-new-nim-file"></a></p>
 <h3>5. Create a new Nim file</h3>
 <p>Now that everything is set up in the system, you can create a new Nim file in VS Code by going to <code>File &gt; New File</code> and then saving the file with a <code>.nim</code> file extension. You can now start writing Nim code, and use the features provided by the extension such as syntax highlighting, code completion, and debugging.</p>
-<p>For example, create file <code>hello2.nim</code> with content:</p>
-<div class="highlight"><pre><span></span><code>echo &quot;Hello world!!!&quot;
-</code></pre></div>
-
-<p>and hit the Run button (triangle), and in the output window you should see:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">Running</span><span class="o">]</span><span class="w"> </span><span class="n">nim</span><span class="w"> </span><span class="n">compile</span><span class="w"> </span><span class="o">--</span><span class="nl">verbosity</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="o">--</span><span class="nl">hints</span><span class="p">:</span><span class="k">off</span><span class="w"> </span><span class="o">--</span><span class="n">run</span><span class="w"> </span><span class="ss">&quot;/Users/krystian.safjan/hello2.nim&quot;</span>
-
-<span class="n">Hello</span><span class="w"> </span><span class="n">world</span><span class="err">!!!</span>
-
-
-
-<span class="o">[</span><span class="n">Done</span><span class="o">]</span><span class="w"> </span><span class="n">exited</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">code</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">0.959</span><span class="w"> </span><span class="n">seconds</span>
-</code></pre></div>
-
+<p>For example, create file <code>hello2.nim</code> with content:
+<code>echo "Hello world!!!"</code></p>
+<p>and hit the Run button (triangle), and in the output window you should see:
+```
+[Running] nim compile --verbosity:0 --hints:off --run "/Users/krystian.safjan/hello2.nim"</p>
+<p>Hello world!!!</p>
+<p>[Done] exited with code=0 in 0.959 seconds
+```</p>
 <p><a id="6-debugging"></a></p>
 <h3>6. Debugging</h3>
 <p>For the information on debugging in VS Code, you can refer to the official documentation <a href="https://code.visualstudio.com/docs/editor/debugging">Debugging in Visual Studio Code</a> and guide specific for the Nim language: <a href="https://github.com/jasonprogrammer/nim-debug-example">A walkthrough for setting up debugging of Nim code in VSCode</a></p>
@@ -310,7 +298,7 @@ active boot switches: -d:release -d:nimUseLinenoise
     <a class="btn float-left" href="https://www.safjan.com/mlops-certifications-a-comprehensive-guide/" title="MLOps Certifications: A Comprehensive Guide">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
-    <a class="btn float-right" href="https://www.safjan.com/difference-between-numba-jit-and-njit-decorators/" title="Difference between numba jit and njit decorators">
+    <a class="btn float-right" href="https://www.safjan.com/grammar-of-graphics/" title=""Grammar of graphics" explained like to 5yo.">
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>

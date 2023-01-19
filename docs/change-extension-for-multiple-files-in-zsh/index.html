@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -42,7 +45,7 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="In Zsh it is a bit easier to perform this because of using zmv. First, you need to load zmv. In zsh, run the following command once (or put them in your ~/.zshrc for the future): autoload -U zmv change all extensions …" />
+<meta name="description" content="In Zsh it is a bit easier to perform this because of using zmv. First, you need to load zmv. In zsh, run the following command once (or put them in your ~/.zshrc for the future): sh autoload -U zmv change all …" />
 <meta name="keywords" content="zsh, shell, zmv">
 <meta expr:content="2022-04-22 00:00:00+02:00" itemprop='datePublished'/>
 <meta expr:content="2022-04-22 00:00:00+02:00" itemprop='dateModified'/>
@@ -62,7 +65,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Change extension for multiple files in Zsh"/>
-  <meta property="og:description" content="In Zsh it is a bit easier to perform this because of using zmv. First, you need to load zmv. In zsh, run the following command once (or put them in your ~/.zshrc for the future): autoload -U zmv change all extensions …"/>
+  <meta property="og:description" content="In Zsh it is a bit easier to perform this because of using zmv. First, you need to load zmv. In zsh, run the following command once (or put them in your ~/.zshrc for the future): sh autoload -U zmv change all …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/change-extension-for-multiple-files-in-zsh/"/>
   <meta property="og:type" content="article"/>
@@ -182,19 +185,16 @@
 
   <div>
     <p>In Zsh it is a bit easier to perform this because of using <code>zmv</code>. First, you need to load <code>zmv</code>. In zsh, run the following command once (or put them in your ~/.zshrc for the future):</p>
-<div class="highlight"><pre><span></span><code>autoload<span class="w"> </span>-U<span class="w"> </span>zmv
-</code></pre></div>
-
-<p>change all extensions from <code>.lis</code> to <code>.txt</code></p>
-<div class="highlight"><pre><span></span><code>zmv<span class="w"> </span><span class="s1">&#39;(*).lis&#39;</span><span class="w"> </span><span class="s1">&#39;$1.txt&#39;</span>
-</code></pre></div>
-
+<p><code>sh
+autoload -U zmv</code></p>
+<p>change all extensions from <code>.lis</code> to <code>.txt</code>
+<code>sh
+zmv '(*).lis' '$1.txt'</code></p>
 <p><code>^*.*</code> means all files except the ones matching <code>*.*</code>, it's a shortcut for <code>*~*.*</code> (both are zsh extensions to the traditional pattern syntax).</p>
-<p>for all files set extension <code>.md</code></p>
-<div class="highlight"><pre><span></span><code>zmv<span class="w"> </span><span class="s1">&#39;^*.*&#39;</span><span class="w"> </span><span class="s1">&#39;$f.md&#39;</span>
-</code></pre></div>
-
-<p>Tip coming from: <a href="https://unix.stackexchange.com/a/68943">unix.stackexchange</a>. Credits to: <a href="https://unix.stackexchange.com/users/885/gilles-so-stop-being-evil">Gilles 'SO- stop being evil'</a></p>
+<p>for all files set extension <code>.md</code>
+<code>sh
+zmv '^*.*' '$f.md'</code>
+Tip coming from: <a href="https://unix.stackexchange.com/a/68943">unix.stackexchange</a>. Credits to: <a href="https://unix.stackexchange.com/users/885/gilles-so-stop-being-evil">Gilles 'SO- stop being evil'</a></p>
   </div>
 
 

@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -207,17 +210,16 @@ There might be a simple project that fits into one notebook and does not require
 <p>Individual work but final notebook shares as result. This can be analysis on-demand where a notebook report is a deliverable or think of a side-project/tutorial that you would like to publish on the blog.</p>
 </li>
 </ul>
-<p>Depending on the use case project directory structure, data directory structure, and notebook directory structure might differ but from my experience, for small to medium Data Science projects a structure similar to this should work well:</p>
-<div class="highlight"><pre><span></span><code>my_project_name/
+<p>Depending on the use case project directory structure, data directory structure, and notebook directory structure might differ but from my experience, for small to medium Data Science projects a structure similar to this should work well:
+<code>text
+my_project_name/
   ├── 1-preprocessing.ipynb
   ├── 2-analysis.ipynb
   ├── data
   │   ├── interim
   │   ├── processed
   │   └── raw
-  └── reports
-</code></pre></div>
-
+  └── reports</code></p>
 <h1>Specific aspects for different use cases</h1>
 <p><strong>End-to-end individual work</strong></p>
 <p>Characteristics:</p>
@@ -238,17 +240,15 @@ There might be a simple project that fits into one notebook and does not require
 <p><strong>Notebook metadata</strong></p>
 <p>It is useful to include some metadata in the notebook. Here is an example borrowed from <a href="http://pbpython.com/notebook-process.html">pbpython</a>:
 For that we will need to import <code>Path</code> from <code>pathlib</code> and <code>datetime</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-</code></pre></div>
-
-<p>Exemplary meta information on time (might indicate last modification) and files used might look like this:</p>
-<div class="highlight"><pre><span></span><code><span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
-<span class="n">sales_file</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span> <span class="o">/</span> <span class="s2">&quot;Sales-History.csv&quot;</span>
-<span class="n">pipeline_file</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span> <span class="o">/</span> <span class="s2">&quot;pipeline_data.xlsx&quot;</span>
-<span class="n">summary_file</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;processed&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;summary_</span><span class="si">{</span><span class="n">today</span><span class="si">:</span><span class="s2">%b-%d-%Y</span><span class="si">}</span><span class="s2">.pkl&quot;</span>
-</code></pre></div>
-
+<p><code>python
+from pathlib import Path
+from datetime import datetime</code>
+Exemplary meta information on time (might indicate last modification) and files used might look like this:
+<code>python
+today = datetime.today()
+sales_file = Path.cwd() / "data" / "raw" / "Sales-History.csv"
+pipeline_file = Path.cwd() / "data" / "raw" / "pipeline_data.xlsx"
+summary_file = Path.cwd() / "data" / "processed" / f"summary_{today:%b-%d-%Y}.pkl"</code></p>
 <p><strong>Use cookiecutter to standardize your projects</strong></p>
 <p>To bootstrap the software projects from a template one can use cookiecutter. You can create your template by following short instructions <a href=""></a>. Here is an exception from the documentation:</p>
 <blockquote>
@@ -285,7 +285,7 @@ For that we will need to import <code>Path</code> from <code>pathlib</code> and 
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
-      <li><a href="https://www.safjan.com/python-add-parent-directory-to-path/">Python Add Parent Directory To Path</a></li>
+      <li><a href="https://www.safjan.com/python-add-parent-directory-to-path/">Adding Parent Directory To Python Path</a></li>
       <li><a href="https://www.safjan.com/add-logo-to-notebook-header/">Add logo to notebook header cell</a></li>
       <li><a href="https://www.safjan.com/whats-cooking/">What's cooking</a></li>
       <li><a href="https://www.safjan.com/interactive-plots-for-blogging/">Interactive plots for blogging</a></li>

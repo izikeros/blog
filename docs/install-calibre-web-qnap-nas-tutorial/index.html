@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -183,7 +186,7 @@
   <div>
     <p>Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using a <a href="https://calibre-ebook.com/">Calibre</a> database.</p>
 <p>This tutorial shows how to install <a href="https://github.com/janeczku/calibre-web">calibre-web</a> on QNAP-NAS. </p>
-<p><img alt="main screen of calibre-web" src="https://github.com/janeczku/calibre-web/wiki/images/main_screen.png"></p>
+<p><img alt="main screen of calibre-web" src="https://github.com/janeczku/calibre-web/wiki/images/main_screen.png" /></p>
 <p>The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to a wide variety of other QNAP NAS models.</p>
 <blockquote>
 <p><strong>Caution</strong>: This is a simple setup assuming that service will be used only within the LAN by the trusted users and therefore access management, other networking, and security matters are not in the scope of this tutorial.</p>
@@ -228,35 +231,32 @@
 <h3>Configuration</h3>
 <p>Before the service will be started you need to configure it properly to provide information about where your Calibre book library (or multiple libraries) is located, configure the IP where the service will be available, etc.</p>
 <p>We are using the docker image from linuxserver, the configuration proposed in this tutorial is based on suggestions from <a href="https://hub.docker.com/r/linuxserver/calibre-web/">linuxserver/calibre-web</a> on how to run the service using the docker command-line.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--name<span class="o">=</span>calibre-web<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">PUID</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">PGID</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">TZ</span><span class="o">=</span>Europe/London<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">DOCKER_MODS</span><span class="o">=</span>linuxserver/mods:universal-calibre<span class="w"> </span><span class="sb">`</span><span class="c1">#optional` \</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">OAUTHLIB_RELAX_TOKEN_SCOPE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="sb">`</span><span class="c1">#optional` \</span>
-<span class="w">  </span>-p<span class="w"> </span><span class="m">8083</span>:8083<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-v<span class="w"> </span>/path/to/data:/config<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-v<span class="w"> </span>/path/to/calibre/library:/books<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>lscr.io/linuxserver/calibre-web:latest
-</code></pre></div>
-
+<p><code>bash
+docker run -d \
+  --name=calibre-web \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e DOCKER_MODS=linuxserver/mods:universal-calibre `#optional` \
+  -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `#optional` \
+  -p 8083:8083 \
+  -v /path/to/data:/config \
+  -v /path/to/calibre/library:/books \
+  --restart unless-stopped \
+  lscr.io/linuxserver/calibre-web:latest</code></p>
 <p>The configuration is divided into sections. We will touch: <code>Environment</code>, <code>Shared folders</code> and <code>Network</code></p>
 <p><a id="environment"></a></p>
 <h4>Environment</h4>
 <p>Set the time zone that suits you the most.
-<img alt="environment section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_environment.jpg"></p>
-<p>my settings for env</p>
-<div class="highlight"><pre><span></span><code>PUID=1000
+<img alt="environment section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_environment.jpg" /></p>
+<p>my settings for env
+<code>PUID=1000
 PGID=1000
 TZ=Europe/London
-DOCKER_MODS=linuxserver/calibre-web:calibre
-</code></pre></div>
-
-<p><a id="shared-folders"></a></p>
+DOCKER_MODS=linuxserver/calibre-web:calibre</code>
+<a id="shared-folders"></a></p>
 <h4>Shared Folders</h4>
-<p><img alt="shared section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_shared_folders.jpg">
+<p><img alt="shared section of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_shared_folders.jpg" />
 I suggest to create directory <code>calibre</code> in <code>/share/Container</code> - it will be placeholder for configuration and libraries.</p>
 <ul>
 <li>create folder <code>/share/Container/calibre/config</code> - for configuration</li>
@@ -270,14 +270,12 @@ I suggest to create directory <code>calibre</code> in <code>/share/Container</co
 <blockquote>
 <p><strong>CAUTION:</strong> QNAP's container station cannot change the shared folder settings using the Web GUI after the container is created.</p>
 </blockquote>
-<p>I've created shared folder mappings:</p>
-<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">calibre</span>
-<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">config</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">config</span><span class="w"> </span>
-<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_it</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_it</span>
-<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_life</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_life</span>
-<span class="o">/</span><span class="n">Container</span><span class="o">/</span><span class="n">calibre</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">books_ml</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">books_ml</span>
-</code></pre></div>
-
+<p>I've created shared folder mappings:
+<code>/Container/calibre -&gt; /calibre
+/Container/calibre/config -&gt; /config 
+/Container/calibre/books/books_it -&gt; /books_it
+/Container/calibre/books/books_life -&gt; /books_life
+/Container/calibre/books/books_ml -&gt; /books_ml</code></p>
 <p><a id="network"></a></p>
 <h4>Network</h4>
 <p>Set the calibre-web container IP address to e.g. 192.168.1.230.</p>
@@ -287,21 +285,19 @@ I suggest to create directory <code>calibre</code> in <code>/share/Container</co
 <p><a id="create-container"></a></p>
 <h3>Create Container</h3>
 <p>When the customizations in configuration are done, press the "Create" button and the summary of settings will be displayed.
-<img alt="summary - part 1 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg"></p>
-<p><img alt="summary - part 2 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg"></p>
+<img alt="summary - part 1 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg" /></p>
+<p><img alt="summary - part 2 - of calibre-web container configuration" src="/images/calibre_web_qnap/calibreweb_summary_1.jpg" /></p>
 <p>When creation starts, you will be redirected  to the creation screen of Container Station. While creating, you need to wait until the number (1 in the example below) near the top right of the Container Station window (right next to the IoT icon) disappears.
-<img alt="status of calibre-web container configuration" src="/images/calibre_web_qnap/calibre_web_status.jpg"></p>
+<img alt="status of calibre-web container configuration" src="/images/calibre_web_qnap/calibre_web_status.jpg" /></p>
 <p><a id="container-initialization"></a></p>
 <h3>container initialization</h3>
 <p>In the example above, we have set auto-start in the creation panel, so when the container is created, it will start running. Initialization happens when the container is first run.</p>
 <p>On the "Overview" tab of the container station, click the corresponding container name to display the status</p>
 <p>Caliber-web is not yet accessible during initialization, so we have to wait.</p>
 <p>If the following message is displayed, it seems that initialization is completed and access from the Web is possible.</p>
-<div class="highlight"><pre><span></span><code>INFO in web : Starting Calibre Web ...
-INFO in server : Starting Gevent server
-</code></pre></div>
-
-<p><img alt="calibre-web container initialization" src="/images/calibre_web_qnap/calibreweb_starting_container_console.jpg">
+<p><code>INFO in web : Starting Calibre Web ...
+INFO in server : Starting Gevent server</code>
+<img alt="calibre-web container initialization" src="/images/calibre_web_qnap/calibreweb_starting_container_console.jpg" />
 <a id="caliber-web-initial-setup"></a></p>
 <h3>Caliber-web initial setup</h3>
 <p>Once Caliber-web is available, access the container's server from a web browser.</p>

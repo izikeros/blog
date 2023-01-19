@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -188,80 +191,69 @@
 </ol>
 <h2>Windowing Approach</h2>
 <p>The discussed solution is based on the concept of analyzing signals using a sliding window with a fixed length. The consecutive windows can overlap.</p>
-<p><img alt="trend lines within the window" src="../images/trend_segmentation/trend_in_windows.jpg"></p>
+<p><img alt="trend lines within the window" src="../images/trend_segmentation/trend_in_windows.jpg" /></p>
 <p>For each window perform linear regression to find the line that best fits the signal. If the parameters of a linear regression between two windows do not differ too much, the signal covered by these two windows is considered as belonging to the same segment with a coherent trend.</p>
 <h2>Example</h2>
 <p>Let's say, we wanted to do segmentation of the time series on segments with similar trends. For that task, you can use <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> Python library. It is pip installable (<code>pip3 install trend-classifier</code>).</p>
 <p>Here is an example that gets the time series data from YahooFinance and performs the analysis.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
-<span class="kn">from</span> <span class="nn">trend_classifier</span> <span class="kn">import</span> <span class="n">Segmenter</span>
-
-<span class="c1"># download the data from yahoo finance</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2018-09-15&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2022-09-05&quot;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="s2">&quot;1d&quot;</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">x_in</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">y_in</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Adj Close&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-
-<span class="n">seg</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span> <span class="n">y_in</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">seg</span><span class="o">.</span><span class="n">calculate_segments</span><span class="p">()</span>
-</code></pre></div>
-
+<p>```python
+import yfinance as yf
+from trend_classifier import Segmenter</p>
+<h1>download the data from yahoo finance</h1>
+<p>df = yf.download("AAPL", start="2018-09-15", end="2022-09-05", interval="1d", progress=False)</p>
+<p>x_in = list(range(0, len(df.index.tolist()), 1))
+y_in = df["Adj Close"].tolist()</p>
+<p>seg = Segmenter(x_in, y_in, n=20)
+seg.calculate_segments()
+```</p>
 <p>Now, you can plot the time series with trend lines and segment boundaries with:</p>
-<div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segments</span><span class="p">()</span>
-</code></pre></div>
-
-<p><img alt="segmentation example" src="../images/trend_segmentation/screenshoot_1.jpg">
+<p><code>python
+seg.plot_segments()</code></p>
+<p><img alt="segmentation example" src="../images/trend_segmentation/screenshoot_1.jpg" />
 Figure 1. Visualization of the signal segmentation based on the trend.</p>
 <p>You can inspect details about each segment (e.g. positive value for slope indicates an up-trend and a negative down-trend). To see info about the segment with index <code>3</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">devtools</span> <span class="kn">import</span> <span class="n">debug</span>
-<span class="n">debug</span><span class="p">(</span><span class="n">seg</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</code></pre></div>
-
+<p><code>python
+from devtools import debug
+debug(seg.segments[3])</code></p>
 <p>You can have information about all segments in tabular form using <code>Segmenter.segments.to_dataframe()</code> method which produces Pandas DataFrame.</p>
-<div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
-</code></pre></div>
-
+<p><code>python
+seg.segments.to_dataframe()</code></p>
 <h2>Controlling generalization</h2>
 <p>There is a parameter that controls the "generalisation" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behaviour, when initialising <code>Segmenter()</code> (e.g. <code>Segmenter(x_in, y_in, n=20)</code> use various values for <code>n</code> parameter. The larger <code>n</code> the generalisation is stronger (fewer segments).</p>
-<p><img alt="segmentation for n=20" src="../images/trend_segmentation/segments_n_20.jpg">
+<p><img alt="segmentation for n=20" src="../images/trend_segmentation/segments_n_20.jpg" />
 Figure 2. Signal segmentation with fine granularity (weak generalization), n=20.</p>
-<p><img alt="segmentation for n=80" src="../images/trend_segmentation/segments_n_80.jpg">
+<p><img alt="segmentation for n=80" src="../images/trend_segmentation/segments_n_80.jpg" />
 Figure 3. Signal segmentation with rough granularity (strong generalization), n=80.</p>
 <h2>An exemplary application of trend detection and segmentation</h2>
 <p>This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:
 - up-trend
 - down-trend
 - the signal is in a horizontal channel</p>
-<p>We can write a very basic classifier based on the slope parameter. If the slope is positive, or higher than the threshold value, consider this segment with an up-trend. There are also separate rules for down-trend and horizontal-trend types.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">segment_classifier</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="n">th</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">segment</span><span class="o">.</span><span class="n">slope</span> <span class="o">&gt;</span> <span class="n">th</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;up&quot;</span>
-    <span class="k">elif</span> <span class="n">segment</span><span class="o">.</span><span class="n">slope</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">th</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;down&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;horiz&quot;</span>
-</code></pre></div>
-
-<p>Next, we can use this function to get indices of trends in a given type, and plot them.</p>
-<div class="highlight"><pre><span></span><code><span class="n">up_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">seg</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seg</span><span class="o">.</span><span class="n">segments</span> <span class="k">if</span> <span class="n">segment_classifier</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">]</span>
-<span class="n">down_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">seg</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seg</span><span class="o">.</span><span class="n">segments</span> <span class="k">if</span> <span class="n">segment_classifier</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;down&quot;</span><span class="p">]</span>
-<span class="n">horiz_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">seg</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seg</span><span class="o">.</span><span class="n">segments</span> <span class="k">if</span> <span class="n">segment_classifier</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;horiz&quot;</span><span class="p">]</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">up_idx</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img alt="up-trend" src="../images/trend_segmentation/uptrend.jpg">
+<p>We can write a very basic classifier based on the slope parameter. If the slope is positive, or higher than the threshold value, consider this segment with an up-trend. There are also separate rules for down-trend and horizontal-trend types.
+<code>python
+def segment_classifier(segment, th=0.1):
+    if segment.slope &gt; th:
+        return "up"
+    elif segment.slope &lt; -th:
+        return "down"
+    else:
+        return "horiz"</code></p>
+<p>Next, we can use this function to get indices of trends in a given type, and plot them.
+<code>python
+up_idx = [seg.segments.index(s) for s in seg.segments if segment_classifier(s) == "up"]
+down_idx = [seg.segments.index(s) for s in seg.segments if segment_classifier(s) == "down"]
+horiz_idx = [seg.segments.index(s) for s in seg.segments if segment_classifier(s) == "horiz"]</code></p>
+<p><code>python
+seg.plot_segment(up_idx)</code></p>
+<p><img alt="up-trend" src="../images/trend_segmentation/uptrend.jpg" />
 Figure 4. Segments classified as "up-trend".</p>
-<div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">down_idx</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img alt="down-trend" src="../images/trend_segmentation/downtrend.jpg">
+<p><code>python
+seg.plot_segment(down_idx)</code></p>
+<p><img alt="down-trend" src="../images/trend_segmentation/downtrend.jpg" />
 Figure 4. Segments classified as "down-trend".</p>
-<div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">horiz_idx</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img alt="horizontal-trend" src="../images/trend_segmentation/horiz_trend.jpg">
+<p><code>python
+seg.plot_segment(horiz_idx)</code></p>
+<p><img alt="horizontal-trend" src="../images/trend_segmentation/horiz_trend.jpg" />
 Figure 4. Segments classified as "horizontal-trend".</p>
 <p>The classification function used in the example was very simple and one can implement more robust function e.g. one, that uses other than <code>slope</code> data stored in the segment object.</p>
 <h2>Summary</h2>

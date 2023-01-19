@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -190,37 +193,31 @@
 <h3>Steps</h3>
 <h4>1. Pull the MLFlow Docker Image</h4>
 <p>The first step is to pull the MLFlow Docker image from the official repository. You can do this by running the following command in your terminal:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>mlflow/mlflow
-</code></pre></div>
-
+<p><code>sh
+docker pull mlflow/mlflow</code></p>
 <p>This command downloads the latest MLFlow image from the Docker Hub.</p>
 <h4>2. Run the MLFlow Image as a Container</h4>
 <p>Once you have the MLFlow image, you can run it as a container by executing the following command:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>mlflow/mlflow
-</code></pre></div>
-
+<p><code>sh
+docker run --rm -p 5000:5000 mlflow/mlflow</code></p>
 <p>This command starts a container from the <code>mlflow/mlflow</code> image and maps port 5000 on the host to port 5000 in the container. The <code>--rm</code> flag tells Docker to remove the container when it exits.</p>
 <h4>3. Access the MLFlow Web UI</h4>
 <p>Once the container is running, you can access the MLFlow web UI by opening a web browser and navigating to <code>http://localhost:5000</code>. You should see the MLFlow web UI, as shown below:</p>
-<p><img alt="MLFlow Web UI" src="https://mlflow.org/docs/latest/images/mlflow_tracking.png"></p>
+<p><img alt="MLFlow Web UI" src="https://mlflow.org/docs/latest/images/mlflow_tracking.png" /></p>
 <h4>4. Run MLFlow commands</h4>
 <p>You can also use the container to run your MLFlow commands by running:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="c1">--rm -p 5000:5000 mlflow/mlflow mlflow [command]</span>
-</code></pre></div>
-
+<p><code>docker run -it --rm -p 5000:5000 mlflow/mlflow mlflow [command]</code></p>
 <p>This command runs the specified <code>mlflow [command]</code> in the container.</p>
 <h4>5. Configure the Tracking URI</h4>
 <p>To use the container as a remote server, you need to configure the tracking URI. You can set the tracking URI to the container's IP address, which you can find by running</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="o">=</span><span class="s1">&#39;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39;</span><span class="w"> </span>container_name_or_id
-</code></pre></div>
-
+<p><code>sh
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id</code></p>
 <h4>6. Stop the Container</h4>
 <p>To stop the container, you can find the container id by running <code>docker ps</code> then stop the container by running <code>docker stop container_id</code></p>
 <h4>7. Persist Data</h4>
 <p>To persist the data, you can use volumes. For example, you can run</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>-v<span class="w"> </span>/path/on/host:/path/on/container<span class="w"> </span>mlflow/mlflow<span class="sb">`</span><span class="w"> </span>
-</code></pre></div>
-
+<p><code>sh
+docker run -p 5000:5000 -v /path/on/host:/path/on/container mlflow/mlflow`</code></p>
 <p>to map the host directory <code>/path/on/host</code> to the container directory <code>/path/on/container</code>.</p>
 <h3>Conclusion</h3>
 <p>In this tutorial, we have shown you how to use Docker to deploy an MLFlow server on your local machine. This is a quick and easy way to set up an MLFlow server, but please note that running MLFlow on Docker on your local machine will not give you the ability to scale horizontally or ensure high availability. You may want to consider using cloud-based MLFlow services or deploying MLFlow on a virtual machine for more production-ready</p>
@@ -252,9 +249,9 @@
     <ul class="related-posts">
       <li><a href="https://www.safjan.com/how-to-experiment-with-mlflow-locally-on-laptop-or-pc/">How to experiment with MLFlow locally on laptop or PC? Instructions for the local setup.</a></li>
       <li><a href="https://www.safjan.com/machine-learning-vs-software_development/">The difference between Machine Learning Development and traditional Software Development</a></li>
+      <li><a href="https://www.safjan.com/blue-green-deployment-in-mlops/">Understanding the Concept of Blue/Green Deployment in MLOps</a></li>
       <li><a href="https://www.safjan.com/mlops-certifications-a-comprehensive-guide/">MLOps Certifications: A Comprehensive Guide</a></li>
       <li><a href="https://www.safjan.com/roles-in-mlops/">Roles in MLOps</a></li>
-      <li><a href="https://www.safjan.com/50-questions-for-MLOps-engineer-job-interview/">50 questions for MLOps engineer job interview</a></li>
     </ul>
   </div>
 

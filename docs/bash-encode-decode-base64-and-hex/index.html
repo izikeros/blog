@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -42,7 +45,7 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="Tools xxd - make a hexdump or do the reverse. base64 - base64 encode/decode data and print to standard output Encode hex echo &#34;hello&#34; | xxd -p 68656c6c6f0a Decode hex echo &#34;68656c6c6f0a&#34; | xxd -r -p Encode base64 echo &#34;hello&#34; | base64 aGVsbG8K Decode base64 echo …" />
+<meta name="description" content="Tools xxd - make a hexdump or do the reverse. base64 - base64 encode/decode data and print to standard output Encode hex sh echo &#34;hello&#34; | xxd -p 68656c6c6f0a Decode hex sh echo &#34;68656c6c6f0a&#34; | xxd -r -p Encode base64 sh echo &#34;hello&#34; | base64 aGVsbG8K …" />
 <meta name="keywords" content="base64, bash, decode, encode, hex">
 <meta expr:content="2022-05-20 00:00:00+02:00" itemprop='datePublished'/>
 <meta expr:content="2022-05-20 00:00:00+02:00" itemprop='dateModified'/>
@@ -62,7 +65,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Bash - encode, decode base64 and hex"/>
-  <meta property="og:description" content="Tools xxd - make a hexdump or do the reverse. base64 - base64 encode/decode data and print to standard output Encode hex echo &#34;hello&#34; | xxd -p 68656c6c6f0a Decode hex echo &#34;68656c6c6f0a&#34; | xxd -r -p Encode base64 echo &#34;hello&#34; | base64 aGVsbG8K Decode base64 echo …"/>
+  <meta property="og:description" content="Tools xxd - make a hexdump or do the reverse. base64 - base64 encode/decode data and print to standard output Encode hex sh echo &#34;hello&#34; | xxd -p 68656c6c6f0a Decode hex sh echo &#34;68656c6c6f0a&#34; | xxd -r -p Encode base64 sh echo &#34;hello&#34; | base64 aGVsbG8K …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/bash-encode-decode-base64-and-hex/"/>
   <meta property="og:type" content="article"/>
@@ -187,40 +190,34 @@
 <p><code>xxd</code> - make a hexdump or do the reverse.
 <code>base64</code> - base64 encode/decode data and print to standard output</p>
 <h2>Encode hex</h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-p
-68656c6c6f0a
-</code></pre></div>
-
+<p><code>sh
+echo "hello" | xxd -p
+68656c6c6f0a</code></p>
 <h2>Decode hex</h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;68656c6c6f0a&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-p
-</code></pre></div>
-
+<p><code>sh
+echo "68656c6c6f0a" | xxd -r -p</code></p>
 <h2>Encode base64</h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
-aGVsbG8K
-</code></pre></div>
-
+<p><code>sh
+echo "hello" | base64
+aGVsbG8K</code></p>
 <h2>Decode base64</h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;aGVsbG8K&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
-</code></pre></div>
-
+<p><code>sh
+echo "aGVsbG8K" | base64 --decode</code></p>
 <h2>Encode/decode ROT13</h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;[A-Za-z]&#39;</span><span class="w"> </span><span class="s1">&#39;[N-ZA-Mn-za-m]&#39;</span>
-</code></pre></div>
-
+<p><code>sh
+echo "Hello" | tr '[A-Za-z]' '[N-ZA-Mn-za-m]'</code></p>
 <h2>Caesar cipher encoding</h2>
 <p>(from: https://gist.github.com/IQAndreas/030b8e91a8d9a407caa6)
 The Caesar Cipher shifts plaintext three letters to the left to create ciphertext.</p>
 <p>In this case, <code>tr '[A-Z]' '[X-ZA-W]'</code>, tr translates all occurrences of 'A' to 'X', 'B' to 'Y', 'C' to 'Z', 'D' to 'A', etc.</p>
 <p><code>[X-ZA-W]</code> just means that your output starts with the letter X and continues through the letter Z, then continues with the letter A through the letter W. You could also use <code>[XYZABCDEFGHIJKLMNOPQRSTUVW]</code> instead but tr understands the hyphen '-' to mean 'through'.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;[A-Z]&#39;</span><span class="w"> </span><span class="s1">&#39;[X-ZA-W]&#39;</span>
-QEB<span class="w"> </span>NRFZH<span class="w"> </span>YOLTK<span class="w"> </span>CLU<span class="w"> </span>GRJMP<span class="w"> </span>LSBO<span class="w"> </span>QEB<span class="w"> </span>IXWV<span class="w"> </span>ALD
-</code></pre></div>
-
+<p><code>sh
+echo "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG" | tr '[A-Z]' '[X-ZA-W]'
+QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD</code></p>
 <h2>Caesar cipher decoding</h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;[X-ZA-W]&#39;</span><span class="w"> </span><span class="s1">&#39;[A-Z]&#39;</span>
-THE<span class="w"> </span>QUICK<span class="w"> </span>BROWN<span class="w"> </span>FOX<span class="w"> </span>JUMPS<span class="w"> </span>OVER<span class="w"> </span>THE<span class="w"> </span>LAZY<span class="w"> </span>DOG
-</code></pre></div>
+<p><code>sh
+echo "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD" | tr '[X-ZA-W]' '[A-Z]'
+THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG</code></p>
   </div>
 
 

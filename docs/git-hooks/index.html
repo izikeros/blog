@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -189,42 +192,35 @@
     + workflow
     + commit practices and format</p>
 <h1>Exemplary check before the commit</h1>
-<p>If not exists, create <code>hooks</code> directory in the <code>.git</code> folder of the demo and add these files.</p>
-<div class="highlight"><pre><span></span><code><span class="na">.git</span><span class="err">/</span><span class="no">hooks</span>
-<span class="err">├──</span><span class="w"> </span><span class="nf">isort_hooks.py</span>
-<span class="err">└──</span><span class="w"> </span><span class="nf">pre-commit</span>
-</code></pre></div>
-
-<p>isort_hooks.py</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="kn">from</span> <span class="nn">isort.hooks</span> <span class="kn">import</span> <span class="n">git_hook</span>
-
-<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">git_hook</span><span class="p">(</span><span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">modify</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</code></pre></div>
-
-<p>pre-commit</p>
-<div class="highlight"><pre><span></span><code><span class="nb">set</span><span class="w"> </span>-e<span class="w">  </span><span class="c1"># stop script execution when error encoutered</span>
-
-<span class="c1"># Run flake8 check</span>
-flake8<span class="w"> </span>.
-
-<span class="c1"># Sort imports with isort</span>
-python<span class="w"> </span>./.githooks/isort_hooks.py
-</code></pre></div>
-
+<p>If not exists, create <code>hooks</code> directory in the <code>.git</code> folder of the demo and add these files.
+<code>.git/hooks
+├── isort_hooks.py
+└── pre-commit</code></p>
+<p>isort_hooks.py
+```python</p>
+<h1>!/usr/bin/env python</h1>
+<p>import sys</p>
+<p>from isort.hooks import git_hook</p>
+<p>sys.exit(git_hook(strict=True, modify=True))
+```</p>
+<p>pre-commit
+```sh
+set -e  # stop script execution when error encoutered</p>
+<h1>Run flake8 check</h1>
+<p>flake8 .</p>
+<h1>Sort imports with isort</h1>
+<p>python ./.githooks/isort_hooks.py
+```</p>
 <h1>Alternatives</h1>
 <p>There is a tool <a href="https://pre-commit.com/">pre-commit</a> that eases the installation and configuration of git hooks. Read my note on that: <a href="./pre-commit-hooks/">Pre-commit hooks</a></p>
 <p>References:
 - <a href="https://githooks.com/">Git Hooks</a> - user-friendly description, tons of examples, reference links
 - <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git Book on hooks</a> - </p>
 <h1>Sharing git hooks with the team</h1>
-<p>Nowadays you can do the following to set a directory that is under version control to be your git hooks directory, e.g., <code>MY_REPO_DIR/.githooks</code> would be</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--local<span class="w"> </span>core.hooksPath<span class="w"> </span>.githooks/
-</code></pre></div>
-
-<p>Still not directly enforceable but, if you add a note in your README (or whatever), this requires a minimum of effort on each developer's part.
+<p>Nowadays you can do the following to set a directory that is under version control to be your git hooks directory, e.g., <code>MY_REPO_DIR/.githooks</code> would be
+<code>sh
+git config --local core.hooksPath .githooks/</code>
+Still not directly enforceable but, if you add a note in your README (or whatever), this requires a minimum of effort on each developer's part.
 Source: <a href="https://stackoverflow.com/a/54281447/3247880">Stackoverflow</a></p>
 <p>See also:
 - <a href="https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/">Two Ways to Share Git Hooks with Your Team</a></p>

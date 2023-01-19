@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -247,17 +250,16 @@ Algorithm initialization:</p>
 <li><strong>Create children</strong> - new organisms are born and their genome (route) consists of parts of routes coming from both parents (crossover mechanism). Add mutation to introduce further variation in the population;</li>
 <li><strong>Repeat the cycle</strong> - go to step 1, and start a new epoch.</li>
 </ol>
-<p><img alt="steps" src="/images/tsp/tsp_steps.png"></p>
+<p><img alt="steps" src="/images/tsp/tsp_steps.png" /></p>
 <p><strong>Figure 1. Steps of evolution algorithm</strong></p>
 <p><a id="adaptation"></a></p>
 <h2>Adaptation</h2>
 <p>I decided to include mechanisms for minor, local improvements that in nature, organisms might be able to perform to better fit the environment. The implementation of the adaptation is twofold:
 1. Swap two consecutive cities on the list that represents the route and check if the change brought an improvement - if so, keep the change and check another pair of cities until the end of the list.
 2. Reverse three elements route segments and similarly, as in the previous method - keep the change if the new, candidate route with the reversed segment is shorter than the version with the non-reversed segment.
-Both are implemented "swapper" or "reverser" as moving along the list of cities in the route.</p>
-<!-- ![TODO](tsp_reverse_two.jpg) -->
-<!-- ![TODO](tsp_reverse_three.jpg) -->
-
+Both are implemented "swapper" or "reverser" as moving along the list of cities in the route.
+<!-- <img alt="TODO" src="tsp_reverse_two.jpg" /> -->
+<!-- <img alt="TODO" src="tsp_reverse_three.jpg" /> --></p>
 <p><a id="natural-selection"></a></p>
 <h2>Natural selection</h2>
 <p>Natural selection allows to remove of poor solutions and makes room for new experimental variants of routes that inherit features from the best solutions found so far. The implementation was to sort the solutions in the ascending order and keep only <code>10%</code> of the best solutions. </p>
@@ -280,23 +282,21 @@ When drawing pairs, the organism is assigned to the role of mother or father whi
 
 <p><a id="evolution-in-action"></a></p>
 <h1>Evolution in action</h1>
-<p>The whole setup of the experiment is highly parameterised and gives endless opportunities to experiment with various setups. The results shown in this blog were produced for this parametrization:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># number of cities</span>
-<span class="n">num_cities</span> <span class="o">=</span> <span class="mi">80</span>
-
-<span class="c1"># size of initial population (number of initial random routes)</span>
-<span class="n">num_routes</span> <span class="o">=</span> <span class="mi">400</span>
-
-<span class="c1"># fraction of organisms that survives natural selection process</span>
-<span class="n">survival</span> <span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.1</span>
-</code></pre></div>
-
+<p>The whole setup of the experiment is highly parameterised and gives endless opportunities to experiment with various setups. The results shown in this blog were produced for this parametrization:
+```python</p>
+<h1>number of cities</h1>
+<p>num_cities = 80</p>
+<h1>size of initial population (number of initial random routes)</h1>
+<p>num_routes = 400</p>
+<h1>fraction of organisms that survives natural selection process</h1>
+<p>survival ratio = 0.1
+```</p>
 <p>In the first step of implementation, I was able to measure the effect of local adaptation and the gains achieved with this mechanism. While running a single swap of two elements and single reverse or three elements segment gains on random routes were up to 1%. Graphical representation of the route changes confirms that improvement was small - routes still have a high degree of randomness and are far from optimal.</p>
 <p>In the next step, I brought this adaptation process to an extreme number to check its potential - what maximum improvements are possible here. Of course, achieving stabilization of the results here would be difficult but I verified what will happen when we change a number of two- and three elements reversing cycles from 1x to 100x times. The improvements achieved in this configuration were XX on average.</p>
 <p>The next step involved the full process and proved crossover and mutation to be efficient for improving solution quality i.e. finding as short route as possible.</p>
-<p><img alt="best tour" src="/images/tsp/tsp_r-tour_animation.gif"></p>
+<p><img alt="best tour" src="/images/tsp/tsp_r-tour_animation.gif" /></p>
 <p><strong>Figure 2. Visualization of best route found in each epoch</strong></p>
-<p><img alt="length" src="/images/tsp/tsp_r-len.png"></p>
+<p><img alt="length" src="/images/tsp/tsp_r-len.png" /></p>
 <p><strong>Figure 3. Length of shortest route found in the given epoch of evolution process</strong></p>
 <p><a id="conclusion"></a></p>
 <h1>Conclusion</h1>
@@ -429,11 +429,11 @@ Cover image from https://commons.wikimedia.org/wiki/File:High_School_Biology_1-1
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
+      <li><a href="https://www.safjan.com/histogram-intersection/">Histogram intersection</a></li>
+      <li><a href="https://www.safjan.com/random-forest-understand-and-tweak/">Tools that Helps to Understand and Tweak Random Forest Classifier</a></li>
+      <li><a href="https://www.safjan.com/How-to-use-Polish-wordnet-in-python/">How to use the Polish WordNet in Python?</a></li>
       <li><a href="https://www.safjan.com/creating-command-line-tools-from-machine-learning-models/">Creating Command Line Tools from Machine Learning Models</a></li>
       <li><a href="https://www.safjan.com/deploying-mlflow-on-local-machine-using-docker/">Deploying MLFlow on Local Machine using Docker</a></li>
-      <li><a href="https://www.safjan.com/machine-learning-vs-software_development/">The difference between Machine Learning Development and traditional Software Development</a></li>
-      <li><a href="https://www.safjan.com/when-the-bayesian-methods-are-not-the-best-option/">When Bayesian methods are not the best option?</a></li>
-      <li><a href="https://www.safjan.com/how-to-experiment-with-mlflow-locally-on-laptop-or-pc/">How to experiment with MLFlow locally on laptop or PC? Instructions for the local setup.</a></li>
     </ul>
   </div>
 

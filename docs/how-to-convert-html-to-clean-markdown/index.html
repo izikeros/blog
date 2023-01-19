@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -187,9 +190,8 @@
   <div>
     <p>I have collected source material in form of HTML pages that I would like to keep in one place as knowledge base (technically: create <a href="https://obsidian.md/">Obsidian</a> vault for these pages). But first I needed to convert them all to Markdown. First tool to use that came into my mind was using <a href="https://pandoc.org/">Pandoc</a></p>
 <p>I started with basic syntax to check what is my baseline:</p>
-<div class="highlight"><pre><span></span><code>pandoc<span class="w"> </span>-i<span class="w"> </span>index.html<span class="w"> </span>-o<span class="w"> </span>index.md
-</code></pre></div>
-
+<p><code>sh
+pandoc -i index.html -o index.md</code></p>
 <p>The text were converted to markdown but had some additional elements that wish not to see in the output markdown document. 
 - remaining after div elements, iframes
 - references in curly brackets
@@ -224,33 +226,32 @@
 
 -   "Happiness doesn't just flow from success, it actually causes it".
 
-
-<div class="highlight"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="o">--&gt;</span>
-</code></pre></div>
-
-
+```{=html}
+<!-- -->
+```
 </pre>
 
 <p>Using <code>--strict, -s</code> mode adds YAML frontmatter with metadata - which contains few fields that I want to keep.</p>
 <h2>My final solution</h2>
 <p>To remove parts that remained in Markdown document you can use <code>grep</code> and <code>sed</code></p>
-<div class="highlight"><pre><span></span><code>pandoc<span class="w"> </span>-s<span class="w"> </span>-i<span class="w"> </span>index.html<span class="w"> </span>-t<span class="w"> </span>markdown<span class="w"> </span><span class="p">|</span><span class="se">\</span>
-grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^:&quot;</span><span class="w"> </span><span class="p">|</span><span class="se">\</span>
-grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^```&#39;</span><span class="w"> </span><span class="p">|</span><span class="se">\</span>
-grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;&lt;!-- --&gt;&#39;</span><span class="w"> </span><span class="p">|</span><span class="se">\</span>
-sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;:again&#39;</span><span class="w"> </span>-e<span class="w"> </span>N<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;$!b again&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/{[^}]*}//g&#39;</span><span class="w"> </span><span class="se">\</span>
-&gt;!<span class="w"> </span>index.md
-</code></pre></div>
-
-<p>The sed is used to remove content in curly brackets spanning multiple lines:</p>
-<div class="highlight"><pre><span></span><code># Linux
-sed &#39;:again;$!N;$!b again; s/{[^}]*}//g&#39;
-
-# macOS
-sed -e &#39;:again&#39; -e N -e &#39;$!b again&#39; -e &#39;s/{[^}]*}//g&#39; file
-</code></pre></div>
-
-<p>solution by <a href="https://unix.stackexchange.com/users/53604/john1024">John1024</a> from: <a href="https://unix.stackexchange.com/a/166878/359426">Linux Stack Exchange</a></p>
+<p><code>sh
+pandoc -s -i index.html -t markdown |\
+grep -v "^:" |\
+grep -v '^</code>' |\
+grep -v '<!-- -->' |\
+sed -e ':again' -e N -e '$!b again' -e 's/{[^}]*}//g' \</p>
+<blockquote>
+<p>! index.md
+```</p>
+</blockquote>
+<p>The sed is used to remove content in curly brackets spanning multiple lines:
+```</p>
+<h1>Linux</h1>
+<p>sed ':again;<span class="math">\(!N;\)</span>!b again; s/{[^}]*}//g'</p>
+<h1>macOS</h1>
+<p>sed -e ':again' -e N -e '$!b again' -e 's/{[^}]*}//g' file
+```
+solution by <a href="https://unix.stackexchange.com/users/53604/john1024">John1024</a> from: <a href="https://unix.stackexchange.com/a/166878/359426">Linux Stack Exchange</a></p>
 <h2>Note</h2>
 <p>You can further experiment with Markdown variants supported by pandoc.</p>
 <p>In addition to pandoc’s extended Markdown, the following Markdown variants are supported:</p>
@@ -265,6 +266,68 @@ sed -e &#39;:again&#39; -e N -e &#39;$!b again&#39; -e &#39;s/{[^}]*}//g&#39; fi
 </ul>
 <h2>See also:</h2>
 <p>[[convert_markdown_to_pdf]]</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div>
 
 

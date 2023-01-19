@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
           href="https://www.safjan.com/theme/pygments/github.min.css">
@@ -42,11 +45,11 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="delete branch locally git branch -d localBranchName use -D to force removing not fully-merged branches delete branch remotely git push origin --delete remoteBranchName see also: [[git_delete_branches_merged_into_main_branch]] Helper - list branches All branches git branch -a Remote branches git branch -r up:: [[MOC_git]]]" />
+<meta name="description" content="Introduction Git is a powerful tool for version control, and it is widely used by developers to keep track of changes in their code. One of the key features of Git is the ability to create and manage branches, which allows developers …" />
 <meta name="keywords" content="branch, delete, git">
 <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='datePublished'/>
-<meta expr:content="2022-05-12 00:00:00+02:00" itemprop='dateModified'/>
-<meta property="article:modified_time" content="2022-05-12 00:00:00+02:00"/>
+<meta expr:content="2023-01-17 00:00:00+01:00" itemprop='dateModified'/>
+<meta property="article:modified_time" content="2023-01-17 00:00:00+01:00"/>
 <meta property="article:published_time" content="2022-05-12 00:00:00+02:00"/>
 <script type="application/ld+json">
 {
@@ -54,7 +57,7 @@
   "@type": "BlogPosting",
   "headline": "How to delete a Git branch locally and remotely?",
   "datePublished": "2022-05-12 00:00:00+02:00",
-  "dateModified": "2022-05-12 00:00:00+02:00"
+  "dateModified": "2023-01-17 00:00:00+01:00"
 }
 </script>
 
@@ -62,12 +65,12 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="How to delete a Git branch locally and remotely?"/>
-  <meta property="og:description" content="delete branch locally git branch -d localBranchName use -D to force removing not fully-merged branches delete branch remotely git push origin --delete remoteBranchName see also: [[git_delete_branches_merged_into_main_branch]] Helper - list branches All branches git branch -a Remote branches git branch -r up:: [[MOC_git]]]"/>
+  <meta property="og:description" content="Introduction Git is a powerful tool for version control, and it is widely used by developers to keep track of changes in their code. One of the key features of Git is the ability to create and manage branches, which allows developers …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/git-delete-branch/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2022-05-12 00:00:00+02:00"/>
-  <meta property="article:modified_time" content="2022-05-12 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-01-17 00:00:00+01:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="branch"/>
@@ -181,27 +184,27 @@
 
 
   <div>
-    <p>delete branch locally</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>localBranchName
-</code></pre></div>
-
-<p>use <code>-D</code> to force removing not fully-merged branches</p>
-<p>delete branch remotely</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>remoteBranchName
-</code></pre></div>
-
-<p>see also: 
-[[git_delete_branches_merged_into_main_branch]]</p>
-<h3>Helper -  list branches</h3>
-<p>All branches</p>
-<div class="highlight"><pre><span></span><code>git branch -a
-</code></pre></div>
-
-<p>Remote branches</p>
-<div class="highlight"><pre><span></span><code>git branch -r
-</code></pre></div>
-
-<p>up:: [[MOC_git]]]</p>
+    <h2>Introduction</h2>
+<p>Git is a powerful tool for version control, and it is widely used by developers to keep track of changes in their code. One of the key features of Git is the ability to create and manage branches, which allows developers to work on different versions of their code simultaneously. However, as the number of branches grows, it can become difficult to keep track of them all, and it may be necessary to delete some of them. In this article, we will explore how to delete a Git branch locally and remotely.</p>
+<h2>Deleting a Branch Locally</h2>
+<p>To delete a branch locally in Git, you can use the <code>git branch -d</code> command followed by the name of the branch you wish to delete. For example, if you want to delete a branch named <code>localBranchName</code>, you would use the following command:</p>
+<p><code>git branch -d localBranchName</code></p>
+<p>It's important to note that this command will only delete the branch if it has already been fully merged into the main branch. If you want to force delete a branch that has not been fully merged, you can use the <code>-D</code> option instead of <code>-d</code>. For example:</p>
+<p><code>git branch -D localBranchName</code></p>
+<h2>Deleting a Branch Remotely</h2>
+<p>To delete a branch remotely in Git, you can use the <code>git push origin --delete</code> command followed by the name of the branch you wish to delete. For example, if you want to delete a branch named <code>remoteBranchName</code>, you would use the following command:</p>
+<p><code>git push origin --delete remoteBranchName</code></p>
+<p>It's also possible to delete branches that have been merged into the main branch using git command <code>git branch --merged</code> and <code>git branch -d branchName</code>. You can learn more about this by visiting <a href="https://www.example.com/git_delete_branches_merged_into_main_branch">git_delete_branches_merged_into_main_branch</a></p>
+<h2>Helper - Listing Branches</h2>
+<p>To list all branches in your local repository, you can use the <code>git branch -a</code> command. This will show you both local and remote branches. To see only remote branches, you can use the <code>git branch -r</code> command.</p>
+<h2>Reference - Git documentation</h2>
+<p>The official Git documentation on deleting branches can be found here: 
+- <a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">Git - Basic Branching and Merging</a>
+- <a href="https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches">Git - Remote Branches</a></p>
+<p>This link provides detailed instructions and options for deleting branches in Git, including how to delete both local and remote branches, as well as how to force delete branches that have not been fully merged.</p>
+<h2>Summary</h2>
+<p>In this article, we have covered how to delete a Git branch locally and remotely. Remember that it's important to be cautious when deleting branches, as this action cannot be undone. </p>
+<p>up:: [[MOC_git]]</p>
   </div>
 
 
