@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -187,33 +185,41 @@
   <div>
     <p>The <a href="https://github.com/blacksmithgu/obsidian-dataview">obsidian-dataview</a> plugin allows reading data from the notes in the vault and data files such as CSV. Both <code>dataview</code> and <code>dataviewjs</code> can be used for that purpose. I'm more fluent in using <code>dataview</code> therefore I will dedicate more space to this solution</p>
 <h2>Reading with dataview</h2>
-<p>Assume, that you have a CSV file <code>my_data.csv</code> with contents:
-<code>eventDate;eventName
+<p>Assume, that you have a CSV file <code>my_data.csv</code> with contents:</p>
+<div class="highlight"><pre><span></span><code>eventDate;eventName
 2022-01-02;Birthday
 2022-01-07;Lake excursion
 2022-01-12;River
 2022-01-13;Sunrise
 2022-01-13;Sunset
 2022-01-16;Mountain Excursion
-2022-01-21;Evening at home</code></p>
+2022-01-21;Evening at home
+</code></pre></div>
+
 <p>Reading tabular data
-You can read and display the contents of that file as a table using <code>dataview</code> code:
-<code></code>dataview
+You can read and display the contents of that file as a table using <code>dataview</code> code:</p>
+<div class="highlight"><pre><span></span><code>    ```dataview
     TABLE WITHOUT ID eventDate, eventName
-    FROM csv("my_data.csv")
-    <code></code></p>
-<p>In this specific case, one column contains dates and you might want to display data in a specific format. In my case - I needed dates in <code>YYYY-MM-DD</code> format. You can do date formatting on reading using <code>dateformat</code>:
-<code></code>dataview
-    TABLE WITHOUT ID dateformat(eventDate, "yyyy-MM-dd") As eventDate, eventName
-    FROM csv("my_data.csv")
-    <code></code></p>
+    FROM csv(&quot;my_data.csv&quot;)
+    ```
+</code></pre></div>
+
+<p>In this specific case, one column contains dates and you might want to display data in a specific format. In my case - I needed dates in <code>YYYY-MM-DD</code> format. You can do date formatting on reading using <code>dateformat</code>:</p>
+<div class="highlight"><pre><span></span><code>    ```dataview
+    TABLE WITHOUT ID dateformat(eventDate, &quot;yyyy-MM-dd&quot;) As eventDate, eventName
+    FROM csv(&quot;my_data.csv&quot;)
+    ```
+</code></pre></div>
+
 <h2>Reading with dataviewjs</h2>
-<p>For reading data from csv with dataviewjs you can use someting along this lines:
-<code></code>dataviewjs
-    const myData = await dv.io.csv("my_data.csv");
-    dv.table(["eventDate", "eventName"], myData)
-    <code></code>
-Reading CSV files with <code>dataviewjs</code> is also possible. From the <a href="https://blacksmithgu.github.io/obsidian-dataview/api/code-reference/#dviocsvpath-origin-file">official documentation</a>:</p>
+<p>For reading data from csv with dataviewjs you can use someting along this lines:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="err">```</span><span class="n">dataviewjs</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">myData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">dv</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;my_data.csv&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">dv</span><span class="o">.</span><span class="n">table</span><span class="p">([</span><span class="s2">&quot;eventDate&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;eventName&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">myData</span><span class="p">)</span>
+<span class="w">    </span><span class="err">```</span>
+</code></pre></div>
+
+<p>Reading CSV files with <code>dataviewjs</code> is also possible. From the <a href="https://blacksmithgu.github.io/obsidian-dataview/api/code-reference/#dviocsvpath-origin-file">official documentation</a>:</p>
 <blockquote>
 <p>Load a CSV from the given path (a link or string). Relative paths will be resolved relative to the optional origin file (defaulting to the current file if not provided). Return a dataview array, each element containing an object of the CSV values; if the file does not exist, return <code>undefined</code>.</p>
 <p><code>await dv.io.csv("hello.csv") =&gt; [{ column1: ..., column2: ...}, ...]</code></p>

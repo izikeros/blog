@@ -9,7 +9,7 @@ slug: tools-for-doc-deskewing-and-dewarping
 category: Data Science
 citation_needed: false
 todo: Add credits to all images, copy images instead of hot linking 
-Image: /images/head/dewarp_deskew.jpg
+Image: images/head/dewarp_deskew.jpg
 ---
 
 Sometimes input for document processing tasks such as OCR, table detection, or text segmentation can be scan, or photo taken from hand that does not have an ideal perspective - is rotated or spatially distorted in some way (warped document).

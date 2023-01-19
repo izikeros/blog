@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -76,10 +74,10 @@
   <meta property="article:tag" content="github"/>
   <meta property="article:tag" content="coding"/>
   <meta property="article:tag" content="ai"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/copilot-warp-speed-head.jpg">
+  <meta property="og:image" content="https://www.safjan.com/images/head/copilot-warp-speed-head.jpg">
 
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:image" content="https://www.safjan.com//images/head/copilot-warp-speed-head.jpg"/>
+    <meta name="twitter:image" content="https://www.safjan.com/images/head/copilot-warp-speed-head.jpg"/>
     <meta name="twitter:label1" content="Est. reading time"/>
     <meta name="twitter:data1" content="4 min."/>
     <meta name="twitter:site" content="@izikeros"/>
@@ -202,7 +200,7 @@
 <p>In brief: <a href="https://copilot.github.com/">GitHub Copilot</a>, gives suggestions for whole lines or entire functions right inside your editor as you type. Currently, there is support for Visual Studio Code, Neovim, and JetBrains IDEs like PyCharm and IntelliJ IDEA.
 GitHub Copilot is powered by the OpenAI Codex AI system, and, as authors claimed, trained on public internet text and billions of lines of code.</p>
 <p>The way how it is used is that human programmer provides comment with intention what code he/she would like to get, and as autocomplete suggestion gets whole functions of classes. GitHub Copilot uses not only exact comment test but also context of the code that is expected to be auto-generated.</p>
-<p><img alt="img" src="https://copilot.github.com/diagram.png" />
+<p><img alt="img" src="https://copilot.github.com/diagram.png">
 Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and Private Code and IDE. Image from: copilot.github.com</p>
 <h2>2. How to get it?</h2>
 <p>Access to GitHub Copilot is limited to a small group of testers during the technical preview. You can sign up and join the wait-list to try it out <a href="https://github.com/features/copilot/signup">here</a>.</p>
@@ -215,79 +213,84 @@ What I learned by the time of writing this post, are the few simple rules that c
 <p>For the simple cases: just write  comment that describe behavior for the code that you want to get as suggestion.
 As example - we want to get a function that will return paths to all images in given directory and sub-directories. We are interested only in images of given type (specified file extensions).</p>
 <p>Here is first attempt to get code auto completion from GitHub copilot.</p>
-<p><img alt="img" src="../images/copilot/copilot_1.gif" /></p>
+<p><img alt="img" src="../images/copilot/copilot_1.gif"></p>
 <p>Figure 2. Autosuggestion obtained as auto-completion to comment describing behavior of the function.</p>
 <p>The example above illustrate how we started with initial suggestion for the comment and how the suggested  comment was refined as suggestions were provided by Copilot. The first suggestion for the code was very near the expectation - one thing that is missing is the support for selecting file extensions of interest.</p>
 <p>Let's try to modify function signature and add list of extensions (and type hints):
 old signature was:</p>
-<p><code>python
-def get_images_in_dir(directory):</code>
-new signature:
-<code>python
-def get_images_in_dir(directory: str, extensions: List[str]) -&gt; list:</code></p>
-<p>And this time resulting code that meet requirements:
-<code>python
-def get_images_in_dir(directory: str, extensions: List[str]) -&gt; list:
-    """
-    Get list of images in a directory, recursively. Include extensions:
-    .jpg, .png, cr2, etc.
-    :param directory: str
-    :param extensions: list
-    :return: list
-    """
-    images = []
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.lower().endswith(tuple(extensions)):
-                images.append(os.path.join(root, file))
-    return images</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_images_in_dir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+</code></pre></div>
+
+<p>new signature:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_images_in_dir</span><span class="p">(</span><span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extensions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</code></pre></div>
+
+<p>And this time resulting code that meet requirements:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_images_in_dir</span><span class="p">(</span><span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extensions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get list of images in a directory, recursively. Include extensions:</span>
+<span class="sd">    .jpg, .png, cr2, etc.</span>
+<span class="sd">    :param directory: str</span>
+<span class="sd">    :param extensions: list</span>
+<span class="sd">    :return: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">extensions</span><span class="p">)):</span>
+                <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">images</span>
+</code></pre></div>
+
 <p>Other examples of functions that short comment can sufficiently describe responsibility:</p>
-<p>```</p>
-<h1>get image of the day from bing (or Wikipedia/NASA/...)</h1>
-<h1>convert a list of dictionaries to a list of lists</h1>
-<h1>get information using public API from stocktwits</h1>
-<p>```</p>
+<div class="highlight"><pre><span></span><code># get image of the day from bing (or Wikipedia/NASA/...)
+
+# convert a list of dictionaries to a list of lists
+
+# get information using public API from stocktwits
+</code></pre></div>
+
 <h2>Simple case - write function name</h2>
 <p>Starting with descriptive function name can work as well:
- <img alt="img" src="../images/copilot/copilot_2.gif" /></p>
+ <img alt="img" src="../images/copilot/copilot_2.gif"></p>
 <h3>More complex cases - write pseudocode</h3>
 <p>For the complex cases: write line of comment that describe behavior for the code that you want to get as suggestion.
 Example:</p>
-<p>Comment with purpose of the function and pseudocode describing elements of solution
-```python</p>
-<h1>Check if two nested lists have the same dictionaries</h1>
-<h1>pseudocode:</h1>
-<h1>1. Check if two top-level lists have the same length</h1>
-<h1>2. Check if each pair of lower-level lists have the same length</h1>
-<h1>3. Check if each pair of lower-level lists have the same keys and values</h1>
-<p>```</p>
-<p>Resulting code:
-```python
-def check_lists_equal_nested(list_1: list, list_2: list) -&gt; bool:
-    """
-    Check if two nested lists have the same dictionaries
-    :param list_1: list
-    :param list_2: list
-    :return: bool
-    """
-    # 1. Check if two top-level lists have the same length
-    if len(list_1) != len(list_2):
-        return False</p>
-<pre><code># 2. Check if each pair of lower-level lists have the same length
-for i in range(len(list_1)):
-    if len(list_1[i]) != len(list_2[i]):
-        return False
+<p>Comment with purpose of the function and pseudocode describing elements of solution</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check if two nested lists have the same dictionaries</span>
+<span class="c1"># pseudocode:</span>
+<span class="c1"># 1. Check if two top-level lists have the same length</span>
+<span class="c1"># 2. Check if each pair of lower-level lists have the same length</span>
+<span class="c1"># 3. Check if each pair of lower-level lists have the same keys and values</span>
+</code></pre></div>
 
-# 3. Check if each pair of lower-level lists have the same keys and values
-for i in range(len(list_1)):
-    for j in range(len(list_1[i])):
-        if list_1[i][j] != list_2[i][j]:
-            return False
+<p>Resulting code:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_lists_equal_nested</span><span class="p">(</span><span class="n">list_1</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">list_2</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if two nested lists have the same dictionaries</span>
+<span class="sd">    :param list_1: list</span>
+<span class="sd">    :param list_2: list</span>
+<span class="sd">    :return: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1. Check if two top-level lists have the same length</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
 
-return True
-</code></pre>
-<p>```
- <img alt="img" src="../images/copilot/copilot_1.gif" /></p>
+    <span class="c1"># 2. Check if each pair of lower-level lists have the same length</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_1</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_2</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># 3. Check if each pair of lower-level lists have the same keys and values</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_1</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_1</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="n">list_1</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">list_2</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div>
+
+<p><img alt="img" src="../images/copilot/copilot_1.gif"></p>
 <h2>More complex cases - write pseudocode</h2>
 <p>For functions with complex business logic <strong>divide them into multiple smaller functions</strong>. Purpose of smaller function is easier to describe with just function name or the comment/docstring. This is well known rule (at least from ancient Greeks) allowing to break big problem into smaller that are much easier to address.</p>
 <blockquote>

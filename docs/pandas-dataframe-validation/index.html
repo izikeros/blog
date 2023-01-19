@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -208,53 +206,60 @@
 <p>Two things I found most useful and use most are Pandera and Dataenforce.</p>
 <p><a id="pandera-515-stars---column-validation-columns-types-dataframe-schema"></a></p>
 <h2>Pandera (515 stars) - column validation (columns, types), DataFrame Schema</h2>
-<p>```python
-import pandera as pa</p>
-<p>schema = pa.DataFrameSchema(
-    columns={
-        "height_in_cm": pa.Column(pa.Int),
-        "age_category": pa.Column(pa.String),
-    },
-    index=pa.Index(pa.Int, name="person_id"),
-)</p>
-<h1>Usage for schema check</h1>
-<p>schema(df_dataset)
-```
-Medium article <a href="https://towardsdatascience.com/validate-your-pandas-dataframe-with-pandera-2995910e564">"Validate Your pandas DataFrame with Pandera</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandera</span> <span class="k">as</span> <span class="nn">pa</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">DataFrameSchema</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;height_in_cm&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Int</span><span class="p">),</span>
+        <span class="s2">&quot;age_category&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">String</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Int</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;person_id&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Usage for schema check</span>
+<span class="n">schema</span><span class="p">(</span><span class="n">df_dataset</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Medium article <a href="https://towardsdatascience.com/validate-your-pandas-dataframe-with-pandera-2995910e564">"Validate Your pandas DataFrame with Pandera</a></p>
 <p><a id="dataenforce-59-stars---columns-presence-validation"></a></p>
 <h2>Dataenforce (59 stars) - columns presence validation</h2>
 <p>used for
 <a id="for-type-hinting-column-names-check-dtype-check"></a></p>
 <h3>for type hinting (column names check, dtype check)</h3>
-<p><code>python
-from dataenforce import Dataset
-def process_data(data: Dataset["id": int, "name": object, "latitude": float, "longitude": float])
-  pass</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataenforce</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">])</span>
+  <span class="k">pass</span>
+</code></pre></div>
+
 <p><a id="to-enforce-validation-at-runtime"></a></p>
 <h3>to enforce validation at runtime</h3>
-<p>```python
-from dataenforce import Dataset, validate</p>
-<p>@validate
-def process_data(data: Dataset["id", "name"]):
-  pass
-```
-Github Link: <a href="https://github.com/CedricFR/dataenforce">dataenforce</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataenforce</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">validate</span>
+
+<span class="nd">@validate</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">]):</span>
+  <span class="k">pass</span>
+</code></pre></div>
+
+<p>Github Link: <a href="https://github.com/CedricFR/dataenforce">dataenforce</a></p>
 <p><a id="great-expectations---data-validation"></a></p>
 <h2>Great expectations - data validation</h2>
 <p><a id="automated-expectations-from-profiling"></a></p>
 <h3>automated expectations from profiling</h3>
 <p>https://greatexpectations.io/blog/pandas-profiling-integration/
-great expectations + Pandas Profiling
-```python
-import pandas as pd
-from pandas_profiling import ProfileReport</p>
-<h1>Load your dataframe</h1>
-<p>df = pd.read_csv('yellow_tripdata_sample_2019-01.csv')</p>
-<h1>Then run Pandas Profiling</h1>
-<p>profile = ProfileReport(df, title="Pandas Profiling Report", explorative=True)</p>
-<h1>And obtain an Expectation Suite from the profile report</h1>
-<p>suite = profile.to_expectation_suite(suite_name="my_pandas_profiling_suite")
-```</p>
+great expectations + Pandas Profiling</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>
+
+<span class="c1"># Load your dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;yellow_tripdata_sample_2019-01.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Then run Pandas Profiling</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Pandas Profiling Report&quot;</span><span class="p">,</span> <span class="n">explorative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># And obtain an Expectation Suite from the profile report</span>
+<span class="n">suite</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">to_expectation_suite</span><span class="p">(</span><span class="n">suite_name</span><span class="o">=</span><span class="s2">&quot;my_pandas_profiling_suite&quot;</span><span class="p">)</span>
+</code></pre></div>
+
 <p><a id="pandas_schema-135-stars"></a></p>
 <h2>pandas_schema (135 stars)</h2>
 <p><a id="other-data-validation-libraries"></a></p>

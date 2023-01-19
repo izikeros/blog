@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -179,11 +177,13 @@
 <p>There are several tools and methods available for schema validation in pandas such as <code>pandas_schema</code>, <code>great_expectations</code>, <code>pandera</code> and <code>data-enforce</code>. <a href="https://pandas-schema.readthedocs.io/">pandas_schema</a> and <a href="https://docs.greatexpectations.io/en/latest/index.html">great_expectations</a>  are widely used libraries for pandas data validation. <a href="https://pandera.readthedocs.io/en/latest/">pandera</a>  and <a href="https://data-enforce.readthedocs.io/en/latest/">data-enforce</a>  are also popular libraries for pandas data validation.</p>
 <p>In this article, we will overview the available tools and methods for schema validation in pandas and provide example code snippets and links to further resources. We will also discuss the advantages and disadvantages of each tool and provide recommendations for when to use them.</p>
 <h2>Overview of Available Tools and Methods</h2>
-<p>The tools and methods discussed below accompanying exemplary code snippets. You can use the following contents of a <code>data.csv</code> that comply with the schema used in this article:
-<code>name,age,gender,col1,col2,col3,col4,col5
+<p>The tools and methods discussed below accompanying exemplary code snippets. You can use the following contents of a <code>data.csv</code> that comply with the schema used in this article:</p>
+<div class="highlight"><pre><span></span><code>name,age,gender,col1,col2,col3,col4,col5
 Alice,25,female,1,2.5,text1,True,2022-01-01
 Bob,30,male,2,3.5,text2,False,2022-02-01
-Charlie,35,male,3,4.5,text3,True,2022-03-01</code></p>
+Charlie,35,male,3,4.5,text3,True,2022-03-01
+</code></pre></div>
+
 <p>This file contains a dataframe with 8 columns: name, age, gender, col1, col2, col3, col4 and col5.</p>
 <ul>
 <li>name and gender are of type object</li>
@@ -195,11 +195,13 @@ Charlie,35,male,3,4.5,text3,True,2022-03-01</code></p>
 </ul>
 <p>This file can be used in the examples above to perform data validation using different libraries and methods.</p>
 <p>Here is an example of the contents of a <code>data2.csv</code> file that does not comply with the schema used in the article:</p>
-<p><code>name,age,gender,col1,col2,col3,col4,col5
+<div class="highlight"><pre><span></span><code>name,age,gender,col1,col2,col3,col4,col5
 Alice,25,female,1,2.5,text1,True,2022-01-01
 Bob,30,male,2,3.5,text2,False,2022-02-01
 Charlie,35,male,3,4.5,text3,True,2022-03-01
-David,170,male,4,5.5,text4,True,2022-04-01</code></p>
+David,170,male,4,5.5,text4,True,2022-04-01
+</code></pre></div>
+
 <p>This file contains a dataframe with 8 columns: name, age, gender, col1, col2, col3, col4 and col5.</p>
 <ul>
 <li>The age of David is 170 which is out of range of the schema defined in the article which is range(0, 150)</li>
@@ -208,81 +210,96 @@ David,170,male,4,5.5,text4,True,2022-04-01</code></p>
 </ul>
 <h3>Built-in Attributes</h3>
 <p>Pandas provides built-in attributes such as <code>.dtypes</code> and <code>.shape</code> that can be used to check the data types and dimensions of a DataFrame. Here's an example of using these attributes to check that a DataFrame has the expected number of rows and columns, and that the columns have the expected data types:</p>
-<p>```python
-import pandas as pd</p>
-<p>df = pd.read_csv("data.csv")</p>
-<h1>Check that the DataFrame has the expected number of rows and columns</h1>
-<p>assert df.shape == (100, 5)</p>
-<h1>Check that the columns have the expected data types</h1>
-<p>assert df.dtypes == {"col1": int, "col2": float, "col3": object, "col4": bool, "col5": datetime}</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check that the DataFrame has the expected number of rows and columns</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Check that the columns have the expected data types</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="s2">&quot;col5&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">}</span>
+</code></pre></div>
+
 <h3>Pandas Schema</h3>
 <p><code>pandas_schema</code> is a library that allows you to specify constraints on a DataFrame and then validate that the DataFrame conforms to those constraints. Here's an example of using the <code>pandas_schema</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
-<p>```python
-from pandas_schema import Column, Schema
-from pandas_schema.validation import LeadingWhitespaceValidation, TrailingWhitespaceValidation, IsDtypeValidation, InListValidation</p>
-<p>schema = Schema([
-    Column('name', [LeadingWhitespaceValidation(), TrailingWhitespaceValidation()]),
-    Column('age', [IsDtypeValidation(int), InListValidation(range(0, 150))]),
-    Column('gender', [InListValidation(['male', 'female'])])
-])</p>
-<p>errors = schema.validate(df)</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pandas_schema</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Schema</span>
+<span class="kn">from</span> <span class="nn">pandas_schema.validation</span> <span class="kn">import</span> <span class="n">LeadingWhitespaceValidation</span><span class="p">,</span> <span class="n">TrailingWhitespaceValidation</span><span class="p">,</span> <span class="n">IsDtypeValidation</span><span class="p">,</span> <span class="n">InListValidation</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">([</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">LeadingWhitespaceValidation</span><span class="p">(),</span> <span class="n">TrailingWhitespaceValidation</span><span class="p">()]),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">IsDtypeValidation</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">InListValidation</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">))]),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">InListValidation</span><span class="p">([</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">])])</span>
+<span class="p">])</span>
+
+<span class="n">errors</span> <span class="o">=</span> <span class="n">schema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
 <h3>Great Expectations</h3>
 <p><code>great_expectations</code> is a library that allows you to define and validate schemas using a more human-readable syntax. Here's an example of using the <code>great_expectations</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
-<p>```python
-import great_expectations as ge</p>
-<p>df = ge.read_csv("data.csv")</p>
-<h1>Define the schema</h1>
-<p>schema = {
-    "columns": {
-        "col1": {"expect_type": "int"},
-        "col2": {"expect_type": "float"},
-        "col3": {"expect_type": "string"},
-        "col4": {"expect_type": "bool"},
-        "col5": {"expect_type": "datetime"}
-    }
-}</p>
-<h1>Validate the DataFrame against the schema</h1>
-<p>validation_result = df.expect(schema)</p>
-<h1>Check for any validation errors</h1>
-<p>if validation_result.success:
-    print("Data validation successful")
-else:
-    print("Validation errors:", validation_result.result)</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">great_expectations</span> <span class="k">as</span> <span class="nn">ge</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">ge</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the schema</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;expect_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;expect_type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;expect_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;expect_type&quot;</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;col5&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;expect_type&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Validate the DataFrame against the schema</span>
+<span class="n">validation_result</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+
+<span class="c1"># Check for any validation errors</span>
+<span class="k">if</span> <span class="n">validation_result</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data validation successful&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validation errors:&quot;</span><span class="p">,</span> <span class="n">validation_result</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
 <h3>Pandera</h3>
 <p><code>pandera</code> is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the <code>pandera</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
-<p>```python
-import pandera as pa</p>
-<p>df = pd.read_csv("data.csv")</p>
-<h1>Define the schema</h1>
-<p>schema = pa.DataFrameSchema({
-    "col1": pa.Column(pa.Int),
-    "col2": pa.Column(pa.Float),
-    "col3": pa.Column(pa.String),
-    "col4": pa.Column(pa.Boolean),
-    "col5": pa.Column(pa.Datetime)
-})</p>
-<h1>Validate the DataFrame against the schema</h1>
-<p>schema.validate(df)</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandera</span> <span class="k">as</span> <span class="nn">pa</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the schema</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">DataFrameSchema</span><span class="p">({</span>
+    <span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Int</span><span class="p">),</span>
+    <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Float</span><span class="p">),</span>
+    <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">String</span><span class="p">),</span>
+    <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Boolean</span><span class="p">),</span>
+    <span class="s2">&quot;col5&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">Datetime</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># Validate the DataFrame against the schema</span>
+<span class="n">schema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
 <h3>Data-enforce</h3>
 <p><code>data-enforce</code> is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the <code>data-enforce</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
-<p>```python
-import data_enforce as de</p>
-<p>df = pd.read_csv("data.csv")</p>
-<h1>Define the schema</h1>
-<p>schema = {
-    "col1": de.Integer(),
-    "col2": de.Float(),
-    "col3": de.String(),
-    "col4": de.Boolean(),
-    "col5": de.Datetime()
-}</p>
-<h1>Validate the DataFrame against the schema</h1>
-<p>de.enforce(df, schema)
-```</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">data_enforce</span> <span class="k">as</span> <span class="nn">de</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the schema</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="n">de</span><span class="o">.</span><span class="n">Integer</span><span class="p">(),</span>
+    <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="n">de</span><span class="o">.</span><span class="n">Float</span><span class="p">(),</span>
+    <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="n">de</span><span class="o">.</span><span class="n">String</span><span class="p">(),</span>
+    <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="n">de</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(),</span>
+    <span class="s2">&quot;col5&quot;</span><span class="p">:</span> <span class="n">de</span><span class="o">.</span><span class="n">Datetime</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1"># Validate the DataFrame against the schema</span>
+<span class="n">de</span><span class="o">.</span><span class="n">enforce</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+</code></pre></div>
+
 <p>These are just a few examples of the tools and methods available for schema validation in pandas. For more information on the topic, you might want to check out these resources:</p>
 <ul>
 <li><a href="https://towardsdatascience.com/data-validation-with-pandas-a5f8b5b7c5b8">Data validation with pandas</a></li>

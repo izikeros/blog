@@ -8,7 +8,7 @@ summary: This article presents a set of lesser-known but interesting libraries t
 slug: lesser-known-backtesting-libraries
 category: Algorithmic Trading
 citation_needed: false
-Image: /images/head/backtesting.jpg
+Image: images/head/backtesting.jpg
 ---
 
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->

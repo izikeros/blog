@@ -5,7 +5,7 @@ date: '2019-07-09'
 modified: 2022-09-01
 tags: machine learning, statistics, probability, howto
 Category: Howto
-image: /images/learn_bayes/probab_distrib.png
+image: images/learn_bayes/probab_distrib.png
 status: Published
 Summary: This post propose 4-steps path for learning Byesian methods. First step is going through the book: "Bayesian methods for hackers", second, use complementary books for probability and statistics, third, read How to become a Bayesian in eight easy steps: and the last, go through the book full of exercises: "Think Bayes".
 ---

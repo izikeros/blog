@@ -6,7 +6,7 @@ Modified: 2023-01-17
 Start: 2023-01-17
 Tags: classification, metrics
 Category: Machine Learning
-Image: /images/head/micro_macro_averaging.jpg
+Image: images/head/micro_macro_averaging.jpg
 Summary: Learn about micro and macro averages in multiclass multilabel problems, the difference between multiclass and multilabel problems and when to use micro and macro averages.
 Status: published
 prompt: Give me long, markdown article with hyperlinks and references to learn more about it. Use hyperlinks on crucial terms and tools. Provide mathematical formulas in LaTeX in display format (not inline). Article should be on how to calculate micro/macro averages in case of multiclass multilabel problems. In the end provide also HTML page description for this article (less than 160 characters)
@@ -52,13 +52,19 @@ It's important to note that in multilabel problems, these metrics are calculated
 
 ## Choosing between Micro and Macro averages
 
-The choice between micro and macro averages depends on the specific problem and the desired perspective on the model's performance. Micro averages are useful when the classes are imbalanced and it is important to have a better understanding of the model's performance on the majority class. Macro averages, on the other hand, are useful when all classes are of equal importance and you want to have a better understanding of the model's performance on each class individually.
+The choice between micro and macro averages depends on the specific problem and the desired perspective on the model's performance. 
+
+> **Micro averages** are useful when the **classes are imbalanced** and it is important to have a better understanding of the model's **performance on the majority class**.
+> 
+
+> **Macro averages,** on the other hand, are useful when **all classes are of equal importance** and you want to have a better understanding of the model's **performance on each class individually**.
 
 In some cases, it may be useful to report both micro and macro averages to get a more comprehensive understanding of the model's performance.
 
 It's also important to note that micro and macro averages are not the only metrics to evaluate the performance of a model in multiclass multilabel problems. Other metrics such as ROC-AUC, [Hamming loss](https://en.wikipedia.org/wiki/Multi-label_classification#Statistics_and_evaluation_metrics) and [Jaccard similarity](https://en.wikipedia.org/wiki/Jaccard_index) can also be used.
 
-In conclusion, micro and macro averages are important measures of performance in multiclass multilabel problems. They provide different perspectives on the model's performance and should be used depending on the specific problem and desired perspective. It's important to consider the class imbalance and the relative importance of each class when choosing between micro and macro averages.
+## Conclusion
+Micro and macro averages are important measures of performance in multiclass multilabel problems. They provide different perspectives on the model's performance and should be used depending on the specific problem and desired perspective. It's important to consider the class imbalance and the relative importance of each class when choosing between micro and macro averages.
 
 **Credits:**
 

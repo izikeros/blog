@@ -9,7 +9,7 @@ slug: how-to-get-most-of-github-copilot
 category: Howto
 citation_needed: false
 todo:
-Image: /images/head/copilot-warp-speed-head.jpg
+Image: images/head/copilot-warp-speed-head.jpg
 ---
 
 

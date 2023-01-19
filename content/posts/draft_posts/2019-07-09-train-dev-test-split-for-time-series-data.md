@@ -6,7 +6,7 @@ modified: 2022-09-01
 tags: machine learning, statistics, probability
 Category: 'Data Science'
 slug: bootstrap-for-time-series-model-performance-assessment
-image: /images/time_series_dev_set/bootstrap.png
+image: images/time_series_dev_set/bootstrap.png
 status: draft
 Summary: This post describes challenges with model performance evaluation when working with time-series type of data. Cross-validation is a handy technique that can be used to estimate accuracy of measured model performance scores e.g. by calculating spread of scores for different cross-validation folds. However, for the time-series type of data dedicated types of train-test dataset splits for cross validation needs to be used. This article presents train-tests splits method, inspired by bootstrapping that can be used for efficient model performance estimation.
 ---

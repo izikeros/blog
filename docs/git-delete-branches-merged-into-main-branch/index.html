@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -200,11 +198,13 @@
 <p>When actively developing feature branches that are later merged into develop branch you might end up with a bunch of local branches that are not relevant anymore, and do not have their remote counterparts and it would be good to remove them locally.</p>
 <p><a id="first---fetch-and-prune"></a></p>
 <h2>First - fetch and prune</h2>
-<p><code>sh
-$ git fetch -p</code>
-<code>git fetch --prune</code> will connect to the remote and fetch the latest remote state before pruning. It is essentially a combination of commands:
-<code>sh
-git fetch --all &amp;&amp; git remote prune</code></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>fetch<span class="w"> </span>-p
+</code></pre></div>
+
+<p><code>git fetch --prune</code> will connect to the remote and fetch the latest remote state before pruning. It is essentially a combination of commands:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>--all<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>prune
+</code></pre></div>
+
 <blockquote>
 <p>NOTE: The generic <code>git prune</code> command is entirely different. it will delete locally detached commits.</p>
 </blockquote>
@@ -218,8 +218,9 @@ To remove local branches you need to use <code>git branch -d</code> or replace <
 <p><strong>Credits:</strong> Prune explanation comes from an excellent article on <a href="https://www.atlassian.com/git/tutorials/git-prune">Git Prune</a></p>
 <p><a id="second---delete-merged-local-branches"></a></p>
 <h2>Second - delete merged local branches</h2>
-<p><code>sh
-$ git branch --merged origin/develop | grep -v develop | xargs git branch -d</code></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>--merged<span class="w"> </span>origin/develop<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>develop<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-d
+</code></pre></div>
+
 <p><code>--merged origin/develop</code> - branches merged into remote develop
 <code>grep -v develop</code> - for safety reasons: exclude develop from the list of branches to delete</p>
 <p>Read more here:

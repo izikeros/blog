@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -187,19 +185,23 @@
 
   <div>
     <h2>clone partition</h2>
-<p><code>sh
-dd if=infile | pv &gt; outfile</code></p>
+<div class="highlight"><pre><span></span><code>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>infile<span class="w"> </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span>&gt;<span class="w"> </span>outfile
+</code></pre></div>
+
 <h2>create a disk image:</h2>
-<p>(from arch wiki: https://wiki.archlinux.org/index.php/Dd#Disk_cloning_and_restore)
-<code>sh
-dd if=/dev/sda conv=sync,noerror bs=64K | gzip -c  &gt; /path/to/backup.img.gz</code></p>
-<p>Finally, save extra information about the drive geometry necessary in order to interpret the partition table stored within the image. The most important of which is the cylinder size.
-<code>sh
-fdisk -l /dev/sda &gt; /path/to/list_fdisk.info</code></p>
+<p>(from arch wiki: https://wiki.archlinux.org/index.php/Dd#Disk_cloning_and_restore)</p>
+<div class="highlight"><pre><span></span><code>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/sda<span class="w"> </span><span class="nv">conv</span><span class="o">=</span>sync,noerror<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>64K<span class="w"> </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>-c<span class="w">  </span>&gt;<span class="w"> </span>/path/to/backup.img.gz
+</code></pre></div>
+
+<p>Finally, save extra information about the drive geometry necessary in order to interpret the partition table stored within the image. The most important of which is the cylinder size.</p>
+<div class="highlight"><pre><span></span><code>fdisk<span class="w"> </span>-l<span class="w"> </span>/dev/sda<span class="w"> </span>&gt;<span class="w"> </span>/path/to/list_fdisk.info
+</code></pre></div>
+
 <h2>Restore system</h2>
-<p>To restore your system:
-<code>sh
-gunzip -c /path/to/backup.img.gz | dd of=/dev/sda</code></p>
+<p>To restore your system:</p>
+<div class="highlight"><pre><span></span><code>gunzip<span class="w"> </span>-c<span class="w"> </span>/path/to/backup.img.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>dd<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sda
+</code></pre></div>
+
 <p>up::[[MOC_linux]]</p>
   </div>
 

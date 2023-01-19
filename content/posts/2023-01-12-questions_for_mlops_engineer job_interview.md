@@ -6,7 +6,7 @@ modified: 2023-01-12
 Start: 2023-01-12
 Tags: mlops, job, job-search, machine-learning, interview 
 Category: Howto
-Image: /images/head/mlops_interview_questions.jpg
+Image: images/head/mlops_interview_questions.jpg
 Summary: Get ready for your next MLOps Engineer interview with our comprehensive list of 50+ questions. Covering topics like deployment, management, data pipeline, monitoring and more.
 Status: published
 ---

@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -204,172 +202,180 @@ See: <a href="">Pyment</a>, <a href="./python-convert-docstring-styles/">Python 
 <h1>Python Docstring conventions</h1>
 <h2>Google-style example</h2>
 <p>from: <a href="https://www.sphinx-doc.org/en/master/usage/extensions/example_google.html">Sphinx documentation</a></p>
-<p>```python
-def fetch_smalltable_rows(table_handle: smalltable.Table,
-                          keys: Sequence[Union[bytes, str]],
-                          require_all_keys: bool = False,
-) -&gt; Mapping[bytes, Tuple[str]]:
-    """Fetches rows from a Smalltable.</p>
-<pre><code>Retrieves rows pertaining to the given keys from the Table instance
-represented by table_handle.  String keys will be UTF-8 encoded.
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fetch_smalltable_rows</span><span class="p">(</span><span class="n">table_handle</span><span class="p">:</span> <span class="n">smalltable</span><span class="o">.</span><span class="n">Table</span><span class="p">,</span>
+                          <span class="n">keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+                          <span class="n">require_all_keys</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetches rows from a Smalltable.</span>
 
-Args:
-    table_handle: An open smalltable.Table instance.
-    keys: A sequence of strings representing the key of each table
-      row to fetch.  String keys will be UTF-8 encoded.
-    require_all_keys: If True only rows with values set for all keys will be
-      returned.
+<span class="sd">    Retrieves rows pertaining to the given keys from the Table instance</span>
+<span class="sd">    represented by table_handle.  String keys will be UTF-8 encoded.</span>
 
-Returns:
-    A dict mapping keys to the corresponding table row data
-    fetched. Each row is represented as a tuple of strings. For
-    example:
+<span class="sd">    Args:</span>
+<span class="sd">        table_handle: An open smalltable.Table instance.</span>
+<span class="sd">        keys: A sequence of strings representing the key of each table</span>
+<span class="sd">          row to fetch.  String keys will be UTF-8 encoded.</span>
+<span class="sd">        require_all_keys: If True only rows with values set for all keys will be</span>
+<span class="sd">          returned.</span>
 
-    {b'Serak': ('Rigel VII', 'Preparer'),
-     b'Zim': ('Irk', 'Invader'),
-     b'Lrrr': ('Omicron Persei 8', 'Emperor')}
+<span class="sd">    Returns:</span>
+<span class="sd">        A dict mapping keys to the corresponding table row data</span>
+<span class="sd">        fetched. Each row is represented as a tuple of strings. For</span>
+<span class="sd">        example:</span>
 
-    Returned keys are always bytes.  If a key from the keys argument is
-    missing from the dictionary, then that row was not found in the
-    table (and require_all_keys must have been False).
+<span class="sd">        {b&#39;Serak&#39;: (&#39;Rigel VII&#39;, &#39;Preparer&#39;),</span>
+<span class="sd">         b&#39;Zim&#39;: (&#39;Irk&#39;, &#39;Invader&#39;),</span>
+<span class="sd">         b&#39;Lrrr&#39;: (&#39;Omicron Persei 8&#39;, &#39;Emperor&#39;)}</span>
 
-Raises:
-    IOError: An error occurred accessing the smalltable.
+<span class="sd">        Returned keys are always bytes.  If a key from the keys argument is</span>
+<span class="sd">        missing from the dictionary, then that row was not found in the</span>
+<span class="sd">        table (and require_all_keys must have been False).</span>
 
-Examples:
-    Examples should be written in doctest format, and should illustrate how
-    to use the function.
+<span class="sd">    Raises:</span>
+<span class="sd">        IOError: An error occurred accessing the smalltable.</span>
 
-    &gt;&gt;&gt; print([i for i in example_generator(4)])
-    [0, 1, 2, 3]
-"""
-</code></pre>
-<p>```</p>
+<span class="sd">    Examples:</span>
+<span class="sd">        Examples should be written in doctest format, and should illustrate how</span>
+<span class="sd">        to use the function.</span>
+
+<span class="sd">        &gt;&gt;&gt; print([i for i in example_generator(4)])</span>
+<span class="sd">        [0, 1, 2, 3]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
+
 <h2>Numpy-style example</h2>
 <p>from: <a href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a></p>
-<p>```
-"""Docstring for the example.py module.</p>
-<p>Modules names should have short, all-lowercase names.  The module name may
-have underscores if this improves readability.</p>
-<p>Every module should have a docstring at the very top of the file.  The
-module's docstring may extend over multiple lines.  If your docstring does
-extend over multiple lines, the closing three quotation marks must be on
-a line by itself, preferably preceded by a blank line.</p>
-<p>"""
-from <strong>future</strong> import division, absolute_import, print_function</p>
-<p>import os  # standard library imports first</p>
-<h1>Do NOT import using *, e.g. from numpy import *</h1>
-<h1></h1>
-<h1>Import the module using</h1>
-<h1></h1>
-<h1>import numpy</h1>
-<h1></h1>
-<h1>instead or import individual functions as needed, e.g</h1>
-<h1></h1>
-<h1>from numpy import array, zeros</h1>
-<h1></h1>
-<h1>If you prefer the use of abbreviated module names, we suggest the</h1>
-<h1>convention used by NumPy itself::</h1>
-<p>import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt</p>
-<h1>These abbreviated names are not to be used in docstrings; users must</h1>
-<h1>be able to paste and execute docstrings after importing only the</h1>
-<h1>numpy module itself, unabbreviated.</h1>
-<p>```</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Docstring for the example.py module.</span>
+
+<span class="sd">Modules names should have short, all-lowercase names.  The module name may</span>
+<span class="sd">have underscores if this improves readability.</span>
+
+<span class="sd">Every module should have a docstring at the very top of the file.  The</span>
+<span class="sd">module&#39;s docstring may extend over multiple lines.  If your docstring does</span>
+<span class="sd">extend over multiple lines, the closing three quotation marks must be on</span>
+<span class="sd">a line by itself, preferably preceded by a blank line.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># standard library imports first</span>
+
+<span class="c1"># Do NOT import using *, e.g. from numpy import *</span>
+<span class="c1">#</span>
+<span class="c1"># Import the module using</span>
+<span class="c1">#</span>
+<span class="c1">#   import numpy</span>
+<span class="c1">#</span>
+<span class="c1"># instead or import individual functions as needed, e.g</span>
+<span class="c1">#</span>
+<span class="c1">#  from numpy import array, zeros</span>
+<span class="c1">#</span>
+<span class="c1"># If you prefer the use of abbreviated module names, we suggest the</span>
+<span class="c1"># convention used by NumPy itself::</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># These abbreviated names are not to be used in docstrings; users must</span>
+<span class="c1"># be able to paste and execute docstrings after importing only the</span>
+<span class="c1"># numpy module itself, unabbreviated.</span>
+</code></pre></div>
+
 <p>```python</p>
 <p>def foo(var1, var2, <em>args, long_var_name='hi', </em>*kwargs):
     r"""Summarize the function in one line.</p>
-<pre><code>Several sentences providing an extended description. Refer to
-variables using back-ticks, e.g. `var`.
+<div class="highlight"><pre><span></span><code><span class="n">Several</span><span class="w"> </span><span class="n">sentences</span><span class="w"> </span><span class="n">providing</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">extended</span><span class="w"> </span><span class="k">description</span><span class="p">.</span><span class="w"> </span><span class="n">Refer</span><span class="w"> </span><span class="k">to</span>
+<span class="k">variables</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">back</span><span class="o">-</span><span class="n">ticks</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="n n-Quoted">`var`</span><span class="p">.</span>
 
-Parameters
-----------
-var1 : array_like
-    Array_like means all those objects -- lists, nested lists, etc. --
-    that can be converted to an array.  We can also refer to
-    variables like `var1`.
-var2 : int
-    The type above can either refer to an actual Python type
-    (e.g. ``int``), or describe the type of the variable in more
-    detail, e.g. ``(N,) ndarray`` or ``array_like``.
-*args : iterable
-    Other arguments.
-long_var_name : {'hi', 'ho'}, optional
-    Choices in brackets, default first when optional.
-**kwargs : dict
-    Keyword arguments.
+<span class="n">Parameters</span>
+<span class="o">----------</span>
+<span class="n">var1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">array_like</span>
+<span class="w">    </span><span class="n">Array_like</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">those</span><span class="w"> </span><span class="n">objects</span><span class="w"> </span><span class="c1">-- lists, nested lists, etc. --</span>
+<span class="w">    </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">converted</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">array</span><span class="p">.</span><span class="w">  </span><span class="n">We</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">refer</span><span class="w"> </span><span class="k">to</span>
+<span class="w">    </span><span class="k">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="n n-Quoted">`var1`</span><span class="p">.</span>
+<span class="n">var2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">int</span>
+<span class="w">    </span><span class="n">The</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">either</span><span class="w"> </span><span class="n">refer</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">actual</span><span class="w"> </span><span class="n">Python</span><span class="w"> </span><span class="k">type</span>
+<span class="w">    </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="kt">int</span><span class="n n-Quoted">``</span><span class="p">),</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">describe</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">more</span>
+<span class="w">    </span><span class="n">detail</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="p">(</span><span class="n">N</span><span class="p">,)</span><span class="w"> </span><span class="n">ndarray</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">array_like</span><span class="n n-Quoted">``</span><span class="p">.</span>
+<span class="o">*</span><span class="n">args</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">iterable</span>
+<span class="w">    </span><span class="n">Other</span><span class="w"> </span><span class="n">arguments</span><span class="p">.</span>
+<span class="n">long_var_name</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ho&#39;</span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="k">optional</span>
+<span class="w">    </span><span class="n">Choices</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">brackets</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="k">optional</span><span class="p">.</span>
+<span class="o">**</span><span class="n">kwargs</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">dict</span>
+<span class="w">    </span><span class="n">Keyword</span><span class="w"> </span><span class="n">arguments</span><span class="p">.</span>
 
-Returns
--------
-type
-    Explanation of anonymous return value of type ``type``.
-describe : type
-    Explanation of return value named `describe`.
-out : type
-    Explanation of `out`.
-type_without_description
+<span class="k">Returns</span>
+<span class="o">-------</span>
+<span class="k">type</span>
+<span class="w">    </span><span class="n">Explanation</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">anonymous</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="k">type</span><span class="n n-Quoted">``</span><span class="p">.</span>
+<span class="k">describe</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">type</span>
+<span class="w">    </span><span class="n">Explanation</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="n">named</span><span class="w"> </span><span class="n n-Quoted">`describe`</span><span class="p">.</span>
+<span class="k">out</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">type</span>
+<span class="w">    </span><span class="n">Explanation</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">`out`</span><span class="p">.</span>
+<span class="n">type_without_description</span>
 
-Other Parameters
-----------------
-only_seldom_used_keywords : type
-    Explanation.
-common_parameters_listed_above : type
-    Explanation.
+<span class="n">Other</span><span class="w"> </span><span class="n">Parameters</span>
+<span class="o">----------------</span>
+<span class="n">only_seldom_used_keywords</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">type</span>
+<span class="w">    </span><span class="n">Explanation</span><span class="p">.</span>
+<span class="n">common_parameters_listed_above</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">type</span>
+<span class="w">    </span><span class="n">Explanation</span><span class="p">.</span>
 
-Raises
-------
-BadException
-    Because you shouldn't have done that.
+<span class="n">Raises</span>
+<span class="o">------</span>
+<span class="n">BadException</span>
+<span class="w">    </span><span class="n">Because</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">shouldn</span><span class="s1">&#39;t have done that.</span>
 
-See Also
---------
-numpy.array : Relationship (optional).
-numpy.ndarray : Relationship (optional), which could be fairly long, in
-                which case the line wraps here.
-numpy.dot, numpy.linalg.norm, numpy.eye
+<span class="s1">See Also</span>
+<span class="s1">--------</span>
+<span class="s1">numpy.array : Relationship (optional).</span>
+<span class="s1">numpy.ndarray : Relationship (optional), which could be fairly long, in</span>
+<span class="s1">                which case the line wraps here.</span>
+<span class="s1">numpy.dot, numpy.linalg.norm, numpy.eye</span>
 
-Notes
------
-Notes about the implementation algorithm (if needed).
+<span class="s1">Notes</span>
+<span class="s1">-----</span>
+<span class="s1">Notes about the implementation algorithm (if needed).</span>
 
-This can have multiple paragraphs.
+<span class="s1">This can have multiple paragraphs.</span>
 
-You may include some math:
+<span class="s1">You may include some math:</span>
 
-.. math:: X(e^{j\omega } ) = x(n)e^{ - j\omega n}
+<span class="s1">.. math:: X(e^{j</span><span class="err">\</span><span class="s1">omega } ) = x(n)e^{ - j</span><span class="err">\</span><span class="s1">omega n}</span>
 
-And even use a Greek symbol like :math:`\omega` inline.
+<span class="s1">And even use a Greek symbol like :math:`</span><span class="err">\</span><span class="s1">omega` inline.</span>
 
-References
-----------
-Cite the relevant literature, e.g. [1]_.  You may also cite these
-references in the notes section above.
+<span class="s1">References</span>
+<span class="s1">----------</span>
+<span class="s1">Cite the relevant literature, e.g. [1]_.  You may also cite these</span>
+<span class="s1">references in the notes section above.</span>
 
-.. [1] O. McNoleg, "The integration of GIS, remote sensing,
-   expert systems and adaptive co-kriging for environmental habitat
-   modelling of the Highland Haggis using object-oriented, fuzzy-logic
-   and neural-network techniques," Computers &amp; Geosciences, vol. 22,
-   pp. 585-588, 1996.
+<span class="s1">.. [1] O. McNoleg, &quot;The integration of GIS, remote sensing,</span>
+<span class="s1">   expert systems and adaptive co-kriging for environmental habitat</span>
+<span class="s1">   modelling of the Highland Haggis using object-oriented, fuzzy-logic</span>
+<span class="s1">   and neural-network techniques,&quot; Computers &amp; Geosciences, vol. 22,</span>
+<span class="s1">   pp. 585-588, 1996.</span>
 
-Examples
---------
-These are written in doctest format, and should illustrate how to
-use the function.
+<span class="s1">Examples</span>
+<span class="s1">--------</span>
+<span class="s1">These are written in doctest format, and should illustrate how to</span>
+<span class="s1">use the function.</span>
 
-&gt;&gt;&gt; a = [1, 2, 3]
-&gt;&gt;&gt; print([x + 3 for x in a])
-[4, 5, 6]
-&gt;&gt;&gt; print("a\nb")
-a
-b
-"""
-# After closing class docstring, there should be one blank line to
-# separate following codes (according to PEP257).
-# But for function, method and module, there should be no blank lines
-# after closing the docstring.
-pass
-</code></pre>
+<span class="s1">&gt;&gt;&gt; a = [1, 2, 3]</span>
+<span class="s1">&gt;&gt;&gt; print([x + 3 for x in a])</span>
+<span class="s1">[4, 5, 6]</span>
+<span class="s1">&gt;&gt;&gt; print(&quot;a</span><span class="se">\n</span><span class="s1">b&quot;)</span>
+<span class="s1">a</span>
+<span class="s1">b</span>
+<span class="s1">&quot;&quot;&quot;</span>
+<span class="s1"># After closing class docstring, there should be one blank line to</span>
+<span class="s1"># separate following codes (according to PEP257).</span>
+<span class="s1"># But for function, method and module, there should be no blank lines</span>
+<span class="s1"># after closing the docstring.</span>
+<span class="s1">pass</span>
+</code></pre></div>
+
 <p>```</p>
 <p>up::[[MOC_python]]</p>
   </div>

@@ -5,7 +5,7 @@ Modified: 2023-01-11
 Started: '2018-12-25'
 Tags: machine learning, evolutionary, 
 Category: Exploring new ideas
-Image: /images/head/cells_small.jpg
+Image: images/head/cells_small.jpg
 Summary: Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin's approach. I'm describing the evolution model and design decisions. See the animation of how the population was evolving through the epochs.
 Status: published
 ---

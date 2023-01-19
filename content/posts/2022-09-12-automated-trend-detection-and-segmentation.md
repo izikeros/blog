@@ -9,7 +9,7 @@ slug: automated-trend-detection-and-signal-segmentation
 category: Howto
 citation_needed: false
 todo:
-Image: /images/head/trend_detection_head.jpg
+Image: images/head/trend_detection_head.jpg
 ---
 
 ## Problem statement

@@ -214,6 +214,9 @@ PLUGIN_PATHS = ["./pelican-plugins"]
 
 MARKUP = ("md", "ipynb")
 
+# to use mermaid install:
+# pip install git+https://github.com/Lee-W/md_mermaid#egg=md_mermaid
+# pip install Markdown==3.1.1 (<3.2)
 # MARKDOWN = {
 #     "extension_configs": {
 #         "md_mermaid": {},

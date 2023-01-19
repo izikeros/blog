@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
 
 
     <link id="pygments-light-theme" rel="stylesheet" type="text/css"
@@ -45,7 +43,7 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="NOTE: there is already an official tool from Microsoft for downloading and upgrading software as packages: [[winget]] install Step 1 — Opening and Configuring PowerShell Open Powershell as admin sh cd ~ echo &#34;type: RemoteSigned&#34; Set-ExecutionPolicy -Scope CurrentUser type: sh RemoteSigned confirm with Y …" />
+<meta name="description" content="NOTE: there is already an official tool from Microsoft for downloading and upgrading software as packages: [[winget]] install Step 1 — Opening and Configuring PowerShell Open Powershell as admin cd ~ echo &#34;type: RemoteSigned&#34; Set-ExecutionPolicy -Scope CurrentUser type: RemoteSigned confirm with Y Confirmation $ Get-ExecutionPolicy …" />
 <meta name="keywords" content="chocolatey, windows, packages, winget">
 <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='datePublished'/>
 <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='dateModified'/>
@@ -65,7 +63,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Chocolatey (Windows)"/>
-  <meta property="og:description" content="NOTE: there is already an official tool from Microsoft for downloading and upgrading software as packages: [[winget]] install Step 1 — Opening and Configuring PowerShell Open Powershell as admin sh cd ~ echo &#34;type: RemoteSigned&#34; Set-ExecutionPolicy -Scope CurrentUser type: sh RemoteSigned confirm with Y …"/>
+  <meta property="og:description" content="NOTE: there is already an official tool from Microsoft for downloading and upgrading software as packages: [[winget]] install Step 1 — Opening and Configuring PowerShell Open Powershell as admin cd ~ echo &#34;type: RemoteSigned&#34; Set-ExecutionPolicy -Scope CurrentUser type: RemoteSigned confirm with Y Confirmation $ Get-ExecutionPolicy …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/chocolatey/"/>
   <meta property="og:type" content="article"/>
@@ -191,53 +189,66 @@ there is already an official tool from Microsoft for downloading and upgrading s
 </blockquote>
 <h2>install</h2>
 <h3>Step 1 — Opening and Configuring PowerShell</h3>
-<p>Open Powershell as admin
-<code>sh
-cd ~
-echo "type: RemoteSigned"
-Set-ExecutionPolicy -Scope CurrentUser</code></p>
-<p>type:
-<code>sh
-RemoteSigned</code>
-confirm with <code>Y</code></p>
-<p>Confirmation
-<code>sh
-$ Get-ExecutionPolicy -List</code>
-should give:
- <code>Scope ExecutionPolicy
+<p>Open Powershell as admin</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;type: RemoteSigned&quot;</span>
+Set-ExecutionPolicy<span class="w"> </span>-Scope<span class="w"> </span>CurrentUser
+</code></pre></div>
+
+<p>type:</p>
+<div class="highlight"><pre><span></span><code>RemoteSigned
+</code></pre></div>
+
+<p>confirm with <code>Y</code></p>
+<p>Confirmation</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>Get-ExecutionPolicy<span class="w"> </span>-List
+</code></pre></div>
+
+<p>should give:
+ ```
+        Scope ExecutionPolicy
         ----- ---------------
 MachinePolicy       Undefined
    UserPolicy       Undefined
       Process       Undefined
   CurrentUser    RemoteSigned
- LocalMachine       Undefined</code></p>
-<h3>Step 2 — Installing the Package Manager Chocolatey</h3>
-<p><code>sh
-$script = New-Object Net.WebClient
-$script.DownloadString("https://chocolatey.org/install.ps1")
-iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex</code></p>
-<p><code>sh
-choco feature enable -n allowGlobalConfirmation</code></p>
+ LocalMachine       Undefined</p>
+<div class="highlight"><pre><span></span><code><span class="c1">### Step 2 — Installing the Package Manager Chocolatey</span>
+<span class="err">```</span><span class="n">sh</span>
+<span class="o">$</span><span class="n">script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">New</span><span class="o">-</span><span class="nb nb-Type">Object</span><span class="w"> </span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span>
+<span class="o">$</span><span class="n">script</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s2">&quot;https://chocolatey.org/install.ps1&quot;</span><span class="p">)</span>
+<span class="n">iwr</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">chocolatey</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">install</span><span class="o">.</span><span class="n">ps1</span><span class="w"> </span><span class="o">-</span><span class="n">UseBasicParsing</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">iex</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>choco<span class="w"> </span>feature<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>-n<span class="w"> </span>allowGlobalConfirmation
+</code></pre></div>
+
 <h2>List packages installed WITH CHOCO locally</h2>
-<p><code>sh
-choco list -l</code>
-or use shortcut <code>clist</code></p>
+<div class="highlight"><pre><span></span><code>choco<span class="w"> </span>list<span class="w"> </span>-l
+</code></pre></div>
+
+<p>or use shortcut <code>clist</code></p>
 <h2>List ALL software installed by choco or classical installer:</h2>
-<p><code>sh
-clist -li</code></p>
+<div class="highlight"><pre><span></span><code>clist<span class="w"> </span>-li
+</code></pre></div>
+
 <h2>Upgrade (all) packages</h2>
-<p><code>sh
-choco upgrade all</code></p>
+<div class="highlight"><pre><span></span><code>choco<span class="w"> </span>upgrade<span class="w"> </span>all
+</code></pre></div>
+
 <h2>Install chocolatey gui:</h2>
-<p><code>choco install chocolateygui</code></p>
+<div class="highlight"><pre><span></span><code>choco install chocolateygui
+</code></pre></div>
+
 <h1>Packages</h1>
 <h2>manually:</h2>
 <p>dropbox
 paint.net</p>
 <h2>my packets</h2>
-<p><code>sh
-$ choco install Firefox GoogleChrome doublecmd fsviewer git greenshot SublimeText3 winscp sumatrapdf kitty ccleaner procmon conemu f.lux transmission 
-choco install pycharm-community virtualbox vlc sandboxie winamp vscode meld partitionwizard ffmepg cmder defraggler</code></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>choco<span class="w"> </span>install<span class="w"> </span>Firefox<span class="w"> </span>GoogleChrome<span class="w"> </span>doublecmd<span class="w"> </span>fsviewer<span class="w"> </span>git<span class="w"> </span>greenshot<span class="w"> </span>SublimeText3<span class="w"> </span>winscp<span class="w"> </span>sumatrapdf<span class="w"> </span>kitty<span class="w"> </span>ccleaner<span class="w"> </span>procmon<span class="w"> </span>conemu<span class="w"> </span>f.lux<span class="w"> </span>transmission<span class="w"> </span>
+choco<span class="w"> </span>install<span class="w"> </span>pycharm-community<span class="w"> </span>virtualbox<span class="w"> </span>vlc<span class="w"> </span>sandboxie<span class="w"> </span>winamp<span class="w"> </span>vscode<span class="w"> </span>meld<span class="w"> </span>partitionwizard<span class="w"> </span>ffmepg<span class="w"> </span>cmder<span class="w"> </span>defraggler
+</code></pre></div>
+
 <h2>other things to install</h2>
 <p>searchmyfiles, Album art downloader XUI, windirstat</p>
   </div>
