@@ -214,12 +214,12 @@ PLUGIN_PATHS = ["./pelican-plugins"]
 
 MARKUP = ("md", "ipynb")
 
-MARKDOWN = {
-    "extension_configs": {
-        "md_mermaid": {},
-    },
-}
-USE_MERMAID = True  # Adds javascript to base.html template
+# MARKDOWN = {
+#     "extension_configs": {
+#         "md_mermaid": {},
+#     },
+# }
+# USE_MERMAID = True  # Adds javascript to base.html template
 
 if MY_THEME == "flex":
     PLUGINS = [
