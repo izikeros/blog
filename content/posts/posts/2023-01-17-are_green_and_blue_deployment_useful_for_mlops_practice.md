@@ -1,5 +1,5 @@
 ---
-Title: Understanding the Concept of Blue/Green Deployment in MLOps
+Title: Maximizing Efficiency in MLOps: How Blue/Green Deployment Can Help?
 Slug: blue-green-deployment-in-mlops
 Date: 2023-01-03
 Modified: 2023-01-17

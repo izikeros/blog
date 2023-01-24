@@ -63,6 +63,11 @@ if MY_THEME == "flex":
     DISPLAY_DATE_AFTER_TITLE = (
         False  # display date in the list of articles (tags, categories)
     )
+    DISPLAY_DATE_BEFORE_TITLE = (
+        False  # display date in the list of articles (tags, categories)
+    )
+
+PROMO_BOX = True
 
 # define landing page for elegant style
 if MY_THEME == "elegant":
