@@ -33,4 +33,4 @@ line-length = 119
 - in pre-commit hooks
 - as an external tool in PyCharm
 
-up::[[MOC_python]]
+up::[[MOC_Python]]

@@ -8,7 +8,7 @@ title: Pre-commit hooks
 slug: git-pre-commit-hooks
 category: note
 ---
-up:: [[MOC_git]]
+up:: [[MOC_Git]]
 
 Pre-commit is a convenient framework to manage git hooks. Uses configuration in YAML file, handles the installation of required hooks and tools.
 
@@ -155,6 +155,6 @@ example:
 
 will match any of `foo/bar.js` / `foo/bar.jsx` / `foo/bar.ts` / `foo/bar.tsx` but not `baz.js`.
 
-up:: [[MOC_git]]]
+up:: [[MOC_Git]]]
 
 

@@ -17,4 +17,4 @@ citation_needed: false
 
 With git 2.0 `git add <path>` is the same as `git add -A <path>`.
 
-up:: [[MOC_git]]]
+up:: [[MOC_Git]]]

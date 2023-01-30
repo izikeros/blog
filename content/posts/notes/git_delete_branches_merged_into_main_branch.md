@@ -54,4 +54,4 @@ $ git branch --merged origin/develop | grep -v develop | xargs git branch -d
 Read more here:
 https://stackoverflow.com/questions/16590160/remove-branches-not-on-remote
 
-up:: [[MOC_git]]]
+up:: [[MOC_Git]]]

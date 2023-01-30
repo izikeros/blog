@@ -44,4 +44,4 @@ You might want to limit operation to only conversion by using option `-t, --conv
 # References:
 [Reference documentation](https://github.com/dadadel/pyment/blob/master/doc/sphinx/source/pyment.rst)
 
-up::[[MOC_python]]
+up::[[MOC_Python]]

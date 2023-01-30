@@ -160,29 +160,42 @@
     }
 
     .container {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     .left-col {
-        flex: 1;
     }
 
     .right-col {
-        flex: 1;
     }
 
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
 
     @media (max-width: 600px) {
         .container {
-            flex-wrap: wrap;
-        }
-
-        .left-col {
-            order: 2;
-        }
-
-        .right-col {
-            order: 1;
+            grid-template-columns: 1fr;
         }
     }
 
@@ -190,7 +203,7 @@
 <div class="container">
     <div class="left-col">
         <a href="https://gumroad.com/">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" style="border-radius: 0; width: 100%;">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
         </a>
 
         <div class="center">
@@ -201,12 +214,12 @@
     </div>
     <div class="right-col">
         <div>
-            <ul style="padding-top:0;padding-bottom: 0;text-align:left;box-sizing: border-box;display: block;list-style-type: none;list-style-image: url(/images/shortcode-tick.webp);margin-block-start: 1em;margin-block-end: 1em;margin-inline-start:0;margin-inline-end:0;padding-inline-start:40px;">
-                <li><strong>PDF, ePUB format EBook, no DRM</strong></li>
-                <li><strong>50 questions and answers</strong></li>
-                <li><strong>Stories from real projects</strong></li>
-                <li><strong>100 multiple choice quizz questions</strong></li>
-                <li><strong>178 pages</strong></li>
+            <ul class="book-list">
+                <li>PDF, ePUB format EBook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
             </ul>
         </div>
     </div>
@@ -289,32 +302,34 @@
 <h3>Flexibility</h3>
 <p>PEX files can be used as a command-line tool, making it easy to integrate with other tools and workflows. This allows users to easily automate and schedule the execution of the model, and also makes it easy to integrate the model into existing systems and pipelines. Additionally, PEX files can be run on a variety of platforms, including Windows, Linux, and Mac, making it easy to deploy the model across a wide range of systems.</p>
 <p>In conclusion, packaging an ML model as a Python PEX file offers several benefits, including portability, security, reproducibility, speed, and flexibility. By distributing models in this format, organizations can ensure that their models will work as intended, regardless of the underlying system, and that sensitive information is protected. Additionally, PEX files make it easy to reproduce the same environment and results, and also allow for easy integration with other tools and workflows.</p>
-<p><a id="when-the-other-than-pex-based-method-of-model-packaging-should-be-used"></a></p>
-<h2>When the other than pex-based method of model packaging should be used?</h2>
-<p>There are several alternative methods of packaging ML models, and the appropriate method will depend on the specific use case and requirements. Some alternative methods include:</p>
-<ol>
-<li>
-<p><strong>Containers</strong>
-Containers, such as Docker, provide a way to package and distribute the entire runtime environment for a model, including the operating system, libraries, and dependencies. This can be useful for <strong>complex models that have many dependencies, or for models that need to run on specific operating systems</strong>.</p>
-</li>
-<li>
-<p><strong>Virtual environments</strong>
-Virtual environments, such as conda, provide a way to create isolated Python environments that include specific versions of libraries and dependencies. This can be useful for <strong>models that have specific version requirements, or for reproducing a specific environment</strong>.</p>
-</li>
-<li>
-<p><strong>Serverless</strong>
-Serverless computing, such as AWS Lambda or Google Cloud Functions, allows you to run code without provisioning or managing servers. This can be useful for <strong>models that need to be invoked on-demand or for models that have infrequent usage</strong>.</p>
-</li>
-<li>
-<p><strong>Cloud-based Platforms</strong>
-Some cloud-based platforms like AWS SageMaker, Google Cloud ML Engine, and Azure Machine Learning Studio <strong>provide easy to use environment for deploying, managing, and monitoring ML models. They also provide automatic scaling, automatic patching, and other benefits.</strong></p>
-</li>
-<li>
-<p><strong>Wrapper or API</strong>
-Creating a wrapper or API around the model, which can be used to interact with the model via a web interface or an API. This can be useful for <strong>models that need to be integrated into existing systems or for making the model accessible to non-technical users</strong>.</p>
-</li>
-</ol>
-<p>Ultimately, the choice of packaging method will depend on the specific requirements of the model, the target audience, and the resources available. It's worth considering the trade-offs between different options and choosing the one that best fits your use case.</p>
+<h2></h2>
+<p>PEX (Python EXecutable) files are a way to package Python code and dependencies into a single executable file. They can be used to distribute machine learning models, as well as other Python applications.</p>
+<p>Benefits of using PEX files include:</p>
+<ul>
+<li>They allow for easy distribution of a Python application or library, as the user only needs to run the PEX file, rather than installing a number of dependencies.</li>
+<li>They can help with dependency management, as all dependencies are bundled together in the PEX file.</li>
+<li>They can improve performance, as the code is pre-compiled and does not need to be interpreted at runtime.</li>
+</ul>
+<p>However, there are also some drawbacks and limitations to using PEX files in production machine learning environments:</p>
+<ul>
+<li>PEX files can be larger in size than the original source code, due to the inclusion of all dependencies.</li>
+<li>PEX files can only be executed on the same architecture and operating system that they were built on. This means that if you need to run the PEX file on a different architecture or operating system, you will need to rebuild it.</li>
+<li>PEX files can be difficult to debug, as the source code is bundled and not easily accessible.</li>
+<li>PEX files are not supported by certain tools such as pip, virtualenv and conda, which can make it difficult to manage dependencies.</li>
+<li>PEX files are not supported by certain libraries, such as tensorflow, pytorch and scikit-learn which can make it difficult to use them with PEX.</li>
+</ul>
+<p>In conclusion, PEX files can be a useful tool for packaging and distributing Python code and dependencies, but they also have some limitations that should be considered when using them in a production machine learning environment. It's important to weigh the benefits and drawbacks before deciding to use PEX files. It's also important to consider alternative solutions such as Docker, which can be used to package and distribute machine learning models and provide more flexibility and control in terms of dependencies and deployment.</p>
+<p><strong>See also:</strong>
+<a href="https://github.com/linkedin/shiv">shiv</a> - a command line utility for building fully self contained Python zipapps as outlined in PEP 441, but with all their dependencies included.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://medium.com/ovni/pex-python-executables-c0ea39cee7f1">pex — python executables. PythonEXecutables are awesome, they… | by Alex Leonhardt | { ovni } | Medium</a></li>
+<li><a href="https://github.com/linkedin/shiv">GitHub - linkedin/shiv: shiv is a command line utility for building fully self contained Python zipapps as outlined in PEP 441, but with all their dependencies included.</a></li>
+<li><a href="https://medium.com/criteo-engineering/packaging-code-with-pex-a-pyspark-example-9057f9f144f3">Packaging code with PEX — a PySpark example | by Fabian Höring | Criteo R&amp;D Blog | Medium</a></li>
+<li><a href="https://idle.run/simple-pex">Packaging a Simple Python Script with PEX</a></li>
+<li><a href="https://bskinn.github.io/First-Attempt-pex/">A First Attempt at Executable Packaging with pex – from python import logging – Thoughts and notes of a Python hobbyist</a></li>
+<li></li>
+</ul>
   </div>
 
 
@@ -339,11 +354,11 @@ Creating a wrapper or API around the model, which can be used to interact with t
   <div class="related-posts">
     <h4>You might enjoy</h4>
     <ul class="related-posts">
+      <li><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2023/">Top popular Zsh plugins on GitHub (2023)</a></li>
       <li><a href="https://www.safjan.com/difference-between-numba-jit-and-njit-decorators/">Difference between numba jit and njit decorators</a></li>
       <li><a href="https://www.safjan.com/visual-text-exploration-as-part-of-preprocessing-before-classification/">Visual Text Exploration as Part of Preprocessing Before Classification</a></li>
       <li><a href="https://www.safjan.com/lesser-known-yet-powerful-python-plotting-libraries/">10 Lesser-known, yet powerful python plotting libraries</a></li>
       <li><a href="https://www.safjan.com/append-json-data-to-file-save-traces/">Append JSON data to file, save the traces</a></li>
-      <li><a href="https://www.safjan.com/pytest-check-lists-equal/">Pytest check if lists are equal</a></li>
     </ul>
   </div>
 

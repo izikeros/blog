@@ -47,4 +47,4 @@ This link provides detailed instructions and options for deleting branches in Gi
 
 In this article, we have covered how to delete a Git branch locally and remotely. Remember that it's important to be cautious when deleting branches, as this action cannot be undone. 
 
-up:: [[MOC_git]]
+up:: [[MOC_Git]]

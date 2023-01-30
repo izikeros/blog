@@ -32,4 +32,4 @@ To restore your system:
 gunzip -c /path/to/backup.img.gz | dd of=/dev/sda
 ```
 
-up::[[MOC_linux]]
+up::[[MOC_Linux]]

@@ -63,4 +63,4 @@ BSD 4.3
 ```
 
 up::[[MOC_Shell_Bash_Zsh]]
-up::[[MOC_linux]]
+up::[[MOC_Linux]]

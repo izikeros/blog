@@ -55,25 +55,33 @@ PEX files can be used as a command-line tool, making it easy to integrate with o
 In conclusion, packaging an ML model as a Python PEX file offers several benefits, including portability, security, reproducibility, speed, and flexibility. By distributing models in this format, organizations can ensure that their models will work as intended, regardless of the underlying system, and that sensitive information is protected. Additionally, PEX files make it easy to reproduce the same environment and results, and also allow for easy integration with other tools and workflows.
 
 
-<a id="when-the-other-than-pex-based-method-of-model-packaging-should-be-used"></a>
-## When the other than pex-based method of model packaging should be used?
 
-There are several alternative methods of packaging ML models, and the appropriate method will depend on the specific use case and requirements. Some alternative methods include:
+## 
+PEX (Python EXecutable) files are a way to package Python code and dependencies into a single executable file. They can be used to distribute machine learning models, as well as other Python applications.
 
-1.  **Containers**
-Containers, such as Docker, provide a way to package and distribute the entire runtime environment for a model, including the operating system, libraries, and dependencies. This can be useful for **complex models that have many dependencies, or for models that need to run on specific operating systems**.
-    
-2.  **Virtual environments**
-Virtual environments, such as conda, provide a way to create isolated Python environments that include specific versions of libraries and dependencies. This can be useful for **models that have specific version requirements, or for reproducing a specific environment**.
-    
-3.  **Serverless**
-Serverless computing, such as AWS Lambda or Google Cloud Functions, allows you to run code without provisioning or managing servers. This can be useful for **models that need to be invoked on-demand or for models that have infrequent usage**.
-    
-4.  **Cloud-based Platforms**
-Some cloud-based platforms like AWS SageMaker, Google Cloud ML Engine, and Azure Machine Learning Studio **provide easy to use environment for deploying, managing, and monitoring ML models. They also provide automatic scaling, automatic patching, and other benefits.**
-    
-5.  **Wrapper or API**
-Creating a wrapper or API around the model, which can be used to interact with the model via a web interface or an API. This can be useful for **models that need to be integrated into existing systems or for making the model accessible to non-technical users**.
-    
+Benefits of using PEX files include:
 
-Ultimately, the choice of packaging method will depend on the specific requirements of the model, the target audience, and the resources available. It's worth considering the trade-offs between different options and choosing the one that best fits your use case.
+-   They allow for easy distribution of a Python application or library, as the user only needs to run the PEX file, rather than installing a number of dependencies.
+-   They can help with dependency management, as all dependencies are bundled together in the PEX file.
+-   They can improve performance, as the code is pre-compiled and does not need to be interpreted at runtime.
+
+However, there are also some drawbacks and limitations to using PEX files in production machine learning environments:
+
+-   PEX files can be larger in size than the original source code, due to the inclusion of all dependencies.
+-   PEX files can only be executed on the same architecture and operating system that they were built on. This means that if you need to run the PEX file on a different architecture or operating system, you will need to rebuild it.
+-   PEX files can be difficult to debug, as the source code is bundled and not easily accessible.
+-   PEX files are not supported by certain tools such as pip, virtualenv and conda, which can make it difficult to manage dependencies.
+-   PEX files are not supported by certain libraries, such as tensorflow, pytorch and scikit-learn which can make it difficult to use them with PEX.
+
+In conclusion, PEX files can be a useful tool for packaging and distributing Python code and dependencies, but they also have some limitations that should be considered when using them in a production machine learning environment. It's important to weigh the benefits and drawbacks before deciding to use PEX files. It's also important to consider alternative solutions such as Docker, which can be used to package and distribute machine learning models and provide more flexibility and control in terms of dependencies and deployment.
+
+**See also:**
+[shiv](https://github.com/linkedin/shiv) - a command line utility for building fully self contained Python zipapps as outlined in PEP 441, but with all their dependencies included.
+
+## References
+- [pex — python executables. PythonEXecutables are awesome, they… | by Alex Leonhardt | { ovni } | Medium](https://medium.com/ovni/pex-python-executables-c0ea39cee7f1)
+- [GitHub - linkedin/shiv: shiv is a command line utility for building fully self contained Python zipapps as outlined in PEP 441, but with all their dependencies included.](https://github.com/linkedin/shiv)
+- [Packaging code with PEX — a PySpark example | by Fabian Höring | Criteo R&D Blog | Medium](https://medium.com/criteo-engineering/packaging-code-with-pex-a-pyspark-example-9057f9f144f3)
+- [Packaging a Simple Python Script with PEX](https://idle.run/simple-pex)
+- [A First Attempt at Executable Packaging with pex – from python import logging – Thoughts and notes of a Python hobbyist](https://bskinn.github.io/First-Attempt-pex/)
+- 

@@ -10,7 +10,7 @@ Image: images/head/mlops_interview_questions.jpg
 Summary: Get ready for your next MLOps Engineer interview with our comprehensive list of 50+ questions. Covering topics like deployment, management, data pipeline, monitoring and more.
 Status: published
 ---
-[![](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
+[![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
 
 [Get for $0.99](https://gumroad.com/)
 
@@ -93,9 +93,9 @@ Here are examples of questions for more advanced candidates:
 10.  Can you discuss your experience with implementing federated learning in an MLOps pipeline?
 
 ## EBook with questions and answers
-If you would like to prepare to answer these questions take look on my ebook that helps job-candidated to get MLOps job.
+If you would like to prepare to answer these questions take look on my ebook that helps job-candidates to get MLOps job.
 
-[![](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
+[![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
 
 [Get for $0.99](https://gumroad.com/)
 

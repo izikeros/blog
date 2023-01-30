@@ -47,4 +47,4 @@ Example results:
 **Reference:**
 - Stackoverflow - [How to get the filename without the extension from a path in Python?](https://stackoverflow.com/questions/678236)
 
-up::[[MOC_python]]
+up::[[MOC_Python]]
