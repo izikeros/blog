@@ -11,8 +11,8 @@ Summary: There is an exhaustive but curated list of Zsh plugins posted on GitHub
 Status: published
 ---
 
-> **NOTE:** This article was written in 2018, for a more recent version of the ranking see: [2021](../top-popular-zsh-plugins-on-github-2021/). 
-> There is a serie of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/), [2019](../top-popular-zsh-plugins-on-github-2019/), [2021](../top-popular-zsh-plugins-on-github-2021/)
+> **NOTE:** This article was written in 2019, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/). 
+> There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/index.html), [2019](../top-popular-zsh-plugins-on-github-2019/index.html), [2021](../top-popular-zsh-plugins-on-github-2021/index.html), [2023](../top-popular-zsh-plugins-on-github-2023/index.html). The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
 On the GitHub project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) you can find 800+ links to plugins, themes, and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from the Zsh users community. This post aims at identifying the most popular plugins where popularity is measured by the number of stars that GitHub users added to the given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on "Awesome Zsh plugins" website.
 

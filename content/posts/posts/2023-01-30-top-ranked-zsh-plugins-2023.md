@@ -11,7 +11,7 @@ Summary: Explore the most popular Zsh plugins from the 2000+ options on the Awes
 Status: published
 ---
 
-> There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/), [2019](../top-popular-zsh-plugins-on-github-2019/), [2021](../top-popular-zsh-plugins-on-github-2021/)
+> There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/index.html), [2019](../top-popular-zsh-plugins-on-github-2019/index.html), [2021](../top-popular-zsh-plugins-on-github-2021/index.html), [2023](../top-popular-zsh-plugins-on-github-2023/index.html). The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
 The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 2100+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users and console users in general. As in previous year, I have divided them into four categories:
 
