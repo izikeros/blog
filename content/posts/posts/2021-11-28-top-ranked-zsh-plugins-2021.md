@@ -6,7 +6,7 @@ modified: 2021-11-29
 Start: 2021-11-25
 Tags: zsh, scrapping, python, Linux
 Category: Linux
-Image: images/zsh/inside-work-tree.jpg
+Image: images/head/inside-work-tree.jpg
 Summary: Explore the most popular Zsh plugins from the 1800+ options on the Awesome Zsh plugins GitHub project. See which ones have the highest number of stars from the Zsh community.
 Status: published
 ---
