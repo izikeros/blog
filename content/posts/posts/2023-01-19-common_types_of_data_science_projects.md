@@ -28,7 +28,7 @@ Data science is a rapidly growing field that encompasses a wide range of activit
 <a id="1-end-to-end-individual-work"></a>
 ### 1. End-to-end Individual Work
 
-![End-to-end Individual Work - graphics](individual_e2e_project.jpg)
+![End-to-end Individual Work - graphics](/images/ml_project_types/individual_e2e_project.jpg)
 
 End-to-end individual work is a type of data science project that is typically **short-term** and has **low complexity**. These projects may consist of a **single Jupyter notebook** and may be completed by a single person. Examples of end-to-end individual work include analyzing customer data for a retail store or building a simple machine learning model for personal use.
 
