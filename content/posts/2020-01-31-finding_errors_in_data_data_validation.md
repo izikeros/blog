@@ -103,11 +103,6 @@ There are several tools and techniques available for data validation, including:
 
 Data validation is a critical step in the data analysis process, and it is essential to ensure the quality and accuracy of data. By using data validation techniques, you can identify and address errors and inconsistencies in the data, and ensure that the data meets the specific requirements and constraints required for further analysis and decision making. Whether you are using spreadsheet software, database management systems, programming languages, or data quality tools, data validation is an important tool for finding errors in data.
 
-For more information on data validation, you can refer to the following resources:
-
--   Data Validation: [https://en.wikipedia.org/wiki/Data_validation](https://en.wikipedia.org/wiki/Data_validation)
--   Data Quality Tools: [https://en.wikipedia.org/wiki/Data_quality_tools](https://en.wikipedia.org/wiki/Data_quality_tools)
-
 <a id="using-visualizations-to-identify-outliers-and-anomalies-in-data"></a>
 ## Using Visualizations to Identify Outliers and Anomalies in Data
 
