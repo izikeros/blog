@@ -1,7 +1,7 @@
 ---
 Title: Setup VS Code as NIM IDE
 Slug: vscode-as-nim-ide
-Date: 2022-12-02
+Date: 2021-12-02
 modified: 2023-01-13
 Start: 2023-01-13
 Tags: nim, ide, programming, vscode, debugging, nimrod

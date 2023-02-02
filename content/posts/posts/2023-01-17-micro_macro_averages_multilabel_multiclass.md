@@ -1,7 +1,7 @@
 ---
 Title: Understanding Micro and Macro Averages in Multiclass Multilabel Problems
 Slug: micro-and-macro-averages-in-multiclass-multilabel-problems
-Date: 2022-12-22
+Date: 2021-12-22
 Modified: 2023-01-17
 Start: 2023-01-17
 Tags: classification, metrics

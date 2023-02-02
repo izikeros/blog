@@ -1,21 +1,44 @@
-2023-01-25
-#blog/post-idea 
+---
+Title: Programatic diagram generation
+Slug: diagram-generation
+Date: 2023-01-25
+Modified: 2023-01-25
+Status: published
+Tags: diagram, visualization, graphviz, uml, mermaid, latex
+Category: note
+prompt: What are indirect ways that you can provide me diagrams that can be represented (described) in text format? There are several formats either to describe graphics or the code that is used by some engines to render graphs. I would like that some of your answers would contain diagrams as well.
+prompt_2:  Give me exemplary diagrams in ASCII art and LaTeX Tikz
+---
 
-> What are indirect ways that you can provide me diagrams that can be represented (described) in text format? There are several formats either to describe graphics or the code that is used by some engines to render graphs. I would like that some of your answers would contain diagrams as well.
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+- [Methods](#methods)
+- [Examples](#examples)
+    - [Graphviz](#graphviz)
+    - [Mermaid](#mermaid)
+    - [ASCII Art](#ascii-art)
+    - [LaTeX Tikz](#latex-tikz)
+
+<!-- /MarkdownTOC -->
+
+<a id="methods"></a>
+## Methods
 There are several ways to represent diagrams in text format, including:
 
-1.  Ascii art: This is a form of drawing using characters from the ASCII character set, such as +, -, and | to create simple diagrams.
+1.  **Ascii art**: This is a form of drawing using characters from the ASCII character set, such as +, -, and | to create simple diagrams.
     
-2.  Graphviz: This is an open-source graph visualization software that can be used to create diagrams using a simple text-based language.
+2.  **Graphviz**: This is an open-source graph visualization software that can be used to create diagrams using a simple text-based language.
     
-3.  PlantUML: This is a tool that allows users to create UML diagrams using a simple text-based language.
+3.  **PlantUML**: This is a tool that allows users to create UML diagrams using a simple text-based language.
     
-4.  Mermaid: This is a simple markdown-like language for generating diagrams and flowcharts.
+4.  **Mermaid**: This is a simple markdown-like language for generating diagrams and flowcharts.
     
-5.  LaTeX Tikz: This is a powerful and flexible graphics package for TeX/LaTeX. It allows the creation of high-quality diagrams and graphics using a simple text-based language.
+5.  **LaTeX Tikz**: This is a powerful and flexible graphics package for TeX/LaTeX. It allows the creation of high-quality diagrams and graphics using a simple text-based language.
     
-
+<a id="examples"></a>
+## Examples
+<a id="graphviz"></a>
+### Graphviz
 Here is an example of a diagram in Graphviz format:
 
 ```
@@ -26,6 +49,9 @@ digraph G {
     C -> D;
 }
 ```
+
+<a id="mermaid"></a>
+### Mermaid
 And this is an example of a diagram in Mermaid format:
 
 ```
@@ -40,8 +66,8 @@ C -->|Three| F[Car]
 
 You can use these languages to generate a diagram by using the corresponding engine, and then include the generated image in your document or export it to different format.
 
-> Give me exemplary diagrams in ASCII art and LaTeX Tikz
-
+<a id="ascii-art"></a>
+### ASCII Art
 Here is an example of a diagram represented in ASCII art:
 
 ```
@@ -52,6 +78,9 @@ Here is an example of a diagram represented in ASCII art:
 +------------+
 
 ```
+
+<a id="latex-tikz"></a>
+### LaTeX Tikz
 And here is an example of a diagram represented in LaTeX Tikz:
 
 ```tex
@@ -73,7 +102,7 @@ For example, you can use the `\filldraw` command to fill the rectangle with a co
 ```
 This will produce a blue filled rectangle with black border, and with the text "Box" in the center.
 
-> How to produce png image from LaTeX Tikz?
+#### How to produce png image from LaTeX Tikz?
 
 There are a few ways to produce a PNG image from LaTeX Tikz code. One of the most common ways is to use the `pdflatex` command to first convert the LaTeX code with Tikz code into a PDF file, and then use a tool like `convert` from ImageMagick to convert the PDF into a PNG image.
 
@@ -83,13 +112,9 @@ Here is an example of how you can use these tools to produce a PNG image of a Ti
     
 2.  Run `pdflatex` on the LaTeX file to produce a PDF file with the same name as the LaTeX file.
     
-    Copy code
-    
     `pdflatex mytikzdiagram.tex`
     
 3.  Use `convert` to convert the PDF file into a PNG image.
-    
-    Copy code
     
     `convert -density 300 mytikzdiagram.pdf -quality 90 mytikzdiagram.png`
     
@@ -102,7 +127,7 @@ Note that, in order to use `pdflatex` and `convert` you need to have them instal
 
 
 
-> give me full content of the input mytikzdiagram.tex file
+**full content of the input mytikzdiagram.tex file**
 
 Here's an example of a LaTeX file with Tikz code that creates a simple diagram of a rectangle with a label "Box" in the center:
 

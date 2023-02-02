@@ -1,13 +1,13 @@
 ---
-Title: 
-Slug:
-Date: 
-Modified: 
+Title: Alternatives to radar chart - stellar plot
+Slug: alternatives-to-radar-chart-stellar-plot
+Date: 2023-01-26
+Modified: 2023-01-26
 Status: draft
 Tags: tag1, tag2
 Category: note
 ---
-2023-01-26
+
 
 #blog/post-idea 
 
