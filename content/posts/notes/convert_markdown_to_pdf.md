@@ -7,9 +7,10 @@ slug: convert-markdown-to-pdf
 tags: conversion, markdown, pdf, pandoc, wkhtmltopdf, html
 title: Convert markdown to pdf
 ---
+X::[[pandoc]]
+X::[[writing_book_or_ebook_using_pandoc]]
 
-
-## With pagination
+## Without ToC
 convert with [Pandoc](https://pandoc.org/) to PDF
 ```sh
 pandoc \
@@ -21,7 +22,7 @@ pandoc \
 --metadata title="My booklet"
 ```
 
-## Without pagination
+## With ToC
 
 ```sh
 # convert to HTML

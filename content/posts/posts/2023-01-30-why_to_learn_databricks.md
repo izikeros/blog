@@ -49,3 +49,5 @@ Finally, Databricks is a cloud-based platform, which means that you don't have t
 <a id="the-overall-benefits-of-learning-databricks"></a>
 ## The Overall Benefits of Learning Databricks
 Overall, learning Databricks can help your career in many ways. It can help you become more proficient at working with big data, which is a valuable skill in today's job market. It can also help you become more efficient at data processing and machine learning, which can lead to greater productivity and better results. And, by providing a cloud-based, integrated platform for data engineering, machine learning and analytics, it can help you work more effectively with other data tools and technologies.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

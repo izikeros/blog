@@ -1,3 +1,12 @@
+---
+Title: 
+Slug:
+Date: 
+Modified: 
+Status: draft
+Tags: tag1, tag2
+Category: note
+---
 2023-01-26
 
 #blog/post-idea 

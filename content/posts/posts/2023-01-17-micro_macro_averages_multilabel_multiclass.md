@@ -66,6 +66,8 @@ It's also important to note that micro and macro averages are not the only metri
 ## Conclusion
 Micro and macro averages are important measures of performance in multiclass multilabel problems. They provide different perspectives on the model's performance and should be used depending on the specific problem and desired perspective. It's important to consider the class imbalance and the relative importance of each class when choosing between micro and macro averages.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
 **Credits:**
 
 Heading image from [Unsplash](https://unsplash.com/photos/pv5SUbgRRIU) by [vackground.com](https://unsplash.com/@vackground)

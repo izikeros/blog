@@ -52,3 +52,4 @@ Overall, the evaluation of interpretability is an active area of research, and t
 - Doshi-Velez, Finale, and Been Kim. “Towards a rigorous science of interpretable machine learning,” no. Ml: 1–13. [http://arxiv.org/abs/1702.08608](http://arxiv.org/abs/1702.08608)( 2017).
 - Christoph Molnar, Interpretable Machine Learning. A Guide for Making Black Box Models Explainable (2019). Available [here](http://leanpub.com/interpretable-machine-learning).
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

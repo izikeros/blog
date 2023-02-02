@@ -42,6 +42,8 @@ It can be time-consuming to manually check backups for completeness, integrity a
 ## Conclusion
 Backup verification is an essential step in protecting your data. By using the open-source tool Restic and following the steps outlined in this article, you can ensure that your backups are done correctly and can be successfully restored in the event of a disaster. Remember to schedule the verification process to run at specific intervals and to regularly review the backups to ensure that they are complete, accurate, and usable.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
 **Credits:**
 
 Heading image from [Unsplash](https://unsplash.com/photos/GNyjCePVRs8) by [benjamin lehman](https://unsplash.com/@benjaminlehman)

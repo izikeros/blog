@@ -8,7 +8,7 @@ Tags: machine-learning
 Category: note
 todo: add diagram, promote to post
 ---
-
+X::[[machine_learning_model_packaging]]
 
 There are several alternative methods of packaging ML models, and the appropriate method will depend on the specific use case and requirements. Some alternative methods include:
 

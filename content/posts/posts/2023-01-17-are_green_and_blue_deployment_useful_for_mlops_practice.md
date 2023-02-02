@@ -32,5 +32,7 @@ When considering Blue/Green deployment in MLOps, it's important to also consider
 
 In conclusion, Blue/Green deployment is a useful technique for deploying machine learning models in cases where the model is critical to the business and downtime is not acceptable. However, it's important to consider the complexity and scale of the deployment, as well as the cost and complexity of maintaining two separate environments. It's also important to have a clear rollback strategy in case of issues with the new version of the service.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
 **Credits:**
 Header image from [Unsplash](https://unsplash.com/photos/pfX-GsJMtDY) by [Joel Filipe](https://unsplash.com/@joelfilip)

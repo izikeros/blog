@@ -168,3 +168,6 @@ Not mentioned in the ranking below but worth checking is [k9s](https://github.co
 ### K9s
 [K9s](https://github.com/derailed/k9s) provides a curses based terminal UI to interact with your Kubernetes clusters. The aim of this project is to make it easier to navigate, observe and manage your applications in the wild. K9s continually watches Kubernetes for changes and offers subsequent commands to interact with observed resources.
 ![k9s](https://golangexample.com/content/images/2019/02/screen_po.png)
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

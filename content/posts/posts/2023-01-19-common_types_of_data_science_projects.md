@@ -73,5 +73,7 @@ When working on a research project, it's important to keep detailed records of t
 ## Conclusion
 Data science projects can take many forms, each with its own unique challenges and requirements. By understanding the **different types of projects** and **best practices for approaching them**, data scientists can work more efficiently and effectively to deliver valuable insights and solutions.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
 **Credits:**
 Graphics created with openjourney model

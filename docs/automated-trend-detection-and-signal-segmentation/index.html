@@ -216,7 +216,7 @@
     <div class="right-col">
         <div>
             <ul class="book-list">
-                <li>PDF, ePUB format EBook, no DRM</li>
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
                 <li>50 questions and answers</li>
                 <li>Stories from real projects</li>
                 <li>100 multiple choice quizz questions</li>
@@ -276,7 +276,8 @@
 </ol>
 <h2>Windowing Approach</h2>
 <p>The discussed solution is based on the concept of analyzing signals using a sliding window with a fixed length. The consecutive windows can overlap.</p>
-<p><img alt="trend lines within the window" src="/images/trend_segmentation/trend_in_windows.jpg"></p>
+<p><img alt="trend lines within the window" src="/images/trend_segmentation/trend_in_windows.jpg">
+<strong>Figure 1. Windowing approach for trend detection - trend line fit to datapoints in each overlapping window.</strong></p>
 <p>For each window perform linear regression to find the line that best fits the signal. If the parameters of a linear regression between two windows do not differ too much, the signal covered by these two windows is considered as belonging to the same segment with a coherent trend.</p>
 <h2>Example</h2>
 <p>Let's say, we wanted to do segmentation of the time series on segments with similar trends. For that task, you can use <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> Python library. It is pip installable (<code>pip3 install trend-classifier</code>).</p>
@@ -299,7 +300,7 @@
 </code></pre></div>
 
 <p><img alt="segmentation example" src="/images/trend_segmentation/screenshoot_1.jpg">
-Figure 1. Visualization of the signal segmentation based on the trend.</p>
+<strong>Figure 2. Visualization of the signal segmentation based on the trend.</strong></p>
 <p>You can inspect details about each segment (e.g. positive value for slope indicates an up-trend and a negative down-trend). To see info about the segment with index <code>3</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">devtools</span> <span class="kn">import</span> <span class="n">debug</span>
 <span class="n">debug</span><span class="p">(</span><span class="n">seg</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
@@ -312,9 +313,9 @@ Figure 1. Visualization of the signal segmentation based on the trend.</p>
 <h2>Controlling generalization</h2>
 <p>There is a parameter that controls the "generalization" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behavior, when initializing <code>Segmenter()</code> (e.g. <code>Segmenter(x_in, y_in, n=20)</code> use various values for <code>n</code> parameter. The larger <code>n</code> the generalization is stronger (fewer segments).</p>
 <p><img alt="segmentation for n=20" src="../images/trend_segmentation/segments_n_20.jpg">
-Figure 2. Signal segmentation with fine granularity (weak generalization), n=20.</p>
+<strong>Figure 3. Signal segmentation with fine granularity (weak generalization), n=20.</strong></p>
 <p><img alt="segmentation for n=80" src="/images/trend_segmentation/segments_n_80.jpg">
-Figure 3. Signal segmentation with rough granularity (strong generalization), n=80.</p>
+<strong>Figure 4. Signal segmentation with rough granularity (strong generalization), n=80.</strong></p>
 <h2>An exemplary application of trend detection and segmentation</h2>
 <p>This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:
 - up-trend
@@ -340,17 +341,17 @@ Figure 3. Signal segmentation with rough granularity (strong generalization), n=
 </code></pre></div>
 
 <p><img alt="up-trend" src="/images/trend_segmentation/uptrend.jpg">
-Figure 4. Segments classified as "up-trend".</p>
+<strong>Figure 5. Segments classified as "up-trend".</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">down_idx</span><span class="p">)</span>
 </code></pre></div>
 
 <p><img alt="down-trend" src="/images/trend_segmentation/downtrend.jpg">
-Figure 4. Segments classified as "down-trend".</p>
+<strong>Figure 6. Segments classified as "down-trend".</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">plot_segment</span><span class="p">(</span><span class="n">horiz_idx</span><span class="p">)</span>
 </code></pre></div>
 
 <p><img alt="horizontal-trend" src="/images/trend_segmentation/horiz_trend.jpg">
-Figure 4. Segments classified as "horizontal-trend".</p>
+<strong>Figure 7. Segments classified as "horizontal-trend".</strong></p>
 <p>The classification function used in the example was very simple and one can implement a more robust function e.g. one, that uses other than <code>slope</code> data stored in the segment object.</p>
 <h2>Summary</h2>
 <p>This article describes the <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:

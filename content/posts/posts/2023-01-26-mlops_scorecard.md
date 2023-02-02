@@ -169,3 +169,5 @@ In order to overcome these limitations, it's advisable to:
 -   Consider using a combination of quantitative and qualitative methods for evaluating MLOps maturity, in order to have a more comprehensive understanding.
 
 To have more reliable insights in  progress of introducing MLOps try to use this method in conjunction with other methods such as interviews, surveys, and data analysis.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

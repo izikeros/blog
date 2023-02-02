@@ -43,18 +43,18 @@
 
 
 <meta name="author" content="Krystian Safjan" />
-<meta name="description" content="summary" />
+<meta name="description" content="Overview of the available tools and methods for schema validation in pandas, examplary code snippets and recommendation for when to use given tool." />
 <meta name="keywords" content="pandas, python, pandas/schema">
-<meta expr:content="2023-01-16 00:00:00+01:00" itemprop='datePublished'/>
+<meta expr:content="2021-01-16 00:00:00+01:00" itemprop='datePublished'/>
 <meta expr:content="2023-01-16 00:00:00+01:00" itemprop='dateModified'/>
 <meta property="article:modified_time" content="2023-01-16 00:00:00+01:00"/>
-<meta property="article:published_time" content="2023-01-16 00:00:00+01:00"/>
+<meta property="article:published_time" content="2021-01-16 00:00:00+01:00"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Pandas Schema Validation",
-  "datePublished": "2023-01-16 00:00:00+01:00",
+  "datePublished": "2021-01-16 00:00:00+01:00",
   "dateModified": "2023-01-16 00:00:00+01:00"
 }
 </script>
@@ -63,26 +63,26 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Pandas Schema Validation"/>
-  <meta property="og:description" content="summary"/>
+  <meta property="og:description" content="Overview of the available tools and methods for schema validation in pandas, examplary code snippets and recommendation for when to use given tool."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://www.safjan.com/drafts/pandas-schema-validation.html"/>
+  <meta property="og:url" content="https://www.safjan.com/pandas-schema-validation/"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2023-01-16 00:00:00+01:00"/>
+  <meta property="article:published_time" content="2021-01-16 00:00:00+01:00"/>
   <meta property="article:modified_time" content="2023-01-16 00:00:00+01:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
   <meta property="article:section" content="Data Science"/>
   <meta property="article:tag" content="pandas"/>
   <meta property="article:tag" content="python"/>
   <meta property="article:tag" content="pandas/schema"/>
-  <meta property="og:image" content="https://www.safjan.com//images/zsh/inside-work-tree.jpg">
+  <meta property="og:image" content="https://www.safjan.com//images/head/elegant_panda.jpg">
 
     <meta name="twitter:card" content="summary"/>
-    <meta property="twitter:image" content="https://www.safjan.com//images/zsh/inside-work-tree.jpg">
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/elegant_panda.jpg">
 
     <meta name="twitter:label1" content="Est. reading time"/>
     <meta name="twitter:data1" content="4 min."/>
     <meta name="twitter:site" content="@izikeros"/>
-    <meta name="twitter:description" content="<p>summary</p>"/>
+    <meta name="twitter:description" content="<p>Overview of the available tools and methods for schema validation in pandas, examplary code snippets and recommendation for when to use given tool.</p>"/>
     <meta name="twitter:title" content="Pandas Schema Validation"/>
 
 
@@ -216,7 +216,7 @@
     <div class="right-col">
         <div>
             <ul class="book-list">
-                <li>PDF, ePUB format EBook, no DRM</li>
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
                 <li>50 questions and answers</li>
                 <li>Stories from real projects</li>
                 <li>100 multiple choice quizz questions</li>
@@ -247,9 +247,20 @@
       
     <p>
       <!-- Posted on: -->
-      2023-01-16 
+      2021-01-16 
 
 
+
+  <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Pandas%20Schema%20Validation&url=https%3A//www.safjan.com/pandas-schema-validation/&hashtags=pandas,python,pandasschema" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/pandas-schema-validation/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Pandas%20Schema%20Validation&u=https%3A//www.safjan.com/pandas-schema-validation/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/pandas-schema-validation/&title=Pandas%20Schema%20Validation" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
     <br/>
    </p>
   <h1 id="pandas-schema-validation">Pandas Schema Validation</h1>
@@ -258,11 +269,25 @@
 
 
   <div>
-    <p>TODO: validate the text for libraries, validate code snippets, consider adding errors, mention decorators</p>
-<h1>Introduction to Pandas Dataframe Schema Validation</h1>
+    <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#overview-of-available-tools-and-methods">Overview of Available Tools and Methods</a><ul>
+<li><a href="#built-in-attributes">Built-in Attributes</a></li>
+<li><a href="#pandas-schema">Pandas Schema</a></li>
+<li><a href="#great-expectations">Great Expectations</a></li>
+<li><a href="#pandera">Pandera</a></li>
+<li><a href="#data-enforce">Data-enforce</a></li>
+</ul>
+</li>
+<li><a href="#comparison-and-discussion">Comparison and Discussion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
 <p>Pandas is a widely used library for data manipulation and analysis in Python. To ensure the data is in the correct format and conforms to certain constraints, schema validation is crucial. This process can be useful in various situations such as when importing data from external sources or before performing further analysis or machine learning tasks.</p>
-<p>There are several tools and methods available for schema validation in pandas such as <code>pandas_schema</code>, <code>great_expectations</code>, <code>pandera</code> and <code>data-enforce</code>. <a href="https://pandas-schema.readthedocs.io/">pandas_schema</a> and <a href="https://docs.greatexpectations.io/en/latest/index.html">great_expectations</a>  are widely used libraries for pandas data validation. <a href="https://pandera.readthedocs.io/en/latest/">pandera</a>  and <a href="https://data-enforce.readthedocs.io/en/latest/">data-enforce</a>  are also popular libraries for pandas data validation.</p>
+<p>There are several tools and methods available for schema validation in pandas such as <code>pandas_schema</code>, <code>great_expectations</code>, <code>pandera</code> and <code>data-enforce</code>. <a href="https://github.com/multimeric/PandasSchema">pandas_schema</a> and <a href="https://docs.greatexpectations.io/en/latest/index.html">great_expectations</a>  are widely used libraries for pandas data validation. <a href="https://github.com/unionai-oss/pandera">pandera</a>  and <a href="https://github.com/CedricFR/dataenforce">data-enforce</a>  are also popular libraries for pandas data validation.</p>
 <p>In this article, we will overview the available tools and methods for schema validation in pandas and provide example code snippets and links to further resources. We will also discuss the advantages and disadvantages of each tool and provide recommendations for when to use them.</p>
+<p><a id="overview-of-available-tools-and-methods"></a></p>
 <h2>Overview of Available Tools and Methods</h2>
 <p>The tools and methods discussed below accompanying exemplary code snippets. You can use the following contents of a <code>data.csv</code> that comply with the schema used in this article:</p>
 <div class="highlight"><pre><span></span><code>name,age,gender,col1,col2,col3,col4,col5
@@ -273,12 +298,12 @@ Charlie,35,male,3,4.5,text3,True,2022-03-01
 
 <p>This file contains a dataframe with 8 columns: name, age, gender, col1, col2, col3, col4 and col5.</p>
 <ul>
-<li>name and gender are of type object</li>
-<li>age is of type int</li>
-<li>col1,col2 are of type int and float respectively</li>
-<li>col3 is of type object</li>
-<li>col4 is of type boolean</li>
-<li>col5 is of type datetime</li>
+<li><code>name</code> and <code>gender</code> are of type object</li>
+<li><code>age</code> is of type int</li>
+<li><code>col1</code>,<code>col2</code> are of type int and float respectively</li>
+<li><code>col3</code> is of type object</li>
+<li><code>col4</code> is of type boolean</li>
+<li><code>col5</code> is of type datetime</li>
 </ul>
 <p>This file can be used in the examples above to perform data validation using different libraries and methods.</p>
 <p>Here is an example of the contents of a <code>data2.csv</code> file that does not comply with the schema used in the article:</p>
@@ -295,6 +320,7 @@ David,170,male,4,5.5,text4,True,2022-04-01
 <li>This file will not comply with the schema defined in the article and will raise an error when trying to validate it using the code provided in the article</li>
 <li>This file can be used to demonstrate the validation process and how it will raise errors for invalid data.</li>
 </ul>
+<p><a id="built-in-attributes"></a></p>
 <h3>Built-in Attributes</h3>
 <p>Pandas provides built-in attributes such as <code>.dtypes</code> and <code>.shape</code> that can be used to check the data types and dimensions of a DataFrame. Here's an example of using these attributes to check that a DataFrame has the expected number of rows and columns, and that the columns have the expected data types:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -308,6 +334,7 @@ David,170,male,4,5.5,text4,True,2022-04-01
 <span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="s2">&quot;col5&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">}</span>
 </code></pre></div>
 
+<p><a id="pandas-schema"></a></p>
 <h3>Pandas Schema</h3>
 <p><code>pandas_schema</code> is a library that allows you to specify constraints on a DataFrame and then validate that the DataFrame conforms to those constraints. Here's an example of using the <code>pandas_schema</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pandas_schema</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Schema</span>
@@ -322,8 +349,9 @@ David,170,male,4,5.5,text4,True,2022-04-01
 <span class="n">errors</span> <span class="o">=</span> <span class="n">schema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </code></pre></div>
 
+<p><a id="great-expectations"></a></p>
 <h3>Great Expectations</h3>
-<p><code>great_expectations</code> is a library that allows you to define and validate schemas using a more human-readable syntax. Here's an example of using the <code>great_expectations</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
+<p><a href="https://docs.greatexpectations.io/docs/">Great Expectations</a> is a library that allows you to define and validate schemas using a more human-readable syntax. Here's an example of using the <code>great_expectations</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">great_expectations</span> <span class="k">as</span> <span class="nn">ge</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">ge</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
@@ -349,6 +377,7 @@ David,170,male,4,5.5,text4,True,2022-04-01
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validation errors:&quot;</span><span class="p">,</span> <span class="n">validation_result</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
+<p><a id="pandera"></a></p>
 <h3>Pandera</h3>
 <p><code>pandera</code> is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the <code>pandera</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandera</span> <span class="k">as</span> <span class="nn">pa</span>
@@ -368,6 +397,7 @@ David,170,male,4,5.5,text4,True,2022-04-01
 <span class="n">schema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </code></pre></div>
 
+<p><a id="data-enforce"></a></p>
 <h3>Data-enforce</h3>
 <p><code>data-enforce</code> is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the <code>data-enforce</code> library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">data_enforce</span> <span class="k">as</span> <span class="nn">de</span>
@@ -387,19 +417,12 @@ David,170,male,4,5.5,text4,True,2022-04-01
 <span class="n">de</span><span class="o">.</span><span class="n">enforce</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
 </code></pre></div>
 
-<p>These are just a few examples of the tools and methods available for schema validation in pandas. For more information on the topic, you might want to check out these resources:</p>
-<ul>
-<li><a href="https://towardsdatascience.com/data-validation-with-pandas-a5f8b5b7c5b8">Data validation with pandas</a></li>
-<li><a href="https://towardsdatascience.com/pandas-dataframe-schema-validation-with-great_expectations-2c1d1f28c7f8">Pandas DataFrame Schema Validation with great_expectations</a></li>
-<li><a href="https://realpython.com/pandas-schema-validation/">Pandas Schema: Validate Data with Less Code</a></li>
-<li><a href="https://pandera.readthedocs.io/en/latest/validation.html">Pandera: Dataframe validation</a></li>
-<li><a href="https://data-enforce.readthedocs.io/en/latest/dataframe.html">Data-enforce: Dataframe validation</a></li>
-</ul>
+<p><a id="comparison-and-discussion"></a></p>
 <h2>Comparison and Discussion</h2>
 <p>Each of these tools has its own advantages and disadvantages depending on the specific use case.</p>
 <p>The built-in attributes such as <code>.dtypes</code> and <code>.shape</code> may be sufficient for simple validation tasks, but they lack advanced functionality such as custom validation logic and integration with other data pipeline tools.</p>
 <p><code>pandas_schema</code> and <code>great_expectations</code> libraries offer more advanced functionality such as custom validation logic and integration with other data pipeline tools, and they have a more human-readable syntax. <code>pandera</code> and <code>data-enforce</code> libraries also offer more advanced functionality than the built-in attributes and they have a more human-readable syntax.</p>
-<p>The choice of tool will depend on the complexity of the schema and the specific requirements of the project. If the schema is simple and you only need to check data types and dimensions, the built-in attributes may be sufficient. However, if you need more advanced functionality such as custom validation logic or integration with other data pipeline tools, <code>pandas_schema</code>, <code>great_expectations</code>, <code>pandera</code> or <code>data-enforce</code> libraries are better choices.</p>
+<p>The choice of tool will depend on the complexity of the schema and the specific requirements of the project. <strong>If the schema is simple</strong> and you only need to check data types and dimensions, the <strong>built-in attributes</strong> may be sufficient. However, if you need <strong>more advanced functionality</strong> such as custom validation logic or integration with other data pipeline tools, <code>pandas_schema</code>, <code>great_expectations</code>, <code>pandera</code> or <code>data-enforce</code> libraries are better choices.</p>
 <p>Overall, it is recommended to use <code>great_expectations</code> for more complex projects, as it has more functionality and a more human-readable syntax. However, if you're looking for a more lightweight solution <code>pandas_schema</code>, <code>pandera</code> and <code>data-enforce</code> are also good options.</p>
   </div>
 
@@ -415,6 +438,12 @@ David,170,male,4,5.5,text4,True,2022-04-01
 
 
   <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/evaluation-of-interpretability-for-explainable-ai/" title="Evaluation of interpretability for Explainable AI">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/finding-errors-in-data/" title="Finding Errors in Data - Data Validation">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
   </div>
 
   <div class="related-posts">

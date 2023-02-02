@@ -20,6 +20,7 @@ Image: images/head/trend_detection_head.jpg
 The discussed solution is based on the concept of analyzing signals using a sliding window with a fixed length. The consecutive windows can overlap.
 
 ![trend lines within the window](/images/trend_segmentation/trend_in_windows.jpg)
+**Figure 1. Windowing approach for trend detection - trend line fit to datapoints in each overlapping window.**
 
 For each window perform linear regression to find the line that best fits the signal. If the parameters of a linear regression between two windows do not differ too much, the signal covered by these two windows is considered as belonging to the same segment with a coherent trend.
 
@@ -50,7 +51,7 @@ seg.plot_segments()
 ```
 
 ![segmentation example](/images/trend_segmentation/screenshoot_1.jpg)
-Figure 1. Visualization of the signal segmentation based on the trend.
+**Figure 2. Visualization of the signal segmentation based on the trend.**
 
 You can inspect details about each segment (e.g. positive value for slope indicates an up-trend and a negative down-trend). To see info about the segment with index `3`:
 
@@ -69,10 +70,10 @@ seg.segments.to_dataframe()
 There is a parameter that controls the "generalization" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behavior, when initializing `Segmenter()` (e.g. `Segmenter(x_in, y_in, n=20)` use various values for `n` parameter. The larger `n` the generalization is stronger (fewer segments).
 
 ![segmentation for n=20](../images/trend_segmentation/segments_n_20.jpg)
-Figure 2. Signal segmentation with fine granularity (weak generalization), n=20.
+**Figure 3. Signal segmentation with fine granularity (weak generalization), n=20.**
 
 ![segmentation for n=80](/images/trend_segmentation/segments_n_80.jpg)
-Figure 3. Signal segmentation with rough granularity (strong generalization), n=80.
+**Figure 4. Signal segmentation with rough granularity (strong generalization), n=80.**
 
 ## An exemplary application of trend detection and segmentation
 This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:
@@ -103,21 +104,21 @@ seg.plot_segment(up_idx)
 ```
 
 ![up-trend](/images/trend_segmentation/uptrend.jpg)
-Figure 4. Segments classified as "up-trend".
+**Figure 5. Segments classified as "up-trend".**
 
 ```python
 seg.plot_segment(down_idx)
 ```
 
 ![down-trend](/images/trend_segmentation/downtrend.jpg)
-Figure 4. Segments classified as "down-trend".
+**Figure 6. Segments classified as "down-trend".**
 
 ```python
 seg.plot_segment(horiz_idx)
 ```
 
 ![horizontal-trend](/images/trend_segmentation/horiz_trend.jpg)
-Figure 4. Segments classified as "horizontal-trend".
+**Figure 7. Segments classified as "horizontal-trend".**
 
 The classification function used in the example was very simple and one can implement a more robust function e.g. one, that uses other than `slope` data stored in the segment object.
 

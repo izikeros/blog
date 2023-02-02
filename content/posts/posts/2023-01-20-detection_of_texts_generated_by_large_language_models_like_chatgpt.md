@@ -100,3 +100,5 @@ These methods use pre-trained models, such as BERT or GPT-2, to extract features
 - <a id="r5">[5]</a> J. Wang et al. ***"Pre-trained Language Models for Discriminating Human and Machine-Generated Text"*** (2021) [https://arxiv.org/abs/2105.10311](https://arxiv.org/abs/2105.10311)
 - \[6\] [Real or Fake? Learning to Discriminate Machine from Human Generated Text | DeepAI][Real or Fake? Learning to Discriminate Machine from Human Generated Text | DeepAI](https://deepai.org/publication/real-or-fake-learning-to-discriminate-machine-from-human-generated-text)
 - [Forecasting Potential Misuses of Language Models for Disinformation Campaigns—and How to Reduce Risk](https://openai.com/blog/forecasting-misuse/)
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

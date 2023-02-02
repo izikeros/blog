@@ -1,3 +1,12 @@
+---
+Title: Writing A Book Or Ebook In Markdown
+Slug: writing-a-book-or-ebook-in-markdown
+Date: 2023-02-02
+Modified: 2023-02-02
+Status: published
+Tags: markdown, content-creation, pandoc, calibre, git, epub, mobi, Asciidoctor, weasyprint
+Category: note
+---
 up::[[MOC_content_creation]]
 #book/writing #content-creation #pandoc #markdown #blog/post-idea 
 

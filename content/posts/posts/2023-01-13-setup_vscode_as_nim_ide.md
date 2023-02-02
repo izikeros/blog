@@ -130,10 +130,8 @@ In conclusion, setting up VSCode as a Nim IDE is relatively easy, and provides a
 - [Editor Support · nim-lang/Nim Wiki · GitHub](https://github.com/nim-lang/Nim/wiki/Editor-Support)
 - [A walkthrough for setting up debugging of Nim code in VSCode](https://github.com/jasonprogrammer/nim-debug-example)
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
 **Credits:**
 
 Heading photo from [Unsplash](https://unsplash.com/photos/w7ZyuGYNpRQ) by [Kevin Ku](https://unsplash.com/@ikukevk)
-
-
-*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
