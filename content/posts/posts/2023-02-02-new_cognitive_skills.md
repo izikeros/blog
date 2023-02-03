@@ -1,5 +1,5 @@
 ---
-Title: The Pros and Cons of Reliance on AI Generative Models
+Title: New Cognitive Skills in the Age of AI Tailored Information Presentation
 Slug: pros-and-cons-of-reliance-on-ai-generating-models
 Date: 2023-02-02
 Modified: 2023-02-02
