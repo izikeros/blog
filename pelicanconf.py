@@ -18,7 +18,7 @@ IS_DEVELOPMENT = True
 USE_APPLAUSE = False
 # ---- Development settings
 if IS_DEVELOPMENT:
-    SITEURL = "http://127.0.0.1:8000/"  # was: ""
+    SITEURL = "http://127.0.0.1:8000"  # was: ""
     RELATIVE_URLS = False               # was: True
     CACHE_CONTENT = False
 else:

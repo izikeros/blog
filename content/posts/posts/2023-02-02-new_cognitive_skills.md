@@ -13,6 +13,7 @@ prompt:
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+## Contents
 - [Speculating on New Cognitive Skills in Humans using Large Language Models and Advanced AI Generative Models](#speculating-on-new-cognitive-skills-in-humans-using-large-language-models-and-advanced-ai-generative-models)
 	- [Ability to process and understand complex information at an accelerated rate](#ability-to-process-and-understand-complex-information-at-an-accelerated-rate)
 	- [Enhanced ability to think creatively and solve complex problems](#enhanced-ability-to-think-creatively-and-solve-complex-problems)
@@ -54,9 +55,10 @@ Large language models have the potential to enhance the ability to think creativ
 > **Example 3**
 Consider a scenario where a student is given a complex math problem to solve. If they immediately turn to a search engine or an LLM for the answer, they may be missing out on the opportunity to develop their problem-solving skills and to think creatively about the problem. In this scenario, the student may simply copy the solution provided by the LLM without fully understanding the underlying concepts or the thought process that went into solving the problem. This can lead to a decrease in their ability to solve similar problems in the future.
 
-Another example is in the workplace, where employees may be relying on LLMs to provide them with answers to complex problems. This **over-reliance on technology** can lead to a decrease in the ability to think creatively and come up with innovative solutions. Rather than brainstorming and coming up with original ideas, employees may simply be relying on the answers provided by the LLMs, leading to a lack of originality and creativity in their work.
+> **Example 4**
+> Imagine workplace, where employees may be relying on LLMs to provide them with answers to complex problems. This **over-reliance on technology** can lead to a decrease in the ability to think creatively and come up with innovative solutions. Rather than brainstorming and coming up with original ideas, employees may simply be relying on the answers provided by the LLMs, leading to a lack of originality and creativity in their work.
 
-In the examples above, two students approached solving a complex math problem in different ways. The first student relied solely on the information provided by the LLM and did not use their own critical thinking skills, leading to decreased cognitive capabilities. The second student used the information provided by the LLM as a resource, but also engaged in their own critical thinking and problem-solving processes, leading to increased cognitive capabilities.
+In the examples above (Example 1 and Example 3), **two students approached solving a complex math problem in different ways**. The first student relied solely on the information provided by the LLM and did not use their own critical thinking skills, leading to decreased cognitive capabilities. The second student used the information provided by the LLM as a resource, but also engaged in their own critical thinking and problem-solving processes, leading to increased cognitive capabilities.
 
 #### Recommendation
 To use LLMs in a way that increases cognitive capabilities, it is important to **view them as a tool rather than a source of answers**. Instead of relying solely on the information provided by the LLM, individuals should **use the information as a starting point** and engage in their **own critical thinking** and problem-solving processes. This includes asking questions, testing ideas, and making connections between information.

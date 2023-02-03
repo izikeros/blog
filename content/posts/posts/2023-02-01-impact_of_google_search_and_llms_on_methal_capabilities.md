@@ -11,6 +11,7 @@ Summary:  Understand the effects of search engines and AI on our mental and cogn
 Status: published
 prompt:
 ---
+## Contents
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [The Positive Effects of Search Engines on Mental and Cognitive Capabilities](#the-positive-effects-of-search-engines-on-mental-and-cognitive-capabilities)
@@ -36,6 +37,7 @@ prompt:
 
 <!-- /MarkdownTOC -->
 
+## Introduction
 In the digital age, access to information has never been easier. With just a few clicks, we can find answers to any question we have through search engines like Google. The rise of artificial intelligence (AI) and large language models has further expanded our ability to access information, with AI-powered virtual assistants and chatbots becoming increasingly common.
 
 However, the question remains: what impact is this new level of access to information having on our mental and cognitive capabilities? Are we becoming smarter and more informed, or are we losing our ability to think critically and retain information? This article will explore the latest research on the impact of search engines and AI on our mental and cognitive abilities, and help you understand the potential implications of this rapidly evolving technology.
