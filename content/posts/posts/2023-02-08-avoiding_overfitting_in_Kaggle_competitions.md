@@ -23,14 +23,13 @@ To avoid overfitting, it's essential to evaluate the model during the training p
     - [Early Stopping](#early-stopping)
     - [Regularization](#regularization)
     - [Ensemble methods](#ensemble-methods)
+    - [Stacking](#stacking)
     - [Feature Selection](#feature-selection)
 - [Advanced methods for avoiding overfitting](#advanced-methods-for-avoiding-overfitting)
-    - [Stacking](#stacking)
     - [Adversarial Validation](#adversarial-validation)
     - [Model Uncertainty](#model-uncertainty)
     - [Dropout \(regularization\)](#dropout-regularization)
     - [Transfer Learning - for improving performance](#transfer-learning---for-improving-performance)
-    - [Model Ensembling - for improving performance](#model-ensembling---for-improving-performance)
     - [AutoML - for selecting and tuning models](#automl---for-selecting-and-tuning-models)
     - [Bayesian Optimization - for hyperparameters tunnig](#bayesian-optimization---for-hyperparameters-tunnig)
 - [Notable mentions](#notable-mentions)
@@ -57,6 +56,10 @@ Regularization is a technique used to prevent overfitting by adding a penalty te
 <a id="ensemble-methods"></a>
 ### Ensemble methods
 Ensemble methods are techniques used to combine the predictions of multiple models to produce a single prediction. Ensemble methods are known to be effective in preventing overfitting, as they combine the strengths of multiple models and reduce the risk of overfitting to a single model.
+
+<a id="stacking"></a>
+### Stacking
+Stacking is an ensemble technique that combines the predictions of multiple models to produce a single prediction. It involves training multiple models on different portions of the training data and then using their predictions as features to train a meta-model. This technique can lead to improved performance compared to using a single model.
     
 <a id="feature-selection"></a>
 ### Feature Selection
@@ -66,9 +69,7 @@ Feature selection is a technique used to select the most relevant features for a
 <a id="advanced-methods-for-avoiding-overfitting"></a>
 ## Advanced methods for avoiding overfitting
 <a id="stacking"></a>
-### Stacking
-Stacking is an ensemble technique that combines the predictions of multiple models to produce a single prediction. It involves training multiple models on different portions of the training data and then using their predictions as features to train a meta-model. This technique can lead to improved performance compared to using a single model.
-    
+
 <a id="adversarial-validation"></a>
 ### Adversarial Validation
 Adversarial Validation is a technique used to evaluate the generalization performance of a model by creating a validation set that is similar to the test set. The idea is to train the model on the training set, and then evaluate its performance on the validation set, which is obtained by combining samples from the training set and the test set.
@@ -100,17 +101,6 @@ References:
 
 - [Transfer learning - Wikipedia](https://en.wikipedia.org/wiki/Transfer_learning)
 - [A Gentle Introduction to Transfer Learning for Deep Learning - MachineLearningMastery.com](https://machinelearningmastery.com/transfer-learning-for-deep-learning/)
-
-
-<a id="model-ensembling---for-improving-performance"></a>
-### Model Ensembling - for improving performance
-Model Ensembling is the technique of combining multiple models to produce a single prediction. This technique has been widely used by Kaggle competition winners and data science expert professionals to improve the performance of their models and prevent overfitting.
-
-References:
-
-- [Ensemble learning - Wikipedia](https://en.wikipedia.org/wiki/Ensemble_learning)
-- [Site Unreachable](https://builtin.com/machine-learning/ensemble-model)
-
 <a id="automl---for-selecting-and-tuning-models"></a>
 ### AutoML - for selecting and tuning models
 AutoML is the use of machine learning algorithms to automate the process of selecting and tuning machine learning models. AutoML has been used by many Kaggle competition winners and data science expert professionals to streamline the model selection and hyperparameter tuning process, and to find the best models with less human intervention, thereby reducing the risk of overfitting. 
