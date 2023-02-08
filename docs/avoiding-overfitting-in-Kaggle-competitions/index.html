@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results."/>
+    <meta name="keywords" content="kaggle, overfitting, model-training, cross-validation, early-stopping, regularization, ensemble, feature-selection, stacking, adversarial-validation, model-uncertainty, dropout, transfer-learning, automl, bayesian">
+    <meta expr:content="2023-02-08 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-02-08 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-02-08 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-02-08 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Beat Overfitting in Kaggle Competitions: Proven Techniques",
+  "datePublished": "2023-02-08 00:00:00+01:00",
+  "dateModified": "2023-02-08 00:00:00+01:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Beat Overfitting in Kaggle Competitions: Proven Techniques"/>
+  <meta property="og:description" content="Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/avoiding-overfitting-in-Kaggle-competitions/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-02-08 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-02-08 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="kaggle"/>
+  <meta property="article:tag" content="overfitting"/>
+  <meta property="article:tag" content="model-training"/>
+  <meta property="article:tag" content="cross-validation"/>
+  <meta property="article:tag" content="early-stopping"/>
+  <meta property="article:tag" content="regularization"/>
+  <meta property="article:tag" content="ensemble"/>
+  <meta property="article:tag" content="feature-selection"/>
+  <meta property="article:tag" content="stacking"/>
+  <meta property="article:tag" content="adversarial-validation"/>
+  <meta property="article:tag" content="model-uncertainty"/>
+  <meta property="article:tag" content="dropout"/>
+  <meta property="article:tag" content="transfer-learning"/>
+  <meta property="article:tag" content="automl"/>
+  <meta property="article:tag" content="bayesian"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/data_scientist.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/data_scientist.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results.</p>"/>
+    <meta name="twitter:title" content="Beat Overfitting in Kaggle Competitions: Proven Techniques"/>
+
+
+    <title>    Beat Overfitting in Kaggle Competitions: Proven Techniques
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-02-08 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Beat%20Overfitting%20in%20Kaggle%20Competitions%3A%20Proven%20Techniques&url=https%3A//www.safjan.com/avoiding-overfitting-in-Kaggle-competitions/&hashtags=kaggle,overfitting,model-training,cross-validation,early-stopping,regularization,ensemble,feature-selection,stacking,adversarial-validation,model-uncertainty,dropout,transfer-learning,automl,bayesian" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/avoiding-overfitting-in-Kaggle-competitions/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Beat%20Overfitting%20in%20Kaggle%20Competitions%3A%20Proven%20Techniques&u=https%3A//www.safjan.com/avoiding-overfitting-in-Kaggle-competitions/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/avoiding-overfitting-in-Kaggle-competitions/&title=Beat%20Overfitting%20in%20Kaggle%20Competitions%3A%20Proven%20Techniques" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="avoiding-overfitting-in-Kaggle-competitions">Beat Overfitting in Kaggle Competitions: Proven Techniques</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/avoiding-overfitting-in-Kaggle-competitions/">
+                        <img style="width: 100%; "
+                         src="/images/head/data_scientist.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <h2>Overfitting problem in Kaggle competitions</h2>
+<p>Overfitting is a common issue in Kaggle competitions where the goal is to develop a classification model that performs well on unseen data. Overfitting occurs when a model is trained too well on the training data, and as a result, it becomes too complex and starts to memorize the training data, instead of learning the underlying patterns. This can lead to poor performance on the test data, which is the ultimate goal in Kaggle competitions.</p>
+<p>To avoid overfitting, it's essential to evaluate the model during the training process, and select the best model that generalizes well to unseen data. Here are some effective techniques to achieve this:</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#popular-methods-for-avoiding-overfitting">Popular methods for avoiding overfitting</a><ul>
+<li><a href="#cross-validation">Cross-validation</a></li>
+<li><a href="#early-stopping">Early Stopping</a></li>
+<li><a href="#regularization">Regularization</a></li>
+<li><a href="#ensemble-methods">Ensemble methods</a></li>
+<li><a href="#feature-selection">Feature Selection</a></li>
+</ul>
+</li>
+<li><a href="#advanced-methods-for-avoiding-overfitting">Advanced methods for avoiding overfitting</a><ul>
+<li><a href="#stacking">Stacking</a></li>
+<li><a href="#adversarial-validation">Adversarial Validation</a></li>
+<li><a href="#model-uncertainty">Model Uncertainty</a></li>
+<li><a href="#dropout-regularization">Dropout (regularization)</a></li>
+<li><a href="#transfer-learning---for-improving-performance">Transfer Learning - for improving performance</a></li>
+<li><a href="#model-ensembling---for-improving-performance">Model Ensembling - for improving performance</a></li>
+<li><a href="#automl---for-selecting-and-tuning-models">AutoML - for selecting and tuning models</a></li>
+<li><a href="#bayesian-optimization---for-hyperparameters-tunnig">Bayesian Optimization - for hyperparameters tunnig</a></li>
+</ul>
+</li>
+<li><a href="#notable-mentions">Notable mentions</a><ul>
+<li><a href="#bagging">Bagging</a></li>
+<li><a href="#boosting">Boosting</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="popular-methods-for-avoiding-overfitting"></a></p>
+<h2>Popular methods for avoiding overfitting</h2>
+<p><a id="cross-validation"></a></p>
+<h3>Cross-validation</h3>
+<p>It is a technique used to assess the performance of a model on the unseen data. The idea is to divide the data into multiple folds, and train the model on k-1 folds, and validate it on the kth fold. This process is repeated multiple times, and the average performance is used as the final score.</p>
+<p><a id="early-stopping"></a></p>
+<h3>Early Stopping</h3>
+<p>It is a technique used to stop the training process when the model performance on a validation set stops improving. The idea is to monitor the performance on the validation set during the training process, and stop the training when the performance plateaus or starts to decline.</p>
+<p><a id="regularization"></a></p>
+<h3>Regularization</h3>
+<p>Regularization is a technique used to prevent overfitting by adding a penalty term to the loss function. The idea is to encourage the model to learn simple representations, instead of complex ones. Common regularization techniques include L1 and L2 regularization.</p>
+<p><a id="ensemble-methods"></a></p>
+<h3>Ensemble methods</h3>
+<p>Ensemble methods are techniques used to combine the predictions of multiple models to produce a single prediction. Ensemble methods are known to be effective in preventing overfitting, as they combine the strengths of multiple models and reduce the risk of overfitting to a single model.</p>
+<p><a id="feature-selection"></a></p>
+<h3>Feature Selection</h3>
+<p>Feature selection is a technique used to select the most relevant features for a classification problem. The idea is to remove redundant and irrelevant features, which can improve the model's performance and prevent overfitting.</p>
+<p><a id="advanced-methods-for-avoiding-overfitting"></a></p>
+<h2>Advanced methods for avoiding overfitting</h2>
+<p><a id="stacking"></a></p>
+<h3>Stacking</h3>
+<p>Stacking is an ensemble technique that combines the predictions of multiple models to produce a single prediction. It involves training multiple models on different portions of the training data and then using their predictions as features to train a meta-model. This technique can lead to improved performance compared to using a single model.</p>
+<p><a id="adversarial-validation"></a></p>
+<h3>Adversarial Validation</h3>
+<p>Adversarial Validation is a technique used to evaluate the generalization performance of a model by creating a validation set that is similar to the test set. The idea is to train the model on the training set, and then evaluate its performance on the validation set, which is obtained by combining samples from the training set and the test set.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://blog.zakjost.com/post/adversarial_validation/">Adversarial Validation | Zak Jost</a></li>
+<li><a href="https://www.kaggle.com/code/carlmcbrideellis/what-is-adversarial-validation">What is Adversarial Validation? | Kaggle</a></li>
+</ul>
+<p><a id="model-uncertainty"></a></p>
+<h3>Model Uncertainty</h3>
+<p>Model Uncertainty is a technique used to evaluate the uncertainty in the model predictions. The idea is to use Bayesian techniques to estimate the uncertainty in the model parameters, and use this information to rank the predictions made by the model.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://link.springer.com/article/10.1007/s00521-021-06528-z">Counterfactual explanation of Bayesian model uncertainty | SpringerLink</a></li>
+<li><a href="https://machinelearningmastery.com/uncertainty-in-machine-learning/">A Gentle Introduction to Uncertainty in Machine Learning - MachineLearningMastery.com</a></li>
+<li><a href="https://towardsdatascience.com/uncertainty-quantification-of-predictions-with-bayesian-inference-6192e31a9fa9">Uncertainty Assessment of Predictions with Bayesian Inference | by Georgi Ivanov | Towards Data Science</a></li>
+</ul>
+<p><a id="dropout-regularization"></a></p>
+<h3>Dropout (regularization)</h3>
+<p>Dropout is a regularization technique that involves randomly dropping out units in a neural network during training. The idea is to prevent the network from becoming too complex and memorizing the training data, which can lead to overfitting.</p>
+<p><a id="transfer-learning---for-improving-performance"></a></p>
+<h3>Transfer Learning - for improving performance</h3>
+<p>Transfer Learning is a technique used to transfer knowledge from one task to another. The idea is to fine-tune a pre-trained model on the target task, instead of training the model from scratch. This technique can lead to improved performance by leveraging the knowledge learned from related tasks.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Transfer_learning">Transfer learning - Wikipedia</a></li>
+<li><a href="https://machinelearningmastery.com/transfer-learning-for-deep-learning/">A Gentle Introduction to Transfer Learning for Deep Learning - MachineLearningMastery.com</a></li>
+</ul>
+<p><a id="model-ensembling---for-improving-performance"></a></p>
+<h3>Model Ensembling - for improving performance</h3>
+<p>Model Ensembling is the technique of combining multiple models to produce a single prediction. This technique has been widely used by Kaggle competition winners and data science expert professionals to improve the performance of their models and prevent overfitting.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Ensemble_learning">Ensemble learning - Wikipedia</a></li>
+<li><a href="https://builtin.com/machine-learning/ensemble-model">Site Unreachable</a></li>
+</ul>
+<p><a id="automl---for-selecting-and-tuning-models"></a></p>
+<h3>AutoML - for selecting and tuning models</h3>
+<p>AutoML is the use of machine learning algorithms to automate the process of selecting and tuning machine learning models. AutoML has been used by many Kaggle competition winners and data science expert professionals to streamline the model selection and hyperparameter tuning process, and to find the best models with less human intervention, thereby reducing the risk of overfitting. 
+Examples of python AutoML libraries: <a href="https://automl.github.io/auto-sklearn/master/">auto-sklearn</a>, <a href="https://epistasislab.github.io/tpot/">TPOT</a>, <a href="http://hyperopt.github.io/hyperopt-sklearn/">HyperOpt</a>, <a href="https://autokeras.com/">AutoKeras</a></p>
+<p>References:</p>
+<ul>
+<li><a href="https://machinelearningmastery.com/automl-libraries-for-python/">Automated Machine Learning (AutoML) Libraries for Python - MachineLearningMastery.com</a></li>
+<li><a href="https://towardsdatascience.com/4-python-automl-libraries-every-data-scientist-should-know-680ff5d6ad08">4 Python AutoML Libraries Every Data Scientist Should Know | by Andre Ye | Towards Data Science</a></li>
+<li><a href="https://www.activestate.com/blog/the-top-10-automl-python-packages-to-automate-your-machine-learning-tasks/">Top 10 AutoML Python packages to automate your machine learning tasks</a></li>
+<li><a href="https://towardsdatascience.com/python-automl-sklearn-fd85d3b3c5e">Python AutoML Library That Outperforms Data Scientists | Towards Data Science</a></li>
+</ul>
+<p><a id="bayesian-optimization---for-hyperparameters-tunnig"></a></p>
+<h3>Bayesian Optimization - for hyperparameters tunnig</h3>
+<p>Bayesian Optimization is a probabilistic model-based optimization technique used to tune the hyperparameters of a model. This technique has been used by many Kaggle competition winners and data science expert professionals to improve the performance of their models and prevent overfitting.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://towardsdatascience.com/bayesian-optimization-and-hyperparameter-tuning-6a22f14cb9fa">Bayesian Optimization and Hyperparameter Tuning | by Aditya Mohan | Towards Data Science</a></li>
+<li><a href="https://coderzcolumn.com/tutorials/machine-learning/bayes-opt-bayesian-optimization-for-hyperparameters-tuning">bayes_opt: Bayesian Optimization for Hyperparameters Tuning</a></li>
+<li><a href="http://www.mysmu.edu/faculty/jwwang/post/hyperparameters-tuning-for-xgboost-using-bayesian-optimization/">Hyperparameters Tuning for XGBoost using Bayesian Optimization | Dr.Data.King</a></li>
+<li><a href="https://medium.com/analytics-vidhya/achieve-bayesian-optimization-for-tuning-hyper-parameters-df1aad6cb49a">Achieve Bayesian optimization for tuning hyper-parameters | by Edward Ortiz | Analytics Vidhya | Medium</a></li>
+<li></li>
+</ul>
+<p><a id="notable-mentions"></a></p>
+<h2>Notable mentions</h2>
+<p><a id="bagging"></a></p>
+<h3>Bagging</h3>
+<p>Bagging (Bootstrap Aggregating) is an ensemble technique that involves training multiple models on different random subsets of the training data. The final prediction is obtained by averaging the predictions of the individual models. Bagging can lead to improved performance by <strong>reducing the variance</strong> in the model predictions.</p>
+<p><a id="boosting"></a></p>
+<h3>Boosting</h3>
+<p>Boosting is an iterative technique that trains weak models and combines them to produce a stronger model. It involves training multiple models, where each model focuses on correcting the mistakes made by the previous models. Boosting can lead to improved performance by <strong>reducing the bias</strong> in the model predictions.</p>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>To avoid overfitting in Kaggle competitions, it's crucial to evaluate the model's performance on unseen data. These advanced methods, along with the more common methods like cross-validation, early stopping, regularization, ensemble methods, and feature selection, can be effectively used to prevent overfitting and improve the performance of the models in Kaggle competitions.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/kaggle/">kaggle</a>
+                        <a href="https://www.safjan.com/tag/overfitting/">overfitting</a>
+                        <a href="https://www.safjan.com/tag/model-training/">model-training</a>
+                        <a href="https://www.safjan.com/tag/cross-validation/">cross-validation</a>
+                        <a href="https://www.safjan.com/tag/early-stopping/">early-stopping</a>
+                        <a href="https://www.safjan.com/tag/regularization/">regularization</a>
+                        <a href="https://www.safjan.com/tag/ensemble/">ensemble</a>
+                        <a href="https://www.safjan.com/tag/feature-selection/">feature-selection</a>
+                        <a href="https://www.safjan.com/tag/stacking/">stacking</a>
+                        <a href="https://www.safjan.com/tag/adversarial-validation/">adversarial-validation</a>
+                        <a href="https://www.safjan.com/tag/model-uncertainty/">model-uncertainty</a>
+                        <a href="https://www.safjan.com/tag/dropout/">dropout</a>
+                        <a href="https://www.safjan.com/tag/transfer-learning/">transfer-learning</a>
+                        <a href="https://www.safjan.com/tag/automl/">automl</a>
+                        <a href="https://www.safjan.com/tag/bayesian/">bayesian</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/markmap-mindmap-in-pelican-blog/" title="Using markmap mindmap diagrams in Pelican Blog">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/">Kaggle evaluation metrics used for regression problems</a></li>
+                        <li><a href="https://www.safjan.com/whats-cooking/">What's cooking</a></li>
+                        <li><a href="https://www.safjan.com/when-the-bayesian-methods-are-not-the-best-option/">When Bayesian methods are not the best option?</a></li>
+                        <li><a href="https://www.safjan.com/learning-bayesian-methods-as-data-scientist/">Learning Bayesian methods as Data Scientist</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
