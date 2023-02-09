@@ -67,7 +67,7 @@ if MY_THEME == "flex":
         False  # display date in the list of articles (tags, categories)
     )
 
-PROMO_BOX = True
+    PROMO_BOX = True
 
 # define landing page for elegant style
 if MY_THEME == "elegant":
