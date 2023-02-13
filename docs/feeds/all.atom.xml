@@ -190,7 +190,169 @@
 &lt;li&gt;A tutorial on using XML-RPC in Python: &lt;a href="https://pymotw.com/2/xmlrpc.client/index.html"&gt;https://pymotw.com/2/xmlrpc.client/index.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;List of material on distributed systems:
     &lt;a href="https://github.com/theanalyst/awesome-distributed-systems"&gt;https://github.com/theanalyst/awesome-distributed-systems&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><category term="Howto"></category><category term="python"></category><category term="microservices"></category><category term="communication"></category><category term="rpc"></category><category term="rest"></category><category term="remote-procedure-call"></category><category term="xmlrpc"></category><category term="jsonrpc"></category><category term="distributed-computing"></category><category term="client-server"></category><category term="server"></category><category term="client"></category><category term="SimpleXMLRPCServer"></category><category term="ServerProxy"></category><category term="remote-communication"></category><category term="Flask"></category></entry><entry><title>How to Set the Range of the Y Axis in Plotly?</title><link href="https://www.safjan.com/plotly-how-to-set-y-axis-range/" rel="alternate"></link><published>2023-02-13T00:00:00+01:00</published><updated>2023-02-13T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-13:/plotly-how-to-set-y-axis-range/</id><summary type="html">&lt;h2&gt;Setting the Range of the Y Axis in Plotly&lt;/h2&gt;
+&lt;/ol&gt;</content><category term="Howto"></category><category term="python"></category><category term="microservices"></category><category term="communication"></category><category term="rpc"></category><category term="rest"></category><category term="remote-procedure-call"></category><category term="xmlrpc"></category><category term="jsonrpc"></category><category term="distributed-computing"></category><category term="client-server"></category><category term="server"></category><category term="client"></category><category term="SimpleXMLRPCServer"></category><category term="ServerProxy"></category><category term="remote-communication"></category><category term="Flask"></category></entry><entry><title>Comprehensive guide interpreting R², MSE, and RMSE for regression models.</title><link href="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/" rel="alternate"></link><published>2023-02-13T00:00:00+01:00</published><updated>2023-02-13T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-13:/interpreting-r2-mse-rmse-for-regression-models/</id><summary type="html">&lt;p&gt;Don't let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In regression problems, the performance of a model can be evaluated using a variety of metrics, such as R², mean squared error (MSE), and root mean squared error (RMSE). These metrics provide different information about the accuracy and precision of the model's predictions. Below are some tips on how to jointly analyze various metrics and interpret their values.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#metrics"&gt;Metrics&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#r%C2%B2-score"&gt;R² Score&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#mean-squared-error-mse"&gt;Mean Squared Error (MSE)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#root-mean-squared-error-rmse"&gt;Root Mean Squared Error (RMSE)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#interpreting-multiple-metrics-jointly"&gt;Interpreting Multiple Metrics jointly&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#consider-error-distribution"&gt;Consider error distribution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#consider-size-of-the-data-set"&gt;Consider size of the data set&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#compare-metrics-across-models"&gt;Compare metrics across models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#check-the-significance-of-the-difference-between-models"&gt;Check the significance of the difference between models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#examine-the-correlation-between-metrics"&gt;Examine the correlation between metrics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#check-for-outliers"&gt;Check for outliers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#evaluate-the-metrics-in-the-context-of-the-problem"&gt;Evaluate the metrics in the context of the problem&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#use-visualizations"&gt;Use visualizations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#use-domain-knowledge"&gt;Use domain knowledge&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#consider-the-trade-off-between-accuracy-and-interpretability"&gt;Consider the trade-off between accuracy and interpretability&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#consider-the-data-distribution"&gt;Consider the data distribution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#look-beyond-the-mean"&gt;Look beyond the mean&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#choose-metrics-based-on-the-problem"&gt;Choose metrics based on the problem&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#summary"&gt;Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="metrics"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Metrics&lt;/h2&gt;
+&lt;p&gt;&lt;a id="r%C2%B2-score"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;R² Score&lt;/h3&gt;
+&lt;p&gt;The R² score is a measure of how well the model fits the data. It represents the proportion of the variance in the dependent variable that is explained by the independent variables in the model. The R² score ranges from 0 to 1, where a score of 1 indicates a perfect fit of the model to the data.&lt;/p&gt;
+&lt;p&gt;The formula for R² is:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+R^2 = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y_i})^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
+$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; is the actual value of the dependent variable, &lt;span class="math"&gt;\(\hat{y_i}\)&lt;/span&gt; is the predicted value of the dependent variable, &lt;span class="math"&gt;\(\bar{y}\)&lt;/span&gt; is the mean of the actual values, and &lt;span class="math"&gt;\(n\)&lt;/span&gt; is the number of observations.&lt;/p&gt;
+&lt;p&gt;Interpreting the R² score can be tricky. A high R² score does not necessarily mean that the model is accurate or reliable. In some cases, a high R² score can be obtained even if the model has significant errors in its predictions. For example, if the model is overfitting the data, it may have a high R² score but perform poorly on new data. Similarly, if the model is underfitting the data, it may have a low R² score but still be accurate.&lt;/p&gt;
+&lt;p&gt;&lt;a id="mean-squared-error-mse"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Mean Squared Error (MSE)&lt;/h3&gt;
+&lt;p&gt;The MSE is a measure of the average squared difference between the predicted values and the actual values. The formula for MSE is:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; is the actual value of the dependent variable, &lt;span class="math"&gt;\(\hat{y_i}\)&lt;/span&gt; is the predicted value of the dependent variable, and &lt;span class="math"&gt;\(n\)&lt;/span&gt; is the number of observations.&lt;/p&gt;
+&lt;p&gt;The MSE &lt;strong&gt;can be used to compare the performance of different models&lt;/strong&gt;. A lower MSE indicates better performance. However, the &lt;strong&gt;MSE is sensitive to outliers&lt;/strong&gt; and can be skewed by extreme values.&lt;/p&gt;
+&lt;p&gt;&lt;a id="root-mean-squared-error-rmse"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Root Mean Squared Error (RMSE)&lt;/h3&gt;
+&lt;p&gt;The RMSE is a measure of the average magnitude of the errors in the predictions. It is the square root of the MSE. The formula for RMSE is:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The RMSE is easier to interpret than the MSE because it &lt;strong&gt;is in the same units as the dependent variable&lt;/strong&gt;. A lower RMSE indicates better performance. However, like the MSE, the RMSE is &lt;strong&gt;sensitive to outliers&lt;/strong&gt; and can be skewed by extreme values.&lt;/p&gt;
+&lt;p&gt;&lt;a id="interpreting-multiple-metrics-jointly"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Interpreting Multiple Metrics jointly&lt;/h2&gt;
+&lt;p&gt;When evaluating the performance of a regression model, it is important to consider multiple metrics to obtain a more complete picture of the model's performance. In some cases, a single metric can be misleading. Different metrics can provide different perspectives on the model's performance. However, simply looking at the values of the metrics can be insufficient, as it can be challenging to interpret what these values mean in practical terms. Below are some tips on how to jointly analyze various metrics and interpret their values.&lt;/p&gt;
+&lt;p&gt;For example, consider a model that predicts the price of a house based on its square footage. If the model has a high R² score, it may seem like a good fit for the data. However, if the model has a high MSE or RMSE, it may be making large errors in its predictions that are not captured by the R² score. In this case, it would be useful to &lt;strong&gt;examine the distribution of the errors to see if there are any patterns&lt;/strong&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;a id="consider-error-distribution"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Consider error distribution&lt;/h3&gt;
+&lt;p&gt;If the &lt;strong&gt;errors are normally distributed&lt;/strong&gt;, the &lt;strong&gt;MSE and RMSE may provide a more accurate assessment&lt;/strong&gt; of the model's performance than the R² score alone. If the MSE or RMSE is high, it may indicate that the model is not performing well, even if the R² score is high.&lt;/p&gt;
+&lt;p&gt;&lt;a id="consider-size-of-the-data-set"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Consider size of the data set&lt;/h3&gt;
+&lt;p&gt;Another consideration when evaluating a regression model is the size of the data set. With a &lt;strong&gt;large data set&lt;/strong&gt;, even &lt;strong&gt;small errors&lt;/strong&gt; can result in a &lt;strong&gt;high MSE or RMSE&lt;/strong&gt;. In this case, it may be more useful to look at the percentage of errors, such as the mean absolute percentage error (&lt;strong&gt;MAPE&lt;/strong&gt;) or the mean percentage error (MPE). &lt;strong&gt;These&lt;/strong&gt; metrics can provide a more accurate assessment of the model's performance when dealing with large data sets.&lt;/p&gt;
+&lt;p&gt;&lt;a id="compare-metrics-across-models"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Compare metrics across models&lt;/h3&gt;
+&lt;p&gt;To compare the performance of multiple regression models, it is essential to evaluate the metrics across all the models. For example, if model A has a lower RMSE and higher R² score than model B, it is reasonable to conclude that model A is the better performer.&lt;/p&gt;
+&lt;p&gt;&lt;a id="check-the-significance-of-the-difference-between-models"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Check the significance of the difference between models&lt;/h3&gt;
+&lt;p&gt;If there is a small difference between the values of two or more metrics, it is essential to check whether the difference is statistically significant or not. This can be done using statistical tests such as the t-test, ANOVA, or Wilcoxon rank-sum test. If the difference is not significant, it may not be worthwhile to conclude that one model is superior to the other.&lt;/p&gt;
+&lt;p&gt;&lt;a id="examine-the-correlation-between-metrics"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Examine the correlation between metrics&lt;/h3&gt;
+&lt;p&gt;Metrics are often correlated, meaning that high values of one metric are associated with high values of another metric. For example, high R² scores are typically associated with low RMSE values. Understanding these correlations can help to interpret the metrics better and determine which metrics to prioritize in evaluating the model's performance.&lt;/p&gt;
+&lt;p&gt;&lt;a id="check-for-outliers"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Check for outliers&lt;/h3&gt;
+&lt;p&gt;Metrics can be skewed by outliers, which are extreme values that lie far from the majority of the data. It is important to check for outliers and remove them if possible, as they can distort the metrics and lead to incorrect conclusions about the model's performance.&lt;/p&gt;
+&lt;p&gt;&lt;a id="evaluate-the-metrics-in-the-context-of-the-problem"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Evaluate the metrics in the context of the problem&lt;/h3&gt;
+&lt;p&gt;Metrics should be interpreted in the context of the specific problem being solved. For example, a model with a high R² score but high RMSE may be more appropriate if minimizing the number of large errors is more important than minimizing the overall error. In contrast, a model with a lower R² score but lower RMSE may be more appropriate if minimizing the overall error is more important.&lt;/p&gt;
+&lt;p&gt;&lt;a id="use-visualizations"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Use visualizations&lt;/h3&gt;
+&lt;p&gt;Graphs and charts can be useful tools for visualizing the performance of different models and the relationship between different metrics. For example, a scatter plot of predicted versus actual values can help identify any patterns or trends in the model's predictions.&lt;/p&gt;
+&lt;p&gt;&lt;a id="use-domain-knowledge"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Use domain knowledge&lt;/h3&gt;
+&lt;p&gt;Understanding the problem being solved and the domain in which it operates can help in the interpretation of the metrics. For example, in a medical diagnosis problem, minimizing false negatives may be more important than minimizing overall error.&lt;/p&gt;
+&lt;p&gt;&lt;a id="consider-the-trade-off-between-accuracy-and-interpretability"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Consider the trade-off between accuracy and interpretability&lt;/h3&gt;
+&lt;p&gt;In some cases, a more interpretable model may be preferred over a more accurate one. For example, a linear regression model may be more interpretable than a neural network model, even if the latter has higher accuracy.&lt;/p&gt;
+&lt;p&gt;&lt;a id="consider-the-data-distribution"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Consider the data distribution&lt;/h3&gt;
+&lt;p&gt;Metrics such as MSE and RMSE assume a symmetric distribution of errors. If the errors are not normally distributed, it may be more appropriate to use other metrics such as mean absolute error (MAE) or mean absolute percentage error (MAPE).&lt;/p&gt;
+&lt;p&gt;&lt;a id="look-beyond-the-mean"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Look beyond the mean&lt;/h3&gt;
+&lt;p&gt;In addition to evaluating the mean value of a metric, it can be useful to examine the distribution of values. For example, examining the distribution of prediction errors can help identify any systematic bias in the model's predictions.&lt;/p&gt;
+&lt;p&gt;&lt;a id="choose-metrics-based-on-the-problem"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Choose metrics based on the problem&lt;/h3&gt;
+&lt;p&gt;Different metrics may be more appropriate for different regression problems. For example, in a time-series forecasting problem, metrics such as mean absolute scaled error (MASE) or symmetric mean absolute percentage error (SMAPE) may be more appropriate than R² or RMSE.&lt;/p&gt;
+&lt;p&gt;&lt;a id="summary"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;When evaluating the performance of a regression model, it is important to consider multiple metrics and not rely on a single metric alone. The R² score, MSE, and RMSE are common metrics used to evaluate regression models, but each provides a different perspective on the model's performance. By examining multiple metrics and considering the size of the data set, it is possible to obtain a more accurate assessment of the model's performance. Analyzing the performance of a regression model requires looking at multiple metrics and understanding their relationship to each other and the problem being solved.&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="r2-score"></category><category term="regression-model"></category><category term="model-evaluation"></category><category term="mse"></category><category term="rmse"></category><category term="performance-metrics"></category><category term="data-science"></category><category term="data-analysis"></category></entry><entry><title>How to Set the Range of the Y Axis in Plotly?</title><link href="https://www.safjan.com/plotly-how-to-set-y-axis-range/" rel="alternate"></link><published>2023-02-13T00:00:00+01:00</published><updated>2023-02-13T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-13:/plotly-how-to-set-y-axis-range/</id><summary type="html">&lt;h2&gt;Setting the Range of the Y Axis in Plotly&lt;/h2&gt;
 &lt;p&gt;When it comes to visualizing data using Plotly, one of the most important aspects is setting the range of the Y axis. By setting the Y axis range, you can control the vertical …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Setting the Range of the Y Axis in Plotly&lt;/h2&gt;
 &lt;p&gt;When it comes to visualizing data using Plotly, one of the most important aspects is setting the range of the Y axis. By setting the Y axis range, you can control the vertical scale of your graph and make it easier to interpret your data. In this post, we’ll explore the various use cases and methods for setting the range of the Y axis in Plotly.&lt;/p&gt;
 &lt;h3&gt;Use Cases&lt;/h3&gt;
@@ -12311,10 +12473,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="1b6475f6-f0dc-418c-8557-c7c790de0b7b"&gt;&lt;/div&gt;
+&lt;div id="3e6f704f-3350-4756-b424-0143c75e2816"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#1b6475f6-f0dc-418c-8557-c7c790de0b7b');
+var element = $('#3e6f704f-3350-4756-b424-0143c75e2816');
 
 (function(root) {
   function now() {

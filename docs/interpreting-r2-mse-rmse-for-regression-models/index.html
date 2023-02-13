@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Don&#39;t let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions."/>
+    <meta name="keywords" content="machine-learning, r2-score, regression-model, model-evaluation, mse, rmse, performance-metrics, data-science, data-analysis">
+    <meta expr:content="2023-02-13 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-02-13 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-02-13 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-02-13 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Comprehensive guide interpreting R², MSE, and RMSE for regression models.",
+  "datePublished": "2023-02-13 00:00:00+01:00",
+  "dateModified": "2023-02-13 00:00:00+01:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Comprehensive guide interpreting R², MSE, and RMSE for regression models."/>
+  <meta property="og:description" content="Don&#39;t let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-02-13 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-02-13 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="r2-score"/>
+  <meta property="article:tag" content="regression-model"/>
+  <meta property="article:tag" content="model-evaluation"/>
+  <meta property="article:tag" content="mse"/>
+  <meta property="article:tag" content="rmse"/>
+  <meta property="article:tag" content="performance-metrics"/>
+  <meta property="article:tag" content="data-science"/>
+  <meta property="article:tag" content="data-analysis"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_3.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_3.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Don't let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions.</p>"/>
+    <meta name="twitter:title" content="Comprehensive guide interpreting R², MSE, and RMSE for regression models."/>
+
+
+    <title>    Comprehensive guide interpreting R², MSE, and RMSE for regression models.
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-02-13 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Comprehensive%20guide%20interpreting%20R%C2%B2%2C%20MSE%2C%20and%20RMSE%20for%20regression%20models.&url=https%3A//www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/&hashtags=machine-learning,r2-score,regression-model,model-evaluation,mse,rmse,performance-metrics,data-science,data-analysis" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Comprehensive%20guide%20interpreting%20R%C2%B2%2C%20MSE%2C%20and%20RMSE%20for%20regression%20models.&u=https%3A//www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/&title=Comprehensive%20guide%20interpreting%20R%C2%B2%2C%20MSE%2C%20and%20RMSE%20for%20regression%20models." target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="interpreting-r2-mse-rmse-for-regression-models">Comprehensive guide interpreting R², MSE, and RMSE for regression models.</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Don't let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/">
+                        <img style="width: 100%; "
+                         src="/images/head/abstract_3.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <p>In regression problems, the performance of a model can be evaluated using a variety of metrics, such as R², mean squared error (MSE), and root mean squared error (RMSE). These metrics provide different information about the accuracy and precision of the model's predictions. Below are some tips on how to jointly analyze various metrics and interpret their values.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#metrics">Metrics</a><ul>
+<li><a href="#r%C2%B2-score">R² Score</a></li>
+<li><a href="#mean-squared-error-mse">Mean Squared Error (MSE)</a></li>
+<li><a href="#root-mean-squared-error-rmse">Root Mean Squared Error (RMSE)</a></li>
+</ul>
+</li>
+<li><a href="#interpreting-multiple-metrics-jointly">Interpreting Multiple Metrics jointly</a><ul>
+<li><a href="#consider-error-distribution">Consider error distribution</a></li>
+<li><a href="#consider-size-of-the-data-set">Consider size of the data set</a></li>
+<li><a href="#compare-metrics-across-models">Compare metrics across models</a></li>
+<li><a href="#check-the-significance-of-the-difference-between-models">Check the significance of the difference between models</a></li>
+<li><a href="#examine-the-correlation-between-metrics">Examine the correlation between metrics</a></li>
+<li><a href="#check-for-outliers">Check for outliers</a></li>
+<li><a href="#evaluate-the-metrics-in-the-context-of-the-problem">Evaluate the metrics in the context of the problem</a></li>
+<li><a href="#use-visualizations">Use visualizations</a></li>
+<li><a href="#use-domain-knowledge">Use domain knowledge</a></li>
+<li><a href="#consider-the-trade-off-between-accuracy-and-interpretability">Consider the trade-off between accuracy and interpretability</a></li>
+<li><a href="#consider-the-data-distribution">Consider the data distribution</a></li>
+<li><a href="#look-beyond-the-mean">Look beyond the mean</a></li>
+<li><a href="#choose-metrics-based-on-the-problem">Choose metrics based on the problem</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="metrics"></a></p>
+<h2>Metrics</h2>
+<p><a id="r%C2%B2-score"></a></p>
+<h3>R² Score</h3>
+<p>The R² score is a measure of how well the model fits the data. It represents the proportion of the variance in the dependent variable that is explained by the independent variables in the model. The R² score ranges from 0 to 1, where a score of 1 indicates a perfect fit of the model to the data.</p>
+<p>The formula for R² is:</p>
+<div class="math">$$
+R^2 = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y_i})^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
+$$</div>
+<p>where <span class="math">\(y_i\)</span> is the actual value of the dependent variable, <span class="math">\(\hat{y_i}\)</span> is the predicted value of the dependent variable, <span class="math">\(\bar{y}\)</span> is the mean of the actual values, and <span class="math">\(n\)</span> is the number of observations.</p>
+<p>Interpreting the R² score can be tricky. A high R² score does not necessarily mean that the model is accurate or reliable. In some cases, a high R² score can be obtained even if the model has significant errors in its predictions. For example, if the model is overfitting the data, it may have a high R² score but perform poorly on new data. Similarly, if the model is underfitting the data, it may have a low R² score but still be accurate.</p>
+<p><a id="mean-squared-error-mse"></a></p>
+<h3>Mean Squared Error (MSE)</h3>
+<p>The MSE is a measure of the average squared difference between the predicted values and the actual values. The formula for MSE is:</p>
+<div class="math">$$
+MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+$$</div>
+<p>where <span class="math">\(y_i\)</span> is the actual value of the dependent variable, <span class="math">\(\hat{y_i}\)</span> is the predicted value of the dependent variable, and <span class="math">\(n\)</span> is the number of observations.</p>
+<p>The MSE <strong>can be used to compare the performance of different models</strong>. A lower MSE indicates better performance. However, the <strong>MSE is sensitive to outliers</strong> and can be skewed by extreme values.</p>
+<p><a id="root-mean-squared-error-rmse"></a></p>
+<h3>Root Mean Squared Error (RMSE)</h3>
+<p>The RMSE is a measure of the average magnitude of the errors in the predictions. It is the square root of the MSE. The formula for RMSE is:</p>
+<p><span class="math">\(RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2}\)</span></p>
+<p>The RMSE is easier to interpret than the MSE because it <strong>is in the same units as the dependent variable</strong>. A lower RMSE indicates better performance. However, like the MSE, the RMSE is <strong>sensitive to outliers</strong> and can be skewed by extreme values.</p>
+<p><a id="interpreting-multiple-metrics-jointly"></a></p>
+<h2>Interpreting Multiple Metrics jointly</h2>
+<p>When evaluating the performance of a regression model, it is important to consider multiple metrics to obtain a more complete picture of the model's performance. In some cases, a single metric can be misleading. Different metrics can provide different perspectives on the model's performance. However, simply looking at the values of the metrics can be insufficient, as it can be challenging to interpret what these values mean in practical terms. Below are some tips on how to jointly analyze various metrics and interpret their values.</p>
+<p>For example, consider a model that predicts the price of a house based on its square footage. If the model has a high R² score, it may seem like a good fit for the data. However, if the model has a high MSE or RMSE, it may be making large errors in its predictions that are not captured by the R² score. In this case, it would be useful to <strong>examine the distribution of the errors to see if there are any patterns</strong>. </p>
+<p><a id="consider-error-distribution"></a></p>
+<h3>Consider error distribution</h3>
+<p>If the <strong>errors are normally distributed</strong>, the <strong>MSE and RMSE may provide a more accurate assessment</strong> of the model's performance than the R² score alone. If the MSE or RMSE is high, it may indicate that the model is not performing well, even if the R² score is high.</p>
+<p><a id="consider-size-of-the-data-set"></a></p>
+<h3>Consider size of the data set</h3>
+<p>Another consideration when evaluating a regression model is the size of the data set. With a <strong>large data set</strong>, even <strong>small errors</strong> can result in a <strong>high MSE or RMSE</strong>. In this case, it may be more useful to look at the percentage of errors, such as the mean absolute percentage error (<strong>MAPE</strong>) or the mean percentage error (MPE). <strong>These</strong> metrics can provide a more accurate assessment of the model's performance when dealing with large data sets.</p>
+<p><a id="compare-metrics-across-models"></a></p>
+<h3>Compare metrics across models</h3>
+<p>To compare the performance of multiple regression models, it is essential to evaluate the metrics across all the models. For example, if model A has a lower RMSE and higher R² score than model B, it is reasonable to conclude that model A is the better performer.</p>
+<p><a id="check-the-significance-of-the-difference-between-models"></a></p>
+<h3>Check the significance of the difference between models</h3>
+<p>If there is a small difference between the values of two or more metrics, it is essential to check whether the difference is statistically significant or not. This can be done using statistical tests such as the t-test, ANOVA, or Wilcoxon rank-sum test. If the difference is not significant, it may not be worthwhile to conclude that one model is superior to the other.</p>
+<p><a id="examine-the-correlation-between-metrics"></a></p>
+<h3>Examine the correlation between metrics</h3>
+<p>Metrics are often correlated, meaning that high values of one metric are associated with high values of another metric. For example, high R² scores are typically associated with low RMSE values. Understanding these correlations can help to interpret the metrics better and determine which metrics to prioritize in evaluating the model's performance.</p>
+<p><a id="check-for-outliers"></a></p>
+<h3>Check for outliers</h3>
+<p>Metrics can be skewed by outliers, which are extreme values that lie far from the majority of the data. It is important to check for outliers and remove them if possible, as they can distort the metrics and lead to incorrect conclusions about the model's performance.</p>
+<p><a id="evaluate-the-metrics-in-the-context-of-the-problem"></a></p>
+<h3>Evaluate the metrics in the context of the problem</h3>
+<p>Metrics should be interpreted in the context of the specific problem being solved. For example, a model with a high R² score but high RMSE may be more appropriate if minimizing the number of large errors is more important than minimizing the overall error. In contrast, a model with a lower R² score but lower RMSE may be more appropriate if minimizing the overall error is more important.</p>
+<p><a id="use-visualizations"></a></p>
+<h3>Use visualizations</h3>
+<p>Graphs and charts can be useful tools for visualizing the performance of different models and the relationship between different metrics. For example, a scatter plot of predicted versus actual values can help identify any patterns or trends in the model's predictions.</p>
+<p><a id="use-domain-knowledge"></a></p>
+<h3>Use domain knowledge</h3>
+<p>Understanding the problem being solved and the domain in which it operates can help in the interpretation of the metrics. For example, in a medical diagnosis problem, minimizing false negatives may be more important than minimizing overall error.</p>
+<p><a id="consider-the-trade-off-between-accuracy-and-interpretability"></a></p>
+<h3>Consider the trade-off between accuracy and interpretability</h3>
+<p>In some cases, a more interpretable model may be preferred over a more accurate one. For example, a linear regression model may be more interpretable than a neural network model, even if the latter has higher accuracy.</p>
+<p><a id="consider-the-data-distribution"></a></p>
+<h3>Consider the data distribution</h3>
+<p>Metrics such as MSE and RMSE assume a symmetric distribution of errors. If the errors are not normally distributed, it may be more appropriate to use other metrics such as mean absolute error (MAE) or mean absolute percentage error (MAPE).</p>
+<p><a id="look-beyond-the-mean"></a></p>
+<h3>Look beyond the mean</h3>
+<p>In addition to evaluating the mean value of a metric, it can be useful to examine the distribution of values. For example, examining the distribution of prediction errors can help identify any systematic bias in the model's predictions.</p>
+<p><a id="choose-metrics-based-on-the-problem"></a></p>
+<h3>Choose metrics based on the problem</h3>
+<p>Different metrics may be more appropriate for different regression problems. For example, in a time-series forecasting problem, metrics such as mean absolute scaled error (MASE) or symmetric mean absolute percentage error (SMAPE) may be more appropriate than R² or RMSE.</p>
+<p><a id="summary"></a></p>
+<h2>Summary</h2>
+<p>When evaluating the performance of a regression model, it is important to consider multiple metrics and not rely on a single metric alone. The R² score, MSE, and RMSE are common metrics used to evaluate regression models, but each provides a different perspective on the model's performance. By examining multiple metrics and considering the size of the data set, it is possible to obtain a more accurate assessment of the model's performance. Analyzing the performance of a regression model requires looking at multiple metrics and understanding their relationship to each other and the problem being solved.</p>
+<p>​</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/r2-score/">r2-score</a>
+                        <a href="https://www.safjan.com/tag/regression-model/">regression-model</a>
+                        <a href="https://www.safjan.com/tag/model-evaluation/">model-evaluation</a>
+                        <a href="https://www.safjan.com/tag/mse/">mse</a>
+                        <a href="https://www.safjan.com/tag/rmse/">rmse</a>
+                        <a href="https://www.safjan.com/tag/performance-metrics/">performance-metrics</a>
+                        <a href="https://www.safjan.com/tag/data-science/">data-science</a>
+                        <a href="https://www.safjan.com/tag/data-analysis/">data-analysis</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/plotly-how-to-set-y-axis-range/" title="How to Set the Range of the Y Axis in Plotly?">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/how-to-use-rpc-in-python/" title="How to use RPC in python?">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/alternatives-to-apache-airflow/">Beyond Airflow - 5 Workflow Tools You Need to Know</a></li>
+                        <li><a href="https://www.safjan.com/datasets-for-embeddings-evaluation/">Datasets for embeddings performance evaluation</a></li>
+                        <li><a href="https://www.safjan.com/impact_of_google_search_and_llms_on_methal_capabilities/">The Impact of Search Engines and AI Generative Models on Mental and Cognitive Capabilities</a></li>
+                        <li><a href="https://www.safjan.com/why-to-learn-databricks/">Becoming a Data Wizard: The Benefits of Learning Databricks</a></li>
+                        <li><a href="https://www.safjan.com/methods-for-python-ml-models-packaging-and-deployment/">Which method of model packaging should I used?</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
