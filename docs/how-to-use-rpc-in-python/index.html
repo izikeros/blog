@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Get Started with RPC: A Beginner&#39;s Guide to Building a Python RPC Server Using xmlrpc and jsonrpc."/>
+    <meta name="keywords" content="python, microservices, communication, rpc, rest, remote-procedure-call, xmlrpc, jsonrpc, distributed-computing, client-server, server, client, SimpleXMLRPCServer, ServerProxy, remote-communication, Flask">
+    <meta expr:content="2023-02-13 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-02-13 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-02-13 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-02-13 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to use RPC in python?",
+  "datePublished": "2023-02-13 00:00:00+01:00",
+  "dateModified": "2023-02-13 00:00:00+01:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="How to use RPC in python?"/>
+  <meta property="og:description" content="Get Started with RPC: A Beginner&#39;s Guide to Building a Python RPC Server Using xmlrpc and jsonrpc."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/how-to-use-rpc-in-python/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-02-13 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-02-13 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Howto"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="microservices"/>
+  <meta property="article:tag" content="communication"/>
+  <meta property="article:tag" content="rpc"/>
+  <meta property="article:tag" content="rest"/>
+  <meta property="article:tag" content="remote-procedure-call"/>
+  <meta property="article:tag" content="xmlrpc"/>
+  <meta property="article:tag" content="jsonrpc"/>
+  <meta property="article:tag" content="distributed-computing"/>
+  <meta property="article:tag" content="client-server"/>
+  <meta property="article:tag" content="server"/>
+  <meta property="article:tag" content="client"/>
+  <meta property="article:tag" content="SimpleXMLRPCServer"/>
+  <meta property="article:tag" content="ServerProxy"/>
+  <meta property="article:tag" content="remote-communication"/>
+  <meta property="article:tag" content="Flask"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Get Started with RPC: A Beginner's Guide to Building a Python RPC Server Using xmlrpc and jsonrpc.</p>"/>
+    <meta name="twitter:title" content="How to use RPC in python?"/>
+
+
+    <title>    How to use RPC in python?
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-02-13 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=How%20to%20use%20RPC%20in%20python%3F&url=https%3A//www.safjan.com/how-to-use-rpc-in-python/&hashtags=python,microservices,communication,rpc,rest,remote-procedure-call,xmlrpc,jsonrpc,distributed-computing,client-server,server,client,simplexmlrpcserver,serverproxy,remote-communication,flask" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-to-use-rpc-in-python/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=How%20to%20use%20RPC%20in%20python%3F&u=https%3A//www.safjan.com/how-to-use-rpc-in-python/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-to-use-rpc-in-python/&title=How%20to%20use%20RPC%20in%20python%3F" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="how-to-use-rpc-in-python">How to use RPC in python?</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Get Started with RPC: A Beginner's Guide to Building a Python RPC Server Using xmlrpc and jsonrpc.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/how-to-use-rpc-in-python/">
+                        <img style="width: 100%; "
+                         src="/images/head/abstract_1.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <p><a href="https://en.wikipedia.org/wiki/Remote_procedure_call">Remote Procedure Call (RPC)</a> is a protocol that allows two different processes or applications to communicate with each other across different machines, even if they are using different programming languages. RPC is a popular technique used in distributed computing environments, where applications running on different systems need to communicate with each other to perform a task. In this blog post, we will explore how to use RPC in Python and provide an example of two instances communicating using RPC.</p>
+<h2>Using RPC in Python</h2>
+<p>Python provides built-in support for RPC through the <a href="https://docs.python.org/3/library/xmlrpc.html">xmlrpc</a> and <a href="https://json-rpc.readthedocs.io/en/latest/">jsonrpc</a> libraries. These libraries allow Python applications to expose their functions as RPC services and also consume RPC services provided by other applications.</p>
+<p>To use RPC in Python, you need to create a server that exposes a set of functions or methods that can be invoked by remote clients. You can then use a client application to connect to the server and call these functions remotely.</p>
+<h3>Simple client-server</h3>
+<h4>Server</h4>
+<p>Let's start with an example of a <strong>simple server</strong> that exposes a function to add two numbers:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">xmlrpc.server</span>
+
+<span class="k">class</span> <span class="nc">MyServer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">xmlrpc</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">SimpleXMLRPCServer</span><span class="p">((</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">))</span>
+<span class="n">server</span><span class="o">.</span><span class="n">register_instance</span><span class="p">(</span><span class="n">MyServer</span><span class="p">())</span>
+<span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</code></pre></div>
+
+<p>In the code above, we first define a class called <code>MyServer</code> that exposes a single method called add, which takes two arguments and returns their sum. We then create an instance of the <code>SimpleXMLRPCServer</code> class, passing in the host and port where the server should listen for incoming requests. We register an instance of the <code>MyServer</code> class with the server, which means that any requests received by the server will be forwarded to the methods of the <code>MyServer</code> class. Finally, we call the <code>serve_forever</code> method to start the server and listen for incoming requests.</p>
+<h4>Client</h4>
+<p>Now that we have a server running, let's create a <strong>client application</strong> that can connect to the server and call the add method remotely:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">xmlrpc.client</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">xmlrpc</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ServerProxy</span><span class="p">(</span><span class="s2">&quot;http://localhost:8000&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In the code above, we create an instance of the <code>ServerProxy</code> class, passing in the URL of the server we want to connect to. We then call the add method on the server object, passing in the two numbers we want to add. The result of the method call is returned to the client, which we print to the console.</p>
+<p>That's it! We have successfully used RPC to call a method on a remote server from a client application.</p>
+<h3>Example of Two Instances Communicating Using RPC</h3>
+<p>Now let's explore an example of two instances communicating using RPC. In this example, we will create a server application that exposes a set of methods that can be called by a client application. The client application will then call these methods to perform a task.</p>
+<p>First, let's create the server application:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">xmlrpc.server</span>
+
+<span class="k">class</span> <span class="nc">MyServer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">cube</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">xmlrpc</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">SimpleXMLRPCServer</span><span class="p">((</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">))</span>
+<span class="n">server</span><span class="o">.</span><span class="n">register_instance</span><span class="p">(</span><span class="n">MyServer</span><span class="p">())</span>
+<span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</code></pre></div>
+
+<p>In the code above, we create a class called <code>MyServer</code> that exposes two methods, square and cube, which calculate the square and cube of a number respectively. We then create an instance of the <code>SimpleXMLRPCServer</code> class and register an instance of the <code>MyServer</code> class with the server.</p>
+<p>Next, let's create the client application:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">xmlrpc.client</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">xmlrpc</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ServerProxy</span><span class="p">(</span><span class="s2">&quot;http://localhost:8000&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The square of 5 is:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">server</span>
+</code></pre></div>
+
+<p>In the client application code above, we create an instance of the <code>ServerProxy</code> class and connect to the server running on localhost at port <code>8000</code>. We then call the square method on the server object, passing in the number <code>5</code>. The result of the method call is returned to the client, which we print to the console. We then call the cube method on the server object, passing in the number <code>3</code>, and print the result to the console.</p>
+<p>When we run the client application, we should see the following output:</p>
+<div class="highlight"><pre><span></span><code><span class="n">The</span> <span class="n">square</span> <span class="n">of</span> <span class="mi">5</span> <span class="ow">is</span><span class="p">:</span> <span class="mi">25</span>
+<span class="n">The</span> <span class="n">cube</span> <span class="n">of</span> <span class="mi">3</span> <span class="ow">is</span><span class="p">:</span> <span class="mi">27</span>
+</code></pre></div>
+
+<p>As you can see, we have successfully used RPC to call methods on a remote server from a client application.</p>
+<h2>Conclusion</h2>
+<p>RPC is a powerful technique for building distributed applications, and Python provides built-in support for RPC through the xmlrpc and jsonrpc libraries. Using RPC in Python is straightforward and can be done with just a few lines of code. By following the examples provided in this blog post, you should now have a good understanding of how to use RPC in Python and how to create a server that exposes methods that can be called remotely by a client application.</p>
+<p>You mig be interested in reading my <a href="./guide-building-python-rpc-server-using-flask">"Guide to building a Python RPC server using Flask"</a></p>
+<h2>Further Reading</h2>
+<ol>
+<li>The Python documentation on xmlrpc: <a href="https://docs.python.org/3/library/xmlrpc.html">https://docs.python.org/3/library/xmlrpc.html</a></li>
+<li>The Python documentation on jsonrpc: 
+    <a href="https://json-rpc.readthedocs.io/en/latest/">https://json-rpc.readthedocs.io/en/latest/</a></li>
+<li>A tutorial on using XML-RPC in Python: <a href="https://pymotw.com/2/xmlrpc.client/index.html">https://pymotw.com/2/xmlrpc.client/index.html</a></li>
+<li>List of material on distributed systems:
+    <a href="https://github.com/theanalyst/awesome-distributed-systems">https://github.com/theanalyst/awesome-distributed-systems</a></li>
+</ol>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/microservices/">microservices</a>
+                        <a href="https://www.safjan.com/tag/communication/">communication</a>
+                        <a href="https://www.safjan.com/tag/rpc/">rpc</a>
+                        <a href="https://www.safjan.com/tag/rest/">rest</a>
+                        <a href="https://www.safjan.com/tag/remote-procedure-call/">remote-procedure-call</a>
+                        <a href="https://www.safjan.com/tag/xmlrpc/">xmlrpc</a>
+                        <a href="https://www.safjan.com/tag/jsonrpc/">jsonrpc</a>
+                        <a href="https://www.safjan.com/tag/distributed-computing/">distributed-computing</a>
+                        <a href="https://www.safjan.com/tag/client-server/">client-server</a>
+                        <a href="https://www.safjan.com/tag/server/">server</a>
+                        <a href="https://www.safjan.com/tag/client/">client</a>
+                        <a href="https://www.safjan.com/tag/simplexmlrpcserver/">SimpleXMLRPCServer</a>
+                        <a href="https://www.safjan.com/tag/serverproxy/">ServerProxy</a>
+                        <a href="https://www.safjan.com/tag/remote-communication/">remote-communication</a>
+                        <a href="https://www.safjan.com/tag/flask/">Flask</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/plotly-how-to-set-y-axis-range/" title="How to Set the Range of the Y Axis in Plotly?">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/guide-building-python-rpc-server-using-flask/" title="A guide to building a Python RPC server using Flask">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/guide-building-python-rpc-server-using-flask/">A guide to building a Python RPC server using Flask</a></li>
+                        <li><a href="https://www.safjan.com/serve-http-files-with-python-server/">Serve HTTP files with python server</a></li>
+                        <li><a href="https://www.safjan.com/plotly-how-to-set-y-axis-range/">How to Set the Range of the Y Axis in Plotly?</a></li>
+                        <li><a href="https://www.safjan.com/how-to-select-rows-from-DataFrame-based-on-column-values/">How to select rows from a DataFrame based on column values</a></li>
+                        <li><a href="https://www.safjan.com/libraries-for-automated-eda/">Libraries for Automated Exploratory Data Analysis (EDA)</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

@@ -4,8 +4,7 @@ slug: 10-scikit-learn-exercises-for-aspiring-data-scientists
 date: 2023-01-13
 modified: 2023-01-13
 status: published
-tags: machine-learning, learning, scikit-learn 
-summary: summary
+tags: scikit-learn-exercises, data-science, linear-regression, decision-tree-classifier, k-means-clustering, logistic-regression, random-forest-classifier, principal-component-analysis, support-vector-machine, neural-network, KNeighborsClassifier, DecisionTreeRegressor, Boston-Housing-dataset, Iris-dataset, Spambase-dataset, Wine-Quality-dataset, MNIST-dataset, Fashion-MNIST-dataset, Breast-Cancer-dataset, Auto-MPG-dataset 
 category: note
 citation_needed: false
 ---
