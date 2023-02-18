@@ -1,5 +1,5 @@
 ---
-Title: Beyond Airflow - 5 Workflow Tools You Need to Know
+Title: Beyond Airflow - 10 Workflow Tools You Need to Know
 Slug: alternatives-to-apache-airflow
 Date: 2023-02-12
 Modified: 2023-02-12
@@ -7,7 +7,7 @@ Start: 2023-02-12
 Tags: machine-learning, workflow, mlops
 Category: MLOps
 Image: /images/head/pipelines.jpg
-Summary: Looking for a new workflow management tool? Do not settle for Apache Airflow just because it is popular. Discover 5 cutting-edge alternatives that could be a better fit for your needs.
+Summary: Looking for a new workflow management tool? Do not settle for Apache Airflow just because it is popular. Discover 10 cutting-edge alternatives that could be a better fit for your needs.
 Status: published
 prompt: Give me long blog-post on Alternatives to Apache AirFlow. For each tool provide link.
 ---

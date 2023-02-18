@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-02-13T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>A guide to building a Python RPC server using Flask</title><link href="https://www.safjan.com/guide-building-python-rpc-server-using-flask/" rel="alternate"></link><published>2023-02-13T00:00:00+01:00</published><updated>2023-02-13T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-13:/guide-building-python-rpc-server-using-flask/</id><summary type="html">&lt;p&gt;Discover the world of distributed systems and build your own Python RPC server using Flask. Harness the power of remote procedure calls today!&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-02-14T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Jupyte Notebook duplicated locations for nbextensions</title><link href="https://www.safjan.com/jupyter-duplicated-nbextensions-locations/" rel="alternate"></link><published>2023-02-14T00:00:00+01:00</published><updated>2023-02-14T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-14:/jupyter-duplicated-nbextensions-locations/</id><summary type="html">&lt;p&gt;Jupyter notebooks are a great tool for data analysis and scientific computing, but they can also be customized and extended through the use of nbextensions. Nbextensions are additional pieces of code that can add new functionality, enhance existing features, and provide more …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Jupyter notebooks are a great tool for data analysis and scientific computing, but they can also be customized and extended through the use of nbextensions. Nbextensions are additional pieces of code that can add new functionality, enhance existing features, and provide more customization options to Jupyter notebooks.&lt;/p&gt;
+&lt;p&gt;However, sometimes nbextensions can be duplicated or installed in multiple places, leading to conflicts and errors. In this article, we'll discuss how to manage and prevent duplicated nbextensions files, diagnose the current state of your nbextensions, and troubleshoot any issues that may arise.&lt;/p&gt;
+&lt;p&gt;Firstly, it's important to understand that nbextensions can be installed in multiple places on your system. When you run the command &lt;code&gt;jupyter --paths&lt;/code&gt;, it will display all the directories where Jupyter notebooks can find nbextensions. These include the per-user directory (&lt;code&gt;~/.local/share/jupyter&lt;/code&gt;), the per-environment (or per-python) directory (&lt;code&gt;/path/to/env/share/jupyter&lt;/code&gt;), and one or more system-wide directories (&lt;code&gt;/usr/local/share/jupyter&lt;/code&gt;, &lt;code&gt;/usr/share/jupyter&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;To control the Jupyter paths, you can use the &lt;code&gt;--user&lt;/code&gt;, &lt;code&gt;--sys-prefix&lt;/code&gt;, or &lt;code&gt;--system&lt;/code&gt; flags when installing nbextensions. The &lt;code&gt;--user&lt;/code&gt; flag installs the nbextension in the per-user directory, the &lt;code&gt;--sys-prefix&lt;/code&gt; flag installs it in the per-environment directory, and the &lt;code&gt;--system&lt;/code&gt; flag installs it in the system-wide directory.&lt;/p&gt;
+&lt;p&gt;If you're unsure which path to use, it's generally recommended to use the per-environment directory, especially if you're using Anaconda. This will ensure that any conda package installations will go there and won't conflict with other nbextensions.&lt;/p&gt;
+&lt;p&gt;Now, let's say you've installed an nbextension and have noticed that it's duplicated in multiple places. To fix this, you'll need to remove one of the installations. If you used the &lt;code&gt;jupyter_contrib_nbextensions&lt;/code&gt; package to install the nbextension, you can run the command &lt;code&gt;jupyter contrib nbextensions uninstall --user&lt;/code&gt; to remove the per-user installation, or &lt;code&gt;jupyter contrib nbextensions uninstall --sys-prefix&lt;/code&gt; to remove the per-environment installation.&lt;/p&gt;
+&lt;p&gt;If you didn't use the &lt;code&gt;jupyter_contrib_nbextensions&lt;/code&gt; package, you can uninstall each duplicated nbextension individually using the command &lt;code&gt;jupyter nbextension uninstall --user path/url path/url/entrypoint&lt;/code&gt;. For example, to uninstall the &lt;code&gt;autosavetime&lt;/code&gt; nbextension, you would run &lt;code&gt;jupyter nbextension uninstall --user autosavetime autosavetime/main&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To diagnose the current state of your nbextensions, you can run the command &lt;code&gt;jupyter nbextension list&lt;/code&gt;. This will display a list of all installed nbextensions and their paths. If you notice any duplicates, you can then proceed to remove one of the installations as described above.&lt;/p&gt;
+&lt;p&gt;In summary, managing and preventing duplicated nbextensions files in Jupyter notebooks is important to prevent conflicts and errors. By understanding how nbextensions are installed and using the appropriate flags, you can control where they're installed and avoid duplicates. And if you do encounter duplicates, you can use the &lt;code&gt;jupyter nbextension uninstall&lt;/code&gt; command to remove them and ensure smooth operation of your Jupyter notebooks.&lt;/p&gt;
+&lt;p&gt;See also related GitHub issue: https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/25&lt;/p&gt;</content><category term="note"></category><category term="jupyter"></category><category term="jupyter-notebook"></category><category term="data-analysis"></category><category term="scientific-computing"></category><category term="nbextensions"></category><category term="customization"></category><category term="duplicates"></category><category term="diagnose"></category><category term="paths"></category><category term="per-user-directory"></category><category term="per-environment-directory"></category><category term="system-wide-directories"></category><category term="Anaconda"></category><category term="conda-package"></category><category term="jupyter_contrib_nbextensions"></category></entry><entry><title>A guide to building a Python RPC server using Flask</title><link href="https://www.safjan.com/guide-building-python-rpc-server-using-flask/" rel="alternate"></link><published>2023-02-13T00:00:00+01:00</published><updated>2023-02-13T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-13:/guide-building-python-rpc-server-using-flask/</id><summary type="html">&lt;p&gt;Discover the world of distributed systems and build your own Python RPC server using Flask. Harness the power of remote procedure calls today!&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Remote Procedure Call (RPC) is a communication protocol that allows a client application to call a function or method on a remote server. RPC is widely used in distributed systems for inter-process communication. Python is a powerful programming language for building applications, and Flask is a popular web framework for building web applications in Python. In this blog post, we will guide you on how to build a Python RPC server using Flask.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
@@ -501,7 +510,7 @@ $$&lt;/div&gt;
 &lt;p&gt;You can export the results as a CSV file or other formats by clicking "Export" at the top of the query results.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; SEDE is updated only once a week, so the data may not be up-to-date with the latest changes on Stack Overflow.&lt;/p&gt;</content><category term="note"></category><category term="most-viewed-questions"></category><category term="stack-overflow"></category><category term="specific-tag"></category><category term="tag-search"></category><category term="search-tips"></category><category term="stackoverflow"></category></entry><entry><title>Beyond Airflow - 5 Workflow Tools You Need to Know</title><link href="https://www.safjan.com/alternatives-to-apache-airflow/" rel="alternate"></link><published>2023-02-12T00:00:00+01:00</published><updated>2023-02-12T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-12:/alternatives-to-apache-airflow/</id><summary type="html">&lt;p&gt;Looking for a new workflow management tool? Do not settle for Apache Airflow just because it is popular. Discover 5 cutting-edge alternatives that could be a better fit for your needs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://airflow.apache.org/"&gt;Apache Airflow&lt;/a&gt; is a popular open-source platform for scheduling and managing workflows. It provides a unified interface for defining, executing, and monitoring workflows, making it a valuable tool for data engineers and scientists. However, Apache Airflow is not the only option available, and in some cases, other alternatives may be better suited to meet the specific needs of a project. In this blog post, we will explore some alternatives to Apache Airflow that can be used to manage workflows and schedule tasks.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; SEDE is updated only once a week, so the data may not be up-to-date with the latest changes on Stack Overflow.&lt;/p&gt;</content><category term="note"></category><category term="most-viewed-questions"></category><category term="stack-overflow"></category><category term="specific-tag"></category><category term="tag-search"></category><category term="search-tips"></category><category term="stackoverflow"></category></entry><entry><title>Beyond Airflow - 10 Workflow Tools You Need to Know</title><link href="https://www.safjan.com/alternatives-to-apache-airflow/" rel="alternate"></link><published>2023-02-12T00:00:00+01:00</published><updated>2023-02-12T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-12:/alternatives-to-apache-airflow/</id><summary type="html">&lt;p&gt;Looking for a new workflow management tool? Do not settle for Apache Airflow just because it is popular. Discover 10 cutting-edge alternatives that could be a better fit for your needs.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://airflow.apache.org/"&gt;Apache Airflow&lt;/a&gt; is a popular open-source platform for scheduling and managing workflows. It provides a unified interface for defining, executing, and monitoring workflows, making it a valuable tool for data engineers and scientists. However, Apache Airflow is not the only option available, and in some cases, other alternatives may be better suited to meet the specific needs of a project. In this blog post, we will explore some alternatives to Apache Airflow that can be used to manage workflows and schedule tasks.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
@@ -813,44 +822,64 @@ Bob     30      M
 &lt;p&gt;There are some other methods, see stackoverflow answers to question: &lt;a href="https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values"&gt;How do I select rows from a DataFrame based on column values?&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="pandas"></category><category term="pandas/indexing"></category></entry><entry><title>Libraries for Automated Exploratory Data Analysis (EDA)</title><link href="https://www.safjan.com/libraries-for-automated-eda/" rel="alternate"></link><published>2023-02-12T00:00:00+01:00</published><updated>2023-02-12T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-12:/libraries-for-automated-eda/</id><summary type="html">&lt;p&gt;EDA Made Easy - Discover Top-10 Python Libraries That Will Take Your Data Analysis to the Next Level! Learn the Secrets of Automated EDA!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Exploratory Data Analysis (EDA) is an important step in the data analysis process. It allows us to explore and understand the dataset, identify patterns, and make informed decisions about data cleaning, feature engineering, and modeling. In recent years, several Python libraries have been developed to automate and streamline the EDA process. Here are 10 popular Python libraries for automated EDA:&lt;/p&gt;
 &lt;h2&gt;Top-10 Tools for Automated EDA&lt;/h2&gt;
 &lt;h3&gt;Pandas Profiling&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;Pandas Profiling generates a report with descriptive statistics and visualizations for each variable in a Pandas DataFrame. The report includes correlations, missing values, and data types. &lt;a href="https://github.com/pandas-profiling/pandas-profiling"&gt;Link&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/ydataai/ydata-profiling.svg?logo=github"&gt;
+&lt;a href="https://github.com/ydataai/ydata-profiling"&gt;Pandas Profiling&lt;/a&gt; generates a report with descriptive statistics and visualizations for each variable in a Pandas DataFrame. The report includes correlations, missing values, and data types. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="pandas-profiling" src="/images/auto_eda/pandas-profiling.jpg"&gt;&lt;/p&gt;
 &lt;h3&gt;2.  DataPrep&lt;/h3&gt;
-&lt;p&gt;DataPrep provides a set of functions for data cleaning and preprocessing, including automatic column type detection, outlier detection, and missing value imputation. &lt;a href="https://github.com/sfu-db/dataprep"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/sfu-db/dataprep.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/sfu-db/dataprep"&gt;DataPrep&lt;/a&gt; provides a set of functions for data cleaning and preprocessing, including automatic column type detection, outlier detection, and missing value imputation. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="dataprep" src="/images/auto_eda/dataprep.jpg"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dataprep
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The following code demonstrates how to use &lt;code&gt;DataPrep.EDA&lt;/code&gt; to create a profile report for the titanic dataset.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dataprep.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_dataset&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dataprep.eda&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;create_report&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_dataset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;titanic&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;create_report&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show_browser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;h3&gt;3.  Sweetviz&lt;/h3&gt;
-&lt;p&gt;Sweetviz generates a report with detailed visualizations and statistical analysis for each variable in a Pandas DataFrame. The report includes comparisons between different subgroups and correlation matrices. &lt;a href="https://github.com/fbdesignpro/sweetviz"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/fbdesignpro/sweetviz.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/fbdesignpro/sweetviz"&gt;Sweetviz&lt;/a&gt; generates a report with detailed visualizations and statistical analysis for each variable in a Pandas DataFrame. The report includes comparisons between different subgroups and correlation matrices.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Sweetviz" src="https://camo.githubusercontent.com/0965c07124443fe73d4343ebc1642b8b3c68ef49913f32a42c4b6f567a477143/687474703a2f2f636f6f6c74696d696e672e636f6d2f53562f66656174757265732e706e67"&gt;&lt;/p&gt;
 &lt;h3&gt;4.  Lux&lt;/h3&gt;
-&lt;p&gt;Lux is a library for interactive data visualization that provides a powerful and intuitive interface for exploring and visualizing data. It includes a recommendation system that suggests relevant visualizations based on the current selection. &lt;a href="https://github.com/lux-org/lux"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/lux-org/lux.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/lux-org/lux"&gt;Lux&lt;/a&gt; is a library for interactive data visualization that provides a powerful and intuitive interface for exploring and visualizing data. It includes a recommendation system that suggests relevant visualizations based on the current selection. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="Lux" src="https://github.com/lux-org/lux-resources/raw/master/readme_img/demohighlight.gif?raw=true"&gt;&lt;/p&gt;
 &lt;h3&gt;5.  dabl&lt;/h3&gt;
-&lt;p&gt;dabl is a library that provides a set of functions for automated data analysis and machine learning. It includes tools for data cleaning, feature engineering, and modeling, and provides an easy-to-use interface for non-experts. &lt;a href="https://github.com/dabl/dabl"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/dabl/dabl.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/dabl/dabl"&gt;dabl&lt;/a&gt; is a library that provides a set of functions for automated data analysis and machine learning. It includes tools for data cleaning, feature engineering, and modeling, and provides an easy-to-use interface for non-experts. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="dabl" src="https://dabl.github.io/dev/_images/sphx_glr_plot_mfeat_factors_005.png"&gt;&lt;/p&gt;
 &lt;h3&gt;6.  Autoviz&lt;/h3&gt;
-&lt;p&gt;Autoviz is a library that automatically generates visualizations for each variable in a Pandas DataFrame. It includes different types of charts such as scatterplots, histograms, and bar charts, and it can be used for both regression and classification tasks. &lt;a href="https://github.com/AutoViML/AutoViz"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/AutoViML/AutoViz.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/AutoViML/AutoViz"&gt;Autoviz&lt;/a&gt; is a library that automatically generates visualizations for each variable in a Pandas DataFrame. It includes different types of charts such as scatterplots, histograms, and bar charts, and it can be used for both regression and classification tasks. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="AutoViz" src="https://github.com/AutoViML/AutoViz/raw/master/var_charts.JPG"&gt;&lt;/p&gt;
 &lt;h3&gt;7.  Klib&lt;/h3&gt;
-&lt;p&gt;Klib is a library that provides a set of functions for data cleaning and preprocessing, including feature selection, missing value imputation, and correlation analysis. It includes useful visualizations and statistical analysis for each variable. &lt;a href="https://github.com/akanz1/klib"&gt;Link&lt;/a&gt;
-&lt;img alt="Klib" src="https://raw.githubusercontent.com/akanz1/klib/main/examples/images/header.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/akanz1/klib.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/akanz1/klib"&gt;Klib&lt;/a&gt; is a library that provides a set of functions for data cleaning and preprocessing, including feature selection, missing value imputation, and correlation analysis. It includes useful visualizations and statistical analysis for each variable. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Klib" src="https://raw.githubusercontent.com/akanz1/klib/main/examples/images/header.png"&gt;&lt;/p&gt;
 &lt;h3&gt;8.  ExplainerDashboard&lt;/h3&gt;
-&lt;p&gt;ExplainerDashboard is a library that provides a dashboard for exploring and visualizing the results of machine learning models. It includes visualizations for feature importance, confusion matrices, and partial dependence plots. &lt;a href="https://github.com/oegedijk/explainerdashboard"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/oegedijk/explainerdashboard.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/oegedijk/explainerdashboard"&gt;ExplainerDashboard&lt;/a&gt; is a library that provides a dashboard for exploring and visualizing the results of machine learning models. It includes visualizations for feature importance, confusion matrices, and partial dependence plots. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="ExplainerDashboard" src="https://github.com/oegedijk/explainerdashboard/raw/master/explainerdashboard.gif"&gt;&lt;/p&gt;
 &lt;h3&gt;9.  PyCaret&lt;/h3&gt;
-&lt;p&gt;PyCaret is a library for automated machine learning that includes tools for data preprocessing, feature selection, and model training. It includes a user-friendly interface that allows non-experts to build and deploy machine learning models. &lt;a href="https://github.com/pycaret/pycaret"&gt;Link&lt;/a&gt;
-&lt;img alt="PyCaret" src="https://github.com/pycaret/pycaret/raw/master/docs/images/pycaret_ts_quickdemo.gif"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/pycaret/pycaret.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/pycaret/pycaret"&gt;PyCaret&lt;/a&gt; is a library for automated machine learning that includes tools for data preprocessing, feature selection, and model training. It includes a user-friendly interface that allows non-experts to build and deploy machine learning models. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="PyCaret" src="https://github.com/pycaret/pycaret/raw/master/docs/images/pycaret_ts_quickdemo.gif"&gt;&lt;/p&gt;
 &lt;h3&gt;Missingno&lt;/h3&gt;
-&lt;p&gt;Missingno is a library that provides a set of tools for &lt;strong&gt;visualizing and understanding missing data in a dataset&lt;/strong&gt;. It includes tools for matrix visualization, bar charts, and heatmaps. &lt;a href="https://github.com/ResidentMario/missingno"&gt;Link&lt;/a&gt;
-&lt;img alt="Missingno" src="https://camo.githubusercontent.com/16475986b81be8268152a4423777683be2d95cdac5d84e70130eb98431959f20/68747470733a2f2f692e696d6775722e636f6d2f675775584b45722e706e67"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/ResidentMario/missingno.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/ResidentMario/missingno"&gt;Missingno&lt;/a&gt; is a library that provides a set of tools for &lt;strong&gt;visualizing and understanding missing data in a dataset&lt;/strong&gt;. It includes tools for matrix visualization, bar charts, and heatmaps.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Missingno" src="https://camo.githubusercontent.com/16475986b81be8268152a4423777683be2d95cdac5d84e70130eb98431959f20/68747470733a2f2f692e696d6775722e636f6d2f675775584b45722e706e67"&gt;&lt;/p&gt;
 &lt;h2&gt;Honorable mentions&lt;/h2&gt;
 &lt;p&gt;There are three other tools that might be useful during data exploration.&lt;/p&gt;
 &lt;h2&gt;Featuretools&lt;/h2&gt;
-&lt;p&gt;Featuretools is a library for &lt;strong&gt;automated feature engineering&lt;/strong&gt; that allows you to automatically generate features from multiple tables. It includes tools for handling time-based data and can generate a set of feature definitions in just a few lines of code. &lt;a href="https://github.com/FeatureLabs/featuretools"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/FeatureLabs/featuretools.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/FeatureLabs/featuretools"&gt;Featuretools&lt;/a&gt; is a library for &lt;strong&gt;automated feature engineering&lt;/strong&gt; that allows you to automatically generate features from multiple tables. It includes tools for handling time-based data and can generate a set of feature definitions in just a few lines of code. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="Featuretools" src="https://github.com/alteryx/featuretools/raw/main/docs/source/_static/images/entity_set.png?raw=true"&gt;&lt;/p&gt;
 &lt;h3&gt;PyExplainer&lt;/h3&gt;
-&lt;p&gt;PyExplainer is a library that allows you to easily explain and interpret the results of machine learning models. It includes tools for feature importance, partial dependence plots, and permutation feature importance. &lt;a href="https://github.com/awsm-research/pyExplainer"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/awsm-research/pyExplainer.svg?logo=github"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/awsm-research/pyExplainer"&gt;PyExplainer&lt;/a&gt; is a library that allows you to easily explain and interpret the results of machine learning models. It includes tools for feature importance, partial dependence plots, and permutation feature importance. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="PyExplainer" src="https://github.com/awsm-research/PyExplainer/raw/master/img/pyexplainer_snap_demo.gif"&gt;&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;p&gt;There is interesting article that features EDA tools:
@@ -4066,7 +4095,9 @@ Then it computes the histograms using the same bin edges, using the &lt;code&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="note"></category><category term="machine-learning"></category><category term="histogram"></category></entry><entry><title>Tools that Helps to Understand and Tweak Random Forest Classifier</title><link href="https://www.safjan.com/random-forest-understand-and-tweak/" rel="alternate"></link><published>2023-01-18T00:00:00+01:00</published><updated>2023-01-18T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-18:/random-forest-understand-and-tweak/</id><summary type="html">&lt;p&gt;Random Forest is a popular machine learning algorithm, known for its high accuracy and versatility. However, it can be challenging to understand the inner workings of the algorithm and tweak its parameters for optimal performance. In this article, we will explore some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Random Forest is a popular machine learning algorithm, known for its high accuracy and versatility. However, it can be challenging to understand the inner workings of the algorithm and tweak its parameters for optimal performance. In this article, we will explore some lesser-known but useful tools that can help you better understand and tweak your Random Forest classifier.&lt;/p&gt;
+</content><category term="note"></category><category term="machine-learning"></category><category term="histogram"></category></entry><entry><title>Tools that Helps to Understand and Tweak Random Forest Classifier</title><link href="https://www.safjan.com/random-forest-understand-and-tweak/" rel="alternate"></link><published>2023-01-18T00:00:00+01:00</published><updated>2023-01-18T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-18:/random-forest-understand-and-tweak/</id><summary type="html">&lt;p&gt;X::[[random_forest_explainer]]&lt;/p&gt;
+&lt;p&gt;Random Forest is a popular machine learning algorithm, known for its high accuracy and versatility. However, it can be challenging to understand the inner workings of the algorithm and tweak its parameters for optimal performance. In this article, we will …&lt;/p&gt;</summary><content type="html">&lt;p&gt;X::[[random_forest_explainer]]&lt;/p&gt;
+&lt;p&gt;Random Forest is a popular machine learning algorithm, known for its high accuracy and versatility. However, it can be challenging to understand the inner workings of the algorithm and tweak its parameters for optimal performance. In this article, we will explore some lesser-known but useful tools that can help you better understand and tweak your Random Forest classifier.&lt;/p&gt;
 &lt;h2&gt;1. Feature Importance&lt;/h2&gt;
 &lt;p&gt;One of the most important aspects of a Random Forest classifier is understanding the relative importance of the features used to make predictions. &lt;code&gt;scikit-learn&lt;/code&gt; provides a built-in function to compute feature importance, &lt;code&gt;feature_importances_&lt;/code&gt;. However, this method can be misleading for high-dimensional datasets or datasets with correlated features. A better alternative is &lt;code&gt;permutation importance&lt;/code&gt; which can be calculated using the &lt;code&gt;permutation_importance&lt;/code&gt; function in the &lt;code&gt;sklearn.inspection&lt;/code&gt; module. This method randomly shuffles the values of a single feature and calculates the decrease in the model's performance, providing a more accurate measure of feature importance.&lt;/p&gt;
 &lt;p&gt;Another alternative is the &lt;code&gt;SHAP&lt;/code&gt;(SHapley Additive exPlanations) library, which allows for the calculation of feature importance in a more explainable way. It considers all possible coalitions of features and assigns a value to each feature based on its contribution to the prediction.&lt;/p&gt;
@@ -4396,13 +4427,13 @@ Then it computes the histograms using the same bin edges, using the &lt;code&gt;
 &lt;h3&gt;Steps&lt;/h3&gt;
 &lt;h4&gt;1. Pull the MLFlow Docker Image&lt;/h4&gt;
 &lt;p&gt;The first step is to pull the MLFlow Docker image from the official repository. You can do this by running the following command in your terminal:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;pull&lt;span class="w"&gt; &lt;/span&gt;mlflow/mlflow
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;pull&lt;span class="w"&gt; &lt;/span&gt;atcommons/mlflow-server
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This command downloads the latest MLFlow image from the Docker Hub.&lt;/p&gt;
 &lt;h4&gt;2. Run the MLFlow Image as a Container&lt;/h4&gt;
 &lt;p&gt;Once you have the MLFlow image, you can run it as a container by executing the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;--rm&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5000&lt;/span&gt;:5000&lt;span class="w"&gt; &lt;/span&gt;mlflow/mlflow
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;--rm&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5000&lt;/span&gt;:5000&lt;span class="w"&gt; &lt;/span&gt;atcommons/mlflow-server
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This command starts a container from the &lt;code&gt;mlflow/mlflow&lt;/code&gt; image and maps port 5000 on the host to port 5000 in the container. The &lt;code&gt;--rm&lt;/code&gt; flag tells Docker to remove the container when it exits.&lt;/p&gt;
@@ -4428,8 +4459,11 @@ Then it computes the histograms using the same bin edges, using the &lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;to map the host directory &lt;code&gt;/path/on/host&lt;/code&gt; to the container directory &lt;code&gt;/path/on/container&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;Conclusion&lt;/h3&gt;
-&lt;p&gt;In this tutorial, we have shown you how to use Docker to deploy an MLFlow server on your local machine. This is a quick and easy way to set up an MLFlow server, but please note that running MLFlow on Docker on your local machine will not give you the ability to scale horizontally or ensure high availability. You may want to consider using cloud-based MLFlow services or deploying MLFlow on a virtual machine for more production-ready&lt;/p&gt;</content><category term="note"></category><category term="mlflow"></category><category term="machine-learning"></category><category term="mlops"></category><category term="docker"></category></entry><entry><title>The difference between Machine Learning Development and traditional Software Development</title><link href="https://www.safjan.com/machine-learning-vs-software_development/" rel="alternate"></link><published>2023-01-16T00:00:00+01:00</published><updated>2023-01-16T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-16:/machine-learning-vs-software_development/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;h2&gt;What is the difference between Machine Learning Development and traditional Software Development?&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;:  Running MLFlow on Docker on your local machine will not give you the ability to scale horizontally or ensure high availability. You may want to consider using cloud-based MLFlow services or deploying MLFlow on a virtual machine for more production-ready&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;X::[[mlFlow]]
+X::[[How_to_experiment_with_MLFlow _locally_on laptop_or_PC_instructions_for_the_local_setup]]&lt;/p&gt;</content><category term="note"></category><category term="mlflow"></category><category term="machine-learning"></category><category term="mlops"></category><category term="docker"></category></entry><entry><title>The difference between Machine Learning Development and traditional Software Development</title><link href="https://www.safjan.com/machine-learning-vs-software_development/" rel="alternate"></link><published>2023-01-16T00:00:00+01:00</published><updated>2023-01-16T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-16:/machine-learning-vs-software_development/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;h2&gt;What is the difference between Machine Learning Development and traditional Software Development?&lt;/h2&gt;
 &lt;p&gt;Machine Learning Development and traditional Software Development are similar in many ways, but there are also some key differences.&lt;/p&gt;
 &lt;h3&gt;Similarities&lt;/h3&gt;
 &lt;ul&gt;
@@ -4487,7 +4521,23 @@ Here are two articles that broaden the perspective of this post.
 &lt;p&gt;Backup verification is an essential step in protecting your data. By using the open-source tool Restic and following the steps outlined in this article, you can ensure that your backups are done correctly and can be successfully restored in the event of a disaster. Remember to schedule the verification process to run at specific intervals and to regularly review the backups to ensure that they are complete, accurate, and usable.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Heading image from &lt;a href="https://unsplash.com/photos/GNyjCePVRs8"&gt;Unsplash&lt;/a&gt; by &lt;a href="https://unsplash.com/@benjaminlehman"&gt;benjamin lehman&lt;/a&gt;&lt;/p&gt;</content><category term="Howto"></category><category term="linux"></category><category term="backup"></category><category term="good-practices"></category><category term="restic"></category></entry><entry><title>How to experiment with MLFlow locally on laptop or PC? Instructions for the local setup.</title><link href="https://www.safjan.com/how-to-experiment-with-mlflow-locally-on-laptop-or-pc/" rel="alternate"></link><published>2023-01-14T00:00:00+01:00</published><updated>2023-01-14T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-14:/how-to-experiment-with-mlflow-locally-on-laptop-or-pc/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;p&gt;To set up MLFlow locally on your laptop or PC, you will need to have Python and pip (the package installer for Python) installed.&lt;/p&gt;
+&lt;p&gt;Heading image from &lt;a href="https://unsplash.com/photos/GNyjCePVRs8"&gt;Unsplash&lt;/a&gt; by &lt;a href="https://unsplash.com/@benjaminlehman"&gt;benjamin lehman&lt;/a&gt;&lt;/p&gt;</content><category term="Howto"></category><category term="linux"></category><category term="backup"></category><category term="good-practices"></category><category term="restic"></category></entry><entry><title>How to experiment with MLFlow locally on laptop or PC? Instructions for the local setup.</title><link href="https://www.safjan.com/how-to-experiment-with-mlflow-locally-on-laptop-or-pc/" rel="alternate"></link><published>2023-01-14T00:00:00+01:00</published><updated>2023-01-14T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-01-14:/how-to-experiment-with-mlflow-locally-on-laptop-or-pc/</id><summary type="html">&lt;p&gt;summary&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#instructions-for-local-usage"&gt;Instructions for local usage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#using-an-mlflow-server-from-your-local-machine"&gt;Using an MLFlow server from your local machine&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#1-using-a-cloud-based-mlflow-service"&gt;1.  Using a cloud-based MLFlow service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-deploying-mlflow-on-a-virtual-machine"&gt;2.  Deploying MLFlow on a virtual machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-using-a-containerization-technology-like-docker"&gt;3.  Using a containerization technology like Docker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-using-a-kubernetes-based-deployment"&gt;4. Using a Kubernetes-based deployment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="instructions-for-local-usage"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Instructions for local usage&lt;/h2&gt;
+&lt;p&gt;To set up MLFlow locally on your laptop or PC, you will need to have Python and pip (the package installer for Python) installed.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;First, install MLFlow using pip by running the command &lt;code&gt;pip install mlflow&lt;/code&gt; in your terminal or command prompt.&lt;/p&gt;
@@ -4515,14 +4565,19 @@ Here are two articles that broaden the perspective of this post.
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Note: To use other features like tracking and model registry, you need to set up a MLFlow server.&lt;/p&gt;
+&lt;p&gt;&lt;a id="using-an-mlflow-server-from-your-local-machine"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Using an MLFlow server from your local machine&lt;/h2&gt;
 &lt;p&gt;There are several alternatives for using an MLFlow server on your local machine, including:&lt;/p&gt;
+&lt;p&gt;&lt;a id="1-using-a-cloud-based-mlflow-service"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;1.  Using a cloud-based MLFlow service&lt;/h3&gt;
 &lt;p&gt;Some cloud providers, such as AWS and GCP, offer managed MLFlow services that can be used to track and manage your machine learning experiments. These services typically include features such as automatic scaling, data storage and backup, and integration with other cloud-based services.&lt;/p&gt;
+&lt;p&gt;&lt;a id="2-deploying-mlflow-on-a-virtual-machine"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;2.  Deploying MLFlow on a virtual machine&lt;/h3&gt;
 &lt;p&gt;You can set up a virtual machine (VM) on a cloud provider or on-premises and install MLFlow on it. This allows you to have more control over the server's resources and configuration, and also allows you to run MLFlow on your own infrastructure.&lt;/p&gt;
+&lt;p&gt;&lt;a id="3-using-a-containerization-technology-like-docker"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;3.  Using a containerization technology like Docker&lt;/h3&gt;
 &lt;p&gt;You can containerize your MLFlow server using Docker and run it on any machine. This allows you to easily move your server to different environments and ensures that the server's dependencies are isolated.&lt;/p&gt;
+&lt;p&gt;&lt;a id="4-using-a-kubernetes-based-deployment"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;4. Using a Kubernetes-based deployment&lt;/h3&gt;
 &lt;p&gt;You can use Kubernetes, an open-source container orchestration system, to deploy MLFlow on a cluster of machines. This allows you to scale your server horizontally and ensures high availability.&lt;/p&gt;
 &lt;p&gt;Ultimately, the best option for you will depend on your specific use case, budget, and technical requirements.&lt;/p&gt;
@@ -10320,7 +10375,195 @@ On macOS you need to act differently&lt;/p&gt;
 Designed for Ansible playbook, but you can use this for other development purposes.
 To install e.g. &lt;code&gt;apt-get install -y inotify-tools&lt;/code&gt;
 see: https://gist.github.com/darencard/5d42319abcb6ec32bebf6a00ecf99e86&lt;/p&gt;
-&lt;p&gt;up:: [[MOC_Git]]]&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="autocommit"></category><category term="note-taking"></category><category term="notes"></category><category term="automatic"></category><category term="automation"></category><category term="git/autocommit"></category></entry><entry><title>Finding Errors in Data - Data Validation</title><link href="https://www.safjan.com/finding-errors-in-data/" rel="alternate"></link><published>2021-01-31T00:00:00+01:00</published><updated>2023-01-31T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-01-31:/finding-errors-in-data/</id><summary type="html">&lt;p&gt;Explore methods to detect &amp;amp; fix errors in data, including validation, visualizations, statistical tests, cleaning techniques, machine learning &amp;amp; data quality tools. Get concise, easy to understand information with examples &amp;amp; links to external resources.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+&lt;p&gt;up:: [[MOC_Git]]]&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="autocommit"></category><category term="note-taking"></category><category term="notes"></category><category term="automatic"></category><category term="automation"></category><category term="git/autocommit"></category></entry><entry><title>Kurtosis in simple terms, interpretation and gotchas</title><link href="https://www.safjan.com/kurtosis-in-simple-terms/" rel="alternate"></link><published>2021-02-18T00:00:00+01:00</published><updated>2021-02-18T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-02-18:/kurtosis-in-simple-terms/</id><summary type="html">&lt;p&gt;Statistics can be tricky, but understanding kurtosis is a must for anyone who wants to avoid making common mistakes in statistical analyses. Learn how to interpret it in this comprehensive guide.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#interpreting-kurtosis"&gt;Interpreting Kurtosis&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#1-normal-distribution"&gt;1.  Normal distribution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-flat-distributions"&gt;2.  Flat distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-peaked-distributions"&gt;3.  Peaked distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-interpretation-in-context"&gt;4.  Interpretation in context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#5-use-caution-in-small-samples"&gt;5.  Use caution in small samples&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#6-compare-with-skewness"&gt;6.  Compare with skewness&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#when-kurtosis-can-be-misleading"&gt;When kurtosis can be misleading?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#1-outliers"&gt;1.  Outliers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-sample-size"&gt;2.  Sample size&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-non-normal-distributions"&gt;3. Non-normal distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-different-distributions-can-have-similar-kurtosis"&gt;4.  Different distributions can have similar kurtosis:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#further-reading"&gt;Further reading&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="introduction"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Kurtosis is a statistical term that measures the shape of a distribution, specifically the degree of peakness or flatness in the tails of a distribution. A distribution with high kurtosis has a sharp peak and heavy tails, while a distribution with low kurtosis has a flatter peak and lighter tails.&lt;/p&gt;
+&lt;p&gt;The kurtosis of a distribution is defined as the fourth standardized moment, which can be expressed mathematically as:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{equation} \text{kurtosis} = \frac{\mu_4}{\sigma^4} - 3 \end{equation}
+$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(\mu_4\)&lt;/span&gt; is the fourth central moment (a measure of the spread of the data), and &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt; is the standard deviation of the data. The term "standardized" means that we divide the moment by the appropriate power of the standard deviation to make the kurtosis a dimensionless quantity. The subtraction of 3 is a convention that makes the kurtosis of the normal distribution equal to 0.&lt;/p&gt;
+&lt;p&gt;Kurtosis can be positive or negative, depending on the shape of the distribution. A positive kurtosis means that the tails of the distribution are heavier than the tails of the normal distribution, while a negative kurtosis means that the tails are lighter than the normal distribution. A kurtosis of 0 means that the distribution is perfectly normal.&lt;/p&gt;
+&lt;p&gt;Kurtosis is important in statistics because it can affect the interpretation of statistical analyses. For example, the presence of outliers or extreme values can cause a distribution to have high kurtosis, which can affect the results of some statistical tests. In addition, some statistical models assume that the distribution of the data is normal, so it is important to check the kurtosis of the data to see if this assumption is valid.&lt;/p&gt;
+&lt;p&gt;To better understand kurtosis, let's take a look at some examples. We'll start by generating some data from different distributions and calculating their kurtosis.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.stats&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;kurtosis&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Generate data from a normal distribution&lt;/span&gt;
+&lt;span class="n"&gt;normal_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;normal_kurtosis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kurtosis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;normal_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Generate data from a uniform distribution&lt;/span&gt;
+&lt;span class="n"&gt;uniform_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;low&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;uniform_kurtosis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kurtosis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uniform_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Generate data from a Laplace distribution&lt;/span&gt;
+&lt;span class="n"&gt;laplace_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;laplace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;laplace_kurtosis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kurtosis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;laplace_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We generated data from three different distributions: a normal distribution, a uniform distribution, and a Laplace distribution. We then calculated the kurtosis of each distribution using the &lt;code&gt;kurtosis&lt;/code&gt; function from the &lt;code&gt;scipy.stats&lt;/code&gt; module.&lt;/p&gt;
+&lt;p&gt;Let's plot the histograms of the three distributions, along with their kurtosis values:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;bmh&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="n"&gt;axs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;normal_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;axs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Normal kurtosis = &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;normal_kurtosis&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.2f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;axs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uniform_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;axs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Uniform kurtosis = &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;uniform_kurtosis&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.2f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;axs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;laplace_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;axs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Laplace kurtosis = &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;laplace_kurtosis&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.2f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will generate a plot with three histograms, one for each of the three distributions, along with their kurtosis values.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="kurtosis for normal uniform and laplace distributions" src="/images/kurtosis/kurtosis_normal_uniform_laplace.jpg"&gt;
+&lt;em&gt;&lt;strong&gt;Figure 1.&lt;/strong&gt; Kurtosis for: normal uniform and laplace distributions&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As we can see, the normal distribution has a kurtosis close to 0, indicating that it is roughly normal. The uniform distribution has a negative kurtosis, indicating that it is flatter than the normal distribution. The Laplace distribution has a positive kurtosis, indicating that it has heavier tails than the normal distribution.&lt;/p&gt;
+&lt;p&gt;It's also worth noting that kurtosis is not the same as skewness, which measures the degree of asymmetry in a distribution. A distribution can have high kurtosis and be symmetric, or have low kurtosis and be skewed.&lt;/p&gt;
+&lt;p&gt;In summary:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Kurtosis&lt;/strong&gt; is a statistical term that measures the shape of a distribution, specifically the degree of peakness or flatness in the tails of a distribution.&amp;gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A distribution with high kurtosis has a sharp peak and heavy tails, while a distribution with low kurtosis has a flatter peak and lighter tails. Kurtosis can be positive or negative, depending on the shape of the distribution, and it is important in statistics because it can affect the interpretation of statistical analyses. It's also important to note that kurtosis is not the same as skewness, which measures the degree of asymmetry in a distribution.&lt;/p&gt;
+&lt;p&gt;&lt;a id="interpreting-kurtosis"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Interpreting Kurtosis&lt;/h2&gt;
+&lt;p&gt;Interpreting kurtosis can be somewhat subjective, as the appropriate level of kurtosis can vary depending on the context and the goals of the analysis. However, there are some general guidelines that can be used to help interpret kurtosis in practical terms.&lt;/p&gt;
+&lt;p&gt;&lt;a id="1-normal-distribution"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1.  Normal distribution&lt;/h3&gt;
+&lt;p&gt;A normal distribution &lt;strong&gt;has a kurtosis of 0&lt;/strong&gt;. A distribution that deviates significantly from this value may be considered non-normal, although the degree of deviation that is considered significant will depend on the context.&lt;/p&gt;
+&lt;p&gt;&lt;a id="2-flat-distributions"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2.  Flat distributions&lt;/h3&gt;
+&lt;p&gt;Distributions with &lt;strong&gt;low kurtosis values (less than 0) are relatively flat&lt;/strong&gt;, meaning they have fewer extreme values than a normal distribution. These distributions are sometimes called "platykurtic". Examples of such distributions include the uniform distribution and the exponential distribution. In some cases, a platykurtic distribution may be desirable, as it can reduce the impact of outliers on statistical analyses.&lt;/p&gt;
+&lt;p&gt;&lt;a id="3-peaked-distributions"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;3.  Peaked distributions&lt;/h3&gt;
+&lt;p&gt;Distributions with high kurtosis values (greater than 0) are relatively peaked, meaning they have more extreme values than a normal distribution. These distributions are sometimes called "leptokurtic". Examples of such distributions include the Laplace distribution and the Student's t-distribution. A leptokurtic distribution may be desirable in certain contexts, as it can increase the sensitivity of statistical analyses.&lt;/p&gt;
+&lt;p&gt;&lt;a id="4-interpretation-in-context"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;4.  Interpretation in context&lt;/h3&gt;
+&lt;p&gt;The interpretation of kurtosis should always be considered in the context of the specific analysis being performed. For example, in finance, a leptokurtic distribution may be desirable for modeling stock returns, as it can capture the possibility of extreme returns. On the other hand, in clinical trials, a platykurtic distribution may be desirable for modeling adverse events, as it can reduce the impact of rare and extreme events.&lt;/p&gt;
+&lt;p&gt;&lt;a id="5-use-caution-in-small-samples"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;5.  Use caution in small samples&lt;/h3&gt;
+&lt;p&gt;Interpretation of kurtosis can be more difficult in small samples, as the kurtosis value may be influenced by a few extreme values. In such cases, it may be useful to examine the distribution visually or to perform a sensitivity analysis to assess the impact of extreme values on the results.&lt;/p&gt;
+&lt;p&gt;&lt;a id="6-compare-with-skewness"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;6.  Compare with skewness&lt;/h3&gt;
+&lt;p&gt;As mentioned earlier, kurtosis is not the same as skewness, which measures the degree of asymmetry in a distribution. In some cases, it may be useful to examine both kurtosis and skewness together to fully understand the shape of the distribution.&lt;/p&gt;
+&lt;p&gt;&lt;a id="when-kurtosis-can-be-misleading"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;When kurtosis can be misleading?&lt;/h2&gt;
+&lt;p&gt;Kurtosis is a statistical measure that describes the shape of a distribution. It provides information about the heaviness of the tails of the distribution and the presence of outliers. However, there are certain situations in which kurtosis can be misleading, and it is important to be aware of these.&lt;/p&gt;
+&lt;p&gt;&lt;a id="1-outliers"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1.  Outliers&lt;/h3&gt;
+&lt;p&gt;Kurtosis is sensitive to outliers. Outliers can distort the kurtosis value, making it difficult to interpret the shape of the distribution accurately. Therefore, it is important to inspect the data for outliers before calculating kurtosis.&lt;/p&gt;
+&lt;p&gt;&lt;a id="2-sample-size"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2.  Sample size&lt;/h3&gt;
+&lt;p&gt;The sample size can also affect the kurtosis value. With a small sample size, kurtosis may not accurately reflect the shape of the population distribution.&lt;/p&gt;
+&lt;p&gt;&lt;a id="3-non-normal-distributions"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;3. Non-normal distributions&lt;/h3&gt;
+&lt;p&gt;Kurtosis is only a useful measure for symmetric distributions. In the case of asymmetric distributions, kurtosis may not provide any useful information. For example, a distribution with a heavy tail on one side may have a kurtosis value that suggests a peaked distribution, which is misleading.&lt;/p&gt;
+&lt;p&gt;&lt;a id="4-different-distributions-can-have-similar-kurtosis"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;4.  Different distributions can have similar kurtosis&lt;/h3&gt;
+&lt;p&gt;Two different distributions can have the same kurtosis value. Therefore, kurtosis alone may not provide enough information to compare the shape of different distributions.&lt;/p&gt;
+&lt;p&gt;&lt;a id="further-reading"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Kurtosis"&gt;Kurtosis on Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.jstor.org/stable/23349427"&gt;Kurtosis: A Critical Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51"&gt;Understanding Boxplots&lt;/a&gt; (includes a section on kurtosis)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://towardsdatascience.com/visualizing-the-central-limit-theorem-e30a69bde634"&gt;Visualizing the Central Limit Theorem&lt;/a&gt; (includes a section on kurtosis)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aakinshin.net/posts/misleading-kurtosis/"&gt;Misleading kurtosis | Andrey Akinshin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aakinshin.net/posts/lowland-multimodality-detection/"&gt;Lowland multimodality detection | Andrey Akinshin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Header image by Joxemai4 - Own work, CC BY-SA 3.0 &lt;a href="https://commons.wikimedia.org/w/index.php?curid=9523977"&gt;wikimedia&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Machine Learning"></category><category term="statistics"></category><category term="python"></category></entry><entry><title>Finding Errors in Data - Data Validation</title><link href="https://www.safjan.com/finding-errors-in-data/" rel="alternate"></link><published>2021-01-31T00:00:00+01:00</published><updated>2023-01-31T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-01-31:/finding-errors-in-data/</id><summary type="html">&lt;p&gt;Explore methods to detect &amp;amp; fix errors in data, including validation, visualizations, statistical tests, cleaning techniques, machine learning &amp;amp; data quality tools. Get concise, easy to understand information with examples &amp;amp; links to external resources.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
@@ -12473,10 +12716,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="3e6f704f-3350-4756-b424-0143c75e2816"&gt;&lt;/div&gt;
+&lt;div id="c48d8b49-788c-482f-8f7f-d6fa7f01ccf8"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#3e6f704f-3350-4756-b424-0143c75e2816');
+var element = $('#c48d8b49-788c-482f-8f7f-d6fa7f01ccf8');
 
 (function(root) {
   function now() {

@@ -8,7 +8,7 @@ Tags: machine-learning, random-forest, xai
 Category: note
 prompt: Give me long markdown article with hyperlinks. Article on lesser known but useful Tools helping understand and tweak random forest classifier.
 ---
-
+X::[[random_forest_explainer]]
 
 Random Forest is a popular machine learning algorithm, known for its high accuracy and versatility. However, it can be challenging to understand the inner workings of the algorithm and tweak its parameters for optimal performance. In this article, we will explore some lesser-known but useful tools that can help you better understand and tweak your Random Forest classifier.
 

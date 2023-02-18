@@ -22,7 +22,7 @@ Docker is a popular tool that allows you to package, deploy, and run your applic
 The first step is to pull the MLFlow Docker image from the official repository. You can do this by running the following command in your terminal:
 
 ```sh
-docker pull mlflow/mlflow
+docker pull atcommons/mlflow-server
 ```
 
 This command downloads the latest MLFlow image from the Docker Hub.
@@ -32,7 +32,7 @@ This command downloads the latest MLFlow image from the Docker Hub.
 Once you have the MLFlow image, you can run it as a container by executing the following command:
 
 ```sh
-docker run --rm -p 5000:5000 mlflow/mlflow
+docker run --rm -p 5000:5000 atcommons/mlflow-server
 ```
 
 This command starts a container from the `mlflow/mlflow` image and maps port 5000 on the host to port 5000 in the container. The `--rm` flag tells Docker to remove the container when it exits.
@@ -76,6 +76,8 @@ docker run -p 5000:5000 -v /path/on/host:/path/on/container mlflow/mlflow`
 
 to map the host directory `/path/on/host` to the container directory `/path/on/container`.
 
-### Conclusion
+> **NOTE**:  Running MLFlow on Docker on your local machine will not give you the ability to scale horizontally or ensure high availability. You may want to consider using cloud-based MLFlow services or deploying MLFlow on a virtual machine for more production-ready
 
-In this tutorial, we have shown you how to use Docker to deploy an MLFlow server on your local machine. This is a quick and easy way to set up an MLFlow server, but please note that running MLFlow on Docker on your local machine will not give you the ability to scale horizontally or ensure high availability. You may want to consider using cloud-based MLFlow services or deploying MLFlow on a virtual machine for more production-ready
+
+X::[[mlFlow]]
+X::[[How_to_experiment_with_MLFlow _locally_on laptop_or_PC_instructions_for_the_local_setup]]
