@@ -19,6 +19,7 @@ Exploratory Data Analysis (EDA) is an important step in the data analysis proces
 
 ### Pandas Profiling
 ![github stars shield](https://img.shields.io/github/stars/ydataai/ydata-profiling.svg?logo=github)
+
 [Pandas Profiling](https://github.com/ydataai/ydata-profiling) generates a report with descriptive statistics and visualizations for each variable in a Pandas DataFrame. The report includes correlations, missing values, and data types. 
 
 ![pandas-profiling](/images/auto_eda/pandas-profiling.jpg)
