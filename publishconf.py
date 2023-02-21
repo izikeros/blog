@@ -28,3 +28,6 @@ DELETE_OUTPUT_DIRECTORY = True
 # DISQUS_SITENAME = 'krystian-safjan'
 GOOGLE_ANALYTICS = "UA-117080232-1"
 USE_APPLAUSE = False
+DISPLAY_DATE_BEFORE_TITLE = (
+    False  # display date in the list of articles (tags, categories)
+)

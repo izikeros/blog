@@ -64,7 +64,7 @@ if MY_THEME == "flex":
         False  # display date in the list of articles (tags, categories)
     )
     DISPLAY_DATE_BEFORE_TITLE = (
-        False  # display date in the list of articles (tags, categories)
+        True  # display date in the list of articles (tags, categories)
     )
 
     PROMO_BOX = True

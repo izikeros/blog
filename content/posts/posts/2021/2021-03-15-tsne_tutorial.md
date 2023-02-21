@@ -6,7 +6,7 @@ Modified: 2021-03-15
 Start: 2021-03-15
 Tags: data-visualization, machine-learning, python, t-sne, dimensionality-reduction, scatter-plot, bokeh, seaborn, numpy, pandas
 Category: Machine Learning
-Image: /images/head/abstract_6.jpg
+Image: /images/head/tsne_head.jpg
 Summary: Want to create beautiful visualizations from complex data? Discover the power of T-SNE for dimensionality reduction in Python.
 Status: published
 prompt: Give me long blog post tutorial on using T-SNE for dimensionality reduction. Add code in python and visualizations. Start with dataset with 10, concrete, named, correlated features. Perform in-depth analysis. Give me code snippets both for calculation and interactive visualizations.
@@ -61,19 +61,19 @@ target_names = iris.target_names
 We can now inspect the dataset and get a better understanding of the features and labels.
 
 ```python
+df = pd.DataFrame(X, columns=feature_names)
+
 # Print the feature names and the first 5 rows of the dataset
 print("Feature names: ", feature_names)
-print(pd.DataFrame(X, columns=feature_names).head())
+print(df.head())
 
 # Print the target names and the first 5 labels
 print("Target names: ", target_names)
 print(y[:5])
-
 ```
 
 Output:
-
-```python
+```
 Feature names:  ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
    sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)
 0                5.1               3.5                1.4               0.2
@@ -81,10 +81,8 @@ Feature names:  ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', '
 2                4.7               3.2                1.3               0.2
 3                4.6               3.1                1.5               0.2
 4                5.0               3.6                1.4               0.2
-
 Target names:  ['setosa' 'versicolor' 'virginica']
 [0 0 0 0 0]
-
 ```
 
 We can see that the dataset has four features, and the labels are represented by integers from 0 to 2, corresponding to the three species.
@@ -96,14 +94,12 @@ Before we apply T-SNE for dimensionality reduction, we can visualize the data to
 
 ```python
 # Create a scatter plot matrix
-sns.pairplot(pd.DataFrame(X, columns=feature_names), hue=y, palette='Set2')
+sns.pairplot(df, height=1.5)
 plt.show()
-
 ```
 
-Output:
+![pairplot](/images/tsne_tutorial/pair_plot_pre_tsne.png)
 
-[scatter plot matrix]
 
 We can see that some of the features are highly correlated, such as the petal length and petal width, while others, such as the sepal length and sepal width, show less correlation. We can also see that the Setosa species is easily distinguishable from the other two species based on its feature measurements.
 
@@ -120,7 +116,6 @@ from sklearn.manifold import TSNE
 # Apply T-SNE with 2 components to reduce the dimensionality of the dataset
 tsne = TSNE(n_components=2, random_state=0)
 X_tsne = tsne.fit_transform(X)
-
 ```
 
 In this example, we are reducing the dimensionality of the dataset to 2 components, which will allow us to visualize the data in a 2D space. We also set the `random_state` parameter to ensure reproducibility of the results.
@@ -136,12 +131,9 @@ plt.scatter(X_tsne[:, 0], X_tsne[:, 1], c=y, cmap='viridis')
 plt.colorbar(ticks=range(len(target_names)), label='Species')
 plt.clim(-0.5, 2.5)
 plt.show()
-
 ```
 
-Output:
-
-[T-SNE scatter plot]
+![scatter plot post T-SNE](/images/tsne_tutorial/scatter_plot_post_tsne.png)
 
 We can see that the T-SNE results separate the three species quite well, with minimal overlap between the points. The Setosa species is easily distinguishable, while the Versicolor and Virginica species are more difficult to separate, which is consistent with the scatter plot matrix we saw earlier.
 
@@ -161,7 +153,6 @@ from bokeh.models import ColumnDataSource, HoverTool, CategoricalColorMapper
 from bokeh.palettes import Category10
 
 ```
-
 
 Next, we can create a scatter plot using `bokeh`. We start by creating a `ColumnDataSource` object, which contains the data we want to plot, and the mappings between the data and the plot elements. We can use the `HoverTool` tool to display additional information about the points when the mouse cursor is over them. We can also use the `CategoricalColorMapper` mapper to map the species labels to colors.
 

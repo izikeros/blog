@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis …"/>
+    <meta name="keywords" content="box-cox transformation, data-processing, data-normalization, count-data, outliers, machine-learning, statistical-analysis">
+    <meta expr:content="2021-02-20 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2021-02-20 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2021-02-20 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2021-02-20 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Box-Cox Transform - Normalizing Non-Normal Data",
+  "datePublished": "2021-02-20 00:00:00+01:00",
+  "dateModified": "2021-02-20 00:00:00+01:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Box-Cox Transform - Normalizing Non-Normal Data"/>
+  <meta property="og:description" content="Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/box-cox-transformation/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2021-02-20 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2021-02-20 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="box-cox transformation"/>
+  <meta property="article:tag" content="data-processing"/>
+  <meta property="article:tag" content="data-normalization"/>
+  <meta property="article:tag" content="count-data"/>
+  <meta property="article:tag" content="outliers"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="statistical-analysis"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Box-Cox Transform - Normalizing Non-Normal Data"/>
+
+
+    <title>    Box-Cox Transform - Normalizing Non-Normal Data
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2021-02-20 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Box-Cox%20Transform%20-%20Normalizing%20Non-Normal%20Data&url=https%3A//www.safjan.com/box-cox-transformation/&hashtags=box-cox-transformation,data-processing,data-normalization,count-data,outliers,machine-learning,statistical-analysis" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/box-cox-transformation/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Box-Cox%20Transform%20-%20Normalizing%20Non-Normal%20Data&u=https%3A//www.safjan.com/box-cox-transformation/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/box-cox-transformation/&title=Box-Cox%20Transform%20-%20Normalizing%20Non-Normal%20Data" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="box-cox-transformation">Box-Cox Transform - Normalizing Non-Normal Data</h1>
+            <div class="header-underline"></div>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/box-cox-transformation/">
+                        <img style="width: 100%; "
+                         src="/images/box_cox/hist_poisson.png" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <p>Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis or machine learning algorithms. One commonly used transformation is the Box-Cox transformation, which is particularly useful when dealing with non-normal data. In this blog post, we will focus on the Box-Cox transformation of 1 + x, provide examples, and discuss exemplary use cases with synthetic, generated datasets. We will also provide Python code snippets to illustrate the process.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#the-box-cox-transformation">The Box-Cox Transformation</a></li>
+<li><a href="#example-1-synthetic-data">Example 1: Synthetic Data</a></li>
+<li><a href="#example-2-generated-data">Example 2: Generated Data</a></li>
+<li><a href="#use-cases">Use Cases</a><ul>
+<li><a href="#customer-behavior-analysis">Customer behavior analysis</a></li>
+<li><a href="#financial-data-analysis">Financial data analysis</a></li>
+<li><a href="#medical-data-analysis">Medical data analysis</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="the-box-cox-transformation"></a></p>
+<h2>The Box-Cox Transformation</h2>
+<p>The Box-Cox transformation is a technique used to transform non-normal data into normal data. It was developed by statisticians George Box and David Cox in 1964.  The transformation involves applying a power function to the data, which can be expressed as:</p>
+<div class="math">$$y(\lambda) = \frac{x^\lambda - 1}{\lambda}$$</div>
+<p>where y is the transformed variable, x is the original variable, and lambda is the transformation parameter. When lambda is equal to zero, the transformation reduces to the logarithmic transformation. In general, the optimal value of lambda is estimated from the data.</p>
+<p>The Box-Cox transformation of 1 + x is a specific form of the Box-Cox transformation that is used when the data contains negative values. The transformation can be expressed as:</p>
+<div class="math">$$y(\lambda) = \frac{(1 + x)^\lambda - 1}{\lambda}$$</div>
+<p>The Box-Cox transformation of 1 + x is particularly useful when dealing with count data, as it helps to normalize the data and reduce the impact of outliers.</p>
+<blockquote>
+<p><strong>Note</strong>: the Box-Cox transformation requires that the data are positive. If your arbitrary distribution produces negative values, you may need to add a constant to shift the data to be positive.</p>
+</blockquote>
+<p><a id="example-1-synthetic-data"></a></p>
+<h2>Example 1: Synthetic Data</h2>
+<p>To illustrate the Box-Cox transformation of 1 + x, we will generate a synthetic dataset using NumPy. Let's generate 1000 data points from a Poisson distribution with a mean of 5:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If we plot the histogram of x, we can see that the data is right-skewed:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;bmh&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="histogram - poisson distribution" src="/images/box_cox/hist_poisson.png"></p>
+<p>We can apply the Box-Cox transformation of 1 + x to the data using the <code>boxcox1p</code> function from SciPy:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">boxcox1p</span>
+
+<span class="n">xt</span> <span class="o">=</span> <span class="n">boxcox1p</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>boxcox1p</code> function returns two values: the transformed data <code>xt</code>, and the optimal value of lambda <code>lmbda</code>. In this case, we set lambda to zero, which corresponds to the logarithmic transformation.</p>
+<p>If we plot the histogram of the transformed data, we can see that it is closer to a normal distribution:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="histogram of transformed data" src="/images/box_cox/hist_after_box_cox.png"></p>
+<p><a id="example-2-generated-data"></a></p>
+<h2>Example 2: Generated Data</h2>
+<p>In this example, we will generate a dataset with two features, one of which is generated from a log-normal distribution, and the other from a Poisson distribution. We will then apply the Box-Cox transformation of 1 + x to both features and compare the results.</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])](</span><span class="o">&lt;</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Set seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="c1"># Generate 1000 data points for each feature</span>
+<span class="n">lognormal_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">poisson_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="c1"># Combine the two features into a single dataset</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">lognormal_data</span><span class="p">,</span> <span class="n">poisson_data</span><span class="p">))</span>
+</code></pre></div>
+
+<p>We can apply the Box-Cox transformation of 1 + x to the first and second feature using the <code>boxcox1p</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Apply the Box-Cox transformation of 1 + x to both features</span>
+<span class="n">lognormal_transformed</span> <span class="o">=</span> <span class="n">boxcox1p</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">lognormal_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">poisson_transformed</span> <span class="o">=</span> <span class="n">boxcox1p</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">poisson_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Combine the two features into a single dataset</span>
+<span class="n">Xt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">lognormal_transformed</span><span class="p">,</span> <span class="n">poisson_transformed</span><span class="p">))</span>
+</code></pre></div>
+
+<p>If we plot the histograms of the original and transformed features, we can see that the transformed features are closer to a normal distribution:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature 0 (log-normal)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature 1 (Poisson)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># plt.hist(Xt[:,0], bins=20)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">Xt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Transformed Feature 0&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">Xt</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Transformed Feature 1&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="histograms of features and transformed features" src="/images/box_cox/dist_plot_two_features_box_cox.png"></p>
+<p><a id="use-cases"></a></p>
+<h2>Use Cases</h2>
+<p>The Box-Cox transformation of 1 + x is particularly useful when dealing with count data or data with a large number of zeros, as it helps to normalize the data and reduce the impact of outliers. Here are some exemplary use cases:</p>
+<p><a id="customer-behavior-analysis"></a></p>
+<h3>Customer behavior analysis</h3>
+<p>If you are analyzing customer behavior, you may be interested in counting the number of times customers visit your website or interact with your products. Count data is typically right-skewed and can benefit from the Box-Cox transformation of 1 + x to normalize the data.</p>
+<p><a id="financial-data-analysis"></a></p>
+<h3>Financial data analysis</h3>
+<p>Financial data often exhibits high levels of volatility and may contain outliers. The Box-Cox transformation of 1 + x can help to reduce the impact of outliers and make the data more amenable to statistical analysis or machine learning algorithms.</p>
+<p><a id="medical-data-analysis"></a></p>
+<h3>Medical data analysis</h3>
+<p>Medical data often contains a large number of zeros, which can make it difficult to analyze. The Box-Cox transformation of 1 + x can help to normalize the data and make it more suitable for statistical analysis or machine learning algorithms.</p>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>The Box-Cox transformation of 1 + x is a useful technique for normalizing non-normal data, particularly count data or data with a large number of zeros. In this blog post, I provided examples of the Box-Cox transformation of 1 + x using synthetic and generated datasets, and discussed exemplary use cases. I also provided Python code snippets to illustrate the process.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/box-cox-transformation/">box-cox transformation</a>
+                        <a href="https://www.safjan.com/tag/data-processing/">data-processing</a>
+                        <a href="https://www.safjan.com/tag/data-normalization/">data-normalization</a>
+                        <a href="https://www.safjan.com/tag/count-data/">count-data</a>
+                        <a href="https://www.safjan.com/tag/outliers/">outliers</a>
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/statistical-analysis/">statistical-analysis</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/kurtosis-in-simple-terms/" title="Kurtosis in simple terms, interpretation and gotchas">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/tsne-tutorial/" title="Unleashing the Power of T-SNE for Dimensionality Reduction in Python">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/features-with-strong-correlation/">List of features with strongest correlation</a></li>
+                        <li><a href="https://www.safjan.com/anchor-explanations/">Explainable AI - Anchor Explanations</a></li>
+                        <li><a href="https://www.safjan.com/eli5-tutorial/">Understanding AI with ELI5 - Demystifying Decisions (tutorial)</a></li>
+                        <li><a href="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/">Comprehensive guide interpreting R², MSE, and RMSE for regression models.</a></li>
+                        <li><a href="https://www.safjan.com/alternatives-to-apache-airflow/">Beyond Airflow - 10 Workflow Tools You Need to Know</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
