@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Improve your regression model&#39;s accuracy and predictability by uncovering hidden errors with these essential plots."/>
+    <meta name="keywords" content="machine-learning, python">
+    <meta expr:content="2022-02-22 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-02-22 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-02-22 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2022-02-22 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pro Tips for Diagnosing Regression Model Errors",
+  "datePublished": "2022-02-22 00:00:00+01:00",
+  "dateModified": "2023-02-22 00:00:00+01:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Pro Tips for Diagnosing Regression Model Errors"/>
+  <meta property="og:description" content="Improve your regression model&#39;s accuracy and predictability by uncovering hidden errors with these essential plots."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/regression-model-errors-plot/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-02-22 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-02-22 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Improve your regression model's accuracy and predictability by uncovering hidden errors with these essential plots.</p>"/>
+    <meta name="twitter:title" content="Pro Tips for Diagnosing Regression Model Errors"/>
+
+
+    <title>    Pro Tips for Diagnosing Regression Model Errors
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2022-02-22 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Pro%20Tips%20for%20Diagnosing%20Regression%20Model%20Errors&url=https%3A//www.safjan.com/regression-model-errors-plot/&hashtags=machine-learning,python" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/regression-model-errors-plot/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Pro%20Tips%20for%20Diagnosing%20Regression%20Model%20Errors&u=https%3A//www.safjan.com/regression-model-errors-plot/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/regression-model-errors-plot/&title=Pro%20Tips%20for%20Diagnosing%20Regression%20Model%20Errors" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="regression-model-errors-plot">Pro Tips for Diagnosing Regression Model Errors</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Improve your regression model's accuracy and predictability by uncovering hidden errors with these essential plots.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/regression-model-errors-plot/">
+                        <img style="width: 100%; "
+                         src="/images/head/abstract_1.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#tldr---list-of-the-plots-with-short-description">TLDR - list of the plots with short description</a></li>
+<li><a href="#data-preparation">Data Preparation</a></li>
+<li><a href="#plots">Plots</a><ul>
+<li><a href="#residual-plot">Residual Plot</a></li>
+<li><a href="#histogram-of-residuals">Histogram of Residuals</a></li>
+<li><a href="#scale-location-plot">Scale-Location Plot</a></li>
+<li><a href="#q-q-plot">Q-Q Plot</a></li>
+<li><a href="#leverage-plot">Leverage Plot</a></li>
+<li><a href="#cooks-distance-plot">Cook's Distance Plot</a></li>
+<li><a href="#actual-vs-predicted-plot">Actual vs. Predicted Plot</a></li>
+<li><a href="#mean-absolute-error-plot">Mean Absolute Error Plot</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<blockquote>
+<p><strong>NOTE:</strong> This article is still a bit draft but it is published since might be an inspiration and starting point for crafting own visual analysis.
+<a id="introduction"></a></p>
+</blockquote>
+<h2>Introduction</h2>
+<p>When building a regression model, it is essential to check how well the model performs. We use error metrics such as Mean Squared Error (MSE) or Mean Absolute Error (MAE) to measure the performance of our model. However, these error metrics do not always give us a complete picture of the model's performance. Therefore, it is essential to visualize the model's errors to gain a better understanding of how the model is performing.</p>
+<p><a id="tldr---list-of-the-plots-with-short-description"></a></p>
+<h2>TLDR - list of the plots with short description</h2>
+<ol>
+<li><strong>Residual Plot</strong>: A scatter plot of the residuals (the difference between the predicted values and the actual values) against the predicted values. This plot can show if there is a pattern in the residuals, indicating that the model is not capturing some important information in the data.</li>
+<li><strong>Q-Q Plot</strong>: A plot that compares the distribution of the residuals to a normal distribution. If the residuals follow a normal distribution, they should fall along a straight line in the Q-Q plot.</li>
+<li><strong>Histogram of Residuals</strong>: A histogram of the residuals can show if the distribution is approximately normal or if there are outliers or skewness.</li>
+<li><strong>Scatter Plot</strong>: A scatter plot of the predicted values against the actual values can show if the model is making systematic errors, such as under- or over-predicting values.</li>
+<li><strong>Box Plot</strong>: A box plot of the residuals can show if there are outliers or if the residuals are skewed.</li>
+<li><strong>Cook's Distance Plot</strong>: A plot that shows the influence of each data point on the regression coefficients. Cook's distance is a measure of how much the regression coefficients change when a data point is removed from the dataset.</li>
+<li><strong>Leverage Plot</strong>: A plot that shows how much each data point is affecting the regression line. A data point with high leverage has a large influence on the regression line.</li>
+<li><strong>Scale-Location Plot</strong>: A plot that shows the square root of the standardized residuals against the predicted values. This plot can show if there is a non-linear relationship between the residuals and the predicted values.</li>
+<li><strong>Residuals vs. Time Plot</strong>: A plot that shows if the residuals are correlated with time. This can be important if the data is time-series data.</li>
+<li><strong>Partial Regression Plot</strong>: A plot that shows the relationship between the response variable and one predictor variable, while controlling for the effects of other predictor variables in the model.</li>
+</ol>
+<p>In this blog post, we will discuss some of the most insightful plots to visualize regression model prediction errors. We will  provide Python code snippets to generate each type of plot.</p>
+<p><a id="data-preparation"></a></p>
+<h2>Data Preparation</h2>
+<p>Before we start building our regression model, let's load the Boston Housing Dataset and split it into training and testing datasets.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_boston</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">boston</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()</span>
+<span class="n">boston_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">boston</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">boston_df</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">boston</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">boston_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">boston_df</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</code></pre></div>
+
+<p>We will be using a simple linear regression model to predict the target variable (MEDV). Let's train our model and make predictions on the test dataset.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Now that we have made predictions using our regression model, let's move on to visualizing the model's errors.</p>
+<p><a id="plots"></a></p>
+<h2>Plots</h2>
+<p><a id="residual-plot"></a></p>
+<h3>Residual Plot</h3>
+<p>The residual plot is one of the most commonly used plots to visualize the regression model's errors. It shows the difference between the actual and predicted values (residuals) plotted against the predicted values.</p>
+<p>A good regression model will have residuals randomly scattered around the zero line. If the residuals have a pattern or are not randomly distributed, it indicates that the model is not performing well.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">residuals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residual Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="residual_plot" src="/images/model_error/fig_1.png"></p>
+<p>In the above plot, we can see that the residuals are randomly scattered around the zero line, which indicates that the model is performing well.</p>
+<p><a id="what-can-we-learn-from-a-residual-plot"></a></p>
+<h4>What can we learn from a residual plot?</h4>
+<ul>
+<li>A <strong>horizontal line</strong> at 0 indicates that the model is unbiased, and the residuals are randomly distributed around 0.</li>
+<li>A curved or <strong>U-shaped</strong> pattern suggests that the model is not capturing the non-linear relationship between the independent and dependent variables.</li>
+<li>A <strong>funnel-shaped</strong> pattern indicates that the variance of the residuals is not constant across the range of predicted values. This is known as heteroscedasticity and can be corrected by transforming the data or using a different model.</li>
+</ul>
+<p><a id="histogram-of-residuals"></a></p>
+<h3>Histogram of Residuals</h3>
+<p>The histogram of residuals plot shows the distribution of the residuals. A good regression model will have residuals that follow a normal distribution. If the residuals have a skewed distribution, it indicates that the model is not performing well.</p>
+<div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="residual_plot" src="/images/model_error/fig_2.png"></p>
+<p>In the above plot, we can see that the residuals follow a normal distribution, which indicates that the model is performing well.</p>
+<p><a id="what-we-can-learn-from-residuals-histogram"></a></p>
+<h4>What we can learn from Residuals Histogram?</h4>
+<ul>
+<li>The residuals histogram can give us insights into the distribution of the errors in the model. If the histogram shows a roughly normal distribution, it indicates that the model is capturing the underlying pattern in the data, and the errors are distributed randomly around the mean. A normal distribution is ideal because it means that the model is making predictions that are equally likely to be too high or too low. </li>
+<li>A <strong>skewed residuals histogram</strong> indicates that the model is making systematic errors. If the histogram is <strong>skewed to the left</strong>, it means that the model is over-predicting values, while if it is <strong>skewed to the right</strong>, it means that the model is under-predicting values. Skewed distributions can also indicate the presence of outliers in the data.</li>
+<li>The residuals histogram can be used to identify <strong>outliers</strong> in the data. Outliers are data points that fall far outside the expected range of values, and they can have a significant impact on the model's performance. Outliers can be seen as <strong>peaks or gaps in the histogram</strong>, and they may need to be removed from the dataset to improve the model's accuracy.</li>
+</ul>
+<p><a id="scale-location-plot"></a></p>
+<h3>Scale-Location Plot</h3>
+<p>A scale-location plot shows the relationship between the absolute square root of the residuals and the predicted values.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># calculate the absolute square root of the residuals </span>
+<span class="n">sqrt_abs_resid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">residuals</span><span class="p">))</span> 
+
+<span class="c1"># plot the square root of the absolute residuals against the predicted values </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">sqrt_abs_resid</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Scale-Location Plot&quot;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predicted Values&quot;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Sqrt(|Residuals|)&quot;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="residual_plot" src="/images/model_error/fig_3.png"></p>
+<p>In this plot, the y-axis shows the square root of the absolute residuals, and the x-axis shows the predicted values. If the residuals are normally distributed, we expect to see a random scattering of points around the horizontal line.</p>
+<p>We can see from this plot that there is a slight curve in the line, which may indicate that the model is not capturing the full range of variation in the data.</p>
+<h4>What ca we learn from a Scale-Location plots?</h4>
+<ul>
+<li>Scale location plots are used to check for <strong>heteroscedasticity</strong>, which is the condition where the variance of the residuals changes as a function of the predicted values. In a scale location plot, the square root of the standardized residuals is plotted against the predicted values.</li>
+<li>A <strong>horizontal line</strong> in the scale location plot indicates that the residuals have constant variance across the range of the predicted values. This is a desirable condition for a regression model, and it suggests that the model is appropriately capturing the variability of the data.</li>
+<li>A <strong>curved or sloping line</strong> in the scale location plot indicates that the variance of the residuals is not constant, and this is an indication of heteroscedasticity. This is a problem because it means that the model is not accounting for the changing variability of the data, which can lead to inaccurate predictions.</li>
+<li>A scale location plot can be used to identify potential outliers in the data. <strong>Points that are far away from the horizontal line</strong> in the plot may be indicative of outliers that are contributing to the heteroscedasticity in the model.</li>
+<li>If a scale location plot shows <strong>heteroscedasticity</strong>, it may be possible to improve the model by transforming the response variable or adding additional predictor variables to capture the underlying pattern of variability in the data.
+<a id="q-q-plot"></a></li>
+</ul>
+<h3>Q-Q Plot</h3>
+<p>The Q-Q (Quantile-Quantile) plot is a probability plot that shows the theoretical quantiles of the residuals against the actual quantiles of the residuals. A good regression model will have residuals that follow a straight line.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="c1"># create Q-Q plot with 45-degree line added to plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s2">&quot;45&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="q-q" src="/images/model_error/fig_10.png"></p>
+<p>In the above plot, we can see that the residuals follow a straight line, which indicates that the model is performing well.</p>
+<p><a id="what-can-we-learn-from-a-qq-plot"></a></p>
+<h4>What can we learn from a QQ plot?</h4>
+<ul>
+<li>If the points on the plot fall on a <strong>straight line</strong>, the residuals are normally distributed.</li>
+<li>If the points <strong>deviate from the straight line</strong>, it suggests that the residuals are not normally distributed, and we may need to transform the data or use a different model.</li>
+</ul>
+<p><a id="leverage-plot"></a></p>
+<h3>Leverage Plot</h3>
+<p>The leverage plot shows how much each data point is affecting the regression line. It plots the leverage score (i.e., the measure of how much a data point deviates from the mean) against the standardized residuals.</p>
+<p>A data point with high leverage has a large influence on the regression line. If a data point has high leverage and a large residual, it is called an influential point.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.regressionplots</span> <span class="kn">import</span> <span class="n">plot_leverage_resid2</span>
+
+<span class="c1"># Load example data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">get_rdataset</span><span class="p">(</span><span class="s2">&quot;cars&quot;</span><span class="p">,</span> <span class="s2">&quot;datasets&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Create X and y variables</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;speed&quot;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dist&quot;</span><span class="p">]</span>
+
+<span class="c1"># Fit the linear regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Plot leverage plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plot_leverage_resid2</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="leverage plot" src="/images/model_error/fig_5.png"></p>
+<p>In the above plot, we can see that there are no influential points, which indicates that the model is performing well.</p>
+<p><a id="what-we-can-learn-from-leverage-plot"></a></p>
+<h4>What we can learn from Leverage plot</h4>
+<ul>
+<li>The leverage plot shows us how much each data point is affecting the regression line. A data point with high leverage has a large influence on the regression line.</li>
+<li>If a data point has <strong>high leverage and a large residual</strong>, it is called an influential point. Influential points can have a significant impact on the regression line and the overall model performance.</li>
+<li>In general, we want to see a <strong>uniform distribution</strong> of the leverage values, with most of the data points falling within the range of 0 to 1. If there are outliers or data points with high leverage values, it may indicate that the model is not capturing the full range of variability in the data.</li>
+<li>We can use the leverage plot to identify <strong>influential points</strong> that may be affecting the model performance. If we remove these points from the dataset and retrain the model, we can see if the model performance improves.</li>
+<li>The leverage plot can also be used to diagnose <strong>multicollinearity</strong>, which is a situation where two or more predictor variables in the model are highly correlated with each other. In this case, the leverage values may be high for multiple data points, indicating that they are highly influential in the model.</li>
+</ul>
+<p><a id="cooks-distance-plot"></a></p>
+<h3>Cook's Distance Plot</h3>
+<p>The Cook's distance plot shows the influence of each data point on the regression coefficients. The Cook's distance is a measure of how much the regression coefficients change when a data point is removed from the dataset.</p>
+<p>A data point with a high Cook's distance has a large influence on the regression coefficients. If a data point has a high Cook's distance and a large residual, it is an influential point.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.regressionplots</span> <span class="kn">import</span> <span class="n">plot_regress_exog</span>
+
+<span class="c1"># Load example data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">get_rdataset</span><span class="p">(</span><span class="s2">&quot;cars&quot;</span><span class="p">,</span> <span class="s2">&quot;datasets&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Create X and y variables</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;speed&quot;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dist&quot;</span><span class="p">]</span>
+
+<span class="c1"># Fit the linear regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Create Cook&#39;s distance plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plot_regress_exog</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">)</span>
+
+<span class="n">influence</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span>
+<span class="n">cooks_distance</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">cooks_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cooks_distance</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cook&#39;s Distance Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<blockquote>
+<p>proper plot: TBD 
+<img alt="residual_plot" src="/images/model_error/fig_6.png"></p>
+</blockquote>
+<p><img alt="residual_plot" src="/images/model_error/fig_7.png">
+In the above plot, we can see that there are no influential points, which indicates that the model is performing well.</p>
+<p><a id="what-can-we-learn-from-a-cooks-distance-plot"></a></p>
+<h4>What can we learn from a Cook's distance plot?</h4>
+<ul>
+<li>Observations with high Cook's distance values are influential and may be driving the model's predictions. We may want to remove these observations and re-fit the model.</li>
+<li>Observations with <strong>high leverage values</strong> (i.e., observations with extreme values of the independent variables) can also have high Cook's distance values. We may want to examine these observations more closely to determine if they are valid or outliers.</li>
+</ul>
+<p><a id="actual-vs-predicted-plot"></a></p>
+<h3>Actual vs. Predicted Plot</h3>
+<p>An actual vs. predicted plot is a scatter plot that shows the actual values on the y-axis and the predicted values on the x-axis. It's a simple and intuitive way to evaluate the model's performance.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Generate synthetic data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Split the data into training and test sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit the linear regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Compute the predicted values for the test set</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Plot the actual vs. predicted values</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Actual&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Predicted&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Actual vs. Predicted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="residual_plot" src="/images/model_error/fig_8.png">
+<a id="what-can-we-learn-from-an-actual-vs-predicted-plot"></a></p>
+<h4>What can we learn from an actual vs. predicted plot?</h4>
+<ul>
+<li>If the points on the plot fall on a <strong>straight line</strong>, it indicates that the model is making accurate predictions. </li>
+<li>If the points <strong>deviate from the straight line</strong>, it suggests that the model is not making accurate predictions and may need to be improved.  </li>
+</ul>
+<p><a id="mean-absolute-error-plot"></a></p>
+<h3>Mean Absolute Error Plot vs. parameter</h3>
+<p>The mean absolute error (MAE) is a measure of the average absolute difference between the predicted values and the actual values. A mean absolute error plot shows the MAE for different values of the model's hyperparameters. </p>
+<blockquote>
+<p><strong>NOTE:</strong> MAE is one of the metrics that can be used evaluate hyperparameters setting. One can use RMSE, R2 as well.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define a list of alpha values to test</span>
+<span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+
+<span class="c1"># Calculate the MAE for each alpha value</span>
+<span class="n">mae_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">mae_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mae</span><span class="p">)</span>
+
+<span class="c1"># Plot the MAE values against the alpha values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">mae_values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Alpha&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean Absolute Error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Absolute Error Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="residual_plot" src="/images/model_error/fig_9.png">
+In this example, <code>alphas</code> is a list of different regularization parameter values to test for a Lasso regression model. The code fits a model for each value of <code>alpha</code> and calculates the mean absolute error on the test set. The resulting MAE values are then plotted against the alpha values to show how the MAE changes with different regularization strengths.</p>
+<p><a id="what-can-we-learn-from-a-mean-absolute-error-plot"></a></p>
+<h4>What can we learn from a mean absolute error plot?</h4>
+<ul>
+<li>The plot can help us <strong>choose the best value of the hyperparameter</strong> by identifying the value that minimizes the MAE. </li>
+<li>If the <strong>plot is noisy</strong> and <strong>does not have a clear minimum</strong>, it suggests that the hyperparameter may not be important for the model's performance.  </li>
+</ul>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>In this blog post, we discussed some of the most insightful plots to visualize regression model prediction errors. We used the Boston Housing Dataset and a linear regression model to illustrate each type of plot. We provided Python code snippets to generate each type of plot.</p>
+<p>We learned that a good regression model will have residuals that are randomly scattered around the zero line, follow a normal distribution, and follow a straight line on the Q-Q plot. We also learned that influential points can affect the regression line and the regression coefficients.</p>
+<p>By visualizing the model's errors, we can gain a better understanding of how the model is performing and identify areas for improvement. It is essential to use multiple types of plots to get a complete picture of the model's performance.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/python-get-file-and-path-parts-dirname-base-name-extension/" title="Python - get file and path parts (dirname, base name, extension)">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/python-add-parent-directory-to-path/" title="Adding Parent Directory To Python Path">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/features-with-strong-correlation/">List of features with strongest correlation</a></li>
+                        <li><a href="https://www.safjan.com/eli5-tutorial/">Understanding AI with ELI5 - Demystifying Decisions (tutorial)</a></li>
+                        <li><a href="https://www.safjan.com/tsne-tutorial/">Unleashing the Power of T-SNE for Dimensionality Reduction in Python</a></li>
+                        <li><a href="https://www.safjan.com/how-to-organize-data-science-project-based-on-jupyter-notebook/">How to organize Data Science project based on Jupyter notebook</a></li>
+                        <li><a href="https://www.safjan.com/whats-cooking/">What's cooking</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
