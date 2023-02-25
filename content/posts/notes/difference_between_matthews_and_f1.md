@@ -42,3 +42,5 @@ The Matthews correlation coefficient (MCC) is a measure of the quality of binary
 -   The MCC is sensitive to small changes in the data and can be unstable **when the number of true and false positives and negatives is small**.
 -   The MCC is **not defined for multi-class classification**, as it is only designed for binary classification.
 -   The MCC may not be suitable for some applications, as it is sensitive to the prevalence of the positive class and **may not be as informative in cases where the positive class is rare**.
+
+up::[[MOC_AI]]

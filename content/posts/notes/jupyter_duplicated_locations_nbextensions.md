@@ -28,3 +28,5 @@ In summary, managing and preventing duplicated nbextensions files in Jupyter not
 
 See also related GitHub issue: https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/25
 
+up::[[MOC_Jupyter_notebooks]]
+

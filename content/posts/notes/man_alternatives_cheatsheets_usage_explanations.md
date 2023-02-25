@@ -33,3 +33,6 @@ GitHub repo: srsudar/eg
 
 
 > NOTE: consider adding ROFI bangs for the man replacements #someday
+
+up::[[MOC_Shell_Bash_Zsh]]
+up::[[MOC_Linux]]

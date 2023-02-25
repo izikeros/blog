@@ -8,7 +8,6 @@ Tags: machine-learning
 Category: note
 todo: add diagram, promote to post
 ---
-X::[[machine_learning_model_packaging]]
 
 There are several alternative methods of packaging ML models, and the appropriate method will depend on the specific use case and requirements. Some alternative methods include:
 
@@ -36,3 +35,5 @@ Creating a **wrapper or API** around the model, which can be used to interact wi
 <img src="/images/ml_packaging/ml_packaging.jpg"  alt="Decision algorithm for packaging selection">    
 
 Ultimately, the choice of packaging method will depend on the specific requirements of the model, the target audience, and the resources available. It's worth considering the trade-offs between different options and choosing the one that best fits your use case.
+
+X::[[machine_learning_model_packaging]]

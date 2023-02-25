@@ -23,3 +23,5 @@ Evolutionary algorithms (EAs) can be used in conjunction with neural networks (N
 - Additionally, EAs and NNs can also be combined to solve more complex problems, such as **multi-objective optimization**, where multiple objectives need to be optimized simultaneously, or problems that involve uncertainty or dynamic environments.
 
 Evolutionary algorithms and neural networks can be used together in a variety of ways to optimize the performance of AI models. These methods are used jointly to optimize the weights or architecture of the NN and to solve more complex problems.
+
+up::[[MOC_AI]]

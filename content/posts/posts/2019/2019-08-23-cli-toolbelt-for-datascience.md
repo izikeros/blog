@@ -5,7 +5,7 @@ date: 2019-08-23
 modified: 2021-02-08 21:28
 tags: machine learning, Linux
 category: Linux
-image: /images/head/cli_tools.jpg
+Image: /images/head/cli_tools.jpg
 status: published
 summary: Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.
 ---

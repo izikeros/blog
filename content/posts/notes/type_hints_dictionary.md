@@ -25,3 +25,5 @@ def get_info(name: str) -> NameInfo:
 ```
 
 from: https://stackoverflow.com/a/54198204/3247880
+
+up::[[MOC_Python]]

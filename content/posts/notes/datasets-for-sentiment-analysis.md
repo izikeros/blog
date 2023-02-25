@@ -3,7 +3,7 @@ title: Datasets for sentiment analysis
 date: 2022-01-25
 modified: 2022-10-20
 status: published
-tags: sentiment-analysis, machine-learning, AI, NLP
+tags: sentiment-analysis, machine-learning, AI, NLP, dataset 
 slug: datasets-for-sentiment-analysis
 category: note
 citation_needed: true
@@ -27,3 +27,5 @@ todo: add citiation from huginface Roberta model
 - Hartmann et al. (2019)
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+[[MOC_AI]]

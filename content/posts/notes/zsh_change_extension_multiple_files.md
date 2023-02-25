@@ -27,3 +27,5 @@ for all files set extension `.md`
 zmv '^*.*' '$f.md'
 ```
 Tip coming from: [unix.stackexchange](https://unix.stackexchange.com/a/68943). Credits to: [Gilles 'SO- stop being evil'](https://unix.stackexchange.com/users/885/gilles-so-stop-being-evil)
+
+X::[[MOC_Shell_Bash_Zsh]]

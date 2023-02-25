@@ -69,3 +69,7 @@ https://www.actitime.com/productivity-tools/linux-timesheet
 
 ## Poor-man's solution
 Poor-man's solution might be automating capturing screen shoots periodically (e.g. every 5min) and then you can manually browse them and restore your activity in given day. Pros of this solution is that capturing the raw data (screenshots) might be fully automated, run in the background and do not need any involvement from your side. Cons is that you need to process the screenshots.
+
+up::[[MOC_Living]]
+up::[[MOC_Job]]
+

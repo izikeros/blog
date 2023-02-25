@@ -34,3 +34,6 @@ Here are some additional benefits of frequent reinstallation of the system that 
     
 
 Overall, frequent reinstallation of the system can provide numerous benefits beyond those mentioned in the previous blog post, including improved security, performance, and troubleshooting, as well as learning and personalization opportunities.
+
+X::[[mac_wiki_v2]]
+up::[[MOC_macOS]]

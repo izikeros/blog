@@ -45,3 +45,5 @@ display(top_pairs_df)
 ```
 
 In this code, we use the `unstack()` method to transform the correlation matrix into a Series of pairs of column names and their correlation values. We then sort the Series in descending order and get the top `2*n` pairs (in correlation matrix pairs appear twice, except correlation of the feature with itself). 
+
+up::[[MOC_AI]]

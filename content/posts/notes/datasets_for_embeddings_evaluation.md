@@ -4,7 +4,7 @@ Slug: datasets-for-embeddings-evaluation
 Date: 2023-02-09
 Modified: 2023-02-09
 Status: published
-Tags: machine-learning, NLP, embeddings, openai
+Tags: machine-learning, NLP, embeddings, openai, dataset 
 Category: note
 ---
 
@@ -21,3 +21,5 @@ Dataset: [SentEval](https://github.com/facebookresearch/SentEval) (STS 2012–
 Dataset: [SentEval](https://github.com/facebookresearch/SentEval) (MR, CR, SUBJ, MPQA, SST, TREC, MRPC)
 
 Source: [New and Improved Embedding Model](https://openai.com/blog/new-and-improved-embedding-model/)
+
+up::[[MOC_AI]]

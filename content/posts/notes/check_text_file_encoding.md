@@ -11,3 +11,5 @@ title: Check text file encoding
 ```sh
 file -bi en_CA_utf8.aff
 ```
+
+up::[[MOC_Shell_Bash_Zsh]]

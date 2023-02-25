@@ -17,3 +17,5 @@ An **anchor explanation is a specific rule or condition that, when met, would ca
 Consider a machine learning model used for credit risk assessment. An anchor explanation for a prediction that a particular individual is a high-risk borrower might be "the model predicted that the borrower is high-risk because they have a history of missed payments on their previous loans." This explanation helps the end-user understand why the model made that particular prediction, and allows them to make informed decisions based on that information.
 
 The anchor explanation method is designed to be model-agnostic, meaning it can be used with any type of machine learning model. This makes it a useful tool for a wide range of applications, including healthcare, finance, and natural language processing.
+
+up::[[MOC_XAI]]

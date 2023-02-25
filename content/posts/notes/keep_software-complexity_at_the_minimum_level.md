@@ -33,3 +33,5 @@ Keeping the system complexity at a minimum level is critical to the success of a
     
 
 By following these tips and best practices, you can keep the complexity of your software project at a minimum level. This will help you create a software system that is easy to maintain and debug, and that can be developed quickly and efficiently.
+
+up::[[MOC_Software_Development]]

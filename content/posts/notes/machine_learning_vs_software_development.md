@@ -35,3 +35,5 @@ While machine learning development and traditional software development share ma
 Here are two articles that broaden the perspective of this post.
 - [Software Development vs. Machine Learning Engineering](https://www.datarevenue.com/en-blog/software-development-vs-machine-learning-engineering) - discuss difference between proof-of-concept and production model building, different flavours of software.
 - [Machine Learning vs Traditional Software Development | by Bill Richmond | Medium](https://billcrichmond.medium.com/machine-learning-vs-traditional-software-development-96923dc5ffbc)
+
+up::[[MOC_AI]]

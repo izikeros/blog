@@ -39,3 +39,5 @@ Instead of using a single cloud provider, consider using a multi-cloud approach 
 
 
 In conclusion, while it may be tempting to follow popular MLOps advice, it's important to consider whether these recommendations are actually the best fit for your specific needs. By using a modular, polyglot, and multi-cloud approach, you can ensure that you're using the best tools for each task and building a more flexible, scalable, and cost-effective MLOps pipeline.
+
+up::[[mlops]]

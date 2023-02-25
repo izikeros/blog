@@ -13,7 +13,7 @@ tags:
 
 
 ## install poppler-utils
-```
+```sh
 # on Ubuntu, Debian Linux:
 sudo apt install poppler-utils
 
@@ -43,3 +43,5 @@ pdftoppm -png -rx 300 -ry 300 document.pdf document
 
 References:
 - [Steps to Convert PDF to PNG on Linux](https://pdf.wondershare.com/pdf-knowledge/pdf-to-png-linux.html)
+
+up::[[MOC_content_creation]]

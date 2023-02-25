@@ -77,3 +77,5 @@ fig.show()
 This code will create the same scatter plot as before, but with the Y axis ranging from 0 to the maximum value in the data set (in this case, 3).
 
 See also: [python - Plotly: How to set the range of the y axis? - Stack Overflow](https://stackoverflow.com/questions/55704058/plotly-how-to-set-the-range-of-the-y-axis)
+
+up::[[MOC_Visualization]]

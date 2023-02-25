@@ -15,3 +15,5 @@ citation_needed: false
 `numba.njit` is a function decorator that is similar to `numba.jit`, but it has stricter requirements for the types of input and output that the function can accept and return. This means that `numba.njit` may be more restrictive in the types of functions it can compile, but it may also be faster and more memory-efficient than `numba.jit`.
 
 In general, you should use `numba.njit` if you know that the function you are trying to compile has a simple and well-defined input and output, and you are willing to make any necessary changes to the function's signature to meet the requirements of `numba.njit`. Otherwise, you can use `numba.jit`, which is more flexible but may be slower and less memory-efficient.
+
+up::[[MOC_Python]]

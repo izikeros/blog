@@ -28,3 +28,5 @@ The command looks scary and confusing. I advise copying and pasting most of it. 
 ```
 
 Do keep in mind that some PDF files may not be compressed a lot or at all. Applying compression on some PDF files may even produce a file bigger than the original. There is not much you can do in such cases.
+
+up::[[MOC_content_creation]]

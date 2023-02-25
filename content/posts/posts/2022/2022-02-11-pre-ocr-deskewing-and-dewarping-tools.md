@@ -6,7 +6,7 @@ status: Published
 tags: document intelligence, document processing, computer vision, digital image processing, canny edge detector, hough transform, deep learning
 summary: Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article "Summary and recommendations".
 slug: tools-for-doc-deskewing-and-dewarping
-category: Data Science
+category: Machine Learning
 citation_needed: false
 todo: Add credits to all images, copy images instead of hot linking 
 Image: /images/head/dewarp_deskew.jpg

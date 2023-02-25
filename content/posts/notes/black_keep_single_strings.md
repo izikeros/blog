@@ -14,3 +14,5 @@ Currently, it requires everyone who uses single quotes to run black and then hav
 
 From black documentation:
 > If you are adopting *Black* in a large project with pre-existing string conventions (like the popular [“single quotes for data, double quotes for human-readable strings”](https://stackoverflow.com/a/56190)), you can pass `--skip-string-normalization` on the command line. This is meant as an adoption helper, avoid using this for new projects.
+
+up::[[MOC_Software_Development]]

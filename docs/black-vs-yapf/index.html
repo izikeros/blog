@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="The debate over the best Python code formatter continues. In this article, we dive deep into Black and yapf - their strong and weak points, and which one is right for you."/>
+    <meta name="keywords" content="python, code-formatter, black, yapf, comparison, strong-points, weak-points, differences, usability, CICD, pipelines, automation, pre-commit-hooks, controversies">
+    <meta expr:content="2023-02-23 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-02-23 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-02-23 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-02-23 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Which Python Code Formatter is Better: Black or yapf?",
+  "datePublished": "2023-02-23 00:00:00+01:00",
+  "dateModified": "2023-02-23 00:00:00+01:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Which Python Code Formatter is Better: Black or yapf?"/>
+  <meta property="og:description" content="The debate over the best Python code formatter continues. In this article, we dive deep into Black and yapf - their strong and weak points, and which one is right for you."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/black-vs-yapf/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-02-23 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-02-23 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="code-formatter"/>
+  <meta property="article:tag" content="black"/>
+  <meta property="article:tag" content="yapf"/>
+  <meta property="article:tag" content="comparison"/>
+  <meta property="article:tag" content="strong-points"/>
+  <meta property="article:tag" content="weak-points"/>
+  <meta property="article:tag" content="differences"/>
+  <meta property="article:tag" content="usability"/>
+  <meta property="article:tag" content="CICD"/>
+  <meta property="article:tag" content="pipelines"/>
+  <meta property="article:tag" content="automation"/>
+  <meta property="article:tag" content="pre-commit-hooks"/>
+  <meta property="article:tag" content="controversies"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>The debate over the best Python code formatter continues. In this article, we dive deep into Black and yapf - their strong and weak points, and which one is right for you.</p>"/>
+    <meta name="twitter:title" content="Which Python Code Formatter is Better: Black or yapf?"/>
+
+
+    <title>    Which Python Code Formatter is Better: Black or yapf?
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-02-23 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Which%20Python%20Code%20Formatter%20is%20Better%3A%20Black%20or%20yapf%3F&url=https%3A//www.safjan.com/black-vs-yapf/&hashtags=python,code-formatter,black,yapf,comparison,strong-points,weak-points,differences,usability,cicd,pipelines,automation,pre-commit-hooks,controversies" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/black-vs-yapf/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Which%20Python%20Code%20Formatter%20is%20Better%3A%20Black%20or%20yapf%3F&u=https%3A//www.safjan.com/black-vs-yapf/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/black-vs-yapf/&title=Which%20Python%20Code%20Formatter%20is%20Better%3A%20Black%20or%20yapf%3F" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="black-vs-yapf">Which Python Code Formatter is Better: Black or yapf?</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <h2>Introduction</h2>
+<p>Python code formatters are tools used to format Python code according to a set of rules or conventions. These tools help to maintain consistent code formatting, improve code readability, and reduce the time spent on code review. There are several code formatters available in the Python community, and two of the most popular ones are Black and yapf. In this blog post, we will compare Black and yapf, highlighting their strong and weak points, differences, and evaluate their usability in CI/CD pipelines and other automation tools like pre-commit hooks. We will also address some controversies surrounding these tools.</p>
+<h2>Overview of Black and yapf</h2>
+<p><a href="https://github.com/psf/black">Black</a> and <a href="https://github.com/google/yapf">yapf</a> are open-source tools for code formatting in Python. Black was first released in 2018 and has gained popularity in the Python community since then. Black is designed to be opinionated, meaning that it enforces a strict set of rules for code formatting. On the other hand, yapf was first released in 2015 and is also popular among Python developers. Yapf is configurable, meaning that it allows users to customize the formatting rules to suit their preferences.</p>
+<h2>Comparison of Black and yapf</h2>
+<p>In this section, we will compare Black and yapf based on various criteria.</p>
+<h3>1.  Formatting rules</h3>
+<p>Black enforces a strict set of formatting rules that are non-configurable. The aim of these rules is to provide consistent code formatting and reduce the time spent on code review. Black aims to minimize the differences in formatting style among developers, which can cause confusion when working on large projects. Yapf, on the other hand, allows users to customize the formatting rules according to their preferences. Yapf provides a set of default rules, but users can modify them by specifying options in the configuration file.</p>
+<h3>2.  Speed</h3>
+<p>Black is known for its speed and can format code in a matter of seconds. Black achieves this speed by using a simple algorithm that focuses on making the smallest possible changes to the code. Yapf, on the other hand, is slower than Black but still relatively fast. Yapf's algorithm is more complex and focuses on making more significant changes to the code.</p>
+<h3>3.  Output readability</h3>
+<p>Both Black and yapf produce readable code output that is easy to understand. However, Black's output may sometimes be harder to read due to the strict formatting rules. Yapf's output, on the other hand, may be more readable due to the ability to customize the formatting rules.</p>
+<h3>4.  Integration with CI/CD pipelines and pre-commit hooks</h3>
+<p>Both Black and yapf can be integrated into CI/CD pipelines and pre-commit hooks. Black has an official pre-commit hook that can be easily installed and used. Yapf also has a pre-commit hook, but it is not officially supported by the yapf team. Both tools can also be integrated with CI/CD pipelines using various plugins.</p>
+<h3>5.  Community support</h3>
+<p>Both Black and yapf have active communities that contribute to their development and maintenance. However, Black has a larger community and is more widely used than yapf.</p>
+<h3>6.  Controversies</h3>
+<p>There have been some controversies surrounding Black and yapf. One of the main controversies surrounding Black is its strict formatting rules, which some developers find too restrictive. Some developers feel that Black's strict formatting rules can lead to unreadable code and may not be suitable for all projects. On the other hand, yapf's configurable formatting rules have also received criticism. Some developers feel that yapf's configurable formatting rules can lead to inconsistent code formatting, which can be confusing when working on large projects.</p>
+<h2>References</h2>
+<ul>
+<li>Black: <a href="https://github.com/psf/black">https://github.com/psf/black</a></li>
+<li>yapf: <a href="https://github.com/google/yapf">https://github.com/google/yapf</a></li>
+</ul>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/code-formatter/">code-formatter</a>
+                        <a href="https://www.safjan.com/tag/black/">black</a>
+                        <a href="https://www.safjan.com/tag/yapf/">yapf</a>
+                        <a href="https://www.safjan.com/tag/comparison/">comparison</a>
+                        <a href="https://www.safjan.com/tag/strong-points/">strong-points</a>
+                        <a href="https://www.safjan.com/tag/weak-points/">weak-points</a>
+                        <a href="https://www.safjan.com/tag/differences/">differences</a>
+                        <a href="https://www.safjan.com/tag/usability/">usability</a>
+                        <a href="https://www.safjan.com/tag/cicd/">CICD</a>
+                        <a href="https://www.safjan.com/tag/pipelines/">pipelines</a>
+                        <a href="https://www.safjan.com/tag/automation/">automation</a>
+                        <a href="https://www.safjan.com/tag/pre-commit-hooks/">pre-commit-hooks</a>
+                        <a href="https://www.safjan.com/tag/controversies/">controversies</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/illusion-of-expertise/" title="Rethinking the Link Between Speech and Expertise">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/plot-in-plot-matplot-lib/" title="Plot inside plot with Matplotlib">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/black-code-formatter/">Black - the code formatter</a></li>
+                        <li><a href="https://www.safjan.com/illusion-of-expertise/">Rethinking the Link Between Speech and Expertise</a></li>
+                        <li><a href="https://www.safjan.com/features-with-strong-correlation/">List of features with strongest correlation</a></li>
+                        <li><a href="https://www.safjan.com/before-pca/">Checks and Data preprocessing steps before applying PCA</a></li>
+                        <li><a href="https://www.safjan.com/eli5-tutorial/">Understanding AI with ELI5 - Demystifying Decisions (tutorial)</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

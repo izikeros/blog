@@ -8,7 +8,6 @@ Tags: bayesian, machine-learning
 Category: note
 ---
 
-
 Bayesian methods are a powerful tool for probabilistic modeling and inference, but they may not be the best choice in certain situations. Here are a few examples of when it might be better to use alternative methods:
 
 <a id="when-the-data-is-scarce-or-the-model-is-very-complex"></a>
@@ -28,3 +27,7 @@ High-dimensional problems can be computationally challenging for Bayesian method
 Bayesian methods often rely on conjugate priors, which can make the math easier, but when the model is non-conjugate, more advanced techniques such as variational inference or MCMC methods may be required, making the computation much more challenging
     
 These examples are not exhaustive, but they give an idea of when Bayesian methods may not be the best choice. This is also not to say that Bayesian methods are never appropriate in these situations, but it may be more challenging or less efficient.
+
+up::[[MOC_AI]]
+X::[[bayesian_methods]]
+X::[[learning_bayesian_methods_as_data_scientist]]

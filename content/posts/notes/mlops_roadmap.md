@@ -36,3 +36,5 @@ graph TD;
     Model_Monitoring-->Automation;
 
 ```
+
+up::[[mlops]]
