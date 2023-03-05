@@ -66,6 +66,11 @@ $$
 
 where $y_i$ is the actual value of the dependent variable, $\hat{y_i}$ is the predicted value of the dependent variable, and $n$ is the number of observations.
 
+Graphical interpretation - square of the distance of the points to line.
+
+![MSE](https://byam.github.io/assets/img/model-eval-val/mean-squared-error.png)
+*source: [Model Evaluation and Validation | Tuk Tak](https://byam.github.io/dlnd/2017/11/13/model-evaluation-and-validation.html)*
+
 The MSE **can be used to compare the performance of different models**. A lower MSE indicates better performance. However, the **MSE is sensitive to outliers** and can be skewed by extreme values.
 
 <a id="root-mean-squared-error-rmse"></a>
@@ -77,6 +82,8 @@ $RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2}$
 
 The RMSE is easier to interpret than the MSE because it **is in the same units as the dependent variable**. A lower RMSE indicates better performance. However, like the MSE, the RMSE is **sensitive to outliers** and can be skewed by extreme values.
 
+![RMSE](https://byam.github.io/assets/img/model-eval-val/r2-score.png)
+*source: [Model Evaluation and Validation | Tuk Tak](https://byam.github.io/dlnd/2017/11/13/model-evaluation-and-validation.html)*
 <a id="interpreting-multiple-metrics-jointly"></a>
 ## Interpreting Multiple Metrics jointly
 

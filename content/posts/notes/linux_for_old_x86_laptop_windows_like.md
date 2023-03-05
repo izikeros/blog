@@ -54,13 +54,14 @@ There are several Linux distributions that can provide a Windows-like look and f
 ![LXLE](/images/_local/LXLE_screenshoot.jpg)
 
 **Table with comparison of Distros**
-| Distribution | Desktop Environment | Windows-like Interface | Resource Usage | Ease of Use | 
-| --- | --- | --- | --- | --- |
-| Lubuntu | LXDE | Yes (Windows XP) | Low | Easy |
-| Linux Mint Xfce | Xfce | Yes (Windows 7) | Low | Easy |
-| Zorin OS Lite | Xfce | Yes | Low | Easy |
-| Peppermint OS | LXDE | Yes | Low | Easy |
-| LXLE | LXDE | Yes (Windows XP) | Low | Easy |
+
+| Distribution    | Desktop Environment | Windows-like Interface | Resource Usage | Ease of Use |
+| --------------- | ------------------- | ---------------------- | -------------- | ----------- |
+| Lubuntu         | LXDE                | Yes (Windows XP)       | Low            | Easy        |
+| Linux Mint Xfce | Xfce                | Yes (Windows 7)        | Low            | Easy        |
+| Zorin OS Lite   | Xfce                | Yes                    | Low            | Easy        |
+| Peppermint OS   | LXDE                | Yes                    | Low            | Easy        |
+| LXLE            | LXDE                | Yes (Windows XP)       | Low            | Easy        |
 
 All of these Linux distributions are lightweight and should run smoothly on older x86 laptops. They also have a Windows-like user interface that can make the transition from Windows to Linux easier for users.
 
