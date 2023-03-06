@@ -1,5 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-03-05T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Eval in Bash Script with Arguments Implemented as Functions</title><link href="https://www.safjan.com/bash-script-with-arguments-implemented-as-functions/" rel="alternate"></link><published>2023-03-05T00:00:00+01:00</published><updated>2023-03-05T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-05:/bash-script-with-arguments-implemented-as-functions/</id><summary type="html">&lt;p&gt;minimal example of how you can use functions and &lt;code&gt;eval&lt;/code&gt; in a bash script:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-03-06T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/data-science.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>ActivityPub - how it works and how to use it?</title><link href="https://www.safjan.com/activitypub-how-it-works-how-to-use-it/" rel="alternate"></link><published>2023-03-06T00:00:00+01:00</published><updated>2023-03-06T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-06:/activitypub-how-it-works-how-to-use-it/</id><summary type="html">&lt;p&gt;ActivityPub is a protocol designed to enable decentralized social networking. It is based on the principles of the &lt;strong&gt;&lt;em&gt;Federated Social Web&lt;/em&gt;&lt;/strong&gt;, which aims to create a social web that is not owned by any single entity or corporation. In this blog post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;ActivityPub is a protocol designed to enable decentralized social networking. It is based on the principles of the &lt;strong&gt;&lt;em&gt;Federated Social Web&lt;/em&gt;&lt;/strong&gt;, which aims to create a social web that is not owned by any single entity or corporation. In this blog post, we will explore the basics of ActivityPub and how it can be used in your applications.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#what-is-activitypub"&gt;What is ActivityPub?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#how-does-activitypub-work"&gt;How does ActivityPub work?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#how-can-activitypub-be-used-in-your-applications"&gt;How can ActivityPub be used in your applications?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#1-social-networking-platforms"&gt;1.  Social Networking Platforms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-chat-applications"&gt;2.  Chat Applications&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-content-management-systems"&gt;3.  Content Management Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-collaboration-tools"&gt;4.  Collaboration Tools&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#other-related-protocols"&gt;Other,  related protocols&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#1-ostatus"&gt;1.  OStatus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-websub-formerly-known-as-pubsubhubbub"&gt;2.  WebSub (formerly known as PubSubHubbub)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-diaspora"&gt;3.  Diaspora&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-zot"&gt;4.  Zot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#5-matrix"&gt;5.  Matrix&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="what-is-activitypub"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;What is ActivityPub?&lt;/h2&gt;
+&lt;p&gt;ActivityPub is a decentralized protocol for social networking. It allows users to interact with each other across different social networking platforms, without having to be part of the same network. ActivityPub is designed to be scalable, secure, and decentralized, and it allows users to control their own data and content.&lt;/p&gt;
+&lt;p&gt;The core of ActivityPub is the activity stream. An activity stream is a list of actions that a user has taken or received, such as posting a message, following someone, or liking a post. ActivityPub uses the JSON-LD format to represent activity streams.&lt;/p&gt;
+&lt;p&gt;&lt;a id="how-does-activitypub-work"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;How does ActivityPub work?&lt;/h2&gt;
+&lt;p&gt;ActivityPub is based on a decentralized architecture, which means that there is no single central authority that controls the network. Instead, each user has their own server, known as a "node," which is responsible for storing their data and communicating with other nodes.&lt;/p&gt;
+&lt;p&gt;When a user wants to post a message or perform any other activity, their node creates an activity object, which contains information about the activity, such as the type of activity, the user who performed it, and any additional metadata. The activity object is then sent to the user's followers, who receive a notification of the activity.&lt;/p&gt;
+&lt;p&gt;If a user wants to follow another user, their node sends a follow request to the other user's node. If the other user accepts the request, their node sends a follow activity to the follower's node, which adds the user to their list of followers.&lt;/p&gt;
+&lt;p&gt;ActivityPub also supports other types of activities, such as likes, shares, and comments. These activities are all represented using the same activity object format.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ActivityPub" src="/images/misc/ActivityPub.png"&gt;
+&lt;em&gt;How ActivityPub works (source: W3C)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="how-can-activitypub-be-used-in-your-applications"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;How can ActivityPub be used in your applications?&lt;/h2&gt;
+&lt;p&gt;ActivityPub can be used in a wide variety of applications, from social networking platforms to chat applications to content management systems. Here are some examples of how ActivityPub can be used in your applications:&lt;/p&gt;
+&lt;p&gt;&lt;a id="1-social-networking-platforms"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1.  Social Networking Platforms&lt;/h3&gt;
+&lt;p&gt;ActivityPub can be used to create decentralized social networking platforms, where users can connect with each other across different networks. For example, Mastodon is a popular social networking platform that uses ActivityPub. Mastodon allows users to post messages, follow other users, and interact with each other in a decentralized manner.&lt;/p&gt;
+&lt;p&gt;&lt;a id="2-chat-applications"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2.  Chat Applications&lt;/h3&gt;
+&lt;p&gt;ActivityPub can also be used to create decentralized chat applications. For example, XMPP is a protocol for instant messaging that supports ActivityPub. XMPP allows users to send messages, share files, and interact with each other in real-time.&lt;/p&gt;
+&lt;p&gt;&lt;a id="3-content-management-systems"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;3.  Content Management Systems&lt;/h3&gt;
+&lt;p&gt;ActivityPub can be used to create decentralized content management systems, where users can publish and share content across different networks. For example, Write.as is a blogging platform that uses ActivityPub. Write.as allows users to publish blog posts, follow other bloggers, and interact with each other in a decentralized manner.&lt;/p&gt;
+&lt;p&gt;&lt;a id="4-collaboration-tools"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;4.  Collaboration Tools&lt;/h3&gt;
+&lt;p&gt;ActivityPub can be used to create decentralized collaboration tools, where users can work together on projects across different networks. For example, Gitea is a platform for hosting and managing Git repositories that supports ActivityPub. Gitea allows users to collaborate on projects, share code, and interact with each other in a decentralized manner.&lt;/p&gt;
+&lt;p&gt;&lt;a id="other-related-protocols"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Other,  related protocols&lt;/h2&gt;
+&lt;p&gt;ActivityPub is just one of several protocols that are designed to support decentralized communication and social networking. Here are some of the related protocols:&lt;/p&gt;
+&lt;p&gt;&lt;a id="1-ostatus"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1.  OStatus&lt;/h3&gt;
+&lt;p&gt;OStatus is an older protocol that was developed before ActivityPub. It includes several components, including ActivityStreams, WebSub, and Salmon. OStatus was originally used for federated microblogging platforms like StatusNet and GNU Social.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OStatus&lt;/strong&gt;: &lt;a href="https://www.w3.org/community/ostatus/wiki/Main_Page"&gt;https://www.w3.org/community/ostatus/wiki/Main_Page&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="2-websub-formerly-known-as-pubsubhubbub"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2.  WebSub (formerly known as PubSubHubbub)&lt;/h3&gt;
+&lt;p&gt;WebSub is a protocol for real-time notifications on the web. It allows publishers to notify subscribers when new content is available, and it is used by ActivityPub to send notifications of new activities.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;WebSub&lt;/strong&gt;: &lt;a href="https://www.w3.org/TR/websub/"&gt;https://www.w3.org/TR/websub/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="3-diaspora"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;3.  Diaspora&lt;/h3&gt;
+&lt;p&gt;Diaspora is a social networking platform that uses a protocol called the Diaspora protocol. The Diaspora protocol is similar to ActivityPub, but it was designed specifically for the Diaspora platform.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Diaspora protocol:&lt;/strong&gt; &lt;a href="https://diaspora.github.io/diaspora_federation/protocol.html"&gt;https://diaspora.github.io/diaspora_federation/protocol.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="4-zot"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;4.  Zot&lt;/h3&gt;
+&lt;p&gt;Zot is a protocol used by the Hubzilla social networking platform. Zot is similar to ActivityPub, but it includes additional features like encryption and private messaging.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Zot&lt;/strong&gt;: &lt;a href="https://zotlabs.org/page/zot/zot-protocol"&gt;https://zotlabs.org/page/zot/zot-protocol&lt;/a&gt;
+&lt;a id="5-matrix"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;5.  Matrix&lt;/h3&gt;
+&lt;p&gt;Matrix is a decentralized communication protocol that is designed for real-time messaging and collaboration. It includes features like end-to-end encryption, multi-device syncing, and bridging to other networks like IRC and Slack.&lt;/p&gt;
+&lt;p&gt;These protocols are all part of the wider ecosystem of decentralized communication and social networking. While they have their own unique features and use cases, they all share a common goal of enabling users to communicate and collaborate in a decentralized, open, and transparent way.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Matrix&lt;/strong&gt;: &lt;a href="https://matrix.org/docs/spec/"&gt;https://matrix.org/docs/spec/&lt;/a&gt;
+&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;ActivityPub is a powerful protocol that enables decentralized social networking. It allows users to interact with each other across different networks, without having to be part of the same network. ActivityPub can be used in a wide variety of applications, from social networking platforms to content management systems to collaboration tools. If you are interested in creating decentralized applications, ActivityPub is definitely worth&lt;/p&gt;
+&lt;p&gt;See the video: &lt;a href="https://www.youtube.com/watch?v=kkvJMiiVRWs"&gt;How To Use ActivityPub In Your Applications? - YouTube&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a id="references"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;links to the protocols mentioned in this chat:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ActivityPub: &lt;a href="https://www.w3.org/TR/activitypub/"&gt;https://www.w3.org/TR/activitypub/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;OStatus: &lt;a href="https://www.w3.org/community/ostatus/wiki/Main_Page"&gt;https://www.w3.org/community/ostatus/wiki/Main_Page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;WebSub: &lt;a href="https://www.w3.org/TR/websub/"&gt;https://www.w3.org/TR/websub/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Diaspora protocol: &lt;a href="https://diaspora.github.io/diaspora_federation/protocol.html"&gt;https://diaspora.github.io/diaspora_federation/protocol.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Zot: &lt;a href="https://zotlabs.org/page/zot/zot-protocol"&gt;https://zotlabs.org/page/zot/zot-protocol&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Matrix: &lt;a href="https://matrix.org/docs/spec/"&gt;https://matrix.org/docs/spec/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="note"></category><category term="activitypub"></category><category term="social-networking"></category><category term="federated-social-web"></category><category term="rss"></category><category term="gitea"></category><category term="xmpp"></category></entry><entry><title>What is the difference between MLOps and ModelOps?</title><link href="https://www.safjan.com/what-is-the-difference-between-mlops-and-modelops/" rel="alternate"></link><published>2023-03-06T00:00:00+01:00</published><updated>2023-03-06T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-06:/what-is-the-difference-between-mlops-and-modelops/</id><summary type="html">&lt;p&gt;In the world of machine learning and artificial intelligence, there are a lot of terms that can be confusing or even overwhelming for newcomers. Two such terms are MLOps and ModelOps. While they might sound similar, they actually refer to different aspects …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the world of machine learning and artificial intelligence, there are a lot of terms that can be confusing or even overwhelming for newcomers. Two such terms are MLOps and ModelOps. While they might sound similar, they actually refer to different aspects of the machine learning development lifecycle.&lt;/p&gt;
+&lt;p&gt;MLOps, short for Machine Learning Operations, is the practice of applying DevOps principles to the machine learning development process. It involves managing the entire lifecycle of a machine learning model, from data preparation to deployment and beyond. MLOps aims to improve the efficiency and reliability of the machine learning development process, as well as the quality and performance of the resulting models.&lt;/p&gt;
+&lt;p&gt;On the other hand, ModelOps, short for Model Operations, is a subset of MLOps that specifically focuses on the management and deployment of machine learning models. It involves implementing processes and infrastructure to ensure that models are deployed and operationalized in a reliable and scalable manner.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;MLOps&lt;/th&gt;
+&lt;th&gt;ModelOps&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Scope&lt;/td&gt;
+&lt;td&gt;Covers all aspects of ML development&lt;/td&gt;
+&lt;td&gt;Focuses on model deployment and management&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Focus&lt;/td&gt;
+&lt;td&gt;Data management, model training, deployment and monitoring&lt;/td&gt;
+&lt;td&gt;Model deployment, versioning, monitoring, maintenance&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tools and Processes&lt;/td&gt;
+&lt;td&gt;Diverse set of tools and processes for data management, model training, deployment and monitoring&lt;/td&gt;
+&lt;td&gt;Tools and processes focused on model deployment, versioning, monitoring, and automation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Culture&lt;/td&gt;
+&lt;td&gt;Collaborative, cross-functional approach to ML development&lt;/td&gt;
+&lt;td&gt;Emphasis on operational aspects of ML, such as reliability and scalability&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;So, what are the key differences between MLOps and ModelOps? Let's take a closer look.&lt;/p&gt;
+&lt;h3&gt;Scope&lt;/h3&gt;
+&lt;p&gt;The first major difference between MLOps and ModelOps is their scope. MLOps is a broader term that encompasses all aspects of the machine learning development process, from data preparation to model training to deployment and beyond. In contrast, ModelOps is a more focused subset of MLOps that specifically deals with the deployment and management of machine learning models in production.&lt;/p&gt;
+&lt;h3&gt;Focus&lt;/h3&gt;
+&lt;p&gt;Because MLOps covers a broader range of activities, it has a more diverse set of concerns. For example, MLOps includes data management and data versioning, model training and tuning, and model deployment and monitoring. In contrast, ModelOps is primarily concerned with the deployment and management of models in production, which involves things like model versioning, monitoring, and maintenance.&lt;/p&gt;
+&lt;h3&gt;Tools and Processes&lt;/h3&gt;
+&lt;p&gt;Because MLOps encompasses a wider range of activities, it requires a broader range of tools and processes to support it. These might include tools for data management and versioning, model training and tuning, model deployment and monitoring, and more. In contrast, ModelOps focuses specifically on the deployment and management of models in production, which might involve tools and processes like containerization, continuous integration and deployment (CI/CD), and model versioning and monitoring.&lt;/p&gt;
+&lt;h3&gt;Culture&lt;/h3&gt;
+&lt;p&gt;Another difference between MLOps and ModelOps is the culture they promote. MLOps encourages a collaborative and cross-functional approach to machine learning development, with an emphasis on communication and sharing of knowledge across teams. In contrast, ModelOps is more focused on the operational aspects of machine learning, with an emphasis on reliability, scalability, and automation.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;In conclusion, while MLOps and ModelOps may sound similar, they actually refer to different aspects of the machine learning development lifecycle. MLOps is a broader term that encompasses all aspects of machine learning development, while ModelOps is a subset of MLOps that focuses specifically on the deployment and management of models in production. While both are important for building reliable and scalable machine learning systems, they have different scopes, focuses, tools, and cultures. By understanding these differences, you can better appreciate the challenges and opportunities involved in developing and deploying machine learning models.&lt;/p&gt;</content><category term="note"></category><category term="mlops"></category><category term="modelops"></category><category term="containerization"></category><category term="production"></category><category term="ci-cd"></category><category term="reliability"></category><category term="scalability"></category><category term="automation"></category></entry><entry><title>Eval in Bash Script with Arguments Implemented as Functions</title><link href="https://www.safjan.com/bash-script-with-arguments-implemented-as-functions/" rel="alternate"></link><published>2023-03-05T00:00:00+01:00</published><updated>2023-03-05T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-05:/bash-script-with-arguments-implemented-as-functions/</id><summary type="html">&lt;p&gt;minimal example of how you can use functions and &lt;code&gt;eval&lt;/code&gt; in a bash script:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
 
 hello&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;
@@ -39,7 +174,7 @@ hello&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;&l
 &lt;p&gt;&lt;strong&gt;GraphQL&lt;/strong&gt;: &lt;a href="https://graphql.org/"&gt;https://graphql.org/&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;5.  AMP&lt;/h2&gt;
 &lt;p&gt;AMP (Accelerated Mobile Pages) is a web page format designed for fast and efficient mobile browsing. It uses a subset of HTML, CSS, and JavaScript to deliver lightweight and streamlined web pages. AMP includes support for web feeds, which makes it a potential alternative to RSS for content distribution on mobile devices.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;AMP&lt;/strong&gt;: &lt;a href="https://amp.dev/"&gt;https://amp.dev/&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="json-feed"></category><category term="websub"></category><category term="activitybub"></category><category term="graphql"></category><category term="amp"></category></entry><entry><title>Future-Proofing RSS - Key Changes and Technical Solutions to Keep the Web Feed Format Relevant</title><link href="https://www.safjan.com/future-changes-to-rss/" rel="alternate"></link><published>2023-03-05T00:00:00+01:00</published><updated>2023-03-05T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-05:/future-changes-to-rss/</id><summary type="html">&lt;p&gt;Discover how RSS can stay relevant in the face of emerging technologies with key changes such as multimedia support, personalization, and security.&lt;/p&gt;</summary><content type="html">&lt;p&gt;While RSS has been a widely adopted web feed format for over two decades, there are concerns that it may become obsolete in the face of emerging technologies and trends. To prevent this from happening, there are several key changes that could be made to the RSS standard to make it more relevant and useful in the years to come. In this article, we will explore some proposals for key changes to the RSS standard and their technical solutions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AMP&lt;/strong&gt;: &lt;a href="https://amp.dev/"&gt;https://amp.dev/&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="json-feed"></category><category term="websub"></category><category term="activitypub"></category><category term="graphql"></category><category term="amp"></category></entry><entry><title>Future-Proofing RSS - Key Changes and Technical Solutions to Keep the Web Feed Format Relevant</title><link href="https://www.safjan.com/future-changes-to-rss/" rel="alternate"></link><published>2023-03-05T00:00:00+01:00</published><updated>2023-03-05T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-05:/future-changes-to-rss/</id><summary type="html">&lt;p&gt;Discover how RSS can stay relevant in the face of emerging technologies with key changes such as multimedia support, personalization, and security.&lt;/p&gt;</summary><content type="html">&lt;p&gt;While RSS has been a widely adopted web feed format for over two decades, there are concerns that it may become obsolete in the face of emerging technologies and trends. To prevent this from happening, there are several key changes that could be made to the RSS standard to make it more relevant and useful in the years to come. In this article, we will explore some proposals for key changes to the RSS standard and their technical solutions.&lt;/p&gt;
 &lt;h2&gt;1.  Support for multimedia content&lt;/h2&gt;
 &lt;p&gt;One of the key changes that could be made to the RSS standard is to support multimedia content, such as podcasts, videos, and images. Currently, RSS feeds are primarily used to syndicate text-based content, such as blog posts and news articles. However, with the rise of multimedia content, there is a need to expand RSS to include these formats.&lt;/p&gt;
 &lt;p&gt;The technical solution for implementing this change is to develop new standards and technologies for delivering multimedia content via RSS feeds. For example, a new element could be added to the RSS schema to allow for the inclusion of multimedia content, along with metadata such as file type, size, and duration. This would enable users to receive more immersive and engaging content via RSS feeds, making them more relevant and useful.&lt;/p&gt;
@@ -3748,13 +3883,15 @@ Bob     30      M
 &lt;p&gt;&lt;a href="https://github.com/awsm-research/pyExplainer"&gt;PyExplainer&lt;/a&gt; is a library that allows you to easily explain and interpret the results of machine learning models. It includes tools for feature importance, partial dependence plots, and permutation feature importance. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="PyExplainer" src="https://github.com/awsm-research/PyExplainer/raw/master/img/pyexplainer_snap_demo.gif"&gt;&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
-&lt;p&gt;There is interesting article that features EDA tools:
-&lt;a href="https://towardsdatascience.com/modern-exploratory-data-analysis-29fdbecec957"&gt;Modern Exploratory Data Analysis. Review of 4 libraries for automatic EDA | by ChiefHustler | Towards Data Science&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;It covers:
--   pandas-profiling (python)
--   summarytools (R)
--   explore (R)
--   dataMaid (R)&lt;/p&gt;</content><category term="Machine Learning"></category><category term="python"></category><category term="data-engineering"></category><category term="machine-learning/EDA"></category><category term="data-visualization"></category><category term="exploring"></category><category term="exploratory-data-analysis"></category><category term="data-analysis-process"></category><category term="python-libraries"></category><category term="automated-eda"></category><category term="pandas-profiling"></category><category term="dataprep"></category><category term="sweetviz"></category><category term="lux"></category><category term="dabl"></category><category term="autoviz"></category><category term="klib"></category><category term="explainerdashboard"></category><category term="pycaret"></category><category term="missing-data"></category><category term="feature-engineering"></category><category term="featuretools"></category></entry><entry><title>Datasets for embeddings performance evaluation</title><link href="https://www.safjan.com/datasets-for-embeddings-evaluation/" rel="alternate"></link><published>2023-02-09T00:00:00+01:00</published><updated>2023-02-09T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-09:/datasets-for-embeddings-evaluation/</id><summary type="html">&lt;h2&gt;Text search&lt;/h2&gt;
+&lt;p&gt;There is interesting article that features EDA tools:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://towardsdatascience.com/modern-exploratory-data-analysis-29fdbecec957"&gt;Modern Exploratory Data Analysis. Review of 4 libraries for automatic EDA | by ChiefHustler | Towards Data Science&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It covers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pandas-profiling (python)&lt;/li&gt;
+&lt;li&gt;summarytools (R)&lt;/li&gt;
+&lt;li&gt;explore (R)&lt;/li&gt;
+&lt;li&gt;dataMaid (R)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Machine Learning"></category><category term="python"></category><category term="data-engineering"></category><category term="machine-learning/EDA"></category><category term="data-visualization"></category><category term="exploring"></category><category term="exploratory-data-analysis"></category><category term="data-analysis-process"></category><category term="python-libraries"></category><category term="automated-eda"></category><category term="pandas-profiling"></category><category term="dataprep"></category><category term="sweetviz"></category><category term="lux"></category><category term="dabl"></category><category term="autoviz"></category><category term="klib"></category><category term="explainerdashboard"></category><category term="pycaret"></category><category term="missing-data"></category><category term="feature-engineering"></category><category term="featuretools"></category></entry><entry><title>Datasets for embeddings performance evaluation</title><link href="https://www.safjan.com/datasets-for-embeddings-evaluation/" rel="alternate"></link><published>2023-02-09T00:00:00+01:00</published><updated>2023-02-09T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-09:/datasets-for-embeddings-evaluation/</id><summary type="html">&lt;h2&gt;Text search&lt;/h2&gt;
 &lt;p&gt;Dataset: &lt;a href="https://github.com/UKPLab/beir"&gt;BEIR&lt;/a&gt; (ArguAna, ClimateFEVER, DBPedia, FEVER, FiQA2018, HotpotQA, NFCorpus, QuoraRetrieval, SciFact, TRECCOVID, Touche2020)&lt;/p&gt;
 &lt;h2&gt;Code search&lt;/h2&gt;
 &lt;p&gt;Dataset: &lt;a href="https://github.com/github/CodeSearchNet"&gt;CodeSearchNet&lt;/a&gt;&lt;/p&gt;
@@ -11213,7 +11350,29 @@ brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&
 
 &lt;p&gt;References:
 - &lt;a href="https://pdf.wondershare.com/pdf-knowledge/pdf-to-png-linux.html"&gt;Steps to Convert PDF to PNG on Linux&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;up::[[MOC_content_creation]]&lt;/p&gt;</content><category term="note"></category></entry><entry><title>How to delete a Git branch locally and remotely?</title><link href="https://www.safjan.com/git-delete-branch/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2023-01-17T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/git-delete-branch/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;up::[[MOC_content_creation]]&lt;/p&gt;</content><category term="note"></category></entry><entry><title>Date formatting</title><link href="https://www.safjan.com/date-formatting/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/date-formatting/</id><summary type="html">&lt;h1&gt;Date formatting&lt;/h1&gt;
+&lt;p&gt;These are the most common formatting characters for the date command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;%D – Display date as mm/dd/yy
+%Y – Year (e.g., 2020)
+%m – Month (01-12)
+%B – Long month name (e.g., November)
+%b – Short month name (e.g., Nov …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Date formatting&lt;/h1&gt;
+&lt;p&gt;These are the most common formatting characters for the date command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;%D – Display date as mm/dd/yy
+%Y – Year (e.g., 2020)
+%m – Month (01-12)
+%B – Long month name (e.g., November)
+%b – Short month name (e.g., Nov)
+%d – Day of month (e.g., 01)
+%j – Day of year (001-366)
+%u – Day of week (1-7)
+%A – Full weekday name (e.g., Friday)
+%a – Short weekday name (e.g., Fri)
+%H – Hour (00-23)
+%I – Hour (01-12)
+%M – Minute (00-59)
+%S – Second (00-60)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="date-formatting"></category></entry><entry><title>How to delete a Git branch locally and remotely?</title><link href="https://www.safjan.com/git-delete-branch/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2023-01-17T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/git-delete-branch/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Git is a powerful tool for version control, and it is widely used by developers to keep track of changes in their code. One of the key features of Git is the ability to create and manage branches, which allows developers …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Git is a powerful tool for version control, and it is widely used by developers to keep track of changes in their code. One of the key features of Git is the ability to create and manage branches, which allows developers to work on different versions of their code simultaneously. However, as the number of branches grows, it can become difficult to keep track of them all, and it may be necessary to delete some of them. In this article, we will explore how to delete a Git branch locally and remotely.&lt;/p&gt;
 &lt;h2&gt;Deleting a Branch Locally&lt;/h2&gt;
@@ -16485,10 +16644,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="84834950-f852-4594-aa39-d154cc3a7811"&gt;&lt;/div&gt;
+&lt;div id="7f74011e-ac23-48d6-9d33-7a8773902f0a"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#84834950-f852-4594-aa39-d154cc3a7811');
+var element = $('#7f74011e-ac23-48d6-9d33-7a8773902f0a');
 
 (function(root) {
   function now() {

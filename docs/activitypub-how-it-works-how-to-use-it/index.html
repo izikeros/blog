@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="ActivityPub is a protocol designed to enable decentralized social networking. It is based on the principles of the Federated Social Web, which aims to create a social web that is not owned by any single entity or corporation. In this blog post …"/>
+    <meta name="keywords" content="activitypub, social-networking, federated-social-web, rss, gitea, xmpp">
+    <meta expr:content="2023-03-06 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-03-06 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-03-06 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-03-06 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ActivityPub - how it works and how to use it?",
+  "datePublished": "2023-03-06 00:00:00+01:00",
+  "dateModified": "2023-03-06 00:00:00+01:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="ActivityPub - how it works and how to use it?"/>
+  <meta property="og:description" content="ActivityPub is a protocol designed to enable decentralized social networking. It is based on the principles of the Federated Social Web, which aims to create a social web that is not owned by any single entity or corporation. In this blog post …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/activitypub-how-it-works-how-to-use-it/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-03-06 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-03-06 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="activitypub"/>
+  <meta property="article:tag" content="social-networking"/>
+  <meta property="article:tag" content="federated-social-web"/>
+  <meta property="article:tag" content="rss"/>
+  <meta property="article:tag" content="gitea"/>
+  <meta property="article:tag" content="xmpp"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="ActivityPub - how it works and how to use it?"/>
+
+
+    <title>    ActivityPub - how it works and how to use it?
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-03-06 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=ActivityPub%20-%20how%20it%20works%20and%20how%20to%20use%20it%3F&url=https%3A//www.safjan.com/activitypub-how-it-works-how-to-use-it/&hashtags=activitypub,social-networking,federated-social-web,rss,gitea,xmpp" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/activitypub-how-it-works-how-to-use-it/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=ActivityPub%20-%20how%20it%20works%20and%20how%20to%20use%20it%3F&u=https%3A//www.safjan.com/activitypub-how-it-works-how-to-use-it/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/activitypub-how-it-works-how-to-use-it/&title=ActivityPub%20-%20how%20it%20works%20and%20how%20to%20use%20it%3F" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="activitypub-how-it-works-how-to-use-it">ActivityPub - how it works and how to use it?</h1>
+            <div class="header-underline"></div>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/activitypub-how-it-works-how-to-use-it/">
+                        <img style="width: 100%; "
+                         src="/images/misc/ActivityPub.png" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <p>ActivityPub is a protocol designed to enable decentralized social networking. It is based on the principles of the <strong><em>Federated Social Web</em></strong>, which aims to create a social web that is not owned by any single entity or corporation. In this blog post, we will explore the basics of ActivityPub and how it can be used in your applications.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#what-is-activitypub">What is ActivityPub?</a></li>
+<li><a href="#how-does-activitypub-work">How does ActivityPub work?</a></li>
+<li><a href="#how-can-activitypub-be-used-in-your-applications">How can ActivityPub be used in your applications?</a><ul>
+<li><a href="#1-social-networking-platforms">1.  Social Networking Platforms</a></li>
+<li><a href="#2-chat-applications">2.  Chat Applications</a></li>
+<li><a href="#3-content-management-systems">3.  Content Management Systems</a></li>
+<li><a href="#4-collaboration-tools">4.  Collaboration Tools</a></li>
+</ul>
+</li>
+<li><a href="#other-related-protocols">Other,  related protocols</a><ul>
+<li><a href="#1-ostatus">1.  OStatus</a></li>
+<li><a href="#2-websub-formerly-known-as-pubsubhubbub">2.  WebSub (formerly known as PubSubHubbub)</a></li>
+<li><a href="#3-diaspora">3.  Diaspora</a></li>
+<li><a href="#4-zot">4.  Zot</a></li>
+<li><a href="#5-matrix">5.  Matrix</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="what-is-activitypub"></a></p>
+<h2>What is ActivityPub?</h2>
+<p>ActivityPub is a decentralized protocol for social networking. It allows users to interact with each other across different social networking platforms, without having to be part of the same network. ActivityPub is designed to be scalable, secure, and decentralized, and it allows users to control their own data and content.</p>
+<p>The core of ActivityPub is the activity stream. An activity stream is a list of actions that a user has taken or received, such as posting a message, following someone, or liking a post. ActivityPub uses the JSON-LD format to represent activity streams.</p>
+<p><a id="how-does-activitypub-work"></a></p>
+<h2>How does ActivityPub work?</h2>
+<p>ActivityPub is based on a decentralized architecture, which means that there is no single central authority that controls the network. Instead, each user has their own server, known as a "node," which is responsible for storing their data and communicating with other nodes.</p>
+<p>When a user wants to post a message or perform any other activity, their node creates an activity object, which contains information about the activity, such as the type of activity, the user who performed it, and any additional metadata. The activity object is then sent to the user's followers, who receive a notification of the activity.</p>
+<p>If a user wants to follow another user, their node sends a follow request to the other user's node. If the other user accepts the request, their node sends a follow activity to the follower's node, which adds the user to their list of followers.</p>
+<p>ActivityPub also supports other types of activities, such as likes, shares, and comments. These activities are all represented using the same activity object format.</p>
+<p><img alt="ActivityPub" src="/images/misc/ActivityPub.png">
+<em>How ActivityPub works (source: W3C)</em></p>
+<p><a id="how-can-activitypub-be-used-in-your-applications"></a></p>
+<h2>How can ActivityPub be used in your applications?</h2>
+<p>ActivityPub can be used in a wide variety of applications, from social networking platforms to chat applications to content management systems. Here are some examples of how ActivityPub can be used in your applications:</p>
+<p><a id="1-social-networking-platforms"></a></p>
+<h3>1.  Social Networking Platforms</h3>
+<p>ActivityPub can be used to create decentralized social networking platforms, where users can connect with each other across different networks. For example, Mastodon is a popular social networking platform that uses ActivityPub. Mastodon allows users to post messages, follow other users, and interact with each other in a decentralized manner.</p>
+<p><a id="2-chat-applications"></a></p>
+<h3>2.  Chat Applications</h3>
+<p>ActivityPub can also be used to create decentralized chat applications. For example, XMPP is a protocol for instant messaging that supports ActivityPub. XMPP allows users to send messages, share files, and interact with each other in real-time.</p>
+<p><a id="3-content-management-systems"></a></p>
+<h3>3.  Content Management Systems</h3>
+<p>ActivityPub can be used to create decentralized content management systems, where users can publish and share content across different networks. For example, Write.as is a blogging platform that uses ActivityPub. Write.as allows users to publish blog posts, follow other bloggers, and interact with each other in a decentralized manner.</p>
+<p><a id="4-collaboration-tools"></a></p>
+<h3>4.  Collaboration Tools</h3>
+<p>ActivityPub can be used to create decentralized collaboration tools, where users can work together on projects across different networks. For example, Gitea is a platform for hosting and managing Git repositories that supports ActivityPub. Gitea allows users to collaborate on projects, share code, and interact with each other in a decentralized manner.</p>
+<p><a id="other-related-protocols"></a></p>
+<h2>Other,  related protocols</h2>
+<p>ActivityPub is just one of several protocols that are designed to support decentralized communication and social networking. Here are some of the related protocols:</p>
+<p><a id="1-ostatus"></a></p>
+<h3>1.  OStatus</h3>
+<p>OStatus is an older protocol that was developed before ActivityPub. It includes several components, including ActivityStreams, WebSub, and Salmon. OStatus was originally used for federated microblogging platforms like StatusNet and GNU Social.</p>
+<p><strong>OStatus</strong>: <a href="https://www.w3.org/community/ostatus/wiki/Main_Page">https://www.w3.org/community/ostatus/wiki/Main_Page</a></p>
+<p><a id="2-websub-formerly-known-as-pubsubhubbub"></a></p>
+<h3>2.  WebSub (formerly known as PubSubHubbub)</h3>
+<p>WebSub is a protocol for real-time notifications on the web. It allows publishers to notify subscribers when new content is available, and it is used by ActivityPub to send notifications of new activities.</p>
+<p><strong>WebSub</strong>: <a href="https://www.w3.org/TR/websub/">https://www.w3.org/TR/websub/</a></p>
+<p><a id="3-diaspora"></a></p>
+<h3>3.  Diaspora</h3>
+<p>Diaspora is a social networking platform that uses a protocol called the Diaspora protocol. The Diaspora protocol is similar to ActivityPub, but it was designed specifically for the Diaspora platform.</p>
+<p><strong>Diaspora protocol:</strong> <a href="https://diaspora.github.io/diaspora_federation/protocol.html">https://diaspora.github.io/diaspora_federation/protocol.html</a></p>
+<p><a id="4-zot"></a></p>
+<h3>4.  Zot</h3>
+<p>Zot is a protocol used by the Hubzilla social networking platform. Zot is similar to ActivityPub, but it includes additional features like encryption and private messaging.</p>
+<p><strong>Zot</strong>: <a href="https://zotlabs.org/page/zot/zot-protocol">https://zotlabs.org/page/zot/zot-protocol</a>
+<a id="5-matrix"></a></p>
+<h3>5.  Matrix</h3>
+<p>Matrix is a decentralized communication protocol that is designed for real-time messaging and collaboration. It includes features like end-to-end encryption, multi-device syncing, and bridging to other networks like IRC and Slack.</p>
+<p>These protocols are all part of the wider ecosystem of decentralized communication and social networking. While they have their own unique features and use cases, they all share a common goal of enabling users to communicate and collaborate in a decentralized, open, and transparent way.</p>
+<p><strong>Matrix</strong>: <a href="https://matrix.org/docs/spec/">https://matrix.org/docs/spec/</a>
+<a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>ActivityPub is a powerful protocol that enables decentralized social networking. It allows users to interact with each other across different networks, without having to be part of the same network. ActivityPub can be used in a wide variety of applications, from social networking platforms to content management systems to collaboration tools. If you are interested in creating decentralized applications, ActivityPub is definitely worth</p>
+<p>See the video: <a href="https://www.youtube.com/watch?v=kkvJMiiVRWs">How To Use ActivityPub In Your Applications? - YouTube</a></p>
+<p><a id="references"></a></p>
+<h2>References</h2>
+<p>links to the protocols mentioned in this chat:</p>
+<ol>
+<li>ActivityPub: <a href="https://www.w3.org/TR/activitypub/">https://www.w3.org/TR/activitypub/</a></li>
+<li>OStatus: <a href="https://www.w3.org/community/ostatus/wiki/Main_Page">https://www.w3.org/community/ostatus/wiki/Main_Page</a></li>
+<li>WebSub: <a href="https://www.w3.org/TR/websub/">https://www.w3.org/TR/websub/</a></li>
+<li>Diaspora protocol: <a href="https://diaspora.github.io/diaspora_federation/protocol.html">https://diaspora.github.io/diaspora_federation/protocol.html</a></li>
+<li>Zot: <a href="https://zotlabs.org/page/zot/zot-protocol">https://zotlabs.org/page/zot/zot-protocol</a></li>
+<li>Matrix: <a href="https://matrix.org/docs/spec/">https://matrix.org/docs/spec/</a></li>
+</ol>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/activitypub/">activitypub</a>
+                        <a href="https://www.safjan.com/tag/social-networking/">social-networking</a>
+                        <a href="https://www.safjan.com/tag/federated-social-web/">federated-social-web</a>
+                        <a href="https://www.safjan.com/tag/rss/">rss</a>
+                        <a href="https://www.safjan.com/tag/gitea/">gitea</a>
+                        <a href="https://www.safjan.com/tag/xmpp/">xmpp</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/what-is-the-difference-between-mlops-and-modelops/" title="What is the difference between MLOps and ModelOps?">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/emerging-alternatives-to-rss/">RSS vs. the Emerging Web Standards - Which Will Reign Supreme?</a></li>
+                        <li><a href="https://www.safjan.com/future-changes-to-rss/">Future-Proofing RSS - Key Changes and Technical Solutions to Keep the Web Feed Format Relevant</a></li>
+                        <li><a href="https://www.safjan.com/future-of-rss/">Future of RSS</a></li>
+                        <li><a href="https://www.safjan.com/the-best-self-hosted-rss-feed-readers-in-2022/">The Best Self-Hosted, Open Source RSS Feed Readers in 2022</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

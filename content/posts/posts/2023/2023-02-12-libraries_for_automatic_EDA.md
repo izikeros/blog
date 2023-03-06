@@ -130,9 +130,11 @@ There are three other tools that might be useful during data exploration.
 
 ## References
 There is interesting article that features EDA tools:
+
 [Modern Exploratory Data Analysis. Review of 4 libraries for automatic EDA | by ChiefHustler | Towards Data Science](https://towardsdatascience.com/modern-exploratory-data-analysis-29fdbecec957)
 
 It covers:
+
 -   pandas-profiling (python)
 -   summarytools (R)
 -   explore (R)

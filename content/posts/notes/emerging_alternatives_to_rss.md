@@ -4,7 +4,7 @@ Slug: emerging-alternatives-to-rss
 Date: 2023-03-05
 Modified: 2023-03-05
 Status: published
-Tags: rss, json-feed, websub, activitybub, graphql, amp
+Tags: rss, json-feed, websub, activitypub, graphql, amp
 Category: note
 prompt: give me long, blog-post text on What are the newest, modern, emerging web standards that can replace RSS?
 ---
