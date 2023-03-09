@@ -119,6 +119,9 @@ Overall, Rustification of Python is an exciting trend that has the potential to 
 
 Rust is becoming an integral part of the Python ecosystem. Its emphasis on performance and memory safety has made it an ideal language for building critical infrastructure and applications. With the Rustification of Python, we can expect to see more high-performance, memory-safe Python applications being built. As Rust continues to gain popularity, it may even become a first-class citizen in the Python ecosystem.
 
+## RustPython
+There are many implementations of Python, e.g.: [CPython](https://github.com/python/cpython) (C), [Jython](https://www.jython.org/) (Java), [IronPython](https://ironpython.net/) (.NET), [PyPy](https://www.pypy.org/) (Python). Using Jython or IronPython ease integration respectively with Java or .NET applications. It is the same case with Rust - Python interpreter can be implemented in Rust and such implementation already exists: [RustPython](https://rustpython.github.io/). Why Rust implementation of Python? RustPython can be embedded into Rust programs to use Python as a scripting language for your application, or it can be compiled to WebAssembly in order to run Python in the browser.
+
 <a id="drawbacks-and-controversies-around-the-rustification-of-python"></a>
 ## Drawbacks and controversies around the Rustification of Python
 While the Rustification of Python has many benefits, there are also some drawbacks and controversies surrounding the trend. Here are a few criticisms and controversies:
