@@ -41,3 +41,5 @@ Topcoder: [https://www.topcoder.com/](https://www.topcoder.com/)
 CodaLab is a platform that hosts data science competitions for academics and researchers. The competitions focus on solving problems related to machine learning and artificial intelligence. The prizes can range from a few hundred dollars to several thousand dollars.
     
 CodaLab: [https://codalab.org/](https://codalab.org/)
+
+up::[[MOC_AI]]

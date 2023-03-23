@@ -46,3 +46,5 @@ Another difference between MLOps and ModelOps is the culture they promote. MLOps
 ### Conclusion
 
 In conclusion, while MLOps and ModelOps may sound similar, they actually refer to different aspects of the machine learning development lifecycle. MLOps is a broader term that encompasses all aspects of machine learning development, while ModelOps is a subset of MLOps that focuses specifically on the deployment and management of models in production. While both are important for building reliable and scalable machine learning systems, they have different scopes, focuses, tools, and cultures. By understanding these differences, you can better appreciate the challenges and opportunities involved in developing and deploying machine learning models.
+
+up::[[mlops]]

@@ -26,5 +26,5 @@ prompt:
 - [nbdev - Notebook Best Practices](https://nbdev.fast.ai/tutorials/best_practices.html)
 - [How to Structure a Data Science Project for Readability and Transparency | by Khuyen Tran | Towards Data Science](https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800)
 
-
-- [[python_project_tooling]]
+X::[python_project_tooling]]
+X::[[maintainable_data_science_code_kedro]]

@@ -1,3 +1,5 @@
+up::[[MOC_AI]]
+
 > How to organize python project for competitive data science e.g. for Kaggle competition? Give me long markdown blog-post text.
 
 #blog/post-idea 

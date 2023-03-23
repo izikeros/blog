@@ -34,3 +34,6 @@ line-length = 119
 - as an external tool in PyCharm
 
 up::[[MOC_Python]]
+X::[[black_keep_single_strings]]
+X::[[black_change_max_line_length]]
+X::[[black_formatter_avoid_destroying_git_blame]]

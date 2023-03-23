@@ -23,3 +23,6 @@ you can use:
 
 solution from user **[asottile](https://github.com/asottile)**
 https://github.com/pre-commit/mirrors-yapf/issues/15#issuecomment-814037905
+
+X::[[black_yapf]]
+X::[[black_formatter]]

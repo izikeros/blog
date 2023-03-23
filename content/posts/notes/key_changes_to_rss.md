@@ -34,3 +34,6 @@ The technical solution for implementing this change is to support encrypted HTTP
 
 ## Conclusion
 To prevent RSS from becoming obsolete, there are several key changes that could be made to the RSS standard. These include support for multimedia content, personalization and recommendations, social sharing and engagement, and security and privacy. By implementing these changes, RSS can continue to be a relevant and useful tool for content discovery and consumption in the years to come.
+
+X::[[rss_software]]
+up::[[MOC_RSS]]

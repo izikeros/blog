@@ -11,11 +11,11 @@ Category: note
 ## Example
 To sign two specific commits that are respectively 4 and 5 commits back in Git, you can use the `git rebase` command with the `--exec` option to sign the commits as they are being rebased. Here are the steps:
 
-1.  Get the hash of the first commit you want to sign by running `git log`.
+1.  Get the hash of the first (older) commit you want to sign by running `git log`.
     
 2.  Run `git rebase -i HEAD~5`.
     
-3.  This will open up a text editor with a list of the last 5 commits. Replace the word "pick" with "edit" for the first commit you want to sign.
+3.  This will open up a text editor with a list of the last 5 commits. Replace the word "pick" with "edit" for the first commit (5) you want to sign.
     
 4.  Save and close the file.
     
