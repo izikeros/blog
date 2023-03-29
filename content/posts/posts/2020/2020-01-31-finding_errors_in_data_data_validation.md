@@ -6,7 +6,8 @@ Modified: 2023-01-31
 Start: 2023-01-31
 Tags: machine-learning, data-engineering, dataset, data-visualization, data-cleaning
 Category: Machine Learning
-Image: /images/head/red_spots.jpg
+Image: /images/head/errors_in_dataset.jpg
+banner: /images/head/errors_in_dataset.jpg
 Summary: Explore methods to detect & fix errors in data, including validation, visualizations, statistical tests, cleaning techniques, machine learning & data quality tools. Get concise, easy to understand information with examples & links to external resources.
 Status: published
 prompt: Give me long data-science markdown article on methods for finding errors in data. Use hyperlinks to external resources when referring to methods or tools.

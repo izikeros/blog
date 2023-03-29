@@ -57,3 +57,9 @@ awk -F ',' '{sum=0; for (i=1; i<=NF; i++) { sum+= $i } print sum}' file.txt
 
 > **NOTE:** 
 > When the processing speed is critical, in many cases it is possible to replace AWK with a faster alternative MAWK - as in the famous example: [Command-line Tools can be 235x Faster than your Hadoop Cluster - Adam Drake](https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html) However, there is a warning that MAWK contains some bugs (not sure if fixed at the moment of writing).
+
+
+## References
+-   [Why Learn AWK?](https://blog.jpalardy.com/posts/why-learn-awk/) – great article by Jonathan Palardy conveying similar ideas
+-   [Python vs. awk](https://pmitev.github.io/to-awk-or-not/Python_vs_awk/) – a remarkable case of replacing a 50 line Python script with 5 lines of AWK
+-   [The AWK Programming Language](https://archive.org/download/pdfy-MgN0H1joIoDVoIC7/The_AWK_Programming_Language.pdf) – the book by the AWK creators, a must-read!

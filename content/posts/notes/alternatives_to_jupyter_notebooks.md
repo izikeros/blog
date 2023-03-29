@@ -4,7 +4,7 @@ Slug: best-alternatives-to-jupyter-notebooks
 Date: 2023-02-27
 Modified: 2023-02-27
 Status: published
-Tags: openai, jupyter-notebooks, alternatives, r-studio, spyder, visual-studio-code, pycharm, zeppelin, databricks-notebook, colaboratory, apache-zeppelin, matlab-live-editor, r-markdown, emacs-org-mode, hydrogen, datacamp-light, trinket, observable, data-science, programming-languages, integrated-development-environment, web-based-notebook, machine-learning, data-visualization, interactive-documents, code-editor, debugging, statistical-modeling, version-control, data-analysis
+Tags: openai, jupyter, jupyter-notebooks, alternatives, r-studio, spyder, visual-studio-code, pycharm, zeppelin, databricks-notebook, colaboratory, apache-zeppelin, matlab-live-editor, r-markdown, emacs-org-mode, hydrogen, datacamp-light, trinket, observable, data-science, programming-languages, integrated-development-environment, web-based-notebook, machine-learning, data-visualization, interactive-documents, code-editor, debugging, statistical-modeling, version-control, data-analysis
 Category: note
 ---
 
