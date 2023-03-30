@@ -2,7 +2,7 @@
 Title: Rustification of Python
 Slug: rustification-of-python
 Date: 2023-03-06
-Modified: 2023-03-06
+Modified: 2023-03-30
 Status: published
 Tags: rustification-of-python, python, rust, pyo3, maturin, tokenizers, performance, memory-safety, concurrent-programming, full-text-search, user-interface, standalone-applications, community, fragmentation, complexity, bugs, backlash, controversy
 Category: note
@@ -154,3 +154,4 @@ Overall, while there are some concerns and criticisms of the Rustification of Py
 -  **Tantivy**: [https://github.com/tantivy-search/tantivy](https://github.com/tantivy-search/tantivy)
 -  **Cursive**: [https://github.com/gyscos/cursive](https://github.com/gyscos/cursive)
 -  **PyOxidizer**: [https://github.com/indygreg/PyOxidizer](https://github.com/indygreg/PyOxidizer)
+- **case-study: speed-up python with Rust**: https://ohadravid.github.io/posts/2023-03-rusty-python/
