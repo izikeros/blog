@@ -7,6 +7,7 @@ Start: 2023-02-13
 Tags: python, flask, rpc, client-server, communication
 Category: Howto
 Image: /images/head/abstract_3.jpg
+banner: /images/head/abstract_3.jpg
 Summary: Discover the world of distributed systems and build your own Python RPC server using Flask. Harness the power of remote procedure calls today!
 Status: published
 prompt:

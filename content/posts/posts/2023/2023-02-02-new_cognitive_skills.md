@@ -7,6 +7,7 @@ Start: 2023-02-02
 Tags: AI, future, cognitive-skills, critical-thinking, language-models
 Category: Machine Learning
 Image: /images/head/cognitive_skills_ai_generative_models.jpg
+banner: /images/head/cognitive_skills_ai_generative_models.jpg
 Summary: Exploring the new cognitive skills of tomorrow with advanced AI generative models.
 Status: published
 prompt:

@@ -7,6 +7,7 @@ Start: 2023-02-01
 Tags: AI, NLP, LLM, language-models, knowledge-management, corporate
 Category: Machine Learning
 Image: /images/head/language_models_for_corporate_knowledge.jpg
+banner: /images/head/language_models_for_corporate_knowledge.jpg
 Summary: Explore the benefits and challenges of using Large Language Models (LLMs) in corporate environments for improved knowledge management. Learn how to implement LLMs and overcome potential obstacles.
 Status: published
 prompt:

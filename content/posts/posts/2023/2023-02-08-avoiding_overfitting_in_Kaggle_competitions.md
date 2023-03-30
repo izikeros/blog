@@ -7,6 +7,7 @@ Start: 2023-02-08
 Tags: kaggle, overfitting, model-training, cross-validation, early-stopping, regularization, ensemble, feature-selection, stacking, adversarial-validation, model-uncertainty, dropout, transfer-learning, automl, bayesian 
 Category: Machine Learning
 Image: /images/head/data_scientist.jpg
+banner: /images/head/data_scientist.jpg
 Summary: Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results.
 Status: published
 prompt:

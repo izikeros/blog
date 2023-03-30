@@ -7,6 +7,7 @@ Start: 2023-02-12
 Tags: python, data-engineering, machine-learning/EDA, data-visualization, exploring, exploratory-data-analysis, data-analysis-process, python-libraries, automated-eda, pandas-profiling, dataprep, sweetviz, lux, dabl, autoviz, klib, explainerdashboard, pycaret, missing-data, feature-engineering, featuretools
 Category: Machine Learning
 Image: /images/head/auto_eda.jpg
+banner: /images/head/auto_eda.jpg
 Summary: EDA Made Easy - Discover Top-10 Python Libraries That Will Take Your Data Analysis to the Next Level! Learn the Secrets of Automated EDA!
 Status: published
 prompt:

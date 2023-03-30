@@ -7,6 +7,7 @@ Start: 2023-01-30
 Tags: machine-learning, databricks, data-engineering
 Category: Machine Learning
 Image: /images/head/databricks_logo.jpg
+banner: /images/head/databricks_logo.jpg
 Summary: Learn how Databricks can help you master big data, improve data processing and machine learning skills and excel in your career. Boost your career with this powerful platform.
 Status: published
 prompt:

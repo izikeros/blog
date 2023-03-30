@@ -7,6 +7,7 @@ Start: 2023-02-01
 Tags: machine-learning, AI, cognitive-skills, memory, creativity 
 Category: Machine Learning
 Image: /images/head/search_engines_impact_on_cognitive_skills.jpg
+banner: /images/head/search_engines_impact_on_cognitive_skills.jpg
 Summary:  Understand the effects of search engines and AI on our mental and cognitive capabilities. Equip yourself with the knowledge you need to make informed decisions about your own usage of these technologies.
 Status: published
 prompt:

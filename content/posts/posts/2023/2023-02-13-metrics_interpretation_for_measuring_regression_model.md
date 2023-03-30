@@ -7,6 +7,7 @@ Start: 2023-02-13
 Tags: machine-learning, r2-score, regression-model, model-evaluation, mse, rmse, performance-metrics, machine-learning, data-science, data-analysis
 Category: Machine Learning
 Image: /images/head/abstract_3.jpg
+banner: /images/head/abstract_3.jpg
 Summary: Don't let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions.
 Status: published
 prompt: Give me detailed guidelines on how to interpret evaluation of the model performance in regression using R2, MSE and RMSE metrics. Add examples of cases when single metrics can be misleading and how to use other metrics to have accurate model performance assessment. Give me long, blog-post style markdown text with latex equations when needed and hyperlinks.
