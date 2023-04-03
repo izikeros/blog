@@ -9,8 +9,6 @@ Category: note
 prompt: How to prepare python project to pass it over to another developer. Give me long and detailed guidelines.
 ---
 
-
-
 Preparing a Python project to be passed on to another developer requires attention to detail and documentation to ensure that the new developer can understand the project and make modifications with ease. Here is a long and detailed guide on how to prepare a Python project to be handed over to another developer:
 
 **Organize your files**
@@ -48,3 +46,5 @@ Preparing a Python project to be passed on to another developer requires attenti
 
 **NOTE:** There is interesting write-up, proposing approach that will result in projects always ready to handover to another persons:  [Always be quitting - Julio Merino (jmmv.dev)](https://jmmv.dev/2021/04/always-be-quitting.html)
 
+up::[[MOC_Python_Project]]
+X::[[always_be_quitting_job]]

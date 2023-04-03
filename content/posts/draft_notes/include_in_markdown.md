@@ -8,7 +8,7 @@ Tags: markdown, content-creation, publishing, book/writing
 Category: note
 prompt: what are the methods to include file contents in markdown documents (like LaTeX \include{} command). Are there any markdown extensions or markdown supersets that allows including?
 ---
-
+up:[[markdown]]
 #blog/post-idea 
 
 Including file contents in Markdown documents can be achieved using a few methods. Here are some of the ways you can include file contents in Markdown:

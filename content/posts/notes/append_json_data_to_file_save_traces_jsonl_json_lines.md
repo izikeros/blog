@@ -5,7 +5,7 @@ date: '2022-06-03'
 modified: '2022-07-05'
 status: published
 slug: append-json-data-to-file-save-traces
-tags: append-json, data, json, trace, jsonlines, python
+tags: append-json, data, json, trace, jsonlines, python, dataset
 ---
 
 ## The JSON Lines standard
@@ -56,3 +56,5 @@ $ grep pair winning_hands.jsonl | jq .
 See also:
 - [NDJSON](http://ndjson.org/) - Newline delimited JSON:
 - [ndjson standard specification](https://github.com/ndjson/ndjson-spec)
+
+up::[[dataset]]

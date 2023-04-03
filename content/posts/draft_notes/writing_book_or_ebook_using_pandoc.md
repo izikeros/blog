@@ -13,6 +13,8 @@ up::[[writing_a_book_or_ebook_in_markdown]]
 X::[[convert_markdown_to_pdf]]
 X::[[css_styles_for_ebook]]
 X::[[pandoc]]
+X::[[markdown]]
+
 
 2023-01-31
 > Give me long markdown article on writing a book in markdown using pandoc. The book consits of multiple chapters - each in separate file. The article is tutorial style with proper introduction and detailed guidance. Can be based on creation of exemplary book with some minimal, multi-chapter content.

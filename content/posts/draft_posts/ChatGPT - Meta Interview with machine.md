@@ -12,6 +12,7 @@ Status: draft
 prompt:
 ---
 #blog/post-idea 
+up::[[MOC_Generative_AI]]
 
 1.  "The Art of Asking: Crafting the Perfect Prompt"
 2.  "Maximizing the Power of Language Models"

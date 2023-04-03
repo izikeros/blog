@@ -12,7 +12,7 @@ Status: draft
 prompt:
 ---
 
-
+up::[[MOC_Shell_Bash_Zsh]]
 #blog/post-idea 
 
 How do I make zsh look good?

@@ -11,7 +11,7 @@ Summary:
 Status: draft
 prompt:
 ---
-
+up:[[game_theory]]
 #blog/post-idea 
 
 

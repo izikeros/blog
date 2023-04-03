@@ -7,7 +7,7 @@ Status: draft
 Tags: tag1, tag2
 Category: note
 ---
-
+up::[[MOC_Visualization]]
 
 #blog/post-idea 
 
