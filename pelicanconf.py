@@ -56,7 +56,7 @@ if MY_THEME == "flex":
     SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
                    'Ernst &amp; Young and writing about <a ' \
                    'href="/category/machine-learning.html">Data Science and Visualization</a>, ' \
-                   'on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> ' \
+                   'on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> ' \
                    'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
                    '<a href="/category/howto.html">howto</a> posts on tools and workflows.'
     SITELOGO = "/images/profile_new.jpg"

@@ -1,5 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-04-06T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/data-science.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Zero-knowledge explained like to 5 uears old.</title><link href="https://www.safjan.com/zero-knowledge-for-5yo/" rel="alternate"></link><published>2023-04-06T00:00:00+02:00</published><updated>2023-04-06T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-06:/zero-knowledge-for-5yo/</id><summary type="html">&lt;p&gt;Imagine being able to prove something without actually revealing it. That is the power of zero-knowledge proofs, the technology that keeps your crypto safe.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Zero-knowledge proofs (ZKPs) are a key technology that underpins the security and privacy of many modern cryptocurrencies. In essence, ZKPs allow parties to prove that they know a piece of information, without revealing that information itself. But what does that mean, exactly? In this blog post, we'll explain ZKPs in a way that even a 5-year-old can understand.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-04-11T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>How to deploy FreshRSS in the cloud for free on Azure?</title><link href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-azure/" rel="alternate"></link><published>2023-04-11T00:00:00+02:00</published><updated>2023-04-11T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-11:/how-to-deploy-freshrss-in-the-cloud-for-free-on-azure/</id><summary type="html">&lt;p&gt;FreshRSS is a free and open-source RSS feed aggregator that allows you to easily follow your favorite websites and blogs in one place. By deploying FreshRSS in the cloud, you can access your feeds from anywhere and enjoy the benefits of cloud …&lt;/p&gt;</summary><content type="html">&lt;p&gt;FreshRSS is a free and open-source RSS feed aggregator that allows you to easily follow your favorite websites and blogs in one place. By deploying FreshRSS in the cloud, you can access your feeds from anywhere and enjoy the benefits of cloud computing, such as scalability, reliability, and cost-effectiveness. Microsoft Azure is a popular cloud platform that offers a wide range of services for building, deploying, and managing applications in the cloud. In this tutorial, we'll show you how to deploy FreshRSS in the cloud for free on Azure.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#prerequisites"&gt;Prerequisites:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#step-by-step-guide"&gt;Step-by-step guide&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#step-1-create-a-new-azure-web-app"&gt;Step 1: Create a new Azure web app&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#step-2-configure-your-web-app"&gt;Step 2: Configure your web app&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#step-3-deploy-freshrss"&gt;Step 3: Deploy FreshRSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#step-4-configure-ssl-optional"&gt;Step 4: Configure SSL (optional)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="prerequisites"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Prerequisites:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A Microsoft Azure account&lt;/li&gt;
+&lt;li&gt;A basic understanding of Azure services and concepts&lt;/li&gt;
+&lt;li&gt;A web browser&lt;/li&gt;
+&lt;li&gt;An SSH client (optional)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="step-by-step-guide"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Step-by-step guide&lt;/h2&gt;
+&lt;p&gt;&lt;a id="step-1-create-a-new-azure-web-app"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Step 1: Create a new Azure web app&lt;/h3&gt;
+&lt;p&gt;The first step is to create a new Azure web app, which will host your FreshRSS installation. Follow these steps to create a new web app:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Log in to the Azure portal (&lt;a href="https://portal.azure.com/"&gt;https://portal.azure.com&lt;/a&gt;) using your Azure account credentials.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click on the "Create a resource" button in the left-hand menu and search for "Web App".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select the "Web App" service and click on the "Create" button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fill in the required details for your web app, such as the name, subscription, resource group, and runtime stack.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Choose the "Free" pricing tier, which provides up to 10 web, mobile, or API apps with shared compute resources and 1 GB storage per app.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click on the "Review + create" button to review your settings and then click on the "Create" button to create your web app.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Wait for the deployment to complete, which may take a few minutes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="step-2-configure-your-web-app"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Step 2: Configure your web app&lt;/h3&gt;
+&lt;p&gt;The next step is to configure your web app with the necessary settings and dependencies. Follow these steps to configure your web app:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to your web app in the Azure portal and click on the "Configuration" tab.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Under the "General settings" section, set the "Linux container" option to "On".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Under the "Stack settings" section, set the "Runtime stack" option to "PHP 7.3".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Under the "Application settings" section, add the following key-value pairs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Key: WEBSITE_TIME_ZONE, Value: Your timezone (e.g., "America/Los_Angeles")&lt;/li&gt;
+&lt;li&gt;Key: WEBSITE_AUTH_ENABLED, Value: False&lt;/li&gt;
+&lt;li&gt;Key: WEBSITE_NODE_DEFAULT_VERSION, Value: 10.14.2&lt;/li&gt;
+&lt;li&gt;Click on the "Save" button to save your changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="step-3-deploy-freshrss"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Step 3: Deploy FreshRSS&lt;/h3&gt;
+&lt;p&gt;The next step is to deploy FreshRSS to your web app. Follow these steps to deploy FreshRSS:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Download the latest version of FreshRSS from the official website (&lt;a href="https://freshrss.org/"&gt;https://freshrss.org&lt;/a&gt;) and extract the files to a local directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open a command prompt or terminal window and navigate to the local directory where you extracted the FreshRSS files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use the following command to create a ZIP archive of the FreshRSS files:&lt;/p&gt;
+&lt;p&gt;pythonCopy code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;zip -r freshrss.zip .&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Return to the Azure portal and navigate to your web app.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click on the "Deployment Center" tab and select the "Local Git" option.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Follow the on-screen instructions to create a new deployment user and download the deployment credentials.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use the following commands to add the Azure Git remote to your local Git repository and push your changes to the Azure web app:&lt;/p&gt;
+&lt;p&gt;csharpCopy code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git remote add azure &amp;lt;deployment-endpoint&amp;gt; git push azure master&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When prompted, enter the deployment username and password that you created earlier.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Wait for the deployment to complete, which may take a few minutes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once the deployment is complete, open a web browser and navigate to your web app's URL to access FreshRSS. You should see the FreshRSS installation page.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Follow the on-screen instructions to complete the FreshRSS installation. Make sure to set the database type to "SQLite" and the database path to "/home/site/wwwroot/data/freshrss.db".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once the installation is complete, you should be able to access FreshRSS and start adding your favorite feeds.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="step-4-configure-ssl-optional"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Step 4: Configure SSL (optional)&lt;/h3&gt;
+&lt;p&gt;If you want to secure your FreshRSS installation with SSL, you can do so by configuring a custom domain and adding an SSL certificate. Follow these steps to configure SSL:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Purchase a custom domain from a domain registrar, such as GoDaddy or Namecheap.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to your web app in the Azure portal and click on the "Custom domains" tab.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add your custom domain and follow the on-screen instructions to configure DNS settings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once your domain is configured, navigate to the "SSL certificates" tab and click on the "Create App Service Managed Certificate" button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Follow the on-screen instructions to create a new SSL certificate for your custom domain.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once the certificate is created, navigate back to the "Custom domains" tab and click on the "Add binding" button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select your custom domain and the newly created SSL certificate and click on the "Add binding" button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Wait for the SSL certificate to be provisioned, which may take a few minutes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once the SSL certificate is provisioned, you should be able to access FreshRSS securely using your custom domain.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;X::[[fresh_rss_deploy_on_GCP]]
+up::[[MOC_RSS]]&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="freshrss"></category><category term="cloud-deploy"></category><category term="free-deploy"></category><category term="azure"></category></entry><entry><title>How to deploy FreshRSS in the cloud for free on GCP?</title><link href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/" rel="alternate"></link><published>2023-04-11T00:00:00+02:00</published><updated>2023-04-11T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-11:/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/</id><summary type="html">&lt;p&gt;To deploy FreshRSS in the cloud for free on Google Cloud Platform (GCP), you can follow these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new project on GCP and enable billing. FreshRSS requires a web server and a database, and GCP provides free usage limits for …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;To deploy FreshRSS in the cloud for free on Google Cloud Platform (GCP), you can follow these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new project on GCP and enable billing. FreshRSS requires a web server and a database, and GCP provides free usage limits for these services for a limited time. You will need to provide billing information to verify your account and enable these services.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Launch a Compute Engine instance. FreshRSS can run on any Linux-based server, so you can choose an instance that meets your needs. For this example, we'll use a micro instance with Debian 10.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Connect to the instance using SSH. You can use the SSH button in the GCP Console or connect from your terminal using the external IP address.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install the necessary packages. Run the following command to update the package index and install the required packages:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;update
+sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;apache2&lt;span class="w"&gt; &lt;/span&gt;mariadb-server&lt;span class="w"&gt; &lt;/span&gt;php7.3&lt;span class="w"&gt; &lt;/span&gt;php7.3-mysql&lt;span class="w"&gt; &lt;/span&gt;php7.3-curl&lt;span class="w"&gt; &lt;/span&gt;php7.3-xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Configure the database. Follow these steps to create a new database and user for FreshRSS:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;mysql&lt;span class="w"&gt; &lt;/span&gt;-u&lt;span class="w"&gt; &lt;/span&gt;root
+
+CREATE&lt;span class="w"&gt; &lt;/span&gt;DATABASE&lt;span class="w"&gt; &lt;/span&gt;freshrss&lt;span class="p"&gt;;&lt;/span&gt;
+GRANT&lt;span class="w"&gt; &lt;/span&gt;ALL&lt;span class="w"&gt; &lt;/span&gt;PRIVILEGES&lt;span class="w"&gt; &lt;/span&gt;ON&lt;span class="w"&gt; &lt;/span&gt;freshrss.*&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;freshrssuser&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IDENTIFIED&lt;span class="w"&gt; &lt;/span&gt;BY&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+FLUSH&lt;span class="w"&gt; &lt;/span&gt;PRIVILEGES&lt;span class="p"&gt;;&lt;/span&gt;
+EXIT&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Download and install FreshRSS. Run the following commands to download the latest version of FreshRSS and extract it to the web root:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/var/www/html
+sudo&lt;span class="w"&gt; &lt;/span&gt;wget&lt;span class="w"&gt; &lt;/span&gt;https://github.com/FreshRSS/FreshRSS/archive/master.tar.gz
+sudo&lt;span class="w"&gt; &lt;/span&gt;tar&lt;span class="w"&gt; &lt;/span&gt;-xzf&lt;span class="w"&gt; &lt;/span&gt;master.tar.gz&lt;span class="w"&gt; &lt;/span&gt;--strip-components&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;chown&lt;span class="w"&gt; &lt;/span&gt;-R&lt;span class="w"&gt; &lt;/span&gt;www-data:www-data&lt;span class="w"&gt; &lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Configure the web server. Edit the default Apache configuration file to enable URL rewriting:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;nano&lt;span class="w"&gt; &lt;/span&gt;/etc/apache2/sites-enabled/000-default.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Add the following lines inside the `&amp;lt;VirtualHost&amp;gt;` block:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;/var/www/html&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;AllowOverride&lt;span class="w"&gt; &lt;/span&gt;All
+&lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Restart the web server. Run the following command to apply the changes:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;restart&lt;span class="w"&gt; &lt;/span&gt;apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Complete the FreshRSS setup. Open your web browser and navigate to the external IP address of your instance. Follow the on-screen instructions to configure FreshRSS.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Congratulations, you have successfully deployed FreshRSS in the cloud for free on GCP!&lt;/p&gt;
+&lt;p&gt;X::[[freshrss_deploy_on_azure]]
+up::[[MOC_RSS]]&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="freshrss"></category><category term="cloud-deploy"></category><category term="free-deploy"></category><category term="gcp"></category><category term="google-cloud-platform"></category><category term="google"></category></entry><entry><title>Zero-knowledge explained like to 5 uears old.</title><link href="https://www.safjan.com/zero-knowledge-for-5yo/" rel="alternate"></link><published>2023-04-06T00:00:00+02:00</published><updated>2023-04-06T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-06:/zero-knowledge-for-5yo/</id><summary type="html">&lt;p&gt;Imagine being able to prove something without actually revealing it. That is the power of zero-knowledge proofs, the technology that keeps your crypto safe.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Zero-knowledge proofs (ZKPs) are a key technology that underpins the security and privacy of many modern cryptocurrencies. In essence, ZKPs allow parties to prove that they know a piece of information, without revealing that information itself. But what does that mean, exactly? In this blog post, we'll explain ZKPs in a way that even a 5-year-old can understand.&lt;/p&gt;
 &lt;h2&gt;Helper example&lt;/h2&gt;
 &lt;p&gt;Let's start with a basic example. Imagine you have a secret toy that you don't want anyone else to know about. Your friend wants to prove to you that they know what the toy is, without actually telling you what it is. How can they do that?&lt;/p&gt;
 &lt;p&gt;One way to do it is to play a guessing game. Your friend can ask you a series of questions about the toy, such as "Is it blue?" or "Does it have wheels?" Based on your answers, your friend can narrow down the possibilities until they have a pretty good idea of what the toy is. This is a bit like a multiple-choice test: by eliminating the wrong answers, you can eventually arrive at the right one.&lt;/p&gt;
@@ -88,11 +307,7 @@ X::[[elypsis_in_python_type_hints]]&lt;/p&gt;</content><category term="note"></c
 &lt;p&gt;up::[[python_type_hints]]
 X::[[type_hint_for_undetermined_number_of_elements]]
 X::[[python_type_hints_NoReturn_None_NoType]]
-X::[[type_hints_dictionary]]&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="type-hints"></category><category term="mypy"></category><category term="elypsis"></category><category term="python-typing"></category></entry><entry><title>Git - annotated vs. lightweight tags</title><link href="https://www.safjan.com/git-annotated-vs-lightweight-tags/" rel="alternate"></link><published>2023-03-31T00:00:00+02:00</published><updated>2023-03-31T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-31:/git-annotated-vs-lightweight-tags/</id><summary type="html">&lt;p&gt;up::[[MOC_Git]]
-X::[[git_tags]]&lt;/p&gt;
-&lt;p&gt;In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There …&lt;/p&gt;</summary><content type="html">&lt;p&gt;up::[[MOC_Git]]
-X::[[git_tags]]&lt;/p&gt;
-&lt;p&gt;In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.&lt;/p&gt;
+X::[[type_hints_dictionary]]&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="type-hints"></category><category term="mypy"></category><category term="elypsis"></category><category term="python-typing"></category></entry><entry><title>Git - annotated vs. lightweight tags</title><link href="https://www.safjan.com/git-annotated-vs-lightweight-tags/" rel="alternate"></link><published>2023-03-31T00:00:00+02:00</published><updated>2023-03-31T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-31:/git-annotated-vs-lightweight-tags/</id><summary type="html">&lt;p&gt;In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.&lt;/p&gt;
 &lt;h2&gt;Annotated tags&lt;/h2&gt;
 &lt;p&gt;Annotated tags are more informative than lightweight tags. When creating an annotated tag, Git stores a full object in the repository that contains the tagger name, email, and date, a tagging message, and a SHA-1 checksum of the commit being tagged. Annotated tags are essentially Git objects that are separate from the commit objects they reference, whereas lightweight tags are simply pointers to specific commits.&lt;/p&gt;
 &lt;p&gt;The additional information stored in an annotated tag makes them useful for documenting significant events in the project's history. The tagging message can provide context about why the tag was created and what it represents. Additionally, annotated tags can be signed and verified to ensure their authenticity. Signed tags provide assurance that the tag was created by an authorized person and that the commit being tagged has not been tampered with.&lt;/p&gt;
@@ -110,7 +325,9 @@ X::[[git_tags]]&lt;/p&gt;
 &lt;p&gt;So when should you use annotated tags versus lightweight tags? Annotated tags are ideal for marking significant events in the project's history, such as releases, milestones, or important changes. They are also useful for documenting the context and reasoning behind a particular tag. Lightweight tags, on the other hand, are useful for temporary or internal purposes, such as marking specific commits for debugging or testing purposes.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In general, it is a good practice to &lt;strong&gt;use annotated&lt;/strong&gt; tags for any &lt;strong&gt;official releases&lt;/strong&gt; or &lt;strong&gt;milestones&lt;/strong&gt;, as they provide a clear and detailed record of the project's progress. &lt;strong&gt;Lightweight&lt;/strong&gt; tags can be used for more informal purposes, such as to &lt;strong&gt;mark experimental&lt;/strong&gt; or &lt;strong&gt;intermediate points&lt;/strong&gt; in the project's history.&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="note"></category><category term="git"></category><category term="tag"></category></entry><entry><title>Contextual Understanding in Automated Speech-to-Text Transcription: Machine Learning Techniques and Challenges</title><link href="https://www.safjan.com/contextual_understanding-speech-to-text/" rel="alternate"></link><published>2023-03-30T00:00:00+02:00</published><updated>2023-03-30T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-30:/contextual_understanding-speech-to-text/</id><summary type="html">&lt;p&gt;Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to limit the capabilities of automated speech recognition technology. In this blog post, we will explore some of the biggest unsolved problems in automated speech-to-text transcription.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;up::[[MOC_Git]]
+X::[[git_tags]]&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="tag"></category></entry><entry><title>Contextual Understanding in Automated Speech-to-Text Transcription: Machine Learning Techniques and Challenges</title><link href="https://www.safjan.com/contextual_understanding-speech-to-text/" rel="alternate"></link><published>2023-03-30T00:00:00+02:00</published><updated>2023-03-30T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-30:/contextual_understanding-speech-to-text/</id><summary type="html">&lt;p&gt;Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to limit the capabilities of automated speech recognition technology. In this blog post, we will explore some of the biggest unsolved problems in automated speech-to-text transcription.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
@@ -4804,7 +5021,7 @@ Examples of python AutoML libraries: &lt;a href="https://automl.github.io/auto-s
 &lt;!-- /MarkdownTOC --&gt;
 
 &lt;p&gt;&lt;a id="speculating-on-new-cognitive-skills-in-humans-using-large-language-models-and-advanced-ai-generative-models"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Speculating on New Cognitive Skills in Humans using Large Language Models and Advanced AI Generative Models&lt;/h2&gt;
+&lt;h2&gt;Speculating on New Cognitive Skills in Humans Using Large Language Models and Advanced AI Generative Models&lt;/h2&gt;
 &lt;p&gt;The rapid development of large language models and other advanced AI generative models based on prompts has led to speculation about the potential impact on human cognitive skills. As these technologies continue to evolve and become more sophisticated, it is possible that they will lead to the development of entirely new cognitive skills that we have never seen before. &lt;/p&gt;
 &lt;p&gt;&lt;a id="ability-to-process-and-understand-complex-information-at-an-accelerated-rate"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Ability to process and understand complex information at an accelerated rate&lt;/h3&gt;
@@ -17491,10 +17708,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="6a4f64ba-b811-4152-baa1-e9d8727c8d2d"&gt;&lt;/div&gt;
+&lt;div id="88689841-29f0-4746-b726-8eaa782d25ff"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#6a4f64ba-b811-4152-baa1-e9d8727c8d2d');
+var element = $('#88689841-29f0-4746-b726-8eaa782d25ff');
 
 (function(root) {
   function now() {

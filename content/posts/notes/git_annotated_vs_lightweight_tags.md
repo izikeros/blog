@@ -8,9 +8,6 @@ Tags: git, tag
 Category: note
 prompt: Explain me, in git, what is the difference between annotated and lightweight tags. When to use each type? Give me long text.
 ---
-up::[[MOC_Git]]
-X::[[git_tags]]
-
 In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.
 
 ## Annotated tags
@@ -35,3 +32,6 @@ git tag v1.2
 So when should you use annotated tags versus lightweight tags? Annotated tags are ideal for marking significant events in the project's history, such as releases, milestones, or important changes. They are also useful for documenting the context and reasoning behind a particular tag. Lightweight tags, on the other hand, are useful for temporary or internal purposes, such as marking specific commits for debugging or testing purposes.
 
 > In general, it is a good practice to **use annotated** tags for any **official releases** or **milestones**, as they provide a clear and detailed record of the project's progress. **Lightweight** tags can be used for more informal purposes, such as to **mark experimental** or **intermediate points** in the project's history.
+
+up::[[MOC_Git]]
+X::[[git_tags]]

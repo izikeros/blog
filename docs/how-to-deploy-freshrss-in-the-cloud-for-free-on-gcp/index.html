@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="To deploy FreshRSS in the cloud for free on Google Cloud Platform (GCP), you can follow these steps: Create a new project on GCP and enable billing. FreshRSS requires a web server and a database, and GCP provides free usage limits for …"/>
+    <meta name="keywords" content="rss, freshrss, cloud-deploy, free-deploy, gcp, google-cloud-platform, google">
+    <meta expr:content="2023-04-11 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-04-11 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-04-11 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-04-11 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to deploy FreshRSS in the cloud for free on GCP?",
+  "datePublished": "2023-04-11 00:00:00+02:00",
+  "dateModified": "2023-04-11 00:00:00+02:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="How to deploy FreshRSS in the cloud for free on GCP?"/>
+  <meta property="og:description" content="To deploy FreshRSS in the cloud for free on Google Cloud Platform (GCP), you can follow these steps: Create a new project on GCP and enable billing. FreshRSS requires a web server and a database, and GCP provides free usage limits for …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-04-11 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-04-11 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="rss"/>
+  <meta property="article:tag" content="freshrss"/>
+  <meta property="article:tag" content="cloud-deploy"/>
+  <meta property="article:tag" content="free-deploy"/>
+  <meta property="article:tag" content="gcp"/>
+  <meta property="article:tag" content="google-cloud-platform"/>
+  <meta property="article:tag" content="google"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="How to deploy FreshRSS in the cloud for free on GCP?"/>
+
+
+    <title>    How to deploy FreshRSS in the cloud for free on GCP?
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://gumroad.com/">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://gumroad.com/">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>100 multiple choice quizz questions</li>
+                <li>178 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-04-11 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=How%20to%20deploy%20FreshRSS%20in%20the%20cloud%20for%20free%20on%20GCP%3F&url=https%3A//www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/&hashtags=rss,freshrss,cloud-deploy,free-deploy,gcp,google-cloud-platform,google" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=How%20to%20deploy%20FreshRSS%20in%20the%20cloud%20for%20free%20on%20GCP%3F&u=https%3A//www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/&title=How%20to%20deploy%20FreshRSS%20in%20the%20cloud%20for%20free%20on%20GCP%3F" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp">How to deploy FreshRSS in the cloud for free on GCP?</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>To deploy FreshRSS in the cloud for free on Google Cloud Platform (GCP), you can follow these steps:</p>
+<ol>
+<li>
+<p>Create a new project on GCP and enable billing. FreshRSS requires a web server and a database, and GCP provides free usage limits for these services for a limited time. You will need to provide billing information to verify your account and enable these services.</p>
+</li>
+<li>
+<p>Launch a Compute Engine instance. FreshRSS can run on any Linux-based server, so you can choose an instance that meets your needs. For this example, we'll use a micro instance with Debian 10.</p>
+</li>
+<li>
+<p>Connect to the instance using SSH. You can use the SSH button in the GCP Console or connect from your terminal using the external IP address.</p>
+</li>
+<li>
+<p>Install the necessary packages. Run the following command to update the package index and install the required packages:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>apache2<span class="w"> </span>mariadb-server<span class="w"> </span>php7.3<span class="w"> </span>php7.3-mysql<span class="w"> </span>php7.3-curl<span class="w"> </span>php7.3-xml
+</code></pre></div>
+
+<ol>
+<li>Configure the database. Follow these steps to create a new database and user for FreshRSS:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root
+
+CREATE<span class="w"> </span>DATABASE<span class="w"> </span>freshrss<span class="p">;</span>
+GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w"> </span>ON<span class="w"> </span>freshrss.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;freshrssuser&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span>
+FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
+EXIT<span class="p">;</span>
+</code></pre></div>
+
+<ol>
+<li>Download and install FreshRSS. Run the following commands to download the latest version of FreshRSS and extract it to the web root:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/www/html
+sudo<span class="w"> </span>wget<span class="w"> </span>https://github.com/FreshRSS/FreshRSS/archive/master.tar.gz
+sudo<span class="w"> </span>tar<span class="w"> </span>-xzf<span class="w"> </span>master.tar.gz<span class="w"> </span>--strip-components<span class="o">=</span><span class="m">1</span>
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>www-data:www-data<span class="w"> </span>.
+</code></pre></div>
+
+<ol>
+<li>Configure the web server. Edit the default Apache configuration file to enable URL rewriting:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/apache2/sites-enabled/000-default.conf
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Add the following lines inside the `&lt;VirtualHost&gt;` block:
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/var/www/html</span><span class="nt">&gt;</span>
+<span class="w">    </span>AllowOverride<span class="w"> </span>All
+<span class="nt">&lt;/Directory&gt;</span>
+</code></pre></div>
+
+<ol>
+<li>Restart the web server. Run the following command to apply the changes:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>apache2
+</code></pre></div>
+
+<ol>
+<li>Complete the FreshRSS setup. Open your web browser and navigate to the external IP address of your instance. Follow the on-screen instructions to configure FreshRSS.</li>
+</ol>
+<p>Congratulations, you have successfully deployed FreshRSS in the cloud for free on GCP!</p>
+<p>X::[[freshrss_deploy_on_azure]]
+up::[[MOC_RSS]]</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/rss/">rss</a>
+                        <a href="https://www.safjan.com/tag/freshrss/">freshrss</a>
+                        <a href="https://www.safjan.com/tag/cloud-deploy/">cloud-deploy</a>
+                        <a href="https://www.safjan.com/tag/free-deploy/">free-deploy</a>
+                        <a href="https://www.safjan.com/tag/gcp/">gcp</a>
+                        <a href="https://www.safjan.com/tag/google-cloud-platform/">google-cloud-platform</a>
+                        <a href="https://www.safjan.com/tag/google/">google</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/zero-knowledge-for-5yo/" title="Zero-knowledge explained like to 5 uears old.">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-azure/" title="How to deploy FreshRSS in the cloud for free on Azure?">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-azure/">How to deploy FreshRSS in the cloud for free on Azure?</a></li>
+                        <li><a href="https://www.safjan.com/activitypub-how-it-works-how-to-use-it/">ActivityPub - how it works and how to use it?</a></li>
+                        <li><a href="https://www.safjan.com/emerging-alternatives-to-rss/">RSS vs. the Emerging Web Standards - Which Will Reign Supreme?</a></li>
+                        <li><a href="https://www.safjan.com/future-changes-to-rss/">Future-Proofing RSS - Key Changes and Technical Solutions to Keep the Web Feed Format Relevant</a></li>
+                        <li><a href="https://www.safjan.com/future-of-rss/">Future of RSS</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

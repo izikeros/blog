@@ -7,7 +7,7 @@ Start: 2023-02-02
 Tags: AI, future, cognitive-skills, critical-thinking, language-models
 Category: Machine Learning
 Image: /images/head/cognitive_skills_ai_generative_models.jpg
-banner: /images/head/cognitive_skills_ai_generative_models.jpg
+banner: "/images/head/cognitive_skills_ai_generative_models.jpg"
 Summary: Exploring the new cognitive skills of tomorrow with advanced AI generative models.
 Status: published
 prompt:
@@ -24,7 +24,7 @@ prompt:
 <!-- /MarkdownTOC -->
 
 <a id="speculating-on-new-cognitive-skills-in-humans-using-large-language-models-and-advanced-ai-generative-models"></a>
-## Speculating on New Cognitive Skills in Humans using Large Language Models and Advanced AI Generative Models
+## Speculating on New Cognitive Skills in Humans Using Large Language Models and Advanced AI Generative Models
 
 The rapid development of large language models and other advanced AI generative models based on prompts has led to speculation about the potential impact on human cognitive skills. As these technologies continue to evolve and become more sophisticated, it is possible that they will lead to the development of entirely new cognitive skills that we have never seen before. 
 
