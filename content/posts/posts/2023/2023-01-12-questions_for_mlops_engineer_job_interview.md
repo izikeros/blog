@@ -12,13 +12,13 @@ Status: published
 ---
 [![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
 
-[Get for $0.99](https://gumroad.com/)
+[Get for $0.99](https://ksafjanuser.gumroad.com/l/mlops)
 
 -   **PDF, ePUB format EBook, no DRM**
 -   **50 questions and answers**
 -   **Stories from real projects**
--   **100 multiple choice quiz questions**
--   **178 pages**
+-   **92 multiple choice quiz questions**
+-   **80 pages**
 
 Machine learning has become an integral part of many industries, and as the use of machine learning models in production environments has increased, so has the need for MLOps (Machine Learning Operations). MLOps is a practice that combines the principles of DevOps with the unique requirements of machine learning to improve the speed, quality, and reliability of machine learning models in production.
 
@@ -95,15 +95,15 @@ Here are examples of questions for more advanced candidates:
 ## EBook with questions and answers
 If you would like to prepare to answer these questions take look on my ebook that helps job-candidates to get MLOps job.
 
-[![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
+[![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://ksafjanuser.gumroad.com/l/mlops)
 
 [Get for $0.99](https://gumroad.com/)
 
 -   **PDF, ePUB format EBook, no DRM**
 -   **50 questions and answers**
 -   **Stories from real projects**
--   **100 multiple choice quiz questions**
--   **178 pages**
+-   **92 multiple choice quiz questions**
+-   **80 pages**
 
 **Credits:**
 
