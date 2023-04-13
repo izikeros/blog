@@ -110,19 +110,19 @@ Each of these methods has its own advantages and limitations, and the best appro
 ## Taking you book creation to the next level
 When creating a book from Markdown using Pandoc, there are several advanced topics you can explore to enhance your workflow and produce more complex, professional-looking documents. Some of these advanced topics include:
 
-1.  LaTeX and PDF output: Pandoc can convert Markdown to LaTeX, which is a powerful typesetting system used for creating technical and scientific documents. You can use LaTeX templates and packages to customize the look and feel of your PDF output.
+1.  **LaTeX and PDF output**: Pandoc can convert Markdown to LaTeX, which is a powerful typesetting system used for creating technical and scientific documents. You can use LaTeX templates and packages to customize the look and feel of your PDF output.
     
-2.  E-book formats: Pandoc can convert Markdown to various e-book formats, such as EPUB and MOBI. You can use custom styles and templates to create a polished, professional-looking e-book.
+2.  **E-book formats**: Pandoc can convert Markdown to various e-book formats, such as EPUB and MOBI. You can use custom styles and templates to create a polished, professional-looking e-book.
     
-3.  Cross-referencing and citations: Pandoc supports features such as cross-referencing, citations, and bibliographies. You can use tools such as BibTeX and Zotero to manage your references and insert citations into your book.
+3.  **Cross-referencing and citations**: Pandoc supports features such as cross-referencing, citations, and bibliographies. You can use tools such as BibTeX and Zotero to manage your references and insert citations into your book.
     
-4.  Math typesetting: Pandoc supports typesetting mathematical equations and expressions using LaTeX syntax. You can include complex mathematical formulas in your book, which can be rendered in both HTML and PDF output.
+4.  **Math typesetting**: Pandoc supports typesetting mathematical equations and expressions using LaTeX syntax. You can include complex mathematical formulas in your book, which can be rendered in both HTML and PDF output.
     
-5.  Interactive content: Pandoc can convert Markdown to HTML5 and support interactive content, such as animations and charts. You can use JavaScript libraries and CSS frameworks to create interactive elements in your book.
+5.  **Interactive content**: Pandoc can convert Markdown to HTML5 and support interactive content, such as animations and charts. You can use JavaScript libraries and CSS frameworks to create interactive elements in your book.
     
-6.  Custom extensions: Pandoc provides a way to extend its functionality using custom filters and extensions. You can write your own filters in a scripting language such as Python or Lua to modify the output document or add custom features.
+6.  **Custom extensions**: Pandoc provides a way to extend its functionality using custom filters and extensions. You can write your own filters in a scripting language such as Python or Lua to modify the output document or add custom features.
     
-7.  Continuous integration and deployment: You can automate your book creation workflow using tools such as Git, GitHub Actions, and Travis CI. You can set up a continuous integration pipeline to compile your book whenever changes are pushed to your repository.
+7.  **Continuous integration and deployment**: You can automate your book creation workflow using tools such as Git, GitHub Actions, and Travis CI. You can set up a continuous integration pipeline to compile your book whenever changes are pushed to your repository.
     
 
 These advanced topics can help you take your book creation to the next level and produce more complex, professional-looking documents. The best approach depends on your specific requirements and preferences, and you can explore these topics in more detail in the Pandoc documentation and online resources.

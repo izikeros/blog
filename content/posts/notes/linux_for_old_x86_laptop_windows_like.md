@@ -70,3 +70,5 @@ All of these Linux distributions are lightweight and should run smoothly on olde
 3.  Zorin OS Lite: [https://zorinos.com/](https://zorinos.com/)
 4.  Peppermint OS: [https://peppermintos.com/](https://peppermintos.com/)
 5.  LXLE: [https://lxle.net/](https://lxle.net/)
+
+X::[[linux_lite_64bit]]
