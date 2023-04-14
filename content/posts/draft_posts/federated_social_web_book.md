@@ -8,7 +8,7 @@ Tags: web, rss, activitypub
 Category: Machine Learning
 Image: /images/head/abstract_1.jpg
 Summary: 
-Status: published
+Status: draft
 prompt_1: Give me detailed outline of the book "towards Federated Social Web". The book is a survey of the existing and emerging technologies that are enablers for the Federated Social Web. It should discuss also non-technical blockers and enablers of Federated Social Web becoming mainstream in the future.
 ---
 
