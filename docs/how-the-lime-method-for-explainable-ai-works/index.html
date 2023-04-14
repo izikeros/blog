@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Discover how the LIME method can help you understand the important factors behind your model&#39;s predictions in a simple, intuitive way."/>
+    <meta name="keywords" content="machine-learning, python, lime, xai, explainable-ai">
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding how the LIME method for explainable AI works.",
+  "datePublished": "2023-04-14 00:00:00+02:00",
+  "dateModified": "2023-04-14 00:00:00+02:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Understanding how the LIME method for explainable AI works."/>
+  <meta property="og:description" content="Discover how the LIME method can help you understand the important factors behind your model&#39;s predictions in a simple, intuitive way."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Explainable AI"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="lime"/>
+  <meta property="article:tag" content="xai"/>
+  <meta property="article:tag" content="explainable-ai"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_7.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_7.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Discover how the LIME method can help you understand the important factors behind your model's predictions in a simple, intuitive way.</p>"/>
+    <meta name="twitter:title" content="Understanding how the LIME method for explainable AI works."/>
+
+
+    <title>    Understanding how the LIME method for explainable AI works.
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-04-14 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Understanding%20how%20the%20LIME%20method%20for%20explainable%20AI%20works.&url=https%3A//www.safjan.com/how-the-lime-method-for-explainable-ai-works/&hashtags=machine-learning,python,lime,xai,explainable-ai" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-the-lime-method-for-explainable-ai-works/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Understanding%20how%20the%20LIME%20method%20for%20explainable%20AI%20works.&u=https%3A//www.safjan.com/how-the-lime-method-for-explainable-ai-works/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-the-lime-method-for-explainable-ai-works/&title=Understanding%20how%20the%20LIME%20method%20for%20explainable%20AI%20works." target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="how-the-lime-method-for-explainable-ai-works">Understanding how the LIME method for explainable AI works.</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Discover how the LIME method can help you understand the important factors behind your model's predictions in a simple, intuitive way.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/">
+                        <img style="width: 100%; "
+                         src="/images/head/abstract_7.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <p>Artificial intelligence (AI) has revolutionized the way we live and work, but it can sometimes be difficult to understand how AI algorithms reach their decisions. This is where explainable AI (XAI) comes in. XAI is the process of making AI models transparent and understandable to humans. One popular XAI method is Local Interpretable Model-Agnostic Explanations (LIME). In this blog post, we will explore how LIME works and why it is an important tool for XAI.</p>
+<h2>The need for Explainable AI</h2>
+<p>One of the main criticisms of AI is its "black box" nature. Many AI models, such as deep neural networks, are complex and difficult to interpret. When these models are used in high-stakes applications like healthcare or finance, it is important to understand how the AI arrived at its decision. This is where XAI comes in. XAI provides a framework for understanding how an AI model makes decisions, increasing trust and accountability.</p>
+<h2>LIME: A Local Interpretable Model-Agnostic Explanation Method</h2>
+<p>LIME is a popular XAI method that provides local, interpretable explanations for individual predictions made by any machine learning model. LIME was introduced in 2016 in the paper <a href="https://arxiv.org/abs/1602.04938">“Why Should I Trust You?”: Explaining the Predictions of Any Classifier”</a> by Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin, and has since become a widely used method for XAI.</p>
+<p>LIME works by creating a simpler, interpretable model that approximates the behavior of the complex model. The simpler model is trained on local data points, and the resulting model is used to explain the decision of the complex model. The process involves the following steps:</p>
+<ol>
+<li>Selecting an instance to explain</li>
+<li>Perturbing the instance to create a dataset of similar instances</li>
+<li>Weighting the similar instances based on their similarity to the instance to explain</li>
+<li>Training a local, interpretable model on the weighted dataset</li>
+<li>Using the local model to generate explanations for the complex model's decision</li>
+</ol>
+<p>Let's explore each of these steps in more detail.</p>
+<h3>Step 1: Selecting an instance to explain</h3>
+<p>The first step in the LIME process is selecting an instance to explain. This could be an individual data point or an entire dataset. For example, if we are working with a healthcare AI model, we may want to explain the decision to recommend a certain treatment for a specific patient.</p>
+<h3>Step 2: Perturbing the instance to create a dataset of similar instances</h3>
+<p>Once we have selected the instance to explain, we perturb it to create a dataset of similar instances. This involves making small changes to the instance while keeping its label (i.e. the prediction of the complex model) the same. The purpose of this step is to create a diverse set of instances that are similar to the instance we want to explain.</p>
+<h3>Step 3: Weighting the similar instances based on their similarity to the instance to explain</h3>
+<p>After we have created a dataset of similar instances, we need to weight them based on their similarity to the instance we want to explain. This is done using a kernel function, which assigns a weight to each instance based on its distance to the instance to explain. The kernel function can be any function that measures similarity, such as the Gaussian kernel.</p>
+<h3>Step 4: Training a local, interpretable model on the weighted dataset</h3>
+<p>Now that we have a weighted dataset, we can train a local, interpretable model on it. The purpose of this model is to approximate the behavior of the complex model in the local region around the instance we want to explain. The local model should be simple enough to be easily interpretable, but accurate enough to capture the important features of the complex model.</p>
+<p>The choice of local model depends on the problem domain and the complexity of the complex model. Some common choices include linear models, decision trees, and rule-based models.</p>
+<h3>Step 5: Using the local model to generate explanations for the complex model's decision</h3>
+<p>Once we have trained the local model, we can use it to generate explanations for the complex model's decision. This is done by analyzing the coefficients of the local model and identifying the features that contributed the most to the prediction. These features can be presented to the user as a list of important factors that influenced the decision.</p>
+<h2>Advantages of LIME</h2>
+<p>LIME has several advantages over other XAI methods. One of the main advantages is its model-agnostic nature. LIME can be used to explain the decisions of any machine learning model, regardless of its complexity or the algorithm used. This makes it a versatile tool for XAI.</p>
+<p>Another advantage of LIME is its ability to generate local explanations. By creating a local model that approximates the behavior of the complex model, LIME is able to generate explanations that are tailored to specific instances. This can be useful in situations where the explanation for a decision needs to be customized for a particular user or context.</p>
+<h2>Limitations of LIME</h2>
+<p>Despite its many advantages, LIME also has some limitations. One of the main limitations is the need for human input in the kernel function. The choice of kernel function and its parameters can have a significant impact on the explanations generated by LIME. This means that the user needs to have some domain knowledge and expertise in selecting an appropriate kernel function.</p>
+<p>Another limitation of LIME is its sensitivity to perturbations. LIME works by perturbing the instance to create a dataset of similar instances. However, small changes to the instance can result in significantly different explanations. This means that the explanations generated by LIME may not always be robust to changes in the input.</p>
+<h2>Conclusion</h2>
+<p>LIME is a powerful tool for XAI that provides local, interpretable explanations for individual predictions made by any machine learning model. By creating a simpler, interpretable model that approximates the behavior of the complex model, LIME is able to generate explanations that are tailored to specific instances. However, LIME also has some limitations, such as its sensitivity to perturbations and the need for human input in the kernel function. Despite these limitations, LIME remains an important tool for XAI and is widely used in industry and academia.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/lime/">lime</a>
+                        <a href="https://www.safjan.com/tag/xai/">xai</a>
+                        <a href="https://www.safjan.com/tag/explainable-ai/">explainable-ai</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/" title="Understanding how the SHAP method for explainable AI works.">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/heif-and-heic-format-for-images-and-video/" title="Smaller Files, Better Quality: The Advantages of HEIF and HEIC">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/">Understanding how the SHAP method for explainable AI works.</a></li>
+                        <li><a href="https://www.safjan.com/lime-tutorial/">LIME tutorial</a></li>
+                        <li><a href="https://www.safjan.com/eli5-tutorial/">Understanding AI with ELI5 - Demystifying Decisions (tutorial)</a></li>
+                        <li><a href="https://www.safjan.com/anchor-explanations/">Explainable AI - Anchor Explanations</a></li>
+                        <li><a href="https://www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/">Explaining AI - The Key Differences Between LIME and SHAP Methods</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

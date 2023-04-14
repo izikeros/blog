@@ -1,6 +1,16 @@
-#rss #activitypub #activitybub 
- 
-> Give me detailed outline of the book "towards Federated Social Web". The book is a survey of the existing and emerging technologies that are enablers for the Federated Social Web. It should discuss also non-technical blockers and enablers of Federated Social Web becoming mainstream in the future.
+---
+Title: Federated Social Web
+Slug: federated-social-web
+Date: 2023-04-14
+Modified: 2023-04-14
+Start: 2023-04-14
+Tags: web, rss, activitypub 
+Category: Machine Learning
+Image: /images/head/abstract_1.jpg
+Summary: 
+Status: published
+prompt_1: Give me detailed outline of the book "towards Federated Social Web". The book is a survey of the existing and emerging technologies that are enablers for the Federated Social Web. It should discuss also non-technical blockers and enablers of Federated Social Web becoming mainstream in the future.
+---
 
 "Towards a Federated Social Web" is a book that explores the concept of a decentralized and interoperable social web, also known as the Federated Social Web. The book provides a comprehensive survey of existing and emerging technologies that enable the Federated Social Web, as well as non-technical factors that could help or hinder its mainstream adoption.
 

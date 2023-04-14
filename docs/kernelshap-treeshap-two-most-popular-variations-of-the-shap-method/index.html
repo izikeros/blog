@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Making sense of AI&#39;s inner workings with KernelShap and TreeShap – the powerfull tools for responsible AI."/>
+    <meta name="keywords" content="shap, xai, explainable-ai">
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "KernelShap and TreeShap - Two Most Popular Variations of the SHAP method.",
+  "datePublished": "2023-04-14 00:00:00+02:00",
+  "dateModified": "2023-04-14 00:00:00+02:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="KernelShap and TreeShap - Two Most Popular Variations of the SHAP method."/>
+  <meta property="og:description" content="Making sense of AI&#39;s inner workings with KernelShap and TreeShap – the powerfull tools for responsible AI."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/kernelshap-treeshap-two-most-popular-variations-of-the-shap-method/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Explainable AI"/>
+  <meta property="article:tag" content="shap"/>
+  <meta property="article:tag" content="xai"/>
+  <meta property="article:tag" content="explainable-ai"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_9.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_9.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Making sense of AI's inner workings with KernelShap and TreeShap – the powerfull tools for responsible AI.</p>"/>
+    <meta name="twitter:title" content="KernelShap and TreeShap - Two Most Popular Variations of the SHAP method."/>
+
+
+    <title>    KernelShap and TreeShap - Two Most Popular Variations of the SHAP method.
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-04-14 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=KernelShap%20and%20TreeShap%20-%20Two%20Most%20Popular%20Variations%20of%20the%20SHAP%20method.&url=https%3A//www.safjan.com/kernelshap-treeshap-two-most-popular-variations-of-the-shap-method/&hashtags=shap,xai,explainable-ai" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/kernelshap-treeshap-two-most-popular-variations-of-the-shap-method/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=KernelShap%20and%20TreeShap%20-%20Two%20Most%20Popular%20Variations%20of%20the%20SHAP%20method.&u=https%3A//www.safjan.com/kernelshap-treeshap-two-most-popular-variations-of-the-shap-method/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/kernelshap-treeshap-two-most-popular-variations-of-the-shap-method/&title=KernelShap%20and%20TreeShap%20-%20Two%20Most%20Popular%20Variations%20of%20the%20SHAP%20method." target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="kernelshap-treeshap-two-most-popular-variations-of-the-shap-method">KernelShap and TreeShap - Two Most Popular Variations of the SHAP method.</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Making sense of AI's inner workings with KernelShap and TreeShap – the powerfull tools for responsible AI.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/kernelshap-treeshap-two-most-popular-variations-of-the-shap-method/">
+                        <img style="width: 100%; "
+                         src="/images/head/abstract_9.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <h2>Introduction</h2>
+<p>Responsible AI is an approach to artificial intelligence that ensures fairness, transparency, and accountability in the development, deployment, and management of AI systems. In the era of increasing reliance on AI-driven decision-making, understanding and explaining the predictions made by these models is essential. Interpretability of AI models helps build trust, enables better decision-making, and allows us to mitigate biases.   </p>
+<p>Two popular methods for explaining AI models are KernelShap and TreeShap. These techniques are part of the SHAP (SHapley Additive exPlanations) family, which is based on cooperative game theory. In this blog post, we will delve into the details of KernelShap and TreeShap, exploring their underlying principles, advantages, and use cases.   </p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#kernelshap">KernelShap</a><ul>
+<li><a href="#steps">Steps</a></li>
+<li><a href="#kernelshap-advantages-and-limitations">KernelShap advantages and limitations</a></li>
+</ul>
+</li>
+<li><a href="#treeshap">TreeShap</a><ul>
+<li><a href="#steps-1">Steps</a></li>
+<li><a href="#treeshap-advantages-and-limitations">TreeShap advantages and limitations</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="kernelshap"></a></p>
+<h2>KernelShap</h2>
+<p>KernelShap is a model-agnostic explanation method that provides interpretable explanations for any black-box model. It uses the concept of Shapley values from cooperative game theory to attribute feature importance to individual features in the context of a specific prediction.   </p>
+<p>The Shapley value for feature <span class="math">\(i\)</span> in a model <span class="math">\(f\)</span> can be calculated using the following formula:   </p>
+<div class="math">$$ϕ_i(f) = \sum_{S ⊆ N \setminus {i}} \frac{|S|!(|N|-|S|-1)!}{|N|!} [f(S ∪ {i}) - f(S)]$$</div>
+<p>Here, <span class="math">\(S\)</span> is a subset of features excluding <span class="math">\(i\)</span>, and <span class="math">\(N\)</span> is the total number of features. The term <span class="math">\(|S|!\)</span> represents the factorial of the number of features in subset <span class="math">\(S\)</span>, while <span class="math">\(|N|-|S|-1!\)</span> represents the factorial of the remaining features outside of the subset. The denominator <span class="math">\(|N|!\)</span> is the factorial of the total number of features.</p>
+<p>Shapley values, in the context of AI, are used to distribute the contribution of each feature to the final prediction. It ensures that the contribution of each feature is fairly allocated in a way that is efficient, symmetric, and additive.   </p>
+<p>KernelShap approximates the Shapley values by solving a weighted linear regression problem. It samples instances from the feature space and estimates the Shapley values using the Lasso regression model. The Lasso model is a linear model with an L1 penalty term, which helps in feature selection and makes the explanation sparse.</p>
+<p>Lasso (Least Absolute Shrinkage and Selection Operator) regression is a linear regression technique that includes an L1 penalty term to shrink the coefficients of less important features towards zero. This allows for both regularization and feature selection, resulting in a more interpretable and parsimonious model.   </p>
+<p>The equation for Lasso regression is given by:   </p>
+<div class="math">$$L(\beta) = \sum_{i=1}^{n}(y_i - X_i\beta)^2 + \lambda\sum_{j=1}^{p}|\beta_j|$$</div>
+<p> <br>
+In this equation:   </p>
+<ul>
+<li><span class="math">\(L(\beta)\)</span> represents the objective function to be minimized,</li>
+<li><span class="math">\(y_i\)</span> is the actual response (outcome) for the <span class="math">\(i^{th}\)</span> observation,</li>
+<li><span class="math">\(X_i\)</span> is the feature vector for the <span class="math">\(i^{th}\)</span> observation,</li>
+<li><span class="math">\(\beta\)</span> is the vector of coefficients to be estimated,</li>
+<li><span class="math">\(n\)</span> is the total number of observations,</li>
+<li><span class="math">\(p\)</span> is the total number of features,</li>
+<li><span class="math">\(\lambda\)</span> is a non-negative regularization parameter, and</li>
+<li><span class="math">\(|\beta_j|\)</span> is the absolute value of the <span class="math">\(j^{th}\)</span> coefficient.   </li>
+</ul>
+<p>The first term, <span class="math">\(\sum_{i=1}{n}(y_i - X_i\beta)2\)</span>, is the sum of squared residuals, which represents the difference between the actual and predicted responses. Minimizing this term alone would result in an ordinary least squares regression.   </p>
+<p>The second term, <span class="math">\(\lambda\sum_{j=1}^{p}|\beta_j|\)</span>, is the L1 penalty term that adds the absolute values of the coefficients multiplied by the regularization parameter <span class="math">\(\lambda\)</span>. By increasing <span class="math">\(\lambda\)</span>, the penalty term forces some coefficients to be exactly zero, effectively selecting a subset of features for the final model. The optimal value of <span class="math">\(\lambda\)</span> is usually determined through cross-validation.</p>
+<p><a id="steps"></a></p>
+<h3>Steps</h3>
+<p>The KernelShap algorithm involves the following steps:   </p>
+<ol>
+<li>Generate a dataset of binary-masked instances by randomly selecting feature combinations.</li>
+<li>Compute the output of the black-box model for each instance.</li>
+<li>Fit a weighted linear regression model on the generated dataset, where the weights are determined by the similarity between the instance and the instance of interest.</li>
+<li>The coefficients of the linear regression model represent the approximate Shapley values.   </li>
+</ol>
+<p><a id="kernelshap-advantages-and-limitations"></a></p>
+<h3>KernelShap advantages and limitations</h3>
+<p>KernelShap has several <strong>advantages</strong>:   </p>
+<ul>
+<li>It can be applied to any black-box model, regardless of its architecture or training algorithm.</li>
+<li>It provides a unified measure of feature importance that is consistent across different models.</li>
+<li>It takes into account the interactions between features.   </li>
+</ul>
+<p>However, KernelShap also has some <strong>limitations</strong>:   </p>
+<ul>
+<li>It can be computationally expensive, especially for high-dimensional data or complex models.</li>
+<li>It requires a large number of samples to provide accurate estimates of the Shapley values.   </li>
+</ul>
+<p><a id="treeshap"></a></p>
+<h2>TreeShap</h2>
+<p>TreeShap is a model-specific explanation method designed for tree-based models, such as decision trees, random forests, and gradient boosting machines. Like KernelShap, it is based on Shapley values, but it exploits the structure of tree-based models to compute the values efficiently.   </p>
+<p>TreeShap computes the exact Shapley values for each feature by recursively traversing the decision tree, attributing contributions to each feature as it moves down the tree. It uses a dynamic programming approach to avoid redundant calculations and reduce the computational complexity. </p>
+<p><a id="steps-1"></a></p>
+<h3>Steps</h3>
+<p>The TreeShap algorithm involves the following steps:   </p>
+<ol>
+<li>Traverse the tree from the root to the leaf nodes, recording the decision path for the instance of interest.</li>
+<li>Attribute contributions to each feature encountered along the path, taking into account the number of possible feature combinations and the probability of each combination.</li>
+<li>Repeat the process for all trees in the ensemble, if applicable.</li>
+<li>Average the contributions across all trees to obtain the final Shapley values.   </li>
+</ol>
+<p><a id="treeshap-advantages-and-limitations"></a></p>
+<h3>TreeShap advantages and limitations</h3>
+<p>TreeShap has several advantages:   </p>
+<ul>
+<li>It computes the exact Shapley values without the need for sampling or approximations.</li>
+<li>It is computationally efficient due to its dynamic programming approach.</li>
+<li>It is specifically designed for tree-based models, which are widely used in practice.   </li>
+</ul>
+<p>However, TreeShap is limited to tree-based models and cannot be applied to other types of models, such as deep learning or support vector machines. <br>
+<a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>KernelShap and TreeShap are powerful methods for explaining AI models in the context of responsible AI. Both techniques leverage the concept of Shapley values to provide interpretable and fair attributions of feature importance. While KernelShap is a model-agnostic approach that can be applied to any black-box model, TreeShap is tailored for tree-based models and offers exact Shapley values with computational efficiency.   </p>
+<p>Understanding and implementing these methods is crucial for AI practitioners who aim to build transparent, accountable, and trustworthy AI systems. By providing insights into the inner workings of AI models, KernelShap and TreeShap enable developers to identify potential biases, improve the decision-making process, and ultimately foster trust in AI-driven technologies.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/shap/">shap</a>
+                        <a href="https://www.safjan.com/tag/xai/">xai</a>
+                        <a href="https://www.safjan.com/tag/explainable-ai/">explainable-ai</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/lime-tutorial/" title="LIME tutorial">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/" title="Understanding how the SHAP method for explainable AI works.">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/">Explaining AI - The Key Differences Between LIME and SHAP Methods</a></li>
+                        <li><a href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/">Understanding how the SHAP method for explainable AI works.</a></li>
+                        <li><a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/">Understanding how the LIME method for explainable AI works.</a></li>
+                        <li><a href="https://www.safjan.com/anchor-explanations/">Explainable AI - Anchor Explanations</a></li>
+                        <li><a href="https://www.safjan.com/eli5-tutorial/">Understanding AI with ELI5 - Demystifying Decisions (tutorial)</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="When it comes to explainable AI, LIME and SHAP are two popular methods for providing insights into the decisions made by machine learning models. What are the key differences between these methods? In this article, we will help you understand which method may be best for your specific use case."/>
+    <meta name="keywords" content="xai, explainable-ai, lime, shap">
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Explaining AI - The Key Differences Between LIME and SHAP Methods",
+  "datePublished": "2023-04-14 00:00:00+02:00",
+  "dateModified": "2023-04-14 00:00:00+02:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Explaining AI - The Key Differences Between LIME and SHAP Methods"/>
+  <meta property="og:description" content="When it comes to explainable AI, LIME and SHAP are two popular methods for providing insights into the decisions made by machine learning models. What are the key differences between these methods? In this article, we will help you understand which method may be best for your specific use case."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Explainable AI"/>
+  <meta property="article:tag" content="xai"/>
+  <meta property="article:tag" content="explainable-ai"/>
+  <meta property="article:tag" content="lime"/>
+  <meta property="article:tag" content="shap"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_8.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_8.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>When it comes to explainable AI, LIME and SHAP are two popular methods for providing insights into the decisions made by machine learning models. What are the key differences between these methods? In this article, we will help you understand which method may be best for your specific use case.</p>"/>
+    <meta name="twitter:title" content="Explaining AI - The Key Differences Between LIME and SHAP Methods"/>
+
+
+    <title>    Explaining AI - The Key Differences Between LIME and SHAP Methods
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-04-14 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Explaining%20AI%20-%20The%20Key%20Differences%20Between%20LIME%20and%20SHAP%20Methods&url=https%3A//www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/&hashtags=xai,explainable-ai,lime,shap" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Explaining%20AI%20-%20The%20Key%20Differences%20Between%20LIME%20and%20SHAP%20Methods&u=https%3A//www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/&title=Explaining%20AI%20-%20The%20Key%20Differences%20Between%20LIME%20and%20SHAP%20Methods" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="explaining-ai-the-key-differences-between-lime-and-shap-methods">Explaining AI - The Key Differences Between LIME and SHAP Methods</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>When it comes to explainable AI, LIME and SHAP are two popular methods for providing insights into the decisions made by machine learning models. What are the key differences between these methods? In this article, we will help you understand which method may be best for your specific use case.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/explaining-ai-the-key-differences-between-lime-and-shap-methods/">
+                        <img style="width: 100%; "
+                         src="/images/head/abstract_8.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <p>LIME and SHAP are both popular methods for explainable AI (XAI), but they differ in several key ways.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#model-agnostic-vs-model-specific">Model-agnostic vs model-specific</a></li>
+<li><a href="#local-vs-global-explanations">Local vs global explanations</a></li>
+<li><a href="#kernel-based-vs-game-theoretic-approach">Kernel-based vs game-theoretic approach</a></li>
+<li><a href="#interpretability-vs-accuracy-trade-off">Interpretability vs accuracy trade-off</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="model-agnostic-vs-model-specific"></a></p>
+<h2>Model-agnostic vs model-specific</h2>
+<p>One of the main differences between LIME and SHAP is that LIME is model-agnostic, meaning it can be used to explain the decisions of any machine learning model, regardless of the algorithm used. In contrast, SHAP is a model-specific method that is designed to explain the decisions of tree-based models, such as decision trees, random forests, and gradient boosting machines.</p>
+<p><a id="local-vs-global-explanations"></a></p>
+<h2>Local vs global explanations</h2>
+<p>Another key difference between LIME and SHAP is the type of explanation they provide. LIME generates local explanations, meaning it explains the decision of a complex model for a specific instance or observation. In contrast, SHAP provides global explanations, meaning it explains the overall behavior of the model across all instances.</p>
+<p><a id="kernel-based-vs-game-theoretic-approach"></a></p>
+<h2>Kernel-based vs game-theoretic approach</h2>
+<p>LIME uses a kernel-based approach to explain the decisions of a complex model. It creates a local, interpretable model that approximates the behavior of the complex model around a specific instance. In contrast, SHAP uses a game-theoretic approach to explain the contribution of each feature to the final prediction. It assigns a "credit" score to each feature based on how much it contributes to the prediction.</p>
+<p><a id="interpretability-vs-accuracy-trade-off"></a></p>
+<h2>Interpretability vs accuracy trade-off</h2>
+<p>Finally, LIME and SHAP differ in their approach to the interpretability vs accuracy trade-off. LIME sacrifices some accuracy in order to provide more interpretable explanations. It creates a simpler model that may not be as accurate as the complex model, but is easier to understand. In contrast, SHAP aims to provide accurate explanations without sacrificing model accuracy. It uses a more sophisticated approach to explain the contribution of each feature, but this can be more difficult to understand for non-experts.</p>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>LIME and SHAP are both useful methods for XAI, but they differ in their approach to explaining the decisions of complex machine learning models. LIME is model-agnostic and provides local, interpretable explanations, while SHAP is model-specific and provides global explanations using a game-theoretic approach. The choice between LIME and SHAP depends on the specific needs of the user and the characteristics of the machine learning model being explained.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/xai/">xai</a>
+                        <a href="https://www.safjan.com/tag/explainable-ai/">explainable-ai</a>
+                        <a href="https://www.safjan.com/tag/lime/">lime</a>
+                        <a href="https://www.safjan.com/tag/shap/">shap</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/federated-social-web/" title="Federated Social Web">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/" title="Convert HEIC and HEIF to jpg, png, bmp with Python">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/">Understanding how the LIME method for explainable AI works.</a></li>
+                        <li><a href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/">Understanding how the SHAP method for explainable AI works.</a></li>
+                        <li><a href="https://www.safjan.com/kernelshap-treeshap-two-most-popular-variations-of-the-shap-method/">KernelShap and TreeShap - Two Most Popular Variations of the SHAP method.</a></li>
+                        <li><a href="https://www.safjan.com/anchor-explanations/">Explainable AI - Anchor Explanations</a></li>
+                        <li><a href="https://www.safjan.com/eli5-tutorial/">Understanding AI with ELI5 - Demystifying Decisions (tutorial)</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
