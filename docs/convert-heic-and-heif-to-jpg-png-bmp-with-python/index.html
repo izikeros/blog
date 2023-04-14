@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog …"/>
+    <meta name="keywords" content="python, heic, heif, pillow, pil, pyheic, convert, image-conversion, compression">
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Convert HEIC and HEIF to jpg, png, bmp with Python",
+  "datePublished": "2023-04-14 00:00:00+02:00",
+  "dateModified": "2023-04-14 00:00:00+02:00"
+}
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Convert HEIC and HEIF to jpg, png, bmp with Python"/>
+  <meta property="og:description" content="HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="heic"/>
+  <meta property="article:tag" content="heif"/>
+  <meta property="article:tag" content="pillow"/>
+  <meta property="article:tag" content="pil"/>
+  <meta property="article:tag" content="pyheic"/>
+  <meta property="article:tag" content="convert"/>
+  <meta property="article:tag" content="image-conversion"/>
+  <meta property="article:tag" content="compression"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Convert HEIC and HEIF to jpg, png, bmp with Python"/>
+
+
+    <title>    Convert HEIC and HEIF to jpg, png, bmp with Python
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-04-14 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Convert%20HEIC%20and%20HEIF%20to%20jpg%2C%20png%2C%20bmp%20with%20Python&url=https%3A//www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/&hashtags=python,heic,heif,pillow,pil,pyheic,convert,image-conversion,compression" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Convert%20HEIC%20and%20HEIF%20to%20jpg%2C%20png%2C%20bmp%20with%20Python&u=https%3A//www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/&title=Convert%20HEIC%20and%20HEIF%20to%20jpg%2C%20png%2C%20bmp%20with%20Python" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="convert-heic-and-heif-to-jpg-png-bmp-with-python">Convert HEIC and HEIF to jpg, png, bmp with Python</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog post, we will explore how to convert HEIF and HEIC files to JPEG and other popular image formats using Python.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#tutorial">Tutorial</a><ul>
+<li><a href="#step-1-installing-required-libraries">Step 1: Installing Required Libraries</a></li>
+<li><a href="#step-2-converting-heif-and-heic-files-to-jpeg">Step 2: Converting HEIF and HEIC Files to JPEG</a></li>
+<li><a href="#step-4-converting-heif-and-heic-files-in-bulk-to-jpeg">Step 4: Converting HEIF and HEIC Files in Bulk to JPEG</a></li>
+<li><a href="#use-pyheif-library">Use pyheif library</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="tutorial"></a></p>
+<h2>Tutorial</h2>
+<p>Python provides several libraries for working with images, including Pillow, OpenCV, and PyImageSearch. For this tutorial, we will be using the Pillow library, which is a fork of the Python Imaging Library (PIL) and provides a simple and easy-to-use API for image processing.</p>
+<p><a id="step-1-installing-required-libraries"></a></p>
+<h3>Step 1: Installing Required Libraries</h3>
+<p>Before we can begin converting HEIF and HEIC files, we need to make sure we have the necessary libraries installed. To install Pillow, open a terminal or command prompt and run the following command:</p>
+<div class="highlight"><pre><span></span><code>pip install Pillow
+</code></pre></div>
+
+<p><a id="step-2-converting-heif-and-heic-files-to-jpeg"></a></p>
+<h3>Step 2: Converting HEIF and HEIC Files to JPEG</h3>
+<p>To convert HEIF and HEIC files to JPEG, we can use the Pillow library's <code>Image</code> module. The <code>Image</code> module provides several methods for opening and saving images in different formats, including <code>JPEG</code>, <code>PNG</code>, and <code>BMP</code>.</p>
+<p>Here is a Python code example that shows how to convert a single HEIF or HEIC file to JPEG:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># Open HEIF or HEIC file</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.heic&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to JPEG</span>
+<span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;example.jpg&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In the code above, we first import the <code>Image</code> module from the Pillow library. We then use the <code>open()</code> method to open the HEIF or HEIC file and assign it to the <code>image</code> variable. We then use the <code>convert()</code> method to convert the image to the RGB color space, which is required for saving the image in JPEG format. Finally, we use the <code>save()</code> method to save the converted image as a JPEG file.</p>
+<p>Note that in order to convert HEIF and HEIC files to JPEG using Pillow, we need to convert them to the RGB color space. This can result in a loss of some of the advanced features of HEIF and HEIC, such as support for high dynamic range (HDR) and wide color gamut (WCG).</p>
+<p>If you want to convert multiple HEIF or HEIC files to JPEG, you can use a for loop to iterate over a list of file names:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Get list of HEIF and HEIC files in directory</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/path/to/directory&#39;</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.heic&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.heif&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Convert each file to JPEG</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>In the code above, we use the <code>os</code> library to get a list of HEIF and HEIC files in a directory. We then use a for loop to iterate over the list of file names, open each file using the <code>Image</code> module, convert it to RGB color space, and save it as a JPEG file with the same name as the original file.</p>
+<p>Step 3: Converting HEIF and HEIC Files to Other Formats</p>
+<p>In addition to converting HEIF and HEIC files to JPEG, we can also convert them to other popular formats like PNG and BMP using the Pillow library. Here is an example that shows how to convert a HEIF or HEIC file to PNG:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>  <span class="c1"># Open HEIF or HEIC</span>
+
+<span class="n">HEIC</span> <span class="n">file</span> <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.heic&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to PNG</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;example.png&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In the code above, we use the <code>save()</code> method to save the opened HEIF or HEIC file as a PNG file.  Similarly, we can convert HEIF and HEIC files to BMP format using the <code>save()</code> method with the <code>'BMP'</code> argument:  </p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> <span class="c1"># Open HEIF or HEIC file </span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.heic&#39;</span><span class="p">)</span> 
+
+<span class="c1"># Convert to BMP </span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;example.bmp&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a id="step-4-converting-heif-and-heic-files-in-bulk-to-jpeg"></a></p>
+<h3>Step 4: Converting HEIF and HEIC Files in Bulk to JPEG</h3>
+<p>If you have a large number of HEIF and HEIC files that you need to convert to JPEG, you can use the following Python script:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Get list of HEIF and HEIC files in directory</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/path/to/directory&#39;</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.heic&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.heif&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Create output directory if it does not exist</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">)):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">))</span>
+
+<span class="c1"># Convert each file to JPEG</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>In the code above, we use the <code>os</code> library to get a list of HEIF and HEIC files in a directory. We then create an output directory if it does not already exist. Finally, we use a for loop to iterate over the list of file names, open each file using the <code>Image</code> module, convert it to RGB color space, and save it as a JPEG file in the output directory with the same name as the original file.</p>
+<p><a id="use-pyheif-library"></a></p>
+<h3>Use pyheif library</h3>
+<p>Here is an example of how to use the <code>pyheif</code> library to convert HEIF and HEIC files to JPEG:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyheif</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># Open HEIF or HEIC file</span>
+<span class="n">heif_file</span> <span class="o">=</span> <span class="n">pyheif</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;example.heic&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract the image data</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">frombytes</span><span class="p">(</span><span class="n">heif_file</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">heif_file</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">heif_file</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Save as JPEG</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;example.jpg&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In the code above, we use the <code>pyheif</code> library to read in the HEIF or HEIC file, then use the <code>frombytes()</code> method of the <code>PIL.Image</code> module to create a PIL image object from the extracted image data. Finally, we use the <code>save()</code> method to save the image as a JPEG file.</p>
+<p>To convert multiple HEIF and HEIC files in bulk using <code>pyheif</code>, you can use the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyheif</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Get list of HEIF and HEIC files in directory</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/path/to/directory&#39;</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.heic&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.heif&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Create output directory if it does not exist</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">)):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">))</span>
+
+<span class="c1"># Convert each file to JPEG</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">heif_file</span> <span class="o">=</span> <span class="n">pyheif</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">frombytes</span><span class="p">(</span><span class="n">heif_file</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">heif_file</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">heif_file</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>In this code, we use the same approach to get a list of HEIF and HEIC files in a directory and create an output directory if it does not already exist. Then, we use a for loop to iterate over the list of file names, read in each HEIF or HEIC file using <code>pyheif</code>, create a PIL image object from the extracted image data, and save it as a JPEG file in the output directory with the same name as the original file.</p>
+<p>Using the <code>pyheif</code> library to convert HEIF and HEIC files to JPEG is a simple and effective way to handle image file format conversions in Python.</p>
+<p><a id="summary"></a></p>
+<h2>Summary</h2>
+<p>In this blog post, we explored how to convert HEIF and HEIC files to JPEG and other popular image formats using Python and the Pillow and pyheif libraries. We covered how to convert a single file as well as multiple files in bulk. With this knowledge, you can easily convert HEIF and HEIC files to more widely supported formats, enabling you to use them on any device or software application that supports images.</p>
+<p>X::[[heic_and_heif_formats_for_image_and_video]]
+up::[[MOC_Python]]</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/heic/">heic</a>
+                        <a href="https://www.safjan.com/tag/heif/">heif</a>
+                        <a href="https://www.safjan.com/tag/pillow/">pillow</a>
+                        <a href="https://www.safjan.com/tag/pil/">pil</a>
+                        <a href="https://www.safjan.com/tag/pyheic/">pyheic</a>
+                        <a href="https://www.safjan.com/tag/convert/">convert</a>
+                        <a href="https://www.safjan.com/tag/image-conversion/">image-conversion</a>
+                        <a href="https://www.safjan.com/tag/compression/">compression</a>
+            </p>
+        </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/heif-and-heic-format-for-images-and-video/" title="Smaller Files, Better Quality: The Advantages of HEIF and HEIC">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/heif-and-heic-format-for-images-and-video/">Smaller Files, Better Quality: The Advantages of HEIF and HEIC</a></li>
+                        <li><a href="https://www.safjan.com/python-convert-docstring-styles/">Python - convert docstring styles</a></li>
+                        <li><a href="https://www.safjan.com/named-tuples-vs-dictionaries/">Python - named tuples or dictionaries to store structured data?</a></li>
+                        <li><a href="https://www.safjan.com/type-hint-for-undetermined-number-of-elements/">Python - how to make type hint for the tuple with undetermined number of strings?</a></li>
+                        <li><a href="https://www.safjan.com/type-hints-elypsis-for-arbitrary-number-of-elements/">How to use elypsis in type hints to indicate arbitrary number of elements</a></li>
+                </ul>
+            </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
