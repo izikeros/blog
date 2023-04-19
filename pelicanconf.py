@@ -228,6 +228,8 @@ MARKUP = ("md", "ipynb")
 #     },
 # }
 # USE_MERMAID = True  # Adds javascript to base.html template
+ADD_BIBTEX_NOTE = True
+BIBTEX_JOURNAL = "Krystian's Safjan Blog"
 
 if MY_THEME == "flex":
     PLUGINS = [
@@ -239,6 +241,7 @@ if MY_THEME == "flex":
         "related_posts",
         "share_post",
         "sitemap",
+        "obsidian",
     ]
 elif MY_THEME == "elegant":
     PLUGINS = ["pelican-ipynb.markup", "post_stats", "representative_image"]
