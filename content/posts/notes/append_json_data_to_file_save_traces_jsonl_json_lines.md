@@ -1,10 +1,10 @@
 ---
 title: Append JSON data to file, save the traces
+slug: append-json-data-to-file-save-traces
 category: note
 date: '2022-06-03'
 modified: '2022-07-05'
 status: published
-slug: append-json-data-to-file-save-traces
 tags: append-json, data, json, trace, jsonlines, python, dataset
 ---
 
@@ -13,12 +13,13 @@ Sometimes there is a need to store data in JSON format but simultaneously append
 
 For this appending use-case derivative format: [JSON Lines](https://jsonlines.org/) can be used.
 
-JSON lines is also called newline-delimited JSON it is:
+JSON lines is also called newline-delimited JSON it:
+
 - is a convenient format for **storing structured data** that may be processed **one record at a time**
 - works well with **unix-style text processing** tools and **shell pipelines**. [[cli tools for data science]]
 - is an excellent format for **log files**
 - is a flexible format for **passing messages between** cooperating **processes**.
-use jsonlines
+
 
 ## Python package - `jsonlines`
 There is [jsonlines](https://jsonlines.readthedocs.io/en/latest/) Python package that supports using jsonlines format. Install it with `pip install jsonlines` and use like in example below to read and write one JSON object per line:
@@ -34,6 +35,7 @@ with jsonlines.open('output.jsonl', mode='w') as writer:
 
 ## JSON Lines Better than CSV
 The jsonlines format is sometimes considered better than CSV since:
+
 - CSV has **no standard encoding**
 - no standard **column separator**
 - multiple **character escaping** standards.
@@ -53,7 +55,37 @@ You can use CLI tools to see complex, nested data structures:
 $ grep pair winning_hands.jsonl | jq .
 ```
 
+this will give you all records with keyword "pair"
+```json
+{
+  "name": "Gilbert",
+  "wins": [
+    [
+      "straight",
+      "7♣"
+    ],
+    [
+      "one pair",
+      "10♥"
+    ]
+  ]
+}
+{
+  "name": "Alexa",
+  "wins": [
+    [
+      "two pair",
+      "4♠"
+    ],
+    [
+      "two pair",
+      "9♠"
+    ]
+  ]
+}
+```
 See also:
+
 - [NDJSON](http://ndjson.org/) - Newline delimited JSON:
 - [ndjson standard specification](https://github.com/ndjson/ndjson-spec)
 

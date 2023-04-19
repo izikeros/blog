@@ -1,5 +1,5 @@
 ---
-Title: Zero-knowledge explained like to 5 uears old.
+Title: Zero-knowledge explained like to 5 years old
 Slug: zero-knowledge-for-5yo
 Date: 2023-04-06
 Modified: 2023-04-06

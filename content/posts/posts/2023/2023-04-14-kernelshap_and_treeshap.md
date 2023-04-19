@@ -1,5 +1,5 @@
 ---
-Title: KernelShap and TreeShap - Two Most Popular Variations of the SHAP method.
+Title: KernelShap and TreeShap - Two Most Popular Variations of the SHAP method
 Slug: kernelshap-treeshap-two-most-popular-variations-of-the-shap-method
 Date: 2023-04-14
 Modified: 2023-04-14

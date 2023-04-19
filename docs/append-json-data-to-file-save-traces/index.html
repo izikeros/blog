@@ -64,6 +64,11 @@
 
 
 
+
+
+
+
+
     </script>
 
 
@@ -292,12 +297,13 @@
             <h2>The JSON Lines standard</h2>
 <p>Sometimes there is a need to store data in JSON format but simultaneously append data to files when new data arrive. JSON format stores data, on the top level, like a dictionary or a list it is not trivial to append new data without reading the whole file.</p>
 <p>For this appending use-case derivative format: <a href="https://jsonlines.org/">JSON Lines</a> can be used.</p>
-<p>JSON lines is also called newline-delimited JSON it is:
-- is a convenient format for <strong>storing structured data</strong> that may be processed <strong>one record at a time</strong>
-- works well with <strong>unix-style text processing</strong> tools and <strong>shell pipelines</strong>. [[cli tools for data science]]
-- is an excellent format for <strong>log files</strong>
-- is a flexible format for <strong>passing messages between</strong> cooperating <strong>processes</strong>.
-use jsonlines</p>
+<p>JSON lines is also called newline-delimited JSON it:</p>
+<ul>
+<li>is a convenient format for <strong>storing structured data</strong> that may be processed <strong>one record at a time</strong></li>
+<li>works well with <strong>unix-style text processing</strong> tools and <strong>shell pipelines</strong>. cli tools for data science</li>
+<li>is an excellent format for <strong>log files</strong></li>
+<li>is a flexible format for <strong>passing messages between</strong> cooperating <strong>processes</strong>.</li>
+</ul>
 <h2>Python package - <code>jsonlines</code></h2>
 <p>There is <a href="https://jsonlines.readthedocs.io/en/latest/">jsonlines</a> Python package that supports using jsonlines format. Install it with <code>pip install jsonlines</code> and use like in example below to read and write one JSON object per line:</p>
 <div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="n">jsonlines</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;input.jsonl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
@@ -309,16 +315,18 @@ use jsonlines</p>
 </code></pre></div>
 
 <h2>JSON Lines Better than CSV</h2>
-<p>The jsonlines format is sometimes considered better than CSV since:
-- CSV has <strong>no standard encoding</strong>
-- no standard <strong>column separator</strong>
-- multiple <strong>character escaping</strong> standards.
-- <strong>String is the only type supported</strong> for cell values, so some programs attempt to guess the correct types.</p>
+<p>The jsonlines format is sometimes considered better than CSV since:</p>
+<ul>
+<li>CSV has <strong>no standard encoding</strong></li>
+<li>no standard <strong>column separator</strong></li>
+<li>multiple <strong>character escaping</strong> standards.</li>
+<li><strong>String is the only type supported</strong> for cell values, so some programs attempt to guess the correct types.</li>
+</ul>
 <p>When compared to CSV JSON Lines allows for easy nesting of the data</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gilbert&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;wins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">&quot;straight&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;7♣&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;one pair&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;10♥&quot;</span><span class="p">]]}</span>
 <span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alexa&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;wins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">&quot;two pair&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;4♠&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;two pair&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;9♠&quot;</span><span class="p">]]}</span>
 <span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;May&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;wins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span>
-<span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Deloise&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;wins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">&quot;three of a kind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;5♣&quot;</span><span class="p">]]}</span>
+<span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Deloise&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;wins&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;three of a kind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;5♣&quot;</span><span class="p">}</span>
 </code></pre></div>
 
 <p>JSON Lines handles tabular data cleanly and without ambiguity. Cells may use the standard JSON types.</p>
@@ -326,10 +334,40 @@ use jsonlines</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>grep<span class="w"> </span>pair<span class="w"> </span>winning_hands.jsonl<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.
 </code></pre></div>
 
-<p>See also:
-- <a href="http://ndjson.org/">NDJSON</a> - Newline delimited JSON:
-- <a href="https://github.com/ndjson/ndjson-spec">ndjson standard specification</a></p>
-<p>up::[[dataset]]</p>
+<p>this will give you all records with keyword "pair"</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gilbert&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;wins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;straight&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;7♣&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;one pair&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;10♥&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alexa&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;wins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;two pair&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;4♠&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;two pair&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;9♠&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>See also:</p>
+<ul>
+<li><a href="http://ndjson.org/">NDJSON</a> - Newline delimited JSON:</li>
+<li><a href="https://github.com/ndjson/ndjson-spec">ndjson standard specification</a></li>
+</ul>
         </div>
 
 
@@ -347,6 +385,23 @@ use jsonlines</p>
         </div>
 
 
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/model-stacking-bagging-ensembling-boosting-5yo/">Model Stacking, Bagging, Ensembling, and Boosting Explained with LEGO metaphor</a></li>
+                        <li><a href="https://www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/">Convert HEIC and HEIF to jpg, png, bmp with Python</a></li>
+                        <li><a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/">LIME - Understanding How This Method for Explainable AI Works</a></li>
+                        <li><a href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/">SHAP - Understanding How This Method for Explainable AI Works</a></li>
+                        <li><a href="https://www.safjan.com/lime-tutorial/">LIME tutorial</a></li>
+                </ul>
+            </div>
+
   <div class="neighbors">
     <a class="btn float-left" href="https://www.safjan.com/bash-determine-if-linux-or-macos/" title="Bash - determine if script runs on Linux, macOS or other system">
       <i class="fa fa-angle-left"></i> Previous Post
@@ -355,17 +410,6 @@ use jsonlines</p>
       Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
-
-            <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li><a href="https://www.safjan.com/model-stacking-bagging-ensembling-boosting-5yo/">Model Stacking, Bagging, Ensembling, and Boosting Explained with LEGO metaphor</a></li>
-                        <li><a href="https://www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/">Convert HEIC and HEIF to jpg, png, bmp with Python</a></li>
-                        <li><a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/">Understanding how the LIME method for explainable AI works.</a></li>
-                        <li><a href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/">Understanding how the SHAP method for explainable AI works.</a></li>
-                        <li><a href="https://www.safjan.com/lime-tutorial/">LIME tutorial</a></li>
-                </ul>
-            </div>
 
 
     </article>
