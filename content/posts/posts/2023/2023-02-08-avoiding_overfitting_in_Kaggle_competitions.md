@@ -140,3 +140,5 @@ Boosting is an iterative technique that trains weak models and combines them to 
 <a id="conclusion"></a>
 ## Conclusion
 To avoid overfitting in Kaggle competitions, it's crucial to evaluate the model's performance on unseen data. These advanced methods, along with the more common methods like cross-validation, early stopping, regularization, ensemble methods, and feature selection, can be effectively used to prevent overfitting and improve the performance of the models in Kaggle competitions.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

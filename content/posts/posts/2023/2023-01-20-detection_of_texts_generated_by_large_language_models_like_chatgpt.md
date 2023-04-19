@@ -7,6 +7,7 @@ Start: 2023-01-20
 Tags: NLP, machine-learning, ChatGPT, BERT, Adversarial-networks, GAN
 Category: Machine Learning
 Image: /images/head/caligraphy_1_2x1_640px.jpg
+banner: /images/head/caligraphy_1_2x1_640px.jpg
 Summary: Discover the latest methods for distinguishing machine-generated text from the human-written text. Learn about statistical, syntactic, semantic, and neural network-based approaches. Stay up-to-date with the latest research in NLP and AI.
 Status: published
 prompt:

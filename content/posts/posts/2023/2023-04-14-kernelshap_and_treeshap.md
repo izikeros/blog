@@ -7,6 +7,7 @@ Start: 2023-04-14
 Tags: shap, xai, explainable-ai
 Category: Explainable AI
 Image: /images/head/abstract_9.jpg
+banner: /images/head/abstract_9.jpg
 Summary: Making sense of AI's inner workings with KernelShap and TreeShap – the powerfull tools for responsible AI.
 Status: published
 prompt:
@@ -118,3 +119,5 @@ However, TreeShap is limited to tree-based models and cannot be applied to other
 KernelShap and TreeShap are powerful methods for explaining AI models in the context of responsible AI. Both techniques leverage the concept of Shapley values to provide interpretable and fair attributions of feature importance. While KernelShap is a model-agnostic approach that can be applied to any black-box model, TreeShap is tailored for tree-based models and offers exact Shapley values with computational efficiency.   
   
 Understanding and implementing these methods is crucial for AI practitioners who aim to build transparent, accountable, and trustworthy AI systems. By providing insights into the inner workings of AI models, KernelShap and TreeShap enable developers to identify potential biases, improve the decision-making process, and ultimately foster trust in AI-driven technologies.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

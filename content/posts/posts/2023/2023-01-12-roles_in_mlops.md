@@ -7,6 +7,7 @@ Start: 2023-01-12
 Tags: mlops, devops, machine-learning, interview, job, job-search, roles
 Category: MLOps
 Image: /images/head/roles_in_mlops.jpg
+banner: "/images/head/roles_in_mlops.jpg"
 Summary: Learn about the different roles in MLOps and the responsibilities of each role, including Model Deployment Engineer, Data pipeline Engineer, Model Monitoring Engineer, Model Governance Engineer, Machine Learning Infra Engineer and Machine Learning Platform Engineer.
 Status: published
 ---
@@ -33,7 +34,7 @@ Model Governance person is responsible for managing and controlling the lifecycl
 MLOps Enginner is responsible for coordinating and managing the end-to-end machine learning pipeline. They work closely with data engineers, machine learning engineers, data scientists, devops engineers, and model governance to ensure that models are properly integrated, deployed, and maintained in a production environment.
 
 
-## Roles specific to MLOps Engineering
+## Specialisations in MLOps Engineering
 The generic **MLOps Engineer** role can be broken down into several more specific roles:
 
 ### 1.  Model Deployment Engineer

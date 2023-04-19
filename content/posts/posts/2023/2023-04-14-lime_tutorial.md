@@ -1,5 +1,5 @@
 ---
-Title: LIME tutorial
+Title: LIME Tutorial
 Slug: lime-tutorial
 Date: 2023-04-14
 Modified: 2023-04-14
@@ -170,6 +170,8 @@ exp.show_in_notebook(show_table=True)
 In this tutorial, we learned how to use the LIME library for explainable AI. We started by importing the necessary libraries and loading the Iris dataset. Then, we trained a random forest classifier on the dataset and used LIME to explain individual predictions and visualize model decisions.
 
 We saw how LIME can be used to identify the most important features for a prediction, and how these features can be visualized using a bar chart. We also saw how LIME can be used to visualize how the model is making decisions more generally, using a decision plot.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
 ## Related
 - [python - How to plot Lime report when there is a lot of features in data-set - Stack Overflow](https://stackoverflow.com/questions/63937620/how-to-plot-lime-report-when-there-is-a-lot-of-features-in-data-set)

@@ -7,7 +7,7 @@ Start: 2023-02-13
 Tags: python, flask, rpc, client-server, communication
 Category: Howto
 Image: /images/head/abstract_3.jpg
-banner: /images/head/abstract_3.jpg
+banner: "/images/head/abstract_3.jpg"
 Summary: Discover the world of distributed systems and build your own Python RPC server using Flask. Harness the power of remote procedure calls today!
 Status: published
 prompt:
@@ -157,3 +157,5 @@ The above code sends five JSON-RPC requests to the server and prints the results
 ## Conclusion
 
 In this blog post, we have shown you how to build a Python RPC server using Flask. We have used the `jsonrpcserver` package to add a JSON-RPC endpoint to Flask and define JSON-RPC functions. We have also shown you how to test the server using the `jsonrpcclient` package. With this knowledge, you can build powerful distributed systems that can communicate seamlessly across networks.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

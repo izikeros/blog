@@ -7,7 +7,7 @@ Start: 2023-02-13
 Tags: machine-learning, r2-score, regression-model, model-evaluation, mse, rmse, performance-metrics, machine-learning, data-science, data-analysis
 Category: Machine Learning
 Image: /images/head/abstract_3.jpg
-banner: /images/head/abstract_3.jpg
+banner: "/images/head/abstract_3.jpg"
 Summary: Don't let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions.
 Status: published
 prompt: Give me detailed guidelines on how to interpret evaluation of the model performance in regression using R2, MSE and RMSE metrics. Add examples of cases when single metrics can be misleading and how to use other metrics to have accurate model performance assessment. Give me long, blog-post style markdown text with latex equations when needed and hyperlinks.
@@ -152,4 +152,4 @@ Different metrics may be more appropriate for different regression problems. For
 When evaluating the performance of a regression model, it is important to consider multiple metrics and not rely on a single metric alone. The R² score, MSE, and RMSE are common metrics used to evaluate regression models, but each provides a different perspective on the model's performance. By examining multiple metrics and considering the size of the data set, it is possible to obtain a more accurate assessment of the model's performance. Analyzing the performance of a regression model requires looking at multiple metrics and understanding their relationship to each other and the problem being solved.
 
 
-​
+​*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

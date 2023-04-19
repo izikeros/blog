@@ -7,6 +7,7 @@ Start: 2023-01-16
 Tags: pandas, python, schema-validation, pandas-schema, great_expectations, pandera, data-enforce, data-manipulation, data-analysis, tools-for-schema-validation, methods-for-schema-validation, dataframe-validation, dtype-validation, leading-whitespace-validation, trailing-whitespace-validation, in-list-validation
 Category: Machine Learning
 Image: /images/head/elegant_panda.jpg
+banner: /images/head/elegant_panda.jpg
 Summary: Overview of the available tools and methods for schema validation in pandas, examplary code snippets and recommendation for when to use given tool.
 Status: published
 prompt:
@@ -196,3 +197,5 @@ The built-in attributes such as `.dtypes` and `.shape` may be sufficient for sim
 The choice of tool will depend on the complexity of the schema and the specific requirements of the project. **If the schema is simple** and you only need to check data types and dimensions, the **built-in attributes** may be sufficient. However, if you need **more advanced functionality** such as custom validation logic or integration with other data pipeline tools, `pandas_schema`, `great_expectations`, `pandera` or `data-enforce` libraries are better choices.
 
 Overall, it is recommended to use `great_expectations` for more complex projects, as it has more functionality and a more human-readable syntax. However, if you're looking for a more lightweight solution `pandas_schema`, `pandera` and `data-enforce` are also good options.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

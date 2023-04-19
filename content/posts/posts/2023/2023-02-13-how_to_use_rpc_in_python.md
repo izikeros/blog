@@ -1,5 +1,5 @@
 ---
-Title: How to use RPC in python?
+Title: How to Use RPC in Python?
 Slug: how-to-use-rpc-in-python
 Date: 2023-02-13
 Modified: 2023-02-13
@@ -7,7 +7,7 @@ Start: 2023-02-13
 Tags: python, microservices, communication, rpc, rest, remote-procedure-call, xmlrpc, jsonrpc, distributed-computing, client-server, server, client, SimpleXMLRPCServer, ServerProxy, remote-communication, Flask
 Category: Howto
 Image: /images/head/abstract_1.jpg
-banner: /images/head/abstract_1.jpg
+banner: "/images/head/abstract_1.jpg"
 Summary: Get Started with RPC - A Beginner's Guide to Building a Python RPC Server Using xmlrpc and jsonrpc.
 Status: published
 prompt:
@@ -102,9 +102,12 @@ The cube of 3 is: 27
 As you can see, we have successfully used RPC to call methods on a remote server from a client application.
 
 ## Conclusion 
-RPC is a powerful technique for building distributed applications, and Python provides built-in support for RPC through the xmlrpc and jsonrpc libraries. Using RPC in Python is straightforward and can be done with just a few lines of code. By following the examples provided in this blog post, you should now have a good understanding of how to use RPC in Python and how to create a server that exposes methods that can be called remotely by a client application.
+RPC is a powerful technique for building distributed applications, and Python provides built-in support for RPC through the xmlrpc and jsonrpc libraries. Using RPC in Python is straightforward and can be done with just a few lines of code. By following the examples provided in this blog post, you should now understand how to use RPC in Python and how to create a server that exposes methods that can be called remotely by a client application.
 
-You mig be interested in reading my ["Guide to building a Python RPC server using Flask"](./guide-building-python-rpc-server-using-flask)
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+
+You might be interested in reading my ["Guide to building a Python RPC server using Flask"](./guide-building-python-rpc-server-using-flask)
 
 ## Further Reading
 1.  The Python documentation on xmlrpc: [https://docs.python.org/3/library/xmlrpc.html](https://docs.python.org/3/library/xmlrpc.html)

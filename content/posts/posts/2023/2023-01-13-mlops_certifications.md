@@ -7,6 +7,7 @@ Start: 2023-01-13
 Tags: mlops, certificates, job-search, interview, machine-learning 
 Category: MLOps
 Image: /images/head/mlops_certificates.jpg
+banner: /images/head/mlops_certificates.jpg
 Summary: Learn about popular MLOps certifications offered by Amazon, Google, and Microsoft. Understand if they are worth the effort and money and discover free MLOps certifications available to gain knowledge and understanding of the field.
 Status: published
 prompt:
@@ -97,8 +98,9 @@ Additionally, we have also discussed the availability of free MLOps certificatio
 
 Ultimately, whether or not you decide to pursue an MLOps certification will depend on your goals and career aspirations. But, regardless of your decision, it is essential to continuously learn and stay up-to-date with the latest trends and best practices in the field.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+
 **Credits:**
 
 Heading image from [Unsplash](https://unsplash.com/photos/hvL7qlvZ5T4) by [Joan Kwamboka](https://unsplash.com/@city_child)
-
-*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

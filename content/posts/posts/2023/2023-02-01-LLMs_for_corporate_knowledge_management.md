@@ -109,3 +109,5 @@ If you are aware of any other serious blockers -  [Let me know](mailto:ksafjan@g
 ## Conclusion
 
 LLMs provide a powerful solution for knowledge management in a corporate environment. With their ability to access all the knowledge within an organization, natural language processing capabilities, and improved accuracy, LLMs are the future of knowledge management. By following the steps outlined above, organizations can successfully implement LLMs and take advantage of their many benefits.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

@@ -7,6 +7,7 @@ Start: 2023-01-19
 Tags: interpretability, xai, explainability, ai, machine-learning, model
 Category: Explainable AI
 Image: /images/head/AI_gray-haired_1_640.jpg
+banner: /images/head/AI_gray-haired_1_640.jpg
 Summary: Learn about the evaluation of interpretability in machine learning with this guide. Discover different levels and methods for assessing the explainability of models.
 Status: published
 prompt:

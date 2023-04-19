@@ -24,3 +24,5 @@ The danger of relying on large language models is that they can perpetuate false
 > Therefore, it is important to recognise that **eloquence does not guarantee knowledge or expertise**. We should be critical of the information we receive, especially when it comes from sources that use complex language to appear knowledgeable or trustworthy. Instead, we should focus on the substance of what is being said, and evaluate information based on its accuracy, reliability, and credibility.
 
 While we may be accustomed to associating weak speech with a lack of knowledge and expertise, and eloquent speech with education and expertise, this is not always the case. We need to be critical of the language we consume, especially with the rise of large language models, and focus on the substance of what is being said. By doing so, we can make informed decisions and avoid being misled by false or inaccurate information.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

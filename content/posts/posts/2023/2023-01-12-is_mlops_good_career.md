@@ -7,6 +7,7 @@ Start: 2023-01-12
 Tags: mlops, devops, machine-learning, interview, job, job-search, roles, career 
 Category: MLOps
 Image: /images/head/is_mlops_good_career.jpg
+banner: /images/head/is_mlops_good_career.jpg
 Summary: Is a career in MLOps right for you? Learn about the pros and cons of this growing field, including high demand, high earning potential, exciting work, and career growth opportunities.
 Status: published
 ---

@@ -7,7 +7,7 @@ Start: 2023-02-01
 Tags: machine-learning, AI, cognitive-skills, memory, creativity 
 Category: Machine Learning
 Image: /images/head/search_engines_impact_on_cognitive_skills.jpg
-banner: /images/head/search_engines_impact_on_cognitive_skills.jpg
+banner: "/images/head/search_engines_impact_on_cognitive_skills.jpg"
 Summary:  Understand the effects of search engines and AI on our mental and cognitive capabilities. Equip yourself with the knowledge you need to make informed decisions about your own usage of these technologies.
 Status: published
 prompt:
@@ -161,7 +161,7 @@ The impact of search engines and large language models on mental and cognitive c
 
 In conclusion, search engines and large language models have the potential to greatly impact our mental and cognitive capabilities, both positively and negatively. As we continue to rely on these technologies for information and knowledge, it is important to understand their impact and to determine the best ways to use them to enhance our cognitive abilities. Future research will be essential in helping us to fully understand the impact of these technologies on our mental and cognitive capabilities, and in guiding their development and use in the years to come.
 
-
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 <a id="references"></a>
 ## References
 

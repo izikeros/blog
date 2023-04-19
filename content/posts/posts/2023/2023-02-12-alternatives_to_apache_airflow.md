@@ -115,5 +115,8 @@ Apache Airflow is a powerful tool for managing workflows, but it is not the only
 
 **NOTE:** some projects may benefit from using a combination of workflow management systems. For example, a project might use Apache Airflow to manage some workflows while using Zeebe for managing microservices orchestration. This approach can help to take advantage of the unique features and advantages of different systems while minimizing their limitations.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+
 **Credits:**
 Heading photo from [Unsplash](https://unsplash.com/photos/4CNNH2KEjhc) by [Sigmund](https://unsplash.com/@sigmund)

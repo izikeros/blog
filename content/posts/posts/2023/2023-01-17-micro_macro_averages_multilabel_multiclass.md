@@ -7,6 +7,7 @@ Start: 2023-01-17
 Tags: classification, metrics
 Category: Machine Learning
 Image: /images/head/micro_macro_averaging.jpg
+banner: /images/head/micro_macro_averaging.jpg
 Summary: Learn about micro and macro averages in multiclass multilabel problems, the difference between multiclass and multilabel problems and when to use micro and macro averages.
 Status: published
 prompt: Give me long, markdown article with hyperlinks and references to learn more about it. Use hyperlinks on crucial terms and tools. Provide mathematical formulas in LaTeX in display format (not inline). Article should be on how to calculate micro/macro averages in case of multiclass multilabel problems. In the end provide also HTML page description for this article (less than 160 characters)

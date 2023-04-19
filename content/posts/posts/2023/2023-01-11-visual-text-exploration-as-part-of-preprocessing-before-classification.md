@@ -1,13 +1,14 @@
 ---
+title: Visual Text Exploration as Part of Preprocessing Before Classification
+slug: visual-text-exploration-as-part-of-preprocessing-before-classification
 Category: Machine Learning
 Status: published
 Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
 date: 2022-10-11
 modified: 2022-01-11
 Image: /images/head/visual_text_exploration_wordcloud.jpg
+banner: /images/head/visual_text_exploration_wordcloud.jpg
 tags: NLP, python
-title: Visual Text Exploration as Part of Preprocessing Before Classification
-slug: visual-text-exploration-as-part-of-preprocessing-before-classification
 ---
 
 ## Introduction
@@ -21,6 +22,7 @@ In this blog post, we will analyze modern tools that can be used for visual expl
 Textual data cleaning is an essential step in the preprocessing of text data before classification. The goal of data cleaning is to prepare the data so that it can be easily understood and analyzed by machine learning algorithms.
 
 There are multiple techniques such as:
+
 - removing stop-words
 - stemming and lematization
 - Regular expressions to clean text data by removing special characters and unwanted elements, such as URLs or email addresses. 

@@ -7,6 +7,7 @@ Start: 2023-01-17
 Tags: mlops, devops, machine-learning, deployment, production
 Category: MLOps
 Image: /images/head/blue_green.jpg
+banner: /images/head/blue_green.jpg
 Summary: Learn about blue/green deployment in MLOps, its usefulness and when to use it, and the cost and complexity of maintaining two separate environments
 Status: published
 prompt: Learn about blue/green deployment in MLOps, its usefulness and when to use it, and the cost and complexity of maintaining two separate environments.

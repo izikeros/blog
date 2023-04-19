@@ -372,3 +372,5 @@ In this blog post, we discussed some of the most insightful plots to visualize r
 We learned that a good regression model will have residuals that are randomly scattered around the zero line, follow a normal distribution, and follow a straight line on the Q-Q plot. We also learned that influential points can affect the regression line and the regression coefficients.
 
 By visualizing the model's errors, we can gain a better understanding of how the model is performing and identify areas for improvement. It is essential to use multiple types of plots to get a complete picture of the model's performance.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

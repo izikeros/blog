@@ -7,6 +7,7 @@ Start: 2023-04-14
 Tags: xai, explainable-ai, lime, shap
 Category: Explainable AI
 Image: /images/head/abstract_8.jpg
+banner: /images/head/abstract_8.jpg
 Summary: When it comes to explainable AI, LIME and SHAP are two popular methods for providing insights into the decisions made by machine learning models. What are the key differences between these methods? In this article, we will help you understand which method may be best for your specific use case.
 Status: published
 prompt: What are the key differences between LIME and SHAP
@@ -48,3 +49,5 @@ Finally, LIME and SHAP differ in their approach to the interpretability vs accur
 ## Conclusion
 
 LIME and SHAP are both useful methods for XAI, but they differ in their approach to explaining the decisions of complex machine learning models. LIME is model-agnostic and provides local, interpretable explanations, while SHAP is model-specific and provides global explanations using a game-theoretic approach. The choice between LIME and SHAP depends on the specific needs of the user and the characteristics of the machine learning model being explained.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

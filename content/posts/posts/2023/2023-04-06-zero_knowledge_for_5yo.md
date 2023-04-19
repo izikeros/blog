@@ -45,3 +45,5 @@ This is a bit like the guessing game we talked about earlier. The challenge is l
 This is important for privacy and security in cryptocurrency, because it means that you can prove ownership of an address without revealing your identity or any other sensitive information. It also makes it much harder for hackers or other bad actors to steal your cryptocurrency, because they would need to know your private key in order to access your funds.
 
 So there you have it, zero-knowledge proofs explained like you're 5 years old! They're a clever way of proving that you know something, without actually revealing what it is. And in the world of cryptocurrency, they're a key technology that helps to ensure the security and privacy of your transactions.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

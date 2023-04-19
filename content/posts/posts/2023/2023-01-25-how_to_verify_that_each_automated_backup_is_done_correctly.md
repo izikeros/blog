@@ -7,6 +7,7 @@ Start: 2023-01-25
 Tags: linux, backup, good-practices, restic
 Category: Howto
 Image: /images/head/verify_backups.jpg
+banner: /images/head/verify_backups.jpg
 Summary: Learn how to verify your backups with Restic, ensure completeness, integrity, and recoverability. Automate the process for peace of mind. Read now
 Status: published
 prompt:Give me long article on How to verify that each backup is done correctly. You can use restic as an exemplary tool of choice to make backups.
