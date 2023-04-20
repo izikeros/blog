@@ -1,5 +1,5 @@
 ---
-Title: MLOps Certifications: A Comprehensive Guide
+Title: MLOps Certifications - A Comprehensive Guide
 Slug: mlops-certifications-a-comprehensive-guide
 Date: 2022-11-27
 modified: 2023-01-13
