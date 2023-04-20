@@ -6,8 +6,8 @@ Modified: 2023-02-13
 Start: 2023-02-13
 Tags: python, flask, rpc, client-server, communication
 Category: Howto
-Image: /images/head/abstract_3.jpg
-banner: "/images/head/abstract_3.jpg"
+Image: /images/head/rpc_server.jpg
+banner: "/images/head/rpc_server.jpg"
 Summary: Discover the world of distributed systems and build your own Python RPC server using Flask. Harness the power of remote procedure calls today!
 Status: published
 prompt:
@@ -51,7 +51,6 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return 'Hello, world!'
-
 ```
 
 The above code creates a Flask app and defines a route for the root URL. When a client sends a GET request to the root URL, the server will return 'Hello, world!'.
@@ -75,7 +74,6 @@ def index():
 def rpc(request):
     response = dispatch(request.data)
     return result(response)
-
 ```
 
 
@@ -119,7 +117,6 @@ def divide(a: int, b: int) -> float:
     if b == 0:
         raise InvalidParams('division by zero')
     return a / b
-
 ```
 
 The above code defines four JSON-RPC functions: `add`, `subtract`, `multiply`, and `divide`. Each function takes two integer arguments and returns an integer or float.
@@ -148,7 +145,6 @@ print(result)  # Output: 2.0
 
 result = jsonrpcclient.request(url, 'divide', a=6, b=0)
 print(result)  # Output: {'code': -32602, 'message': 'Invalid params', 'data': 'division by zero'}
-
 ```
 
 The above code sends five JSON-RPC requests to the server and prints the results. The first four requests call the `add`, `subtract`, `multiply`, and `divide` functions, respectively. The last request calls the `divide` function with a zero value for the `b` argument, which raises an `InvalidParams` exception.

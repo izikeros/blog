@@ -6,8 +6,8 @@ Modified: 2023-02-13
 Start: 2023-02-13
 Tags: python, microservices, communication, rpc, rest, remote-procedure-call, xmlrpc, jsonrpc, distributed-computing, client-server, server, client, SimpleXMLRPCServer, ServerProxy, remote-communication, Flask
 Category: Howto
-Image: /images/head/abstract_1.jpg
-banner: "/images/head/abstract_1.jpg"
+Image: /images/head/rpc_flask.jpg
+banner: "/images/head/rpc_flask.jpg"
 Summary: Get Started with RPC - A Beginner's Guide to Building a Python RPC Server Using xmlrpc and jsonrpc.
 Status: published
 prompt:

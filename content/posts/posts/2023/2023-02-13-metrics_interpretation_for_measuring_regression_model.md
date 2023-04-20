@@ -1,13 +1,13 @@
 ---
-Title: Comprehensive guide interpreting R², MSE, and RMSE for regression models.
+Title: Comprehensive guide to interpreting R², MSE, and RMSE for regression models.
 Slug: interpreting-r2-mse-rmse-for-regression-models
 Date: 2023-02-13
 Modified: 2023-02-13
 Start: 2023-02-13
 Tags: machine-learning, r2-score, regression-model, model-evaluation, mse, rmse, performance-metrics, machine-learning, data-science, data-analysis
 Category: Machine Learning
-Image: /images/head/abstract_3.jpg
-banner: "/images/head/abstract_3.jpg"
+Image: /images/head/R2_MSE_RMSE.jpg
+banner: "/images/head/R2_MSE_RMSE.jpg"
 Summary: Don't let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions.
 Status: published
 prompt: Give me detailed guidelines on how to interpret evaluation of the model performance in regression using R2, MSE and RMSE metrics. Add examples of cases when single metrics can be misleading and how to use other metrics to have accurate model performance assessment. Give me long, blog-post style markdown text with latex equations when needed and hyperlinks.
@@ -54,7 +54,11 @@ $$
 
 where $y_i$ is the actual value of the dependent variable, $\hat{y_i}$ is the predicted value of the dependent variable, $\bar{y}$ is the mean of the actual values, and $n$ is the number of observations.
 
-Interpreting the R² score can be tricky. A high R² score does not necessarily mean that the model is accurate or reliable. In some cases, a high R² score can be obtained even if the model has significant errors in its predictions. For example, if the model is overfitting the data, it may have a high R² score but perform poorly on new data. Similarly, if the model is underfitting the data, it may have a low R² score but still be accurate.
+Interpreting the R² score can be tricky. A high R² score does not necessarily mean that the model is accurate or reliable. 
+
+> In some cases, a high R² score can be obtained even if the model has significant errors in its predictions. 
+
+ For example, if the model is overfitting the data, it may have a high R² score but perform poorly on new data. Similarly, if the model is underfitting the data, it may have a low R² score but still be accurate.
 
 <a id="mean-squared-error-mse"></a>
 ### Mean Squared Error (MSE)
@@ -83,10 +87,15 @@ $RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2}$
 
 The RMSE is easier to interpret than the MSE because it **is in the same units as the dependent variable**. A lower RMSE indicates better performance. However, like the MSE, the RMSE is **sensitive to outliers** and can be skewed by extreme values.
 
+### R² Score
+R² Score is based on comparing our model to the **simplest possible model**. The simplest possible model that fits a bunch of points might be obtained by the **averaging of all the values** and **drawing a horizontal line** through them.
 ![RMSE](https://byam.github.io/assets/img/model-eval-val/r2-score.png)
 *source: [Model Evaluation and Validation | Tuk Tak](https://byam.github.io/dlnd/2017/11/13/model-evaluation-and-validation.html)*
+
+> - For the **weak** model MSE should be similar to MSE of simple model and thus R² should be **close to zero**.
+> - For the **strong** model MSE should be much smaller than MSE of simple model and thus R² should be **close to one**.
 <a id="interpreting-multiple-metrics-jointly"></a>
-## Interpreting Multiple Metrics jointly
+## Interpreting Multiple Metrics Jointly
 
 When evaluating the performance of a regression model, it is important to consider multiple metrics to obtain a more complete picture of the model's performance. In some cases, a single metric can be misleading. Different metrics can provide different perspectives on the model's performance. However, simply looking at the values of the metrics can be insufficient, as it can be challenging to interpret what these values mean in practical terms. Below are some tips on how to jointly analyze various metrics and interpret their values.
 

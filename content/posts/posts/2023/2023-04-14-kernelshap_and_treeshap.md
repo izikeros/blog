@@ -6,8 +6,8 @@ Modified: 2023-04-14
 Start: 2023-04-14
 Tags: shap, xai, explainable-ai
 Category: Explainable AI
-Image: /images/head/abstract_9.jpg
-banner: /images/head/abstract_9.jpg
+Image: /images/head/treeshap_kernelshap.jpg
+banner: "/images/head/treeshap_kernelshap.jpg"
 Summary: Making sense of AI's inner workings with KernelShap and TreeShap – the powerfull tools for responsible AI.
 Status: published
 prompt:
