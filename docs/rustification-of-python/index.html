@@ -242,7 +242,7 @@
 
         <div class="center">
             <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $0.99</button>
+                <button class="button">Get for $2.99</button>
             </a>
         </div>
     </div>
@@ -312,17 +312,19 @@
 <ul>
 <li><a href="#rustification-of-python">Rustification of Python</a></li>
 <li><a href="#concrete-examples">Concrete Examples</a><ul>
-<li><a href="#pyo3">PyO3</a></li>
-<li><a href="#maturin">Maturin</a></li>
-<li><a href="#tokenizers">Tokenizers</a></li>
-<li><a href="#ruff">Ruff</a></li>
-<li><a href="#crossbeam">Crossbeam</a></li>
-<li><a href="#tantivy">Tantivy</a></li>
-<li><a href="#cursive">Cursive</a></li>
-<li><a href="#pyoxidizer">PyOxidizer</a></li>
+<li><a href="#pyo3---use-rust-as-a-python-extension-module">PyO3 - use Rust as a Python extension module</a></li>
+<li><a href="#maturin---build-and-publish-python-packages-with-rust-extensions">Maturin - build and publish Python packages with Rust extensions</a></li>
+<li><a href="#tokenizers---tokenization-of-natural-language-texts">Tokenizers - tokenization of natural language texts</a></li>
+<li><a href="#ruff---linter-for-python-code">Ruff - linter for python code</a></li>
+<li><a href="#huak---python-package-manager">huak - python package manager</a></li>
+<li><a href="#crossbeam---library-for-concurrent-programming">Crossbeam - library for concurrent programming</a></li>
+<li><a href="#tantivy---full-text-search-engine">Tantivy - full-text search engine</a></li>
+<li><a href="#cursive---building-user-interfaces">Cursive - building user interfaces</a></li>
+<li><a href="#pyoxidizer---standalone-python-applications">PyOxidizer - standalone Python applications</a></li>
 </ul>
 </li>
 <li><a href="#the-future-role-of-rust-in-python">The Future Role of Rust in Python</a></li>
+<li><a href="#rustpython">RustPython</a></li>
 <li><a href="#drawbacks-and-controversies-around-the-rustification-of-python">Drawbacks and controversies around the Rustification of Python</a><ul>
 <li><a href="#increased-complexity">Increased complexity</a></li>
 <li><a href="#fragmentation-of-the-python-ecosystem">Fragmentation of the Python ecosystem</a></li>
@@ -341,42 +343,50 @@
 <p><a id="concrete-examples"></a></p>
 <h2>Concrete Examples</h2>
 <p>Let's look at some concrete examples of how Rust is being used to Rustify Python.</p>
-<p><a id="pyo3"></a></p>
-<h3>PyO3</h3>
+<p><a id="pyo3---use-rust-as-a-python-extension-module"></a></p>
+<h3>PyO3 - use Rust as a Python extension module</h3>
 <p>PyO3 is a Rust library that allows Rust to be used as a Python extension module. It allows Python developers to write performance-critical code in Rust and then expose it as a Python module. PyO3 is easy to use and has excellent documentation. It supports both Python 2 and 3.</p>
 <p>Using PyO3, developers can write Rust code that can be called from Python. The Rust code can be compiled into a shared library, which can then be loaded into Python using the ctypes module. PyO3 makes it easy to write high-performance Python extensions in Rust.</p>
 <p><strong>PyO3</strong>: <a href="https://github.com/PyO3/pyo3">https://github.com/PyO3/pyo3</a></p>
-<p><a id="maturin"></a></p>
-<h3>Maturin</h3>
+<p><a id="maturin---build-and-publish-python-packages-with-rust-extensions"></a></p>
+<h3>Maturin - build and publish Python packages with Rust extensions</h3>
 <p>Maturin is a Rust tool that makes it easy to build and publish Python packages with Rust extensions. It's designed to work with the Python packaging ecosystem and provides a simple command-line interface for building and publishing Rust extensions.</p>
 <p>Maturin can be used to build Python wheels with Rust extensions, which can then be distributed through the Python Package Index (PyPI). Maturin also supports cross-compiling Rust extensions for different platforms.</p>
 <p><strong>Maturin</strong>: <a href="https://github.com/PyO3/maturin">https://github.com/PyO3/maturin</a></p>
-<p><a id="tokenizers"></a></p>
-<h3>Tokenizers</h3>
+<p><a id="tokenizers---tokenization-of-natural-language-texts"></a></p>
+<h3>Tokenizers - tokenization of natural language texts</h3>
 <p>Tokenizers is a Python library that provides efficient tokenization of natural language texts. It's used by many natural language processing libraries, including Transformers, Hugging Face, and spaCy. Tokenizers uses Rust to implement its performance-critical parts, such as byte-level encoding and decoding.</p>
 <p>By using Rust, Tokenizers can achieve high performance while ensuring memory safety. Tokenizers is written in Python, and Rust is used only for performance-critical parts.</p>
 <p><strong>Tokenizers</strong>: <a href="https://github.com/huggingface/tokenizers">https://github.com/huggingface/tokenizers</a>
-<a id="ruff"></a></p>
-<h3>Ruff</h3>
+<a id="ruff---linter-for-python-code"></a></p>
+<h3>Ruff - linter for python code</h3>
 <p>Ruff is a linter for Python code that's written in Rust. It's designed to be faster and more efficient than traditional Python linters. Ruff uses the PyO3 library to interact with Python's AST (Abstract Syntax Tree), which makes it easy to write Rust code that can analyze Python code.</p>
-<p><strong>Ruff</strong>: <a href="https://github.com/johnthagen/ruff">https://github.com/johnthagen/ruff</a>
-<a id="crossbeam"></a></p>
-<h3>Crossbeam</h3>
+<p><strong>Ruff</strong>: <a href="https://github.com/johnthagen/ruff">https://github.com/johnthagen/ruff</a></p>
+<p><a id="huak---python-package-manager"></a></p>
+<h3>huak - python package manager</h3>
+<p>A Python package manager written in Rust. The <a href="https://github.com/rust-lang/cargo">Cargo</a> for Python.
+Huak ("hwok") aims to support a base workflow for developing Python packages and projects. The process is linear and purpose oriented, establishing better familiarization with the steps.</p>
+<p><strong>huak:</strong> https://github.com/cnpryer/huak</p>
+<p><a id="crossbeam---library-for-concurrent-programming"></a></p>
+<h3>Crossbeam - library for concurrent programming</h3>
 <p>Crossbeam is a Rust library for concurrent programming. It provides a set of data structures and synchronization primitives that make it easier to write high-performance, concurrent code. Crossbeam can be used in Python applications using the PyO3 library.</p>
 <p><strong>Crossbeam</strong>: <a href="https://github.com/crossbeam-rs/crossbeam">https://github.com/crossbeam-rs/crossbeam</a>
-<a id="tantivy"></a></p>
-<h3>Tantivy</h3>
+<a id="tantivy---full-text-search-engine"></a></p>
+<h3>Tantivy - full-text search engine</h3>
 <p>Tantivy is a full-text search engine library that's written in Rust. It's designed to be fast, memory-efficient, and easy to use. Tantivy can be used in Python applications using the PyO3 library.</p>
 <p><strong>Tantivy</strong>: <a href="https://github.com/tantivy-search/tantivy">https://github.com/tantivy-search/tantivy</a>
-<a id="cursive"></a></p>
-<h3>Cursive</h3>
+<a id="cursive---building-user-interfaces"></a></p>
+<h3>Cursive - building user interfaces</h3>
 <p>Cursive is a Rust library for building user interfaces. It provides a set of widgets and layout primitives that make it easy to create interactive UIs. Cursive can be used in Python applications using the PyO3 library.</p>
 <p><strong>Cursive</strong>: <a href="https://github.com/gyscos/cursive">https://github.com/gyscos/cursive</a></p>
-<p><a id="pyoxidizer"></a></p>
-<h3>PyOxidizer</h3>
+<p><a id="pyoxidizer---standalone-python-applications"></a></p>
+<h3>PyOxidizer - standalone Python applications</h3>
 <p>PyOxidizer is a Rust tool for building standalone Python applications. It allows Python developers to create a self-contained executable that includes the Python interpreter and all dependencies. PyOxidizer can be used to create Python applications that are easy to deploy and distribute.</p>
 <p><strong>PyOxidizer</strong>: <a href="https://github.com/indygreg/PyOxidizer">https://github.com/indygreg/PyOxidizer</a></p>
 <p>These are just a few examples of Rust-based tools for Python developers. Rust's performance and memory safety make it a great language for building critical infrastructure and high-performance applications, and the PyO3 library makes it easy to integrate Rust code into Python applications. As Rust continues to gain popularity, we can expect to see more Rust-based tools and libraries for Python developers.</p>
+<h3>Rye - alternative to pip/poetry/hatch/virtualenv/...</h3>
+<p><a href="https://github.com/mitsuhiko/rye">mitsuhiko/rye</a> - It installs and manages Python installations, manages <code>pyproject.toml</code> files, installs and uninstalls dependencies, manages virtualenvs behind the scenes. It supports monorepos and global tool installations.</p>
+<p>Rye: https://github.com/mitsuhiko/rye</p>
 <p><a id="the-future-role-of-rust-in-python"></a></p>
 <h2>The Future Role of Rust in Python</h2>
 <p>Rust has already made significant contributions to the Python ecosystem. Rust’s emphasis on performance and memory safety has made it an ideal language for building critical infrastructure and applications. Its adoption in the Python community is increasing at a rapid pace.</p>
@@ -386,6 +396,7 @@
 <p>The Rustification of Python is not limited to performance-critical applications. Rust can also be used to build high-level abstractions that make it easier to write Python code. For example, the Rust-based library RustPython aims to create a Python interpreter entirely in Rust. This could lead to better performance and memory safety in Python programs.</p>
 <p>Overall, Rustification of Python is an exciting trend that has the potential to revolutionize the Python ecosystem. By using Rust, Python developers can build high-performance, memory-safe applications that can scale to meet the demands of modern computing. Rust’s adoption in the Python community is a sign of its growing importance in the world of programming languages.</p>
 <p>Rust is becoming an integral part of the Python ecosystem. Its emphasis on performance and memory safety has made it an ideal language for building critical infrastructure and applications. With the Rustification of Python, we can expect to see more high-performance, memory-safe Python applications being built. As Rust continues to gain popularity, it may even become a first-class citizen in the Python ecosystem.</p>
+<p><a id="rustpython"></a></p>
 <h2>RustPython</h2>
 <p>There are many implementations of Python, e.g.: <a href="https://github.com/python/cpython">CPython</a> (C), <a href="https://www.jython.org/">Jython</a> (Java), <a href="https://ironpython.net/">IronPython</a> (.NET), <a href="https://www.pypy.org/">PyPy</a> (Python). Using Jython or IronPython ease integration respectively with Java or .NET applications. It is the same case with Rust - Python interpreter can be implemented in Rust and such implementation already exists: <a href="https://rustpython.github.io/">RustPython</a>. Why Rust implementation of Python? RustPython can be embedded into Rust programs to use Python as a scripting language for your application, or it can be compiled to WebAssembly in order to run Python in the browser.</p>
 <p><a id="drawbacks-and-controversies-around-the-rustification-of-python"></a></p>
@@ -416,6 +427,10 @@
 <li><strong>Cursive</strong>: <a href="https://github.com/gyscos/cursive">https://github.com/gyscos/cursive</a></li>
 <li><strong>PyOxidizer</strong>: <a href="https://github.com/indygreg/PyOxidizer">https://github.com/indygreg/PyOxidizer</a></li>
 <li><strong>case-study: speed-up python with Rust</strong>: https://ohadravid.github.io/posts/2023-03-rusty-python/</li>
+</ul>
+<h2>Significant Revisions</h2>
+<ul>
+<li>2023-04-21: Add huak</li>
 </ul>
         </div>
 

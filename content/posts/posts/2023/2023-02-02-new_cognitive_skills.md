@@ -4,7 +4,7 @@ Slug: pros-and-cons-of-reliance-on-ai-generating-models
 Date: 2023-02-02
 Modified: 2023-02-02
 Start: 2023-02-02
-Tags: AI, future, cognitive-skills, critical-thinking, language-models
+Tags: AI, future, cognitive-skills, critical-thinking, language-models, llm
 Category: Machine Learning
 Image: /images/head/cognitive_skills_ai_generative_models.jpg
 banner: "/images/head/cognitive_skills_ai_generative_models.jpg"

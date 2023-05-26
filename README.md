@@ -200,19 +200,28 @@ except:
 
 <a id="todo"></a>
 # TODO:
-- [ ] 1. Normalize `yaml` heading to articles and `.nbdata` files as well - write small python script for that job
-- [ ] 2. Prepare tool that will add `remove_input` tag to all code cells of the notebook (and will be able to revert it)
-- [ ] 3. Write new about me as professional (do not reveal too much personal, private-life related facts)
-  4. Notes are note displayed on tag view - either enable tag view or disable `note` category
-- [ ] 5. Add Last updated info (see: https://rasor.github.io/)
-- [ ] 6. Consider adding links to pages in sidebar: projects (tbd), publications (google scholar), cv (static), about me (already there)
-- [ ] 7. Ensure dependencies that will allow running notebook in colab https://github.com/weiji14/deepbedmap/issues/61
-- [ ] 9. Add What do You think for quick feedback from readers (see: https://jackmckew.dev/)
-- [ ] 10. Move sidebar HTML to separate HTML files the is being included
-- [ ] 12. Remove `notes` from the list of categories
-- [ ] 13. Shall sitemap be link on the menu? Rather no
-- [ ] 14. Check for dead links
-- [ ] 15. Remove formatting cells from the end of notebook
+- [ ] Normalize `yaml` heading to articles and `.nbdata` files as well - write small python script for that job
+- [ ] Prepare tool that will add `remove_input` tag to all code cells of the notebook (and will be able to revert it)
+- [ ] Write new about me as professional (do not reveal too much personal, private-life related facts)
+- [ ] Notes are note displayed on tag view - either enable tag view or disable `note` category
+- [ ] Add Last updated info (see: https://rasor.github.io/)
+- [ ] Consider adding links to pages in sidebar: projects (tbd), publications (google scholar), cv (static), about me (already there)
+- [ ] Ensure dependencies that will allow running notebook in colab https://github.com/weiji14/deepbedmap/issues/61
+- [ ] Add What do You think for quick feedback from readers (see: https://jackmckew.dev/)
+- [ ] Move sidebar HTML to separate HTML files the is being included
+- [ ] Remove `notes` from the list of categories
+- [ ] Check for dead links
+- [ ] Remove formatting cells from the end of notebook
+- [x] Add BibTex note - how to cite given article
+- [ ] Add collapsible section (collapsed by default) on significant revisions (see: https://martinfowler.com/articles/2023-chatgpt-xu-hao.html)
+```
+Significant Revisions
+20 April 2023: Added material on context window
+13 April 2023: Published
+04 April 2023: Started drafting
+```
+
+16. 
 - "Next post" in notes moves to next post which can be blog post or note. Implement different button ("Next note") and implement logic for that. Need separate list of notes for that purpose.
 - Tag cells to remove with "remove_cell" (`View -> Cell Toolbar -> Tags`)
 - in pelicanconf.py add code that uses preprocessing:

@@ -4,14 +4,16 @@ Slug: prompt-optimization
 Date: 2023-02-09
 Modified: 2023-02-09
 Start: 2023-02-09
-Tags: machine-learning, llm, ChatGPT 
+Tags: machine-learning, llm, ChatGPT, prompt
 Category: Machine Learning
 Image: /images/zsh/inside-work-tree.jpg
 Summary: 
 Status: draft
 prompt:Give me long blog-post text on What are the techniques for the prompt optimization in context of large language models. Prompt can be considered as an input to the conversational LLM - in form of question, task or command to execute.
 ---
-#blog/post-idea 
+up::[[MOC_prompting]]
+X::[[MOC_Generative_AI]]
+#blog/post-idea #llm 
 
 Prompt optimization is a crucial aspect of conversational large language models (LLMs) as it sets the direction for the entire conversation. The quality of the prompt sets the tone for the rest of the conversation and determines the likelihood of the model providing accurate and relevant responses. In this blog post, we will explore some of the techniques for prompt optimization in the context of large language models.
 

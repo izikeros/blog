@@ -13,7 +13,7 @@ Status: published
 ---
 [![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
 
-[Get for $0.99](https://ksafjanuser.gumroad.com/l/mlops)
+[Get for $2.99](https://ksafjanuser.gumroad.com/l/mlops)
 
 -   **PDF, ePUB format EBook, no DRM**
 -   **50 questions and answers**
@@ -98,7 +98,7 @@ If you would like to prepare to answer these questions take look on my ebook tha
 
 [![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://ksafjanuser.gumroad.com/l/mlops)
 
-[Get for $0.99](https://gumroad.com/)
+[Get for $2.99](https://gumroad.com/)
 
 -   **PDF, ePUB format EBook, no DRM**
 -   **50 questions and answers**

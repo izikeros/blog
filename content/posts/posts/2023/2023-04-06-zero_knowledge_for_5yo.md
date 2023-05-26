@@ -47,3 +47,5 @@ This is important for privacy and security in cryptocurrency, because it means t
 So there you have it, zero-knowledge proofs explained like you're 5 years old! They're a clever way of proving that you know something, without actually revealing what it is. And in the world of cryptocurrency, they're a key technology that helps to ensure the security and privacy of your transactions.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+up::[[MOC_Cryptocurrency]]

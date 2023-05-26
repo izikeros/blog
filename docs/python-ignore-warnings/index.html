@@ -47,7 +47,7 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="import warnings warnings.filterwarnings(&#39;ignore&#39;)"/>
+    <meta name="description" content="use warnings module directly # disable import warnings warnings.filterwarnings(&#39;ignore&#39;) # enable warnigs warnings.filterwarnings(&#39;default&#39;) # or &#39;once&#39; to show warnings only once use context manager You can use the warnings.catch_warnings() context manager to temporarily suppress warnings within a block of code …"/>
     <meta name="keywords" content="python/warning/ignore, python">
     <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='datePublished'/>
     <meta expr:content="" itemprop='dateModified'/>
@@ -75,7 +75,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="How to ignore warnings in Python"/>
-  <meta property="og:description" content="import warnings warnings.filterwarnings(&#39;ignore&#39;)"/>
+  <meta property="og:description" content="use warnings module directly # disable import warnings warnings.filterwarnings(&#39;ignore&#39;) # enable warnigs warnings.filterwarnings(&#39;default&#39;) # or &#39;once&#39; to show warnings only once use context manager You can use the warnings.catch_warnings() context manager to temporarily suppress warnings within a block of code …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/python-ignore-warnings/"/>
   <meta property="og:type" content="article"/>
@@ -226,7 +226,7 @@
 
         <div class="center">
             <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $0.99</button>
+                <button class="button">Get for $2.99</button>
             </a>
         </div>
     </div>
@@ -289,9 +289,28 @@
 
 
         <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">warnings</span>
+            <h2>use warnings module directly</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># disable</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># enable warnigs</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span> <span class="c1"># or &#39;once&#39; to show warnings only once</span>
 </code></pre></div>
+
+<h2>use context manager</h2>
+<p>You can use the <code>warnings.catch_warnings()</code> context manager to temporarily suppress warnings within a block of code. Here's an example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+    <span class="c1"># code that generates warnings here</span>
+    <span class="c1"># ...</span>
+<span class="c1"># warnings are enabled again outside of the context manager</span>
+</code></pre></div>
+
+<p>In this code, the <code>catch_warnings()</code> context manager is used to temporarily catch any warnings that are generated within the indented block of code. The <code>filterwarnings()</code> function is called within the context manager to disable warnings. Once the block of code exits, warnings are re-enabled automatically outside of the context manager.</p>
+<p>You can modify the <code>filterwarnings()</code> call within the context manager to fine-tune which warnings are suppressed or shown, depending on your needs.</p>
         </div>
 
 
