@@ -4,7 +4,7 @@ Slug: the-best-vector-databases-for-storing-embeddings
 Date: 2023-06-05
 Modified: 2023-06-05
 Start: 2023-06-05
-Tags: machine-learning, python, embeddings, vectordb, database
+Tags: machine-learning, python, embeddings, vectordb, database, transformers
 Category: Machine Learning
 Image: /images/head/vectordb.jpg
 banner: "/images/head/vectordb.jpg"
@@ -64,18 +64,19 @@ While traditional databases like PostgreSQL can handle various data types, inclu
 <a id="chroma"></a>
 ### Chroma
 
-![github stars shield](https://img.shields.io/github/stars/chroma-ai/chroma?logo=github)
-
-Chroma is an open-source vector database developed by Chroma.ai. It focuses on scalability, providing robust support for storing and querying large-scale embedding datasets efficiently. Chroma offers a distributed architecture with horizontal scalability, enabling it to handle massive volumes of vector data. It leverages Apache Cassandra for high availability and fault tolerance, ensuring data persistence and durability.
+![github stars shield](https://img.shields.io/github/stars/chroma-core/chroma?logo=github)
+![chroma logo](https://user-images.githubusercontent.com/891664/227103090-6624bf7d-9524-4e05-9d2c-c28d5d451481.png)
+[Chroma](https://www.trychroma.com/) is an open-source vector database developed by Chroma.ai. It focuses on scalability, providing robust support for storing and querying large-scale embedding datasets efficiently. Chroma offers a distributed architecture with horizontal scalability, enabling it to handle massive volumes of vector data. It leverages Apache Cassandra for high availability and fault tolerance, ensuring data persistence and durability.
 
 One unique aspect of Chroma is its flexible indexing system. It supports multiple indexing strategies, such as approximate nearest neighbors (ANN) algorithms like HNSW and IVFPQ, enabling fast and accurate similarity searches. Chroma also provides comprehensive Python and RESTful APIs, making it easily integratable into NLP pipelines. With its emphasis on scalability and speed, Chroma is an excellent choice for applications that require high-performance vector storage and retrieval.
 
 <a id="deepsetai"></a>
-### DeepsetAI
+### DeepsetAI Haystack
 
 ![github stars shield](https://img.shields.io/github/stars/deepset-ai/haystack?logo=github)
 
-DeepsetAI's Haystack is another popular vector database designed specifically for NLP applications. It offers a range of features tailored to support end-to-end development of search systems using embeddings. Haystack integrates well with popular transformer models like BERT, allowing users to extract embeddings directly from pre-trained models. It leverages Elasticsearch as its underlying storage engine, providing powerful indexing and querying capabilities.
+![haystack logo](images/vectordb/haystack.png)
+DeepsetAI's [Haystack](https://haystack.deepset.ai/) is another popular vector database designed specifically for NLP applications. It offers a range of features tailored to support end-to-end development of search systems using embeddings. Haystack integrates well with popular transformer models like BERT, allowing users to extract embeddings directly from pre-trained models. It leverages Elasticsearch as its underlying storage engine, providing powerful indexing and querying capabilities.
 
 Haystack stands out with its intuitive query language, which supports complex semantic searches and filtering based on various parameters. Additionally, it offers a modular pipeline architecture for preprocessing, embedding extraction, and querying, making it highly customizable and adaptable to different NLP use cases. With its user-friendly interface and comprehensive functionality, DeepsetAI's Haystack is an excellent choice for developers seeking a flexible and feature-rich vector database for NLP.
 
@@ -109,8 +110,6 @@ One key advantage of pgvector is its seamless integration with the broader Postg
 <a id="pinecone"></a>
 ### Pinecone
 
-![github stars shield](https://img.shields.io/github/stars/pinecone-io/pinecone-python?logo=github)
-
 Pinecone is a managed vector database built for handling large-scale embeddings in real-time applications. It focuses on low-latency search and high-throughput indexing, making it suitable for latency-sensitive NLP use cases. Pinecone's cloud-native infrastructure handles indexing, storage, and query serving, allowing developers to focus on building their applications.
 
 Pinecone offers a RESTful API and client libraries for various programming languages, simplifying integration with different NLP frameworks. It supports dynamic indexing, allowing incremental updates to embeddings without rebuilding the entire index. Pinecone also provides advanced features like vector similarity search, filtering, and result ranking. With its emphasis on real-time performance and ease of use, Pinecone is an excellent choice for developers seeking a fully managed vector database for NLP applications.
@@ -138,7 +137,9 @@ One notable feature of Qdrant is its RESTful API, which provides a user-friendly
 
 ![github stars shield](https://img.shields.io/github/stars/vespa-engine/vespa?logo=github)
 
-Vespa is an open-source big data processing and serving engine developed by Verizon Media. It provides a distributed, scalable, and high-performance infrastructure for storing and querying vector embeddings. Vespa utilizes an inverted index structure combined with approximate nearest neighbor (ANN) search algorithms for efficient and accurate similarity searches.
+![](https://vespa.ai/assets/vespa-logo.png)
+
+[Vespa](https://vespa.ai/) is an open-source big data processing and serving engine developed by Verizon Media. It provides a distributed, scalable, and high-performance infrastructure for storing and querying vector embeddings. Vespa utilizes an inverted index structure combined with approximate nearest neighbor (ANN) search algorithms for efficient and accurate similarity searches.
 
 One of Vespa's key features is its built-in ranking framework, allowing developers to define custom ranking models and apply complex ranking algorithms to search results. Vespa also supports real-time updates, making it suitable for dynamic embedding datasets. Additionally, Vespa provides a query language and a user-friendly WebUI for managing and monitoring the vector database. With its focus on distributed processing and advanced ranking capabilities, Vespa is a powerful tool for NLP applications that require complex ranking models and real-time updates.
 
@@ -147,25 +148,26 @@ One of Vespa's key features is its built-in ranking framework, allowing develope
 
 ![github stars shield](https://img.shields.io/github/stars/semi-technologies/weaviate?logo=github)
 
-Weaviate is an open-source knowledge graph and vector search engine that excels in handling high-dimensional embeddings. It combines the power of graph databases and vector search to provide efficient storage, retrieval, and exploration of vector data. Weaviate offers powerful indexing methods, including approximate nearest neighbor (ANN) algorithms like HNSW, for fast and accurate similarity searches.
+[Weaviate](https://weaviate.io/) is an open-source knowledge graph and vector search engine that excels in handling high-dimensional embeddings. It combines the power of graph databases and vector search to provide efficient storage, retrieval, and exploration of vector data. Weaviate offers powerful indexing methods, including approximate nearest neighbor (ANN) algorithms like HNSW, for fast and accurate similarity searches.
 
 One unique aspect of Weaviate is its focus on semantics and contextual relationships. It allows users to define custom schema and relationships between entities, enabling complex queries that go beyond simple vector similarity. Weaviate also provides a RESTful API, client libraries, and a user-friendly WebUI for easy integration and management. With its combination of graph database features and vector search capabilities, Weaviate is an excellent choice for NLP applications that require semantic understanding and exploration of embeddings.
 
 <a id="deeplake"></a>
 ### DeepLake
 
-![github stars shield](https://img.shields.io/github/stars/deeplake/deeplake?logo=github)
+![github stars shield](https://img.shields.io/github/stars/activeloopai/deeplake?logo=github)
 
-DeepLake is an open-source vector database designed for efficient storage and retrieval of embeddings. It focuses on scalability and speed, making it suitable for handling large-scale NLP datasets. DeepLake provides a distributed architecture with built-in support for horizontal scalability, allowing users to handle massive volumes of vector data.
+![](https://camo.githubusercontent.com/d0c805affb06f5ea9ba767de06b77a04de54a7ef433fad08b2729d5e6b11112c/68747470733a2f2f692e706f7374696d672e63632f72736a63576333532f646565706c616b652d6c6f676f2e706e67)
+[DeepLake](https://www.activeloop.ai/) is an open-source vector database designed for efficient storage and retrieval of embeddings. It focuses on scalability and speed, making it suitable for handling large-scale NLP datasets. DeepLake provides a distributed architecture with built-in support for horizontal scalability, allowing users to handle massive volumes of vector data.
 
 One unique feature of DeepLake is its support for distributed vector indexing and querying. It leverages an ANN algorithm based on the Product Quantization (PQ) method, enabling fast and accurate similarity searches. DeepLake also provides a RESTful API for easy integration with NLP pipelines and frameworks. With its emphasis on scalability and distributed processing, DeepLake is a robust vector database for demanding NLP applications.
 
 <a id="langchain-vectorstore"></a>
-### LANGCHAIN VectorStore
+### LangChain VectorStore
 
-![github stars shield](https://img.shields.io/github/stars/langchain/vectorstore?logo=github)
+![github stars shield](https://img.shields.io/github/stars/hwchase17/langchain?logo=github)
 
-LANGCHAIN VectorStore is an open-source vector database optimized for multilingual NLP applications. It focuses on efficient storage and retrieval of embeddings across multiple languages. VectorStore supports various indexing methods, including approximate nearest neighbor (ANN) algorithms like HNSW and Annoy, for fast similarity searches.
+LangChain [VectorStore](https://docs.langchain.com/docs/components/indexing/vectorstore) is an open-source vector database optimized for multilingual NLP applications. It focuses on efficient storage and retrieval of embeddings across multiple languages. VectorStore supports various indexing methods, including approximate nearest neighbor (ANN) algorithms like HNSW and Annoy, for fast similarity searches.
 
 One distinguishing feature of VectorStore is its language-specific indexing and retrieval capabilities. It provides language-specific tokenization and indexing strategies to optimize search accuracy for different languages. VectorStore also offers a RESTful API and client libraries for easy integration with NLP pipelines. With its multilingual support and language-specific indexing, VectorStore is an excellent choice for projects that deal with embeddings across multiple languages.
 
@@ -182,24 +184,24 @@ While the above tools represent some of the best vector databases available for 
 These vector databases provide additional options and features that may suit specific requirements or preferences. Exploring these alternatives can help developers find the best fit for their NLP projects.
 
 
-| Tool             | Scalability | Query Speed | Search Accuracy | Flexibility | Persistence | Storage Location | Direct Library | Abstraction |
-|------------------|-------------|-------------|-----------------|-------------|--------------|------------------|----------------|-------------|
-| Chroma           | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| DeepsetAI        | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| Faiss            | High        | High        | High            | Medium      | No           | Local/Cloud      | Yes            | No          |
-| Milvus           | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| pgvector         | Medium      | Medium      | High            | High        | Yes          | Local            | Yes            | No          |
-| Pinecone         | High        | High        | High            | High        | Yes          | Cloud            | Yes            | Yes         |
-| Supabase         | High        | High        | High            | High        | Yes          | Cloud            | Yes            | Yes         |
-| Qdrant           | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| Vespa            | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| Weaviate         | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| DeepLake         | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| LANGCHAIN VectorStore | High   | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| Annoy            | Medium      | Medium      | Medium          | Medium      | No           | Local/Cloud      | Yes            | No          |
-| Elasticsearch    | High        | High        | High            | High        | Yes          | Local/Cloud      | Yes            | No          |
-| Hnswlib           | High        | High        | High            | High        | No           | Local/Cloud      | Yes            | No          |
-| NMSLIB           | High        | High        | High            | High        | No           | Local/Cloud      | Yes            | No          |
+| Tool             | Scalability | Query Speed | Search Accuracy | Flexibility | Persistence | Storage Location |
+|------------------|-------------|-------------|-----------------|-------------|--------------|------------------|
+| Chroma           | High        | High        | High            | High        | Yes          | Local/Cloud      
+| DeepsetAI        | High        | High        | High            | High        | Yes          | Local/Cloud      
+| Faiss            | High        | High        | High            | Medium      | No           | Local/Cloud     
+| Milvus           | High        | High        | High            | High        | Yes          | Local/Cloud     
+| pgvector         | Medium      | Medium      | High            | High        | Yes          | Local           
+| Pinecone         | High        | High        | High            | High        | Yes          | Cloud           
+| Supabase         | High        | High        | High            | High        | Yes          | Cloud            
+| Qdrant           | High        | High        | High            | High        | Yes          | Local/Cloud      
+| Vespa            | High        | High        | High            | High        | Yes          | Local/Cloud      
+| Weaviate         | High        | High        | High            | High        | Yes          | Local/Cloud     
+| DeepLake         | High        | High        | High            | High        | Yes          | Local/Cloud      
+| LangChain VectorStore | High   | High        | High            | High        | Yes          | Local/Cloud     
+| Annoy            | Medium      | Medium      | Medium          | Medium      | No           | Local/Cloud     
+| Elasticsearch    | High        | High        | High            | High        | Yes          | Local/Cloud     
+| Hnswlib           | High        | High        | High            | High        | No           | Local/Cloud     
+| NMSLIB           | High        | High        | High            | High        | No           | Local/Cloud     
 
 
 <a id="related-reading"></a>
@@ -211,8 +213,3 @@ These vector databases provide additional options and features that may suit spe
 5. [How vector databases can revolutionize our relationship with generative AI | VentureBeat](https://venturebeat.com/ai/how-vector-databases-can-revolutionize-our-relationship-with-generative-ai/)
 6. [Vector databases provide new ways to enable search and data analytics.](https://www.forbes.com/sites/adrianbridgwater/2023/05/19/the-rise-of-vector-databases/)
 7. [OpenAI’s Embeddings with Vector Database | Better Programming](https://betterprogramming.pub/openais-embedding-model-with-vector-database-b69014f04433)
-
-Chroma, DeepsetAI, Faiss by Facebook, Milvus, pgvector, Pinecone, Supabase, Qdrant, Vespa,  Weaviate, DeepLake, LANGCHAIN VectorStore
-
-
-Storage Location, Data Persistence, Scalability, Direct Libary vs. Abstraction
