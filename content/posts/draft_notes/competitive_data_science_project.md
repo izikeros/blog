@@ -1,3 +1,13 @@
+---
+Title: My Practices for Organizing Competitive Data Science Project
+Slug: competitive-data-science-project
+Date: 2023-06-09
+Modified: 2023-06-09
+Status: draft
+Tags: tag1, tag2
+Category: note
+---
+
 up::[[MOC_AI]]
 
 > How to organize python project for competitive data science e.g. for Kaggle competition? Give me long markdown blog-post text.

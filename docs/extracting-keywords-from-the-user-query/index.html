@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117080232-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117080232-1');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Rule-Based Approach Linguistic Analysis Machine Learning (ML) and Statistical Methods Hybrid Approaches: What about using (large) language models? Pros: Cons: More on Machine Learning and statistical Methods for Keywords Extraction Exemplary implementation When it comes to extracting keywords or key terms from …"/>
+    <meta name="keywords" content="keywords, keyword-extraction, tfidf">
+    <meta expr:content="2023-06-09 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-06-09 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-06-09 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-06-09 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Extracting keywords from the user query",
+  "datePublished": "2023-06-09 00:00:00+02:00",
+  "dateModified": "2023-06-09 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Extracting keywords from the user query"/>
+  <meta property="og:description" content="Rule-Based Approach Linguistic Analysis Machine Learning (ML) and Statistical Methods Hybrid Approaches: What about using (large) language models? Pros: Cons: More on Machine Learning and statistical Methods for Keywords Extraction Exemplary implementation When it comes to extracting keywords or key terms from …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/extracting-keywords-from-the-user-query/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-06-09 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-06-09 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="keywords"/>
+  <meta property="article:tag" content="keyword-extraction"/>
+  <meta property="article:tag" content="tfidf"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Extracting keywords from the user query"/>
+
+
+    <title>    Extracting keywords from the user query
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-06-09 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Extracting%20keywords%20from%20the%20user%20query&url=https%3A//www.safjan.com/extracting-keywords-from-the-user-query/&hashtags=keywords,keyword-extraction,tfidf" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/extracting-keywords-from-the-user-query/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Extracting%20keywords%20from%20the%20user%20query&u=https%3A//www.safjan.com/extracting-keywords-from-the-user-query/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/extracting-keywords-from-the-user-query/&title=Extracting%20keywords%20from%20the%20user%20query" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="extracting-keywords-from-the-user-query">Extracting keywords from the user query</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#rule-based-approach">Rule-Based Approach</a></li>
+<li><a href="#linguistic-analysis">Linguistic Analysis</a></li>
+<li><a href="#machine-learning-ml-and-statistical-methods">Machine Learning (ML) and Statistical Methods</a></li>
+<li><a href="#hybrid-approaches">Hybrid Approaches:</a></li>
+<li><a href="#what-about-using-large-language-models">What about using (large) language models?</a><ul>
+<li><a href="#pros">Pros:</a></li>
+<li><a href="#cons">Cons:</a></li>
+</ul>
+</li>
+<li><a href="#more-on-machine-learning-and-statistical-methods-for-keywords-extraction">More on Machine Learning and statistical Methods for Keywords Extraction</a></li>
+<li><a href="#exemplary-implementation">Exemplary implementation</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p>When it comes to extracting keywords or key terms from a user query, there are several approaches that can be used. Each approach has its own set of pros and cons, which I will discuss below:</p>
+<p><a id="rule-based-approach"></a></p>
+<h2>Rule-Based Approach</h2>
+<ul>
+<li><strong>Pros</strong>: This approach involves defining a set of rules or patterns to identify keywords based on specific criteria. It can be effective for simple queries and known patterns, allowing for precise keyword extraction.</li>
+<li><strong>Cons</strong>: Rule-based approaches can be limited in their flexibility and scalability. They require manual effort to create and maintain the rules, making them less suitable for handling complex or evolving queries. Additionally, they may not perform well when faced with ambiguous or unstructured input.</li>
+</ul>
+<p><a id="linguistic-analysis"></a></p>
+<h2>Linguistic Analysis</h2>
+<ul>
+<li><strong>Pros</strong>: Linguistic analysis techniques utilize natural language processing (NLP) algorithms to analyze the grammatical structure and semantics of a query. By considering parts of speech, syntactic relationships, and semantic associations, they can extract relevant keywords effectively.</li>
+<li><strong>Cons</strong>: This approach can be computationally expensive and may require substantial linguistic resources such as parsers, lexicons, and ontologies. Handling languages with complex grammar or processing highly contextual queries can be challenging. It might also struggle with ambiguous phrases or idiomatic expressions.</li>
+</ul>
+<p><a id="machine-learning-ml-and-statistical-methods"></a></p>
+<h2>Machine Learning (ML) and Statistical Methods</h2>
+<ul>
+<li><strong>Pros</strong>: ML techniques, such as supervised or unsupervised learning, can automatically learn patterns and extract keywords based on training data. They can adapt to different query types and improve over time with more data. Statistical methods, such as term frequency-inverse document frequency (TF-IDF), can also identify important keywords based on their prevalence and relevance within a dataset.</li>
+<li><strong>Cons</strong>: Building ML models requires labeled training data, which can be time-consuming and expensive to create. Models may struggle with rare or domain-specific queries if not adequately trained. They can also be susceptible to biases present in the training data, and their performance may degrade when faced with queries significantly different from the training distribution.</li>
+</ul>
+<p><a id="hybrid-approaches"></a></p>
+<h2>Hybrid Approaches:</h2>
+<ul>
+<li><strong>Pros</strong>: Hybrid approaches combine multiple techniques, leveraging the strengths of each to improve keyword extraction. For example, combining rule-based methods with ML models can enhance accuracy and handle a wider range of queries.</li>
+<li><strong>Cons</strong>: Designing and implementing hybrid approaches can be complex and require expertise in multiple areas. Combining different techniques may introduce additional computational overhead, impacting performance and response time.</li>
+</ul>
+<p>It's important to note that the effectiveness of these approaches can vary depending on factors such as the nature of the queries, available resources, and the desired level of accuracy. A well-designed solution often involves a combination of techniques to achieve the best results.</p>
+<p><a id="what-about-using-large-language-models"></a></p>
+<h2>What about using (large) language models?</h2>
+<p>Using language models, such as GPT-3.5, can be a powerful approach for extracting keywords or key terms from a user query. Language models are trained on vast amounts of text data and have the ability to understand and generate human-like language.</p>
+<p>Here are the pros and cons of using language models for keyword extraction:</p>
+<p><a id="pros"></a></p>
+<h3>Pros:</h3>
+<ol>
+<li><strong>Contextual Understanding</strong>: Language models can capture the contextual meaning of words and phrases in a query. They can consider the surrounding words and sentences to extract keywords that are most relevant to the overall query.</li>
+<li><strong>Handling Ambiguity</strong>: Language models can handle ambiguous queries by considering the broader context. They can interpret the query based on available information and generate keywords that make the most sense in the given context.</li>
+<li><strong>Generalization</strong>: Language models have the ability to generalize from the training data and can extract keywords effectively even for queries that are slightly different from what they have seen before.</li>
+<li><strong>Continuous Learning</strong>: Language models can be fine-tuned on specific domains or datasets to improve their keyword extraction capabilities. This allows them to adapt to specific contexts and improve their accuracy over time.</li>
+</ol>
+<p><a id="cons"></a></p>
+<h3>Cons:</h3>
+<ol>
+<li><strong>Lack of Control</strong>: Language models generate keywords based on their learned patterns and training data, which may not always align with specific user requirements or domain-specific terminology. They may produce keywords that are technically correct but not exactly what the user intended.</li>
+<li><strong>Over-reliance on Training Data</strong>: Language models heavily depend on the data they were trained on. If the training data contains biases or limitations, the model may exhibit the same biases or struggle with specific types of queries that were underrepresented in the training data.</li>
+<li><strong>Computational Overhead</strong>: Language models can be computationally expensive to run, especially for real-time applications. The time required for keyword extraction using a language model might not be suitable for scenarios that demand low latency or high throughput.</li>
+<li><strong>Lack of Explanation</strong>: Language models can provide keyword outputs, but they may not offer clear explanations for why certain words were selected as keywords. This lack of interpretability can make it challenging to understand the reasoning behind the chosen keywords.</li>
+</ol>
+<p>While language models can be effective for keyword extraction, it's important to consider these pros and cons and carefully evaluate the trade-offs before integrating them into a production system. It may be necessary to fine-tune the language model or combine it with other techniques to address specific limitations or requirements.</p>
+<p><a id="more-on-machine-learning-and-statistical-methods-for-keywords-extraction"></a></p>
+<h2>More on Machine Learning and statistical Methods for Keywords Extraction</h2>
+<p>There are several machine learning and statistical methods commonly used for keyword extraction from text. Here are some popular techniques:</p>
+<ol>
+<li>
+<p><strong>Term Frequency-Inverse Document Frequency (TF-IDF)</strong>: TF-IDF is a statistical method that measures the importance of a term within a document and across a collection of documents. It calculates a weight for each term based on its frequency in the document and inversely proportional to its frequency in the entire document collection. Keywords with higher TF-IDF scores are considered more significant.</p>
+</li>
+<li>
+<p><strong>TextRank</strong>: TextRank is an algorithm inspired by Google's PageRank algorithm for ranking web pages. It applies a graph-based ranking approach to identify important keywords in a text. In this method, the text is represented as a graph, where each word is a node, and edges represent the co-occurrence or semantic similarity between words. TextRank assigns scores to words based on their centrality in the graph, with higher scores indicating more important keywords.</p>
+</li>
+<li>
+<p><strong>Latent Dirichlet Allocation (LDA)</strong>: LDA is a generative probabilistic model that represents a collection of documents as a mixture of topics. It assumes that each document contains a distribution of topics, and each topic is characterized by a distribution of words. LDA can be used for keyword extraction by identifying the most probable words associated with each topic. Keywords are then selected based on their relevance to the document's topics.</p>
+</li>
+<li>
+<p><strong>Support Vector Machines (SVM)</strong>: SVM is a supervised learning algorithm that can be used for keyword extraction by treating it as a binary classification problem. Training data is labeled with keywords and non-keywords, and SVM learns a decision boundary to separate the two classes. New text can be classified using the trained SVM model, and the words contributing most to the classification decision are considered keywords.</p>
+</li>
+<li>
+<p><strong>Neural Networks</strong>: Various neural network architectures can be employed for keyword extraction, such as recurrent neural networks (RNNs), convolutional neural networks (CNNs), and transformers. These models can learn representations of words and capture complex relationships between them. They can be trained using labeled data or trained in an unsupervised manner by formulating the problem as an autoencoder or sequence-to-sequence learning.</p>
+</li>
+<li>
+<p><strong>Rule-based methods</strong>: Rule-based approaches define a set of linguistic rules or patterns to identify keywords based on specific criteria such as part-of-speech tags, syntactic structures, or domain-specific rules. These methods can be effective when the domain or language has well-defined patterns for keywords.</p>
+</li>
+</ol>
+<p><a id="exemplary-implementation"></a></p>
+<h2>Exemplary implementation</h2>
+<p>One state-of-the-art solution for keyword extraction from short texts is the TextRank algorithm, which is an unsupervised approach based on the PageRank algorithm. It has been proven to be highly effective in identifying important keywords in a text.</p>
+<p>Here's a Python implementation using the <code>nltk</code> library, which provides an implementation of the TextRank algorithm:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">sent_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="kn">from</span> <span class="nn">nltk.tag</span> <span class="kn">import</span> <span class="n">pos_tag</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">wordnet</span> <span class="k">as</span> <span class="n">wn</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># Tokenize the text into sentences</span>
+    <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># Tokenize each sentence into words and perform part-of-speech tagging</span>
+    <span class="n">tagged_words</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+        <span class="n">tagged_words</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+
+    <span class="c1"># Lemmatize the words and remove stopwords</span>
+    <span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+    <span class="n">preprocessed_words</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tagged_words</span><span class="p">:</span>
+        <span class="c1"># Consider only nouns, verbs, adjectives, and adverbs</span>
+        <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;NN&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;VB&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;JJ&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;RB&#39;</span><span class="p">):</span>
+            <span class="c1"># Lemmatize the word</span>
+            <span class="n">lemma</span> <span class="o">=</span> <span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">get_wordnet_pos</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+
+            <span class="c1"># Convert to lowercase and remove stopwords</span>
+            <span class="k">if</span> <span class="n">lemma</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+                <span class="n">preprocessed_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lemma</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">preprocessed_words</span>
+
+<span class="k">def</span> <span class="nf">get_wordnet_pos</span><span class="p">(</span><span class="n">tag</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">wn</span><span class="o">.</span><span class="n">NOUN</span>
+    <span class="k">elif</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">wn</span><span class="o">.</span><span class="n">VERB</span>
+    <span class="k">elif</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;J&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">wn</span><span class="o">.</span><span class="n">ADJ</span>
+    <span class="k">elif</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">wn</span><span class="o">.</span><span class="n">ADV</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">):</span>
+    <span class="n">synsets1</span> <span class="o">=</span> <span class="n">wn</span><span class="o">.</span><span class="n">synsets</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span>
+    <span class="n">synsets2</span> <span class="o">=</span> <span class="n">wn</span><span class="o">.</span><span class="n">synsets</span><span class="p">(</span><span class="n">word2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">synsets1</span> <span class="ow">and</span> <span class="n">synsets2</span><span class="p">:</span>
+        <span class="n">max_sim</span> <span class="o">=</span> <span class="nb">max</span><span class="p">((</span><span class="n">wn</span><span class="o">.</span><span class="n">path_similarity</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">s1</span> <span class="ow">in</span> <span class="n">synsets1</span> <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">synsets2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">max_sim</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">textrank_keywords</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="c1"># Preprocess the text</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># Build the word co-occurrence graph</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">word2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+                <span class="n">similarity</span> <span class="o">=</span> <span class="n">calculate_similarity</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">graph</span><span class="p">[</span><span class="n">word1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">word2</span><span class="p">,</span> <span class="n">similarity</span><span class="p">))</span>
+
+    <span class="c1"># Apply the TextRank algorithm</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">damping_factor</span> <span class="o">=</span> <span class="mf">0.85</span>
+    <span class="n">max_iterations</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iterations</span><span class="p">):</span>
+        <span class="n">prev_scores</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">word1</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">damping_factor</span><span class="p">)</span> <span class="o">+</span> <span class="n">damping_factor</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">prev_scores</span><span class="p">[</span><span class="n">word2</span><span class="p">]</span> <span class="o">*</span> <span class="n">weight</span> <span class="k">for</span> <span class="n">word2</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">word1</span><span class="p">])</span>
+            <span class="n">scores</span><span class="p">[</span><span class="n">word1</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span>
+
+    <span class="c1"># Get the top keywords</span>
+    <span class="n">top_keywords</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">top_n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">top_keywords</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;What are the benefits of exercise for mental health?&quot;</span>
+<span class="n">keywords</span> <span class="o">=</span> <span class="n">textrank_keywords</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">keywords</span><span class="p">)</span>
+</code></pre></div>
+
+<p>NOTE: before you can start using it you will need to download certain data resources from NLTK (Natural Language Toolkit) in order to use it for keyword extraction. Specifically, you will need to download the stopwords corpus and WordNet data.</p>
+<p>To download the necessary data, you can use the following code snippet:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;averaged_perceptron_tagger&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/keywords/">keywords</a>
+                        <a href="https://www.safjan.com/tag/keyword-extraction/">keyword-extraction</a>
+                        <a href="https://www.safjan.com/tag/tfidf/">tfidf</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/" title="The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap between Software Products and Customer Needs">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

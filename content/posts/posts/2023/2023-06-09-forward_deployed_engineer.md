@@ -6,9 +6,9 @@ Modified: 2023-06-09
 Start: 2023-06-09
 Tags: machine-learning, python, career, roles, software-development 
 Category: Howto
-Image: /images/heaad/forward_deployed_engineer.jpg
-banner: /images/head/forward_deployed_engineer.jpg
-Summary: "Bridging the gap between software products and customer needs, Forward Deployed Engineers are the game-changers of enterprise software. Discover their unique role in driving success and why it's in high demand. Don't miss out!"
+Image: /images/head/forward_deployed_engineer.jpg
+banner: "/images/head/forward_deployed_engineer.jpg"
+Summary: Bridging the gap between software products and customer needs, Forward Deployed Engineers are the game-changers of enterprise software. Discover their unique role in driving success and why it's in high demand. Don't miss out!
 Status: published
 prompt:
 ---
@@ -131,3 +131,5 @@ By working closely with customers, FDEs develop a deep understanding of their pa
 ## Conclusion
 
 Forward Deployed Engineers play a vital role in enterprise software organizations, acting as the bridge between products and customer implementations. Their broad skill set, technical expertise, entrepreneurial mindset, and product intuition make them invaluable assets in driving customer success, revenue growth, and product evolution. As enterprise software continues to evolve, the demand for FDEs will likely increase, providing software engineers with a customer-facing path that allows them to thrive in both technical and business domains
+
+X::[[forward_deployed_engineer]]

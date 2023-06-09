@@ -1,4 +1,14 @@
-2023-02-23
+---
+Title: Storing and documenting datasets
+Slug: storing-and-documenting-datasets
+Date: 2023-02-23
+Modified: 2023-02-23
+Status: draft
+Tags: dataset, data, data-science, documentation, file-format, metadata, version-control
+Category: note
+---
+
+
 #dataset 
 #blog/post-idea 
 X::[[public/bunch_class_to_store_datasets]]

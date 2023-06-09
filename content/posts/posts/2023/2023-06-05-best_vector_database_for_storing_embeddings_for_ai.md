@@ -142,7 +142,7 @@ Haystack stands out with its **intuitive query language**, which supports comple
 
 ![github stars shield](https://img.shields.io/github/stars/facebookresearch/faiss?logo=github)
 
-[Faiss](https://faiss.ai/), developed by Facebook AI Research, is a widely-used vector database renowned for its high-performance similarity search capabilities. It provides a range of indexing methods optimized for efficient retrieval of nearest neighbors, including IVF (Inverted File) and HNSW (Hierarchical Navigable Small World). Faiss also supports GPU acceleration, enabling fast computation on large-scale embeddings.
+[Faiss logo](https://faiss.ai/), developed by Facebook AI Research, is a widely-used vector database renowned for its high-performance similarity search capabilities. It provides a range of indexing methods optimized for efficient retrieval of nearest neighbors, including IVF (Inverted File) and HNSW (Hierarchical Navigable Small World). Faiss also supports GPU acceleration, enabling fast computation on large-scale embeddings.
 
 One of Faiss' notable features is its support for **multi-index search**, which combines different indexing methods to improve search accuracy and speed. Additionally, Faiss offers a **Python interface**, making it easy to integrate with existing NLP pipelines and frameworks. With its focus on **search performance and versatility**, Faiss is a go-to choice for projects demanding fast and accurate similarity **search over vast embedding collections**.
 
@@ -151,7 +151,7 @@ One of Faiss' notable features is its support for **multi-index search**, which 
 
 ![github stars shield](https://img.shields.io/github/stars/milvus-io/milvus?logo=github)
 
-![[milvus.png]]
+![Milvus logo](/images/vectordb/milvus.png)
 
 [Milvus](https://milvus.io/) is an open-source vector database developed by Zilliz, designed for efficient storage and retrieval of large-scale embeddings. It provides high scalability and supports distributed deployment across multiple machines, making it suitable for handling massive NLP datasets. Milvus integrates with popular ANN libraries like Faiss, Annoy, and NMSLIB, offering flexible indexing options to achieve high search accuracy.
 
@@ -169,7 +169,8 @@ One key advantage of pgvector is its seamless **integration with the broader Pos
 <a id="pinecone"></a>
 ### Pinecone
 
-![[pinecone.png]]
+![Pinecone logo](/images/vectordb/pinecone.png)
+
 [Pinecone](https://www.pinecone.io/) is a managed vector database built for handling large-scale embeddings in real-time applications. It focuses on low-latency search and high-throughput indexing, making it suitable for latency-sensitive NLP use cases. Pinecone's cloud-native infrastructure handles indexing, storage, and query serving, allowing developers to focus on building their applications.
 
 Pinecone offers a RESTful **API** and client libraries **for various programming languages**, simplifying integration with different NLP frameworks. It supports **dynamic indexing**, allowing incremental updates to embeddings without rebuilding the entire index. Pinecone also provides advanced features like **vector similarity search**, **filtering**, and result ranking. With its **emphasis on real-time performance** and ease of use, Pinecone is an excellent choice for developers seeking a fully managed vector database for NLP applications.
@@ -179,7 +180,7 @@ Pinecone offers a RESTful **API** and client libraries **for various programming
 
 ![github stars shield](https://img.shields.io/github/stars/supabase/supabase?logo=github)
 
-![[supabase.png]]
+![Supabase logo](images/vectordb/supabase.png)
 
 [Supabase](https://supabase.com/), known for its open-source data platform, offers a scalable vector storage solution designed for fast and efficient retrieval of embeddings. Supabase leverages PostgreSQL as its underlying storage engine, ensuring data durability and compatibility with standard SQL queries. It provides a range of features such as indexing, querying, and filtering, optimized for vector data.
 
@@ -190,7 +191,8 @@ One distinctive aspect of Supabase is its **real-time capabilities**, enabled by
 
 ![github stars shield](https://img.shields.io/github/stars/qdrant/qdrant?logo=github)
 
-![[qdrant.png]]
+![Qdrant logo](/images/vectordb/qdrant.png)
+
 Qdrant is an open-source vector database designed for similarity search and efficient storage of high-dimensional embeddings. It leverages an approximate nearest neighbor (ANN) algorithm based on Hierarchical Navigable Small World (HNSW) graphs, enabling fast and accurate similarity searches. Qdrant supports both CPU and GPU inference, allowing users to leverage hardware acceleration for faster computations.
 
 One notable feature of Qdrant is its **RESTful API**, which provides a user-friendly **interface for indexing, searching, and managing vector data**. Qdrant also offers **flexible query options**, allowing users to specify search parameters and control the trade-off between accuracy and speed. With its focus on efficient similarity search and user-friendly API, Qdrant is a powerful vector database for various NLP applications.
@@ -200,7 +202,7 @@ One notable feature of Qdrant is its **RESTful API**, which provides a user-frie
 
 ![github stars shield](https://img.shields.io/github/stars/vespa-engine/vespa?logo=github)
 
-![](https://vespa.ai/assets/vespa-logo.png)
+![vespa logo](https://vespa.ai/assets/vespa-logo.png)
 
 [Vespa](https://vespa.ai/) is an open-source big data processing and serving engine developed by Verizon Media. It provides a distributed, scalable, and high-performance infrastructure for storing and querying vector embeddings. Vespa utilizes an inverted index structure combined with approximate nearest neighbor (ANN) search algorithms for efficient and accurate similarity searches.
 
@@ -211,7 +213,7 @@ One of Vespa's key features is its **built-in ranking framework**, allowing deve
 
 ![github stars shield](https://img.shields.io/github/stars/semi-technologies/weaviate?logo=github)
 
-![[weaviate.png]]
+![Weaviate logo](/images/vectordb/weaviate.png)
 
 [Weaviate](https://weaviate.io/) is an open-source knowledge graph and vector search engine that excels in handling high-dimensional embeddings. It combines the power of graph databases and vector search to provide efficient storage, retrieval, and exploration of vector data. Weaviate offers powerful indexing methods, including approximate nearest neighbor (ANN) algorithms like HNSW, for fast and accurate similarity searches.
 
@@ -222,7 +224,7 @@ One unique aspect of Weaviate is its **focus on semantics and contextual relatio
 
 ![github stars shield](https://img.shields.io/github/stars/activeloopai/deeplake?logo=github)
 
-![](https://camo.githubusercontent.com/d0c805affb06f5ea9ba767de06b77a04de54a7ef433fad08b2729d5e6b11112c/68747470733a2f2f692e706f7374696d672e63632f72736a63576333532f646565706c616b652d6c6f676f2e706e67)
+![DeepLake logo](https://camo.githubusercontent.com/d0c805affb06f5ea9ba767de06b77a04de54a7ef433fad08b2729d5e6b11112c/68747470733a2f2f692e706f7374696d672e63632f72736a63576333532f646565706c616b652d6c6f676f2e706e67)
 [DeepLake](https://www.activeloop.ai/) is an open-source vector database designed for efficient storage and retrieval of embeddings. It focuses on scalability and speed, making it suitable for handling large-scale NLP datasets. DeepLake provides a distributed architecture with built-in support for horizontal scalability, allowing users to handle massive volumes of vector data.
 
 One unique feature of DeepLake is its support for **distributed vector indexing and querying**. It leverages an **ANN** algorithm based on the Product Quantization (PQ) method, enabling fast and accurate similarity searches. DeepLake also provides a **RESTful API** for easy integration with NLP pipelines and frameworks. With its emphasis on **scalability and distributed processing**, DeepLake is a robust vector database for demanding NLP applications.

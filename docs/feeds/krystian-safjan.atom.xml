@@ -1,5 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-06-09T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap between Software Products and Customer Needs</title><link href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/" rel="alternate"></link><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-09:/the-role-and-responsibilities-of-a-forward-deployed-engineer/</id><summary type="html">&lt;p&gt;"Bridging the gap between software products and customer needs, Forward Deployed Engineers are the game-changers of enterprise software. Discover their unique role in driving success and why it's in high demand. Don't miss out!"&lt;/p&gt;</summary><content type="html">&lt;h2&gt;TL;DR&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-06-09T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Extracting keywords from the user query</title><link href="https://www.safjan.com/extracting-keywords-from-the-user-query/" rel="alternate"></link><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-09:/extracting-keywords-from-the-user-query/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#rule-based-approach"&gt;Rule-Based Approach&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#linguistic-analysis"&gt;Linguistic Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#machine-learning-ml-and-statistical-methods"&gt;Machine Learning (ML) and Statistical Methods&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#hybrid-approaches"&gt;Hybrid Approaches:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#what-about-using-large-language-models"&gt;What about using (large) language models?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#pros"&gt;Pros:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#cons"&gt;Cons:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#more-on-machine-learning-and-statistical-methods-for-keywords-extraction"&gt;More on Machine Learning and statistical Methods for Keywords Extraction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#exemplary-implementation"&gt;Exemplary implementation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;When it comes to extracting keywords or key terms from …&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#rule-based-approach"&gt;Rule-Based Approach&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#linguistic-analysis"&gt;Linguistic Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#machine-learning-ml-and-statistical-methods"&gt;Machine Learning (ML) and Statistical Methods&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#hybrid-approaches"&gt;Hybrid Approaches:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#what-about-using-large-language-models"&gt;What about using (large) language models?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#pros"&gt;Pros:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#cons"&gt;Cons:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#more-on-machine-learning-and-statistical-methods-for-keywords-extraction"&gt;More on Machine Learning and statistical Methods for Keywords Extraction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#exemplary-implementation"&gt;Exemplary implementation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;When it comes to extracting keywords or key terms from a user query, there are several approaches that can be used. Each approach has its own set of pros and cons, which I will discuss below:&lt;/p&gt;
+&lt;p&gt;&lt;a id="rule-based-approach"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Rule-Based Approach&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: This approach involves defining a set of rules or patterns to identify keywords based on specific criteria. It can be effective for simple queries and known patterns, allowing for precise keyword extraction.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: Rule-based approaches can be limited in their flexibility and scalability. They require manual effort to create and maintain the rules, making them less suitable for handling complex or evolving queries. Additionally, they may not perform well when faced with ambiguous or unstructured input.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="linguistic-analysis"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Linguistic Analysis&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: Linguistic analysis techniques utilize natural language processing (NLP) algorithms to analyze the grammatical structure and semantics of a query. By considering parts of speech, syntactic relationships, and semantic associations, they can extract relevant keywords effectively.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: This approach can be computationally expensive and may require substantial linguistic resources such as parsers, lexicons, and ontologies. Handling languages with complex grammar or processing highly contextual queries can be challenging. It might also struggle with ambiguous phrases or idiomatic expressions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="machine-learning-ml-and-statistical-methods"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Machine Learning (ML) and Statistical Methods&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: ML techniques, such as supervised or unsupervised learning, can automatically learn patterns and extract keywords based on training data. They can adapt to different query types and improve over time with more data. Statistical methods, such as term frequency-inverse document frequency (TF-IDF), can also identify important keywords based on their prevalence and relevance within a dataset.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: Building ML models requires labeled training data, which can be time-consuming and expensive to create. Models may struggle with rare or domain-specific queries if not adequately trained. They can also be susceptible to biases present in the training data, and their performance may degrade when faced with queries significantly different from the training distribution.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="hybrid-approaches"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Hybrid Approaches:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: Hybrid approaches combine multiple techniques, leveraging the strengths of each to improve keyword extraction. For example, combining rule-based methods with ML models can enhance accuracy and handle a wider range of queries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: Designing and implementing hybrid approaches can be complex and require expertise in multiple areas. Combining different techniques may introduce additional computational overhead, impacting performance and response time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's important to note that the effectiveness of these approaches can vary depending on factors such as the nature of the queries, available resources, and the desired level of accuracy. A well-designed solution often involves a combination of techniques to achieve the best results.&lt;/p&gt;
+&lt;p&gt;&lt;a id="what-about-using-large-language-models"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;What about using (large) language models?&lt;/h2&gt;
+&lt;p&gt;Using language models, such as GPT-3.5, can be a powerful approach for extracting keywords or key terms from a user query. Language models are trained on vast amounts of text data and have the ability to understand and generate human-like language.&lt;/p&gt;
+&lt;p&gt;Here are the pros and cons of using language models for keyword extraction:&lt;/p&gt;
+&lt;p&gt;&lt;a id="pros"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Pros:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Contextual Understanding&lt;/strong&gt;: Language models can capture the contextual meaning of words and phrases in a query. They can consider the surrounding words and sentences to extract keywords that are most relevant to the overall query.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Handling Ambiguity&lt;/strong&gt;: Language models can handle ambiguous queries by considering the broader context. They can interpret the query based on available information and generate keywords that make the most sense in the given context.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generalization&lt;/strong&gt;: Language models have the ability to generalize from the training data and can extract keywords effectively even for queries that are slightly different from what they have seen before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Learning&lt;/strong&gt;: Language models can be fine-tuned on specific domains or datasets to improve their keyword extraction capabilities. This allows them to adapt to specific contexts and improve their accuracy over time.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="cons"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Cons:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Lack of Control&lt;/strong&gt;: Language models generate keywords based on their learned patterns and training data, which may not always align with specific user requirements or domain-specific terminology. They may produce keywords that are technically correct but not exactly what the user intended.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Over-reliance on Training Data&lt;/strong&gt;: Language models heavily depend on the data they were trained on. If the training data contains biases or limitations, the model may exhibit the same biases or struggle with specific types of queries that were underrepresented in the training data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Computational Overhead&lt;/strong&gt;: Language models can be computationally expensive to run, especially for real-time applications. The time required for keyword extraction using a language model might not be suitable for scenarios that demand low latency or high throughput.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of Explanation&lt;/strong&gt;: Language models can provide keyword outputs, but they may not offer clear explanations for why certain words were selected as keywords. This lack of interpretability can make it challenging to understand the reasoning behind the chosen keywords.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;While language models can be effective for keyword extraction, it's important to consider these pros and cons and carefully evaluate the trade-offs before integrating them into a production system. It may be necessary to fine-tune the language model or combine it with other techniques to address specific limitations or requirements.&lt;/p&gt;
+&lt;p&gt;&lt;a id="more-on-machine-learning-and-statistical-methods-for-keywords-extraction"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;More on Machine Learning and statistical Methods for Keywords Extraction&lt;/h2&gt;
+&lt;p&gt;There are several machine learning and statistical methods commonly used for keyword extraction from text. Here are some popular techniques:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Term Frequency-Inverse Document Frequency (TF-IDF)&lt;/strong&gt;: TF-IDF is a statistical method that measures the importance of a term within a document and across a collection of documents. It calculates a weight for each term based on its frequency in the document and inversely proportional to its frequency in the entire document collection. Keywords with higher TF-IDF scores are considered more significant.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TextRank&lt;/strong&gt;: TextRank is an algorithm inspired by Google's PageRank algorithm for ranking web pages. It applies a graph-based ranking approach to identify important keywords in a text. In this method, the text is represented as a graph, where each word is a node, and edges represent the co-occurrence or semantic similarity between words. TextRank assigns scores to words based on their centrality in the graph, with higher scores indicating more important keywords.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Latent Dirichlet Allocation (LDA)&lt;/strong&gt;: LDA is a generative probabilistic model that represents a collection of documents as a mixture of topics. It assumes that each document contains a distribution of topics, and each topic is characterized by a distribution of words. LDA can be used for keyword extraction by identifying the most probable words associated with each topic. Keywords are then selected based on their relevance to the document's topics.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Support Vector Machines (SVM)&lt;/strong&gt;: SVM is a supervised learning algorithm that can be used for keyword extraction by treating it as a binary classification problem. Training data is labeled with keywords and non-keywords, and SVM learns a decision boundary to separate the two classes. New text can be classified using the trained SVM model, and the words contributing most to the classification decision are considered keywords.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Neural Networks&lt;/strong&gt;: Various neural network architectures can be employed for keyword extraction, such as recurrent neural networks (RNNs), convolutional neural networks (CNNs), and transformers. These models can learn representations of words and capture complex relationships between them. They can be trained using labeled data or trained in an unsupervised manner by formulating the problem as an autoencoder or sequence-to-sequence learning.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Rule-based methods&lt;/strong&gt;: Rule-based approaches define a set of linguistic rules or patterns to identify keywords based on specific criteria such as part-of-speech tags, syntactic structures, or domain-specific rules. These methods can be effective when the domain or language has well-defined patterns for keywords.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="exemplary-implementation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Exemplary implementation&lt;/h2&gt;
+&lt;p&gt;One state-of-the-art solution for keyword extraction from short texts is the TextRank algorithm, which is an unsupervised approach based on the PageRank algorithm. It has been proven to be highly effective in identifying important keywords in a text.&lt;/p&gt;
+&lt;p&gt;Here's a Python implementation using the &lt;code&gt;nltk&lt;/code&gt; library, which provides an implementation of the TextRank algorithm:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;nltk&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.tokenize&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;word_tokenize&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sent_tokenize&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.corpus&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;stopwords&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.stem&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;WordNetLemmatizer&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.tag&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pos_tag&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.corpus&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;wordnet&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;preprocess_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Tokenize the text into sentences&lt;/span&gt;
+    &lt;span class="n"&gt;sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sent_tokenize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Tokenize each sentence into words and perform part-of-speech tagging&lt;/span&gt;
+    &lt;span class="n"&gt;tagged_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sentence&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;word_tokenize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sentence&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;tagged_words&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos_tag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Lemmatize the words and remove stopwords&lt;/span&gt;
+    &lt;span class="n"&gt;lemmatizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;WordNetLemmatizer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;stop_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stopwords&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;english&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;preprocessed_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tagged_words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# Consider only nouns, verbs, adjectives, and adverbs&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;NN&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;VB&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;JJ&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RB&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="c1"&gt;# Lemmatize the word&lt;/span&gt;
+            &lt;span class="n"&gt;lemma&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lemmatizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lemmatize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;get_wordnet_pos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+            &lt;span class="c1"&gt;# Convert to lowercase and remove stopwords&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;lemma&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;preprocessed_words&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lemma&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;preprocessed_words&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_wordnet_pos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;N&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NOUN&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;V&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;VERB&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;J&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ADJ&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;R&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ADV&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;calculate_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;synsets1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;synsets&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;synsets2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;synsets&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;synsets1&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;synsets2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;max_sim&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;synsets1&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;synsets2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;max_sim&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;textrank_keywords&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;top_n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Preprocess the text&lt;/span&gt;
+    &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;preprocess_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Build the word co-occurrence graph&lt;/span&gt;
+    &lt;span class="n"&gt;graph&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;similarity&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;calculate_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;similarity&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;similarity&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Apply the TextRank algorithm&lt;/span&gt;
+    &lt;span class="n"&gt;scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;damping_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.85&lt;/span&gt;
+    &lt;span class="n"&gt;max_iterations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_iterations&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;prev_scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;score&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;damping_factor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;damping_factor&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prev_scores&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;score&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Get the top keywords&lt;/span&gt;
+    &lt;span class="n"&gt;top_keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)[:&lt;/span&gt;&lt;span class="n"&gt;top_n&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;top_keywords&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Example usage&lt;/span&gt;
+&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;What are the benefits of exercise for mental health?&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;textrank_keywords&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;NOTE: before you can start using it you will need to download certain data resources from NLTK (Natural Language Toolkit) in order to use it for keyword extraction. Specifically, you will need to download the stopwords corpus and WordNet data.&lt;/p&gt;
+&lt;p&gt;To download the necessary data, you can use the following code snippet:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;nltk&lt;/span&gt;
+
+&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stopwords&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;averaged_perceptron_tagger&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;punkt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wordnet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="keywords"></category><category term="keyword-extraction"></category><category term="tfidf"></category></entry><entry><title>The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap between Software Products and Customer Needs</title><link href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/" rel="alternate"></link><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-09:/the-role-and-responsibilities-of-a-forward-deployed-engineer/</id><summary type="html">&lt;p&gt;Bridging the gap between software products and customer needs, Forward Deployed Engineers are the game-changers of enterprise software. Discover their unique role in driving success and why it's in high demand. Don't miss out!&lt;/p&gt;</summary><content type="html">&lt;h2&gt;TL;DR&lt;/h2&gt;
 &lt;p&gt;A Forward Deployed Engineer (FDE) is a versatile software engineer who works closely with customers to bridge the gap between enterprise software products and their specific implementation needs. FDEs collaborate with engineering teams, provide technical support, partner with product teams, assist in revenue growth activities, and lead customer success efforts. With a mix of technical skills, an entrepreneurial mindset, and product intuition, FDEs play a crucial role in ensuring successful product deployment and customer satisfaction.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
@@ -215,12 +418,12 @@ DeepsetAI's &lt;a href="https://haystack.deepset.ai/"&gt;Haystack&lt;/a&gt; is a
 &lt;p&gt;&lt;a id="faiss-by-facebook"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Faiss by Facebook&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/facebookresearch/faiss?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://faiss.ai/"&gt;Faiss&lt;/a&gt;, developed by Facebook AI Research, is a widely-used vector database renowned for its high-performance similarity search capabilities. It provides a range of indexing methods optimized for efficient retrieval of nearest neighbors, including IVF (Inverted File) and HNSW (Hierarchical Navigable Small World). Faiss also supports GPU acceleration, enabling fast computation on large-scale embeddings.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://faiss.ai/"&gt;Faiss logo&lt;/a&gt;, developed by Facebook AI Research, is a widely-used vector database renowned for its high-performance similarity search capabilities. It provides a range of indexing methods optimized for efficient retrieval of nearest neighbors, including IVF (Inverted File) and HNSW (Hierarchical Navigable Small World). Faiss also supports GPU acceleration, enabling fast computation on large-scale embeddings.&lt;/p&gt;
 &lt;p&gt;One of Faiss' notable features is its support for &lt;strong&gt;multi-index search&lt;/strong&gt;, which combines different indexing methods to improve search accuracy and speed. Additionally, Faiss offers a &lt;strong&gt;Python interface&lt;/strong&gt;, making it easy to integrate with existing NLP pipelines and frameworks. With its focus on &lt;strong&gt;search performance and versatility&lt;/strong&gt;, Faiss is a go-to choice for projects demanding fast and accurate similarity &lt;strong&gt;search over vast embedding collections&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a id="milvus"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Milvus&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/milvus-io/milvus?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="milvus.png" src="https://www.safjan.com/images/vectordb/milvus.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Milvus logo" src="/images/vectordb/milvus.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://milvus.io/"&gt;Milvus&lt;/a&gt; is an open-source vector database developed by Zilliz, designed for efficient storage and retrieval of large-scale embeddings. It provides high scalability and supports distributed deployment across multiple machines, making it suitable for handling massive NLP datasets. Milvus integrates with popular ANN libraries like Faiss, Annoy, and NMSLIB, offering flexible indexing options to achieve high search accuracy.&lt;/p&gt;
 &lt;p&gt;One key feature of Milvus is its &lt;strong&gt;GPU support&lt;/strong&gt;, leveraging NVIDIA GPUs for accelerated computation. This makes Milvus an excellent choice &lt;strong&gt;for deep learning applications&lt;/strong&gt; that require fast vector search and similarity calculations. Furthermore, Milvus provides a user-friendly &lt;strong&gt;WebUI&lt;/strong&gt; and supports &lt;strong&gt;multiple programming languages&lt;/strong&gt;, simplifying development and deployment processes. With its focus on scalability and GPU acceleration, Milvus is an ideal vector database for large-scale NLP projects.&lt;/p&gt;
 &lt;p&gt;&lt;a id="pgvector"&gt;&lt;/a&gt;&lt;/p&gt;
@@ -230,37 +433,37 @@ DeepsetAI's &lt;a href="https://haystack.deepset.ai/"&gt;Haystack&lt;/a&gt; is a
 &lt;p&gt;One key advantage of pgvector is its seamless &lt;strong&gt;integration with the broader PostgreSQL&lt;/strong&gt; ecosystem. Users can leverage the rich functionality of PostgreSQL, such as ACID compliance and support for complex queries, while benefiting from vector-specific operations. pgvector provides a PostgreSQL extension that extends the SQL syntax to handle vector operations and offers a Python library for easy integration. With its compatibility with PostgreSQL and efficient vector storage, pgvector is a reliable choice for NLP applications that require a seamless SQL integration.&lt;/p&gt;
 &lt;p&gt;&lt;a id="pinecone"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Pinecone&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="pinecone.png" src="https://www.safjan.com/images/vectordb/pinecone.png"&gt;
-&lt;a href="https://www.pinecone.io/"&gt;Pinecone&lt;/a&gt; is a managed vector database built for handling large-scale embeddings in real-time applications. It focuses on low-latency search and high-throughput indexing, making it suitable for latency-sensitive NLP use cases. Pinecone's cloud-native infrastructure handles indexing, storage, and query serving, allowing developers to focus on building their applications.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pinecone logo" src="/images/vectordb/pinecone.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.pinecone.io/"&gt;Pinecone&lt;/a&gt; is a managed vector database built for handling large-scale embeddings in real-time applications. It focuses on low-latency search and high-throughput indexing, making it suitable for latency-sensitive NLP use cases. Pinecone's cloud-native infrastructure handles indexing, storage, and query serving, allowing developers to focus on building their applications.&lt;/p&gt;
 &lt;p&gt;Pinecone offers a RESTful &lt;strong&gt;API&lt;/strong&gt; and client libraries &lt;strong&gt;for various programming languages&lt;/strong&gt;, simplifying integration with different NLP frameworks. It supports &lt;strong&gt;dynamic indexing&lt;/strong&gt;, allowing incremental updates to embeddings without rebuilding the entire index. Pinecone also provides advanced features like &lt;strong&gt;vector similarity search&lt;/strong&gt;, &lt;strong&gt;filtering&lt;/strong&gt;, and result ranking. With its &lt;strong&gt;emphasis on real-time performance&lt;/strong&gt; and ease of use, Pinecone is an excellent choice for developers seeking a fully managed vector database for NLP applications.&lt;/p&gt;
 &lt;p&gt;&lt;a id="supabase"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Supabase&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/supabase/supabase?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="supabase.png" src="https://www.safjan.com/images/vectordb/supabase.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Supabase logo" src="images/vectordb/supabase.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://supabase.com/"&gt;Supabase&lt;/a&gt;, known for its open-source data platform, offers a scalable vector storage solution designed for fast and efficient retrieval of embeddings. Supabase leverages PostgreSQL as its underlying storage engine, ensuring data durability and compatibility with standard SQL queries. It provides a range of features such as indexing, querying, and filtering, optimized for vector data.&lt;/p&gt;
 &lt;p&gt;One distinctive aspect of Supabase is its &lt;strong&gt;real-time capabilities&lt;/strong&gt;, enabled by its integration with PostgREST and PostgreSQL's logical decoding feature. This allows developers to build real-time applications that can react to changes in vector data. Supabase also provides a user-friendly &lt;strong&gt;interface&lt;/strong&gt; and &lt;strong&gt;client libraries&lt;/strong&gt; for &lt;strong&gt;various programming languages&lt;/strong&gt;, making it accessible to developers with different skill sets. With its combination of vector storage and real-time capabilities, Supabase is an excellent choice for NLP projects that require both scalability and real-time updates.&lt;/p&gt;
 &lt;p&gt;&lt;a id="qdrant"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Qdrant&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/qdrant/qdrant?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="qdrant.png" src="https://www.safjan.com/images/vectordb/qdrant.png"&gt;
-Qdrant is an open-source vector database designed for similarity search and efficient storage of high-dimensional embeddings. It leverages an approximate nearest neighbor (ANN) algorithm based on Hierarchical Navigable Small World (HNSW) graphs, enabling fast and accurate similarity searches. Qdrant supports both CPU and GPU inference, allowing users to leverage hardware acceleration for faster computations.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Qdrant logo" src="/images/vectordb/qdrant.png"&gt;&lt;/p&gt;
+&lt;p&gt;Qdrant is an open-source vector database designed for similarity search and efficient storage of high-dimensional embeddings. It leverages an approximate nearest neighbor (ANN) algorithm based on Hierarchical Navigable Small World (HNSW) graphs, enabling fast and accurate similarity searches. Qdrant supports both CPU and GPU inference, allowing users to leverage hardware acceleration for faster computations.&lt;/p&gt;
 &lt;p&gt;One notable feature of Qdrant is its &lt;strong&gt;RESTful API&lt;/strong&gt;, which provides a user-friendly &lt;strong&gt;interface for indexing, searching, and managing vector data&lt;/strong&gt;. Qdrant also offers &lt;strong&gt;flexible query options&lt;/strong&gt;, allowing users to specify search parameters and control the trade-off between accuracy and speed. With its focus on efficient similarity search and user-friendly API, Qdrant is a powerful vector database for various NLP applications.&lt;/p&gt;
 &lt;p&gt;&lt;a id="vespa"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Vespa&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/vespa-engine/vespa?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="https://vespa.ai/assets/vespa-logo.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="vespa logo" src="https://vespa.ai/assets/vespa-logo.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://vespa.ai/"&gt;Vespa&lt;/a&gt; is an open-source big data processing and serving engine developed by Verizon Media. It provides a distributed, scalable, and high-performance infrastructure for storing and querying vector embeddings. Vespa utilizes an inverted index structure combined with approximate nearest neighbor (ANN) search algorithms for efficient and accurate similarity searches.&lt;/p&gt;
 &lt;p&gt;One of Vespa's key features is its &lt;strong&gt;built-in ranking framework&lt;/strong&gt;, allowing developers to define custom ranking models and apply &lt;strong&gt;complex ranking algorithms to search results&lt;/strong&gt;. Vespa also supports &lt;strong&gt;real-time updates&lt;/strong&gt;, making it suitable for &lt;strong&gt;dynamic embedding datasets&lt;/strong&gt;. Additionally, Vespa provides a &lt;strong&gt;query language&lt;/strong&gt; and a user-friendly &lt;strong&gt;WebUI&lt;/strong&gt; for managing and monitoring the vector database. With its focus on &lt;strong&gt;distributed processing&lt;/strong&gt; and advanced ranking capabilities, Vespa is a powerful tool for NLP applications that require complex ranking models and real-time updates.&lt;/p&gt;
 &lt;p&gt;&lt;a id="weaviate"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Weaviate&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/semi-technologies/weaviate?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="weaviate.png" src="https://www.safjan.com/images/vectordb/weaviate.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Weaviate logo" src="/images/vectordb/weaviate.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://weaviate.io/"&gt;Weaviate&lt;/a&gt; is an open-source knowledge graph and vector search engine that excels in handling high-dimensional embeddings. It combines the power of graph databases and vector search to provide efficient storage, retrieval, and exploration of vector data. Weaviate offers powerful indexing methods, including approximate nearest neighbor (ANN) algorithms like HNSW, for fast and accurate similarity searches.&lt;/p&gt;
 &lt;p&gt;One unique aspect of Weaviate is its &lt;strong&gt;focus on semantics and contextual relationships&lt;/strong&gt;. It allows users to define &lt;strong&gt;custom schema and relationships between entities&lt;/strong&gt;, enabling &lt;strong&gt;complex queries that go beyond simple vector similarity&lt;/strong&gt;. Weaviate also provides a &lt;strong&gt;RESTful API&lt;/strong&gt;, client libraries, and a user-friendly &lt;strong&gt;WebUI&lt;/strong&gt; for easy integration and management. With its combination of &lt;strong&gt;graph database features&lt;/strong&gt; and vector search capabilities, Weaviate is an excellent choice &lt;strong&gt;for NLP applications that require semantic understanding and exploration of embeddings&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a id="deeplake"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;DeepLake&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/activeloopai/deeplake?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="https://camo.githubusercontent.com/d0c805affb06f5ea9ba767de06b77a04de54a7ef433fad08b2729d5e6b11112c/68747470733a2f2f692e706f7374696d672e63632f72736a63576333532f646565706c616b652d6c6f676f2e706e67"&gt;
+&lt;p&gt;&lt;img alt="DeepLake logo" src="https://camo.githubusercontent.com/d0c805affb06f5ea9ba767de06b77a04de54a7ef433fad08b2729d5e6b11112c/68747470733a2f2f692e706f7374696d672e63632f72736a63576333532f646565706c616b652d6c6f676f2e706e67"&gt;
 &lt;a href="https://www.activeloop.ai/"&gt;DeepLake&lt;/a&gt; is an open-source vector database designed for efficient storage and retrieval of embeddings. It focuses on scalability and speed, making it suitable for handling large-scale NLP datasets. DeepLake provides a distributed architecture with built-in support for horizontal scalability, allowing users to handle massive volumes of vector data.&lt;/p&gt;
 &lt;p&gt;One unique feature of DeepLake is its support for &lt;strong&gt;distributed vector indexing and querying&lt;/strong&gt;. It leverages an &lt;strong&gt;ANN&lt;/strong&gt; algorithm based on the Product Quantization (PQ) method, enabling fast and accurate similarity searches. DeepLake also provides a &lt;strong&gt;RESTful API&lt;/strong&gt; for easy integration with NLP pipelines and frameworks. With its emphasis on &lt;strong&gt;scalability and distributed processing&lt;/strong&gt;, DeepLake is a robust vector database for demanding NLP applications.&lt;/p&gt;
 &lt;p&gt;&lt;a id="vectorstore-from-langchain"&gt;&lt;/a&gt;&lt;/p&gt;
@@ -628,7 +831,178 @@ Qdrant is an open-source vector database designed for similarity search and effi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This works on Windows systems, but it requires the &lt;code&gt;winreg&lt;/code&gt; module and accesses the Windows Registry, so it is not as platform-independent as the other solutions.&lt;/p&gt;
-&lt;p&gt;Overall, using either &lt;code&gt;os.path.expanduser()&lt;/code&gt; or &lt;code&gt;Path.home()&lt;/code&gt; is the most reliable and platform-independent way to get the user's home directory path in Python.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="home"></category><category term="home-dir"></category><category term="pathlib"></category></entry><entry><title>Python regex named groups</title><link href="https://www.safjan.com/python-regex-named-groups/" rel="alternate"></link><published>2023-04-19T00:00:00+02:00</published><updated>2023-04-19T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-19:/python-regex-named-groups/</id><summary type="html">&lt;p&gt;In Python regex, &lt;code&gt;match.groupdict()&lt;/code&gt; is a method that returns a dictionary containing all the named groups of a regular expression match.&lt;/p&gt;
+&lt;p&gt;Overall, using either &lt;code&gt;os.path.expanduser()&lt;/code&gt; or &lt;code&gt;Path.home()&lt;/code&gt; is the most reliable and platform-independent way to get the user's home directory path in Python.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="home"></category><category term="home-dir"></category><category term="pathlib"></category></entry><entry><title>Attacking Differential Privacy Using the Correlation Between the Features</title><link href="https://www.safjan.com/attacking-differential-privacy-using-the-correlation-between-the-features/" rel="alternate"></link><published>2023-04-19T00:00:00+02:00</published><updated>2023-04-19T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-19:/attacking-differential-privacy-using-the-correlation-between-the-features/</id><summary type="html">&lt;p&gt;Learn how the differential privacy works by simulating attack on data protected with that technique.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Differential privacy is a technique that adds random noise to the data to protect individual privacy while still allowing for accurate data analysis. However, differential privacy can still be vulnerable to attacks that can compromise the privacy of individuals. One such attack is through the use of correlation between features. In this paper, we will discuss how an attacker can use correlation between features to attack differential privacy and how to mitigate this attack.&lt;/p&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;Differential privacy adds random noise to the data to protect the privacy of individuals. The amount of noise added depends on a parameter called the privacy budget. The higher the privacy budget, the less noise is added, and the lower the privacy budget, the more noise is added. The privacy budget is usually set based on the desired level of privacy and the size of the data set. A smaller privacy budget leads to better privacy but less accurate data analysis, while a larger privacy budget leads to less privacy but more accurate data analysis.&lt;/p&gt;
+&lt;h2&gt;Correlation Between Features&lt;/h2&gt;
+&lt;p&gt;In many data sets, the features are not independent but are correlated with each other. Correlation between features can be measured using the correlation coefficient. The correlation coefficient between two features x and y is defined as:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+ρ_{x,y} = cov(x,y) / (σ_x * σ_y)
+$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(cov(x,y)\)&lt;/span&gt; is the covariance between &lt;span class="math"&gt;\(x\)&lt;/span&gt; and &lt;span class="math"&gt;\(y\)&lt;/span&gt;, and &lt;span class="math"&gt;\(\sigma_x\)&lt;/span&gt; and &lt;span class="math"&gt;\(\sigma_y\)&lt;/span&gt; are the standard deviations of &lt;span class="math"&gt;\(x\)&lt;/span&gt; and &lt;span class="math"&gt;\(y\)&lt;/span&gt;, respectively.&lt;/p&gt;
+&lt;p&gt;Correlation between features can be used to attack differential privacy. An attacker can use the correlation between features to infer the presence or absence of an individual's data in the data set. For example, suppose an attacker knows that two features x and y are highly correlated. If the attacker sees that the value of y is very different from what they would expect based on the value of x, they can infer that the individual's data was not included in the data set.&lt;/p&gt;
+&lt;h2&gt;Attack using Correlation Between Features&lt;/h2&gt;
+&lt;p&gt;An attacker can use the following steps to attack differential privacy using correlation between features:&lt;/p&gt;
+&lt;h3&gt;Identify highly correlated features&lt;/h3&gt;
+&lt;p&gt;The attacker identifies which features in the data set are highly correlated with each other.&lt;/p&gt;
+&lt;h3&gt;Compute expected values&lt;/h3&gt;
+&lt;p&gt;The attacker computes the expected values of the features based on the values of the other features.&lt;/p&gt;
+&lt;h3&gt;Compare expected and observed values&lt;/h3&gt;
+&lt;p&gt;The attacker compares the expected values with the observed values of the features. If the observed values are significantly different from the expected values, the attacker can infer that the individual's data was not included in the data set.&lt;/p&gt;
+&lt;h2&gt;Mitigating the Attack&lt;/h2&gt;
+&lt;p&gt;There are several ways to mitigate the attack using correlation between features. One approach is to decorrelate the features by transforming the data. For example, principal component analysis (PCA) can be used to decorrelate the features. Another approach is to add noise to the data in a way that preserves the correlation between features. This approach is called differentially private PCA (DP-PCA). DP-PCA adds noise to the data in a way that satisfies differential privacy while preserving the correlation between features.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Correlation between features can be used to attack differential privacy. An attacker can use the correlation between features to infer the presence or absence of an individual's data in the data set. To mitigate this attack, the features can be decorrelated or noise can be added to the data using DP-PCA. Data security experts should be aware of this attack and take appropriate measures to mitigate its effects.&lt;/p&gt;
+&lt;h2&gt;Tutorial&lt;/h2&gt;
+&lt;p&gt;In this tutorial, we will go through the steps of attacking differential privacy by exploiting correlations between features, using Python code to demonstrate each step.&lt;/p&gt;
+&lt;p&gt;In the tutorial we will be using pydp Python library, so you need to install it first:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install python-dp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Select a dataset that requires privacy protection&lt;/h3&gt;
+&lt;p&gt;For this tutorial, we will use the Adult dataset from the UCI Machine Learning Repository. This dataset contains information about individuals, including their age, education level, marital status, occupation, and more. The goal is to predict whether an individual earns more than $50K per year. We will load this dataset using pandas:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                 &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                 &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;workclass&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;fnlwgt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;education&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;education-num&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;marital-status&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                        &lt;span class="s2"&gt;&amp;quot;occupation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;relationship&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;race&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;capital-gain&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;capital-loss&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                        &lt;span class="s2"&gt;&amp;quot;hours-per-week&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;native-country&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;income&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Apply differential privacy&lt;/h3&gt;
+&lt;p&gt;We will use the PyDP library to apply differential privacy to the dataset. We will add Laplace noise to the age and education-num features, with a privacy budget of 1.0:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydp.algorithms.laplacian&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BoundedMean&lt;/span&gt;
+
+&lt;span class="n"&gt;epsilon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
+
+&lt;span class="c1"&gt;# apply differential privacy to age&lt;/span&gt;
+&lt;span class="n"&gt;bm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BoundedMean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quick_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# apply differential privacy to education-num&lt;/span&gt;
+&lt;span class="n"&gt;bm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BoundedMean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;epsilon&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;education-num&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;education-num&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quick_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Perform the attack - reconstruct original data by exploiting correlation between features&lt;/h3&gt;
+&lt;p&gt;Now that we have applied differential privacy to the dataset, we will attempt to reconstruct the original data by exploiting the correlation between features. Specifically, we will use the age and education-num features, which we know are highly correlated, to infer the values of the original data.&lt;/p&gt;
+&lt;p&gt;First, we will create a copy of the dataset and remove the age and education-num features, as we will be reconstructing these features:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;df_attack&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;education-num&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, we will compute the mean and covariance matrix of the remaining features:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="c1"&gt;# compute mean and covariance of remaining features&lt;/span&gt;
+&lt;span class="n"&gt;mean&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df_attack&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cov&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cov&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df_attack&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We can now use the mean and covariance matrix to generate synthetic data:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# generate synthetic data&lt;/span&gt;
+&lt;span class="n"&gt;synthetic_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;multivariate_normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cov&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;synthetic_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;synthetic_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;df_attack&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, we will reconstruct the age and education-num features using the generated synthetic data:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# reconstruct age and education-num features&lt;/span&gt;
+&lt;span class="n"&gt;reconstructed_age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;education-num&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;cov&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;cov&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;reconstructed_edu_num&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;cov&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;cov&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# combine reconstructed features with original data&lt;/span&gt;
+&lt;span class="n"&gt;reconstructed_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;reconstructed_age&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;education-num&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;reconstructed_edu_num&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="n"&gt;df_reconstructed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;df_attack&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reconstructed_df&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We can now compare the reconstructed age and education-num features with the original features to see how well our attack worked:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# compare reconstructed age and education-num with original features print(&amp;quot;Age:&amp;quot;) &lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Original:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; 
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Reconstructed:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reconstructed_age&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; 
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Education-num:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Original:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;education-num&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Reconstructed:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reconstructed_edu_num&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;Original&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;39&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="mi"&gt;38&lt;/span&gt; &lt;span class="mi"&gt;53&lt;/span&gt; &lt;span class="mi"&gt;28&lt;/span&gt; &lt;span class="mi"&gt;37&lt;/span&gt; &lt;span class="mi"&gt;49&lt;/span&gt; &lt;span class="mi"&gt;52&lt;/span&gt; &lt;span class="mi"&gt;31&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Reconstructed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;39.38640885&lt;/span&gt; &lt;span class="mf"&gt;49.44619487&lt;/span&gt; &lt;span class="mf"&gt;38.2757904&lt;/span&gt;  &lt;span class="mf"&gt;52.75103613&lt;/span&gt; &lt;span class="mf"&gt;26.46121269&lt;/span&gt; &lt;span class="mf"&gt;37.760824&lt;/span&gt;
+ &lt;span class="mf"&gt;47.88143872&lt;/span&gt; &lt;span class="mf"&gt;52.8530772&lt;/span&gt;  &lt;span class="mf"&gt;30.79760633&lt;/span&gt; &lt;span class="mf"&gt;42.56495885&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;Education&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;Original&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;  &lt;span class="mi"&gt;9&lt;/span&gt;  &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;  &lt;span class="mi"&gt;5&lt;/span&gt;  &lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Reconstructed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;13.19164695&lt;/span&gt; &lt;span class="mf"&gt;13.19406455&lt;/span&gt;  &lt;span class="mf"&gt;9.04750693&lt;/span&gt;  &lt;span class="mf"&gt;6.8549391&lt;/span&gt;  &lt;span class="mf"&gt;13.25155432&lt;/span&gt; &lt;span class="mf"&gt;13.76664294&lt;/span&gt;
+  &lt;span class="mf"&gt;5.45598348&lt;/span&gt;  &lt;span class="mf"&gt;8.72003132&lt;/span&gt; &lt;span class="mf"&gt;14.14489928&lt;/span&gt; &lt;span class="mf"&gt;12.9968581&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As we can see, the reconstructed values are quite similar to the original values. This suggests that an attacker could use the correlation between the age and education-num features to infer the original values, even with the protection of differential privacy.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;In this tutorial, we have demonstrated how an attacker can exploit correlations between features to attack differential privacy. We used the PyDP library to apply differential privacy to a dataset, and then showed how an attacker could use the correlation between the age and education-num features to reconstruct the original values. This highlights the importance of considering the correlations between features when applying differential privacy, and suggests that additional protections may be necessary to prevent attacks based on feature correlations.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category><category term="privacy"></category><category term="xai"></category><category term="responsible-ai"></category></entry><entry><title>Python regex named groups</title><link href="https://www.safjan.com/python-regex-named-groups/" rel="alternate"></link><published>2023-04-19T00:00:00+02:00</published><updated>2023-04-19T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-19:/python-regex-named-groups/</id><summary type="html">&lt;p&gt;In Python regex, &lt;code&gt;match.groupdict()&lt;/code&gt; is a method that returns a dictionary containing all the named groups of a regular expression match.&lt;/p&gt;
 &lt;p&gt;When you use named capturing groups in a regular expression using the &lt;code&gt;(?P&amp;lt;name&amp;gt;...)&lt;/code&gt; syntax, you can access the captured …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Python regex, &lt;code&gt;match.groupdict()&lt;/code&gt; is a method that returns a dictionary containing all the named groups of a regular expression match.&lt;/p&gt;
 &lt;p&gt;When you use named capturing groups in a regular expression using the &lt;code&gt;(?P&amp;lt;name&amp;gt;...)&lt;/code&gt; syntax, you can access the captured text using the &lt;code&gt;groupdict()&lt;/code&gt; method on the match object returned by &lt;code&gt;re.match()&lt;/code&gt; or &lt;code&gt;re.search()&lt;/code&gt;. The keys of the dictionary correspond to the group names, and the values are the captured text for each group.&lt;/p&gt;
 &lt;p&gt;Here's an example:&lt;/p&gt;
@@ -647,7 +1021,168 @@ Qdrant is an open-source vector database designed for similarity search and effi
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;2023&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;month&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;04&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;day&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;19&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;In the above example, the regular expression pattern matches a date string in the format 'yyyy-mm-dd', and each part of the date is captured using named groups. The &lt;code&gt;groupdict()&lt;/code&gt; method returns a dictionary with keys 'year', 'month', and 'day', and their corresponding captured values.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="regex"></category></entry><entry><title>Convert HEIC and HEIF to jpg, png, bmp with Python</title><link href="https://www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/" rel="alternate"></link><published>2023-04-14T00:00:00+02:00</published><updated>2023-04-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-14:/convert-heic-and-heif-to-jpg-png-bmp-with-python/</id><summary type="html">&lt;p&gt;HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog …&lt;/p&gt;</summary><content type="html">&lt;p&gt;HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog post, we will explore how to convert HEIF and HEIC files to JPEG and other popular image formats using Python.&lt;/p&gt;
+&lt;p&gt;In the above example, the regular expression pattern matches a date string in the format 'yyyy-mm-dd', and each part of the date is captured using named groups. The &lt;code&gt;groupdict()&lt;/code&gt; method returns a dictionary with keys 'year', 'month', and 'day', and their corresponding captured values.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="regex"></category></entry><entry><title>Are LIME explanations any useful?</title><link href="https://www.safjan.com/are-lime-explanations-any-useful/" rel="alternate"></link><published>2023-04-18T00:00:00+02:00</published><updated>2023-04-18T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-18:/are-lime-explanations-any-useful/</id><summary type="html">&lt;p&gt;Don't let black box models hold you back. With LIME, you can interpret the predictions of even the most complex machine learning models.&lt;/p&gt;</summary><content type="html">&lt;p&gt;LIME (Local Interpretable Model-agnostic Explanations) is a method used to interpret black box models. This technique is widely used in the field of data science to explain the predictions of complex machine learning models. By providing local explanations, LIME can help users understand the decision-making process of the models and increase their trust in the models' predictions. However, the question remains, are the local explanations obtained with LIME method useful? And what are the practical use cases when using LIME gave tangible results?&lt;/p&gt;
+&lt;p&gt;In this article, we will delve into the concept of LIME, its practical applications, and how it can be used to provide interpretable machine learning models.&lt;/p&gt;
+&lt;h2&gt;What is LIME?&lt;/h2&gt;
+&lt;p&gt;LIME is a model-agnostic technique used to explain the predictions of machine learning models. The idea behind LIME is to explain the predictions of a black box model by training a local, interpretable model around the data point of interest. The interpretable model is trained to mimic the behavior of the black box model around that data point. Once the local model is trained, it can be used to generate an explanation of the prediction, highlighting the most important features that contributed to the prediction.&lt;/p&gt;
+&lt;p&gt;The LIME algorithm consists of the following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Select a data point of interest.&lt;/li&gt;
+&lt;li&gt;Generate a dataset of perturbed instances around the selected data point.&lt;/li&gt;
+&lt;li&gt;Evaluate the black box model on the perturbed instances to obtain a set of weights that indicate the importance of each feature for the prediction.&lt;/li&gt;
+&lt;li&gt;Train an interpretable model (such as a linear regression model) on the perturbed instances, using the weights obtained in step 3 as feature weights.&lt;/li&gt;
+&lt;li&gt;Use the trained interpretable model to generate an explanation of the prediction for the selected data point.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Practical applications of LIME&lt;/h2&gt;
+&lt;p&gt;LIME has been successfully applied in various domains, including healthcare, finance, and image recognition. Here are some practical use cases where LIME has been used to provide interpretable machine learning models:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Healthcare&lt;/strong&gt;: LIME has been used to interpret the predictions of machine learning models that diagnose diseases. For example, in a study conducted by Zech et al., LIME was used to interpret the predictions of a deep learning model that diagnosed pneumonia from chest X-rays. The LIME explanations provided by the study helped radiologists understand the decision-making process of the model and identify areas of the X-rays that contributed the most to the diagnosis.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Finance&lt;/strong&gt;: LIME has also been used to interpret the predictions of machine learning models that predict financial outcomes. For example, in a study conducted by Chen et al., LIME was used to interpret the predictions of a machine learning model that predicted the credit risk of borrowers. The LIME explanations provided by the study helped lenders understand the factors that contributed to the credit risk prediction and make informed lending decisions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Image recognition&lt;/strong&gt;: LIME has been used to interpret the predictions of machine learning models that recognize images. For example, in a study conducted by Selvaraju et al., LIME was used to interpret the predictions of a deep learning model that recognized objects in images. The LIME explanations provided by the study helped users understand which parts of the image were important for the prediction and identify areas of improvement for the model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Benefits and limitations of LIME&lt;/h2&gt;
+&lt;p&gt;LIME provides several &lt;strong&gt;benefits&lt;/strong&gt; to data scientists and machine learning practitioners. &lt;/p&gt;
+&lt;p&gt;First, LIME &lt;strong&gt;can help increase the trust of users in machine learning models by providing interpretable explanations of the models' predictions&lt;/strong&gt;. This can be especially useful in high-stakes domains, such as healthcare and finance, where decisions based on machine learning predictions can have significant consequences.
+Second, LIME &lt;strong&gt;can help users identify areas of improvement for machine learning models&lt;/strong&gt;. By providing explanations of the models' predictions, LIME can help users identify which features were important for the prediction and which ones were not. This can help users refine their feature engineering process and improve the performance of their models.&lt;/p&gt;
+&lt;p&gt;However, LIME also has some &lt;strong&gt;limitations&lt;/strong&gt; that data scientists and machine learning practitioners should be aware of. &lt;/p&gt;
+&lt;p&gt;First, LIME provides local explanations, which means that &lt;strong&gt;the explanations are only valid for the selected data point of interest&lt;/strong&gt;. Therefore, the explanations generated by LIME may not generalize to other data points.&lt;/p&gt;
+&lt;p&gt;Second, LIME &lt;strong&gt;requires a significant amount of computational resources&lt;/strong&gt; to generate the perturbed instances and train the interpretable model. This can be a limitation when working with large datasets or computationally expensive models.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In conclusion, LIME is a useful technique for interpreting the predictions of machine learning models. LIME can help increase the trust of users in machine learning models and identify areas of improvement for the models. LIME has been successfully applied in various domains, including healthcare, finance, and image recognition. However, LIME also has some limitations, such as providing local explanations and requiring significant computational resources. Therefore, data scientists and machine learning practitioners should carefully consider the use of LIME and its limitations when interpreting the predictions of their models.&lt;/p&gt;</content><category term="Explainable AI"></category><category term="machine-learning"></category><category term="lime"></category><category term="xai"></category><category term="explainable-ai"></category></entry><entry><title>Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?</title><link href="https://www.safjan.com/measure-quality-of-embeddings/" rel="alternate"></link><published>2023-04-18T00:00:00+02:00</published><updated>2023-04-18T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-18:/measure-quality-of-embeddings/</id><summary type="html">&lt;p&gt;Learn how to measure the quality of word and sentence embeddings in natural language processing (NLP), including intrinsic and extrinsic evaluation, and their strengths and limitations.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Let's start with the concept of embedding vectors. In natural language processing (NLP), an embedding vector is a mathematical representation of words or phrases. It's a way to convert text data into numerical values that can be processed by machine learning algorithms. Word embeddings and sentence embeddings are widely used in natural language processing (NLP) for a variety of tasks, such as text classification, named entity recognition, machine translation, and sentiment analysis. However, it is not always straightforward to evaluate the quality of embeddings, and different evaluation metrics may be appropriate for different use cases. In this blog post, we will explore several ways to measure the quality of embeddings, including intrinsic and extrinsic evaluation, and discuss their strengths and limitations.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#intrinsic-evaluation"&gt;Intrinsic Evaluation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#cosine-similarity"&gt;Cosine Similarity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#spearman-correlation"&gt;Spearman Correlation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#accuracy"&gt;Accuracy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#extrinsic-evaluation"&gt;Extrinsic Evaluation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#f1-score"&gt;F1 Score&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#perplexity"&gt;Perplexity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#limitations"&gt;Limitations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="intrinsic-evaluation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Intrinsic Evaluation&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Intrinsic evaluation&lt;/strong&gt; - aims to measure the quality of embeddings by assessing their performance on specific NLP tasks that are related to the embedding space itself, such as word similarity, analogy, and classification.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In this section, we will discuss three commonly used intrinsic evaluation metrics: cosine similarity, Spearman correlation, and accuracy.&lt;/p&gt;
+&lt;p&gt;&lt;a id="cosine-similarity"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Cosine Similarity&lt;/h3&gt;
+&lt;p&gt;Cosine similarity measures the similarity between two vectors by computing the cosine of the angle between them. In the context of embeddings, cosine similarity is often used to measure the similarity between two words, or between a word and its context. The formula for cosine similarity is as follows:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+cosine\_similarity(\textbf{v}_1, \textbf{v}_2) = \frac{\textbf{v}_1 \cdot \textbf{v}_2}{\|\textbf{v}_1\|\|\textbf{v}_2\|}
+$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(\textbf{u}\)&lt;/span&gt; and &lt;span class="math"&gt;\(\textbf{v}\)&lt;/span&gt; are the embeddings of two words, and &lt;span class="math"&gt;\(|\cdot|\)&lt;/span&gt; denotes the Euclidean norm.&lt;/p&gt;
+&lt;p&gt;&lt;a id="spearman-correlation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Spearman Correlation&lt;/h3&gt;
+&lt;p&gt;Spearman correlation measures the monotonic relationship between two variables, which can be the similarity scores of two sets of words or phrases computed by humans and by embeddings. A high Spearman correlation indicates that the embeddings are able to capture the semantic relationships between words that humans perceive. The formula for Spearman correlation is as follows:&lt;/p&gt;
+&lt;p&gt;$$
+\text{Spearman's correlation} = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}&lt;/p&gt;
+&lt;p&gt;$$&lt;/p&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(d_i\)&lt;/span&gt; is the difference between the ranks of the &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th pair of similarity scores, and &lt;span class="math"&gt;\(n\)&lt;/span&gt; is the number of pairs.&lt;/p&gt;
+&lt;p&gt;&lt;a id="accuracy"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Accuracy&lt;/h3&gt;
+&lt;p&gt;Accuracy measures the performance of embeddings on classification tasks, such as sentiment analysis or topic classification. Given a dataset of labeled examples, the embeddings are used to represent each example, and a classifier is trained on these representations. The accuracy of the classifier on a held-out test set is then used as a measure of the quality of the embeddings.&lt;/p&gt;
+&lt;p&gt;&lt;a id="extrinsic-evaluation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Extrinsic Evaluation&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Extrinsic evaluation&lt;/strong&gt; - aims to measure the quality of embeddings by assessing their performance on downstream NLP tasks, such as machine translation or text classification, that are not directly related to the embedding space itself.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In this section, we will discuss two commonly used extrinsic evaluation metrics: F1 score and perplexity.
+&lt;a id="f1-score"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;F1 Score&lt;/h3&gt;
+&lt;p&gt;F1 score is a metric commonly used in binary classification problems, such as sentiment analysis or named entity recognition. It combines precision and recall into a single score that ranges from 0 to 1. A high F1 score indicates that the embeddings are able to capture the relevant features of the input data. The formula for F1 score is as follows:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+F1 = \frac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+$$&lt;/div&gt;
+&lt;p&gt;where precision is the fraction of true positives among the predicted positives, and recall is the fraction of true positives among the actual positives.&lt;/p&gt;
+&lt;p&gt;&lt;a id="perplexity"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Perplexity&lt;/h3&gt;
+&lt;p&gt;Perplexity is a metric commonly used in language modeling tasks, such as machine translation or text generation. It measures how well a language model can predict a held-out test set of text, given the embeddings as input. A low perplexity indicates that the embeddings  are able to capture the semantic and syntactic structures of the language. The formula for perplexity is as follows:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\text{perplexity} = 2^{-\frac{1}{N}\sum_{i=1}^{N} \log_2 p(w_i | \textbf{e}_i)}
+$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(N\)&lt;/span&gt; is the number of tokens in the test set, &lt;span class="math"&gt;\(\textbf{e}_i\)&lt;/span&gt; is the embedding of the &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th token, and &lt;span class="math"&gt;\(p(w_i | \textbf{e}_i)\)&lt;/span&gt; is the conditional probability of the &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th token given its embedding.&lt;/p&gt;
+&lt;p&gt;&lt;a id="limitations"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Limitations&lt;/h2&gt;
+&lt;p&gt;While intrinsic and extrinsic evaluation metrics can provide useful insights into the quality of embeddings, they also have some limitations. Intrinsic evaluation may not always reflect the performance of embeddings on downstream tasks, and extrinsic evaluation may not always isolate the contribution of embeddings from other factors, such as the choice of model architecture or the quality of the training data. Moreover, the choice of evaluation metrics may depend on the specific use case and the available resources, and there is no one-size-fits-all solution.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category></entry><entry><title>Convert HEIC and HEIF to jpg, png, bmp with Python</title><link href="https://www.safjan.com/convert-heic-and-heif-to-jpg-png-bmp-with-python/" rel="alternate"></link><published>2023-04-14T00:00:00+02:00</published><updated>2023-04-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-14:/convert-heic-and-heif-to-jpg-png-bmp-with-python/</id><summary type="html">&lt;p&gt;HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog …&lt;/p&gt;</summary><content type="html">&lt;p&gt;HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog post, we will explore how to convert HEIF and HEIC files to JPEG and other popular image formats using Python.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
@@ -2297,7 +2832,76 @@ hello&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;&l
 &lt;h2&gt;could continue to be a vital tool for content discovery and consumption&lt;/h2&gt;
 &lt;p&gt;Finally, RSS could continue to be a vital tool for content discovery and consumption. While social media platforms provide a wealth of content, they can also be overwhelming and difficult to navigate. RSS feeds, by contrast, provide a streamlined and personalized experience, enabling users to stay up to date with their favorite publications and topics. As a result, RSS could continue to be a valuable tool for content discovery and consumption in the years to come.&lt;/p&gt;
 &lt;h2&gt;conclusion&lt;/h2&gt;
-&lt;p&gt;The future of the RSS standard is uncertain, but there are many possibilities for its evolution. It could become obsolete, evolve to include new types of content, be used to combat misinformation, or remain a valuable tool for content discovery and consumption. Regardless of what happens, it is clear that RSS has had a significant impact on the web and will continue to be an important part of the digital landscape for years to come.&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="fake-news"></category><category term="social-media"></category><category term="twitter"></category></entry><entry><title>In Git, how create patch for changes between current head and given commit?</title><link href="https://www.safjan.com/git-create-path/" rel="alternate"></link><published>2023-02-28T00:00:00+01:00</published><updated>2023-02-28T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-28:/git-create-path/</id><summary type="html">&lt;p&gt;To create a patch in Git for the changes between the current HEAD and a given commit, you can use the &lt;code&gt;git diff&lt;/code&gt; command with the &lt;code&gt;--patch&lt;/code&gt; option. Here are the steps:&lt;/p&gt;
+&lt;p&gt;The future of the RSS standard is uncertain, but there are many possibilities for its evolution. It could become obsolete, evolve to include new types of content, be used to combat misinformation, or remain a valuable tool for content discovery and consumption. Regardless of what happens, it is clear that RSS has had a significant impact on the web and will continue to be an important part of the digital landscape for years to come.&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="fake-news"></category><category term="social-media"></category><category term="twitter"></category></entry><entry><title>Best Python IDE for and old computer</title><link href="https://www.safjan.com/best-python-ide-for-an-old-computer/" rel="alternate"></link><published>2023-03-03T00:00:00+01:00</published><updated>2023-03-03T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-03:/best-python-ide-for-an-old-computer/</id><summary type="html">&lt;h1&gt;blog/post-idea&lt;/h1&gt;
+&lt;p&gt;Give me long text on What are the best python IDEs to be used on an old computer?&lt;/p&gt;
+&lt;p&gt;Python is one of the most widely used programming languages for a variety of applications such as web development, data science, artificial …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;blog/post-idea&lt;/h1&gt;
+&lt;p&gt;Give me long text on What are the best python IDEs to be used on an old computer?&lt;/p&gt;
+&lt;p&gt;Python is one of the most widely used programming languages for a variety of applications such as web development, data science, artificial intelligence, and more. Choosing the right integrated development environment (IDE) is essential for efficient and productive coding, especially if you have an older computer with limited resources. Here are some of the best Python IDEs that are suitable for older computers.&lt;/p&gt;
+&lt;h2&gt;Best IDEs&lt;/h2&gt;
+&lt;h3&gt;1.  IDLE&lt;/h3&gt;
+&lt;p&gt;IDLE (Integrated Development and Learning Environment) is a lightweight IDE that comes bundled with Python itself. It is a basic IDE that provides the essential features for coding, such as syntax highlighting, code folding, autocompletion, and debugging. Since IDLE is included with Python, it requires minimal setup and is easy to use, making it a great option for beginners or those with limited resources.&lt;/p&gt;
+&lt;h3&gt;2.  Geany&lt;/h3&gt;
+&lt;p&gt;Geany is a lightweight and fast IDE that is suitable for older computers. It supports a wide range of programming languages, including Python, and provides features such as code folding, syntax highlighting, and autocompletion. Geany also has a plugin system that allows you to add additional features and functionality as needed. It is available for Windows, Mac, and Linux.&lt;/p&gt;
+&lt;h3&gt;3.  Spyder&lt;/h3&gt;
+&lt;p&gt;Spyder is an open-source Python IDE that is specifically designed for scientific computing and data analysis. It provides a range of features such as debugging, profiling, and testing tools, as well as integration with popular scientific libraries such as NumPy, SciPy, and Pandas. Spyder also has a customizable interface, allowing you to adjust the layout to suit your preferences. Although it has more features than some other IDEs, it is still relatively lightweight and should run well on older computers.&lt;/p&gt;
+&lt;h3&gt;4.  PyCharm Community Edition&lt;/h3&gt;
+&lt;p&gt;PyCharm is a popular IDE for Python development that provides a range of advanced features such as code completion, refactoring, debugging, and testing. The Community Edition is a free and open-source version of PyCharm that is suitable for smaller projects and individual developers. It is available for Windows, Mac, and Linux, and can be customized with plugins and themes.&lt;/p&gt;
+&lt;h3&gt;5.  Sublime Text&lt;/h3&gt;
+&lt;p&gt;Sublime Text is a lightweight and fast text editor that supports multiple programming languages, including Python. It provides a range of features such as syntax highlighting, autocompletion, and code folding, as well as plugins that allow you to add additional functionality as needed. Sublime Text is available for Windows, Mac, and Linux, and is highly customizable.&lt;/p&gt;
+&lt;h2&gt;Lesser known but yet powerful IDEs for python development on an old computer&lt;/h2&gt;
+&lt;p&gt;Apart from the commonly used Python IDEs, there are some lesser-known but powerful IDEs that can be used for Python development on an old computer. Here are some of them:&lt;/p&gt;
+&lt;h3&gt;1.  Eric Python IDE&lt;/h3&gt;
+&lt;p&gt;Eric Python IDE is a powerful and fully-featured IDE for Python development. It provides features such as code highlighting, autocompletion, debugging, profiling, refactoring, and more. Eric also supports multiple platforms and languages and is highly customizable. Eric is written in Python and Qt, making it lightweight and suitable for older computers.&lt;/p&gt;
+&lt;h3&gt;2.  Wing IDE&lt;/h3&gt;
+&lt;p&gt;Wing IDE is an advanced IDE for Python development that provides features such as code intelligence, debugging, testing, version control, and more. Wing IDE is highly customizable and supports multiple platforms, including Windows, Mac, and Linux. Wing IDE has a relatively low memory footprint and is optimized for speed, making it a good choice for older computers.&lt;/p&gt;
+&lt;h3&gt;3.  PyDev&lt;/h3&gt;
+&lt;p&gt;PyDev is an open-source Python IDE that provides features such as code highlighting, autocompletion, debugging, testing, and more. PyDev is highly customizable and supports multiple platforms, including Windows, Mac, and Linux. PyDev is optimized for speed and has a relatively low memory footprint, making it a good choice for older computers.&lt;/p&gt;
+&lt;h3&gt;4.  Thonny&lt;/h3&gt;
+&lt;p&gt;Thonny is a beginner-friendly Python IDE that provides features such as code highlighting, autocompletion, debugging, and more. Thonny is designed to be easy to use and has a simple interface that is suitable for beginners. Thonny is optimized for speed and has a relatively low memory footprint, making it a good choice for older computers.&lt;/p&gt;
+&lt;h3&gt;5.  Pyzo&lt;/h3&gt;
+&lt;p&gt;Pyzo is an open-source Python IDE that provides features such as code highlighting, autocompletion, debugging, testing, and more. Pyzo is designed to be lightweight and easy to use and is suitable for both beginners and advanced users. Pyzo is optimized for speed and has a relatively low memory footprint, making it a good choice for older computers.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;The links to the Python IDEs mentioned in this article:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;IDLE - &lt;a href="https://docs.python.org/3/library/idle.html"&gt;https://docs.python.org/3/library/idle.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Geany - &lt;a href="https://www.geany.org/"&gt;https://www.geany.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spyder - &lt;a href="https://www.spyder-ide.org/"&gt;https://www.spyder-ide.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;PyCharm Community Edition - &lt;a href="https://www.jetbrains.com/pycharm/"&gt;https://www.jetbrains.com/pycharm/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sublime Text - &lt;a href="https://www.sublimetext.com/"&gt;https://www.sublimetext.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;And here are the links to the lesser-known but powerful Python IDEs:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Eric Python IDE - &lt;a href="https://eric-ide.python-projects.org/"&gt;https://eric-ide.python-projects.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Wing IDE - &lt;a href="https://wingware.com/"&gt;https://wingware.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;PyDev - &lt;a href="http://www.pydev.org/"&gt;http://www.pydev.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Thonny - &lt;a href="https://thonny.org/"&gt;https://thonny.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Pyzo - &lt;a href="https://pyzo.org/"&gt;https://pyzo.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Extras&lt;/h2&gt;
+&lt;p&gt;Here are 20 lesser-known options for Python IDEs that you can consider:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Komodo Edit - &lt;a href="https://www.activestate.com/products/komodo-edit/"&gt;https://www.activestate.com/products/komodo-edit/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook - &lt;a href="https://jupyter.org/"&gt;https://jupyter.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GNU Emacs - &lt;a href="https://www.gnu.org/software/emacs/"&gt;https://www.gnu.org/software/emacs/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ninja IDE - &lt;a href="https://ninja-ide.org/"&gt;https://ninja-ide.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;PyScripter - &lt;a href="https://pyscripter.github.io/"&gt;https://pyscripter.github.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Leo - &lt;a href="http://leoeditor.com/"&gt;http://leoeditor.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Pyzo - &lt;a href="https://pyzo.org/"&gt;https://pyzo.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;DrPython - &lt;a href="https://drpython.sourceforge.io/"&gt;https://drpython.sourceforge.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;UliPad - &lt;a href="https://code.google.com/archive/p/ulipad/"&gt;https://code.google.com/archive/p/ulipad/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Eric6 - &lt;a href="https://eric-ide.python-projects.org/"&gt;https://eric-ide.python-projects.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Thonny - &lt;a href="https://thonny.org/"&gt;https://thonny.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;KDevelop - &lt;a href="https://www.kdevelop.org/"&gt;https://www.kdevelop.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Boa Constructor - &lt;a href="https://sourceforge.net/projects/boa-constructor/"&gt;https://sourceforge.net/projects/boa-constructor/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Stani's Python Editor (SPE) - &lt;a href="https://pythonide.blogspot.com/"&gt;https://pythonide.blogspot.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Kodos - &lt;a href="http://kodos.sourceforge.net/"&gt;http://kodos.sourceforge.net/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Wing IDE Personal - &lt;a href="https://wingware.com/downloads/wing-personal"&gt;https://wingware.com/downloads/wing-personal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Python Tools for Visual Studio - &lt;a href="https://github.com/microsoft/PTVS"&gt;https://github.com/microsoft/PTVS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;PyCharm Edu - &lt;a href="https://www.jetbrains.com/pycharm-edu/"&gt;https://www.jetbrains.com/pycharm-edu/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Visual Studio Code - &lt;a href="https://code.visualstudio.com/"&gt;https://code.visualstudio.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mu - &lt;a href="https://codewith.mu/"&gt;https://codewith.mu/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These are just a few of the many options available for Python IDEs. It's important to choose an IDE that works best for your specific needs and preferences, as well as the capabilities of your computer.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="ide"></category><category term="old-computer"></category></entry><entry><title>In Git, how create patch for changes between current head and given commit?</title><link href="https://www.safjan.com/git-create-path/" rel="alternate"></link><published>2023-02-28T00:00:00+01:00</published><updated>2023-02-28T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-02-28:/git-create-path/</id><summary type="html">&lt;p&gt;To create a patch in Git for the changes between the current HEAD and a given commit, you can use the &lt;code&gt;git diff&lt;/code&gt; command with the &lt;code&gt;--patch&lt;/code&gt; option. Here are the steps:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Get the hash of the commit you want to compare …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;To create a patch in Git for the changes between the current HEAD and a given commit, you can use the &lt;code&gt;git diff&lt;/code&gt; command with the &lt;code&gt;--patch&lt;/code&gt; option. Here are the steps:&lt;/p&gt;
@@ -12670,7 +13274,53 @@ These notes are bits collected from the internet. Proper attribution is needed.&
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Heikin-Ashi-based strategies&lt;/p&gt;
-&lt;p&gt;trading_strategies_playlist&lt;/p&gt;</content><category term="note"></category><category term="finance/algotrading"></category><category term="finance/crypto"></category><category term="algorithm"></category><category term="trading"></category><category term="strategies"></category><category term="finance"></category></entry><entry><title>Lesser Known Backtesting Libraries</title><link href="https://www.safjan.com/lesser-known-backtesting-libraries/" rel="alternate"></link><published>2022-06-05T00:00:00+02:00</published><updated>2022-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-05:/lesser-known-backtesting-libraries/</id><summary type="html">&lt;p&gt;This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
+&lt;p&gt;trading_strategies_playlist&lt;/p&gt;</content><category term="note"></category><category term="finance/algotrading"></category><category term="finance/crypto"></category><category term="algorithm"></category><category term="trading"></category><category term="strategies"></category><category term="finance"></category></entry><entry><title>Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platforms</title><link href="https://www.safjan.com/popular-and-lesser-known-dataset-sharing-platforms/" rel="alternate"></link><published>2022-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-09:/popular-and-lesser-known-dataset-sharing-platforms/</id><summary type="html">&lt;p&gt;Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts. 🗝️&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are several popular dataset sharing platforms available that researchers, data scientists, and machine learning practitioners can utilize to access and share datasets. Here are some of the best dataset sharing platforms:&lt;/p&gt;
+&lt;h2&gt;Kaggle&lt;/h2&gt;
+&lt;p&gt;Kaggle is a well-known platform for data science competitions, but it also provides a &lt;a href="https://www.kaggle.com/datasets"&gt;dataset repository&lt;/a&gt; where users can discover and share datasets. It offers a wide range of datasets in various domains, along with tools for data exploration and collaboration.&lt;/p&gt;
+&lt;h2&gt;UCI Machine Learning Repository&lt;/h2&gt;
+&lt;p&gt;The University of California, Irvine (UCI) hosts a &lt;a href="https://archive.ics.uci.edu/"&gt;repository of datasets&lt;/a&gt; specifically designed for machine learning research. It provides a diverse collection of datasets, including text, image, and time series data, covering a wide range of domains.&lt;/p&gt;
+&lt;h2&gt;Google Dataset Search&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://datasetsearch.research.google.com/"&gt;Google Dataset Search&lt;/a&gt; is a search engine that specifically focuses on indexing datasets. It aggregates datasets from various sources on the web, making it easier to find publicly available datasets. It provides information about the dataset, including its description, author, and availability.&lt;/p&gt;
+&lt;h2&gt;Data.gov&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://data.gov/"&gt;Data.gov&lt;/a&gt; is a U.S. government initiative that provides access to a wide range of datasets from different federal agencies. It offers datasets covering various domains such as health, climate, finance, transportation, and more. The platform aims to promote transparency and facilitate public access to government data.&lt;/p&gt;
+&lt;h2&gt;OpenML&lt;/h2&gt;
+&lt;p&gt;OpenML is an open-source platform that allows users to share, discover, and analyze &lt;a href="https://www.openml.org/search?type=data&amp;amp;sort=runs&amp;amp;status=active"&gt;datasets&lt;/a&gt; and machine learning experiments. It provides a collaborative environment for researchers and practitioners to collaborate and contribute to the development of machine learning algorithms.&lt;/p&gt;
+&lt;h2&gt;GitHub&lt;/h2&gt;
+&lt;p&gt;Although GitHub is primarily a code hosting platform, it also serves as a repository for datasets. Many researchers and organizations share datasets on GitHub, making it a valuable resource for finding datasets across various domains. You can search for datasets using specific keywords or explore repositories dedicated to datasets.&lt;/p&gt;
+&lt;h2&gt;Other platforms&lt;/h2&gt;
+&lt;p&gt;Here are 30 lesser-known dataset sharing platforms that you can explore:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;DataHub: &lt;a href="https://datahub.io/"&gt;https://datahub.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Figshare: &lt;a href="https://figshare.com/"&gt;https://figshare.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Quandl: &lt;a href="https://www.quandl.com/"&gt;https://www.quandl.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Zillow Prize: &lt;a href="https://www.kaggle.com/c/zillow-prize-1"&gt;https://www.kaggle.com/c/zillow-prize-1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Data.world: &lt;a href="https://data.world/"&gt;https://data.world/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;OpenSNP: &lt;a href="https://opensnp.org/"&gt;https://opensnp.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dataverse: &lt;a href="https://dataverse.org/"&gt;https://dataverse.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Datacite: &lt;a href="https://www.datacite.org/"&gt;https://www.datacite.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Data Network: &lt;a href="https://www.opendatanetwork.com/"&gt;https://www.opendatanetwork.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HDX: &lt;a href="https://data.humdata.org/"&gt;https://data.humdata.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;AWS Public Datasets: &lt;a href="https://registry.opendata.aws/"&gt;https://registry.opendata.aws/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Social Science Data Repository (SSDR): &lt;a href="https://data.nber.org/"&gt;https://data.nber.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Energy Data: &lt;a href="https://open-power-system-data.org/"&gt;https://open-power-system-data.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Neuro: &lt;a href="https://openneuro.org/"&gt;https://openneuro.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GeoNetwork: &lt;a href="https://geonetwork-opensource.org/"&gt;https://geonetwork-opensource.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Zenodo: &lt;a href="https://zenodo.org/"&gt;https://zenodo.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Awesome Public Datasets: &lt;a href="https://github.com/awesomedata/awesome-public-datasets"&gt;https://github.com/awesomedata/awesome-public-datasets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Images: &lt;a href="https://storage.googleapis.com/openimages/web/index.html"&gt;https://storage.googleapis.com/openimages/web/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;PubMed: &lt;a href="https://pubmed.ncbi.nlm.nih.gov/"&gt;https://pubmed.ncbi.nlm.nih.gov/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Earthdata: &lt;a href="https://earthdata.nasa.gov/"&gt;https://earthdata.nasa.gov/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Humanitarian Data Exchange (HDX): &lt;a href="https://data.humdata.org/"&gt;https://data.humdata.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Registry of Open Data on AWS: &lt;a href="https://registry.opendata.aws/"&gt;https://registry.opendata.aws/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;European Data Portal: &lt;a href="https://www.europeandataportal.eu/"&gt;https://www.europeandataportal.eu/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Global Database of Events, Language, and Tone (GDELT): &lt;a href="https://www.gdeltproject.org/"&gt;https://www.gdeltproject.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;OpenMLCC: &lt;a href="https://openml.github.io/openmlcc/"&gt;https://openml.github.io/openmlcc/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Data.gov.uk: &lt;a href="https://data.gov.uk/"&gt;https://data.gov.uk/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;National Centers for Environmental Information (NCEI): &lt;a href="https://www.ncei.noaa.gov/"&gt;https://www.ncei.noaa.gov/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;DataONE: &lt;a href="https://www.dataone.org/"&gt;https://www.dataone.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;International Monetary Fund (IMF) Data: &lt;a href="https://www.imf.org/en/data"&gt;https://www.imf.org/en/data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Data Soft: &lt;a href="https://www.opendatasoft.com/"&gt;https://www.opendatasoft.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category></entry><entry><title>Lesser Known Backtesting Libraries</title><link href="https://www.safjan.com/lesser-known-backtesting-libraries/" rel="alternate"></link><published>2022-06-05T00:00:00+02:00</published><updated>2022-10-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-06-05:/lesser-known-backtesting-libraries/</id><summary type="html">&lt;p&gt;This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#bt"&gt;Bt&lt;/a&gt;&lt;/li&gt;
@@ -18938,10 +19588,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="ab28d0e1-10d6-4ef1-ad40-d6243bfca398"&gt;&lt;/div&gt;
+&lt;div id="bd0ff44d-a113-4855-9576-0abd5ba2fe05"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#ab28d0e1-10d6-4ef1-ad40-d6243bfca398');
+var element = $('#bd0ff44d-a113-4855-9576-0abd5ba2fe05');
 
 (function(root) {
   function now() {
