@@ -1,12 +1,13 @@
 ---
 Title: Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?
-Slug: measure-quality-of-embeddings
+Slug: measure-quality-of-embeddings-intrinsic-vs-extrinsic
 Date: 2023-04-18
 Modified: 2023-04-18
 Start: 2023-04-18
-Tags: machine-learning, python
+Tags: machine-learning, python, embeddings, cosine-similarity, spearman-correlation, accuracy, f1-score, perplexity
 Category: Machine Learning
-Image: /images/head/abstract_6.jpg
+Image: /images/head/intrisic_vs_ext.jpg
+banner: /images/head/intrisic_vs_ext.jpg
 Summary: Learn how to measure the quality of word and sentence embeddings in natural language processing (NLP), including intrinsic and extrinsic evaluation, and their strengths and limitations.
 Status: published
 prompt: In machine learning, NLP - How to measure quality of embeddings (e.g. word embeddings or sentence embeddings). Give me long blog-post style text on that, audience for the article should be expert data scientists. Provide mathematical formulas in LaTeX in display format (not inline) if needed. - If there is any process described provide mermaid diagram of mermaid gantt chart - propose 10 intriguing or catchy titles for this article - In the end provide also HTML page description for this article (less than 140-200 characters)
