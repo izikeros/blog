@@ -6,7 +6,8 @@ Modified: 2023-04-19
 Start: 2023-04-19
 Tags: machine-learning, python, privacy, xai, responsible-ai 
 Category: Machine Learning
-Image: /images/head/abstract_1.jpg
+Image: /images/head/attacking_differential_privacy.jpg
+banner: /images/head/attacking_differential_privacy.jpg
 Summary: Learn how the differential privacy works by simulating attack on data protected with that technique.
 Status: published
 prompt: Give me long texts for the data security experts on How to use correlation between features to attack differential privacy? Use latex equations in code fences (for ease copy-paste them) where needed. Use research paper style.
