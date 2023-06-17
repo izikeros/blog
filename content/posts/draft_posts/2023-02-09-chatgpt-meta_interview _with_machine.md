@@ -1,5 +1,5 @@
 ---
-Title: ChatGPT - Meta Interview with machine (tentative)
+Title: ChatGPT - Meta Interview with machine
 Slug: meta-interview-with-machine
 Date: 2023-02-09
 Modified: 2023-02-09

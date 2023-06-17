@@ -26,7 +26,7 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 # DISQUS_SITENAME = 'krystian-safjan'
-GOOGLE_ANALYTICS = "UA-117080232-1"
+GOOGLE_ANALYTICS = "G-RM2PKDCCYM" # v3:"UA-117080232-1"   v4:"G-RM2PKDCCYM"
 USE_APPLAUSE = False
 DISPLAY_DATE_BEFORE_TITLE = (
     False  # display date in the list of articles (tags, categories)

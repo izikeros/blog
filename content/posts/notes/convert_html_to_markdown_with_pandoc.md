@@ -1,5 +1,5 @@
 ---
-title: How to convert HTML to clean markdown
+title: How to convert HTML to clean markdown with pandoc
 date: 2022-08-31
 modified: 2022-08-31
 status: published
@@ -98,6 +98,8 @@ In addition to pandoc’s extended Markdown, the following Markdown variants are
 -   `gfm` (Github-Flavored Markdown)
 -   `commonmark_x` (CommonMark with many pandoc extensions)
 
+## Beyond pandoc
+You can give a try to a dedicated python package for converting HTML to markdown: [markdownify · PyPI](https://pypi.org/project/markdownify/) - it has command line interface and support many options for the conversion.
 
 ## See also:
 [[convert_markdown_to_pdf]]
