@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content="machine-learning, python">
+    <meta expr:content="2023-06-08 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-06-08 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-06-08 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-06-08 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Embeddings similarity metrics",
+  "datePublished": "2023-06-08 00:00:00+02:00",
+  "dateModified": "2023-06-08 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Embeddings similarity metrics"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/drafts/embeddings-similarity-metrics.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-06-08 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-06-08 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Embeddings similarity metrics"/>
+
+
+    <title>    Embeddings similarity metrics
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-06-08 
+
+
+                <br/>
+            </p>
+            <h1 id="embeddings-similarity-metrics">Embeddings similarity metrics</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <blockquote>
+<p>approximate nearest neighbors (ANN) algorithms like HNSW and IVFPQ</p>
+</blockquote>
+<h1>Similarity Metrics for Embeddings in Natural Language Processing</h1>
+<p>In Natural Language Processing (NLP), one of the fundamental tasks is to measure the similarity between textual data. Embeddings play a crucial role in representing text as continuous vectors in a high-dimensional space, enabling effective comparison and analysis. However, determining the most appropriate similarity metric for embeddings is vital for accurate NLP applications. In this article, we will explore various similarity metrics commonly used in NLP, explaining their concepts in simple terms and delving into details for NLP professionals. We will also discuss the strengths, drawbacks, and potential failure cases of each metric.</p>
+<h2>Cosine Similarity</h2>
+<p>Let's begin with the widely used cosine similarity metric. Cosine similarity measures the cosine of the angle between two vectors and determines their similarity based on the direction, rather than the magnitude, of the vectors. The cosine similarity between two vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span> is defined as:
+</p>
+<div class="math">$$
+\text{{Cosine Similarity}} = \frac{{\mathbf{a} \cdot \mathbf{b}}}{{\|\mathbf{a}\| \|\mathbf{b}\|}}
+$$</div>
+<p>
+Please note that <span class="math">\(\mathbf{a} \cdot \mathbf{b}\)</span> represents the dot product of vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span>, while <span class="math">\({\|\mathbf{a}\| \|\mathbf{b}\|}\)</span> denote the magnitudes (norms) of vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span>, respectively.</p>
+<p>In simple terms, cosine similarity calculates the cosine of the angle between two vectors, providing a value between -1 and 1. A value of 1 indicates that the vectors have the same direction (maximum similarity), while a value of -1 indicates opposite directions (maximum dissimilarity). A value close to 0 suggests little or no similarity.</p>
+<p>Cosine similarity is advantageous in various NLP scenarios. It is efficient to compute and works well with high-dimensional embeddings. Additionally, it is robust to vector magnitude, making it suitable for cases where the length of the vectors might vary.</p>
+<p>However, cosine similarity also has some drawbacks. It fails to capture the notion of negative similarity, meaning it cannot distinguish between vectors that point in the opposite direction. For example, if <span class="math">\(\mathbf{a}\)</span> represents "good" and <span class="math">\(\mathbf{b}\)</span> represents "bad," their cosine similarity will be close to 1, indicating high similarity. Another limitation is that cosine similarity only measures the geometric similarity between vectors, disregarding the individual components or meanings of the vectors. Therefore, it may not reflect semantic or contextual similarity accurately.</p>
+<h2>Euclidean Distance</h2>
+<p>Moving on, let's explore the Euclidean distance metric, which measures the straight-line distance between two vectors in the embedding space. The Euclidean distance between vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span> is defined as:</p>
+<div class="math">$$
+d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{i=1}^{n}(a_i - b_i)^2}
+$$</div>
+<p>In simpler terms, the Euclidean distance calculates the length of the direct path between two vectors in the embedding space. Smaller distances indicate higher similarity, while larger distances represent greater dissimilarity.</p>
+<p>Euclidean distance is useful in certain NLP scenarios. It provides a measure of geometric similarity that can be beneficial when analyzing embeddings with clear separations in the space. It is also well-suited for clustering or classifying similar and dissimilar texts.</p>
+<p>However, Euclidean distance has its limitations. It can be sensitive to noise, outliers, and variations in vector magnitudes. If the dimensions of the embedding space are not equally informative or normalized, certain dimensions may dominate the distance calculation. Moreover, Euclidean distance does not consider the direction or angle between vectors, neglecting the overall geometry of the embedding space.</p>
+<h2>Manhattan Distance</h2>
+<p>Next, let's discuss the Manhattan distance metric, also known as the city block distance or L1 distance. The Manhattan distance between vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span> is defined as:
+$$
+|\mathbf{a} - \mathbf{b}|<em i="1">1 = \sum</em>^{n} |a_i - b_i|</p>
+<p>$$
+In simple terms, the Manhattan distance calculates the sum of absolute differences between corresponding components of two vectors. It measures the total distance needed to travel in a city block-like manner to reach from one vector to another.</p>
+<p>Manhattan distance has its strengths in certain NLP scenarios. It is robust to outliers and provides a measure of similarity that considers both magnitude and direction of the differences between vectors. This metric can be useful when the magnitude of differences is significant in determining similarity.</p>
+<p>However, Manhattan distance also has limitations. It is sensitive to variations in vector magnitude and does not account for the overall geometry or angle between vectors. Similar to Euclidean distance, the Manhattan distance may not capture the semantic or contextual similarity accurately.</p>
+<h2>Minkowski Distance</h2>
+<p>The Minkowski distance is a generalization of both the Euclidean and Manhattan distances. It allows us to control the sensitivity to magnitude differences through a parameter called the order or degree. The Minkowski distance between vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span> is defined as:</p>
+<div class="math">$$
+d(\mathbf{x}, \mathbf{y}) = \left(\sum_{i=1}^{n} |x_i - y_i|^p\right)^{\frac{1}{p}}
+$$</div>
+<p>Here, the parameter <span class="math">\(p\)</span> controls the degree of the Minkowski distance. When <span class="math">\(p=2\)</span>, it becomes the Euclidean distance, and when <span class="math">\(p=1\)</span>, it becomes the Manhattan distance.</p>
+<p>The Minkowski distance provides flexibility in adjusting the sensitivity to magnitude differences. By varying the value of <span class="math">\(p\)</span>, NLP professionals can experiment with different degrees of sensitivity, aligning it with their specific use case requirements.</p>
+<p>However, the Minkowski distance inherits some of the limitations from both the Euclidean and Manhattan distances. It does not capture the overall geometry of the embedding space and can still be sensitive to variations in vector magnitudes.</p>
+<h2>Jaccard Similarity</h2>
+<p>Let's now explore a similarity metric specifically designed for sets of elements, such as words or n-grams. The Jaccard similarity measures the similarity between two sets based on their intersection and union. For two sets <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, the Jaccard similarity is defined as:</p>
+<div class="math">$$
+J(A, B) = \frac{{|A \cap B|}}{{|A \cup B|}}
+$$</div>
+<p>In the above equation, A and B represent the two sets for which we want to calculate the Jaccard similarity.</p>
+<p>In simpler terms, the Jaccard similarity calculates the size of the common elements divided by the total number of distinct elements in the two sets. The resulting value ranges between 0 and 1, where 1 indicates complete similarity, and 0 indicates no common elements.</p>
+<p>The Jaccard similarity is particularly useful in NLP tasks involving set comparisons, such as text classification, document clustering,</p>
+<h2>Levenshtein Distance</h2>
+<p>The Levenshtein distance, also known as the edit distance, measures the minimum number of single-character edits (insertions, deletions, or substitutions) required to transform one string into another. It is commonly used to compare the similarity between two texts or sequences. The Levenshtein distance between strings <span class="math">\(a\)</span> and <span class="math">\(b\)</span> is defined as:
+</p>
+<div class="math">$$
+Levenshtein Distance(a,b)=minimum\ number\ of\ edits
+$$</div>
+<p>
+The Levenshtein distance provides a measure of similarity by quantifying the number of transformations needed to convert one string into another. It is suitable for tasks such as spelling correction, text comparison, and approximate string matching.</p>
+<p>However, the Levenshtein distance has certain drawbacks. It treats all characters equally, without considering their semantics or contextual meanings. Additionally, it does not account for the order or position of the characters, which can be important in some NLP tasks. Therefore, while the Levenshtein distance is useful for measuring string similarity, it may not capture the underlying meaning or semantics accurately.</p>
+<h2>Word Mover's Distance</h2>
+<p>The Word Mover's Distance (WMD) is a similarity metric designed specifically for comparing pairs of text documents or sequences. It considers the semantic meaning of words and their relationships to measure the dissimilarity between two texts. The WMD calculates the minimum cumulative distance that words from one document need to travel to match the distribution of words in another document.</p>
+<p>The Word Mover's Distance leverages word embeddings to compute the semantic similarity between words. It considers the meaning and context of words, making it suitable for tasks such as document clustering, text similarity, and information retrieval.</p>
+<p>However, the WMD can be computationally expensive, especially when dealing with large vocabularies or documents. The calculation involves comparing the word embeddings of each word pair in the texts, resulting in a high time complexity. Additionally, the WMD heavily relies on the quality and coverage of the word embeddings used. Inadequate or biased embeddings may lead to inaccurate similarity measurements.</p>
+<h2>Summary</h2>
+<p>In summary, choosing the most appropriate similarity metric for embeddings in NLP depends on the specific task and requirements. Cosine similarity is widely used and efficient, suitable for high-dimensional embeddings, but it may not capture negative similarity or semantic nuances. Euclidean distance provides a measure of geometric similarity, while Manhattan distance considers both magnitude and direction of differences. The Minkowski distance offers flexibility by controlling sensitivity to magnitude differences. Jaccard similarity is useful for set comparisons, and Levenshtein distance measures the minimum number of string edits. Word Mover's Distance incorporates semantic meaning but can be computationally expensive.</p>
+<p>Understanding the strengths, limitations, and potential failure cases of each similarity metric is crucial for ensuring accurate results in NLP applications. It is recommended to evaluate and experiment with different metrics to find the one that aligns best with the specific task and data at hand.</p>
+<h1>Similarity Metrics for Embedding Vectors in Natural Language Processing</h1>
+<p>Embedding vectors play a crucial role in Natural Language Processing (NLP) tasks by representing words or sentences in a continuous numerical space. These vectors capture semantic and syntactic information, allowing us to measure the similarity between words or sentences. A variety of similarity metrics exist for comparing embedding vectors, each with its own strengths and limitations. In this blog post, we will explore some commonly used similarity metrics, explain them in simple terms, and then dive into the details for professionals.</p>
+<h2>Cosine Similarity</h2>
+<p>Cosine similarity is a popular metric for measuring the similarity between two embedding vectors. It calculates the cosine of the angle between the vectors, indicating how close they are in terms of direction. Cosine similarity ranges from -1 to 1, where 1 denotes perfect similarity, 0 denotes no similarity, and -1 denotes complete dissimilarity.</p>
+<h3>Simple Explanation</h3>
+<p>To understand cosine similarity intuitively, imagine the embedding vectors as arrows pointing in a high-dimensional space. Cosine similarity measures the alignment between these arrows. If two vectors are perfectly aligned (pointing in the same direction), their cosine similarity will be 1. If they are orthogonal (perpendicular), the cosine similarity will be 0. And if they point in opposite directions, the cosine similarity will be -1.</p>
+<h3>Mathematical Formulation</h3>
+<p>The cosine similarity between two embedding vectors, <strong>a</strong> and <strong>b</strong>, can be calculated using the dot product and vector norms as follows:</p>
+<p>cosine_similarity(�,�)=�⋅�∥�∥∥�∥cosine_similarity(a,b)=∥a∥∥b∥a⋅b​</p>
+<p>where �⋅�a⋅b denotes the dot product of vectors �a and �b, and ∥�∥∥a∥ and ∥�∥∥b∥ represent their respective Euclidean norms.</p>
+<h3>Applicability and Drawbacks</h3>
+<p>Cosine similarity is widely used in NLP tasks such as word similarity, sentence similarity, and document retrieval. It is particularly effective when the magnitude of the vectors is not essential, and only the direction matters. For example, in word embeddings, cosine similarity can capture semantic relationships like "king" and "queen" being similar while ignoring their individual magnitudes.</p>
+<p>However, cosine similarity has a few limitations. One important consideration is that it does not account for the magnitude of the vectors, only their direction. Thus, it may not distinguish between two vectors with the same direction but different lengths. Additionally, cosine similarity treats all dimensions equally, which may not be desirable in some cases where certain dimensions are more informative than others.</p>
+<p>Moreover, cosine similarity is not suitable for measuring similarity between rare or out-of-vocabulary words, as their embedding vectors might be sparse or zero. In such cases, alternative approaches like word sense disambiguation or contextual embeddings may be more appropriate.</p>
+<h2>Euclidean Distance</h2>
+<p>Another commonly used metric for measuring similarity between embedding vectors is Euclidean distance. Unlike cosine similarity, Euclidean distance considers both the direction and magnitude of vectors. It measures the straight-line distance between two vectors in the embedding space.</p>
+<h3>Simple Explanation</h3>
+<p>To grasp the concept of Euclidean distance intuitively, imagine the embedding vectors as points in a geometric space. Euclidean distance is like measuring the length of a straight line between these points. The shorter the distance, the more similar the vectors are in terms of their overall position.</p>
+<h3>Mathematical Formulation</h3>
+<p>The Euclidean distance between two embedding vectors, <strong>a</strong> and <strong>b</strong>, can be calculated as follows:</p>
+<p>euclidean_distance(�,�)=∑�=1�(��−��)2euclidean_distance(a,b)=i=1∑n​(ai​−bi​)2​</p>
+<p>where ��ai​ and ��bi​ represent the components of vectors �a and �b respectively, and �n denotes the dimensionality of the vectors.</p>
+<h3>Applicability and Drawbacks</h3>
+<p>Euclidean distance is commonly used in tasks such as clustering, anomaly detection, and nearest neighbor search. It considers both magnitude and direction, making it suitable for scenarios where these factors are important. For example, in clustering tasks, Euclidean distance helps group similar points together based on their overall proximity.</p>
+<p>However, Euclidean distance has certain limitations. One drawback is that it is sensitive to the scale of the vectors. If the magnitudes of the vectors differ significantly, the Euclidean distance will be dominated by the larger vector. Therefore, it is often necessary to normalize the vectors before computing the distance.</p>
+<p>Additionally, Euclidean distance treats all dimensions equally, which may not be desirable when some dimensions are more relevant than others. In such cases, techniques like feature weighting or dimensionality reduction can be applied to mitigate this issue.</p>
+<h2>Mahalanobis Distance</h2>
+<p>Mahalanobis distance is a metric that takes into account the correlation between different dimensions of the embedding vectors. It measures the distance between two vectors while considering the covariance structure of the data.</p>
+<h3>Simple Explanation</h3>
+<p>To understand Mahalanobis distance intuitively, consider it as a way to account for the shape of the data cloud formed by the embedding vectors. Unlike Euclidean distance, which assumes uncorrelated dimensions, Mahalanobis distance adjusts for the correlation among dimensions. It captures the true distance between vectors, considering both the direction, magnitude, and the relationship between different dimensions.</p>
+<h3>Mathematical Formulation</h3>
+<p>The Mahalanobis distance between two embedding vectors, <strong>a</strong> and <strong>b</strong>, can be calculated as follows:</p>
+<p>mahalanobis_distance(�,�)=(�−�)��−1(�−�)mahalanobis_distance(a,b)=(a−b)TS−1(a−b)​</p>
+<p>where �S represents the covariance matrix of the embedding vectors.</p>
+<h3>Applicability and Drawbacks</h3>
+<p>Mahalanobis distance is particularly useful when dealing with high-dimensional data with correlated dimensions. It is often used in tasks like outlier detection, classification, and dimensionality reduction. By incorporating the covariance structure, Mahalanobis distance provides a more accurate measure of similarity.</p>
+<p>However, there are certain considerations when using Mahalanobis distance. First, it requires estimating the covariance matrix from the available data, which can be challenging when the number of dimensions is large or the data is limited. Additionally, Mahalanobis distance assumes that the data follows a multivariate normal distribution, which may not hold true in all cases. Violations of this assumption can lead to inaccurate distance measurements.</p>
+<p>Moreover, Mahalanobis distance is computationally expensive compared to Euclidean distance or cosine similarity due to the need to calculate and invert the covariance matrix. Therefore, it may not be suitable for large-scale applications with real-time constraints.</p>
+<h2>Conclusion</h2>
+<p>In this blog post, we have explored some commonly used similarity metrics for comparing embedding vectors in NLP tasks. Cosine similarity, Euclidean distance, and Mahalanobis distance each offer unique advantages and considerations.</p>
+<p>Cosine similarity is effective for capturing semantic relationships and disregarding vector magnitudes, but it does not account for vector lengths or dimension relevance. Euclidean distance considers both direction and magnitude, but it is sensitive to vector scale and treats all dimensions equally. Mahalanobis distance incorporates the covariance structure of the data, providing a more accurate measure of similarity, but it requires estimating the covariance matrix and assumes a multivariate normal distribution.</p>
+<p>When selecting a similarity metric, it is essential to consider the specific requirements of the task at hand and the nature of the data. Understanding the strengths and limitations of each metric can help professionals make informed decisions and achieve better results in their NLP applications.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>@article{Saf2023Embeddings,
+    author  = {Krystian Safjan},
+    title   = {Embeddings similarity metrics},
+    journal = {Krystian's Safjan Blog},
+    year    = {2023},
+}</pre>
+            </div>
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/">The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap between Software Products and Customer Needs</a></li>
+                        <li><a href="https://www.safjan.com/similarity-search-using-ivfpq/">Similarity search using IVFPQ</a></li>
+                        <li><a href="https://www.safjan.com/document-layout-analysis-tools/">Document Layout Analysis Tools</a></li>
+                        <li><a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/">The best vector databases for storing embeddings</a></li>
+                        <li><a href="https://www.safjan.com/attacking-differential-privacy-using-the-correlation-between-the-features/">Attacking Differential Privacy Using the Correlation Between the Features</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

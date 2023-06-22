@@ -4,8 +4,8 @@ Slug: the-best-vector-databases-for-storing-embeddings
 Date: 2023-06-05
 Modified: 2023-06-05
 Start: 2023-06-05
-Tags: machine-learning, python, embeddings, vectordb, database, transformers
-Category: Machine Learning, chroma, langchain, pinecone, haystack, faiss, milvus, pgvector, supabase, qdrant, vespa, weaviate, deeplake, vectorstore
+Tags: machine-learning, python, embeddings, vectordb, database, transformers, chroma, langchain, pinecone, haystack, faiss, milvus, pgvector, supabase, qdrant, vespa, weaviate, deeplake, vectorstore
+Category: Machine Learning,
 Image: /images/head/vectordb.jpg
 banner: "/images/head/vectordb.jpg"
 Summary: Delve into the World of Vector Databases Fueling NLP's Transformative Journey.
