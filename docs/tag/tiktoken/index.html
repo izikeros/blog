@@ -46,59 +46,17 @@
 
 
 
-    <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="tokenizers #openai copy-paste from: https://platform.openai.com/docs/guides/embeddings/limitations-risks How can I tell how many tokens a string has before I embed it? ](https://platform.openai.com/docs/guides/embeddings/how-can-i-tell-how-many-tokens-a-string-has-before-i-embed-it) In Python, you can split a string into …"/>
-    <meta name="keywords" content="tag1, tag2">
-    <meta expr:content="2023-06-08 00:00:00+02:00" itemprop='datePublished'/>
-    <meta expr:content="2023-06-08 00:00:00+02:00" itemprop='dateModified'/>
-    <meta property="article:modified_time" content="2023-06-08 00:00:00+02:00"/>
-    <meta property="article:published_time" content="2023-06-08 00:00:00+02:00"/>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How to count tokens",
-  "datePublished": "2023-06-08 00:00:00+02:00",
-  "dateModified": "2023-06-08 00:00:00+02:00"
-}
-
-
-
-
-
-
-
-
-    </script>
-
-
-
+        <meta name="author" content="Krystian Safjan"/>
+        <meta name="description" content=""/>
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
-  <meta property="og:title" content="How to count tokens"/>
-  <meta property="og:description" content="tokenizers #openai copy-paste from: https://platform.openai.com/docs/guides/embeddings/limitations-risks How can I tell how many tokens a string has before I embed it? ](https://platform.openai.com/docs/guides/embeddings/how-can-i-tell-how-many-tokens-a-string-has-before-i-embed-it) In Python, you can split a string into …"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Krystian Safjan's Blog"/>
+  <meta property="og:description" content=""/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://www.safjan.com/drafts/how-to-count-tokens.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2023-06-08 00:00:00+02:00"/>
-  <meta property="article:modified_time" content="2023-06-08 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
-  <meta property="article:section" content="note"/>
-  <meta property="article:tag" content="tag1"/>
-  <meta property="article:tag" content="tag2"/>
+  <meta property="og:url" content="https://www.safjan.com"/>
   <meta property="og:image" content="/images/profile_new.jpg">
 
-    <meta name="twitter:card" content="summary"/>
-    <meta property="twitter:image" content="/images/profile_new.jpg">
-
-    <meta name="twitter:label1" content="Est. reading time"/>
-    <meta name="twitter:data1" content="4 min."/>
-    <meta name="twitter:site" content="@izikeros"/>
-    <meta name="twitter:description" content=""/>
-    <meta name="twitter:title" content="How to count tokens"/>
-
-
-    <title>    How to count tokens
-</title>
+    <title> &ndash; Tag tiktoken</title>
 
 
 <!-- Google Automatic Ads -->
@@ -259,68 +217,12 @@
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
         </nav>
 
-    <article class="single">
-        <header>
-                
-            <p>
-                <!-- Posted on: -->
-                2023-06-08 
 
 
-                <br/>
-            </p>
-            <h1 id="how-to-count-tokens">How to count tokens</h1>
-            <div class="header-underline"></div>
-
-
-
-        </header>
-
-
-        <div>
-            <h1>tokenizers #openai</h1>
-<p>copy-paste from: https://platform.openai.com/docs/guides/embeddings/limitations-risks</p>
-<h3>How can I tell how many tokens a string has before I embed it?</h3>
-<p>](https://platform.openai.com/docs/guides/embeddings/how-can-i-tell-how-many-tokens-a-string-has-before-i-embed-it)</p>
-<p>In Python, you can split a string into tokens with OpenAI's tokenizer <a href="https://github.com/openai/tiktoken"><code>tiktoken</code></a>.</p>
-<p>Example code:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tiktoken</span>
-
-<span class="k">def</span> <span class="nf">num_tokens_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the number of tokens in a text string.&quot;&quot;&quot;</span>
-    <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">get_encoding</span><span class="p">(</span><span class="n">encoding_name</span><span class="p">)</span>
-    <span class="n">num_tokens</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">num_tokens</span>
-
-<span class="n">num_tokens_from_string</span><span class="p">(</span><span class="s2">&quot;tiktoken is great!&quot;</span><span class="p">,</span> <span class="s2">&quot;cl100k_base&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>For second-generation embedding models like <code>text-embedding-ada-002</code>, use the <code>cl100k_base</code> encoding.</p>
-<p>More details and example code are in the OpenAI Cookbook guide <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb">how to count tokens with tiktoken</a>.</p>
-        </div>
-
-
-        <div class="tag-cloud">
-            <p>
-                    <br/><br/>Tags:&nbsp;
-                        <a href="https://www.safjan.com/tag/tag1/">tag1</a>
-                        <a href="https://www.safjan.com/tag/tag2/">tag2</a>
-            </p>
-        </div>
-
-
-
-
-
-
-
-
-
-  <div class="neighbors">
+  <div class="pagination">
   </div>
 
 
-    </article>
 
     <footer>
 <p>

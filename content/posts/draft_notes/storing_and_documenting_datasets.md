@@ -7,8 +7,6 @@ Status: draft
 Tags: dataset, data, data-science, documentation, file-format, metadata, version-control
 Category: note
 ---
-
-
 #dataset 
 #blog/post-idea 
 X::[[public/bunch_class_to_store_datasets]]

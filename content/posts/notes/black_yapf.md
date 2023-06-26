@@ -8,10 +8,17 @@ Tags: python, code-formatter, black, yapf, comparison, strong-points, weak-point
 Category: note
 summary: The debate over the best Python code formatter continues. In this article, we dive deep into Black and yapf - their strong and weak points, and which one is right for you.
 ---
+X::[[black_formatter]]
+X::[[black_keep_single_strings]]
+X::[[change_black_line_length]]
+X::[[black_formatter_avoid_destroying_git_blame]]
+X::[[black]]
+X::[[yapf]]
+
 
 ## Introduction
 
-Python code formatters are tools used to format Python code according to a set of rules or conventions. These tools help to maintain consistent code formatting, improve code readability, and reduce the time spent on code review. There are several code formatters available in the Python community, and two of the most popular ones are Black and yapf. In this blog post, we will compare Black and yapf, highlighting their strong and weak points, differences, and evaluate their usability in CI/CD pipelines and other automation tools like pre-commit hooks. We will also address some controversies surrounding these tools.
+Python code formatters are tools used to format Python code according to a set of rules or conventions. These tools help to maintain consistent code formatting, improve code readability, and reduce the time spent on code review. Several code formatters are available in the Python community, and two of the most popular ones are Black and yapf. In this blog post, we will compare Black and yapf, highlighting their strong and weak points, differences, and evaluating their usability in CI/CD pipelines and other automation tools like pre-commit hooks. We will also address some controversies surrounding these tools.
 
 ## Overview of Black and yapf
 
@@ -19,7 +26,7 @@ Python code formatters are tools used to format Python code according to a set o
 
 ## Comparison of Black and yapf
 
-In this section, we will compare Black and yapf based on various criteria.
+This section will compare Black and yapf based on various criteria.
 
 ### 1.  Formatting rules
 
@@ -40,6 +47,17 @@ Both Black and yapf can be integrated into CI/CD pipelines and pre-commit hooks.
 ### 5.  Community support
 
 Both Black and yapf have active communities that contribute to their development and maintenance. However, Black has a larger community and is more widely used than yapf.
+
+| Criteria                            | Black                           | yapf                                  |
+|-------------------------------------|---------------------------------|---------------------------------------|
+| Formatting rules                    | Enforces strict non-configurable rules| Allows customization of rules         |
+| Speed                               | Fast                            | Slower than Black                      |
+| Output readability                  | Sometimes harder to read due   | More readable due to customization    |
+|                                     | to strict rules                 | of formatting rules                    |
+| Integration with CI/CD pipelines    | Official pre-commit hook        | Pre-commit hook not officially         |
+| and pre-commit hooks                | available                       | supported by yapf team                 |
+| Community support                   | Active community                | Active community                       |
+|                                     |                                 |                                       |
 
 ### 6.  Controversies
 

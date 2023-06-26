@@ -7,6 +7,7 @@ Status: published
 Tags: black-formatter, code-formatting, maximum-line-length, code-quality, software-development, python, configuration-file, pyproject-toml, code-consistency, readability
 Category: note
 ---
+X::[[change_black_line_length]]
 
 If you are a software developer or a code reviewer, you know how important it is to keep your code clean and consistent. One way to achieve this is by using a code formatter like Black. Black is a popular code formatter that automatically formats your code to a certain standard. One of the key features of Black is the ability to set the maximum line length. In this blog post, we will go over the steps you can take to change the maximum line length for Black.
 
