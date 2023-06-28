@@ -6,6 +6,7 @@
 &lt;li&gt;&lt;a href="#package-creation"&gt;Package creation&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#create-project-directory"&gt;Create Project Directory&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#open-the-project-in-pycharm"&gt;Open the Project in PyCharm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configure-poetry-virtual-environment"&gt;Configure Poetry Virtual Environment&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#install-dependencies"&gt;Install Dependencies&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#configure-pycharm-interpreter"&gt;Configure PyCharm Interpreter&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#initialize-git-repository"&gt;Initialize Git Repository&lt;/a&gt;&lt;/li&gt;
@@ -13,15 +14,15 @@
 &lt;li&gt;&lt;a href="#move-script-and-files"&gt;Move Script and Files&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#create-__init__py"&gt;Create &lt;code&gt;__init__.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#update-pyprojecttoml"&gt;Update &lt;code&gt;pyproject.toml&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#test-the-script"&gt;Test the Script&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#package-the-project"&gt;Package the Project&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#publish-the-package"&gt;Publish the Package …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+&lt;li&gt;&lt;a href="#add-readmemd-file"&gt;Add README.md file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#test-the-script"&gt;Test …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#the-task"&gt;The task&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#package-creation"&gt;Package creation&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#create-project-directory"&gt;Create Project Directory&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#open-the-project-in-pycharm"&gt;Open the Project in PyCharm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configure-poetry-virtual-environment"&gt;Configure Poetry Virtual Environment&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#install-dependencies"&gt;Install Dependencies&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#configure-pycharm-interpreter"&gt;Configure PyCharm Interpreter&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#initialize-git-repository"&gt;Initialize Git Repository&lt;/a&gt;&lt;/li&gt;
@@ -29,6 +30,7 @@
 &lt;li&gt;&lt;a href="#move-script-and-files"&gt;Move Script and Files&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#create-__init__py"&gt;Create &lt;code&gt;__init__.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#update-pyprojecttoml"&gt;Update &lt;code&gt;pyproject.toml&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#add-readmemd-file"&gt;Add README.md file&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#test-the-script"&gt;Test the Script&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#package-the-project"&gt;Package the Project&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#publish-the-package"&gt;Publish the Package&lt;/a&gt;&lt;/li&gt;
@@ -80,7 +82,7 @@
 &lt;p&gt;In this script, the &lt;code&gt;argparse&lt;/code&gt; module is used to handle command-line arguments. The script defines a single positional argument, &lt;code&gt;file&lt;/code&gt;, which represents the file name of the input text file.&lt;/p&gt;
 &lt;p&gt;When the script is executed from the command line, it will parse the command-line arguments and retrieve the file path provided by the user. The &lt;code&gt;count_tokens&lt;/code&gt; function will then be called with the file path, and the number of tokens will be printed.&lt;/p&gt;
 &lt;p&gt;To run the script from the CLI, use the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python script_name.py file_path
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python&lt;span class="w"&gt; &lt;/span&gt;script_name.py&lt;span class="w"&gt; &lt;/span&gt;file_path
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Replace &lt;code&gt;script_name.py&lt;/code&gt; with the actual name of your script file, and &lt;code&gt;file_path&lt;/code&gt; with the path to the input text file you want to analyze. The script will then tokenize the text file and print the number of tokens.&lt;/p&gt;
@@ -99,20 +101,23 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Initialize the Project with Poetry&lt;/strong&gt;: Open your command-line interface and navigate to the project directory you created. Run the following command to initialize the project using Poetry:&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;shell
-   poetry init&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;poetry&lt;span class="w"&gt; &lt;/span&gt;init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.&lt;/p&gt;
 &lt;p&gt;&lt;a id="open-the-project-in-pycharm"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Open the Project in PyCharm&lt;/h3&gt;
 &lt;p&gt;Open PyCharm and select "Open" from the welcome screen or go to "File" &amp;gt; "Open" and choose the project directory you created.&lt;/p&gt;
-&lt;p&gt;### Configure Poetry Virtual Environment
- When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.&lt;/p&gt;
+&lt;p&gt;&lt;a id="configure-poetry-virtual-environment"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Configure Poetry Virtual Environment&lt;/h3&gt;
+&lt;p&gt;When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.&lt;/p&gt;
 &lt;p&gt;If you already have a Poetry virtual environment set up manually, you can skip this step.&lt;/p&gt;
 &lt;p&gt;&lt;a id="install-dependencies"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Install Dependencies&lt;/h3&gt;
 &lt;p&gt;In your command-line interface, navigate to the project directory if you're not already there. Run the following command to install the necessary dependencies using Poetry:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;shell
-   poetry install&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;poetry&lt;span class="w"&gt; &lt;/span&gt;install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;This command will create a virtual environment and install the required packages specified in your project's &lt;code&gt;pyproject.toml&lt;/code&gt; file.&lt;/p&gt;
 &lt;p&gt;&lt;a id="configure-pycharm-interpreter"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Configure PyCharm Interpreter&lt;/h3&gt;
@@ -121,8 +126,9 @@
 &lt;p&gt;&lt;a id="initialize-git-repository"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Initialize Git Repository&lt;/h3&gt;
 &lt;p&gt;In your command-line interface, navigate to the project directory if you're not already there. Run the following command to initialize a Git repository:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;shell
-   git init&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;This will set up a new Git repository for version control.&lt;/p&gt;
 &lt;p&gt;At this point, you have set up the project structure, initialized Poetry, configured the virtual environment in PyCharm, installed dependencies, and initialized a Git repository. Now, you can proceed with packaging and publishing your Python script.&lt;/p&gt;
 &lt;p&gt;&lt;a id="create-package-structure"&gt;&lt;/a&gt;&lt;/p&gt;
@@ -137,16 +143,14 @@
 &lt;p&gt;&lt;a id="update-pyprojecttoml"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Update &lt;code&gt;pyproject.toml&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;Open your project's &lt;code&gt;pyproject.toml&lt;/code&gt; file. Under the &lt;code&gt;[tool.poetry]&lt;/code&gt; section, add the script file and any additional files that need to be included in the package. For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;toml&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;tool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;poetry&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;tool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;poetry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;my_script&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;my_package.my_script:main&amp;#39;&lt;/span&gt;
-&lt;span class="err"&gt;```&lt;/span&gt;
-
-&lt;span class="n"&gt;Replace&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;my_script&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;desired&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;my_script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;correct&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;path&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;its&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[tool.poetry]&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="k"&gt;[tool.poetry.scripts]&lt;/span&gt;
+&lt;span class="n"&gt;my_script&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;my_package.my_script:main&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;Replace &lt;code&gt;my_script&lt;/code&gt; with the desired command name for your script, and &lt;code&gt;my_package.my_script:main&lt;/code&gt; with the correct import path to your script and its main function.&lt;/p&gt;
+&lt;p&gt;&lt;a id="add-readmemd-file"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Add README.md file&lt;/h3&gt;
 &lt;p&gt;In the root of the project directory create &lt;code&gt;README.md&lt;/code&gt; and fill it with useful information. See also:writing_good_readme
 &lt;a id="test-the-script"&gt;&lt;/a&gt;&lt;/p&gt;
@@ -155,25 +159,20 @@
 &lt;p&gt;&lt;a id="package-the-project"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Package the Project&lt;/h3&gt;
 &lt;p&gt;In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;shell&lt;/span&gt;
-&lt;span class="n n-Quoted"&gt;poetry build&lt;/span&gt;
-&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;
-
-&lt;span class="n"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;will&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;distributable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;.,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`.tar.gz`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`dist`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;within&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;poetry&lt;span class="w"&gt; &lt;/span&gt;build
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;This command will generate a distributable package (e.g., a &lt;code&gt;.tar.gz&lt;/code&gt; file) in the &lt;code&gt;dist&lt;/code&gt; directory within your project.&lt;/p&gt;
 &lt;p&gt;&lt;a id="publish-the-package"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Publish the Package&lt;/h3&gt;
 &lt;p&gt;To publish your package, you can use a package index such as PyPI (Python Package Index). First, you need to create an account on PyPI if you haven't already. Once you have an account, run the following command to publish your package:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```shell
-poetry publish
-```
-
-This command will guide you through the process of publishing your package to PyPI. You&amp;#39;ll be prompted to enter your PyPI credentials and confirm the publication.
-
-Note: Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;poetry&lt;span class="w"&gt; &lt;/span&gt;publish
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;This command will guide you through the process of publishing your package to PyPI. You'll be prompted to enter your PyPI credentials and confirm the publication.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a id="versioning-and-updates"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Versioning and Updates&lt;/h3&gt;
 &lt;p&gt;When you make updates to your package, ensure to increment the version number in the &lt;code&gt;pyproject.toml&lt;/code&gt; file under the &lt;code&gt;[tool.poetry.version]&lt;/code&gt; section. This helps to track and manage different versions of your package.&lt;/p&gt;
@@ -20141,10 +20140,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="7242e23a-7dfa-4171-abca-48f50a149cf6"&gt;&lt;/div&gt;
+&lt;div id="90d2af37-6fd2-438e-9b28-c43d03e86710"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#7242e23a-7dfa-4171-abca-48f50a149cf6');
+var element = $('#90d2af37-6fd2-438e-9b28-c43d03e86710');
 
 (function(root) {
   function now() {

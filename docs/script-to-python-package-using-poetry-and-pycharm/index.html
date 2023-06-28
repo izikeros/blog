@@ -47,7 +47,7 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="The task Package creation Create Project Directory Open the Project in PyCharm Install Dependencies Configure PyCharm Interpreter Initialize Git Repository Create Package Structure Move Script and Files Create __init__.py Update pyproject.toml Test the Script Package the Project Publish the Package …"/>
+    <meta name="description" content="The task Package creation Create Project Directory Open the Project in PyCharm Configure Poetry Virtual Environment Install Dependencies Configure PyCharm Interpreter Initialize Git Repository Create Package Structure Move Script and Files Create __init__.py Update pyproject.toml Add README.md file Test …"/>
     <meta name="keywords" content="python, poetry, package, package-publish, pypi, git, tiktoken">
     <meta expr:content="2023-06-28 00:00:00+02:00" itemprop='datePublished'/>
     <meta expr:content="2023-06-28 00:00:00+02:00" itemprop='dateModified'/>
@@ -75,7 +75,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Script to Python package using Poetry (and PyCharm)"/>
-  <meta property="og:description" content="The task Package creation Create Project Directory Open the Project in PyCharm Install Dependencies Configure PyCharm Interpreter Initialize Git Repository Create Package Structure Move Script and Files Create __init__.py Update pyproject.toml Test the Script Package the Project Publish the Package …"/>
+  <meta property="og:description" content="The task Package creation Create Project Directory Open the Project in PyCharm Configure Poetry Virtual Environment Install Dependencies Configure PyCharm Interpreter Initialize Git Repository Create Package Structure Move Script and Files Create __init__.py Update pyproject.toml Add README.md file Test …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/script-to-python-package-using-poetry-and-pycharm/"/>
   <meta property="og:type" content="article"/>
@@ -301,6 +301,7 @@
 <li><a href="#package-creation">Package creation</a><ul>
 <li><a href="#create-project-directory">Create Project Directory</a></li>
 <li><a href="#open-the-project-in-pycharm">Open the Project in PyCharm</a></li>
+<li><a href="#configure-poetry-virtual-environment">Configure Poetry Virtual Environment</a></li>
 <li><a href="#install-dependencies">Install Dependencies</a></li>
 <li><a href="#configure-pycharm-interpreter">Configure PyCharm Interpreter</a></li>
 <li><a href="#initialize-git-repository">Initialize Git Repository</a></li>
@@ -308,6 +309,7 @@
 <li><a href="#move-script-and-files">Move Script and Files</a></li>
 <li><a href="#create-__init__py">Create <code>__init__.py</code></a></li>
 <li><a href="#update-pyprojecttoml">Update <code>pyproject.toml</code></a></li>
+<li><a href="#add-readmemd-file">Add README.md file</a></li>
 <li><a href="#test-the-script">Test the Script</a></li>
 <li><a href="#package-the-project">Package the Project</a></li>
 <li><a href="#publish-the-package">Publish the Package</a></li>
@@ -359,7 +361,7 @@
 <p>In this script, the <code>argparse</code> module is used to handle command-line arguments. The script defines a single positional argument, <code>file</code>, which represents the file name of the input text file.</p>
 <p>When the script is executed from the command line, it will parse the command-line arguments and retrieve the file path provided by the user. The <code>count_tokens</code> function will then be called with the file path, and the number of tokens will be printed.</p>
 <p>To run the script from the CLI, use the following command:</p>
-<div class="highlight"><pre><span></span><code>python script_name.py file_path
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>script_name.py<span class="w"> </span>file_path
 </code></pre></div>
 
 <p>Replace <code>script_name.py</code> with the actual name of your script file, and <code>file_path</code> with the path to the input text file you want to analyze. The script will then tokenize the text file and print the number of tokens.</p>
@@ -378,20 +380,23 @@
 <ol>
 <li><strong>Initialize the Project with Poetry</strong>: Open your command-line interface and navigate to the project directory you created. Run the following command to initialize the project using Poetry:</li>
 </ol>
-<p><code>shell
-   poetry init</code></p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>init
+</code></pre></div>
+
 <p>This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.</p>
 <p><a id="open-the-project-in-pycharm"></a></p>
 <h3>Open the Project in PyCharm</h3>
 <p>Open PyCharm and select "Open" from the welcome screen or go to "File" &gt; "Open" and choose the project directory you created.</p>
-<p>### Configure Poetry Virtual Environment
- When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.</p>
+<p><a id="configure-poetry-virtual-environment"></a></p>
+<h3>Configure Poetry Virtual Environment</h3>
+<p>When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.</p>
 <p>If you already have a Poetry virtual environment set up manually, you can skip this step.</p>
 <p><a id="install-dependencies"></a></p>
 <h3>Install Dependencies</h3>
 <p>In your command-line interface, navigate to the project directory if you're not already there. Run the following command to install the necessary dependencies using Poetry:</p>
-<p><code>shell
-   poetry install</code></p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>install
+</code></pre></div>
+
 <p>This command will create a virtual environment and install the required packages specified in your project's <code>pyproject.toml</code> file.</p>
 <p><a id="configure-pycharm-interpreter"></a></p>
 <h3>Configure PyCharm Interpreter</h3>
@@ -400,8 +405,9 @@
 <p><a id="initialize-git-repository"></a></p>
 <h3>Initialize Git Repository</h3>
 <p>In your command-line interface, navigate to the project directory if you're not already there. Run the following command to initialize a Git repository:</p>
-<p><code>shell
-   git init</code></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>init
+</code></pre></div>
+
 <p>This will set up a new Git repository for version control.</p>
 <p>At this point, you have set up the project structure, initialized Poetry, configured the virtual environment in PyCharm, installed dependencies, and initialized a Git repository. Now, you can proceed with packaging and publishing your Python script.</p>
 <p><a id="create-package-structure"></a></p>
@@ -416,16 +422,14 @@
 <p><a id="update-pyprojecttoml"></a></p>
 <h3>Update <code>pyproject.toml</code></h3>
 <p>Open your project's <code>pyproject.toml</code> file. Under the <code>[tool.poetry]</code> section, add the script file and any additional files that need to be included in the package. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="err">```</span><span class="n">toml</span>
-<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">poetry</span><span class="p">]</span>
-<span class="o">...</span>
-<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">poetry</span><span class="o">.</span><span class="n">scripts</span><span class="p">]</span>
-<span class="n">my_script</span> <span class="o">=</span> <span class="s1">&#39;my_package.my_script:main&#39;</span>
-<span class="err">```</span>
-
-<span class="n">Replace</span> <span class="err">`</span><span class="n">my_script</span><span class="err">`</span> <span class="k">with</span> <span class="n">the</span> <span class="n">desired</span> <span class="n">command</span> <span class="n">name</span> <span class="k">for</span> <span class="n">your</span> <span class="n">script</span><span class="p">,</span> <span class="ow">and</span> <span class="err">`</span><span class="n">my_package</span><span class="o">.</span><span class="n">my_script</span><span class="p">:</span><span class="n">main</span><span class="err">`</span> <span class="k">with</span> <span class="n">the</span> <span class="n">correct</span> <span class="kn">import</span> <span class="nn">path</span> <span class="n">to</span> <span class="n">your</span> <span class="n">script</span> <span class="ow">and</span> <span class="n">its</span> <span class="n">main</span> <span class="n">function</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="k">[tool.poetry]</span>
+<span class="p">...</span>
+<span class="k">[tool.poetry.scripts]</span>
+<span class="n">my_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;my_package.my_script:main&#39;</span>
 </code></pre></div>
 
+<p>Replace <code>my_script</code> with the desired command name for your script, and <code>my_package.my_script:main</code> with the correct import path to your script and its main function.</p>
+<p><a id="add-readmemd-file"></a></p>
 <h3>Add README.md file</h3>
 <p>In the root of the project directory create <code>README.md</code> and fill it with useful information. See also:writing_good_readme
 <a id="test-the-script"></a></p>
@@ -434,25 +438,20 @@
 <p><a id="package-the-project"></a></p>
 <h3>Package the Project</h3>
 <p>In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:</p>
-<div class="highlight"><pre><span></span><code><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">shell</span>
-<span class="n n-Quoted">poetry build</span>
-<span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">`</span>
-
-<span class="n">This</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">distributable</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n n-Quoted">`.tar.gz`</span><span class="w"> </span><span class="k">file</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`dist`</span><span class="w"> </span><span class="k">directory</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">project</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>build
 </code></pre></div>
 
+<p>This command will generate a distributable package (e.g., a <code>.tar.gz</code> file) in the <code>dist</code> directory within your project.</p>
 <p><a id="publish-the-package"></a></p>
 <h3>Publish the Package</h3>
 <p>To publish your package, you can use a package index such as PyPI (Python Package Index). First, you need to create an account on PyPI if you haven't already. Once you have an account, run the following command to publish your package:</p>
-<div class="highlight"><pre><span></span><code>```shell
-poetry publish
-```
-
-This command will guide you through the process of publishing your package to PyPI. You&#39;ll be prompted to enter your PyPI credentials and confirm the publication.
-
-Note: Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>publish
 </code></pre></div>
 
+<p>This command will guide you through the process of publishing your package to PyPI. You'll be prompted to enter your PyPI credentials and confirm the publication.</p>
+<blockquote>
+<p><strong>Note:</strong> Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.</p>
+</blockquote>
 <p><a id="versioning-and-updates"></a></p>
 <h3>Versioning and Updates</h3>
 <p>When you make updates to your package, ensure to increment the version number in the <code>pyproject.toml</code> file under the <code>[tool.poetry.version]</code> section. This helps to track and manage different versions of your package.</p>

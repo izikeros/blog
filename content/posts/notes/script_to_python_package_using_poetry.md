@@ -7,12 +7,15 @@ Status: published
 Tags: python, poetry, package, package-publish, pypi, git, tiktoken
 Category: note
 ---
+X::[[badges_for_readme]]
+
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [The task](#the-task)
 - [Package creation](#package-creation)
     - [Create Project Directory](#create-project-directory)
     - [Open the Project in PyCharm](#open-the-project-in-pycharm)
+    - [Configure Poetry Virtual Environment](#configure-poetry-virtual-environment)
     - [Install Dependencies](#install-dependencies)
     - [Configure PyCharm Interpreter](#configure-pycharm-interpreter)
     - [Initialize Git Repository](#initialize-git-repository)
@@ -20,6 +23,7 @@ Category: note
     - [Move Script and Files](#move-script-and-files)
     - [Create `__init__.py`](#create-__init__py)
     - [Update `pyproject.toml`](#update-pyprojecttoml)
+    - [Add README.md file](#add-readmemd-file)
     - [Test the Script](#test-the-script)
     - [Package the Project](#package-the-project)
     - [Publish the Package](#publish-the-package)
@@ -74,7 +78,7 @@ When the script is executed from the command line, it will parse the command-lin
 
 To run the script from the CLI, use the following command:
 
-```
+```sh
 python script_name.py file_path
 ```
 
@@ -96,9 +100,9 @@ Start by creating a new directory for your project. You can choose an appropriat
 
 3. **Initialize the Project with Poetry**: Open your command-line interface and navigate to the project directory you created. Run the following command to initialize the project using Poetry:
 
-   ```shell
-   poetry init
-   ```
+```sh
+poetry init
+```
 
    This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.
 
@@ -106,18 +110,19 @@ Start by creating a new directory for your project. You can choose an appropriat
 ### Open the Project in PyCharm
 Open PyCharm and select "Open" from the welcome screen or go to "File" > "Open" and choose the project directory you created.
 
- ### Configure Poetry Virtual Environment
- When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.
+<a id="configure-poetry-virtual-environment"></a>
+### Configure Poetry Virtual Environment
+When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.
 
-   If you already have a Poetry virtual environment set up manually, you can skip this step.
+If you already have a Poetry virtual environment set up manually, you can skip this step.
 
 <a id="install-dependencies"></a>
 ### Install Dependencies
 In your command-line interface, navigate to the project directory if you're not already there. Run the following command to install the necessary dependencies using Poetry:
 
-   ```shell
-   poetry install
-   ```
+```sh
+poetry install
+```
 
    This command will create a virtual environment and install the required packages specified in your project's `pyproject.toml` file.
 
@@ -131,9 +136,9 @@ In PyCharm, go to "File" > "Settings" > "Project: <project_name>" > "Python Inte
 ### Initialize Git Repository
 In your command-line interface, navigate to the project directory if you're not already there. Run the following command to initialize a Git repository:
 
-   ```shell
-   git init
-   ```
+```sh
+git init
+```
 
    This will set up a new Git repository for version control.
 
@@ -155,15 +160,16 @@ Inside the package directory (`my_package`), create an empty file named `__init_
 ### Update `pyproject.toml`
 Open your project's `pyproject.toml` file. Under the `[tool.poetry]` section, add the script file and any additional files that need to be included in the package. For example:
 
-    ```toml
-    [tool.poetry]
-    ...
-    [tool.poetry.scripts]
-    my_script = 'my_package.my_script:main'
-    ```
+```toml
+[tool.poetry]
+...
+[tool.poetry.scripts]
+my_script = 'my_package.my_script:main'
+```
 
-    Replace `my_script` with the desired command name for your script, and `my_package.my_script:main` with the correct import path to your script and its main function.
+Replace `my_script` with the desired command name for your script, and `my_package.my_script:main` with the correct import path to your script and its main function.
 
+<a id="add-readmemd-file"></a>
 ### Add README.md file
 In the root of the project directory create `README.md` and fill it with useful information. See also:[[writing_good_readme]]
 <a id="test-the-script"></a>
@@ -174,23 +180,23 @@ Before publishing your package, it's essential to test your script to ensure it 
 ### Package the Project
 In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:
 
-    ```shell
-    poetry build
-    ```
+```sh
+poetry build
+```
 
-    This command will generate a distributable package (e.g., a `.tar.gz` file) in the `dist` directory within your project.
+This command will generate a distributable package (e.g., a `.tar.gz` file) in the `dist` directory within your project.
 
 <a id="publish-the-package"></a>
 ### Publish the Package
 To publish your package, you can use a package index such as PyPI (Python Package Index). First, you need to create an account on PyPI if you haven't already. Once you have an account, run the following command to publish your package:
 
-    ```shell
-    poetry publish
-    ```
+```sh
+poetry publish
+```
 
-    This command will guide you through the process of publishing your package to PyPI. You'll be prompted to enter your PyPI credentials and confirm the publication.
+This command will guide you through the process of publishing your package to PyPI. You'll be prompted to enter your PyPI credentials and confirm the publication.
 
-    Note: Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.
+> **Note:** Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.
 
 <a id="versioning-and-updates"></a>
 ### Versioning and Updates
