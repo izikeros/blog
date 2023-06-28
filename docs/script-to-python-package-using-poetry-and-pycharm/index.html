@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="The task Package creation Create Project Directory Open the Project in PyCharm Install Dependencies Configure PyCharm Interpreter Initialize Git Repository Create Package Structure Move Script and Files Create __init__.py Update pyproject.toml Test the Script Package the Project Publish the Package …"/>
+    <meta name="keywords" content="python, poetry, package, package-publish, pypi, git, tiktoken">
+    <meta expr:content="2023-06-28 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-06-28 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-06-28 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-06-28 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Script to Python package using Poetry (and PyCharm)",
+  "datePublished": "2023-06-28 00:00:00+02:00",
+  "dateModified": "2023-06-28 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Script to Python package using Poetry (and PyCharm)"/>
+  <meta property="og:description" content="The task Package creation Create Project Directory Open the Project in PyCharm Install Dependencies Configure PyCharm Interpreter Initialize Git Repository Create Package Structure Move Script and Files Create __init__.py Update pyproject.toml Test the Script Package the Project Publish the Package …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/script-to-python-package-using-poetry-and-pycharm/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-06-28 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-06-28 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="poetry"/>
+  <meta property="article:tag" content="package"/>
+  <meta property="article:tag" content="package-publish"/>
+  <meta property="article:tag" content="pypi"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="article:tag" content="tiktoken"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Script to Python package using Poetry (and PyCharm)"/>
+
+
+    <title>    Script to Python package using Poetry (and PyCharm)
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-06-28 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Script%20to%20Python%20package%20using%20Poetry%20%28and%20PyCharm%29&url=https%3A//www.safjan.com/script-to-python-package-using-poetry-and-pycharm/&hashtags=python,poetry,package,package-publish,pypi,git,tiktoken" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/script-to-python-package-using-poetry-and-pycharm/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Script%20to%20Python%20package%20using%20Poetry%20%28and%20PyCharm%29&u=https%3A//www.safjan.com/script-to-python-package-using-poetry-and-pycharm/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/script-to-python-package-using-poetry-and-pycharm/&title=Script%20to%20Python%20package%20using%20Poetry%20%28and%20PyCharm%29" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="script-to-python-package-using-poetry-and-pycharm">Script to Python package using Poetry (and PyCharm)</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#the-task">The task</a></li>
+<li><a href="#package-creation">Package creation</a><ul>
+<li><a href="#create-project-directory">Create Project Directory</a></li>
+<li><a href="#open-the-project-in-pycharm">Open the Project in PyCharm</a></li>
+<li><a href="#install-dependencies">Install Dependencies</a></li>
+<li><a href="#configure-pycharm-interpreter">Configure PyCharm Interpreter</a></li>
+<li><a href="#initialize-git-repository">Initialize Git Repository</a></li>
+<li><a href="#create-package-structure">Create Package Structure</a></li>
+<li><a href="#move-script-and-files">Move Script and Files</a></li>
+<li><a href="#create-__init__py">Create <code>__init__.py</code></a></li>
+<li><a href="#update-pyprojecttoml">Update <code>pyproject.toml</code></a></li>
+<li><a href="#test-the-script">Test the Script</a></li>
+<li><a href="#package-the-project">Package the Project</a></li>
+<li><a href="#publish-the-package">Publish the Package</a></li>
+<li><a href="#versioning-and-updates">Versioning and Updates</a></li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="the-task"></a></p>
+<h2>The task</h2>
+<p>Let's assume that you have simple script that count tokens in provided text file. Below is the  script that accepts a positional input argument, which is the file name, and can be run from the command-line interface (CLI). See also the note on <a href="https://safjan.com/how-to-count-tokens/">How to count tokens?</a></p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">tiktoken</span>
+
+
+<span class="k">def</span> <span class="nf">num_tokens_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cl100k_base&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the number of tokens in a text string.&quot;&quot;&quot;</span>
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">get_encoding</span><span class="p">(</span><span class="n">encoding_name</span><span class="p">)</span>
+    <span class="n">num_tokens</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">num_tokens</span>
+
+
+<span class="n">num_tokens_from_string</span><span class="p">(</span>
+    <span class="s2">&quot;tiktoken is great!&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">count_tokens</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">num_tokens_from_string</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Count the number of tokens in a text file.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to the input text file&quot;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">file</span>
+
+    <span class="n">num_tokens</span> <span class="o">=</span> <span class="n">count_tokens</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of tokens: </span><span class="si">{</span><span class="n">num_tokens</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In this script, the <code>argparse</code> module is used to handle command-line arguments. The script defines a single positional argument, <code>file</code>, which represents the file name of the input text file.</p>
+<p>When the script is executed from the command line, it will parse the command-line arguments and retrieve the file path provided by the user. The <code>count_tokens</code> function will then be called with the file path, and the number of tokens will be printed.</p>
+<p>To run the script from the CLI, use the following command:</p>
+<div class="highlight"><pre><span></span><code>python script_name.py file_path
+</code></pre></div>
+
+<p>Replace <code>script_name.py</code> with the actual name of your script file, and <code>file_path</code> with the path to the input text file you want to analyze. The script will then tokenize the text file and print the number of tokens.</p>
+<blockquote>
+<p><strong>NOTE:</strong> you need <code>tiktoken</code> package installed before running the script. You can install it using pip:</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>tiktoken
+</code></pre></div>
+
+<p><a id="package-creation"></a></p>
+<h2>Package creation</h2>
+<p>To create and publish a Python package based on the provided script, you can follow the steps below:</p>
+<p><a id="create-project-directory"></a></p>
+<h3>Create Project Directory</h3>
+<p>Start by creating a new directory for your project. You can choose an appropriate name for the directory.</p>
+<ol>
+<li><strong>Initialize the Project with Poetry</strong>: Open your command-line interface and navigate to the project directory you created. Run the following command to initialize the project using Poetry:</li>
+</ol>
+<p><code>shell
+   poetry init</code></p>
+<p>This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.</p>
+<p><a id="open-the-project-in-pycharm"></a></p>
+<h3>Open the Project in PyCharm</h3>
+<p>Open PyCharm and select "Open" from the welcome screen or go to "File" &gt; "Open" and choose the project directory you created.</p>
+<p>### Configure Poetry Virtual Environment
+ When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.</p>
+<p>If you already have a Poetry virtual environment set up manually, you can skip this step.</p>
+<p><a id="install-dependencies"></a></p>
+<h3>Install Dependencies</h3>
+<p>In your command-line interface, navigate to the project directory if you're not already there. Run the following command to install the necessary dependencies using Poetry:</p>
+<p><code>shell
+   poetry install</code></p>
+<p>This command will create a virtual environment and install the required packages specified in your project's <code>pyproject.toml</code> file.</p>
+<p><a id="configure-pycharm-interpreter"></a></p>
+<h3>Configure PyCharm Interpreter</h3>
+<p>In PyCharm, go to "File" &gt; "Settings" &gt; "Project: <project_name>" &gt; "Python Interpreter". Click on the gear icon and choose "Add...".</p>
+<p>Select "Poetry Environment" and choose the existing local Poetry interpreter associated with your project's virtual environment. Click "OK" to apply the changes.</p>
+<p><a id="initialize-git-repository"></a></p>
+<h3>Initialize Git Repository</h3>
+<p>In your command-line interface, navigate to the project directory if you're not already there. Run the following command to initialize a Git repository:</p>
+<p><code>shell
+   git init</code></p>
+<p>This will set up a new Git repository for version control.</p>
+<p>At this point, you have set up the project structure, initialized Poetry, configured the virtual environment in PyCharm, installed dependencies, and initialized a Git repository. Now, you can proceed with packaging and publishing your Python script.</p>
+<p><a id="create-package-structure"></a></p>
+<h3>Create Package Structure</h3>
+<p>Inside your project directory, create a package structure that follows Python's best practices. For example, you can create a directory named <code>my_package</code> that will contain your script and other necessary files.</p>
+<p><a id="move-script-and-files"></a></p>
+<h3>Move Script and Files</h3>
+<p>Move your script file and any other relevant files into the package directory (<code>my_package</code> in this example).</p>
+<p><a id="create-__init__py"></a></p>
+<h3>Create <code>__init__.py</code></h3>
+<p>Inside the package directory (<code>my_package</code>), create an empty file named <code>__init__.py</code>. This file is required to make the directory a Python package.</p>
+<p><a id="update-pyprojecttoml"></a></p>
+<h3>Update <code>pyproject.toml</code></h3>
+<p>Open your project's <code>pyproject.toml</code> file. Under the <code>[tool.poetry]</code> section, add the script file and any additional files that need to be included in the package. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="err">```</span><span class="n">toml</span>
+<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">poetry</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">poetry</span><span class="o">.</span><span class="n">scripts</span><span class="p">]</span>
+<span class="n">my_script</span> <span class="o">=</span> <span class="s1">&#39;my_package.my_script:main&#39;</span>
+<span class="err">```</span>
+
+<span class="n">Replace</span> <span class="err">`</span><span class="n">my_script</span><span class="err">`</span> <span class="k">with</span> <span class="n">the</span> <span class="n">desired</span> <span class="n">command</span> <span class="n">name</span> <span class="k">for</span> <span class="n">your</span> <span class="n">script</span><span class="p">,</span> <span class="ow">and</span> <span class="err">`</span><span class="n">my_package</span><span class="o">.</span><span class="n">my_script</span><span class="p">:</span><span class="n">main</span><span class="err">`</span> <span class="k">with</span> <span class="n">the</span> <span class="n">correct</span> <span class="kn">import</span> <span class="nn">path</span> <span class="n">to</span> <span class="n">your</span> <span class="n">script</span> <span class="ow">and</span> <span class="n">its</span> <span class="n">main</span> <span class="n">function</span><span class="o">.</span>
+</code></pre></div>
+
+<p><a id="test-the-script"></a></p>
+<h3>Test the Script</h3>
+<p>Before publishing your package, it's essential to test your script to ensure it works as expected. You can execute the script locally to verify its functionality.</p>
+<p><a id="package-the-project"></a></p>
+<h3>Package the Project</h3>
+<p>In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:</p>
+<div class="highlight"><pre><span></span><code><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">shell</span>
+<span class="n n-Quoted">poetry build</span>
+<span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">`</span>
+
+<span class="n">This</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">distributable</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n n-Quoted">`.tar.gz`</span><span class="w"> </span><span class="k">file</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`dist`</span><span class="w"> </span><span class="k">directory</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">project</span><span class="p">.</span>
+</code></pre></div>
+
+<p><a id="publish-the-package"></a></p>
+<h3>Publish the Package</h3>
+<p>To publish your package, you can use a package index such as PyPI (Python Package Index). First, you need to create an account on PyPI if you haven't already. Once you have an account, run the following command to publish your package:</p>
+<div class="highlight"><pre><span></span><code>```shell
+poetry publish
+```
+
+This command will guide you through the process of publishing your package to PyPI. You&#39;ll be prompted to enter your PyPI credentials and confirm the publication.
+
+Note: Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.
+</code></pre></div>
+
+<p><a id="versioning-and-updates"></a></p>
+<h3>Versioning and Updates</h3>
+<p>When you make updates to your package, ensure to increment the version number in the <code>pyproject.toml</code> file under the <code>[tool.poetry.version]</code> section. This helps to track and manage different versions of your package.</p>
+<p>That's it! You have now packaged and published your Python script using Poetry. Users can install your package using pip and use your script as a command-line tool.</p>
+<p>Please note that publishing a package is a significant step, and it's essential to review and test your code thoroughly before sharing it with others.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/poetry/">poetry</a>
+                        <a href="https://www.safjan.com/tag/package/">package</a>
+                        <a href="https://www.safjan.com/tag/package-publish/">package-publish</a>
+                        <a href="https://www.safjan.com/tag/pypi/">pypi</a>
+                        <a href="https://www.safjan.com/tag/git/">git</a>
+                        <a href="https://www.safjan.com/tag/tiktoken/">tiktoken</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/">Bash - rename multiple image files to match pattern with sequence number</a></li>
+                        <li><a href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/">The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap between Software Products and Customer Needs</a></li>
+                        <li><a href="https://www.safjan.com/similarity-search-using-ivfpq/">Similarity search using IVFPQ</a></li>
+                        <li><a href="https://www.safjan.com/document-layout-analysis-tools/">Document Layout Analysis Tools</a></li>
+                        <li><a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/">The best vector databases for storing embeddings</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/" title="Bash - rename multiple image files to match pattern with sequence number">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

@@ -1,5 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-06-09T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Extracting keywords from the user query</title><link href="https://www.safjan.com/extracting-keywords-from-the-user-query/" rel="alternate"></link><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-09:/extracting-keywords-from-the-user-query/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-06-28T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Script to Python package using Poetry (and PyCharm)</title><link href="https://www.safjan.com/script-to-python-package-using-poetry-and-pycharm/" rel="alternate"></link><published>2023-06-28T00:00:00+02:00</published><updated>2023-06-28T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-28:/script-to-python-package-using-poetry-and-pycharm/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#the-task"&gt;The task&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#package-creation"&gt;Package creation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#create-project-directory"&gt;Create Project Directory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#open-the-project-in-pycharm"&gt;Open the Project in PyCharm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#install-dependencies"&gt;Install Dependencies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configure-pycharm-interpreter"&gt;Configure PyCharm Interpreter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#initialize-git-repository"&gt;Initialize Git Repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-package-structure"&gt;Create Package Structure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#move-script-and-files"&gt;Move Script and Files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-__init__py"&gt;Create &lt;code&gt;__init__.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#update-pyprojecttoml"&gt;Update &lt;code&gt;pyproject.toml&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#test-the-script"&gt;Test the Script&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#package-the-project"&gt;Package the Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#publish-the-package"&gt;Publish the Package …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#the-task"&gt;The task&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#package-creation"&gt;Package creation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#create-project-directory"&gt;Create Project Directory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#open-the-project-in-pycharm"&gt;Open the Project in PyCharm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#install-dependencies"&gt;Install Dependencies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configure-pycharm-interpreter"&gt;Configure PyCharm Interpreter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#initialize-git-repository"&gt;Initialize Git Repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-package-structure"&gt;Create Package Structure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#move-script-and-files"&gt;Move Script and Files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-__init__py"&gt;Create &lt;code&gt;__init__.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#update-pyprojecttoml"&gt;Update &lt;code&gt;pyproject.toml&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#test-the-script"&gt;Test the Script&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#package-the-project"&gt;Package the Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#publish-the-package"&gt;Publish the Package&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#versioning-and-updates"&gt;Versioning and Updates&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="the-task"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;The task&lt;/h2&gt;
+&lt;p&gt;Let's assume that you have simple script that count tokens in provided text file. Below is the  script that accepts a positional input argument, which is the file name, and can be run from the command-line interface (CLI). See also the note on &lt;a href="https://safjan.com/how-to-count-tokens/"&gt;How to count tokens?&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tiktoken&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;num_tokens_from_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;cl100k_base&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Returns the number of tokens in a text string.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tiktoken&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_encoding&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;encoding_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;num_tokens&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;num_tokens&lt;/span&gt;
+
+
+&lt;span class="n"&gt;num_tokens_from_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tiktoken is great!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;count_tokens&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;r&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;num_tokens_from_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Count the number of tokens in a text file.&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Path to the input text file&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;
+
+    &lt;span class="n"&gt;num_tokens&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;count_tokens&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Number of tokens: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;num_tokens&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In this script, the &lt;code&gt;argparse&lt;/code&gt; module is used to handle command-line arguments. The script defines a single positional argument, &lt;code&gt;file&lt;/code&gt;, which represents the file name of the input text file.&lt;/p&gt;
+&lt;p&gt;When the script is executed from the command line, it will parse the command-line arguments and retrieve the file path provided by the user. The &lt;code&gt;count_tokens&lt;/code&gt; function will then be called with the file path, and the number of tokens will be printed.&lt;/p&gt;
+&lt;p&gt;To run the script from the CLI, use the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python script_name.py file_path
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Replace &lt;code&gt;script_name.py&lt;/code&gt; with the actual name of your script file, and &lt;code&gt;file_path&lt;/code&gt; with the path to the input text file you want to analyze. The script will then tokenize the text file and print the number of tokens.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; you need &lt;code&gt;tiktoken&lt;/code&gt; package installed before running the script. You can install it using pip:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tiktoken
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="package-creation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Package creation&lt;/h2&gt;
+&lt;p&gt;To create and publish a Python package based on the provided script, you can follow the steps below:&lt;/p&gt;
+&lt;p&gt;&lt;a id="create-project-directory"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Create Project Directory&lt;/h3&gt;
+&lt;p&gt;Start by creating a new directory for your project. You can choose an appropriate name for the directory.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Initialize the Project with Poetry&lt;/strong&gt;: Open your command-line interface and navigate to the project directory you created. Run the following command to initialize the project using Poetry:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;shell
+   poetry init&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.&lt;/p&gt;
+&lt;p&gt;&lt;a id="open-the-project-in-pycharm"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Open the Project in PyCharm&lt;/h3&gt;
+&lt;p&gt;Open PyCharm and select "Open" from the welcome screen or go to "File" &amp;gt; "Open" and choose the project directory you created.&lt;/p&gt;
+&lt;p&gt;### Configure Poetry Virtual Environment
+ When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.&lt;/p&gt;
+&lt;p&gt;If you already have a Poetry virtual environment set up manually, you can skip this step.&lt;/p&gt;
+&lt;p&gt;&lt;a id="install-dependencies"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Install Dependencies&lt;/h3&gt;
+&lt;p&gt;In your command-line interface, navigate to the project directory if you're not already there. Run the following command to install the necessary dependencies using Poetry:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+   poetry install&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This command will create a virtual environment and install the required packages specified in your project's &lt;code&gt;pyproject.toml&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;&lt;a id="configure-pycharm-interpreter"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Configure PyCharm Interpreter&lt;/h3&gt;
+&lt;p&gt;In PyCharm, go to "File" &amp;gt; "Settings" &amp;gt; "Project: &lt;project_name&gt;" &amp;gt; "Python Interpreter". Click on the gear icon and choose "Add...".&lt;/p&gt;
+&lt;p&gt;Select "Poetry Environment" and choose the existing local Poetry interpreter associated with your project's virtual environment. Click "OK" to apply the changes.&lt;/p&gt;
+&lt;p&gt;&lt;a id="initialize-git-repository"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Initialize Git Repository&lt;/h3&gt;
+&lt;p&gt;In your command-line interface, navigate to the project directory if you're not already there. Run the following command to initialize a Git repository:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+   git init&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This will set up a new Git repository for version control.&lt;/p&gt;
+&lt;p&gt;At this point, you have set up the project structure, initialized Poetry, configured the virtual environment in PyCharm, installed dependencies, and initialized a Git repository. Now, you can proceed with packaging and publishing your Python script.&lt;/p&gt;
+&lt;p&gt;&lt;a id="create-package-structure"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Create Package Structure&lt;/h3&gt;
+&lt;p&gt;Inside your project directory, create a package structure that follows Python's best practices. For example, you can create a directory named &lt;code&gt;my_package&lt;/code&gt; that will contain your script and other necessary files.&lt;/p&gt;
+&lt;p&gt;&lt;a id="move-script-and-files"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Move Script and Files&lt;/h3&gt;
+&lt;p&gt;Move your script file and any other relevant files into the package directory (&lt;code&gt;my_package&lt;/code&gt; in this example).&lt;/p&gt;
+&lt;p&gt;&lt;a id="create-__init__py"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Create &lt;code&gt;__init__.py&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Inside the package directory (&lt;code&gt;my_package&lt;/code&gt;), create an empty file named &lt;code&gt;__init__.py&lt;/code&gt;. This file is required to make the directory a Python package.&lt;/p&gt;
+&lt;p&gt;&lt;a id="update-pyprojecttoml"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Update &lt;code&gt;pyproject.toml&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Open your project's &lt;code&gt;pyproject.toml&lt;/code&gt; file. Under the &lt;code&gt;[tool.poetry]&lt;/code&gt; section, add the script file and any additional files that need to be included in the package. For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;toml&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;tool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;poetry&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;tool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;poetry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;my_script&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;my_package.my_script:main&amp;#39;&lt;/span&gt;
+&lt;span class="err"&gt;```&lt;/span&gt;
+
+&lt;span class="n"&gt;Replace&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;my_script&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;desired&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;my_script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;correct&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;path&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;its&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="test-the-script"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Test the Script&lt;/h3&gt;
+&lt;p&gt;Before publishing your package, it's essential to test your script to ensure it works as expected. You can execute the script locally to verify its functionality.&lt;/p&gt;
+&lt;p&gt;&lt;a id="package-the-project"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Package the Project&lt;/h3&gt;
+&lt;p&gt;In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;shell&lt;/span&gt;
+&lt;span class="n n-Quoted"&gt;poetry build&lt;/span&gt;
+&lt;span class="n n-Quoted n-Quoted-Escape"&gt;``&lt;/span&gt;&lt;span class="n n-Quoted"&gt;`&lt;/span&gt;
+
+&lt;span class="n"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;will&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;distributable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;.,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`.tar.gz`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`dist`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;within&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="publish-the-package"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Publish the Package&lt;/h3&gt;
+&lt;p&gt;To publish your package, you can use a package index such as PyPI (Python Package Index). First, you need to create an account on PyPI if you haven't already. Once you have an account, run the following command to publish your package:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;```shell
+poetry publish
+```
+
+This command will guide you through the process of publishing your package to PyPI. You&amp;#39;ll be prompted to enter your PyPI credentials and confirm the publication.
+
+Note: Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="versioning-and-updates"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Versioning and Updates&lt;/h3&gt;
+&lt;p&gt;When you make updates to your package, ensure to increment the version number in the &lt;code&gt;pyproject.toml&lt;/code&gt; file under the &lt;code&gt;[tool.poetry.version]&lt;/code&gt; section. This helps to track and manage different versions of your package.&lt;/p&gt;
+&lt;p&gt;That's it! You have now packaged and published your Python script using Poetry. Users can install your package using pip and use your script as a command-line tool.&lt;/p&gt;
+&lt;p&gt;Please note that publishing a package is a significant step, and it's essential to review and test your code thoroughly before sharing it with others.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="poetry"></category><category term="package"></category><category term="package-publish"></category><category term="pypi"></category><category term="git"></category><category term="tiktoken"></category></entry><entry><title>Bash - rename multiple image files to match pattern with sequence number</title><link href="https://www.safjan.com/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/" rel="alternate"></link><published>2023-06-27T00:00:00+02:00</published><updated>2023-06-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-27:/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/</id><summary type="html">&lt;p&gt;The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions, and you want to standardize their names for better organization or consistency.&lt;/p&gt;
+&lt;p&gt;By executing the script, all image files with extensions such as &lt;code&gt;.jpg&lt;/code&gt;, &lt;code&gt;.jpeg&lt;/code&gt;, &lt;code&gt;.png&lt;/code&gt;, &lt;code&gt;.gif&lt;/code&gt;, &lt;code&gt;.tiff&lt;/code&gt;, &lt;code&gt;.heic&lt;/code&gt;, and &lt;code&gt;.heif&lt;/code&gt; in the current directory will be renamed. The new names will follow the pattern "img_xxx.ext", where "xxx" represents a sequence number starting from 000, and "ext" represents the original file extension.&lt;/p&gt;
+&lt;p&gt;For example, if you have the following image files in the directory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;photo1.jpg
+picture.png
+image2.jpeg
+snapshot.tiff
+capture.heic
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Running the script will rename them as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;img_000.jpg
+img_001.png
+img_002.jpeg
+img_003.tiff
+img_004.heic
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This allows for consistent naming and easier identification of the image files in the directory.&lt;/p&gt;
+&lt;p&gt;Here's the Bash script that supports multiple image formats and preserves the original file extension while renaming the files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*.&lt;span class="o"&gt;{&lt;/span&gt;jpg,jpeg,png,gif,tiff,heic,heif&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;extension&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;##*.&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;newname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;img_%03d.%s&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$counter&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$extension&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$newname&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;((&lt;/span&gt;counter++&lt;span class="o"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In this script:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;code&gt;for&lt;/code&gt; loop uses brace expansion &lt;code&gt;{}&lt;/code&gt; to iterate over multiple file extensions: &lt;code&gt;jpg&lt;/code&gt;, &lt;code&gt;jpeg&lt;/code&gt;, &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;gif&lt;/code&gt;, &lt;code&gt;tiff&lt;/code&gt;, &lt;code&gt;heic&lt;/code&gt;, and &lt;code&gt;heif&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Inside the loop, the script checks if the current file is a regular file using the &lt;code&gt;-f&lt;/code&gt; test.&lt;/li&gt;
+&lt;li&gt;If it's a regular file, it extracts the original file extension using the &lt;code&gt;${file##*.}&lt;/code&gt; syntax.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;newname&lt;/code&gt; variable is generated using &lt;code&gt;printf&lt;/code&gt; with the current value of the &lt;code&gt;counter&lt;/code&gt; variable and the extracted extension.&lt;/li&gt;
+&lt;li&gt;Finally, the file is renamed using the &lt;code&gt;mv&lt;/code&gt; command, preserving the original extension.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To use this script, follow these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a text editor and paste the script into a new file.&lt;/li&gt;
+&lt;li&gt;Save the file with a &lt;code&gt;.sh&lt;/code&gt; extension, for example, &lt;code&gt;rename_images.sh&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Open a terminal and navigate to the directory where the image files are located.&lt;/li&gt;
+&lt;li&gt;Make the script executable by running the following command: &lt;code&gt;chmod +x rename_images.sh&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run the script using the command &lt;code&gt;./rename_images.sh&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After running the script, all the image files in the directory should be renamed according to the pattern you specified.&lt;/p&gt;
+&lt;h2&gt;Oneliner&lt;/h2&gt;
+&lt;p&gt;Here's a one-liner Bash command that renames all image files in the current directory to match the pattern "img_xxx.jpg" where "xxx" is a sequence number starting from 000:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;file&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*.jpg&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;newname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;printf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;img_%03d.jpg&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$counter&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;mv&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$newname&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;((&lt;/span&gt;counter++&lt;span class="o"&gt;))&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;fi&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This command combines the same logic as the previous script into a single line. The &lt;code&gt;counter&lt;/code&gt; variable is set to 0, and then the &lt;code&gt;for&lt;/code&gt; loop iterates over the &lt;code&gt;.jpg&lt;/code&gt; files in the directory. The rest of the logic remains the same.&lt;/p&gt;
+&lt;p&gt;To use this one-liner, open a terminal, navigate to the directory containing the image files, and run the command. The image files will be renamed accordingly.&lt;/p&gt;
+&lt;p&gt;To create a Bash alias for the one-liner version of the last script, you can add the following line to your &lt;code&gt;~/.bashrc&lt;/code&gt; or &lt;code&gt;~/.bash_aliases&lt;/code&gt; (&lt;code&gt;.zshrc&lt;/code&gt; or &lt;code&gt;~/.zsh_aliases&lt;/code&gt; if using zsh) file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;alias&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;rename_images&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;counter=0; for file in *.{jpg,jpeg,png,gif,tiff,heic,heif}; do if -f &amp;quot;$file&amp;quot;; then extension=&amp;quot;${file##*.}&amp;quot;; newname=$(printf &amp;quot;img_%03d.%s&amp;quot; &amp;quot;$counter&amp;quot; &amp;quot;$extension&amp;quot;); mv &amp;quot;$file&amp;quot; &amp;quot;$newname&amp;quot;; ((counter++)); fi; done&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Save the file and then run &lt;code&gt;source ~/.bashrc&lt;/code&gt; or &lt;code&gt;source ~/.bash_aliases&lt;/code&gt; to apply the changes.&lt;/p&gt;
+&lt;p&gt;Afterward, you can use the &lt;code&gt;rename_images&lt;/code&gt; command in your terminal to execute the one-liner script and rename the image files in the current directory accordingly.&lt;/p&gt;
+&lt;h2&gt;Python version&lt;/h2&gt;
+&lt;p&gt;Here's a Python script that achieves the same functionality as the Bash script, renaming image files while preserving their original extensions:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;extensions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.jpg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.jpeg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.gif&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.tiff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.heic&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.heif&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;file_parts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;splitext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;newname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;img_&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;03d&lt;/span&gt;&lt;span class="si"&gt;}{&lt;/span&gt;&lt;span class="n"&gt;file_parts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;newname&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In this Python script:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;code&gt;counter&lt;/code&gt; variable keeps track of the sequence number for renaming the files.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;extensions&lt;/code&gt; list contains the supported image extensions.&lt;/li&gt;
+&lt;li&gt;The script iterates over each file in the current directory using &lt;code&gt;os.listdir(".")&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;For each file, it checks if the filename has a matching extension and if it is a regular file.&lt;/li&gt;
+&lt;li&gt;If both conditions are satisfied, it extracts the file's extension and uses &lt;code&gt;os.rename()&lt;/code&gt; to perform the renaming operation.&lt;/li&gt;
+&lt;li&gt;The new name is constructed using the desired pattern "img_xxx.ext", where "xxx" represents the sequence number and "ext" represents the original file extension.&lt;/li&gt;
+&lt;li&gt;Finally, the &lt;code&gt;counter&lt;/code&gt; is incremented for the next file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can save this Python script to a file with a &lt;code&gt;.py&lt;/code&gt; extension, for example, &lt;code&gt;rename_images.py&lt;/code&gt;, and then run it using a Python interpreter. The image files in the directory will be renamed accordingly, following the specified pattern while preserving their original extensions.&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="python"></category><category term="bash-script"></category><category term="python-script"></category><category term="alias"></category><category term="image-rename"></category><category term="utility script"></category></entry><entry><title>Extracting keywords from the user query</title><link href="https://www.safjan.com/extracting-keywords-from-the-user-query/" rel="alternate"></link><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-09:/extracting-keywords-from-the-user-query/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#rule-based-approach"&gt;Rule-Based Approach&lt;/a&gt;&lt;/li&gt;
@@ -288,10 +554,9 @@
 &lt;p&gt;By working closely with customers, FDEs develop a deep understanding of their pain points and aspirations. This product intuition enables them to provide valuable insights to product teams, helping shape the product roadmap and prioritize features that align with customer needs. FDEs contribute to the development of customer-centric software solutions.&lt;/p&gt;
 &lt;p&gt;&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Forward Deployed Engineers play a vital role in enterprise software organizations, acting as the bridge between products and customer implementations. Their broad skill set, technical expertise, entrepreneurial mindset, and product intuition make them invaluable assets in driving customer success, revenue growth, and product evolution. As enterprise software continues to evolve, the demand for FDEs will likely increase, providing software engineers with a customer-facing path that allows them to thrive in both technical and business domains&lt;/p&gt;</content><category term="Howto"></category><category term="machine-learning"></category><category term="python"></category><category term="career"></category><category term="roles"></category><category term="software-development"></category></entry><entry><title>How to count tokens?</title><link href="https://www.safjan.com/how-to-count-tokens/" rel="alternate"></link><published>2023-06-08T00:00:00+02:00</published><updated>2023-06-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-08:/how-to-count-tokens/</id><summary type="html">&lt;h1&gt;tokenizers #openai #tiktoken&lt;/h1&gt;
-&lt;h2&gt;Counting Tokens: A Guide to Text Tokenization&lt;/h2&gt;
-&lt;p&gt;Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;tokenizers #openai #tiktoken&lt;/h1&gt;
-&lt;h2&gt;Counting Tokens: A Guide to Text Tokenization&lt;/h2&gt;
+&lt;p&gt;Forward Deployed Engineers play a vital role in enterprise software organizations, acting as the bridge between products and customer implementations. Their broad skill set, technical expertise, entrepreneurial mindset, and product intuition make them invaluable assets in driving customer success, revenue growth, and product evolution. As enterprise software continues to evolve, the demand for FDEs will likely increase, providing software engineers with a customer-facing path that allows them to thrive in both technical and business domains&lt;/p&gt;</content><category term="Howto"></category><category term="machine-learning"></category><category term="python"></category><category term="career"></category><category term="roles"></category><category term="software-development"></category></entry><entry><title>How to count tokens?</title><link href="https://www.safjan.com/how-to-count-tokens/" rel="alternate"></link><published>2023-06-08T00:00:00+02:00</published><updated>2023-06-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-08:/how-to-count-tokens/</id><summary type="html">&lt;h2&gt;Counting Tokens: A Guide to Text Tokenization&lt;/h2&gt;
+&lt;p&gt;Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are:
+- &lt;strong&gt;controlling the …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Counting Tokens: A Guide to Text Tokenization&lt;/h2&gt;
 &lt;p&gt;Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are:
 - &lt;strong&gt;controlling the length of the prompt&lt;/strong&gt; - the models has limit on number of input tokens - it is good to have control if you don't exceed the limits for the model
 - &lt;strong&gt;cost awareness&lt;/strong&gt;  - when you know how many tokens you pass as input, you know the cost related to the prompt.&lt;/p&gt;
@@ -320,7 +585,8 @@
 &lt;p&gt;If you're looking to experiment with text tokenization, OpenAI provides a convenient web application called the Tokenization Sandbox. You can access it &lt;a href="https://platform.openai.com/tokenizer"&gt;here&lt;/a&gt;. The sandbox allows you to input text and observe the resulting tokens, helping you gain a deeper understanding of the tokenization process.&lt;/p&gt;
 &lt;h3&gt;References&lt;/h3&gt;
 &lt;p&gt;To develop this guide, we drew inspiration from the token counting instructions provided by OpenAI. You can find additional information in the &lt;a href="https://platform.openai.com/docs/guides/embeddings/limitations-risks"&gt;OpenAI documentation&lt;/a&gt;, where they discuss the limitations and risks associated with embeddings.&lt;/p&gt;
-&lt;p&gt;Token counting is an essential task when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's &lt;code&gt;tiktoken&lt;/code&gt; library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.&lt;/p&gt;</content><category term="note"></category><category term="tokenizers"></category><category term="token"></category><category term="tokenization"></category><category term="tiktoken"></category><category term="openai"></category><category term="NLP"></category></entry><entry><title>Similarity search using IVFPQ</title><link href="https://www.safjan.com/similarity-search-using-ivfpq/" rel="alternate"></link><published>2023-06-08T00:00:00+02:00</published><updated>2023-06-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-08:/similarity-search-using-ivfpq/</id><summary type="html"></summary><content type="html">&lt;ul&gt;
+&lt;p&gt;Token counting is an essential task when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's &lt;code&gt;tiktoken&lt;/code&gt; library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.&lt;/p&gt;
+&lt;p&gt;See also: &lt;a href="https://omarkama.li/blog/tokens-the-secret-language-of-ai"&gt;Tokens, the secret language of AI | Omar Kamali&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="tokenizers"></category><category term="token"></category><category term="tokenization"></category><category term="tiktoken"></category><category term="openai"></category><category term="NLP"></category></entry><entry><title>Similarity search using IVFPQ</title><link href="https://www.safjan.com/similarity-search-using-ivfpq/" rel="alternate"></link><published>2023-06-08T00:00:00+02:00</published><updated>2023-06-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-08:/similarity-search-using-ivfpq/</id><summary type="html"></summary><content type="html">&lt;ul&gt;
 &lt;li&gt;https://towardsdatascience.com/similarity-search-with-ivfpq-9c6348fd4db3&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category></entry><entry><title>Document Layout Analysis Tools</title><link href="https://www.safjan.com/document-layout-analysis-tools/" rel="alternate"></link><published>2023-06-07T00:00:00+02:00</published><updated>2023-06-07T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-07:/document-layout-analysis-tools/</id><summary type="html"></summary><content type="html">&lt;p&gt;2023-06-07
 LayoutML&lt;/p&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category></entry><entry><title>The best vector databases for storing embeddings</title><link href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/" rel="alternate"></link><published>2023-06-05T00:00:00+02:00</published><updated>2023-06-05T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-05:/the-best-vector-databases-for-storing-embeddings/</id><summary type="html">&lt;p&gt;Delve into the World of Vector Databases Fueling NLP's Transformative Journey.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Best Vector Databases for Storing Embeddings in NLP&lt;/h2&gt;
@@ -19870,10 +20136,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="b2c12c37-25e3-436f-b0fd-00e13d95a1a6"&gt;&lt;/div&gt;
+&lt;div id="f83361e2-2329-4c2f-9fee-45527eac57c9"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#b2c12c37-25e3-436f-b0fd-00e13d95a1a6');
+var element = $('#f83361e2-2329-4c2f-9fee-45527eac57c9');
 
 (function(root) {
   function now() {

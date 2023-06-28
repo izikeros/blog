@@ -11,7 +11,7 @@ Summary:
 Status: draft
 prompt:Give me long blog-post text on What are the techniques for the prompt optimization in context of large language models. Prompt can be considered as an input to the conversational LLM - in form of question, task or command to execute.
 ---
-up::[[MOC_prompting]]
+up::[[MOC_prompt_engineering]]
 X::[[MOC_Generative_AI]]
 #blog/post-idea #llm 
 

@@ -7,8 +7,6 @@ Status: published
 Tags: tokenizers, token, tokenization, tiktoken, openai, NLP 
 Category: note
 ---
-#tokenizers #openai #tiktoken 
-
 
 ## Counting Tokens: A Guide to Text Tokenization
 
@@ -57,3 +55,6 @@ If you're looking to experiment with text tokenization, OpenAI provides a conven
 To develop this guide, we drew inspiration from the token counting instructions provided by OpenAI. You can find additional information in the [OpenAI documentation](https://platform.openai.com/docs/guides/embeddings/limitations-risks), where they discuss the limitations and risks associated with embeddings.
 
 Token counting is an essential task when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's `tiktoken` library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.
+
+See also: [Tokens, the secret language of AI | Omar Kamali](https://omarkama.li/blog/tokens-the-secret-language-of-ai)
+
