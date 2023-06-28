@@ -164,6 +164,8 @@ Open your project's `pyproject.toml` file. Under the `[tool.poetry]` section, ad
 
     Replace `my_script` with the desired command name for your script, and `my_package.my_script:main` with the correct import path to your script and its main function.
 
+### Add README.md file
+In the root of the project directory create `README.md` and fill it with useful information. See also:[[writing_good_readme]]
 <a id="test-the-script"></a>
 ### Test the Script
 Before publishing your package, it's essential to test your script to ensure it works as expected. You can execute the script locally to verify its functionality.

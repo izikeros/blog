@@ -11,7 +11,8 @@ Category: note
 ## Counting Tokens: A Guide to Text Tokenization
 
 Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are:
-- **controlling the length of the prompt** - the models has limit on number of input tokens - it is good to have control if you don't exceed the limits for the model
+
+- **controlling the length of the prompt** -  models has limit on the number of input tokens - it is good to have control if you don't exceed the limits for the model
 - **cost awareness**  - when you know how many tokens you pass as input, you know the cost related to the prompt.
 
 In this blog post, we will explore how to count the number of tokens in a given text using OpenAI's tokenizer, called `tiktoken`. Whether you're a seasoned Python developer or just getting started with NLP, this guide will provide you with a step-by-step process to accurately determine the token count of your text.
@@ -48,13 +49,13 @@ For a more detailed explanation and additional examples, you can refer to the Op
 
 ### Tokenization Sandbox
 
-If you're looking to experiment with text tokenization, OpenAI provides a convenient web application called the Tokenization Sandbox. You can access it [here](https://platform.openai.com/tokenizer). The sandbox allows you to input text and observe the resulting tokens, helping you gain a deeper understanding of the tokenization process.
+If you're looking to experiment with text tokenization, OpenAI provides a convenient web application called the Tokenization Sandbox. You can access it [here](https://platform.openai.com/tokenizer). The sandbox allows you to input text and observe the resulting tokens, helping you better understand the tokenization process.
 
 ### References
 
 To develop this guide, we drew inspiration from the token counting instructions provided by OpenAI. You can find additional information in the [OpenAI documentation](https://platform.openai.com/docs/guides/embeddings/limitations-risks), where they discuss the limitations and risks associated with embeddings.
 
-Token counting is an essential task when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's `tiktoken` library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.
+Token counting is essential when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's `tiktoken` library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.
 
 See also: [Tokens, the secret language of AI | Omar Kamali](https://omarkama.li/blog/tokens-the-secret-language-of-ai)
 
