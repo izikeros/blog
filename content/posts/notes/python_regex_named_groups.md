@@ -7,6 +7,7 @@ Status: published
 Tags: python, regex
 Category: note
 ---
+up::[[MOC_Python]]
 
 In Python regex, `match.groupdict()` is a method that returns a dictionary containing all the named groups of a regular expression match.
 

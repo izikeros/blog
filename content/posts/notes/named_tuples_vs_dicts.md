@@ -7,7 +7,7 @@ Status: published
 Tags: python, named-tuple, dict, dictionary, data-structure  
 Category: note
 ---
-
+up::[[MOC_Python]]
 Let's assume that in python, we have long list of pairs to store. In this note we will discuss what are the pros and cons of using named tuple vs. dict to store single pair? 
 
 Both named tuples and dictionaries are useful data structures for storing key-value pairs in Python, but they have different pros and cons depending on the situation.

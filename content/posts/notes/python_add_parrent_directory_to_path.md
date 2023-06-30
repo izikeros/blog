@@ -30,7 +30,8 @@ There may be times when you want to import modules from a parent directory in Py
 One way to add a parent directory to the Python path is to use the `sys.path.insert()` method. This method allows you to insert a new path at a specific index in the `sys.path` list. To add a parent directory to the Python path, you can use the following code:
 
 ```python
-import sys sys.path.insert(0, '..')
+import sys
+sys.path.insert(0, '..')
 ```
 This code imports the `sys` module and then uses the `insert()` method to add the parent directory (indicated by `'..'`) to the beginning of the `sys.path` list. This means that the parent directory will be searched before any other paths in the list when importing modules.
 
@@ -39,7 +40,8 @@ This code imports the `sys` module and then uses the `insert()` method to add th
 
 Another way to add a parent directory to the python path is to use the `sys.path.append()` method, which will add the given path to the end of the sys.path list.
 ```python
-import sys sys.path.append('..')
+import sys
+sys.path.append('..')
 ```
 
 This method would work in the same way as above method but the order of search of the path will be different.

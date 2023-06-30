@@ -1,5 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-06-28T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Script to Python package using Poetry (and PyCharm)</title><link href="https://www.safjan.com/script-to-python-package-using-poetry-and-pycharm/" rel="alternate"></link><published>2023-06-28T00:00:00+02:00</published><updated>2023-06-28T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-28:/script-to-python-package-using-poetry-and-pycharm/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-06-30T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Demystifying Perplexity: Assessing Dimensionality Reduction with PCA</title><link href="https://www.safjan.com/demystifying-perplexity-assessing-dimensionality-reduction-with-pca/" rel="alternate"></link><published>2023-06-30T00:00:00+02:00</published><updated>2023-06-30T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-30:/demystifying-perplexity-assessing-dimensionality-reduction-with-pca/</id><summary type="html">&lt;p&gt;X::&lt;a href="https://www.safjan.com/measure-quality-of-embeddings-intrinsic-vs-extrinsic/"&gt;Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Perplexity is a measure commonly used in machine learning, particularly in the field of dimensionality reduction techniques such as Principal Component Analysis (PCA). It provides a way to evaluate …&lt;/p&gt;</summary><content type="html">&lt;p&gt;X::&lt;a href="https://www.safjan.com/measure-quality-of-embeddings-intrinsic-vs-extrinsic/"&gt;Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Perplexity is a measure commonly used in machine learning, particularly in the field of dimensionality reduction techniques such as Principal Component Analysis (PCA). It provides a way to evaluate and compare the quality of dimensionality reduction algorithms by quantifying how well they preserve the structure of the original data.&lt;/p&gt;
+&lt;p&gt;In this blog post, we will delve into the concept of perplexity, its application in PCA, and its importance in assessing the performance of dimensionality reduction methods. We will also provide code examples in Python to demonstrate its practical implementation.&lt;/p&gt;
+&lt;h2&gt;Understanding Perplexity&lt;/h2&gt;
+&lt;p&gt;Perplexity is a measure originally developed for evaluating probabilistic models, particularly in the field of natural language processing. It represents the level of uncertainty or confusion in predicting the next item in a sequence. In the context of dimensionality reduction, perplexity provides an estimation of the number of nearest neighbors that should be considered when reconstructing a data point in a lower-dimensional space.&lt;/p&gt;
+&lt;p&gt;Given a high-dimensional dataset, PCA aims to find a lower-dimensional representation that captures the most significant features or patterns of the original data. The idea behind perplexity is to preserve the local structure of the data, ensuring that neighboring points in the high-dimensional space remain close to each other in the reduced space.&lt;/p&gt;
+&lt;h2&gt;Perplexity in PCA&lt;/h2&gt;
+&lt;p&gt;To understand how perplexity is used in PCA, let's consider a high-dimensional dataset with 𝑁 data points. PCA involves projecting this dataset onto a lower-dimensional space while retaining the maximum amount of variance. The reduced dataset can be represented by 𝑀 principal components, where 𝑀 &amp;lt; 𝑁.&lt;/p&gt;
+&lt;p&gt;In PCA, the perplexity of a data point 𝑥𝑖 is calculated based on the conditional probability distribution of its neighbors given a particular variance or similarity scale. This distribution can be modeled using a Gaussian kernel centered at 𝑥𝑖:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+P(\mathbf{y}_j|\mathbf{x}_i) = \frac{{\exp\left(-\frac{{\|\mathbf{y}_j - \mathbf{x}_i\|^2}}{{2\sigma_i^2}}\right)}}{{\sum_{k\neq j}\exp\left(-\frac{{\|\mathbf{y}_k - \mathbf{x}_i\|^2}}{{2\sigma_i^2}}\right)}}
+$$&lt;/div&gt;
+&lt;p&gt;Here, 𝑃(𝑦𝑗|𝑥𝑖) represents the conditional probability of observing data point 𝑦𝑗 as a neighbor of 𝑥𝑖 in the lower-dimensional space. The variance or similarity scale 𝜎𝑖 determines the spread of the Gaussian kernel for each data point 𝑥𝑖.&lt;/p&gt;
+&lt;p&gt;The perplexity of 𝑥𝑖, denoted as 𝑃𝑖, is then defined as the Shannon entropy of the conditional distribution:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+P_i = 2^{-\sum_j P(\mathbf{y}_j|\mathbf{x}_i)\log_2 P(\mathbf{y}_j|\mathbf{x}_i)}
+$$&lt;/div&gt;
+&lt;p&gt;In practice, finding the optimal variance scale 𝜎𝑖 that results in the desired perplexity can be challenging. One common approach is to perform a binary search to find the value of 𝜎𝑖 that achieves a target perplexity value. The binary search is performed by iteratively adjusting the value of 𝜎𝑖 until the entropy of the conditional distribution matches the target perplexity.&lt;/p&gt;
+&lt;h2&gt;Evaluating Dimensionality Reduction with Perplexity&lt;/h2&gt;
+&lt;p&gt;Perplexity is a crucial metric for evaluating the performance of dimensionality reduction techniques, including PCA. By preserving the local structure of the data, a good dimensionality reduction method should ensure that neighboring points remain close to each other in the lower-dimensional space.&lt;/p&gt;
+&lt;p&gt;To evaluate the effectiveness of a dimensionality reduction algorithm, we can compare the perplexity of the original high-dimensional data with the perplexity of the reduced data. If the perplexity remains similar after dimensionality reduction, it suggests that the algorithm successfully preserves the local structure of the data.&lt;/p&gt;
+&lt;p&gt;In practice, perplexity is often used in conjunction with other evaluation metrics, such as visualization techniques like t-SNE (t-Distributed Stochastic Neighbor Embedding). t-SNE is a nonlinear dimensionality reduction method that can be used to visualize high-dimensional data in two or three dimensions while preserving the local structure. By comparing the perplexity of t-SNE embeddings with the perplexity of the original data, we can gain insights into the quality of the dimensionality reduction.&lt;/p&gt;
+&lt;h2&gt;Implementation in Python&lt;/h2&gt;
+&lt;p&gt;Let's now demonstrate the calculation of perplexity and its application in evaluating dimensionality reduction using PCA in Python. We will use the scikit-learn library, which provides a simple and efficient implementation of PCA and other machine learning algorithms.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.decomposition&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PCA&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.metrics&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pairwise_distances&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.spatial.distance&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;squareform&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;perplexity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;perplexity_value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;distances&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pairwise_distances&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;metric&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;euclidean&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;squared&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;P&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;sigmas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;beta_min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt;
+        &lt;span class="n"&gt;beta_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt;
+        &lt;span class="n"&gt;betas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;affinities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;distances&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;sum_affinities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;affinities&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;entropy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;affinities&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;sum_affinities&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;affinities&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;sum_affinities&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="n"&gt;perplexity_diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;entropy&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;perplexity_value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;perplexity_diff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mf"&gt;1e-5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;break&lt;/span&gt;
+
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;perplexity_diff&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;beta_min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;beta_max&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;beta_max&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+                &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;beta_max&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+            &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;beta_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;beta_min&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;beta_min&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+                &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;betas&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;beta_min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+
+        &lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;affinities&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;affinities&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;P&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Generate random high-dimensional data&lt;/span&gt;
+&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;
+&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;randn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Apply PCA&lt;/span&gt;
+&lt;span class="n"&gt;pca&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PCA&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_components&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;X_reduced&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pca&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit_transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Calculate perplexity of original data&lt;/span&gt;
+&lt;span class="n"&gt;original_perplexity&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;perplexity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;perplexity_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Calculate perplexity of reduced data&lt;/span&gt;
+&lt;span class="n"&gt;reduced_perplexity&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;perplexity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_reduced&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;perplexity_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Perplexity of original data:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;original_perplexity&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Perplexity of reduced data:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reduced_perplexity&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In the above example, we generate a random high-dimensional dataset using NumPy and apply PCA to reduce its dimensionality to 2. We then calculate the perplexity of the original data and the reduced data using the &lt;code&gt;perplexity&lt;/code&gt; function. Finally, we print the mean perplexity values for comparison.&lt;/p&gt;
+&lt;p&gt;By examining the perplexity values, we can gain insights into how well PCA preserves the local structure of the data. If the perplexity of the reduced data is close to the perplexity of the original data, it suggests that PCA successfully retains the essential information during dimensionality reduction.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this blog post, we explored the concept of perplexity in the context of dimensionality reduction, specifically in PCA. Perplexity provides a measure of the level of uncertainty or confusion in predicting the neighbors of a data point in a lower-dimensional space. It is used to assess the quality of dimensionality reduction algorithms by evaluating how well they preserve the local structure of the data.&lt;/p&gt;
+&lt;p&gt;We also provided a Python implementation to calculate perplexity and demonstrated its application in evaluating dimensionality reduction using PCA. By comparing the perplexity of the original data with the perplexity of the reduced data, we can assess the effectiveness of PCA in preserving the essential information.&lt;/p&gt;
+&lt;p&gt;Perplexity is a valuable tool in the evaluation and comparison of dimensionality reduction methods. It offers insights into the preservation of the local structure and can guide the selection of appropriate techniques for different datasets and applications.&lt;/p&gt;
+&lt;p&gt;See also: 
+&lt;a href="https://distill.pub/2016/misread-tsne/"&gt;How to Use t-SNE Effectively&lt;/a&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="note"></category><category term="pca"></category><category term="perplexity"></category><category term="dimensionality-reduction"></category><category term="probability"></category><category term="TSNE"></category><category term="distance"></category></entry><entry><title>Understanding Bhattacharyya Distance and Coefficient for Probability Distributions</title><link href="https://www.safjan.com/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/" rel="alternate"></link><published>2023-06-30T00:00:00+02:00</published><updated>2023-06-30T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-30:/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the &lt;a href="https://en.wikipedia.org/wiki/Bhattacharyya_distance"&gt;Bhattacharyya distance&lt;/a&gt;, which quantifies the dissimilarity between two distributions. The Bhattacharyya …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the &lt;a href="https://en.wikipedia.org/wiki/Bhattacharyya_distance"&gt;Bhattacharyya distance&lt;/a&gt;, which quantifies the dissimilarity between two distributions. The Bhattacharyya coefficient, on the other hand, provides a measure of the overlap between two statistical samples or populations. In this blog post, we will delve into the concepts of Bhattacharyya distance and coefficient, discuss their applications, and provide Python code examples for better understanding.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#bhattacharyya-distance"&gt;Bhattacharyya Distance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#bhattacharyya-coefficient"&gt;Bhattacharyya Coefficient&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#applications-of-bhattacharyya-distance-and-coefficient"&gt;Applications of Bhattacharyya Distance and Coefficient&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#python-implementation"&gt;Python Implementation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#other-metrics"&gt;Other metrics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="bhattacharyya-distance"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Bhattacharyya Distance&lt;/h2&gt;
+&lt;p&gt;The Bhattacharyya distance is a statistical measure that quantifies the similarity between two probability distributions. It is named after Anil Kumar Bhattacharyya, an Indian-American statistician. The distance is defined for continuous probability distributions and is based on the Bhattacharyya coefficient (which we will discuss later).&lt;/p&gt;
+&lt;p&gt;Mathematically, the Bhattacharyya distance between two continuous probability density functions (PDFs) or discrete probability mass functions (PMFs) is defined as follows:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+D_B(P,Q) = -\ln \left( BC(P,Q) \right) = -\ln \left( \sum_{i} \sqrt{P(i)Q(i)} \right)
+$$&lt;/div&gt;
+&lt;p&gt;where ( P ) and ( Q ) are the probability distributions being compared, ( P(i) ) and ( Q(i) ) represent the probabilities of occurrence for the ( i )th event or sample, and ( BC(P,Q) ) denotes the Bhattacharyya coefficient.&lt;/p&gt;
+&lt;p&gt;The Bhattacharyya distance ranges from 0 to infinity, where 0 indicates perfect similarity and higher values indicate increasing dissimilarity. It is important to note that the Bhattacharyya distance is a symmetric measure, meaning ( D_B(P,Q) = D_B(Q,P) ).&lt;/p&gt;
+&lt;p&gt;&lt;a id="bhattacharyya-coefficient"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Bhattacharyya Coefficient&lt;/h2&gt;
+&lt;p&gt;The Bhattacharyya coefficient is a measure of overlap between two statistical samples or populations. It quantifies the similarity between two probability distributions and is often used as a precursor to computing the Bhattacharyya distance.&lt;/p&gt;
+&lt;p&gt;Mathematically, the Bhattacharyya coefficient between two discrete probability distributions can be calculated as follows:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+BC(P,Q) = \sum_{i} \sqrt{P(i)Q(i)}
+$$&lt;/div&gt;
+&lt;p&gt;For continuous probability distributions, the Bhattacharyya coefficient can be expressed as an integral:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+BC(P,Q) = \int \sqrt{p(x) q(x)} \, dx
+$$&lt;/div&gt;
+&lt;p&gt;where ( p(x) ) and ( q(x) ) represent the probability density functions (PDFs) of distributions ( P ) and ( Q ), respectively.&lt;/p&gt;
+&lt;p&gt;The Bhattacharyya coefficient ranges from 0 to 1, where 1 indicates complete overlap and 0 indicates no overlap. The coefficient measures the similarity of two distributions by taking into account the square root of the product of their probabilities at corresponding events or samples.&lt;/p&gt;
+&lt;p&gt;&lt;a id="applications-of-bhattacharyya-distance-and-coefficient"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Applications of Bhattacharyya Distance and Coefficient&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Pattern recognition: Bhattacharyya distance is often used to compare feature vectors or histograms in pattern recognition tasks. It helps in identifying similarities or dissimilarities between different classes or clusters of data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Image processing: Bhattacharyya distance can be used to compare image histograms, aiding in tasks such as image segmentation, object recognition, and image retrieval.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Document classification: Bhattacharyya distance can be employed to measure the similarity between document feature vectors, enabling document clustering and categorization.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="python-implementation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Python Implementation&lt;/h2&gt;
+&lt;p&gt;To demonstrate the computation of Bhattacharyya distance and coefficient, we will use the SciPy library in Python.&lt;/p&gt;
+&lt;p&gt;Let's assume we have two discrete probability distributions, ( P ) and ( Q ), represented as arrays.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.spatial&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;distance&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Probability distributions&lt;/span&gt;
+&lt;span class="n"&gt;P&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.4&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;Q&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;0.25&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.4&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Bhattacharyya distance&lt;/span&gt;
+&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bhattacharyya&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Bhattacharyya coefficient&lt;/span&gt;
+&lt;span class="n"&gt;bc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bhattacharyya&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bhattacharyya Distance: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bhattacharyya Coefficient: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Bhattacharyya Distance: 0.0632593256263896
+Bhattacharyya Coefficient: 0.9367406743736104
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In the code snippet above, we utilize the &lt;code&gt;bhattacharyya&lt;/code&gt; function from the &lt;code&gt;scipy.spatial.distance&lt;/code&gt; module to compute the Bhattacharyya distance and coefficient. The resulting values are printed, providing the measure of dissimilarity and overlap, respectively.&lt;/p&gt;
+&lt;p&gt;&lt;a id="other-metrics"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Other metrics&lt;/h2&gt;
+&lt;p&gt;The Bhattacharyya distance metric has both similarities and differences compared to other related distance metrics used in statistics, machine learning, and data science. Let's explore the similarities and differences with some commonly used distance metrics.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Distance Metric&lt;/th&gt;
+&lt;th&gt;Similarities&lt;/th&gt;
+&lt;th&gt;Differences&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Euclidean&lt;/td&gt;
+&lt;td&gt;- Applicable to both continuous and discrete data.&lt;/td&gt;
+&lt;td&gt;- Measures geometric distance between points in a multi-dimensional space.&lt;br&gt;- Does not consider probability information of the data.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Manhattan&lt;/td&gt;
+&lt;td&gt;- Similar to Euclidean, applicable to both continuous and discrete data.&lt;/td&gt;
+&lt;td&gt;- Measures distance between points as the sum of absolute differences in their coordinates.&lt;br&gt;- Does not consider probability distributions.&lt;br&gt;- Not suitable for measuring similarity between distributions.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Kullback-Leibler&lt;/td&gt;
+&lt;td&gt;- Measures dissimilarity between probability distributions.&lt;/td&gt;
+&lt;td&gt;- Quantifies information lost when one distribution is used to approximate the other.&lt;br&gt;- Does not directly measure overlap or similarity between distributions.&lt;br&gt;- Asymmetric measure.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Jensen-Shannon&lt;/td&gt;
+&lt;td&gt;- Variation of KL divergence, measures dissimilarity between probability distributions.&lt;/td&gt;
+&lt;td&gt;- Calculates average of KL divergences between distributions and their average.&lt;br&gt;- Does not directly measure overlap or similarity between distributions.&lt;br&gt;- Symmetric measure.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Cosine Similarity&lt;/td&gt;
+&lt;td&gt;- Measures similarity between vector representations of data.&lt;/td&gt;
+&lt;td&gt;- Measures cosine of the angle between two vectors, indicating similarity in direction or orientation.&lt;br&gt;- Primarily used for comparing vector representations, such as text documents or high-dimensional feature vectors.&lt;br&gt;- Does not capture probabilistic nature of distributions or specifically designed for comparing probability distributions.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In summary, the Bhattacharyya distance stands out as a measure explicitly designed for comparing probability distributions. It considers the probability information of the data and provides a measure of dissimilarity based on the overlap between distributions. Other distance metrics, such as Euclidean distance, Manhattan distance, KL divergence, Jensen-Shannon divergence, and cosine similarity, have different focuses and may not capture the probabilistic nature or similarity between distributions as effectively as the Bhattacharyya distance.&lt;/p&gt;
+&lt;p&gt;&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The Bhattacharyya distance and coefficient are valuable tools for quantifying the similarity and dissimilarity between probability distributions. By leveraging these measures, we can compare distributions in various fields, including statistics, machine learning, and data science. Understanding and utilizing these concepts can aid in solving diverse tasks, such as pattern recognition, image processing, and document classification. Python implementations, as showcased in this blog post, allow for straightforward calculations and application of Bhattacharyya distance and coefficient to real-world scenarios.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="note"></category><category term="tag1"></category><category term="tag2"></category></entry><entry><title>Script to Python package using Poetry (and PyCharm)</title><link href="https://www.safjan.com/script-to-python-package-using-poetry-and-pycharm/" rel="alternate"></link><published>2023-06-28T00:00:00+02:00</published><updated>2023-06-28T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-28:/script-to-python-package-using-poetry-and-pycharm/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#the-task"&gt;The task&lt;/a&gt;&lt;/li&gt;
@@ -590,9 +924,7 @@ img_004.heic
 &lt;h3&gt;References&lt;/h3&gt;
 &lt;p&gt;To develop this guide, we drew inspiration from the token counting instructions provided by OpenAI. You can find additional information in the &lt;a href="https://platform.openai.com/docs/guides/embeddings/limitations-risks"&gt;OpenAI documentation&lt;/a&gt;, where they discuss the limitations and risks associated with embeddings.&lt;/p&gt;
 &lt;p&gt;Token counting is essential when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's &lt;code&gt;tiktoken&lt;/code&gt; library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.&lt;/p&gt;
-&lt;p&gt;See also: &lt;a href="https://omarkama.li/blog/tokens-the-secret-language-of-ai"&gt;Tokens, the secret language of AI | Omar Kamali&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="tokenizers"></category><category term="token"></category><category term="tokenization"></category><category term="tiktoken"></category><category term="openai"></category><category term="NLP"></category></entry><entry><title>Similarity search using IVFPQ</title><link href="https://www.safjan.com/similarity-search-using-ivfpq/" rel="alternate"></link><published>2023-06-08T00:00:00+02:00</published><updated>2023-06-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-08:/similarity-search-using-ivfpq/</id><summary type="html"></summary><content type="html">&lt;ul&gt;
-&lt;li&gt;https://towardsdatascience.com/similarity-search-with-ivfpq-9c6348fd4db3&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category></entry><entry><title>Document Layout Analysis Tools</title><link href="https://www.safjan.com/document-layout-analysis-tools/" rel="alternate"></link><published>2023-06-07T00:00:00+02:00</published><updated>2023-06-07T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-07:/document-layout-analysis-tools/</id><summary type="html"></summary><content type="html">&lt;p&gt;2023-06-07
+&lt;p&gt;See also: &lt;a href="https://omarkama.li/blog/tokens-the-secret-language-of-ai"&gt;Tokens, the secret language of AI | Omar Kamali&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="tokenizers"></category><category term="token"></category><category term="tokenization"></category><category term="tiktoken"></category><category term="openai"></category><category term="NLP"></category></entry><entry><title>Document Layout Analysis Tools</title><link href="https://www.safjan.com/document-layout-analysis-tools/" rel="alternate"></link><published>2023-06-07T00:00:00+02:00</published><updated>2023-06-07T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-07:/document-layout-analysis-tools/</id><summary type="html"></summary><content type="html">&lt;p&gt;2023-06-07
 LayoutML&lt;/p&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category></entry><entry><title>The best vector databases for storing embeddings</title><link href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/" rel="alternate"></link><published>2023-06-05T00:00:00+02:00</published><updated>2023-06-05T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-05:/the-best-vector-databases-for-storing-embeddings/</id><summary type="html">&lt;p&gt;Delve into the World of Vector Databases Fueling NLP's Transformative Journey.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Best Vector Databases for Storing Embeddings in NLP&lt;/h2&gt;
 &lt;p&gt;As natural language processing (NLP) continues to advance, the need for efficient storage and retrieval of vector representations, or embeddings, has become paramount. &lt;/p&gt;
 &lt;blockquote&gt;
@@ -15504,14 +15836,16 @@ The two classes called &lt;code&gt;ConfigDict&lt;/code&gt; and &lt;code&gt;Fr
 &lt;p&gt;&lt;a id="method-1-using-syspathinsert"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Method 1: Using &lt;code&gt;sys.path.insert()&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;One way to add a parent directory to the Python path is to use the &lt;code&gt;sys.path.insert()&lt;/code&gt; method. This method allows you to insert a new path at a specific index in the &lt;code&gt;sys.path&lt;/code&gt; list. To add a parent directory to the Python path, you can use the following code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This code imports the &lt;code&gt;sys&lt;/code&gt; module and then uses the &lt;code&gt;insert()&lt;/code&gt; method to add the parent directory (indicated by &lt;code&gt;'..'&lt;/code&gt;) to the beginning of the &lt;code&gt;sys.path&lt;/code&gt; list. This means that the parent directory will be searched before any other paths in the list when importing modules.&lt;/p&gt;
 &lt;p&gt;&lt;a id="method-2-using-syspathappend"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Method 2: Using &lt;code&gt;sys.path.append()&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;Another way to add a parent directory to the python path is to use the &lt;code&gt;sys.path.append()&lt;/code&gt; method, which will add the given path to the end of the sys.path list.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This method would work in the same way as above method but the order of search of the path will be different.&lt;/p&gt;
@@ -17607,7 +17941,9 @@ Target names:  [&amp;#39;setosa&amp;#39; &amp;#39;versicolor&amp;#39; &amp;#39;v
 &lt;p&gt;We can see that the Bokeh scatter plot provides several additional features that were not available in the static scatter plot. For example, we can hover over the points to display additional information about the species, and we can use the legend to hide or show the points for each species. &lt;/p&gt;
 &lt;p&gt;&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;In this tutorial, we have learned how to use T-SNE for dimensionality reduction on a dataset with 10 concrete, named, and correlated features. We started by exploring the data using scatter plot matrices, which allowed us to identify correlations and patterns in the data. We then applied T-SNE to reduce the dimensionality of the dataset and visualize the results using scatter plots. Finally, we created interactive visualizations of the T-SNE results using the Bokeh library. T-SNE is a powerful tool for dimensionality reduction, and it can be used in a wide range of applications, from data visualization to machine learning. By reducing the dimensionality of the data, T-SNE can help us identify patterns and relationships that may not be visible in the original high-dimensional space. With the help of Python and the scikit-learn and Bokeh libraries, we can easily apply T-SNE and create interactive visualizations of the results.&lt;/p&gt;</content><category term="Machine Learning"></category><category term="data-visualization"></category><category term="machine-learning"></category><category term="python"></category><category term="t-sne"></category><category term="dimensionality-reduction"></category><category term="scatter-plot"></category><category term="bokeh"></category><category term="seaborn"></category><category term="numpy"></category><category term="pandas"></category></entry><entry><title>Box-Cox Transform - Normalizing Non-Normal Data</title><link href="https://www.safjan.com/box-cox-transformation/" rel="alternate"></link><published>2021-02-20T00:00:00+01:00</published><updated>2021-02-20T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-02-20:/box-cox-transformation/</id><summary type="html">&lt;p&gt;Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis or machine learning algorithms. One commonly used transformation is the Box-Cox transformation, which is particularly useful when dealing with non-normal data. In this blog post, we will focus on the Box-Cox transformation of 1 + x, provide examples, and discuss exemplary use cases with synthetic, generated datasets. We will also provide Python code snippets to illustrate the process.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we have learned how to use T-SNE for dimensionality reduction on a dataset with 10 concrete, named, and correlated features. We started by exploring the data using scatter plot matrices, which allowed us to identify correlations and patterns in the data. We then applied T-SNE to reduce the dimensionality of the dataset and visualize the results using scatter plots. Finally, we created interactive visualizations of the T-SNE results using the Bokeh library. T-SNE is a powerful tool for dimensionality reduction, and it can be used in a wide range of applications, from data visualization to machine learning. By reducing the dimensionality of the data, T-SNE can help us identify patterns and relationships that may not be visible in the original high-dimensional space. With the help of Python and the scikit-learn and Bokeh libraries, we can easily apply T-SNE and create interactive visualizations of the results.&lt;/p&gt;
+&lt;p&gt;See also:
+&lt;a href="https://distill.pub/2016/misread-tsne/"&gt;How to Use t-SNE Effectively&lt;/a&gt;&lt;/p&gt;</content><category term="Machine Learning"></category><category term="data-visualization"></category><category term="machine-learning"></category><category term="python"></category><category term="t-sne"></category><category term="dimensionality-reduction"></category><category term="scatter-plot"></category><category term="bokeh"></category><category term="seaborn"></category><category term="numpy"></category><category term="pandas"></category></entry><entry><title>Box-Cox Transform - Normalizing Non-Normal Data</title><link href="https://www.safjan.com/box-cox-transformation/" rel="alternate"></link><published>2021-02-20T00:00:00+01:00</published><updated>2021-02-20T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2021-02-20:/box-cox-transformation/</id><summary type="html">&lt;p&gt;Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis or machine learning algorithms. One commonly used transformation is the Box-Cox transformation, which is particularly useful when dealing with non-normal data. In this blog post, we will focus on the Box-Cox transformation of 1 + x, provide examples, and discuss exemplary use cases with synthetic, generated datasets. We will also provide Python code snippets to illustrate the process.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
@@ -20140,10 +20476,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="90d2af37-6fd2-438e-9b28-c43d03e86710"&gt;&lt;/div&gt;
+&lt;div id="1f3ea6b7-493c-4ae6-b669-b27970e8a412"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#90d2af37-6fd2-438e-9b28-c43d03e86710');
+var element = $('#1f3ea6b7-493c-4ae6-b669-b27970e8a412');
 
 (function(root) {
   function now() {

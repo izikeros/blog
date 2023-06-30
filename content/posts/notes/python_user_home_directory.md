@@ -7,7 +7,7 @@ Status: published
 Tags: python, home, home-dir, pathlib
 Category: note
 ---
-
+up::[[MOC_Python]]
 ## Use `os.path.expanduser()`
 To get the user's home directory in Python, you can use the `os.path.expanduser()` function. This function expands the initial tilde `~` character in a file path to the user's home directory path.
 

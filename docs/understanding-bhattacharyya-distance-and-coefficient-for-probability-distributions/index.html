@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Introduction In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the Bhattacharyya distance, which quantifies the dissimilarity between two distributions. The Bhattacharyya …"/>
+    <meta name="keywords" content="tag1, tag2">
+    <meta expr:content="2023-06-30 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-06-30 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-06-30 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-06-30 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding Bhattacharyya Distance and Coefficient for Probability Distributions",
+  "datePublished": "2023-06-30 00:00:00+02:00",
+  "dateModified": "2023-06-30 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Understanding Bhattacharyya Distance and Coefficient for Probability Distributions"/>
+  <meta property="og:description" content="Introduction In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the Bhattacharyya distance, which quantifies the dissimilarity between two distributions. The Bhattacharyya …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-06-30 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-06-30 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="tag1"/>
+  <meta property="article:tag" content="tag2"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Understanding Bhattacharyya Distance and Coefficient for Probability Distributions"/>
+
+
+    <title>    Understanding Bhattacharyya Distance and Coefficient for Probability Distributions
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/tags.html">Tags</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-06-30 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Understanding%20Bhattacharyya%20Distance%20and%20Coefficient%20for%20Probability%20Distributions&url=https%3A//www.safjan.com/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/&hashtags=tag1,tag2" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Understanding%20Bhattacharyya%20Distance%20and%20Coefficient%20for%20Probability%20Distributions&u=https%3A//www.safjan.com/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/&title=Understanding%20Bhattacharyya%20Distance%20and%20Coefficient%20for%20Probability%20Distributions" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions">Understanding Bhattacharyya Distance and Coefficient for Probability Distributions</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <h1>Introduction</h1>
+<p>In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the <a href="https://en.wikipedia.org/wiki/Bhattacharyya_distance">Bhattacharyya distance</a>, which quantifies the dissimilarity between two distributions. The Bhattacharyya coefficient, on the other hand, provides a measure of the overlap between two statistical samples or populations. In this blog post, we will delve into the concepts of Bhattacharyya distance and coefficient, discuss their applications, and provide Python code examples for better understanding.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#bhattacharyya-distance">Bhattacharyya Distance</a></li>
+<li><a href="#bhattacharyya-coefficient">Bhattacharyya Coefficient</a></li>
+<li><a href="#applications-of-bhattacharyya-distance-and-coefficient">Applications of Bhattacharyya Distance and Coefficient</a></li>
+<li><a href="#python-implementation">Python Implementation</a></li>
+<li><a href="#other-metrics">Other metrics</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="bhattacharyya-distance"></a></p>
+<h2>Bhattacharyya Distance</h2>
+<p>The Bhattacharyya distance is a statistical measure that quantifies the similarity between two probability distributions. It is named after Anil Kumar Bhattacharyya, an Indian-American statistician. The distance is defined for continuous probability distributions and is based on the Bhattacharyya coefficient (which we will discuss later).</p>
+<p>Mathematically, the Bhattacharyya distance between two continuous probability density functions (PDFs) or discrete probability mass functions (PMFs) is defined as follows:</p>
+<div class="math">$$
+D_B(P,Q) = -\ln \left( BC(P,Q) \right) = -\ln \left( \sum_{i} \sqrt{P(i)Q(i)} \right)
+$$</div>
+<p>where ( P ) and ( Q ) are the probability distributions being compared, ( P(i) ) and ( Q(i) ) represent the probabilities of occurrence for the ( i )th event or sample, and ( BC(P,Q) ) denotes the Bhattacharyya coefficient.</p>
+<p>The Bhattacharyya distance ranges from 0 to infinity, where 0 indicates perfect similarity and higher values indicate increasing dissimilarity. It is important to note that the Bhattacharyya distance is a symmetric measure, meaning ( D_B(P,Q) = D_B(Q,P) ).</p>
+<p><a id="bhattacharyya-coefficient"></a></p>
+<h2>Bhattacharyya Coefficient</h2>
+<p>The Bhattacharyya coefficient is a measure of overlap between two statistical samples or populations. It quantifies the similarity between two probability distributions and is often used as a precursor to computing the Bhattacharyya distance.</p>
+<p>Mathematically, the Bhattacharyya coefficient between two discrete probability distributions can be calculated as follows:</p>
+<div class="math">$$
+BC(P,Q) = \sum_{i} \sqrt{P(i)Q(i)}
+$$</div>
+<p>For continuous probability distributions, the Bhattacharyya coefficient can be expressed as an integral:</p>
+<div class="math">$$
+BC(P,Q) = \int \sqrt{p(x) q(x)} \, dx
+$$</div>
+<p>where ( p(x) ) and ( q(x) ) represent the probability density functions (PDFs) of distributions ( P ) and ( Q ), respectively.</p>
+<p>The Bhattacharyya coefficient ranges from 0 to 1, where 1 indicates complete overlap and 0 indicates no overlap. The coefficient measures the similarity of two distributions by taking into account the square root of the product of their probabilities at corresponding events or samples.</p>
+<p><a id="applications-of-bhattacharyya-distance-and-coefficient"></a></p>
+<h2>Applications of Bhattacharyya Distance and Coefficient</h2>
+<ol>
+<li>
+<p>Pattern recognition: Bhattacharyya distance is often used to compare feature vectors or histograms in pattern recognition tasks. It helps in identifying similarities or dissimilarities between different classes or clusters of data.</p>
+</li>
+<li>
+<p>Image processing: Bhattacharyya distance can be used to compare image histograms, aiding in tasks such as image segmentation, object recognition, and image retrieval.</p>
+</li>
+<li>
+<p>Document classification: Bhattacharyya distance can be employed to measure the similarity between document feature vectors, enabling document clustering and categorization.</p>
+</li>
+</ol>
+<p><a id="python-implementation"></a></p>
+<h2>Python Implementation</h2>
+<p>To demonstrate the computation of Bhattacharyya distance and coefficient, we will use the SciPy library in Python.</p>
+<p>Let's assume we have two discrete probability distributions, ( P ) and ( Q ), represented as arrays.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">distance</span>
+
+<span class="c1"># Probability distributions</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+
+<span class="c1"># Bhattacharyya distance</span>
+<span class="n">db</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">distance</span><span class="o">.</span><span class="n">bhattacharyya</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">))</span>
+
+<span class="c1"># Bhattacharyya coefficient</span>
+<span class="n">bc</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">bhattacharyya</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bhattacharyya Distance: &quot;</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bhattacharyya Coefficient: &quot;</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code>Bhattacharyya Distance: 0.0632593256263896
+Bhattacharyya Coefficient: 0.9367406743736104
+</code></pre></div>
+
+<p>In the code snippet above, we utilize the <code>bhattacharyya</code> function from the <code>scipy.spatial.distance</code> module to compute the Bhattacharyya distance and coefficient. The resulting values are printed, providing the measure of dissimilarity and overlap, respectively.</p>
+<p><a id="other-metrics"></a></p>
+<h2>Other metrics</h2>
+<p>The Bhattacharyya distance metric has both similarities and differences compared to other related distance metrics used in statistics, machine learning, and data science. Let's explore the similarities and differences with some commonly used distance metrics.</p>
+<table>
+<thead>
+<tr>
+<th>Distance Metric</th>
+<th>Similarities</th>
+<th>Differences</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Euclidean</td>
+<td>- Applicable to both continuous and discrete data.</td>
+<td>- Measures geometric distance between points in a multi-dimensional space.<br>- Does not consider probability information of the data.</td>
+</tr>
+<tr>
+<td>Manhattan</td>
+<td>- Similar to Euclidean, applicable to both continuous and discrete data.</td>
+<td>- Measures distance between points as the sum of absolute differences in their coordinates.<br>- Does not consider probability distributions.<br>- Not suitable for measuring similarity between distributions.</td>
+</tr>
+<tr>
+<td>Kullback-Leibler</td>
+<td>- Measures dissimilarity between probability distributions.</td>
+<td>- Quantifies information lost when one distribution is used to approximate the other.<br>- Does not directly measure overlap or similarity between distributions.<br>- Asymmetric measure.</td>
+</tr>
+<tr>
+<td>Jensen-Shannon</td>
+<td>- Variation of KL divergence, measures dissimilarity between probability distributions.</td>
+<td>- Calculates average of KL divergences between distributions and their average.<br>- Does not directly measure overlap or similarity between distributions.<br>- Symmetric measure.</td>
+</tr>
+<tr>
+<td>Cosine Similarity</td>
+<td>- Measures similarity between vector representations of data.</td>
+<td>- Measures cosine of the angle between two vectors, indicating similarity in direction or orientation.<br>- Primarily used for comparing vector representations, such as text documents or high-dimensional feature vectors.<br>- Does not capture probabilistic nature of distributions or specifically designed for comparing probability distributions.</td>
+</tr>
+</tbody>
+</table>
+<p>In summary, the Bhattacharyya distance stands out as a measure explicitly designed for comparing probability distributions. It considers the probability information of the data and provides a measure of dissimilarity based on the overlap between distributions. Other distance metrics, such as Euclidean distance, Manhattan distance, KL divergence, Jensen-Shannon divergence, and cosine similarity, have different focuses and may not capture the probabilistic nature or similarity between distributions as effectively as the Bhattacharyya distance.</p>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>The Bhattacharyya distance and coefficient are valuable tools for quantifying the similarity and dissimilarity between probability distributions. By leveraging these measures, we can compare distributions in various fields, including statistics, machine learning, and data science. Understanding and utilizing these concepts can aid in solving diverse tasks, such as pattern recognition, image processing, and document classification. Python implementations, as showcased in this blog post, allow for straightforward calculations and application of Bhattacharyya distance and coefficient to real-world scenarios.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/tag1/">tag1</a>
+                        <a href="https://www.safjan.com/tag/tag2/">tag2</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/script-to-python-package-using-poetry-and-pycharm/" title="Script to Python package using Poetry (and PyCharm)">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/demystifying-perplexity-assessing-dimensionality-reduction-with-pca/" title="Demystifying Perplexity: Assessing Dimensionality Reduction with PCA">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

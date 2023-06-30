@@ -7,7 +7,7 @@ Status: published
 Tags: bash, eval, args
 Category: note
 ---
-
+up::[[MOC_Shell_Bash_Zsh]]
 minimal example of how you can use functions and `eval` in a bash script:
 
 ```sh
