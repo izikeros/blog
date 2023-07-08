@@ -8,8 +8,8 @@ Tags: machine-learning, python
 Category: Machine Learning
 Image: /images/head/ivfpq.jpg
 banner: "/images/head/ivfpq.jpg"
-Summary: 
-Status: draft
+Summary: Explore the powerful technique of Inverted File Product Quantization (IVFPQ) for similarity search. By combining the benefits of product quantization and an inverted file system.
+Status: published
 prompt:
 ---
 
