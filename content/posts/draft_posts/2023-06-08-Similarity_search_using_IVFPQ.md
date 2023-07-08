@@ -6,8 +6,8 @@ Modified: 2023-06-08
 Start: 2023-06-08
 Tags: machine-learning, python
 Category: Machine Learning
-Image: /images/head/abstract_1.jpg
-banner: "/images/head/abstract_1.jpg"
+Image: /images/head/ivfpq.jpg
+banner: "/images/head/ivfpq.jpg"
 Summary: 
 Status: draft
 prompt:
