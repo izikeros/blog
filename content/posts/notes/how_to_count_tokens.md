@@ -1,5 +1,5 @@
 ---
-Title: How to count tokens?
+Title: How to Count Tokens - Tokenization with Tiktoken.
 Slug: how-to-count-tokens
 Date: 2023-06-08
 Modified: 2023-06-08
@@ -7,8 +7,6 @@ Status: published
 Tags: tokenizers, token, tokenization, tiktoken, openai, NLP 
 Category: note
 ---
-
-## Counting Tokens: A Guide to Text Tokenization
 
 Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are:
 
@@ -43,6 +41,14 @@ To count the tokens, we first obtain the encoding using `tiktoken.get_encoding(e
 
 Next, we encode the input string using `encoding.encode(string)` and calculate the number of tokens by taking the length of the encoded sequence. The final result is the total number of tokens in the text string.
 
+`tiktoken` supports three encodings used by OpenAI models:
+
+|Encoding name|OpenAI models|
+|---|---|
+|`cl100k_base`|`gpt-4`, `gpt-3.5-turbo`, `text-embedding-ada-002`|
+|`p50k_base`|Codex models, `text-davinci-002`, `text-davinci-003`|
+|`r50k_base` (or `gpt2`)|GPT-3 models like `davinci`|
+
 ### OpenAI Cookbook Guide
 
 For a more detailed explanation and additional examples, you can refer to the OpenAI Cookbook guide on [how to count tokens with tiktoken](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb). The guide provides comprehensive instructions on token counting and offers insights into various use cases.
@@ -50,6 +56,21 @@ For a more detailed explanation and additional examples, you can refer to the Op
 ### Tokenization Sandbox
 
 If you're looking to experiment with text tokenization, OpenAI provides a convenient web application called the Tokenization Sandbox. You can access it [here](https://platform.openai.com/tokenizer). The sandbox allows you to input text and observe the resulting tokens, helping you better understand the tokenization process.
+
+### Text splitter module
+A Python script for splitting text into parts with controlled (limited) length in tokens. This script utilizes the `tiktoken` library for encoding and decoding text.:
+https://gist.github.com/izikeros/17d9c8ab644bd2762acf6b19dd0cea39
+
+### Count tokens cli tool
+Check this simple CLI tool that have one purpose - count tokens in a text file:
+
+[izikeros/count\_tokens: Count tokens in a text file.](https://github.com/izikeros/count_tokens)
+
+### Rule of thumb
+OpenAI on the [website](https://platform.openai.com/tokenizer) with the tokenizer sandbox provides rule of thumb that helps to estimate approximate number of tokens in given text.
+
+> A helpful rule of thumb is that one token generally corresponds to ~4 characters of text for common English text. This translates to roughly ¾ of a word (so 100 tokens ~= 75 words).
+
 
 ### References
 

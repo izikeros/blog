@@ -13,6 +13,8 @@ Status: published
 prompt: see chatGPT prompts
 prompt1: explain what vector databases are, and why there is demand for them when other types of databases exits and they are battlefield tested (like postgres)
 ---
+X::[[embeddings]]
+
 ## Best Vector Databases for Storing Embeddings in NLP
 
 As natural language processing (NLP) continues to advance, the need for efficient storage and retrieval of vector representations, or embeddings, has become paramount. 

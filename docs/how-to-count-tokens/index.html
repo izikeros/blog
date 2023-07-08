@@ -47,7 +47,7 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="Counting Tokens: A Guide to Text Tokenization Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are: controlling the …"/>
+    <meta name="description" content="Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are: controlling the length of the prompt - models has limit …"/>
     <meta name="keywords" content="tokenizers, token, tokenization, tiktoken, openai, NLP">
     <meta expr:content="2023-06-08 00:00:00+02:00" itemprop='datePublished'/>
     <meta expr:content="2023-06-08 00:00:00+02:00" itemprop='dateModified'/>
@@ -57,7 +57,7 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "How to count tokens?",
+  "headline": "How to Count Tokens - Tokenization with Tiktoken.",
   "datePublished": "2023-06-08 00:00:00+02:00",
   "dateModified": "2023-06-08 00:00:00+02:00"
 }
@@ -74,8 +74,8 @@
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
-  <meta property="og:title" content="How to count tokens?"/>
-  <meta property="og:description" content="Counting Tokens: A Guide to Text Tokenization Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are: controlling the …"/>
+  <meta property="og:title" content="How to Count Tokens - Tokenization with Tiktoken."/>
+  <meta property="og:description" content="Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are: controlling the length of the prompt - models has limit …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/how-to-count-tokens/"/>
   <meta property="og:type" content="article"/>
@@ -98,10 +98,10 @@
     <meta name="twitter:data1" content="4 min."/>
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:description" content=""/>
-    <meta name="twitter:title" content="How to count tokens?"/>
+    <meta name="twitter:title" content="How to Count Tokens - Tokenization with Tiktoken."/>
 
 
-    <title>    How to count tokens?
+    <title>    How to Count Tokens - Tokenization with Tiktoken.
 </title>
 
 
@@ -274,17 +274,17 @@
 
                     <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=How%20to%20count%20tokens%3F&url=https%3A//www.safjan.com/how-to-count-tokens/&hashtags=tokenizers,token,tokenization,tiktoken,openai,nlp" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=How%20to%20Count%20Tokens%20-%20Tokenization%20with%20Tiktoken.&url=https%3A//www.safjan.com/how-to-count-tokens/&hashtags=tokenizers,token,tokenization,tiktoken,openai,nlp" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-to-count-tokens/" target="_blank" title="Share on Facebook">Facebook</a>
     |
-    <a href="https://news.ycombinator.com/submitlink?t=How%20to%20count%20tokens%3F&u=https%3A//www.safjan.com/how-to-count-tokens/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    <a href="https://news.ycombinator.com/submitlink?t=How%20to%20Count%20Tokens%20-%20Tokenization%20with%20Tiktoken.&u=https%3A//www.safjan.com/how-to-count-tokens/" target="_blank" title="Share on HackerNews">HackerNews</a>
     |
-    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-to-count-tokens/&title=How%20to%20count%20tokens%3F" target="_blank" title="Share via Reddit">Reddit</a>
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-to-count-tokens/&title=How%20to%20Count%20Tokens%20-%20Tokenization%20with%20Tiktoken." target="_blank" title="Share via Reddit">Reddit</a>
   </span>
                 <br/>
             </p>
-            <h1 id="how-to-count-tokens">How to count tokens?</h1>
+            <h1 id="how-to-count-tokens">How to Count Tokens - Tokenization with Tiktoken.</h1>
             <div class="header-underline"></div>
 
 
@@ -293,8 +293,7 @@
 
 
         <div>
-            <h2>Counting Tokens: A Guide to Text Tokenization</h2>
-<p>Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are:</p>
+            <p>Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are:</p>
 <ul>
 <li><strong>controlling the length of the prompt</strong> -  models has limit on the number of input tokens - it is good to have control if you don't exceed the limits for the model</li>
 <li><strong>cost awareness</strong>  - when you know how many tokens you pass as input, you know the cost related to the prompt.</li>
@@ -318,10 +317,44 @@
 <p>In the example above, we import the <code>tiktoken</code> library and define a function called <code>num_tokens_from_string</code>. This function takes a text string and an encoding name as input parameters. It returns the number of tokens in the given text string.</p>
 <p>To count the tokens, we first obtain the encoding using <code>tiktoken.get_encoding(encoding_name)</code>. The <code>encoding_name</code> specifies the type of encoding we want to use. In this case, we use the <code>cl100k_base</code> encoding, which is suitable for second-generation embedding models like <code>text-embedding-ada-002</code>.</p>
 <p>Next, we encode the input string using <code>encoding.encode(string)</code> and calculate the number of tokens by taking the length of the encoded sequence. The final result is the total number of tokens in the text string.</p>
+<p><code>tiktoken</code> supports three encodings used by OpenAI models:</p>
+<table>
+<thead>
+<tr>
+<th>Encoding name</th>
+<th>OpenAI models</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cl100k_base</code></td>
+<td><code>gpt-4</code>, <code>gpt-3.5-turbo</code>, <code>text-embedding-ada-002</code></td>
+</tr>
+<tr>
+<td><code>p50k_base</code></td>
+<td>Codex models, <code>text-davinci-002</code>, <code>text-davinci-003</code></td>
+</tr>
+<tr>
+<td><code>r50k_base</code> (or <code>gpt2</code>)</td>
+<td>GPT-3 models like <code>davinci</code></td>
+</tr>
+</tbody>
+</table>
 <h3>OpenAI Cookbook Guide</h3>
 <p>For a more detailed explanation and additional examples, you can refer to the OpenAI Cookbook guide on <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb">how to count tokens with tiktoken</a>. The guide provides comprehensive instructions on token counting and offers insights into various use cases.</p>
 <h3>Tokenization Sandbox</h3>
 <p>If you're looking to experiment with text tokenization, OpenAI provides a convenient web application called the Tokenization Sandbox. You can access it <a href="https://platform.openai.com/tokenizer">here</a>. The sandbox allows you to input text and observe the resulting tokens, helping you better understand the tokenization process.</p>
+<h3>Text splitter module</h3>
+<p>A Python script for splitting text into parts with controlled (limited) length in tokens. This script utilizes the <code>tiktoken</code> library for encoding and decoding text.:
+https://gist.github.com/izikeros/17d9c8ab644bd2762acf6b19dd0cea39</p>
+<h3>Count tokens cli tool</h3>
+<p>Check this simple CLI tool that have one purpose - count tokens in a text file:</p>
+<p><a href="https://github.com/izikeros/count_tokens">izikeros/count_tokens: Count tokens in a text file.</a></p>
+<h3>Rule of thumb</h3>
+<p>OpenAI on the <a href="https://platform.openai.com/tokenizer">website</a> with the tokenizer sandbox provides rule of thumb that helps to estimate approximate number of tokens in given text.</p>
+<blockquote>
+<p>A helpful rule of thumb is that one token generally corresponds to ~4 characters of text for common English text. This translates to roughly ¾ of a word (so 100 tokens ~= 75 words).</p>
+</blockquote>
 <h3>References</h3>
 <p>To develop this guide, we drew inspiration from the token counting instructions provided by OpenAI. You can find additional information in the <a href="https://platform.openai.com/docs/guides/embeddings/limitations-risks">OpenAI documentation</a>, where they discuss the limitations and risks associated with embeddings.</p>
 <p>Token counting is essential when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's <code>tiktoken</code> library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.</p>
@@ -351,16 +384,16 @@
             <div class="related-posts">
                 <h4>You might enjoy</h4>
                 <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/token-split-text/">Introducing a Python Module for Splitting Text into Parts based on Token Limit</a></li>
                         <li><a href="https://www.safjan.com/punctuation-restoration/">Punctuation restoration</a></li>
                         <li><a href="https://www.safjan.com/datasets-for-embeddings-evaluation/">Datasets for embeddings performance evaluation</a></li>
                         <li><a href="https://www.safjan.com/rustification-of-python/">Rustification of Python</a></li>
                         <li><a href="https://www.safjan.com/script-to-python-package-using-poetry-and-pycharm/">Script to Python package using Poetry (and PyCharm)</a></li>
-                        <li><a href="https://www.safjan.com/best-alternatives-to-jupyter-notebooks/">Best Alternatives to Jupyter Notebooks</a></li>
                 </ul>
             </div>
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://www.safjan.com/document-layout-analysis-tools/" title="Document Layout Analysis Tools">
+    <a class="btn float-left" href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/" title="The best vector databases for storing embeddings">
       <i class="fa fa-angle-left"></i> Previous Post
     </a>
     <a class="btn float-right" href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/" title="The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap between Software Products and Customer Needs">

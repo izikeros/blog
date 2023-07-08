@@ -278,8 +278,96 @@
 
 
         <div>
-            <ul>
-<li>https://towardsdatascience.com/similarity-search-with-ivfpq-9c6348fd4db3</li>
+            <h1>Unlocking the Power of Similarity Search using IVFPQ (Inverted File Product Quantization)</h1>
+<h2>Introduction</h2>
+<p>As the world generates more data than ever before, the need for efficient search algorithms has become indispensable. The field of similarity search focuses on finding the most similar elements in a large dataset, given a query element. Applications of similarity search range from image and video retrieval, to recommendation systems, and even natural language processing.</p>
+<p>One particularly powerful technique for similarity search is Inverted File Product Quantization (IVFPQ). IVFPQ allows us to handle large-scale datasets by compressing the data and using an inverted file system for efficient indexing and retrieval. In this blog post, we'll dive into the details of how IVFPQ works, its advantages, and how to implement it in Python using the popular Faiss library.</p>
+<h2>Understanding Inverted File Product Quantization (IVFPQ)</h2>
+<blockquote>
+<p><strong>Product Quantization (PQ)</strong> is a vector quantization technique that allows us to compress high-dimensional vectors into a compact form, while preserving the relative distances between them. In a nutshell, PQ works by dividing a high-dimensional vector into subvectors and quantizing each subvector independently.</p>
+</blockquote>
+<p>Inverted File Product Quantization (IVFPQ) is an extension of PQ that adds an inverted file system on top of the basic PQ structure. </p>
+<blockquote>
+<p>The <strong>inverted file system</strong> is essentially an index that maps each quantized vector to a list of database vectors that fall in the same quantization cell.</p>
+</blockquote>
+<p>The key advantage of IVFPQ is that it allows us to perform similarity search with a reduced number of distance computations, making it a highly efficient technique for large-scale datasets.</p>
+<h2>Implementing IVFPQ in Python using Faiss</h2>
+<p>Now that we have a basic understanding of IVFPQ, let's see how to implement it in Python using the Faiss library. Faiss is a popular library developed by Facebook AI Research that provides efficient implementations of several similarity search techniques, including IVFPQ.</p>
+<p>Let's start by installing the Faiss library:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>faiss
+</code></pre></div>
+
+<p>Next, let's generate some random data to work with. For this example, we'll create a dataset of 10,000 128-dimensional vectors:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">dimension</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">num_vectors</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># Generate random data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">num_vectors</span><span class="p">,</span> <span class="n">dimension</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Now, let's create an IVFPQ index using Faiss:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">faiss</span>
+
+<span class="c1"># Initialize the IVFPQ index</span>
+<span class="n">quantizer</span> <span class="o">=</span> <span class="n">faiss</span><span class="o">.</span><span class="n">IndexFlatL2</span><span class="p">(</span><span class="n">dimension</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">faiss</span><span class="o">.</span><span class="n">IndexIVFPQ</span><span class="p">(</span><span class="n">quantizer</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Train the index</span>
+<span class="n">index</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Add data to the index</span>
+<span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In the code above, we first create a quantizer using Faiss's IndexFlatL2. This is a basic L2 distance index that will be used for coarse quantization. Next, we create the IVFPQ index by passing the quantizer, the dimension of the vectors, the number of coarse quantization cells (100), the number of subquantizers (16), and the number of bits per subquantizer (8).</p>
+<p>We then train the index using our dataset and add the data to the index.</p>
+<p>Finally, let's perform a similarity search using our IVFPQ index. We'll generate a random query vector and find the top 10 most similar vectors in our dataset:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Generate a random query vector</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">dimension</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Perform the similarity search</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 10 most similar vectors:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">. Index: </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">, Distance: </span><span class="si">{</span><span class="n">distance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The search method returns two arrays: one containing the distances between the query vector and the closest vectors in the dataset, and another containing the indices of those vectors. We can then print the results to see the top 10 most similar vectors.</p>
+<div class="highlight"><pre><span></span><code>Top 10 most similar vectors: 
+1. Index: 1548, Distance: 12.515710830688477 
+2. Index: 3764, Distance: 14.528205871582031 
+3. Index: 5173, Distance: 14.70742416381836 
+4. Index: 5930, Distance: 14.80669116973877 
+5. Index: 9472, Distance: 15.031980514526367 
+6. Index: 5696, Distance: 15.204572677612305 
+7. Index: 587, Distance: 15.735445022583008 
+8. Index: 816, Distance: 15.76244831085205 
+9. Index: 3032, Distance: 15.773483276367188 
+10. Index: 3776, Distance: 16.045366287231445
+</code></pre></div>
+
+<h2>Conclusion</h2>
+<p>In this blog post, we've explored the powerful technique of Inverted File Product Quantization (IVFPQ) for similarity search. By combining the benefits of product quantization and an inverted file system, IVFPQ provides a highly efficient method for searching large-scale datasets. We also demonstrated how to implement IVFPQ in Python using the Faiss library, showcasing its ease of use and effectiveness.</p>
+<p>If you're working with large-scale datasets and need an efficient way to perform similarity search, give IVFPQ a try and see the benefits for yourself!</p>
+<h2>Related reading</h2>
+<ul>
+<li><a href="https://towardsdatascience.com/similarity-search-with-ivfpq-9c6348fd4db3">Similarity Search with IVFPQ. Find out how the inverted file index… | by Peggy Chang | Towards Data Science</a></li>
+<li><a href="https://www.pinecone.io/learn/series/faiss">Faiss: The Missing Manual | Pinecone</a></li>
+<li>D. Baranchuk, et al., <a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1802.02422.pdf">Revisiting the Inverted Indices for Billion-Scale Approximate Nearest Neighbors</a> (2018), <em>ECCV</em></li>
+<li>Y. Matsui, et al., <a href="https://link.zhihu.com/?target=https%3A//www.jstage.jst.go.jp/article/mta/6/1/6_2/_pdf">A Survey of Product Quantization</a> (2018), <em>ITE Trans. on MTA</em></li>
+<li>T. Ge, et. al., <a href="https://link.zhihu.com/?target=http%3A//kaiminghe.com/publications/pami13opq.pdf">Optimized Product Quantization</a> (2014), <em>TPAMI</em></li>
+<li>H. Jégou, et al., <a href="https://link.zhihu.com/?target=https%3A//lear.inrialpes.fr/pubs/2011/JDS11/jegou_searching_with_quantization.pdf">Product quantization for nearest neighbor search</a> (2010), <em>TPAMI</em></li>
+<li>A. Babenko, V. Lempitsky, The Inverted Multi-Index (2012), CVPR</li>
+<li>H. Jégou, et al., Searching in One Billion Vectors: Re-rank with Source Coding (2011), ICASSP</li>
+<li>Y. Malkov, D. Yashunin, Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs (2016), IEEE Transactions on Pattern Analysis and Machine Intelligence</li>
+<li>Y. Malkov et al., Approximate Nearest Neighbor Search Small World Approach (2011), International Conference on Information and Communication Technologies &amp; Applications</li>
+<li>Y. Malkov et al., Scalable Distributed Algorithm for Approximate Nearest Neighbor Search Problem in High Dimensional General Metric Spaces (2012), Similarity Search and Applications, pp. 132-147</li>
+<li>Y. Malkov et al., Approximate nearest neighbor algorithm based on navigable small world graphs (2014), Information Systems, vol. 45, pp. 61-68</li>
 </ul>
         </div>
 
@@ -314,10 +402,10 @@
                 <h4>You might enjoy</h4>
                 <ul class="related-posts">
                         <li><a href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/">The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap between Software Products and Customer Needs</a></li>
-                        <li><a href="https://www.safjan.com/document-layout-analysis-tools/">Document Layout Analysis Tools</a></li>
                         <li><a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/">The best vector databases for storing embeddings</a></li>
                         <li><a href="https://www.safjan.com/attacking-differential-privacy-using-the-correlation-between-the-features/">Attacking Differential Privacy Using the Correlation Between the Features</a></li>
                         <li><a href="https://www.safjan.com/measure-quality-of-embeddings-intrinsic-vs-extrinsic/">Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?</a></li>
+                        <li><a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/">LIME - Understanding How This Method for Explainable AI Works</a></li>
                 </ul>
             </div>
 

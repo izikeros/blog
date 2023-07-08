@@ -9,7 +9,7 @@ Category: Machine Learning
 Image: /images/head/abstract_1.jpg
 banner: "/images/head/abstract_1.jpg"
 Summary: 
-Status: published
+Status: draft
 prompt:
 ---
 2023-06-07
