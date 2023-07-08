@@ -58,15 +58,15 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sx"&gt;!pip install faiss-cpu --no-cache&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;X::&lt;a href="https://www.safjan.com/drafts/similarity-search-using-ivfpq.html"&gt;Similarity search using IVFPQ&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="faiss"></category><category term="colab"></category><category term="pip-install"></category><category term="vectordb"></category><category term="IVFPQ"></category></entry><entry><title>Text Vectorization with VectorHub and Sentence Transformers</title><link href="https://www.safjan.com/text-vectorization-with-vectorhub-and-sentence-transformers/" rel="alternate"></link><published>2023-07-04T00:00:00+02:00</published><updated>2023-07-04T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-04:/text-vectorization-with-vectorhub-and-sentence-transformers/</id><summary type="html"></summary><content type="html">&lt;p&gt;Text is heavily inspired by part of the e-book: &lt;a href="https://learn.getvectorai.com/vector-ai-documentation/semantic-nlp-search-with-faiss-and-vectorhub"&gt;Semantic NLP search with FAISS and VectorHub - Guide To Vectors (getvectorai.com)&lt;/a&gt; - which was using VectorHub as an interface to the models.&lt;/p&gt;
+&lt;p&gt;X::&lt;a href="https://www.safjan.com/drafts/similarity-search-using-ivfpq.html"&gt;Similarity search using IVFPQ&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="faiss"></category><category term="colab"></category><category term="pip-install"></category><category term="vectordb"></category><category term="IVFPQ"></category></entry><entry><title>Easy Text Vectorization with VectorHub and Sentence Transformers</title><link href="https://www.safjan.com/text-vectorization-with-vectorhub-and-sentence-transformers/" rel="alternate"></link><published>2023-07-04T00:00:00+02:00</published><updated>2023-07-04T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-04:/text-vectorization-with-vectorhub-and-sentence-transformers/</id><summary type="html"></summary><content type="html">&lt;p&gt;Text is heavily inspired by part of the e-book: &lt;a href="https://learn.getvectorai.com/vector-ai-documentation/semantic-nlp-search-with-faiss-and-vectorhub"&gt;Semantic NLP search with FAISS and VectorHub - Guide To Vectors (getvectorai.com)&lt;/a&gt; - which was using VectorHub as an interface to the models.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;NOTE: VectorHub is deprecated and no longer maintained. The authors of VectorHub recommend using Sentence Transformers, TFHub, and Huggingface directly for text vectorization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: VectorHub is deprecated and no longer maintained. The authors of VectorHub recommend using &lt;a href="https://www.sbert.net/"&gt;Sentence Transformers&lt;/a&gt;, TFHub, and Huggingface directly for text vectorization.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This article demonstrates a similar process as the original article but uses a sentence transformers package.&lt;/p&gt;
 &lt;h3&gt;Encoding Data Using Sentence Transformers&lt;/h3&gt;
-&lt;p&gt;To encode models easily, we will utilize the Sentence Transformers library. SentenceTransformers is a Python framework for state-of-the-art sentence, text, and image embeddings. It provides a variety of pre-trained models that can convert sentences into meaningful numerical representations.&lt;/p&gt;
-&lt;p&gt;First, we need to install the &lt;code&gt;sentence-transformers&lt;/code&gt; package, which includes the necessary dependencies for using Sentence Transformers. This library offers a wide range of pre-trained models, such as BERT, RoBERTa, and MiniLM, that can be used for text encoding. More information about Sentence Transformers can be found &lt;a href="https://www.sbert.net/"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;sentence&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;transformers&lt;/span&gt;
+&lt;p&gt;To encode models easily, we will utilize the &lt;a href="https://www.sbert.net/"&gt;Sentence Transformers&lt;/a&gt; library. SentenceTransformers is a Python framework for state-of-the-art sentence, text, and image embeddings. It provides a variety of pre-trained models that can convert sentences into meaningful numerical representations.&lt;/p&gt;
+&lt;p&gt;First, we need to install the &lt;code&gt;sentence-transformers&lt;/code&gt; package, which includes the necessary dependencies for using Sentence Transformers. This library offers a wide range of pre-trained models, such as &lt;a href="https://en.wikipedia.org/wiki/BERT_(Language_model)"&gt;BERT&lt;/a&gt;, &lt;a href="https://huggingface.co/docs/transformers/model_doc/roberta"&gt;RoBERTa&lt;/a&gt;, and &lt;a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"&gt;MiniLM&lt;/a&gt;, that can be used for text encoding. More information about Sentence Transformers can be found &lt;a href="https://www.sbert.net/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sentence-transformers
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Next, we will instantiate our model and start the encoding process. In this example, we will use the "all-MiniLM-L6-v2" model, which is a variant of the MiniLM model.&lt;/p&gt;
@@ -20652,10 +20652,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="c2dccfff-c4bf-4219-a9e7-ddbb0cc565d1"&gt;&lt;/div&gt;
+&lt;div id="245e2e0d-d737-44c2-a648-7da21d5d85d3"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#c2dccfff-c4bf-4219-a9e7-ddbb0cc565d1');
+var element = $('#245e2e0d-d737-44c2-a648-7da21d5d85d3');
 
 (function(root) {
   function now() {

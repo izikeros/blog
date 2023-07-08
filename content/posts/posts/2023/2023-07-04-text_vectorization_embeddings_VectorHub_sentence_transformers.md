@@ -1,30 +1,30 @@
 ---
-Title: Text Vectorization with VectorHub and Sentence Transformers
+Title: Easy Text Vectorization with VectorHub and Sentence Transformers
 Slug: text-vectorization-with-vectorhub-and-sentence-transformers
 Date: 2023-07-04
 Modified: 2023-07-04
 Tags: embeddings, nlp, vectorhub, bert, sentence-transformers
 Category: Machine Learning
-Image: /images/head/abstract_7.jpg
-banner: "/images/head/abstract_7.jpg"
+Image: /images/head/text_vectorization.jpg
+banner: "/images/head/text_vectorization.jpg"
 Summary: 
 Status: published
 prompt:
 ---
 Text is heavily inspired by part of the e-book: [Semantic NLP search with FAISS and VectorHub - Guide To Vectors (getvectorai.com)](https://learn.getvectorai.com/vector-ai-documentation/semantic-nlp-search-with-faiss-and-vectorhub) - which was using VectorHub as an interface to the models.
 
-> NOTE: VectorHub is deprecated and no longer maintained. The authors of VectorHub recommend using Sentence Transformers, TFHub, and Huggingface directly for text vectorization.
+> **NOTE**: VectorHub is deprecated and no longer maintained. The authors of VectorHub recommend using [Sentence Transformers](https://www.sbert.net/), TFHub, and Huggingface directly for text vectorization.
 
 This article demonstrates a similar process as the original article but uses a sentence transformers package.
 
 ### Encoding Data Using Sentence Transformers
 
-To encode models easily, we will utilize the Sentence Transformers library. SentenceTransformers is a Python framework for state-of-the-art sentence, text, and image embeddings. It provides a variety of pre-trained models that can convert sentences into meaningful numerical representations.
+To encode models easily, we will utilize the [Sentence Transformers](https://www.sbert.net/) library. SentenceTransformers is a Python framework for state-of-the-art sentence, text, and image embeddings. It provides a variety of pre-trained models that can convert sentences into meaningful numerical representations.
 
-First, we need to install the `sentence-transformers` package, which includes the necessary dependencies for using Sentence Transformers. This library offers a wide range of pre-trained models, such as BERT, RoBERTa, and MiniLM, that can be used for text encoding. More information about Sentence Transformers can be found [here](https://www.sbert.net/).
+First, we need to install the `sentence-transformers` package, which includes the necessary dependencies for using Sentence Transformers. This library offers a wide range of pre-trained models, such as [BERT](<https://en.wikipedia.org/wiki/BERT_(Language_model)>), [RoBERTa](https://huggingface.co/docs/transformers/model_doc/roberta), and [MiniLM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), that can be used for text encoding. More information about Sentence Transformers can be found [here](https://www.sbert.net/).
 
-```python
-!pip install sentence-transformers
+```sh
+pip install sentence-transformers
 ```
 
 Next, we will instantiate our model and start the encoding process. In this example, we will use the "all-MiniLM-L6-v2" model, which is a variant of the MiniLM model.
