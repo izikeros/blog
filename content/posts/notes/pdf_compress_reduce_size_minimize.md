@@ -1,11 +1,11 @@
 ---
-Title: Compress, reduce or minimize size of PDF document
-Slug: pdf-compress-reduce-size-minimize
-Date: 2023-01-27
-Modified: 2023-01-27
-Status: published
-Tags: pdf, ghostscript, pdfminify, compress, publishing 
 Category: note
+Date: '2023-01-27'
+Modified: '2023-07-12'
+Slug: pdf-compress-reduce-size-minimize
+Status: published
+Tags: pdf, ghostscript, pdfminify, compress, publishing
+Title: Compress, Reduce or Minimize Size of PDF Document
 ---
 
 ## pdfminify

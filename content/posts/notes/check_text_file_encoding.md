@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: check-text-file-encoding
-tags: encoding, file, text, Linux
-title: Check text file encoding
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: check-text-file-encoding
+Status: published
+Tags: encoding, file, text, Linux
+Title: Check Text File Encoding
 ---
 
 ```sh

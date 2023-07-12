@@ -1,11 +1,11 @@
 ---
-Title: Datasets for embeddings performance evaluation
-Slug: datasets-for-embeddings-evaluation
-Date: 2023-02-09
-Modified: 2023-02-09
-Status: published
-Tags: machine-learning, NLP, embeddings, openai, dataset 
 Category: note
+Date: '2023-02-09'
+Modified: '2023-07-12'
+Slug: datasets-for-embeddings-evaluation
+Status: published
+Tags: machine-learning, NLP, embeddings, openai, dataset
+Title: Datasets for Embeddings Performance Evaluation
 ---
 
 ## Text search

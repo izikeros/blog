@@ -1,11 +1,11 @@
 ---
-Title: How to use the Polish WordNet in Python?
+Category: note
+Date: '2023-01-17'
+Modified: '2023-07-12'
 Slug: How-to-use-Polish-wordnet-in-python
-Date: 2023-01-17
-Modified: 2023-01-17
 Status: published
 Tags: machine-learning, NLP, wordnet
-Category: note
+Title: How to Use the Polish WordNet in Python?
 ---
 Related articles:
 - [Unofficial Python library for using the Polish Wordnet](https://pythonawesome.com/unofficial-python-library-for-using-the-polish-wordnet/) - python

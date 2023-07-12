@@ -1,11 +1,11 @@
 ---
-Title: Eval in Bash Script with Arguments Implemented as Functions
+Category: note
+Date: '2023-03-05'
+Modified: '2023-07-12'
 Slug: bash-script-with-arguments-implemented-as-functions
-Date: 2023-03-05
-Modified: 2023-03-05
 Status: published
 Tags: bash, eval, args
-Category: note
+Title: Eval in Bash Script With Arguments Implemented as Functions
 ---
 up::[[MOC_Shell_Bash_Zsh]]
 minimal example of how you can use functions and `eval` in a bash script:

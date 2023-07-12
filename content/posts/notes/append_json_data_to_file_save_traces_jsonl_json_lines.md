@@ -1,11 +1,11 @@
 ---
-title: Append JSON data to file, save the traces
-slug: append-json-data-to-file-save-traces
-category: note
-date: '2022-06-03'
-modified: '2022-07-05'
-status: published
-tags: append-json, data, json, trace, jsonlines, python, dataset
+Category: note
+Date: '2022-06-03'
+Modified: '2023-07-12'
+Slug: append-json-data-to-file-save-traces
+Status: published
+Tags: append-json, data, json, trace, jsonlines, python, dataset
+Title: Append JSON Data to File, Save the Traces
 ---
 
 ## The JSON Lines standard

@@ -1,17 +1,17 @@
 ---
-Title: Zero-knowledge explained like to 5 years old
-Slug: zero-knowledge-for-5yo
-Date: 2023-04-06
-Modified: 2023-04-06
-Start: 2023-04-06
-Tags: crypto, cryptocurrency, zero-knowledge
 Category: Algorithmic Trading
+Date: '2023-04-06'
 Image: /images/head/zero_knowledge.jpg
-banner: "/images/head/zero_knowledge.jpg"
-Summary: Imagine being able to prove something without actually revealing it. That is the power of zero-knowledge proofs, the technology that keeps your crypto safe.
+Modified: '2023-04-06'
+Slug: zero-knowledge-for-5yo
+Start: '2023-04-06'
 Status: published
+Summary: Imagine being able to prove something without actually revealing it. That is the power of zero-knowledge proofs, the technology that keeps your crypto safe.
+Tags: crypto, cryptocurrency, zero-knowledge
+Title: Zero-Knowledge Explained Like to 5 Years Old
+banner: /images/head/zero_knowledge.jpg
 prompt: give me long, cryptocurrency-related, blog post on entitled zero-knowledge explained like to 5yo.
-prompt-gfx: the two keys made of digits - symbol of a pair of private keys, keys are background of the connected blocks that symbolise blockchain digital art. 
+prompt-gfx: the two keys made of digits - symbol of a pair of private keys, keys are background of the connected blocks that symbolise blockchain digital art.
 ---
 
 Zero-knowledge proofs (ZKPs) are a key technology that underpins the security and privacy of many modern cryptocurrencies. In essence, ZKPs allow parties to prove that they know a piece of information, without revealing that information itself. But what does that mean, exactly? In this blog post, we'll explain ZKPs in a way that even a 5-year-old can understand.

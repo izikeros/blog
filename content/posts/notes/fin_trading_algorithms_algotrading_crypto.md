@@ -1,12 +1,12 @@
 ---
-title: Trading algorithms and trading strategies
-date: 2022-06-27
-modified: 2022-06-27
-status: published
-tags: finance/algotrading, finance/crypto, algorithm, trading, strategies, finance 
-summary: This note contains a collection of trading algorithms or links to algorithms
-slug: trading-algorithms
-category: note
+Category: note
+Date: '2022-06-27'
+Modified: '2023-07-12'
+Slug: trading-algorithms
+Status: published
+Summary: This note contains a collection of trading algorithms or links to algorithms
+Tags: finance/algotrading, finance/crypto, algorithm, trading, strategies, finance
+Title: Trading Algorithms and Trading Strategies
 citation_needed: true
 ---
 This note contains a collection of trading algorithms or links to algorithms

@@ -1,11 +1,11 @@
 ---
-Title: Python - named tuples or dictionaries to store structured data?
-Slug: named-tuples-vs-dictionaries
-Date: 2023-04-03
-Modified: 2023-04-03
-Status: published
-Tags: python, named-tuple, dict, dictionary, data-structure  
 Category: note
+Date: '2023-04-03'
+Modified: '2023-07-12'
+Slug: named-tuples-vs-dictionaries
+Status: published
+Tags: python, named-tuple, dict, dictionary, data-structure
+Title: Python - Named Tuples or Dictionaries to Store Structured Data?
 ---
 up::[[MOC_Python]]
 Let's assume that in python, we have long list of pairs to store. In this note we will discuss what are the pros and cons of using named tuple vs. dict to store single pair? 

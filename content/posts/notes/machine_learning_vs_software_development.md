@@ -1,12 +1,12 @@
 ---
-title: The difference between Machine Learning Development and traditional Software Development
-slug: machine-learning-vs-software_development
-date: 2023-01-16
-modified: 2023-01-16
-status: published
-tags: mlops, software-development, software-maintenence, machine-learning,
-summary: summary
-category: note
+Category: note
+Date: '2023-01-16'
+Modified: '2023-07-12'
+Slug: machine-learning-vs-software_development
+Status: published
+Summary: summary
+Tags: mlops, software-development, software-maintenence, machine-learning,
+Title: The Difference Between Machine Learning Development and Traditional Software Development
 citation_needed: false
 ---
 

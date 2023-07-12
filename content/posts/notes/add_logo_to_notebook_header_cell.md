@@ -1,12 +1,12 @@
 ---
-title: Add logo to notebook header cell
-date: 2021-10-12
-modified: 2023-01-17
-status: published
-tags: jupyter, howto, notebook, jupyter-notebook, project/logo, visual-identification, logo
-summary: Instruction on how to add a logo to notebook header cell to strengthen visual identification of the project
-slug: add-logo-to-notebook-header
-category: note
+Category: note
+Date: '2021-10-12'
+Modified: '2023-07-12'
+Slug: add-logo-to-notebook-header
+Status: published
+Summary: Instruction on how to add a logo to notebook header cell to strengthen visual identification of the project
+Tags: jupyter, howto, notebook, jupyter-notebook, project/logo, visual-identification, logo
+Title: Add Logo to Notebook Header Cell
 citation_needed: true
 todo: add a screenshot with an example
 ---

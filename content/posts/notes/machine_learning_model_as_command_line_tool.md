@@ -1,11 +1,11 @@
 ---
-Title: Creating Command Line Tools from Machine Learning Models
-Slug: creating-command-line-tools-from-machine-learning-models
-Date: 2023-01-17
-Modified: 2023-01-17
-Status: published
-Tags: machine-learning, packaging, deployment, model-delivery, cli, commandline 
 Category: note
+Date: '2023-01-17'
+Modified: '2023-07-12'
+Slug: creating-command-line-tools-from-machine-learning-models
+Status: published
+Tags: machine-learning, packaging, deployment, model-delivery, cli, commandline
+Title: Creating Command Line Tools From Machine Learning Models
 ---
 
 Machine learning (ML) models are becoming increasingly popular in various industries, and as a result, the need to distribute and deploy these models in a secure, portable, and efficient manner has become crucial. One way to accomplish this is by creating command line tools from ML models. Command line tools are easy to use, efficient and can be integrated with other tools and workflows.

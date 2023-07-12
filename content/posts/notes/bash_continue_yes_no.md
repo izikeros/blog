@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: bash-continue-yes-no
-tags: bash, bash-continue-yes-no, continue
-title: Bash - continue, yes or no
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: bash-continue-yes-no
+Status: published
+Tags: bash, bash-continue-yes-no, continue
+Title: Bash - Continue, Yes or No
 ---
 
 ```sh

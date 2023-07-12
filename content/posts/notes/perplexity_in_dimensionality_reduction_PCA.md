@@ -1,11 +1,11 @@
 ---
-Title: Demystifying Perplexity: Assessing Dimensionality Reduction with PCA
+Category: note
+Date: '2023-06-30'
+Modified: '2023-07-12'
 Slug: demystifying-perplexity-assessing-dimensionality-reduction-with-pca
-Date: 2023-06-30
-Modified: 2023-06-30
 Status: published
 Tags: pca, perplexity, dimensionality-reduction, probability, TSNE, distance
-Category: note
+Title: Demystifying Perplexity - Assessing Dimensionality Reduction With PCA
 ---
 X::[[pca_tutorial]]
 X::[[decorelating_features_dimensionality_reduction_PCA]]

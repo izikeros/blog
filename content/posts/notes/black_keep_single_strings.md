@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: black-keep-single-quotes-strings
-tags: black, single-string, quotation-mark
-title: Black - keep single quotes for strings
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: black-keep-single-quotes-strings
+Status: published
+Tags: black, single-string, quotation-mark
+Title: Black - Keep Single Quotes for Strings
 ---
 
 See: [Add --single-quote option · Issue #594 · psf/black · GitHub](https://github.com/psf/black/issues/594)

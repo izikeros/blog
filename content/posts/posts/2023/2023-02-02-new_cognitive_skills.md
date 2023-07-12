@@ -1,16 +1,16 @@
 ---
-Title: New Cognitive Skills in the Age of AI Tailored Information Presentation
-Slug: pros-and-cons-of-reliance-on-ai-generating-models
-Date: 2023-02-02
-Modified: 2023-02-02
-Start: 2023-02-02
-Tags: AI, future, cognitive-skills, critical-thinking, language-models, llm
 Category: Machine Learning
+Date: '2023-02-02'
 Image: /images/head/cognitive_skills_ai_generative_models.jpg
-banner: "/images/head/cognitive_skills_ai_generative_models.jpg"
-Summary: Exploring the new cognitive skills of tomorrow with advanced AI generative models.
+Modified: '2023-02-02'
+Slug: pros-and-cons-of-reliance-on-ai-generating-models
+Start: '2023-02-02'
 Status: published
-prompt:
+Summary: Exploring the new cognitive skills of tomorrow with advanced AI generative models.
+Tags: AI, future, cognitive-skills, critical-thinking, language-models, llm
+Title: New Cognitive Skills in the Age of AI Tailored Information Presentation
+banner: /images/head/cognitive_skills_ai_generative_models.jpg
+prompt: null
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 

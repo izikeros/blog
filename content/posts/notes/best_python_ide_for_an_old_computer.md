@@ -1,11 +1,11 @@
 ---
-Title: Best Python IDE for and old computer
-Slug: best-python-ide-for-an-old-computer
-Date: 2023-03-03
-Modified: 2023-03-03
-Status: published
-Tags: python, ide, old-computer 
 Category: note
+Date: '2023-03-03'
+Modified: '2023-07-12'
+Slug: best-python-ide-for-an-old-computer
+Status: published
+Tags: python, ide, old-computer
+Title: Best Python IDE for and Old Computer
 ---
 
 

@@ -1,16 +1,16 @@
 ---
-Title: Beat Overfitting in Kaggle Competitions: Proven Techniques
-Slug: avoiding-overfitting-in-Kaggle-competitions
-Date: 2023-02-08
-Modified: 2023-02-08
-Start: 2023-02-08
-Tags: kaggle, overfitting, model-training, cross-validation, early-stopping, regularization, ensemble, feature-selection, stacking, adversarial-validation, model-uncertainty, dropout, transfer-learning, automl, bayesian 
 Category: Machine Learning
+Date: '2023-02-08'
 Image: /images/head/data_scientist.jpg
-banner: /images/head/data_scientist.jpg
-Summary: Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results.
+Modified: '2023-02-08'
+Slug: avoiding-overfitting-in-Kaggle-competitions
+Start: '2023-02-08'
 Status: published
-prompt:
+Summary: Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results.
+Tags: kaggle, overfitting, model-training, cross-validation, early-stopping, regularization, ensemble, feature-selection, stacking, adversarial-validation, model-uncertainty, dropout, transfer-learning, automl, bayesian
+Title: Beat Overfitting in Kaggle Competitions - Proven Techniques
+banner: /images/head/data_scientist.jpg
+prompt: null
 ---
 ## Overfitting problem in Kaggle competitions
 Overfitting is a common issue in Kaggle competitions where the goal is to develop a classification model that performs well on unseen data. Overfitting occurs when a model is trained too well on the training data, and as a result, it becomes too complex and starts to memorize the training data, instead of learning the underlying patterns. This can lead to poor performance on the test data, which is the ultimate goal in Kaggle competitions.

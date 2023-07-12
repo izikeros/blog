@@ -2,11 +2,11 @@
 Title: Using Graphviz (dot) Diagrams in Pelican Blog
 Slug: graphviz-dot-diagram-in-pelican-blog
 Date: 2023-01-19
-Modified: 2023-01-19
-Status: published
+Modified: 2023-07-12
 Tags: graphviz, visualization, pelican
 Category: note
-prompt: How can I dynamically generate graphviz diagrams in pelican post written in markdown. How can I have diagram generated if I embed diagram description in dot in code fences (labeled as dot or graphviz)?
+Status: published
+Prompt: How can I dynamically generate graphviz diagrams in pelican post written in markdown. How can I have diagram generated if I embed diagram description in dot in code fences (labeled as dot or graphviz)?
 ---
 
 One way to dynamically generate Graphviz diagrams in a Pelican blog post written in Markdown is to use a plugin that can parse code fences labeled as `dot` or `graphviz` and convert the contents of the code fence into a diagram.

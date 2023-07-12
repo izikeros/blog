@@ -1,13 +1,13 @@
 ---
-title: Time tracking apps
-date: 2021-10-20
-modified: 2021-10-20
-status: published
-tags: time tracking, time management, billing, tracing, monitoring time, monitoring productivity, monitoring, productivity
-slug: time-tracking-apps
-category: note
+Category: note
+Date: '2021-10-20'
+Modified: '2023-07-12'
+Slug: time-tracking-apps
+Status: published
+Tags: time tracking, time management, billing, tracing, monitoring time, monitoring productivity, monitoring, productivity
+Title: Time Tracking Apps
 citation_needed: false
-todo: 
+todo: None
 ---
 
 In professional work both in corporation or as freelancer there might be a need to track - how much time you spent on different activities. There are already good apps that helps with that.

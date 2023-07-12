@@ -1,11 +1,11 @@
 ---
-Title: MLOps Roadmap
-Slug: mlops-roadmap
-Date: 2023-01-14
-Modified: 2023-01-16
-Status: published
-Tags: mlops, learning 
 Category: note
+Date: '2023-01-14'
+Modified: '2023-07-12'
+Slug: mlops-roadmap
+Status: published
+Tags: mlops, learning
+Title: MLOps Roadmap
 ---
 Roadmap to become MLOps. The 6 points, ordered plan on things to learn.
 

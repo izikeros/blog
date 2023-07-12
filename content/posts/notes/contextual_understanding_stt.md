@@ -1,13 +1,13 @@
 ---
-Title: Contextual Understanding in Automated Speech-to-Text Transcription: Machine Learning Techniques and Challenges
+Category: note
+Date: '2023-03-30'
+Modified: '2023-07-12'
 Slug: contextual_understanding-speech-to-text
-Date: 2023-03-30
-Modified: 2023-03-30
 Status: published
 Tags: speech-to-text, ai, machine-learning, deep-learning, pos, ner, cnn, rnn, asr
-Category: note
+Title: Contextual Understanding in Automated Speech-to-Text Transcription - Machine Learning Techniques and Challenges
 prompt1: What are the biggest unsolved problems for automated speech to text transcription. Give me long blog post on that.
-prompt2:Give me long blog post on machine learning techniques used for contextual understanding for speech-to-text. Use latex equations where needed. Add hyperlinks to the key terms.
+prompt2: Give me long blog post on machine learning techniques used for contextual understanding for speech-to-text. Use latex equations where needed. Add hyperlinks to the key terms.
 ---
 Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to limit the capabilities of automated speech recognition technology. In this blog post, we will explore some of the biggest unsolved problems in automated speech-to-text transcription.
 

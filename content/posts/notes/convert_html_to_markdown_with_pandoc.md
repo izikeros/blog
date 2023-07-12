@@ -1,12 +1,12 @@
 ---
-title: How to convert HTML to clean markdown with pandoc
-date: 2022-08-31
-modified: 2022-08-31
-status: published
-tags: html, markdown, pandoc, conversion, cli, grep, sed
-summary: Instruction on how to convert HTML document to markdown with cleaning the output from the clutter.
-slug: how-to-convert-html-to-clean-markdown
-category: note
+Category: note
+Date: '2022-08-31'
+Modified: '2023-07-12'
+Slug: how-to-convert-html-to-clean-markdown
+Status: published
+Summary: Instruction on how to convert HTML document to markdown with cleaning the output from the clutter.
+Tags: html, markdown, pandoc, conversion, cli, grep, sed
+Title: How to Convert HTML to Clean Markdown With Pandoc
 citation_needed: false
 todo: add a screenshot with an example
 ---

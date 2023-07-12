@@ -1,11 +1,11 @@
 ---
-Title: How to deploy FreshRSS in the cloud for free on GCP?
+Category: note
+Date: '2023-04-11'
+Modified: '2023-07-12'
 Slug: how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp
-Date: 2023-04-11
-Modified: 2023-04-11
 Status: published
 Tags: rss, freshrss, cloud-deploy, free-deploy, gcp, google-cloud-platform, google
-Category: note
+Title: How to Deploy FreshRSS in the Cloud for Free on GCP?
 todo: verify the steps
 ---
 

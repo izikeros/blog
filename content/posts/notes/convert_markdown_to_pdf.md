@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: convert-markdown-to-pdf
-tags: conversion, markdown, pdf, pandoc, wkhtmltopdf, html
-title: Convert markdown to pdf
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: convert-markdown-to-pdf
+Status: published
+Tags: conversion, markdown, pdf, pandoc, wkhtmltopdf, html
+Title: Convert Markdown to PDF
 ---
 X::[[pandoc]]
 X::[[writing_book_or_ebook_using_pandoc]]

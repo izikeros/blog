@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: bash-base-name-without-extension
-tags: base, basename, bash, extension, name, bash/basename
-title: Bash - file base name (without extension)
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: bash-base-name-without-extension
+Status: published
+Tags: base, basename, bash, extension, name, bash/basename
+Title: Bash - File Base Name (Without Extension)
 ---
 
 ## file base name (without extension)

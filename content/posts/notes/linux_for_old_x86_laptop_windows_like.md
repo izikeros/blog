@@ -1,12 +1,12 @@
 ---
-Title: The best Linux distributions for old x86 laptop to have windows-like look and feel.
+Category: note
+Date: '2023-02-26'
+Modified: '2023-07-12'
+Prompt: What are the best Linux distributions for old x86 laptop to have windows-like look and feel?
 Slug: linux-for-old-x86-laptop-windows-like
-Date: 2023-02-26
-Modified: 2023-02-26
 Status: published
 Tags: Linux, distros, windows, windows7, windowsxp
-Category: note
-prompt: What are the best Linux distributions for old x86 laptop to have windows-like look and feel?
+Title: The Best Linux Distributions for Old X86 Laptop to Have Windows-Like Look and Feel.
 ---
 
 There are several Linux distributions that can provide a Windows-like look and feel, but the best one for an old x86 laptop will depend on the hardware specifications of the device. Here are some options that you can consider:

@@ -1,11 +1,11 @@
 ---
-Title: Python regex named groups
+Category: note
+Date: '2023-04-19'
+Modified: '2023-07-12'
 Slug: python-regex-named-groups
-Date: 2023-04-19
-Modified: 2023-04-19
 Status: published
 Tags: python, regex
-Category: note
+Title: Python Regex Named Groups
 ---
 up::[[MOC_Python]]
 

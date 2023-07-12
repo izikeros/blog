@@ -1,15 +1,15 @@
 ---
-Title: Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platforms
-Slug: popular-and-lesser-known-dataset-sharing-platforms
-Date: 2022-06-09
-Modified: 2023-06-09
-Start: 2023-06-09
-Tags: machine-learning, python
 Category: Machine Learning
+Date: '2022-06-09'
 Image: /images/head/abstract_1.jpg
-banner: "/images/head/abstract_1.jpg"
-Summary: Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts. 🗝️
+Modified: '2023-06-09'
+Slug: popular-and-lesser-known-dataset-sharing-platforms
+Start: '2023-06-09'
 Status: published
+Summary: "Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts. \U0001F5DD\uFE0F"
+Tags: machine-learning, python
+Title: Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platforms
+banner: /images/head/abstract_1.jpg
 prompt: what are the best dataset sharing platforms
 ---
 

@@ -1,7 +1,6 @@
 ---
 category: note
-date: '2022-05-12'
-draft: 'true'
+date: 2022-05-12
 slug: python-ignore-warnings
 tags: python/warning/ignore, python
 title: How to ignore warnings in Python

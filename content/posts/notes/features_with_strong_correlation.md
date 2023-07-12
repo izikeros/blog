@@ -1,12 +1,12 @@
 ---
-Title: List of features with strongest correlation
+Category: note
+Date: '2023-02-21'
+Modified: '2023-07-12'
+Prompt: I have dataframe with features in columns. The number of features is large - more than 1000. How to get list of the features that has the stongest correlation? Give me python code for that.
 Slug: features-with-strong-correlation
-Date: 2023-02-21
-Modified: 2023-02-21
 Status: published
 Tags: pandas, dataframe, correlation, python, data-analysis, machine-learning, AI, decorrelation
-Category: note
-prompt: I have dataframe with features in columns. The number of features is large - more than 1000. How to get list of the features that has the stongest correlation? Give me python code for that.
+Title: List of Features With Strongest Correlation
 ---
 
 The code from this note is useful in case when there is a lot of features (e.g 1k+). In such case it is difficult to analyse visually heatmap of correlation matrix (e.g. plotted with sns.heatmap(), see beautiful example [here](https://seaborn.pydata.org/examples/many_pairwise_correlations.html)). Instead we extract pairs with the strongest correlation.

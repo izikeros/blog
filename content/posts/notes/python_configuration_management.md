@@ -1,12 +1,12 @@
 ---
-title: Python - configuration management
-date: 2022-04-14
-modified: 2022-04-14
-status: published
-tags: python, configuration, hydra, decouple
-summary: 
-slug: python-configuration-management
-category: note
+Category: note
+Date: '2022-04-14'
+Modified: '2023-07-12'
+Slug: python-configuration-management
+Status: published
+Summary: None
+Tags: python, configuration, hydra, decouple
+Title: Python - Configuration Management
 citation_needed: true
 ---
 Python is a powerful programming language that is widely used in a variety of applications, from web development and data science to machine learning and AI. One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.

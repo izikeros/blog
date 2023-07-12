@@ -1,11 +1,11 @@
 ---
-Title: Bash - rename multiple image files to match pattern with sequence number
+Category: note
+Date: '2023-06-27'
+Modified: '2023-07-12'
 Slug: bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number
-Date: 2023-06-27
-Modified: 2023-06-27
 Status: published
 Tags: bash, python, bash-script, python-script, alias, image-rename, utility script
-Category: note
+Title: Bash - Rename Multiple Image Files to Match Pattern With Sequence Number
 ---
 
 The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions, and you want to standardize their names for better organization or consistency.

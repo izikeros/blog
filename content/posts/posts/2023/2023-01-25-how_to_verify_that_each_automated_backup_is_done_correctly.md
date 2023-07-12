@@ -1,16 +1,16 @@
 ---
-Title: Don't Just Create Backups, Verify Them: How Restic Can Help?
-Slug: verify-backups-restic-example
-Date: 2023-01-15
-Modified: 2023-01-25
-Start: 2023-01-25
-Tags: linux, backup, good-practices, restic
 Category: Howto
+Date: '2023-01-15'
 Image: /images/head/verify_backups.jpg
-banner: /images/head/verify_backups.jpg
-Summary: Learn how to verify your backups with Restic, ensure completeness, integrity, and recoverability. Automate the process for peace of mind. Read now
+Modified: '2023-01-25'
+Slug: verify-backups-restic-example
+Start: '2023-01-25'
 Status: published
-prompt:Give me long article on How to verify that each backup is done correctly. You can use restic as an exemplary tool of choice to make backups.
+Summary: Learn how to verify your backups with Restic, ensure completeness, integrity, and recoverability. Automate the process for peace of mind. Read now
+Tags: linux, backup, good-practices, restic
+Title: Don't Just Create Backups, Verify Them - How Restic Can Help?
+banner: /images/head/verify_backups.jpg
+prompt: Give me long article on How to verify that each backup is done correctly. You can use restic as an exemplary tool of choice to make backups.
 todo: add diagram
 ---
 

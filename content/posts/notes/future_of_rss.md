@@ -1,11 +1,11 @@
 ---
-Title: Future of RSS
+Category: note
+Date: '2023-03-05'
+Modified: '2023-07-12'
 Slug: future-of-rss
-Date: 2023-03-05
-Modified: 2023-03-05
 Status: published
 Tags: rss, fake-news, social-media, twitter
-Category: note
+Title: Future of RSS
 ---
 
 > Speculate on what could be the future of the rss standard, discuss some less obvious cases. Give me long text on that

@@ -1,12 +1,12 @@
 ---
-title: Allow arbitrary types (such as Pandas Dataframe) in Pydantic
-date: 2022-04-21
-modified: 2022-04-21
-status: published
-tags: pydantic, pandas, type-hints
-summary: 
-slug: allow-arbitrary-types-pandas-in-pydantic
-category: note
+Category: note
+Date: '2022-04-21'
+Modified: '2023-07-12'
+Slug: allow-arbitrary-types-pandas-in-pydantic
+Status: published
+Summary: None
+Tags: pydantic, pandas, type-hints
+Title: Allow Arbitrary Types (Such as Pandas Dataframe) in Pydantic
 citation_needed: false
 ---
 

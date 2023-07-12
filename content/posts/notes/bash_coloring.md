@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-09-01'
-status: published
-slug: bash-coloring
-tags: bash, coloring, cli, tui
-title: Bash - coloring output
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: bash-coloring
+Status: published
+Tags: bash, coloring, cli, tui
+Title: Bash - Coloring Output
 ---
 
 # Bash coloring

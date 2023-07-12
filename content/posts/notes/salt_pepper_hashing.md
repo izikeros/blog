@@ -1,11 +1,11 @@
 ---
-Title: Salt and pepper in the context of hashing/obfuscation
+Category: note
+Date: '2023-03-14'
+Modified: '2023-07-12'
 Slug: salt-and-pepper-for-hashing
-Date: 2023-03-14
-Modified: 2023-03-14
 Status: published
 Tags: hashing, salt, pepper, anonymisation, obfuscation
-Category: note
+Title: Salt and Pepper in the Context of Hashing/Obfuscation
 ---
 
 In the context of hashing/obfuscation, "salt and pepper" refer to two different techniques used to enhance the security of hash functions. 

@@ -1,11 +1,11 @@
 ---
-Title: Introducing a Python Module for Splitting Text into Parts based on Token Limit
-Slug: token-split-text
-Date: 2023-07-03
-Modified: 2023-07-03
-Status: published
-Tags: tokenization, tiktoken, prompt-chunking, split-text, text-partitioning, openai, gpt-4 
 Category: note
+Date: '2023-07-03'
+Modified: '2023-07-12'
+Slug: token-split-text
+Status: published
+Tags: tokenization, tiktoken, prompt-chunking, split-text, text-partitioning, openai, gpt-4
+Title: Introducing a Python Module for Splitting Text Into Parts Based on Token Limit
 ---
 
 

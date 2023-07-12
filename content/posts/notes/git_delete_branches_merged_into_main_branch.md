@@ -1,12 +1,12 @@
 ---
-category: note
-date: '2021-12-16'
-modified: '2022-02-17'
-slug: git-delete-branches-merged-into-main-branch
-status: published
+Category: note
+Date: '2021-12-16'
+Modified: '2023-07-12'
+Slug: git-delete-branches-merged-into-main-branch
+Status: published
+Tags: branch, delete, git, merged
+Title: Git - Delete Branches That Are Merged Into the Main Branch
 suggested_tags: branch, delete, git, merged
-tags: branch, delete, git, merged
-title: Git - delete branches that are merged into the main branch
 ---
 
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->

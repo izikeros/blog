@@ -1,12 +1,12 @@
 ---
-Title: Data Science Competitions where Winners can Win Real Money
-Slug: data-science-competitions-win-money
-Date: 2023-03-05
-Modified: 2023-03-05
-Status: published
-Tags: data-science, competition, kaggle 
 Category: note
-prompt: Give me the list of data science competitions where winners can win real money
+Date: '2023-03-05'
+Modified: '2023-07-12'
+Prompt: Give me the list of data science competitions where winners can win real money
+Slug: data-science-competitions-win-money
+Status: published
+Tags: data-science, competition, kaggle
+Title: Data Science Competitions Where Winners Can Win Real Money
 ---
 
 Data science competitions where winners can win real money:

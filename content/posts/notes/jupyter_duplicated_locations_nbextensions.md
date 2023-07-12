@@ -1,11 +1,11 @@
 ---
-Title: Jupyte Notebook duplicated locations for nbextensions
+Category: note
+Date: '2023-02-14'
+Modified: '2023-07-12'
 Slug: jupyter-duplicated-nbextensions-locations
-Date: 2023-02-14
-Modified: 2023-02-14
 Status: published
 Tags: jupyter, jupyter-notebook, data-analysis, scientific-computing, nbextensions, customization, duplicates, diagnose, paths, per-user-directory, per-environment-directory, system-wide-directories, Anaconda, conda-package, jupyter_contrib_nbextensions
-Category: note
+Title: Jupyte Notebook Duplicated Locations for Nbextensions
 ---
 
 Jupyter notebooks are a great tool for data analysis and scientific computing, but they can also be customized and extended through the use of nbextensions. Nbextensions are additional pieces of code that can add new functionality, enhance existing features, and provide more customization options to Jupyter notebooks.

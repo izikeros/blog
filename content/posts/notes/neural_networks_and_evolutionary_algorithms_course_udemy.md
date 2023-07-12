@@ -1,12 +1,12 @@
 ---
-Title: Combining neural networks and evolutionary algorithms
+Category: note
+Date: '2023-01-23'
+Modified: '2023-07-12'
+Prompt: How the evolutionary algorithms can be used together with neural networks. Mention NN weights optimization and other types of applications of these two methods used jointly
 Slug: combining-neural-networks-and-evolutionary-algorithms
-Date: 2023-01-23
-Modified: 2023-01-23
 Status: published
 Tags: neural-networks, machine-learning, evolutionary, genetic-algorithms, udemy
-Category: note
-prompt: How the evolutionary algorithms can be used together with neural networks. Mention NN weights optimization and other types of applications of these two methods used jointly
+Title: Combining Neural Networks and Evolutionary Algorithms
 ---
 
 Evolutionary algorithms (EAs) can be used in conjunction with neural networks (NNs) in a variety of ways. One of the most common applications is the optimization of the weights of a NN using an EA. This process is known as neuroevolution and it can be used to improve the performance of a NN by fine-tuning its weights to a specific task.

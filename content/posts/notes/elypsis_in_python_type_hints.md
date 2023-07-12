@@ -1,11 +1,11 @@
 ---
-Title: How to use elypsis in type hints to indicate arbitrary number of elements
+Category: note
+Date: '2023-04-03'
+Modified: '2023-07-12'
 Slug: type-hints-elypsis-for-arbitrary-number-of-elements
-Date: 2023-04-03
-Modified: 2023-04-03
 Status: published
 Tags: python, type-hints, mypy, elypsis, python-typing
-Category: note
+Title: How to Use Elypsis in Type Hints to Indicate Arbitrary Number of Elements
 ---
 In type hints, `...` (ellipsis) is used to indicate that a function parameter or return value can have an arbitrary number of arguments or elements.
 

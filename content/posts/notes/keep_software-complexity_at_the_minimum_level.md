@@ -1,12 +1,12 @@
 ---
-Title: Simplifying Software Complexity: 10 Tips
+Category: note
+Date: '2023-02-09'
+Modified: '2023-07-12'
+Prompt: In the python software project how to keep system complexity at the minimum level. Give me long answer
 Slug: software-complexity-at-the-minimum-level
-Date: 2023-02-09
-Modified: 2023-02-09
 Status: published
 Tags: software-development, software-maintenence, best-practices, python/project, software-project, software/project
-Category: note
-prompt: In the python software project how to keep system complexity at the minimum level. Give me long answer
+Title: Simplifying Software Complexity - 10 Tips
 ---
 
 Keeping the system complexity at a minimum level is critical to the success of any software project. The following are some tips and best practices that can help you keep your software project as simple as possible:

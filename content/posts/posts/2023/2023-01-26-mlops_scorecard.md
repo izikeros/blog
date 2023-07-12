@@ -1,15 +1,15 @@
 ---
-Title: MLOps scorecard - How advanced is your organization in implementing MLOps processes?
-Slug: mlops-scorecard
-Date: 2023-01-21
-Modified: 2023-01-26
-Start: 2023-01-26
-Tags: mlops
 Category: MLOps
+Date: '2023-01-21'
 Image: /images/head/mlops_scorecard_640px.jpg
-banner: "/images/head/mlops_scorecard_640px.jpg"
-Summary: Use proposed scorecard to assess how advanced is your organization in implementing MLOps processes.
+Modified: '2023-01-26'
+Slug: mlops-scorecard
+Start: '2023-01-26'
 Status: published
+Summary: Use proposed scorecard to assess how advanced is your organization in implementing MLOps processes.
+Tags: mlops
+Title: MLOps Scorecard - How Advanced Is Your Organization in Implementing MLOps Processes?
+banner: /images/head/mlops_scorecard_640px.jpg
 prompt: give me MLOps score card - a detailed check-list that will help organization to asses to which extend they have mlops process in place.
 ---
 

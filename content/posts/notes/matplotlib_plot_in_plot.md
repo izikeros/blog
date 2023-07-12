@@ -1,11 +1,11 @@
 ---
-Title: Plot inside plot with Matplotlib
-Slug: plot-in-plot-matplot-lib
-Date: 2023-02-24
-Modified: 2023-02-24
-Status: published
-Tags: matplotlib, visualization  
 Category: note
+Date: '2023-02-24'
+Modified: '2023-07-12'
+Slug: plot-in-plot-matplot-lib
+Status: published
+Tags: matplotlib, visualization
+Title: Plot Inside Plot With Matplotlib
 ---
 
 > this is not my article, this is just English translation of: [图中图 | 莫烦Python](https://mofanpy.com/tutorials/data-manipulation/plt/plot-in-plot/)

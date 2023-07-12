@@ -1,11 +1,11 @@
 ---
-title: List unlinked (orphaned) notes in Obsidian
-date: 2022-08-17
-modified: 2022-08-17
-status: published
-tags: obsidian, obsidian/dataview, orphaned-notes
-slug: list-unlinked-orphaned-notes-obsidian
-category: note
+Category: note
+Date: '2022-08-17'
+Modified: '2023-07-12'
+Slug: list-unlinked-orphaned-notes-obsidian
+Status: published
+Tags: obsidian, obsidian/dataview, orphaned-notes
+Title: List Unlinked (Orphaned) Notes in Obsidian
 citation_needed: false
 ---
 

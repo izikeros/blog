@@ -1,11 +1,11 @@
 ---
-Title: How to rename one or more columns in pandas dataframe?
+Category: note
+Date: '2023-02-12'
+Modified: '2023-07-12'
 Slug: how-to-rename-one-or-more-columns-in-pandas-dataframe
-Date: 2023-02-12
-Modified: 2023-02-12
 Status: published
 Tags: pandas, rename-column
-Category: note
+Title: How to Rename One or More Columns in Pandas Dataframe?
 ---
 
 To rename one or more columns in a pandas DataFrame, you can use the `rename` function. Here are some examples of how to use it:

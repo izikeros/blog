@@ -1,11 +1,11 @@
 ---
-Title: Git - sign commit that is n commits back (earlier)
-Slug: git-sign-commit-n-commits-back
-Date: 2023-02-28
-Modified: 2023-02-28
-Status: published
-Tags: git, commit 
 Category: note
+Date: '2023-02-28'
+Modified: '2023-07-12'
+Slug: git-sign-commit-n-commits-back
+Status: published
+Tags: git, commit
+Title: Git - Sign Commit That Is N Commits Back (Earlier)
 ---
 
 ## Example

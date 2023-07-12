@@ -1,11 +1,11 @@
 ---
-title: Auto documented makefile
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: auto-documented-makefile
-tags: auto-documented, makefile, documentation, help, make-help
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: auto-documented-makefile
+Status: published
+Tags: auto-documented, makefile, documentation, help, make-help
+Title: Auto Documented Makefile
 ---
 X::[[make]]
 

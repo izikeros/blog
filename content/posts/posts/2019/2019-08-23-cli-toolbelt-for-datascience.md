@@ -1,13 +1,13 @@
 ---
-title: Data Science Command-line Tools
-started: 2019-07-04
-date: 2019-08-23
-modified: 2021-02-08 21:28
-tags: machine learning, Linux
-category: Linux
+Category: Linux
+Date: '2019-08-23'
 Image: /images/head/cli_tools.jpg
-status: published
-summary: Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.
+Modified: '2023-07-12'
+Status: published
+Summary: Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.
+Tags: machine learning, Linux
+Title: Data Science Command-Line Tools
+started: 2019-07-04
 ---
 
 There are plenty of tools designed to ease the life of a Data Scientist. In this group, the special place has tools that are used from the command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient workflows. 

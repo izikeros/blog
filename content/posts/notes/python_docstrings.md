@@ -1,13 +1,13 @@
 ---
-category: note
-date: '2021-09-29'
-modified: '2021-09-29'
-slug: python-docstrings-styles
-status: published
+Category: note
+Date: '2021-09-29'
+Modified: '2023-07-12'
+Slug: python-docstrings-styles
+Status: published
+Summary: Most popular conventions used in python docstrings and format support in various tools.
+Tags: docstrings, python, style
+Title: Python - Docstrings Styles
 suggested_tags: docstring, python, style
-summary: Most popular conventions used in python docstrings and format support in various tools.
-tags: docstrings, python, style
-title: Python - docstrings styles
 ---
 
 # Docstring examples in various styles

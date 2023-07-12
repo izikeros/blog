@@ -1,15 +1,15 @@
 ---
-title: Automated signal segmentation, trend detection, and classification
-date: 2022-09-12
-modified: 2022-09-12
-status: Published
-tags: trend, segmentation, algotrading
-summary: This post presents the trend-classifier package that can be used for signal segmentation into parts where the trend is coherent.
-slug: automated-trend-detection-and-signal-segmentation
-category: Howto
-citation_needed: false
-todo:
+Category: Howto
+Date: '2022-09-12'
 Image: images/head/trend_detection_head.jpg
+Modified: '2023-07-12'
+Slug: automated-trend-detection-and-signal-segmentation
+Status: Published
+Summary: This post presents the trend-classifier package that can be used for signal segmentation into parts where the trend is coherent.
+Tags: trend, segmentation, algotrading
+Title: Automated Signal Segmentation, Trend Detection, and Classification
+citation_needed: false
+todo: None
 ---
 
 ## Problem statement

@@ -1,11 +1,11 @@
 ---
-title: Serve HTTP files with python server
-date: 2022-04-27
-modified:2022-04-27
-status: published
-tags: python, htttp, server, javascript
-slug: serve-http-files-with-python-server
-category: note
+Category: note
+Date: '2022-04-27'
+Modified: '2023-07-12'
+Slug: serve-http-files-with-python-server
+Status: published
+Tags: python, htttp, server, javascript
+Title: Serve HTTP Files With Python Server
 citation_needed: false
 ---
 up::[[python]]

@@ -1,12 +1,12 @@
 ---
-title: Black - the code formatter
-date: 2021-11-29
-modified: 2022-09-01
-status: published
-tags: black, python, pyqa, quality
-summary: notes on using black formatter
-slug: black-code-formatter
-category: note
+Category: note
+Date: '2021-11-29'
+Modified: '2023-07-12'
+Slug: black-code-formatter
+Status: published
+Summary: notes on using black formatter
+Tags: black, python, pyqa, quality
+Title: Black - The Code Formatter
 citation_needed: false
 ---
 #black

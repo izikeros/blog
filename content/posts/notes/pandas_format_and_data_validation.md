@@ -1,11 +1,11 @@
 ---
-title: Pandas dataframe schema and data types validation
-date: 2022-04-27
-modified: 2022-04-27
-status: published
-tags: pandas, pandas/schema, pandas/validation, pandera, dataenforce, software/alternatives, great-expectations,
-slug: pandas-dataframe-validation
-category: note
+Category: note
+Date: '2022-04-27'
+Modified: '2023-07-12'
+Slug: pandas-dataframe-validation
+Status: published
+Tags: pandas, pandas/schema, pandas/validation, pandera, dataenforce, software/alternatives, great-expectations,
+Title: Pandas Dataframe Schema and Data Types Validation
 citation_needed: false
 ---
 

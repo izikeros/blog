@@ -1,11 +1,11 @@
 ---
-Title: Understanding Bhattacharyya Distance and Coefficient for Probability Distributions
+Category: note
+Date: '2023-06-30'
+Modified: '2023-07-12'
 Slug: understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions
-Date: 2023-06-30
-Modified: 2023-06-30
 Status: published
 Tags: tag1, tag2
-Category: note
+Title: Understanding Bhattacharyya Distance and Coefficient for Probability Distributions
 ---
 
 # Introduction

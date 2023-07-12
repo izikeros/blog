@@ -1,12 +1,12 @@
 ---
-Title: DCA investing strategy variants
+Category: note
+Date: '2023-03-26'
+Modified: '2023-07-12'
+Prompt: give me long blog post on variants of the DCA (averaging) strategy for investing.
 Slug: dca_investing_strategy_variants
-Date: 2023-03-26
-Modified: 2023-03-26
 Status: published
 Tags: finance, strategy, dca, variants
-Category: note
-prompt: give me long blog post on variants of the DCA (averaging) strategy for investing.
+Title: DCA Investing Strategy Variants
 ---
 
 Investing can be a daunting task, especially for those new to the game. The world of finance is full of complicated terminology and sophisticated techniques, making it difficult for the average person to know where to start. Fortunately, there are a few simple strategies that can help novice investors get started with building their portfolio. One of the most popular and effective strategies is the Dollar-Cost Averaging (DCA) method.

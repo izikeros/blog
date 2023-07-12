@@ -1,13 +1,14 @@
 ---
-Title: How to organize Data Science project based on Jupyter notebook
-Date: '2019-01-05'
-Modified: 2023-01-19
-Start: '2019-01-05'
-Tags: jupyter, python, notebook, howto, machine learning, best practices, project management
 Category: Howto
-Image:  /images/head/books.jpg
-Summary: Having several notebook-based projects behind you might result in a mess in the projects directory. Organize your Data Science project based on Jupyter notebooks in a way that one can navigate through it. Especially that "the one" will be most probably you in a few months time. To achieve that: keep your projects directory clean, name the project in a descriptive way and take care of the internal structure of the project.
+Date: '2019-01-05'
+Image: /images/head/books.jpg
+Modified: '2023-01-19'
+Start: '2019-01-05'
 Status: published
+Summary: Having several notebook-based projects behind you might result in a mess in the projects directory. Organize your Data Science project based on Jupyter notebooks in a way that one can navigate through it. Especially that "the one" will be most probably you in a few months time. To achieve that, keep your projects directory clean, name the project in a descriptive way and take care of the internal structure of the project.
+Tags: jupyter, python, notebook, howto, machine learning, best practices, project management
+Title: How to Organize Data Science Project Based on Jupyter Notebook
+banner: /images/head/books.jpg
 ---
 
 In this blog post, I will share the way to organize your Data Science project based on Jupyter notebooks in a way that one can navigate through it. Especially that "the one" will be most probably you in a few months' time. So be nice to yourselves and organize your project in a rational structure rather than spontaneous chaos.

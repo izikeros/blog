@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: bash-default-argument
-tags: default-argument, bash
-title: Bash - default argument for the script
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: bash-default-argument
+Status: published
+Tags: default-argument, bash
+Title: Bash - Default Argument for the Script
 ---
 
 See the example of `somecommand.sh`:

@@ -1,12 +1,12 @@
 ---
-Title: Rustification of Python
+Category: note
+Date: '2023-03-06'
+Modified: '2023-07-12'
+Prompt: Give me long blog article on Rustification of python that highlight the trend that more and more python infrastucture and tools are based on Rust. Give me concrete examples. Finish with discusson of the future role of the Rust for the Python
 Slug: rustification-of-python
-Date: 2023-03-06
-Modified: 2023-03-30
 Status: published
 Tags: rustification-of-python, python, rust, pyo3, maturin, tokenizers, performance, memory-safety, concurrent-programming, full-text-search, user-interface, standalone-applications, community, fragmentation, complexity, bugs, backlash, controversy
-Category: note
-prompt: Give me long blog article on Rustification of python that highlight the trend that more and more python infrastucture and tools are based on Rust. Give me concrete examples. Finish with discusson of the future role of the Rust for the Python
+Title: Rustification of Python
 ---
 
 Python has been one of the most popular programming languages for years now. It’s known for its simplicity, ease of use, and versatility. However, with the growing demand for high-performance applications, the limitations of Python have become more apparent. To address these limitations, the Python community has started to Rustify Python. Rust is a systems programming language that emphasizes safety, speed, and concurrency. It's becoming increasingly popular, and many Python infrastructure and tools are now being built using Rust.

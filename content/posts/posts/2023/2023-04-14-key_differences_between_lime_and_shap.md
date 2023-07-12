@@ -1,15 +1,15 @@
 ---
-Title: Explaining AI - The Key Differences Between LIME and SHAP Methods
-Slug: explaining-ai-the-key-differences-between-lime-and-shap-methods
-Date: 2023-04-14
-Modified: 2023-04-14
-Start: 2023-04-14
-Tags: xai, explainable-ai, lime, shap
 Category: Explainable AI
+Date: '2023-04-14'
 Image: /images/head/shap_lime_differences.jpg
-banner: "/images/head/shap_lime_differences.jpg"
-Summary: When it comes to explainable AI, LIME and SHAP are two popular methods for providing insights into the decisions made by machine learning models. What are the key differences between these methods? In this article, we will help you understand which method may be best for your specific use case.
+Modified: '2023-04-14'
+Slug: explaining-ai-the-key-differences-between-lime-and-shap-methods
+Start: '2023-04-14'
 Status: published
+Summary: When it comes to explainable AI, LIME and SHAP are two popular methods for providing insights into the decisions made by machine learning models. What are the key differences between these methods? In this article, we will help you understand which method may be best for your specific use case.
+Tags: xai, explainable-ai, lime, shap
+Title: Explaining AI - The Key Differences Between LIME and SHAP Methods
+banner: /images/head/shap_lime_differences.jpg
 prompt: What are the key differences between LIME and SHAP
 ---
 

@@ -1,15 +1,15 @@
 ---
-Title: Tutorial on How to Create new Theme for Pelican Static Site Generator
-Slug: create-theme-for-pelican-blog-tutorial
-Date: 2022-03-01
-Modified: 2022-03-01
-Start: 2022-03-01
-Tags: pelican, static-site-generator, theme-development, web-development, css, html, templates, site-design, web-design
 Category: Howto
+Date: '2022-03-01'
 Image: /images/head/pelican_theme.jpg
-banner: /images/head/pelican_theme.jpg
-Summary: A great Pelican theme can make all the difference. Learn how to design your own with our comprehensive tutorial.
+Modified: '2022-03-01'
+Slug: create-theme-for-pelican-blog-tutorial
+Start: '2022-03-01'
 Status: published
+Summary: A great Pelican theme can make all the difference. Learn how to design your own with our comprehensive tutorial.
+Tags: pelican, static-site-generator, theme-development, web-development, css, html, templates, site-design, web-design
+Title: Tutorial on How to Create New Theme for Pelican Static Site Generator
+banner: /images/head/pelican_theme.jpg
 prompt: Give me detailed outline of the tutorial on How to create from scratch a new theme for Pelican (Static Site Generator).
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->

@@ -4,12 +4,8 @@ title: Convert PDF document to image
 date: 2022-05-12
 status: published
 slug: convert-pdf-to-image
-tags:
-- convert
-- image
-- pdf
+tags: convert, image, pdf
 ---
-
 
 
 ## install poppler-utils

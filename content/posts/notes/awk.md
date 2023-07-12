@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: awk
-tags: awk, gawk, mawk, snippet, software/alternatives, Linux
-title: Awk
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: awk
+Status: published
+Tags: awk, gawk, mawk, snippet, software/alternatives, Linux
+Title: Awk
 ---
 
 ## Validate CSV number of fields:

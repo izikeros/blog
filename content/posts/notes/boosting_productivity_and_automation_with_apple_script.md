@@ -1,11 +1,11 @@
 ---
-Title: Boosting Productivity and Automation with AppleScript on macOS
+Category: note
+Date: '2023-07-10'
+Modified: '2023-07-12'
 Slug: Boosting Productivity and Automation with AppleScript on macOS
-Date: 2023-07-10
-Modified: 2023-07-10
 Status: published
 Tags: macos, automation, script, osascropt, applescript
-Category: note
+Title: Boosting Productivity and Automation With AppleScript on macOS
 ---
 
 ## Introduction
@@ -195,16 +195,16 @@ While AppleScript is a robust tool, other alternatives can also help achieve aut
 
 <a id="automator"></a>
 #### Automator
-![automator](https://help.apple.com/assets/61E87B255FBFB2628709732E/61E87B275FBFB26287097336/en_GB/573f95d708cbb258343f5c78cc439bcb.png)
+![automator logo](https://help.apple.com/assets/61E87B255FBFB2628709732E/61E87B275FBFB26287097336/en_GB/573f95d708cbb258343f5c78cc439bcb.png)
 [Automator](https://support.apple.com/en-gb/guide/automator/welcome/mac) is a visual automation tool built into macOS. It provides a drag-and-drop interface to create workflows without writing code. Automator supports a wide range of actions and can be an excellent choice for users who prefer a more intuitive approach.
 <a id="hammerspoon"></a>
 #### Hammerspoon
-![](https://www.hammerspoon.org/images/hammerspoon.png) 
+![Hammerspoon logo](https://www.hammerspoon.org/images/hammerspoon.png) 
 [Hammerspoon](https://www.hammerspoon.org/) is a powerful automation tool that uses the Lua scripting language. It offers extensive customization and control over macOS, allowing users to create complex workflows and automation routines.
 
 <a id="keyboard-maestro"></a>
 #### Keyboard Maestro
-![](https://www.keyboardmaestro.com/img/keyboardmaestro-64.png)
+![Keyboard Maestro logo](https://www.keyboardmaestro.com/img/keyboardmaestro-64.png)
 [Keyboard Maestro](https://www.keyboardmaestro.com/main/) is a comprehensive automation tool that focuses on keyboard and mouse automation. It provides a user-friendly interface to create macros, trigger actions based on specific events, and automate repetitive tasks efficiently.
 
 <a id="conclusion"></a>

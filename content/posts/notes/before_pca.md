@@ -1,12 +1,12 @@
 ---
-Title: Checks and Data preprocessing steps before applying PCA
+Category: note
+Date: '2023-02-20'
+Modified: '2023-07-12'
+Prompt: What are the necessary steps before applying pca to the dataset for dimensionality reduction. What we need to check, are there any pre-processing steps required? Give me long blog text. Suggest illustrations. Give me python code snippets that illustrate required steps of analysis or pre-processing. Write post using first person narration.
 Slug: before-pca
-Date: 2023-02-20
-Modified: 2023-02-20
 Status: published
 Tags: data-preprocessing, pca, dimensionality-reduction, python, interpretability, categorical-variables, multicollinearity, imbalanced-data
-Category: note
-prompt:What are the necessary steps before applying pca to the dataset for dimensionality reduction. What we need to check, are there any pre-processing steps required? Give me long blog text. Suggest illustrations. Give me python code snippets that illustrate required steps of analysis or pre-processing. Write post using first person narration.
+Title: Checks and Data Preprocessing Steps Before Applying PCA
 ---
 Principal Component Analysis (PCA) is a popular technique used for dimensionality reduction. It involves transforming a dataset into a new coordinate system that consists of principal components, which are linear combinations of the original features. PCA is useful for reducing the number of features in a dataset, while still retaining most of the information.
 

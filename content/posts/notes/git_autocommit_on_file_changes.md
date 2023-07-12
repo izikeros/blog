@@ -1,12 +1,12 @@
 ---
-title: Git - autocommit on file changes
-date: 2021-09-14
-modified: 2022-09-01
-status: published
-tags: git, autocommit, note-taking, notes, automatic, automation, git/autocommit
-summary: How to create automatically commits if any file in the watched folder was changed
-slug: git-autocommit-on-file-changes
-category: note
+Category: note
+Date: '2021-09-14'
+Modified: '2023-07-12'
+Slug: git-autocommit-on-file-changes
+Status: published
+Summary: How to create automatically commits if any file in the watched folder was changed
+Tags: git, autocommit, note-taking, notes, automatic, automation, git/autocommit
+Title: Git - Autocommit on File Changes
 citation_needed: false
 ---
 

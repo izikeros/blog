@@ -1,12 +1,12 @@
 ---
-Title: ActivityPub - how it works and how to use it?
+Category: note
+Date: '2023-03-06'
+Modified: '2023-07-12'
+Prompt: Give me long blog post on ActivityPub with examples how you can use it in your apps.
 Slug: activitypub-how-it-works-how-to-use-it
-Date: 2023-03-06
-Modified: 2023-03-06
 Status: published
 Tags: activitypub, social-networking, federated-social-web, rss, gitea, xmpp
-Category: note
-prompt: Give me long blog post on ActivityPub with examples how you can use it in your apps.
+Title: ActivityPub - How It Works and How to Use It?
 ---
 
 ActivityPub is a protocol designed to enable decentralized social networking. It is based on the principles of the ***Federated Social Web***, which aims to create a social web that is not owned by any single entity or corporation. In this blog post, we will explore the basics of ActivityPub and how it can be used in your applications.

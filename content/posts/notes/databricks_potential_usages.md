@@ -1,12 +1,12 @@
 ---
-Title: Databricks Potential Usages
-Slug: databricks-potential-usages
-Date: 2023-01-25
-Modified: 2023-01-25
-Status: published
-Tags: machine-learning, data-engineering, databricks 
 Category: note
-prompt: What are the usual but still possible usages of databricks? Give me examples.
+Date: '2023-01-25'
+Modified: '2023-07-12'
+Prompt: What are the usual but still possible usages of databricks? Give me examples.
+Slug: databricks-potential-usages
+Status: published
+Tags: machine-learning, data-engineering, databricks
+Title: Databricks Potential Usages
 ---
 Databricks is a cloud-based platform for big data processing and analytics. Here are some common use cases:
 

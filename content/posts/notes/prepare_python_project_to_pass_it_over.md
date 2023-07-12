@@ -1,12 +1,12 @@
 ---
-Title: How to prepare python project to pass it over to another developer
-Slug: how_to_prepare_python_project_to_pass_it_over_to_another_developer
-Date: 2023-03-30
-Modified: 2023-03-30
-Status: published
-Tags: python, python/project, project, handover, python/documentation, testing, readme 
 Category: note
-prompt: How to prepare python project to pass it over to another developer. Give me long and detailed guidelines.
+Date: '2023-03-30'
+Modified: '2023-07-12'
+Prompt: How to prepare python project to pass it over to another developer. Give me long and detailed guidelines.
+Slug: how_to_prepare_python_project_to_pass_it_over_to_another_developer
+Status: published
+Tags: python, python/project, project, handover, python/documentation, testing, readme
+Title: How to Prepare Python Project to Pass It Over to Another Developer
 ---
 
 Preparing a Python project to be passed on to another developer requires attention to detail and documentation to ensure that the new developer can understand the project and make modifications with ease. Here is a long and detailed guide on how to prepare a Python project to be handed over to another developer:

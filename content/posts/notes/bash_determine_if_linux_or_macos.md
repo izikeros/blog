@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-06-03'
-modified: '2022-06-03'
-status: published
-slug: bash-determine-if-linux-or-macos
-tags: bash, determine, Linux, macos
-title: Bash - determine if script runs on Linux, macOS or other system
+Category: note
+Date: '2022-06-03'
+Modified: '2023-07-12'
+Slug: bash-determine-if-linux-or-macos
+Status: published
+Tags: bash, determine, Linux, macos
+Title: Bash - Determine if Script Runs on Linux, macOS or Other System
 ---
 
 ```sh

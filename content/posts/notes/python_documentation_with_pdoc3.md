@@ -1,13 +1,13 @@
 ---
-category: note
-date: '2021-09-28'
-modified: '2021-09-28'
-slug: python-documentation-with-pdoc3
-status: published
+Category: note
+Date: '2021-09-28'
+Modified: '2023-07-12'
+Slug: python-documentation-with-pdoc3
+Status: published
+Summary: summary
+Tags: documentation, pdoc3, python, documentation-generator, sphinx
+Title: Python - Project Documentation From the Code With Pdoc3
 suggested_tags: documentation, pdoc3, python
-summary: summary
-tags: documentation, pdoc3, python, documentation-generator, sphinx
-title: Python - project documentation from the code with pdoc3
 ---
 
 Despite Sphinx seems to be the most common tool for generating documentation pdoc3 is an interesting option.

@@ -1,15 +1,15 @@
 ---
-Title: Is the the game theory any useful for data science?
-Slug: is-game-theory-any-usefull-for-datascience
-Date: 2023-02-09
-Modified: 2023-02-09
-Start: 2023-02-09
-Tags: machine-learning, game-theory 
 Category: Machine Learning
+Date: '2023-02-09'
 Image: /images/head/abstract_1.jpg
-banner: "/images/head/abstract_1.jpg"
-Summary: 
+Modified: '2023-02-09'
+Slug: is-game-theory-any-usefull-for-datascience
+Start: '2023-02-09'
 Status: PUBLISHED
+Summary: null
+Tags: machine-learning, game-theory
+Title: Is the the Game Theory Any Useful for Data Science?
+banner: /images/head/abstract_1.jpg
 prompt: give me long answer, blog-post style on Is the the game theory (or other derivative method) any useful for data science?. If so give practical examples of the use cases.
 ---
 up::[[game_theory]]

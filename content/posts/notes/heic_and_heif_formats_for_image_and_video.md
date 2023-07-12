@@ -1,12 +1,12 @@
 ---
-Title: Smaller Files, Better Quality: The Advantages of HEIF and HEIC
-Slug: heif-and-heic-format-for-images-and-video
-Date: 2023-04-14
-Modified: 2023-04-14
-Status: published
-Tags: heic, heif, mpeg, jpg, image-format, image-compression, compression 
 Category: note
-prompt: Give me long blog post on heic and heif formats. dig into technical details. use latex inline equations when needed.
+Date: '2023-04-14'
+Modified: '2023-07-12'
+Prompt: Give me long blog post on heic and heif formats. dig into technical details. use latex inline equations when needed.
+Slug: heif-and-heic-format-for-images-and-video
+Status: published
+Tags: heic, heif, mpeg, jpg, image-format, image-compression, compression
+Title: Smaller Files, Better Quality - The Advantages of HEIF and HEIC
 ---
 
 ## Overview

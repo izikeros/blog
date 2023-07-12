@@ -1,15 +1,16 @@
 ---
-title: How to get most of GitHub Copilot
-date: 2022-01-25
-modified: 2022-01-25
-status: Published
-tags: github, coding, ai
-summary: This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4: "How to get most of GitHub Copilot".
-slug: how-to-get-most-of-github-copilot
-category: Howto
-citation_needed: false
-todo:
+Category: Howto
+Date: '2022-01-25'
 Image: /images/head/copilot-warp-speed-head.jpg
+Modified: '2023-07-12'
+Slug: how-to-get-most-of-github-copilot
+Status: Published
+Summary: This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - "How to get most of GitHub Copilot".
+Tags: github, coding, ai
+Title: How to Get Most of GitHub Copilot
+banner: /images/head/copilot-warp-speed-head.jpg
+citation_needed: false
+todo: None
 ---
 
 

@@ -1,16 +1,16 @@
 ---
-Title: A guide to building a Python RPC server using Flask
-Slug: guide-building-python-rpc-server-using-flask
-Date: 2023-02-13
-Modified: 2023-02-13
-Start: 2023-02-13
-Tags: python, flask, rpc, client-server, communication
 Category: Howto
+Date: '2023-02-13'
 Image: /images/head/rpc_server.jpg
-banner: "/images/head/rpc_server.jpg"
-Summary: Discover the world of distributed systems and build your own Python RPC server using Flask. Harness the power of remote procedure calls today!
+Modified: '2023-02-13'
+Slug: guide-building-python-rpc-server-using-flask
+Start: '2023-02-13'
 Status: published
-prompt:
+Summary: Discover the world of distributed systems and build your own Python RPC server using Flask. Harness the power of remote procedure calls today!
+Tags: python, flask, rpc, client-server, communication
+Title: A Guide to Building a Python RPC Server Using Flask
+banner: /images/head/rpc_server.jpg
+prompt: null
 todo: verify if it works, add repo with code
 ---
 

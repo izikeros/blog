@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: 2023-01-17
-status: published
-slug: git-delete-branch
-tags: branch, delete, git
-title: How to delete a Git branch locally and remotely?
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: git-delete-branch
+Status: published
+Tags: branch, delete, git
+Title: How to Delete a Git Branch Locally and Remotely?
 ---
 
 ## Introduction

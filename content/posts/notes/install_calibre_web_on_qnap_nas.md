@@ -1,11 +1,11 @@
 ---
-title: Tutorial - Install Calibre web on QNAP NAS
-date: 2022-10-12
-modified: 2022-10-12
-status: published
-tags: calibre, calibre-web, docker
-slug: install-calibre-web-qnap-nas-tutorial
-category: note
+Category: note
+Date: '2022-10-12'
+Modified: '2023-07-12'
+Slug: install-calibre-web-qnap-nas-tutorial
+Status: published
+Tags: calibre, calibre-web, docker
+Title: Tutorial - Install Calibre Web on QNAP NAS
 citation_needed: false
 ---
 Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using a [Calibre](https://calibre-ebook.com/) database.

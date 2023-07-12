@@ -1,13 +1,13 @@
 ---
-Title: How to install TensorFlow and Keras on Windows 10
+Category: Howto
 Date: '2019-01-17'
-Modified: '2019-02-08'
-Start: '2019-01-17' 
-Tags: machine learning, tensorflow, howto
-Category: 'Howto'
 Image: /images/head/keras+tensorflow.jpg
-Summary: Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works.
+Modified: '2019-02-08'
+Start: '2019-01-17'
 Status: published
+Summary: Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works.
+Tags: machine learning, tensorflow, howto
+Title: How to Install TensorFlow and Keras on Windows 10
 ---
 > **EDIT 2021**: This post is partially depreciated by now since for TensorFlow 2.x CPU and GPU versions are integrated - there is no separate install and Keras is integrated with TensorFlow - no need to install separately unless you have good reasons for separate install.
 

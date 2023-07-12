@@ -1,15 +1,15 @@
 ---
-Title: Top 10 Python Libraries for Document Classification
-Slug: top-10-python-libraries-for-document-classification
-Date: 2022-05-01
-Modified: 2022-05-01
-Start: 2022-05-01
-Tags: document-intelligence, AI, python, document-processing, document-data-extraction, machine-learning, natural-language-processing, NLP, text-classification, scikit-learn, NLTK, Gensim, TensorFlow, PyTorch, Keras, PyCaret, FastText, PyText, TextBlob, Spacy, Flair, AllenNLP, Transformers, Vowpal Wabbit, LightGBM, XGBoost, CatBoost, HuggingFace, MXNet, Theano, Caffe2, TorchText, Stanford-CoreNLP, Textacy, Pattern, Polyglot, Apache-Tika, Apache-Lucene, PyTorch-NLP
 Category: Machine Learning
+Date: '2022-05-01'
 Image: /images/head/document_classification.jpg
-banner: /images/head/document_classification.jpg
-Summary: Unlock the power of document classification with these top Python libraries! Discover the best tools for effortless text analysis and more.
+Modified: '2022-05-01'
+Slug: top-10-python-libraries-for-document-classification
+Start: '2022-05-01'
 Status: published
+Summary: Unlock the power of document classification with these top Python libraries! Discover the best tools for effortless text analysis and more.
+Tags: document-intelligence, AI, python, document-processing, document-data-extraction, machine-learning, natural-language-processing, NLP, text-classification, scikit-learn, NLTK, Gensim, TensorFlow, PyTorch, Keras, PyCaret, FastText, PyText, TextBlob, Spacy, Flair, AllenNLP, Transformers, Vowpal Wabbit, LightGBM, XGBoost, CatBoost, HuggingFace, MXNet, Theano, Caffe2, TorchText, Stanford-CoreNLP, Textacy, Pattern, Polyglot, Apache-Tika, Apache-Lucene, PyTorch-NLP
+Title: Top 10 Python Libraries for Document Classification
+banner: /images/head/document_classification.jpg
 prompt: give me long markdown blog-post text on Top 10 Python libraries for document classification
 ---
 

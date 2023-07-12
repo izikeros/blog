@@ -1,14 +1,14 @@
 ---
-title: Lesser Known Backtesting Libraries
-date: 2022-06-05
-modified: 2022-10-20
-status: Published
-tags: trading, backtesting, crypto, algorithmic-trading, algotrading, quant
-summary: This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.
-slug: lesser-known-backtesting-libraries
-category: Algorithmic Trading
-citation_needed: false
+Category: Algorithmic Trading
+Date: '2022-06-05'
 Image: images/head/backtesting.jpg
+Modified: '2023-07-12'
+Slug: lesser-known-backtesting-libraries
+Status: Published
+Summary: This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.
+Tags: trading, backtesting, crypto, algorithmic-trading, algotrading, quant
+Title: Lesser Known Backtesting Libraries
+citation_needed: false
 ---
 
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->

@@ -1,11 +1,11 @@
 ---
-Title: How to select rows from a DataFrame based on column values
+Category: note
+Date: '2023-02-12'
+Modified: '2023-07-12'
 Slug: how-to-select-rows-from-DataFrame-based-on-column-values
-Date: 2023-02-12
-Modified: 2023-02-12
 Status: published
 Tags: python, pandas, pandas/indexing
-Category: note
+Title: How to Select Rows From a DataFrame Based on Column Values
 ---
 
 How to select rows from a DataFrame based on column values?

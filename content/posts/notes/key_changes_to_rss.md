@@ -1,13 +1,13 @@
 ---
-Title: Future-Proofing RSS - Key Changes and Technical Solutions to Keep the Web Feed Format Relevant
-Slug: future-changes-to-rss
-Date: 2023-03-05
-Modified: 2023-03-05
-Status: published
-Tags: rss
 Category: note
-prompt: Give me long text with proposals of a key changes to the rss standard (and technical solution for implementing it) to prevent RSS becoming obsolete.
-summary: Discover how RSS can stay relevant in the face of emerging technologies with key changes such as multimedia support, personalization, and security.
+Date: '2023-03-05'
+Modified: '2023-07-12'
+Prompt: Give me long text with proposals of a key changes to the rss standard (and technical solution for implementing it) to prevent RSS becoming obsolete.
+Slug: future-changes-to-rss
+Status: published
+Summary: Discover how RSS can stay relevant in the face of emerging technologies with key changes such as multimedia support, personalization, and security.
+Tags: rss
+Title: Future-Proofing RSS - Key Changes and Technical Solutions to Keep the Web Feed Format Relevant
 ---
 
 While RSS has been a widely adopted web feed format for over two decades, there are concerns that it may become obsolete in the face of emerging technologies and trends. To prevent this from happening, there are several key changes that could be made to the RSS standard to make it more relevant and useful in the years to come. In this article, we will explore some proposals for key changes to the RSS standard and their technical solutions.

@@ -1,11 +1,11 @@
 ---
-Title: How to set transparent background for plotly plot?
+Category: note
+Date: '2023-02-13'
+Modified: '2023-07-12'
 Slug: plotly_transparent_background
-Date: 2023-02-13
-Modified: 2023-02-13
 Status: published
 Tags: plotly, transparency, transparent-background, visualization
-Category: note
+Title: How to Set Transparent Background for Plotly Plot?
 ---
 Setting a transparent background for a Plotly plot can be accomplished using different methods depending on the use case. In this answer, I will provide some examples of how to achieve this.
 

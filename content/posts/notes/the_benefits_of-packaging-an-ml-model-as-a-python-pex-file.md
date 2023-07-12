@@ -1,11 +1,11 @@
 ---
-Title: The Benefits of Packaging an ML Model as a Python PEX File
+Category: note
+Date: '2023-01-17'
+Modified: '2023-07-12'
 Slug: the-benefits-of-packaging-an-ml-model-as-a-python-pex-file
-Date: 2023-01-17
-Modified: 2023-01-17
 Status: published
 Tags: python, packaging
-Category: note
+Title: The Benefits of Packaging an ML Model as a Python PEX File
 ---
 
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->

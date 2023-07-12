@@ -1,11 +1,11 @@
 ---
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: chocolatey
-tags: chocolatey, windows, packages, winget
-title: Chocolatey (Windows)
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: chocolatey
+Status: published
+Tags: chocolatey, windows, packages, winget
+Title: Chocolatey (Windows)
 ---
 
 > **NOTE:** 

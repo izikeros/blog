@@ -1,11 +1,11 @@
 ---
-Title: yapf toml package is needed for using pyproject.toml as a configuration file
-Slug: yapf-toml-package-is-needed-for-using-pyproject-toml-as-a-configuration -file
-Date: 2023-03-08
-Modified: 2023-03-08
-Status: published
-Tags: yapf, pre-commit 
 Category: note
+Date: '2023-03-08'
+Modified: '2023-07-12'
+Slug: yapf-toml-package-is-needed-for-using-pyproject-toml-as-a-configuration -file
+Status: published
+Tags: yapf, pre-commit
+Title: Yapf Toml Package Is Needed for Using pyproject.toml as a Configuration File
 ---
 
 if you are getting error:

@@ -1,12 +1,12 @@
 ---
-Title: Git - annotated vs. lightweight tags
+Category: note
+Date: '2023-03-31'
+Modified: '2023-07-12'
+Prompt: Explain me, in git, what is the difference between annotated and lightweight tags. When to use each type? Give me long text.
 Slug: git-annotated-vs-lightweight-tags
-Date: 2023-03-31
-Modified: 2023-03-31
 Status: published
 Tags: git, tag
-Category: note
-prompt: Explain me, in git, what is the difference between annotated and lightweight tags. When to use each type? Give me long text.
+Title: Git - Annotated vs. Lightweight Tags
 ---
 In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.
 

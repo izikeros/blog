@@ -1,16 +1,16 @@
 ---
-Title: How to Use RPC in Python?
-Slug: how-to-use-rpc-in-python
-Date: 2023-02-13
-Modified: 2023-02-13
-Start: 2023-02-13
-Tags: python, microservices, communication, rpc, rest, remote-procedure-call, xmlrpc, jsonrpc, distributed-computing, client-server, server, client, SimpleXMLRPCServer, ServerProxy, remote-communication, Flask
 Category: Howto
+Date: '2023-02-13'
 Image: /images/head/rpc_flask.jpg
-banner: "/images/head/rpc_flask.jpg"
-Summary: Get Started with RPC - A Beginner's Guide to Building a Python RPC Server Using xmlrpc and jsonrpc.
+Modified: '2023-02-13'
+Slug: how-to-use-rpc-in-python
+Start: '2023-02-13'
 Status: published
-prompt:
+Summary: Get Started with RPC - A Beginner's Guide to Building a Python RPC Server Using xmlrpc and jsonrpc.
+Tags: python, microservices, communication, rpc, rest, remote-procedure-call, xmlrpc, jsonrpc, distributed-computing, client-server, server, client, SimpleXMLRPCServer, ServerProxy, remote-communication, Flask
+Title: How to Use RPC in Python?
+banner: /images/head/rpc_flask.jpg
+prompt: null
 ---
 
 [Remote Procedure Call (RPC)](https://en.wikipedia.org/wiki/Remote_procedure_call) is a protocol that allows two different processes or applications to communicate with each other across different machines, even if they are using different programming languages. RPC is a popular technique used in distributed computing environments, where applications running on different systems need to communicate with each other to perform a task. In this blog post, we will explore how to use RPC in Python and provide an example of two instances communicating using RPC.

@@ -1,12 +1,12 @@
 ---
-title: How to experiment with MLFlow locally on laptop or PC? Instructions for the local setup.
-slug: how-to-experiment-with-mlflow-locally-on-laptop-or-pc
-date: 2023-01-14
-modified: 2023-01-14
-status: published
-tags: mlops, mlflow, machine-learning 
-summary: summary
-category: note
+Category: note
+Date: '2023-01-14'
+Modified: '2023-07-12'
+Slug: how-to-experiment-with-mlflow-locally-on-laptop-or-pc
+Status: published
+Summary: summary
+Tags: mlops, mlflow, machine-learning
+Title: How to Experiment With MLFlow Locally on Laptop or PC? Instructions for the Local Setup.
 citation_needed: false
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->

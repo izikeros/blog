@@ -1,14 +1,14 @@
 ---
-title: The Best Self-Hosted, Open Source RSS Feed Readers in 2022
-date: 2022-08-31
-modified: 2022-08-31
-status: published
-tags: rss, news, feed-reader, self-hosted, 
-summary: Best self-hosted RSS Feed Readers selected by popularity and project activity.
-slug: the-best-self-hosted-rss-feed-readers-in-2022
-category: Howto
-citation_needed: false
+Category: Howto
+Date: '2022-08-31'
 Image: /images/head/rss_banner_small.jpg
+Modified: '2023-07-12'
+Slug: the-best-self-hosted-rss-feed-readers-in-2022
+Status: published
+Summary: Best self-hosted RSS Feed Readers selected by popularity and project activity.
+Tags: rss, news, feed-reader, self-hosted,
+Title: The Best Self-Hosted, Open Source RSS Feed Readers in 2022
+citation_needed: false
 ---
 ## What is RSS
 >**RSS** (**Really Simple Syndication**) is a web feed that allows users and applications to access updates to websites in a standardized, computer-readable format. Subscribing to RSS feeds can allow a user to keep track of many different websites in a single news aggregator, which constantly monitors sites for new content, removing the need for the user to manually check them. 

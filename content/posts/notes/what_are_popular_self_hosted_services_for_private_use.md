@@ -1,11 +1,11 @@
 ---
-Title: What are the most popular private services that people decide to self-host?
-Slug: self-hosted-private-services
-Date: 2023-01-17
-Modified: 2023-01-17
-Status: published
-Tags: self-hosted, nas, 
 Category: note
+Date: '2023-01-17'
+Modified: '2023-07-12'
+Slug: self-hosted-private-services
+Status: published
+Tags: self-hosted, nas,
+Title: What Are the Most Popular Private Services That People Decide to Self-Host?
 ---
 
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->

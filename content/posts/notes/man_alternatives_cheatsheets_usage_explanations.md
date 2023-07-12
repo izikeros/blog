@@ -1,11 +1,11 @@
 ---
-title: Man alternatives, CLI command usage explanations, and cheatsheets
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: man-alternatives-usage-explanations-and-cheatsheets
-tags: software/alternatives, cheatsheet, man, someday, rofi, cli
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: man-alternatives-usage-explanations-and-cheatsheets
+Status: published
+Tags: software/alternatives, cheatsheet, man, someday, rofi, cli
+Title: Man Alternatives, CLI Command Usage Explanations, and Cheatsheets
 ---
 
 ## [tldr](https://tldr.sh/) ![GitHub stars](https://img.shields.io/github/stars/tldr-pages/tldr.svg?logo=github) 

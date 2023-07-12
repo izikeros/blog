@@ -1,11 +1,11 @@
 ---
-Title: Git - sign previous commit
+Category: note
+Date: '2023-02-28'
+Modified: '2023-07-12'
 Slug: git-sign-previous-commit
-Date: 2023-02-28
-Modified: 2023-02-28
 Status: published
 Tags: git, commit, commit-signing, gpg-key, ssh-key, gpg
-Category: note
+Title: Git - Sign Previous Commit
 ---
 
 To sign a previous commit in Git, you can use the `git commit --amend --no-edit -S` command. This command will sign the previous commit using your GPG key.

@@ -1,11 +1,11 @@
 ---
-Title: How to change the size of matplotlib figure?
-Slug: how-to-change-the-size-of-matplotlib-figure
-Date: 2023-02-12
-Modified: 2023-02-12
-Status: published
-Tags: matplotlib, python/visualization, styling 
 Category: note
+Date: '2023-02-12'
+Modified: '2023-07-12'
+Slug: how-to-change-the-size-of-matplotlib-figure
+Status: published
+Tags: matplotlib, python/visualization, styling
+Title: How to Change the Size of Matplotlib Figure?
 ---
 
 To change the size of a matplotlib figure, there are several ways you can do it. Here are some examples:

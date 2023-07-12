@@ -1,12 +1,12 @@
 ---
-title: Clone partition in Linux
-date: 2022-03-03
-modified: 2022-03-03
-status: published
-tags: Linux, dd, pv, partition, disk
-summary: how to clone disk partition in Linux
-slug: clone-partition-in-linux
-category: note
+Category: note
+Date: '2022-03-03'
+Modified: '2023-07-12'
+Slug: clone-partition-in-linux
+Status: published
+Summary: how to clone disk partition in Linux
+Tags: Linux, dd, pv, partition, disk
+Title: Clone Partition in Linux
 citation_needed: false
 ---
 

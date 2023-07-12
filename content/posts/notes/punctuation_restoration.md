@@ -1,11 +1,11 @@
 ---
-Title: Punctuation restoration
+Category: note
+Date: '2023-03-15'
+Modified: '2023-07-12'
 Slug: punctuation-restoration
-Date: 2023-03-15
-Modified: 2023-03-15
 Status: published
 Tags: nlp, punctuation, punctuation-restoration, pos, part-of-speech-tagging, tokenization, stemming, random-forest, decision-trees
-Category: note
+Title: Punctuation Restoration
 ---
 
 Punctuation restoration using machine learning (ML) is a process of predicting the appropriate punctuation marks in a text that is missing or poorly punctuated. This technique has become increasingly popular in recent years due to the growing volume of unstructured text data available in digital form, such as social media posts, online articles, and chat logs.

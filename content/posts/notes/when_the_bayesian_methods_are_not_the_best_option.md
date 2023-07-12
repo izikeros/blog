@@ -1,11 +1,11 @@
 ---
-Title: When Bayesian methods are not the best option?
-Slug: when-the-bayesian-methods-are-not-the-best-option
-Date: 2023-01-16
-Modified: 2023-01-16
-Status: published
-Tags: bayesian, machine-learning 
 Category: note
+Date: '2023-01-16'
+Modified: '2023-07-12'
+Slug: when-the-bayesian-methods-are-not-the-best-option
+Status: published
+Tags: bayesian, machine-learning
+Title: When Bayesian Methods Are Not the Best Option?
 ---
 
 Bayesian methods are a powerful tool for probabilistic modeling and inference, but they may not be the best choice in certain situations. Here are a few examples of when it might be better to use alternative methods:

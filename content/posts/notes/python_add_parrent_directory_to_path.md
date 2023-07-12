@@ -1,12 +1,12 @@
 ---
-title: Adding Parent Directory To Python Path
-date: 2022-02-22
-modified: 2022-02-22
-status: published
-tags: python, gist, snippet, jupyter, notebook
-summary: 
-slug: python-add-parent-directory-to-path
-category: note
+Category: note
+Date: '2022-02-22'
+Modified: '2023-07-12'
+Slug: python-add-parent-directory-to-path
+Status: published
+Summary: None
+Tags: python, gist, snippet, jupyter, notebook
+Title: Adding Parent Directory to Python Path
 citation_needed: false
 ---
 

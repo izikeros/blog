@@ -1,12 +1,12 @@
 ---
-Title: Extracting keywords from the user query
-Slug: extracting-keywords-from-the-user-query
-Date: 2023-06-09
-Modified: 2023-06-09
-Status: published
-Tags: keywords, keyword-extraction, tfidf 
 Category: note
-prompt: Give me text about possible approaches for extracting keywords or key terms from the user query. discuss pros and cons of each approach
+Date: '2023-06-09'
+Modified: '2023-07-12'
+Prompt: Give me text about possible approaches for extracting keywords or key terms from the user query. discuss pros and cons of each approach
+Slug: extracting-keywords-from-the-user-query
+Status: published
+Tags: keywords, keyword-extraction, tfidf
+Title: Extracting Keywords From the User Query
 ---
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->

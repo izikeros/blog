@@ -1,11 +1,11 @@
 ---
-title: Pytest check if lists are equal
-category: note
-date: '2022-05-12'
-modified: '2022-05-12'
-status: published
-slug: pytest-check-lists-equal
-tags: pytest, python, assert
+Category: note
+Date: '2022-05-12'
+Modified: '2023-07-12'
+Slug: pytest-check-lists-equal
+Status: published
+Tags: pytest, python, assert
+Title: Pytest Check if Lists Are Equal
 ---
 In the assertions this can be useful to check if two lists are equal:
 ```python

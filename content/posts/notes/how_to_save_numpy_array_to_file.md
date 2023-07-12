@@ -1,11 +1,11 @@
 ---
-Title: How to save numpy array to file?
-Slug: how-to-save-numpy-array-to-file
-Date: 2023-02-24
-Modified: 2023-02-24
-Status: published
-Tags: numpy, dataset, machine-learning 
 Category: note
+Date: '2023-02-24'
+Modified: '2023-07-12'
+Slug: how-to-save-numpy-array-to-file
+Status: published
+Tags: numpy, dataset, machine-learning
+Title: How to Save Numpy Array to File?
 ---
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
