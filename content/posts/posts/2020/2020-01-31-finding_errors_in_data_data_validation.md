@@ -9,7 +9,7 @@ Status: published
 Summary: Explore methods to detect & fix errors in data, including validation, visualizations, statistical tests, cleaning techniques, machine learning & data quality tools. Get concise, easy to understand information with examples & links to external resources.
 Tags: machine-learning, data-engineering, dataset, data-visualization, data-cleaning
 Title: Finding Errors in Data - Data Validation
-banner: /images/head/errors_in_dataset.jpg
+banner: "/images/head/errors_in_dataset.jpg"
 prompt: Give me long data-science markdown article on methods for finding errors in data. Use hyperlinks to external resources when referring to methods or tools.
 ---
 
