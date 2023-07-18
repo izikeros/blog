@@ -9,9 +9,11 @@ Status: published
 Summary: Learn how to measure the quality of word and sentence embeddings in natural language processing (NLP), including intrinsic and extrinsic evaluation, and their strengths and limitations.
 Tags: machine-learning, python, embeddings, cosine-similarity, spearman-correlation, accuracy, f1-score, perplexity
 Title: Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?
-banner: /images/head/intrisic_vs_ext_640px.jpg
+banner: "/images/head/intrisic_vs_ext_640px.jpg"
 prompt: In machine learning, NLP - How to measure quality of embeddings (e.g. word embeddings or sentence embeddings). Give me long blog-post style text on that, audience for the article should be expert data scientists. Provide mathematical formulas in LaTeX in display format (not inline) if needed. - If there is any process described provide mermaid diagram of mermaid gantt chart - propose 10 intriguing or catchy titles for this article - In the end provide also HTML page description for this article (less than 140-200 characters)
 ---
+X::[[perplexity_in_dimensionality_reduction_PCA]]
+X::[[emulating_human_expression_by_controlling_the_burstines_and_perplexity]]
 
 ## Introduction
 Let's start with the concept of embedding vectors. In natural language processing (NLP), an embedding vector is a mathematical representation of words or phrases. It's a way to convert text data into numerical values that can be processed by machine learning algorithms. Word embeddings and sentence embeddings are widely used in natural language processing (NLP) for a variety of tasks, such as text classification, named entity recognition, machine translation, and sentiment analysis. However, it is not always straightforward to evaluate the quality of embeddings, and different evaluation metrics may be appropriate for different use cases. In this blog post, we will explore several ways to measure the quality of embeddings, including intrinsic and extrinsic evaluation, and discuss their strengths and limitations.
@@ -44,7 +46,7 @@ $$
 cosine\_similarity(\textbf{v}_1, \textbf{v}_2) = \frac{\textbf{v}_1 \cdot \textbf{v}_2}{\|\textbf{v}_1\|\|\textbf{v}_2\|}
 $$
 
-where $\textbf{u}$ and $\textbf{v}$ are the embeddings of two words, and $|\cdot|$ denotes the Euclidean norm.
+where $\textbf{v}_1$ and $\textbf{v}_2$ are the embeddings of two words, and $|\cdot|$ denotes the Euclidean norm.
 
 <a id="spearman-correlation"></a>
 ### Spearman Correlation
