@@ -8,6 +8,7 @@ Status: published
 Tags: keywords, keyword-extraction, tfidf
 Title: Extracting Keywords From the User Query
 ---
+X::[[hybrid_keyword_semantic_search]]
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 

@@ -5,10 +5,10 @@ Image: /images/head/text_vectorization.jpg
 Modified: '2023-07-04'
 Slug: text-vectorization-with-vectorhub-and-sentence-transformers
 Status: published
-Summary: null
+Summary: Learn how to use Sentence Transformers for text vectorization with different models using consistent API.
 Tags: embeddings, nlp, vectorhub, bert, sentence-transformers
 Title: Easy Text Vectorization With VectorHub and Sentence Transformers
-banner: /images/head/text_vectorization.jpg
+banner: "/images/head/text_vectorization.jpg"
 prompt: null
 ---
 Text is heavily inspired by part of the e-book: [Semantic NLP search with FAISS and VectorHub - Guide To Vectors (getvectorai.com)](https://learn.getvectorai.com/vector-ai-documentation/semantic-nlp-search-with-faiss-and-vectorhub) - which was using VectorHub as an interface to the models.

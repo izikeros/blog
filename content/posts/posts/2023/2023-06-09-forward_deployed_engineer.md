@@ -9,7 +9,7 @@ Status: published
 Summary: Bridging the gap between software products and customer needs, Forward Deployed Engineers are the game-changers of enterprise software. Discover their unique role in driving success and why it's in high demand. Don't miss out!
 Tags: machine-learning, python, career, roles, software-development
 Title: The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap Between Software Products and Customer Needs
-banner: /images/head/forward_deployed_engineer.jpg
+banner: "/images/head/forward_deployed_engineer.jpg"
 prompt: null
 ---
 ## TL;DR

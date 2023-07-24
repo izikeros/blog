@@ -1,6 +1,6 @@
 ---
-Title: 
-Slug: 
+Title: How to Organize Datascience Project
+Slug: how-to-organize-datascience-project
 Date: 2023-02-13
 Modified: 2023-02-13
 Start: 2023-02-13
