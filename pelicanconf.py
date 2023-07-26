@@ -292,3 +292,4 @@ ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-prev
 
 # The code for google ads is in templates/partials/google_automatic_ads.html
 USE_GOOGLE_AUTO_ADS = True
+CACHE_CONTENT=True

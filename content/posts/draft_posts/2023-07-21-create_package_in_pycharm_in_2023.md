@@ -16,7 +16,8 @@ prompt:
 # Creating a Python Package Using PyCharm and Poetry
 
 Welcome, fellow Python enthusiasts! Today, we'll walk you through the process of creating a Python package using the PyCharm IDE and the Poetry dependency management tool. By the end of this tutorial, you'll have a fully functional Python package that can convert lowercase text to uppercase. So, let's get started!
-
+![[Pasted image 20230724200030.png]]
+![[Pasted image 20230724200250.png]]
 ![PyCharm and Poetry logos](images/pycharm_poetry_logos.jpg)
 
 ## Prerequisites
