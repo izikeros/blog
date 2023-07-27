@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-07-26T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Cookiecutters for the python package with poetry</title><link href="https://www.safjan.com/cookiecutter-for-the-python-package-with-poetry/" rel="alternate"></link><published>2023-07-26T00:00:00+02:00</published><updated>2023-07-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-26:/cookiecutter-for-the-python-package-with-poetry/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-07-27T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>gitignore-style exclusion for restic</title><link href="https://www.safjan.com/gitignore-style-exclusion-for-restic/" rel="alternate"></link><published>2023-07-27T00:00:00+02:00</published><updated>2023-07-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-27:/gitignore-style-exclusion-for-restic/</id><summary type="html">&lt;p&gt;Restic is a popular backup tool that supports the use of &lt;code&gt;.gitignore&lt;/code&gt;-style exclusion patterns to ignore certain files and directories during the backup process. This feature is useful when you want to exclude specific files or directories from being backed up …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Restic is a popular backup tool that supports the use of &lt;code&gt;.gitignore&lt;/code&gt;-style exclusion patterns to ignore certain files and directories during the backup process. This feature is useful when you want to exclude specific files or directories from being backed up, such as temporary files, caches, or build artifacts.&lt;/p&gt;
+&lt;p&gt;To use &lt;code&gt;ignore&lt;/code&gt; with Restic, you can create a file called &lt;code&gt;.resticignore&lt;/code&gt; in the root of your repository (where you run Restic). This file should contain the patterns for the files and directories you want to ignore, just like you would do with a &lt;code&gt;.gitignore&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Here's how you can use &lt;code&gt;ignore&lt;/code&gt; in Restic:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a &lt;code&gt;.resticignore&lt;/code&gt; file:
+   Inside your project's root directory (or the directory you're backing up), create a file named &lt;code&gt;.resticignore&lt;/code&gt;. You can use any text editor to create this file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add patterns to ignore:
+   In the &lt;code&gt;.resticignore&lt;/code&gt; file, list the files and directories you want to ignore during the backup. Each pattern should be on a separate line. You can use the same syntax as you would in a &lt;code&gt;.gitignore&lt;/code&gt; file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For example, a simple &lt;code&gt;.resticignore&lt;/code&gt; file might look like this:
+   &lt;code&gt;*.log
+   temp/
+   cache/
+   build/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The above example would ignore all files with the &lt;code&gt;.log&lt;/code&gt; extension and the &lt;code&gt;temp&lt;/code&gt;, &lt;code&gt;cache&lt;/code&gt;, and &lt;code&gt;build&lt;/code&gt; directories.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run Restic backup with &lt;code&gt;--ignore-file&lt;/code&gt; option:
+   When running Restic to perform the backup, specify the &lt;code&gt;.resticignore&lt;/code&gt; file using the &lt;code&gt;--ignore-file&lt;/code&gt; option. This tells Restic to use the patterns in that file to exclude certain files and directories.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here's an example command:
+   &lt;code&gt;restic backup /path/to/your/data --ignore-file /path/to/.resticignore&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Replace &lt;code&gt;/path/to/your/data&lt;/code&gt; with the actual path of the data you want to back up and &lt;code&gt;/path/to/.resticignore&lt;/code&gt; with the path to your &lt;code&gt;.resticignore&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;By using the &lt;code&gt;.resticignore&lt;/code&gt; file, you can customize what gets backed up and what gets excluded. This can be particularly useful to avoid backing up large or unnecessary files, reducing storage space and backup time.&lt;/p&gt;</content><category term="note"></category><category term="restic"></category><category term="ignore"></category><category term="gitignore"></category></entry><entry><title>Python Virtual Environments - Choosing Between Project-based and Centralized Approach</title><link href="https://www.safjan.com/python-virtual-environments-choosing-between-project-based-and-centralized-approach/" rel="alternate"></link><published>2023-07-27T00:00:00+02:00</published><updated>2023-07-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-27:/python-virtual-environments-choosing-between-project-based-and-centralized-approach/</id><summary type="html">&lt;p&gt;When it comes to managing Python virtual environments, there are two common approaches: project-based virtual environments and centralized virtual environments. Each approach has its merits, and the choice depends on the specific needs and requirements of your development workflow. Let's break down …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When it comes to managing Python virtual environments, there are two common approaches: project-based virtual environments and centralized virtual environments. Each approach has its merits, and the choice depends on the specific needs and requirements of your development workflow. Let's break down each method step by step and provide recommendations with justifications.&lt;/p&gt;
+&lt;h2&gt;Project-based Virtual Environments&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In this approach, you create a virtual environment &lt;strong&gt;within the project directory&lt;/strong&gt; itself. This means that each project has its isolated Python environment, and you manage dependencies specific to that project. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Using project-based virtual environments is beneficial when you work on &lt;strong&gt;multiple projects&lt;/strong&gt; with &lt;strong&gt;different dependencies&lt;/strong&gt;. It keeps the dependencies isolated from each other, reducing the chance of version conflicts. Each project's virtual environment can have its own specific package versions, making it more reproducible and consistent. However, this approach can lead to some duplication of packages if multiple projects use the same dependencies.&lt;/p&gt;
+&lt;h2&gt;Centralized Virtual Environments&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In this approach, you create a &lt;strong&gt;centralized directory&lt;/strong&gt; where &lt;strong&gt;all virtual environments reside&lt;/strong&gt;. This directory can be outside your projects, e.g., &lt;code&gt;~/.virtualenvs&lt;/code&gt; or any other location you prefer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Centralized virtual environments are advantageous when you want to avoid duplicating packages across multiple projects. By keeping the virtual environments in a central location, you save disk space and reduce potential package redundancy. It also allows for easier management of virtual environments, as you can have a clear overview of all your environments in one place. However, it's important to be mindful of potential version conflicts between projects if they use different requirements.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Project-based virtual environments&lt;/strong&gt; provide strong isolation and independence for each project but may lead to some duplication of packages across projects.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Centralized virtual environments&lt;/strong&gt; are efficient in terms of space and can reduce redundancy, but you need to be cautious about potential version conflicts between projects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In conclusion, both approaches have their merits, and the choice depends on your specific workflow and preferences. If you work on many isolated projects with different dependencies, the project-based approach might be more suitable. On the other hand, if you prefer a more centralized and efficient setup, you can opt for centralized virtual environments. &lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="virtualenv"></category><category term="location"></category><category term="venv-dir"></category></entry><entry><title>Cookiecutters for the python package with poetry</title><link href="https://www.safjan.com/cookiecutter-for-the-python-package-with-poetry/" rel="alternate"></link><published>2023-07-26T00:00:00+02:00</published><updated>2023-07-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-26:/cookiecutter-for-the-python-package-with-poetry/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;ul&gt;
@@ -255,7 +297,7 @@
 &lt;li&gt;&lt;a href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html"&gt;napoleon&lt;/a&gt;: Sphinx extension for NumPy and Google style docstrings.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://sphinx-click.readthedocs.io/"&gt;sphinx-click&lt;/a&gt;: Sphinx extension for Click-based command-line interfaces.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/marketplace/actions/github-labeler"&gt;GitHub Labeler&lt;/a&gt;: GitHub Action for managing project labels.&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="cookiecutter"></category><category term="poetry"></category><category term="python-project"></category><category term="hypermodern"></category><category term="nox"></category><category term="shpinx"></category><category term="pypi"></category></entry><entry><title>Simplifying Data Download from Google Drive in Google Colab Using gdown</title><link href="https://www.safjan.com/download-data-google-drive-colab-gdown/" rel="alternate"></link><published>2023-07-24T00:00:00+02:00</published><updated>2023-07-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-24:/download-data-google-drive-colab-gdown/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="cookiecutter"></category><category term="poetry"></category><category term="python-project"></category><category term="hypermodern"></category><category term="nox"></category><category term="shpinx"></category><category term="pypi"></category><category term="python-package"></category><category term="python/package"></category></entry><entry><title>Simplifying Data Download from Google Drive in Google Colab Using gdown</title><link href="https://www.safjan.com/download-data-google-drive-colab-gdown/" rel="alternate"></link><published>2023-07-24T00:00:00+02:00</published><updated>2023-07-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-24:/download-data-google-drive-colab-gdown/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this blog post, we will explore a straightforward method to download data from Google Drive into your Google Colab notebook using the 'gdown' command. Google Colab is a popular platform for running Python code, especially for machine learning and data …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this blog post, we will explore a straightforward method to download data from Google Drive into your Google Colab notebook using the 'gdown' command. Google Colab is a popular platform for running Python code, especially for machine learning and data analysis tasks. By leveraging 'gdown,' a handy Python library, you can seamlessly access your files stored on Google Drive without any hassle. Let's dive right into the process!&lt;/p&gt;
 &lt;h2&gt;Steps&lt;/h2&gt;
@@ -22146,10 +22188,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="ea36b27e-df54-4639-8378-c28578714f70"&gt;&lt;/div&gt;
+&lt;div id="0fc65848-431f-4ec6-98d3-e6f2465d55c6"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#ea36b27e-df54-4639-8378-c28578714f70');
+var element = $('#0fc65848-431f-4ec6-98d3-e6f2465d55c6');
 
 (function(root) {
   function now() {
