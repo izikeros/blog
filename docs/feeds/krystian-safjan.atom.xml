@@ -2010,7 +2010,201 @@ img_004.heic
 &lt;li&gt;The new name is constructed using the desired pattern "img_xxx.ext", where "xxx" represents the sequence number and "ext" represents the original file extension.&lt;/li&gt;
 &lt;li&gt;Finally, the &lt;code&gt;counter&lt;/code&gt; is incremented for the next file.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You can save this Python script to a file with a &lt;code&gt;.py&lt;/code&gt; extension, for example, &lt;code&gt;rename_images.py&lt;/code&gt;, and then run it using a Python interpreter. The image files in the directory will be renamed accordingly, following the specified pattern while preserving their original extensions.&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="python"></category><category term="bash-script"></category><category term="python-script"></category><category term="alias"></category><category term="image-rename"></category><category term="utility script"></category></entry><entry><title>Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch</title><link href="https://www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/" rel="alternate"></link><published>2023-06-20T00:00:00+02:00</published><updated>2023-06-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-20:/git-workflow-reviewing-changes-before-pulling-remote-branch/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;You can save this Python script to a file with a &lt;code&gt;.py&lt;/code&gt; extension, for example, &lt;code&gt;rename_images.py&lt;/code&gt;, and then run it using a Python interpreter. The image files in the directory will be renamed accordingly, following the specified pattern while preserving their original extensions.&lt;/p&gt;</content><category term="note"></category><category term="bash"></category><category term="python"></category><category term="bash-script"></category><category term="python-script"></category><category term="alias"></category><category term="image-rename"></category><category term="utility script"></category></entry><entry><title>Harnessing the Power of Dependency Injection for Improved Testability in Python</title><link href="https://www.safjan.com/python-dependency-injection-for-the-testability/" rel="alternate"></link><published>2023-06-21T00:00:00+02:00</published><updated>2023-06-21T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-21:/python-dependency-injection-for-the-testability/</id><summary type="html">&lt;p&gt;Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In software development, testability is a crucial aspect that helps ensure the reliability and maintainability of our code. One effective technique for enhancing testability is dependency injection (DI). Dependency injection allows us to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code. In this blog post, we will explore various techniques, use cases, and lesser-known tricks for using dependency injection in Python.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#what-is-dependency-injection"&gt;What is Dependency Injection?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#benefits-of-dependency-injection"&gt;Benefits of Dependency Injection:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#techniques-for-dependency-injection"&gt;Techniques for Dependency Injection&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#constructor-injection"&gt;Constructor Injection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#setter-injection"&gt;Setter Injection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#interface-injection"&gt;Interface Injection&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#use-cases-for-dependency-injection"&gt;Use Cases for Dependency Injection:&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#testing-legacy-code"&gt;Testing Legacy Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#mocking-dependencies"&gt;Mocking Dependencies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#improving-code-reusability"&gt;Improving Code Reusability&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#parameter-injection"&gt;Parameter Injection:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#context-managers-and-dependency-injection"&gt;Context Managers and Dependency Injection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#dependency-injection-containers"&gt;Dependency Injection Containers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="what-is-dependency-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;What is Dependency Injection?&lt;/h2&gt;
+&lt;p&gt;Dependency injection is a design pattern that allows us to inject dependencies into a class or function from external sources rather than creating them internally. By doing so, we reduce the coupling between components and make them more flexible, reusable, and testable.&lt;/p&gt;
+&lt;p&gt;&lt;a id="benefits-of-dependency-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Benefits of Dependency Injection:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Improved testability&lt;/strong&gt;: By injecting dependencies, we can easily replace them with mocks or stubs during testing, making our tests more isolated and focused.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Decoupled code&lt;/strong&gt;: Dependency injection reduces the tight coupling between components, promoting better separation of concerns and modular design.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Code reusability&lt;/strong&gt;: With dependency injection, components become more reusable as they rely on abstractions rather than concrete implementations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easier maintenance&lt;/strong&gt;: By externalizing dependencies, we can modify or extend their behavior without affecting the code that uses them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="techniques-for-dependency-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Techniques for Dependency Injection&lt;/h2&gt;
+&lt;p&gt;&lt;a id="constructor-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Constructor Injection&lt;/h3&gt;
+&lt;p&gt;Constructor injection involves passing dependencies through a class's constructor. It ensures that the required dependencies are available before an object is created.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;UserService&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user_repository&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_repository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_repository&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_repository&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="setter-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Setter Injection&lt;/h3&gt;
+&lt;p&gt;Setter injection involves setting the dependencies using setter methods. This technique allows for more flexibility, as dependencies can be changed or updated after object initialization.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;NotificationService&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;set_email_service&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;email_service&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;email_service&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;email_service&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send_notification&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;email_service&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;New notification!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="interface-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Interface Injection&lt;/h3&gt;
+&lt;p&gt;Interface injection is a technique where a dependency is injected by providing an interface or an abstract base class. This allows for the injection of different implementations of the same interface, providing flexibility and extensibility.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;abc&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ABC&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;abstractmethod&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Database&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABC&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nd"&gt;@abstractmethod&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MySQLDatabase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Database&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c1"&gt;# Perform MySQL query&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PostgresDatabase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Database&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c1"&gt;# Perform Postgres query&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="use-cases-for-dependency-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Use Cases for Dependency Injection:&lt;/h2&gt;
+&lt;p&gt;&lt;a id="testing-legacy-code"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Testing Legacy Code&lt;/h3&gt;
+&lt;p&gt;When working with legacy code that has tightly coupled dependencies, dependency injection can be used to introduce testability by replacing or mocking those dependencies during testing.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;legacy_function&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="c1"&gt;# ...&lt;/span&gt;
+    &lt;span class="n"&gt;db_connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MySQLDatabase&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  &lt;span class="c1"&gt;# Tightly coupled dependency&lt;/span&gt;
+    &lt;span class="c1"&gt;# ...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Using dependency injection to test legacy_function&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_legacy_function&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;mock_db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MockMySQLDatabase&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;legacy_function&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inject_dependencies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db_connection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mock_db&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# Test the function&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="mocking-dependencies"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Mocking Dependencies&lt;/h3&gt;
+&lt;p&gt;In unit testing, dependency injection allows us to replace real dependencies with mock objects, enabling us to focus on testing the behavior of the unit under test in isolation.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;UserService&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user_repository&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_repository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_repository&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_repository&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Testing UserService with a mock user repository&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_get_user&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;mock_repository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MockUserRepository&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;UserService&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_repository&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mock_repository&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# Test the method using the mock repository&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="improving-code-reusability"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Improving Code Reusability&lt;/h3&gt;
+&lt;p&gt;Dependency injection promotes code reusability by relying on abstractions rather than concrete implementations. This allows different implementations to be injected based on specific requirements.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PaymentGateway&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABC&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nd"&gt;@abstractmethod&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PayPalGateway&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PaymentGateway&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c1"&gt;# Process payment via PayPal&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;StripeGateway&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PaymentGateway&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_payment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c1"&gt;# Process payment via Stripe&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Lesser-Known Techniques and Tricks:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="parameter-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Parameter Injection:&lt;/h3&gt;
+&lt;p&gt;In addition to constructor, setter, and interface injection, parameter injection is a technique where dependencies are passed directly as parameters to functions or methods. This can be useful in situations where direct injection is preferred over using class instances.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Processing data...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process the data&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Calling the function with injected dependencies&lt;/span&gt;
+&lt;span class="n"&gt;logger&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Logger&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="context-managers-and-dependency-injection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Context Managers and Dependency Injection&lt;/h3&gt;
+&lt;p&gt;Context managers can be combined with dependency injection to provide resources or dependencies within a specific scope, ensuring their proper initialization and cleanup.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;contextlib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;contextmanager&lt;/span&gt;
+
+&lt;span class="nd"&gt;@contextmanager&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;db_connection&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MySQLDatabase&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  &lt;span class="c1"&gt;# Dependency initialization&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;connection&lt;/span&gt;
+    &lt;span class="n"&gt;connection&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  &lt;span class="c1"&gt;# Cleanup&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Using the context manager with dependency injection&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;db_connection&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;# Use the database connection within the context&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="dependency-injection-containers"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Dependency Injection Containers&lt;/h3&gt;
+&lt;p&gt;Dependency injection containers or frameworks provide a centralized way to manage dependencies, their configurations, and their lifetime. Popular Python DI frameworks include &lt;code&gt;injector&lt;/code&gt;, &lt;code&gt;DInjector&lt;/code&gt;, and &lt;code&gt;inject&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;injector&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Injector&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;UserService&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nd"&gt;@inject&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user_repository&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_repository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_repository&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Creating and using an injector&lt;/span&gt;
+&lt;span class="n"&gt;injector&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Injector&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;user_service&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;injector&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UserService&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Dependency injection is a powerful technique for improving testability, code modularity, and reusability in Python. By applying various injection techniques and exploring different use cases, you can design more robust and maintainable code. Additionally, the lesser-known tricks and techniques covered in this blog post can further enhance your understanding and application of dependency injection in various scenarios.&lt;/p&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category><category term="testing"></category><category term="dependency-injection"></category><category term="software-development"></category></entry><entry><title>Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch</title><link href="https://www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/" rel="alternate"></link><published>2023-06-20T00:00:00+02:00</published><updated>2023-06-20T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-20:/git-workflow-reviewing-changes-before-pulling-remote-branch/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;When working with Git, it is essential to have a streamlined workflow that ensures you &lt;strong&gt;review the changes made by others&lt;/strong&gt; before pulling them into your local branch. This practice helps &lt;strong&gt;prevent conflicts&lt;/strong&gt; and ensures that your local repository remains in …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;When working with Git, it is essential to have a streamlined workflow that ensures you &lt;strong&gt;review the changes made by others&lt;/strong&gt; before pulling them into your local branch. This practice helps &lt;strong&gt;prevent conflicts&lt;/strong&gt; and ensures that your local repository remains in sync with the remote branch. In this blog post, we will outline a few simple steps to check the changes introduced by others in the remote branch before performing a &lt;code&gt;git pull&lt;/code&gt;.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
@@ -22188,10 +22382,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="0fc65848-431f-4ec6-98d3-e6f2465d55c6"&gt;&lt;/div&gt;
+&lt;div id="987a535b-4cd6-4c60-8898-aadbbb94cc5e"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#0fc65848-431f-4ec6-98d3-e6f2465d55c6');
+var element = $('#987a535b-4cd6-4c60-8898-aadbbb94cc5e');
 
 (function(root) {
   function now() {
