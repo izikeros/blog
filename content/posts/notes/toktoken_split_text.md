@@ -7,7 +7,7 @@ Status: published
 Tags: tokenization, tiktoken, prompt-chunking, split-text, text-partitioning, openai, gpt-4
 Title: Introducing a Python Module for Splitting Text Into Parts Based on Token Limit
 ---
-
+up::[[tokenizer]]
 
 ## Introduction
 
@@ -19,7 +19,7 @@ Tiktoken is a powerful Python library for tokenization, which is the process of 
 
 ## Introducing the Python Module: split_string_with_limit
 
-The provided Python module: [split_string_with_limit.py](https://gist.github.com/izikeros/17d9c8ab644bd2762acf6b19dd0cea39), leverages the capabilities of the Tiktoken library to split a string into parts with a specified limit on the number of tokens per part. The module takes three parameters: `text`, `limit`, and `encoding`. 
+The provided Python module: [split_string_with_limit.py](https://gist.github.com/izikeros/17d9c8ab644bd2762acf6b19dd0cea39) (GitHub Gist), leverages the capabilities of the Tiktoken library to split a string into parts with a specified limit on the number of tokens per part. The module takes three parameters: `text`, `limit`, and `encoding`. 
 
 - `text`: The input string that needs to be split.
 - `limit`: The maximum number of tokens allowed per part.

@@ -9,7 +9,7 @@ Category: note
 ---
 #dataset 
 #blog/post-idea 
-X::[[public/bunch_class_to_store_datasets]]
+X::[[bunch_class_to_store_datasets]]
 
 ## Intro
 Storing and documenting datasets is an important aspect of data management, as it ensures that the data is organized, accessible, and understandable for future use. Here are some key considerations for storing and documenting datasets:
