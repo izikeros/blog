@@ -122,6 +122,9 @@ Start the container. Pulling images might take few minutes depending on your Int
 docker-compose up -d
 ```
 
+> **NOTE**: From July 2023 Compose V1 invoked as `docker-compose` stopped receiving updates. It’s also no longer available in new releases of Docker Desktop. Compose V2 was announced in 2020, is written in Go, and is invoked as `docker compose`. 
+
+
 after that, Photoprism should be available under:
 ```
 http://<YOUR-NAS-IP>:2342
@@ -179,3 +182,6 @@ I was able to launch this service thanks to the instructions found on reddit [1]
 ## References
 1. [instruction from reddit](https://www.reddit.com/r/photoprism/comments/vph4ct/comment/ieobj8w/?utm_source=share&utm_medium=web2x&context=3)
 2. [How to Setup PhotoPrism on a Synology NAS in 2022 - WunderTech](https://www.wundertech.net/how-to-setup-photoprism-on-a-synology-nas)
+
+## Updates
+- 2023-08-11: add note about change in docker compose to v2. Thx Tom Berg.
