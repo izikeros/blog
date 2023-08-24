@@ -33,8 +33,7 @@ In the generative phase, the LLM uses the retrieved information and its internal
 
 > This approach is akin to an "open book" exam, where the model can browse through content in a book rather than relying solely on its memory.
 
-
-![RAG](/images/retrieval_augmented_generation/retrival_augmented_generation.jpg)
+![RAG](/images/retrieval_augmented_generation/RAG.png)
 Figure 2. RAG operation. Information preparation and storage. Augmenting prompt with external information.
 
 ## Personalized and Verifiable Responses with RAG
