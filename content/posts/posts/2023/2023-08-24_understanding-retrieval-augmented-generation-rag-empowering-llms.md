@@ -10,6 +10,7 @@ Image: /images/head/abstract_9.jpg
 banner: "/images/head/abstract_9.jpg"
 Summary: Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.
 Status: published
+note: see RAG.excalidraw
 ---
 ## Introduction: Understanding Retrieval-Augmented Generation (RAG)
 
