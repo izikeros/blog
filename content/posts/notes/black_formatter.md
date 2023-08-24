@@ -1,7 +1,7 @@
 ---
 Category: note
 Date: '2021-11-29'
-Modified: '2023-07-12'
+Modified: 2023-08-12
 Slug: black-code-formatter
 Status: published
 Summary: notes on using black formatter
@@ -9,7 +9,6 @@ Tags: black, python, pyqa, quality
 Title: Black - The Code Formatter
 citation_needed: false
 ---
-#black
 ![black logo](https://black.readthedocs.io/en/stable/_static/logo2-readme.png)
 Black is a non-configurable code formatter.
 

@@ -2,13 +2,13 @@
 Category: Howto
 Date: '2022-01-25'
 Image: /images/head/copilot-warp-speed-head.jpg
-Modified: '2023-07-12'
+Modified: 2023-08-24
 Slug: how-to-get-most-of-github-copilot
 Status: Published
 Summary: This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - "How to get most of GitHub Copilot".
 Tags: github, coding, ai
 Title: How to Get Most of GitHub Copilot
-banner: /images/head/copilot-warp-speed-head.jpg
+banner: "/images/head/copilot-warp-speed-head.jpg"
 citation_needed: false
 todo: None
 ---
@@ -37,7 +37,7 @@ GitHub Copilot is powered by the OpenAI Codex AI system, and, as authors claimed
 
 The way how it is used is that human programmer provides comment with intention what code he/she would like to get, and as autocomplete suggestion gets whole functions of classes. GitHub Copilot uses not only exact comment test but also context of the code that is expected to be auto-generated.
 
-![img](/images/copilot/diagram-github-copilot-739x355-3516979431.png)
+![diagram GitHub Copilot](/images/copilot/diagram-github-copilot-739x355-3516979431.png)
 Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and Private Code and IDE. Image from: copilot.github.com
 
 ## 2. How to get it?

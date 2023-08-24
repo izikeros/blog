@@ -7,6 +7,10 @@ Status: published
 Tags: machine-learning, model-stacking, bagging, ensembling, boosting, legos, data, prediction, artificial-intelligence, AI, models, complexity
 Title: Model Stacking, Bagging, Ensembling, and Boosting Explained With LEGO Metaphor
 ---
+up::[[MOC_AI]]
+X::[[ensemble]]
+X::[[ensemble_best_performing_low_correlated_models]]
+
 ## Model Stacking, Bagging, Ensembling and Boosting Explained Like to 5 Years Old
 
 Hello there! Today we’re going to talk about some really cool techniques in machine learning called model stacking, bagging, ensembling, and boosting. These techniques are used to improve the accuracy of machine learning models, and they’re a lot like playing with Legos!
@@ -29,7 +33,3 @@ Boosting is like building a really tall Lego tower by stacking one Lego on top o
 
 ## Summary
 Model stacking, bagging, ensembling, and boosting are all techniques that we use to combine different models together to create a stronger, more accurate model. Each technique is like playing with Legos, but instead of building physical structures, we’re building machine-learning models! By using these techniques, we can create models that are more accurate and powerful than any single model on its own.
-
-up::[[MOC_AI]]
-X::[[ensemble]]
-X::[[ensemble_best_performing_low_correlated_models]]

@@ -19,7 +19,7 @@ USE_APPLAUSE = False
 # ---- Development settings
 if IS_DEVELOPMENT:
     SITEURL = "http://127.0.0.1:8000"  # was: ""
-    RELATIVE_URLS = False               # was: True
+    RELATIVE_URLS = False  # was: True
     CACHE_CONTENT = False
 else:
     # TODO: keep only development config here, use publishconf.py to produce publication content
@@ -28,7 +28,7 @@ else:
     CACHE_CONTENT = True
     # -------------- Third party ------
     # DISQUS_SITENAME = 'krystian-safjan'
-    GOOGLE_ANALYTICS = "G-RM2PKDCCYM" # v3:"UA-117080232-1"   v4:"G-RM2PKDCCYM"
+    GOOGLE_ANALYTICS = "G-RM2PKDCCYM"  # v3:"UA-117080232-1"   v4:"G-RM2PKDCCYM"
 
 PATH = "content"
 
@@ -36,7 +36,7 @@ TIMEZONE = "Europe/Warsaw"
 
 DEFAULT_LANG = "en"
 DATE_FORMATS = {
-    'en': '%Y-%m-%d',
+    "en": "%Y-%m-%d",
 }
 
 GITHUB_URL = "https://github.com/izikeros"
@@ -53,12 +53,14 @@ if MY_THEME == "flex":
     #                'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
     #                '<a href="/category/howto.html">howto</a> posts on tools and workflows.<hr>'
 
-    SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
-                   'Ernst &amp; Young and writing about <a ' \
-                   'href="/category/machine-learning.html">Data Science and Visualization</a>, ' \
-                   'on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> ' \
-                   'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
-                   '<a href="/category/howto.html">howto</a> posts on tools and workflows.'
+    SITESUBTITLE = (
+        "Data Scientist | Researcher | Team Leader<br><br> working at "
+        "Ernst &amp; Young and writing about <a "
+        'href="/category/machine-learning.html">Data Science and Visualization</a>, '
+        'on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> '
+        'and <a href="/tag/nlp/">NLP</a>. There are also some  '
+        '<a href="/category/howto.html">howto</a> posts on tools and workflows.'
+    )
     SITELOGO = "/images/profile_new.jpg"
     DISPLAY_DATE_AFTER_TITLE = (
         False  # display date in the list of articles (tags, categories)
@@ -110,7 +112,7 @@ MENUITEMS = (
     ("Articles", "/archives.html"),
     ("Notes", "/til.html"),
     ("Categories", "/categories.html"),
-    ("Tags", "/tags.html"),
+    # ("Tags", "/tags.html"),
     ("Resume", "/pdfs/Krystian_Safjan_resume_priv.pdf"),
 )
 
@@ -198,7 +200,7 @@ AUTHOR_SAVE_AS = ""
 
 # authors
 AUTHORS_URL = "authors/"
-#AUTHORS_SAVE_AS = "authors/index.html"
+# AUTHORS_SAVE_AS = "authors/index.html"
 AUTHORS_SAVE_AS = ""
 
 # category
@@ -271,7 +273,7 @@ IPYNB_PREPROCESSORS = [
 SEO_REPORT = False
 SEO_ENHANCER = True
 SEO_ENHANCER_OPEN_GRAPH = True
-SEO_ENHANCER_TWITTER_CARDS = False # Subfeature of SEO enhancer
+SEO_ENHANCER_TWITTER_CARDS = False  # Subfeature of SEO enhancer
 SEO_ARTICLES_LIMIT = 10
 SEO_PAGES_LIMIT = 10
 
@@ -292,4 +294,4 @@ ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-prev
 
 # The code for google ads is in templates/partials/google_automatic_ads.html
 USE_GOOGLE_AUTO_ADS = True
-CACHE_CONTENT=True
+CACHE_CONTENT = True
