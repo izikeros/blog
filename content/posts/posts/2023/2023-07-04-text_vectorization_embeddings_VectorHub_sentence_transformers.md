@@ -11,6 +11,10 @@ Title: Easy Text Vectorization With VectorHub and Sentence Transformers
 banner: "/images/head/text_vectorization.jpg"
 prompt: null
 ---
+up::[[embeddings]]
+X::[[vector_embeddings_search]]
+X::[[dont_use_openai_embeddings]]
+
 Text is heavily inspired by part of the e-book: [Semantic NLP search with FAISS and VectorHub - Guide To Vectors (getvectorai.com)](https://learn.getvectorai.com/vector-ai-documentation/semantic-nlp-search-with-faiss-and-vectorhub) - which was using VectorHub as an interface to the models.
 
 > **NOTE**: VectorHub is deprecated and no longer maintained. The authors of VectorHub recommend using [Sentence Transformers](https://www.sbert.net/), TFHub, and Huggingface directly for text vectorization.

@@ -16,7 +16,7 @@ note: see RAG.excalidraw
 
 Retrieval-Augmented Generation, commonly referred to as RAG, represents an ingenious integration of pretrained dense retrieval (DPR) and [sequence-to-sequence](https://en.wikipedia.org/wiki/Seq2seq) models. The process involves retrieving documents using DPR and subsequently transmitting them to a seq2seq model. Through a process of marginalization, these models then produce desired outputs. The retriever and seq2seq modules commence their operations as pretrained models, and through a joint fine-tuning process, they adapt collaboratively, thus enhancing both retrieval and generation for specific downstream tasks. **This innovative artificial intelligence framework serves as a means to empower large language models (LLMs) by anchoring them to external knowledge sources.** Consequently, this strategic approach ensures the availability of accurate, current information, thereby granting users valuable insights into the generative mechanisms of these models. For a comprehensive understanding of the RAG technique, we offer an in-depth exploration, commencing with a simplified overview and progressively delving into more intricate technical facets.
 
-![](https://learn.microsoft.com/en-us/azure/machine-learning/media/concept-retrieval-augmented-generation/retrieval-augmented-generation-walkthrough.png?view=azureml-api-2#lightbox)
+![Data processing in RAG](https://learn.microsoft.com/en-us/azure/machine-learning/media/concept-retrieval-augmented-generation/retrieval-augmented-generation-walkthrough.png?view=azureml-api-2#lightbox)
 
 Figure 1. Data processing, storage and referencing in RAG method. Source: [Microsoft](https://learn.microsoft.com/en-us/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2)
 
@@ -34,7 +34,7 @@ In the generative phase, the LLM uses the retrieved information and its internal
 
 > This approach is akin to an "open book" exam, where the model can browse through content in a book rather than relying solely on its memory.
 
-![RAG](/images/retrieval_augmented_generation/RAG.png)
+![RAG Operation](/images/retrieval_augmented_generation/RAG.png)
 Figure 2. RAG operation. Information preparation and storage. Augmenting prompt with external information.
 
 ## Personalized and Verifiable Responses with RAG

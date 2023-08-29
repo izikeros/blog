@@ -1,5 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-08-24T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Bearer Token Authentication for API</title><link href="https://www.safjan.com/bearer-token-authentication-for-api/" rel="alternate"></link><published>2023-08-24T00:00:00+02:00</published><updated>2023-08-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-08-24:/bearer-token-authentication-for-api/</id><summary type="html">&lt;h2&gt;Bearer Token Authentication&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-08-29T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Jaro-Winkler Similarity</title><link href="https://www.safjan.com/jaro-winkler-similarity/" rel="alternate"></link><published>2023-08-29T00:00:00+02:00</published><updated>2023-08-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-08-29:/jaro-winkler-similarity/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#jaro-winkler-similarity"&gt;Jaro-Winkler Similarity&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#python-example"&gt;Python Example:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#valuable-properties-of-jaro-winkler-similarity"&gt;Valuable Properties of Jaro-Winkler Similarity:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#recommendations-for-usage"&gt;Recommendations for Usage:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#cases-to-consider-alternatives"&gt;Cases to Consider Alternatives:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="jaro-winkler-similarity"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Jaro-Winkler Similarity&lt;/h2&gt;
+&lt;p&gt;Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula for Jaro-Winkler similarity is …&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#jaro-winkler-similarity"&gt;Jaro-Winkler Similarity&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#python-example"&gt;Python Example:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#valuable-properties-of-jaro-winkler-similarity"&gt;Valuable Properties of Jaro-Winkler Similarity:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#recommendations-for-usage"&gt;Recommendations for Usage:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#cases-to-consider-alternatives"&gt;Cases to Consider Alternatives:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="jaro-winkler-similarity"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Jaro-Winkler Similarity&lt;/h2&gt;
+&lt;p&gt;Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula for Jaro-Winkler similarity is:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+JW(s1, s2) = J(s1, s2) + \frac{L \cdot p \cdot (1 - J(s1, s2))}{10}
+$$&lt;/div&gt;
+&lt;p&gt;Where:
+- &lt;span class="math"&gt;\(J(s1, s2)\)&lt;/span&gt; is the Jaro similarity between strings (s1) and (s2).
+- &lt;span class="math"&gt;\(L\)&lt;/span&gt; is the length of the common prefix between the strings.
+- &lt;span class="math"&gt;\(p\)&lt;/span&gt; is a constant scaling factor (typically 0.1) that increases the similarity for strings that share a common prefix.&lt;/p&gt;
+&lt;p&gt;The Jaro similarity &lt;span class="math"&gt;\(J(s1, s2)\)&lt;/span&gt; is calculated as:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+J(s1, s2) = \frac{m}{\max(\text{len}(s1), \text{len}(s2))}, \quad 
+$$&lt;/div&gt;
+&lt;p&gt;
+Where:
+- &lt;span class="math"&gt;\(m\)&lt;/span&gt;  is the number of matching characters&lt;/p&gt;
+&lt;p&gt;&lt;a id="python-example"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Python Example&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;jaro_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;len_s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;len_s2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;match_distance&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;len_s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;len_s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+    &lt;span class="n"&gt;common_chars_s1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="n"&gt;common_chars_s2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;char&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;match_distance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;match_distance&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;len_s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;char&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;common_chars_s1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;common_chars_s2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+
+    &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;common_chars_s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;
+
+    &lt;span class="n"&gt;transpositions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;c1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;common_chars_s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;common_chars_s2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="n"&gt;jaro_similarity&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;len_s1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;len_s2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;transpositions&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;jaro_similarity&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;jaro_winkler_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;jaro_sim&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;jaro_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;common_prefix_len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;c1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;c2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;common_prefix_len&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;break&lt;/span&gt;
+
+    &lt;span class="n"&gt;jaro_winkler_sim&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;jaro_sim&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;common_prefix_len&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;jaro_sim&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;jaro_winkler_sim&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;apple&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;string2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;applet&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;jw_similarity&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;jaro_winkler_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;string2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Jaro-Winkler Similarity:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jw_similarity&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Jaro-Winkler Similarity: 0.9722222222222223
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The Jaro-Winkler similarity metric possesses several valuable properties that make it suitable for specific use cases. However, it's important to note that no single similarity metric is universally best for all scenarios. Here are some valuable properties of the Jaro-Winkler metric, as well as recommendations for its usage and instances where other metrics might be more appropriate.
+&lt;a id="valuable-properties-of-jaro-winkler-similarity"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Valuable Properties of Jaro-Winkler Similarity&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;String Comparison with Common Prefix:&lt;/strong&gt; The Jaro-Winkler metric gives higher weight to common prefixes, making it effective for comparing strings that often have a prefix or abbreviation. This is particularly useful for names and addresses.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Adjustable Scaling Factor:&lt;/strong&gt; The Jaro-Winkler metric allows for tuning the impact of the common prefix on the similarity score using the scaling factor &lt;span class="math"&gt;\(p\)&lt;/span&gt;. This allows you to emphasize or de-emphasize the common prefix based on your needs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Simple to Understand and Implement:&lt;/strong&gt; The calculation of Jaro-Winkler similarity involves straightforward string matching and prefix length consideration, making it relatively easy to implement and understand.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="recommendations-for-usage"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Recommendations for Usage&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Names and Addresses:&lt;/strong&gt; Jaro-Winkler similarity is highly recommended when comparing names, addresses, and other strings with common prefixes or abbreviations. It's often used in record linkage, deduplication, and fuzzy matching tasks in databases.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Fuzzy String Matching:&lt;/strong&gt; When dealing with noisy or misspelled data, the Jaro-Winkler metric can be effective in finding approximate matches. It's suitable for scenarios where small typographical errors or variations are common.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Short Texts:&lt;/strong&gt; Jaro-Winkler is well-suited for comparing short texts like product names, usernames, and titles, where the common prefix is an important aspect of similarity.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="cases-to-consider-alternatives"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Cases to Consider Alternatives&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Long Texts:&lt;/strong&gt; For comparing long texts or documents, &lt;strong&gt;cosine similarity&lt;/strong&gt; or &lt;strong&gt;Jaccard similarity&lt;/strong&gt; of term frequencies might be more appropriate, as they consider the distribution of terms across the entire text.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Semantic Similarity:&lt;/strong&gt; If you're interested in capturing semantic meaning rather than character-level similarity, &lt;strong&gt;word embeddings&lt;/strong&gt;-based metrics like cosine similarity between vector representations might be more suitable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Numerical Data:&lt;/strong&gt; For comparing numerical data, other similarity metrics such as &lt;strong&gt;Euclidean distance&lt;/strong&gt;, &lt;strong&gt;Manhattan distance&lt;/strong&gt;, or &lt;strong&gt;Pearson correlation coefficient&lt;/strong&gt; might be more meaningful.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Customized Weights:&lt;/strong&gt; If you have specific domain knowledge about feature importance, you might opt for a customized similarity metric that incorporates these weights effectively.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Language-Specific Features:&lt;/strong&gt; If the text includes language-specific features, phonetic differences, or linguistic nuances, other specialized metrics like &lt;strong&gt;Soundex&lt;/strong&gt; or &lt;strong&gt;Levenshtein distance&lt;/strong&gt; might be considered.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Examples&lt;/h2&gt;
+&lt;p&gt;Here are some concrete pairs of strings that demonstrate the properties of the Jaro-Winkler similarity metric (&lt;span class="math"&gt;\(p\)&lt;/span&gt;=0.2 if not stated differently):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Common Prefix Emphasis:&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;String 1: "Michael"&lt;/li&gt;
+&lt;li&gt;String 2: "Michelle"&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity: 0.963&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explanation: The common prefix "Mich" contributes significantly to the similarity score in Jaro-Winkler, resulting in a high similarity even though the rest of the strings differ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Case Sensitivity and Scaling Factor:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;String 1: "McDonald's"&lt;/li&gt;
+&lt;li&gt;String 2: "Mcdonells"&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity: 0.853&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explanation: The common prefix "Mcdon" is considered due to the case difference. The scaling factor can adjust the impact of this prefix on the similarity score.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;No Common Prefix:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;String 1: "hello"&lt;/li&gt;
+&lt;li&gt;String 2: "world"&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity: 0.433&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explanation: Without a common prefix, the Jaro-Winkler similarity is low, even if the strings share some characters.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Short vs. Long Strings:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;String 1: "AI"&lt;/li&gt;
+&lt;li&gt;String 2: "Artificial Intelligence"&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity: 0.623&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explanation: The short string "AI" has a higher similarity to the beginning of "Artificial Intelligence" due to the common prefix "A".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Typographical Errors:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;String 1: "telephone"&lt;/li&gt;
+&lt;li&gt;String 2: "telephne"&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity: 0.967&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explanation: Despite the missing "o," the common prefix "teleph" contributes to a high Jaro-Winkler similarity score.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Short and Noisy Data:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;String 1: "abacus"&lt;/li&gt;
+&lt;li&gt;String 2: "abaxus"&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity: 0.956&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explanation: The similarity captures the similarity in the common prefix "aba" and penalizes the difference at the end.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Significance of Scaling Factor:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;String 1: "Thompson"&lt;/li&gt;
+&lt;li&gt;String 2: "Thomson"&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity with &lt;span class="math"&gt;\(p=0.1\)&lt;/span&gt;: 0.975&lt;/li&gt;
+&lt;li&gt;Jaro-Winkler similarity with &lt;span class="math"&gt;\(p=0.2\)&lt;/span&gt;: 0.992&lt;/li&gt;
+&lt;li&gt;Explanation: The scaling factor &lt;span class="math"&gt;\(p\)&lt;/span&gt; affects the similarity score. A higher &lt;span class="math"&gt;\(p\)&lt;/span&gt; gives more emphasis to the common prefix, leading to a higher similarity.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These examples illustrate how the Jaro-Winkler similarity metric behaves based on different characteristics of input strings, such as common prefixes, case sensitivity, typos, length, and the scaling factor &lt;span class="math"&gt;\(p\)&lt;/span&gt;.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Jaro-Winkler similarity is highly valuable when dealing with short strings, names, and addresses, especially when common prefixes play a significant role. However, for longer texts, semantic similarity, numerical data, and specialized linguistic considerations, other metrics might be more appropriate. Always consider the specific characteristics of your data and the goals of your analysis when choosing a similarity metric.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="note"></category><category term="nlp"></category><category term="text-similarity"></category><category term="string-similarity"></category><category term="similarity-metrics"></category><category term="jaccard"></category><category term="cosine-similarity"></category><category term="levenshtein"></category><category term="word-embeddings"></category><category term="soundex"></category></entry><entry><title>Bearer Token Authentication for API</title><link href="https://www.safjan.com/bearer-token-authentication-for-api/" rel="alternate"></link><published>2023-08-24T00:00:00+02:00</published><updated>2023-08-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-08-24:/bearer-token-authentication-for-api/</id><summary type="html">&lt;h2&gt;Bearer Token Authentication&lt;/h2&gt;
 &lt;p&gt;Bearer authentication is a method of API authentication that involves including a "bearer token" in the request header. This token is typically a long string of characters, often encoded in a specific format like JSON Web Token (JWT) or …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Bearer Token Authentication&lt;/h2&gt;
 &lt;p&gt;Bearer authentication is a method of API authentication that involves including a "bearer token" in the request header. This token is typically a long string of characters, often encoded in a specific format like JSON Web Token (JWT) or OAuth token. Bearer authentication is commonly used to secure APIs by allowing only authorized users or applications to access protected resources.&lt;/p&gt;
 &lt;p&gt;Here's how the process generally works:&lt;/p&gt;
@@ -82,7 +350,7 @@
 &lt;/ul&gt;
 &lt;p&gt;Combining token encryption with other security practices, such as secure token storage and token expiration, provides a comprehensive approach to securing bearer tokens and API authentication.&lt;/p&gt;</content><category term="note"></category><category term="bearer"></category><category term="bearer-token"></category><category term="authentication"></category><category term="json"></category><category term="api"></category></entry><entry><title>Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</title><link href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/" rel="alternate"></link><published>2023-08-24T00:00:00+02:00</published><updated>2023-08-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-08-24:/understanding-retrieval-augmented-generation-rag-empowering-llms/</id><summary type="html">&lt;p&gt;Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction: Understanding Retrieval-Augmented Generation (RAG)&lt;/h2&gt;
 &lt;p&gt;Retrieval-Augmented Generation, commonly referred to as RAG, represents an ingenious integration of pretrained dense retrieval (DPR) and &lt;a href="https://en.wikipedia.org/wiki/Seq2seq"&gt;sequence-to-sequence&lt;/a&gt; models. The process involves retrieving documents using DPR and subsequently transmitting them to a seq2seq model. Through a process of marginalization, these models then produce desired outputs. The retriever and seq2seq modules commence their operations as pretrained models, and through a joint fine-tuning process, they adapt collaboratively, thus enhancing both retrieval and generation for specific downstream tasks. &lt;strong&gt;This innovative artificial intelligence framework serves as a means to empower large language models (LLMs) by anchoring them to external knowledge sources.&lt;/strong&gt; Consequently, this strategic approach ensures the availability of accurate, current information, thereby granting users valuable insights into the generative mechanisms of these models. For a comprehensive understanding of the RAG technique, we offer an in-depth exploration, commencing with a simplified overview and progressively delving into more intricate technical facets.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="https://learn.microsoft.com/en-us/azure/machine-learning/media/concept-retrieval-augmented-generation/retrieval-augmented-generation-walkthrough.png?view=azureml-api-2#lightbox"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Data processing in RAG" src="https://learn.microsoft.com/en-us/azure/machine-learning/media/concept-retrieval-augmented-generation/retrieval-augmented-generation-walkthrough.png?view=azureml-api-2#lightbox"&gt;&lt;/p&gt;
 &lt;p&gt;Figure 1. Data processing, storage and referencing in RAG method. Source: &lt;a href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2"&gt;Microsoft&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;The Need for RAG in Large Language Models&lt;/h2&gt;
 &lt;p&gt;Large language models, while powerful, can sometimes be inconsistent in their responses. They may provide accurate answers to certain questions but struggle with others, often regurgitating random facts from their training data. This inconsistency stems from the fact that LLMs understand the statistical relationships between words but not their actual meanings.&lt;/p&gt;
@@ -93,7 +361,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;This approach is akin to an "open book" exam, where the model can browse through content in a book rather than relying solely on its memory.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="RAG" src="/images/retrieval_augmented_generation/RAG.png"&gt;
+&lt;p&gt;&lt;img alt="RAG Operation" src="/images/retrieval_augmented_generation/RAG.png"&gt;
 Figure 2. RAG operation. Information preparation and storage. Augmenting prompt with external information.&lt;/p&gt;
 &lt;h2&gt;Personalized and Verifiable Responses with RAG&lt;/h2&gt;
 &lt;p&gt;RAG allows LLM-powered chatbots to provide more personalized answers without the need for human-written scripts. By reducing the need to continuously train the model on new data, RAG can lower the computational and financial costs of running LLM-powered chatbots in an enterprise setting.&lt;/p&gt;
@@ -688,7 +956,9 @@ OPENAI_API_VERSION=&amp;quot;***&amp;quot;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;What is the capital of France?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;NOTE: &lt;code&gt;find_dotenv&lt;/code&gt; -  its purpose is to locate the &lt;code&gt;.env&lt;/code&gt; file in your project directory or its parent directories. It starts the search from the current working directory and recursively moves up the directory tree until it finds the &lt;code&gt;.env&lt;/code&gt; file. If no &lt;code&gt;.env&lt;/code&gt; file is found, it returns the path of the current working directory. This function is beneficial because it ensures your code can locate the &lt;code&gt;.env&lt;/code&gt; file regardless of the directory from which your script is executed.&lt;/p&gt;</content><category term="note"></category><category term="langchain"></category><category term="azure"></category><category term="openai"></category></entry><entry><title>gitignore-style exclusion for restic</title><link href="https://www.safjan.com/gitignore-style-exclusion-for-restic/" rel="alternate"></link><published>2023-07-27T00:00:00+02:00</published><updated>2023-07-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-27:/gitignore-style-exclusion-for-restic/</id><summary type="html">&lt;p&gt;Restic is a popular backup tool that supports the use of &lt;code&gt;.gitignore&lt;/code&gt;-style exclusion patterns to ignore certain files and directories during the backup process. This feature is useful when you want to exclude specific files or directories from being backed up …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Restic is a popular backup tool that supports the use of &lt;code&gt;.gitignore&lt;/code&gt;-style exclusion patterns to ignore certain files and directories during the backup process. This feature is useful when you want to exclude specific files or directories from being backed up, such as temporary files, caches, or build artifacts.&lt;/p&gt;
+&lt;p&gt;NOTE: &lt;code&gt;find_dotenv&lt;/code&gt; -  its purpose is to locate the &lt;code&gt;.env&lt;/code&gt; file in your project directory or its parent directories. It starts the search from the current working directory and recursively moves up the directory tree until it finds the &lt;code&gt;.env&lt;/code&gt; file. If no &lt;code&gt;.env&lt;/code&gt; file is found, it returns the path of the current working directory. This function is beneficial because it ensures your code can locate the &lt;code&gt;.env&lt;/code&gt; file regardless of the directory from which your script is executed.&lt;/p&gt;</content><category term="note"></category><category term="langchain"></category><category term="azure"></category><category term="openai"></category></entry><entry><title>gitignore-style exclusion for restic</title><link href="https://www.safjan.com/gitignore-style-exclusion-for-restic/" rel="alternate"></link><published>2023-07-27T00:00:00+02:00</published><updated>2023-07-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-27:/gitignore-style-exclusion-for-restic/</id><summary type="html">&lt;p&gt;X::&lt;a href="https://www.safjan.com/verify-backups-restic-example/"&gt;Don't Just Create Backups, Verify Them - How Restic Can Help?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Restic is a popular backup tool that supports the use of &lt;code&gt;.gitignore&lt;/code&gt;-style exclusion patterns to ignore certain files and directories during the backup process. This feature is useful when you …&lt;/p&gt;</summary><content type="html">&lt;p&gt;X::&lt;a href="https://www.safjan.com/verify-backups-restic-example/"&gt;Don't Just Create Backups, Verify Them - How Restic Can Help?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Restic is a popular backup tool that supports the use of &lt;code&gt;.gitignore&lt;/code&gt;-style exclusion patterns to ignore certain files and directories during the backup process. This feature is useful when you want to exclude specific files or directories from being backed up, such as temporary files, caches, or build artifacts.&lt;/p&gt;
 &lt;p&gt;To use &lt;code&gt;ignore&lt;/code&gt; with Restic, you can create a file called &lt;code&gt;.resticignore&lt;/code&gt; in the root of your repository (where you run Restic). This file should contain the patterns for the files and directories you want to ignore, just like you would do with a &lt;code&gt;.gitignore&lt;/code&gt; file.&lt;/p&gt;
 &lt;p&gt;Here's how you can use &lt;code&gt;ignore&lt;/code&gt; in Restic:&lt;/p&gt;
 &lt;ol&gt;
@@ -17150,6 +17420,7 @@ When the processing speed is critical, in many cases it is possible to replace A
 &lt;li&gt;&lt;a href="https://blog.jpalardy.com/posts/why-learn-awk/"&gt;Why Learn AWK?&lt;/a&gt; – great article by Jonathan Palardy conveying similar ideas&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://pmitev.github.io/to-awk-or-not/Python_vs_awk/"&gt;Python vs. awk&lt;/a&gt; – a remarkable case of replacing a 50 line Python script with 5 lines of AWK&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://archive.org/download/pdfy-MgN0H1joIoDVoIC7/The_AWK_Programming_Language.pdf"&gt;The AWK Programming Language&lt;/a&gt; – the book by the AWK creators, a must-read!&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://learnbyexample.github.io/learn_gnuawk/cover.html"&gt;CLI text processing with GNU awk (learning by example)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="note"></category><category term="awk"></category><category term="gawk"></category><category term="mawk"></category><category term="snippet"></category><category term="software/alternatives"></category><category term="Linux"></category></entry><entry><title>Bash - File Base Name (Without Extension)</title><link href="https://www.safjan.com/bash-base-name-without-extension/" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2022-05-12:/bash-base-name-without-extension/</id><summary type="html">&lt;h2&gt;file base name (without extension)&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;movie.mp4&amp;quot;&lt;/span&gt;
 &lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;basename&lt;/span&gt;&lt;span class="p"&gt; &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="p"&gt;/.mp4&lt;/span&gt;&lt;span class="si"&gt;}}&lt;/span&gt;
@@ -22990,10 +23261,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="0c95d6c6-8f6d-417b-b455-3fc14b7c02c1"&gt;&lt;/div&gt;
+&lt;div id="ac4d9083-ebbe-44a7-8cc5-f07b2f45f6b7"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#0c95d6c6-8f6d-417b-b455-3fc14b7c02c1');
+var element = $('#ac4d9083-ebbe-44a7-8cc5-f07b2f45f6b7');
 
 (function(root) {
   function now() {

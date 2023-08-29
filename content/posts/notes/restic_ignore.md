@@ -7,6 +7,8 @@ Status: published
 Tags: restic, ignore, gitignore 
 Category: note
 ---
+X::[[my_system_for_backups]]
+X::[[2023-01-25-how_to_verify_that_each_automated_backup_is_done_correctly]]
 
 Restic is a popular backup tool that supports the use of `.gitignore`-style exclusion patterns to ignore certain files and directories during the backup process. This feature is useful when you want to exclude specific files or directories from being backed up, such as temporary files, caches, or build artifacts.
 

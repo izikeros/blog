@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Jaro-Winkler Similarity Python Example: Valuable Properties of Jaro-Winkler Similarity: Recommendations for Usage: Cases to Consider Alternatives: Jaro-Winkler Similarity Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula for Jaro-Winkler similarity is …"/>
+    <meta name="keywords" content="nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex">
+    <meta expr:content="2023-08-29 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-08-29 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-08-29 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-08-29 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Jaro-Winkler Similarity",
+  "datePublished": "2023-08-29 00:00:00+02:00",
+  "dateModified": "2023-08-29 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Jaro-Winkler Similarity"/>
+  <meta property="og:description" content="Jaro-Winkler Similarity Python Example: Valuable Properties of Jaro-Winkler Similarity: Recommendations for Usage: Cases to Consider Alternatives: Jaro-Winkler Similarity Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula for Jaro-Winkler similarity is …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/jaro-winkler-similarity/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-08-29 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-08-29 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="nlp"/>
+  <meta property="article:tag" content="text-similarity"/>
+  <meta property="article:tag" content="string-similarity"/>
+  <meta property="article:tag" content="similarity-metrics"/>
+  <meta property="article:tag" content="jaccard"/>
+  <meta property="article:tag" content="cosine-similarity"/>
+  <meta property="article:tag" content="levenshtein"/>
+  <meta property="article:tag" content="word-embeddings"/>
+  <meta property="article:tag" content="soundex"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Jaro-Winkler Similarity"/>
+
+
+    <title>    Jaro-Winkler Similarity
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-08-29 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Jaro-Winkler%20Similarity&url=https%3A//www.safjan.com/jaro-winkler-similarity/&hashtags=nlp,text-similarity,string-similarity,similarity-metrics,jaccard,cosine-similarity,levenshtein,word-embeddings,soundex" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/jaro-winkler-similarity/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Jaro-Winkler%20Similarity&u=https%3A//www.safjan.com/jaro-winkler-similarity/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/jaro-winkler-similarity/&title=Jaro-Winkler%20Similarity" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="jaro-winkler-similarity">Jaro-Winkler Similarity</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#jaro-winkler-similarity">Jaro-Winkler Similarity</a><ul>
+<li><a href="#python-example">Python Example:</a></li>
+<li><a href="#valuable-properties-of-jaro-winkler-similarity">Valuable Properties of Jaro-Winkler Similarity:</a></li>
+<li><a href="#recommendations-for-usage">Recommendations for Usage:</a></li>
+<li><a href="#cases-to-consider-alternatives">Cases to Consider Alternatives:</a></li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="jaro-winkler-similarity"></a></p>
+<h2>Jaro-Winkler Similarity</h2>
+<p>Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula for Jaro-Winkler similarity is:</p>
+<div class="math">$$
+JW(s1, s2) = J(s1, s2) + \frac{L \cdot p \cdot (1 - J(s1, s2))}{10}
+$$</div>
+<p>Where:
+- <span class="math">\(J(s1, s2)\)</span> is the Jaro similarity between strings (s1) and (s2).
+- <span class="math">\(L\)</span> is the length of the common prefix between the strings.
+- <span class="math">\(p\)</span> is a constant scaling factor (typically 0.1) that increases the similarity for strings that share a common prefix.</p>
+<p>The Jaro similarity <span class="math">\(J(s1, s2)\)</span> is calculated as:</p>
+<div class="math">$$
+J(s1, s2) = \frac{m}{\max(\text{len}(s1), \text{len}(s2))}, \quad 
+$$</div>
+<p>
+Where:
+- <span class="math">\(m\)</span>  is the number of matching characters</p>
+<p><a id="python-example"></a></p>
+<h3>Python Example</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">jaro_similarity</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+    <span class="n">len_s1</span><span class="p">,</span> <span class="n">len_s2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+    <span class="n">match_distance</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">len_s1</span><span class="p">,</span> <span class="n">len_s2</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="n">common_chars_s1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">common_chars_s2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s1</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">match_distance</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">match_distance</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">len_s2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">s2</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]:</span>
+            <span class="n">common_chars_s1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+            <span class="n">common_chars_s2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">][</span><span class="n">s2</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">char</span><span class="p">)])</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_chars_s1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="n">transpositions</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">c1</span> <span class="o">!=</span> <span class="n">c2</span> <span class="k">for</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">common_chars_s1</span><span class="p">,</span> <span class="n">common_chars_s2</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">jaro_similarity</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span> <span class="o">/</span> <span class="n">len_s1</span> <span class="o">+</span> <span class="n">m</span> <span class="o">/</span> <span class="n">len_s2</span> <span class="o">+</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">transpositions</span><span class="p">)</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+    <span class="k">return</span> <span class="n">jaro_similarity</span>
+
+
+<span class="k">def</span> <span class="nf">jaro_winkler_similarity</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="n">jaro_sim</span> <span class="o">=</span> <span class="n">jaro_similarity</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span>
+    <span class="n">common_prefix_len</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">c1</span> <span class="o">==</span> <span class="n">c2</span><span class="p">:</span>
+            <span class="n">common_prefix_len</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="n">jaro_winkler_sim</span> <span class="o">=</span> <span class="n">jaro_sim</span> <span class="o">+</span> <span class="p">(</span><span class="n">common_prefix_len</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">jaro_sim</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">jaro_winkler_sim</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">string1</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span>
+<span class="n">string2</span> <span class="o">=</span> <span class="s2">&quot;applet&quot;</span>
+<span class="n">jw_similarity</span> <span class="o">=</span> <span class="n">jaro_winkler_similarity</span><span class="p">(</span><span class="n">string1</span><span class="p">,</span> <span class="n">string2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jaro-Winkler Similarity:&quot;</span><span class="p">,</span> <span class="n">jw_similarity</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Jaro-Winkler Similarity: 0.9722222222222223
+</code></pre></div>
+
+<p>The Jaro-Winkler similarity metric possesses several valuable properties that make it suitable for specific use cases. However, it's important to note that no single similarity metric is universally best for all scenarios. Here are some valuable properties of the Jaro-Winkler metric, as well as recommendations for its usage and instances where other metrics might be more appropriate.
+<a id="valuable-properties-of-jaro-winkler-similarity"></a></p>
+<h3>Valuable Properties of Jaro-Winkler Similarity</h3>
+<ol>
+<li>
+<p><strong>String Comparison with Common Prefix:</strong> The Jaro-Winkler metric gives higher weight to common prefixes, making it effective for comparing strings that often have a prefix or abbreviation. This is particularly useful for names and addresses.</p>
+</li>
+<li>
+<p><strong>Adjustable Scaling Factor:</strong> The Jaro-Winkler metric allows for tuning the impact of the common prefix on the similarity score using the scaling factor <span class="math">\(p\)</span>. This allows you to emphasize or de-emphasize the common prefix based on your needs.</p>
+</li>
+<li>
+<p><strong>Simple to Understand and Implement:</strong> The calculation of Jaro-Winkler similarity involves straightforward string matching and prefix length consideration, making it relatively easy to implement and understand.</p>
+</li>
+</ol>
+<p><a id="recommendations-for-usage"></a></p>
+<h3>Recommendations for Usage</h3>
+<ol>
+<li>
+<p><strong>Names and Addresses:</strong> Jaro-Winkler similarity is highly recommended when comparing names, addresses, and other strings with common prefixes or abbreviations. It's often used in record linkage, deduplication, and fuzzy matching tasks in databases.</p>
+</li>
+<li>
+<p><strong>Fuzzy String Matching:</strong> When dealing with noisy or misspelled data, the Jaro-Winkler metric can be effective in finding approximate matches. It's suitable for scenarios where small typographical errors or variations are common.</p>
+</li>
+<li>
+<p><strong>Short Texts:</strong> Jaro-Winkler is well-suited for comparing short texts like product names, usernames, and titles, where the common prefix is an important aspect of similarity.</p>
+</li>
+</ol>
+<p><a id="cases-to-consider-alternatives"></a></p>
+<h3>Cases to Consider Alternatives</h3>
+<ol>
+<li>
+<p><strong>Long Texts:</strong> For comparing long texts or documents, <strong>cosine similarity</strong> or <strong>Jaccard similarity</strong> of term frequencies might be more appropriate, as they consider the distribution of terms across the entire text.</p>
+</li>
+<li>
+<p><strong>Semantic Similarity:</strong> If you're interested in capturing semantic meaning rather than character-level similarity, <strong>word embeddings</strong>-based metrics like cosine similarity between vector representations might be more suitable.</p>
+</li>
+<li>
+<p><strong>Numerical Data:</strong> For comparing numerical data, other similarity metrics such as <strong>Euclidean distance</strong>, <strong>Manhattan distance</strong>, or <strong>Pearson correlation coefficient</strong> might be more meaningful.</p>
+</li>
+<li>
+<p><strong>Customized Weights:</strong> If you have specific domain knowledge about feature importance, you might opt for a customized similarity metric that incorporates these weights effectively.</p>
+</li>
+<li>
+<p><strong>Language-Specific Features:</strong> If the text includes language-specific features, phonetic differences, or linguistic nuances, other specialized metrics like <strong>Soundex</strong> or <strong>Levenshtein distance</strong> might be considered.</p>
+</li>
+</ol>
+<h2>Examples</h2>
+<p>Here are some concrete pairs of strings that demonstrate the properties of the Jaro-Winkler similarity metric (<span class="math">\(p\)</span>=0.2 if not stated differently):</p>
+<ol>
+<li><strong>Common Prefix Emphasis:</strong></li>
+<li>String 1: "Michael"</li>
+<li>String 2: "Michelle"</li>
+<li>Jaro-Winkler similarity: 0.963</li>
+<li>
+<p>Explanation: The common prefix "Mich" contributes significantly to the similarity score in Jaro-Winkler, resulting in a high similarity even though the rest of the strings differ.</p>
+</li>
+<li>
+<p><strong>Case Sensitivity and Scaling Factor:</strong></p>
+</li>
+<li>String 1: "McDonald's"</li>
+<li>String 2: "Mcdonells"</li>
+<li>Jaro-Winkler similarity: 0.853</li>
+<li>
+<p>Explanation: The common prefix "Mcdon" is considered due to the case difference. The scaling factor can adjust the impact of this prefix on the similarity score.</p>
+</li>
+<li>
+<p><strong>No Common Prefix:</strong></p>
+</li>
+<li>String 1: "hello"</li>
+<li>String 2: "world"</li>
+<li>Jaro-Winkler similarity: 0.433</li>
+<li>
+<p>Explanation: Without a common prefix, the Jaro-Winkler similarity is low, even if the strings share some characters.</p>
+</li>
+<li>
+<p><strong>Short vs. Long Strings:</strong></p>
+</li>
+<li>String 1: "AI"</li>
+<li>String 2: "Artificial Intelligence"</li>
+<li>Jaro-Winkler similarity: 0.623</li>
+<li>
+<p>Explanation: The short string "AI" has a higher similarity to the beginning of "Artificial Intelligence" due to the common prefix "A".</p>
+</li>
+<li>
+<p><strong>Typographical Errors:</strong></p>
+</li>
+<li>String 1: "telephone"</li>
+<li>String 2: "telephne"</li>
+<li>Jaro-Winkler similarity: 0.967</li>
+<li>
+<p>Explanation: Despite the missing "o," the common prefix "teleph" contributes to a high Jaro-Winkler similarity score.</p>
+</li>
+<li>
+<p><strong>Short and Noisy Data:</strong></p>
+</li>
+<li>String 1: "abacus"</li>
+<li>String 2: "abaxus"</li>
+<li>Jaro-Winkler similarity: 0.956</li>
+<li>
+<p>Explanation: The similarity captures the similarity in the common prefix "aba" and penalizes the difference at the end.</p>
+</li>
+<li>
+<p><strong>Significance of Scaling Factor:</strong></p>
+</li>
+<li>String 1: "Thompson"</li>
+<li>String 2: "Thomson"</li>
+<li>Jaro-Winkler similarity with <span class="math">\(p=0.1\)</span>: 0.975</li>
+<li>Jaro-Winkler similarity with <span class="math">\(p=0.2\)</span>: 0.992</li>
+<li>Explanation: The scaling factor <span class="math">\(p\)</span> affects the similarity score. A higher <span class="math">\(p\)</span> gives more emphasis to the common prefix, leading to a higher similarity.</li>
+</ol>
+<p>These examples illustrate how the Jaro-Winkler similarity metric behaves based on different characteristics of input strings, such as common prefixes, case sensitivity, typos, length, and the scaling factor <span class="math">\(p\)</span>.</p>
+<h2>Summary</h2>
+<p>Jaro-Winkler similarity is highly valuable when dealing with short strings, names, and addresses, especially when common prefixes play a significant role. However, for longer texts, semantic similarity, numerical data, and specialized linguistic considerations, other metrics might be more appropriate. Always consider the specific characteristics of your data and the goals of your analysis when choosing a similarity metric.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/nlp/">nlp</a>
+                        <a href="https://www.safjan.com/tag/text-similarity/">text-similarity</a>
+                        <a href="https://www.safjan.com/tag/string-similarity/">string-similarity</a>
+                        <a href="https://www.safjan.com/tag/similarity-metrics/">similarity-metrics</a>
+                        <a href="https://www.safjan.com/tag/jaccard/">jaccard</a>
+                        <a href="https://www.safjan.com/tag/cosine-similarity/">cosine-similarity</a>
+                        <a href="https://www.safjan.com/tag/levenshtein/">levenshtein</a>
+                        <a href="https://www.safjan.com/tag/word-embeddings/">word-embeddings</a>
+                        <a href="https://www.safjan.com/tag/soundex/">soundex</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/">Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</a></li>
+                        <li><a href="https://www.safjan.com/split-glued-or-joined-words/">Split glued or joined words</a></li>
+                        <li><a href="https://www.safjan.com/text-vectorization-with-vectorhub-and-sentence-transformers/">Easy Text Vectorization With VectorHub and Sentence Transformers</a></li>
+                        <li><a href="https://www.safjan.com/how-to-count-tokens/">How to Count Tokens - Tokenization With Tiktoken.</a></li>
+                        <li><a href="https://www.safjan.com/punctuation-restoration/">Punctuation Restoration</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/bearer-token-authentication-for-api/" title="Bearer Token Authentication for API">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
