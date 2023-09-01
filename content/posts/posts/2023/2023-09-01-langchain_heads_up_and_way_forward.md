@@ -1,6 +1,6 @@
 ---
-Title: 10 Problems with Langchain and how to minimize their impact
-Slug: 10-problems-with-Langchain-and-how-to-minimize-their-impact
+Title: Problems with Langchain and how to minimize their impact
+Slug: problems-with-Langchain-and-how-to-minimize-their-impact
 Date: 2023-09-01
 Modified: 2023-09-01
 Start: 2023-09-01
