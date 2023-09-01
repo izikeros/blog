@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Beyond the Hype: LangChain&#39;s Hidden Flaws and How to Master AI Development."/>
+    <meta name="keywords" content="machine-learning, python, langchain, prompt-engineering, tokens, llm, gpt, openai">
+    <meta expr:content="2023-09-01 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-09-01 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-09-01 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-09-01 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "10 Problems with Langchain and how to minimize their impact?",
+  "datePublished": "2023-09-01 00:00:00+02:00",
+  "dateModified": "2023-09-01 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="10 Problems with Langchain and how to minimize their impact?"/>
+  <meta property="og:description" content="Beyond the Hype: LangChain&#39;s Hidden Flaws and How to Master AI Development."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/10-problems-with-Langchain-and-how-to-minimize-their-impact/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-09-01 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-09-01 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="langchain"/>
+  <meta property="article:tag" content="prompt-engineering"/>
+  <meta property="article:tag" content="tokens"/>
+  <meta property="article:tag" content="llm"/>
+  <meta property="article:tag" content="gpt"/>
+  <meta property="article:tag" content="openai"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_3.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_3.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Beyond the Hype: LangChain's Hidden Flaws and How to Master AI Development.</p>"/>
+    <meta name="twitter:title" content="10 Problems with Langchain and how to minimize their impact?"/>
+
+
+    <title>    10 Problems with Langchain and how to minimize their impact?
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-09-01 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=10%20Problems%20with%20Langchain%20and%20how%20to%20minimize%20their%20impact%3F&url=https%3A//www.safjan.com/10-problems-with-Langchain-and-how-to-minimize-their-impact/&hashtags=machine-learning,python,langchain,prompt-engineering,tokens,llm,gpt,openai" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/10-problems-with-Langchain-and-how-to-minimize-their-impact/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=10%20Problems%20with%20Langchain%20and%20how%20to%20minimize%20their%20impact%3F&u=https%3A//www.safjan.com/10-problems-with-Langchain-and-how-to-minimize-their-impact/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/10-problems-with-Langchain-and-how-to-minimize-their-impact/&title=10%20Problems%20with%20Langchain%20and%20how%20to%20minimize%20their%20impact%3F" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="10-problems-with-Langchain-and-how-to-minimize-their-impact">10 Problems with Langchain and how to minimize their impact?</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Beyond the Hype: LangChain's Hidden Flaws and How to Master AI Development.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/10-problems-with-Langchain-and-how-to-minimize-their-impact/">
+                        <img style="width: 100%; "
+                             src="/images/head/abstract_3.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <h2>Introduction</h2>
+<p><a href="https://docs.langchain.com/docs/">LangChain</a>, a popular framework for building applications with <a href="https://en.wikipedia.org/wiki/Large_language_model">large language models</a> (LLMs), has been touted as a game-changer in the world of AI-driven development. However, as more users dive into the library and its capabilities, some have found that it falls short of expectations. In this section, we'll discuss ten issues with LangChain that have left users underwhelmed and questioning its value proposition.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#problems">Problems</a><ul>
+<li><a href="#1-overly-complex-and-unnecessary-abstractions">1. Overly complex and unnecessary abstractions</a></li>
+<li><a href="#2-easy-breakable-and-unreliable">2. Easy breakable and unreliable</a></li>
+<li><a href="#3-poor-documentation">3. Poor documentation</a></li>
+<li><a href="#4-a-high-level-of-abstraction-hinders-customization">4. A high level of abstraction hinders customization</a></li>
+<li><a href="#5-inefficient-token-usage">5. Inefficient token usage</a></li>
+<li><a href="#6-difficult-integration-with-existing-tools">6. Difficult integration with existing tools</a></li>
+<li><a href="#7-limited-value-proposition">7. Limited value proposition</a></li>
+<li><a href="#8-inconsistent-behavior-and-hidden-details">8. Inconsistent behavior and hidden details</a></li>
+<li><a href="#9-better-alternatives-available">9. Better alternatives available</a></li>
+<li><a href="#10-primarily-optimized-for-demos">10. Primarily optimized for demos</a></li>
+</ul>
+</li>
+<li><a href="#takeaways---how-to-use-the-langchain-right-way">Takeaways - How to Use the LangChain Right Way?</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="problems"></a></p>
+<h2>Problems</h2>
+<p><a id="1-overly-complex-and-unnecessary-abstractions"></a></p>
+<h3>1. Overly complex and unnecessary abstractions</h3>
+<p>LangChain has been criticized for having too many layers of abstraction, making it difficult to understand and modify the underlying code. These layers can lead to confusion, especially for those who are new to LLMs or LangChain itself. The complexity can also make it challenging to adapt the library to specific use cases or integrate it with existing tools and scripts. In some cases, users have found that they can achieve their goals more easily by using simpler, more straightforward code.</p>
+<p><a id="2-easy-breakable-and-unreliable"></a></p>
+<h3>2. Easy breakable and unreliable</h3>
+<p>Some users have found LangChain to be unreliable and difficult to fix due to its complex structure. The framework's fragility can lead to unexpected issues in production systems, making it challenging to maintain and scale applications built with LangChain. Users have reported that the deeper and more complex their application becomes, the more LangChain seems to become a risk to its maintainability.</p>
+<p><a id="3-poor-documentation"></a></p>
+<h3>3. Poor documentation</h3>
+<p>LangChain's documentation has been described as confusing and lacking in key details, making it challenging for users to fully understand the library's capabilities and limitations. The documentation often omits explanations of default parameters and important details, leaving users to piece together information from various sources. This lack of clarity can hinder users' ability to effectively leverage LangChain in their projects.</p>
+<p><a id="4-a-high-level-of-abstraction-hinders-customization"></a></p>
+<h3>4. A high level of abstraction hinders customization</h3>
+<p>Users have reported that LangChain's high level of abstraction makes it difficult to modify and adapt the library for specific use cases. This can be particularly problematic when users want to make small changes to the default behavior of LangChain or integrate it with other tools and scripts. In these cases, users may find it easier to bypass LangChain altogether and build their own solutions from scratch.</p>
+<p><a id="5-inefficient-token-usage"></a></p>
+<h3>5. Inefficient token usage</h3>
+<p>LangChain has been criticized for inefficient token usage in its API calls, which can result in higher costs. This can be particularly problematic for users who are trying to minimize their expenses while working with LLMs. Some users have found that they can achieve better results with fewer tokens by using custom Python code or other alternative libraries.</p>
+<p><a id="6-difficult-integration-with-existing-tools"></a></p>
+<h3>6. Difficult integration with existing tools</h3>
+<p>Users have reported difficulties integrating LangChain with their existing Python tools and scripts. This can be especially challenging for those who have complex analytics or other advanced functionality built into their applications. The high level of abstraction in LangChain can make it difficult to interface with these existing tools, forcing users to build workarounds or abandon LangChain in favor of more compatible solutions.</p>
+<p><a id="7-limited-value-proposition"></a></p>
+<h3>7. Limited value proposition</h3>
+<p>Some users feel that LangChain does not provide enough value compared to the effort required to implement and maintain it. They argue that the library's primary use case is to quickly create demos or prototypes, rather than building production-ready applications. In these cases, users may find it more efficient to build their own solutions or explore alternative libraries that offer a better balance of ease of use and functionality.</p>
+<p><a id="8-inconsistent-behavior-and-hidden-details"></a></p>
+<h3>8. Inconsistent behavior and hidden details</h3>
+<p>LangChain has been criticized for hiding important details and having inconsistent behavior, which can lead to unexpected issues in production systems. Users have reported that LangChain's default settings and behaviors are often undocumented or poorly explained, making it difficult to predict how the library will behave in different scenarios. This lack of transparency can lead to frustration and wasted time troubleshooting issues that could have been avoided with better documentation.</p>
+<p><a id="9-better-alternatives-available"></a></p>
+<h3>9. Better alternatives available</h3>
+<p>Users have mentioned other libraries, such as <a href="https://github.com/microsoft/semantic-kernel">Semantic Kernel</a>, <a href="https://github.com/jerryjliu/llama_index">LlamaIndex</a>, <a href="https://haystack.deepset.ai/">Deepset Haystack</a> , or <a href="https://github.com/TransformerOptimus/SuperAGI">SuperAGI</a>, as more suitable alternatives to LangChain. These alternatives often provide clearer documentation, more flexible customization options, and better integration with existing tools and scripts. In some cases, users have found that they can achieve their goals more easily and efficiently by using these alternative libraries instead of LangChain. See <a href="https://github.com/kyrolabs/awesome-langchain#other-llm-frameworks">awesome-langchain</a> for a list of LLM frameworks.</p>
+<p><a id="10-primarily-optimized-for-demos"></a></p>
+<h3>10. Primarily optimized for demos</h3>
+<p>LangChain has been described as being primarily optimized for quickly creating demos, rather than for building production-ready applications. <a href="https://blog.streamlit.io/langchain-streamlit/">Partnership</a> with <a href="https://streamlit.io/generative-ai?ref=blog.streamlit.io">Streamlit</a> should ease demo creation even more. While this can be useful for those who want to quickly experiment with LLMs or showcase their ideas, it can be limiting for users who want to build more robust, scalable applications. In these cases, users may find that LangChain's focus on demos and prototypes hinders their ability to build high-quality, production-ready applications.</p>
+<p><a id="takeaways---how-to-use-the-langchain-right-way"></a></p>
+<h2>Takeaways - How to Use the LangChain Right Way?</h2>
+<p>Based on the community comments and experiences shared, here are some pieces of advice on how to create apps using LangChain that will be reliable, easy to maintain and debug:</p>
+<ol>
+<li>
+<p><strong>Use LangChain for prototyping and experimentation</strong>: LangChain can be useful for quickly creating prototypes and validating ideas. However, for more complex and production-level applications, you might want to consider implementing the functionality you need yourself.</p>
+</li>
+<li>
+<p><strong>Understand the underlying concepts</strong>: Before using LangChain, make sure to understand the core concepts of LLMs, prompts, and how the different components of the framework interact. This will help you make informed decisions about which parts of LangChain to use and which to replace with custom implementations.</p>
+</li>
+<li>
+<p><strong>Focus on the value of the ecosystem</strong>: LangChain provides integrations with various tools, indexes, and prompt templates. Leverage these resources to build your application, but be aware of the limitations and potential issues that might arise from using the default settings and abstractions.</p>
+</li>
+<li>
+<p><strong>Be prepared to write custom code</strong>: LangChain might not cover all use cases or provide the level of control and customization you need for your application. Be prepared to write custom code to better suit your specific requirements and use case.</p>
+</li>
+<li>
+<p><strong>Keep an eye on alternative tools and libraries</strong>: As the field of LLMs is rapidly evolving, new tools and libraries are being developed that might better suit your needs. Stay informed about the latest developments and consider using alternative libraries like Deepset Haystack, DSP, or GPTi if they better align with your project requirements.</p>
+</li>
+<li>
+<p><strong>Learn from LangChain's source code</strong>: If you find that LangChain's abstractions and documentation are not sufficient for your needs, you can learn from the source code itself. Use the provided prompts and implementation details as inspiration and adapt them to your own project.</p>
+</li>
+<li>
+<p><strong>Consider local LLM models</strong>: While LangChain primarily focuses on using OpenAI's models, you might want to explore using local LLM models like Llama, Galpaca, Vicuna, or Koala. These models can offer benefits in terms of cost, privacy, and offline capabilities. However, be aware that they might not be as powerful or accurate as GPT-3.5 Turbo.</p>
+</li>
+<li>
+<p><strong>Integrate with existing tools and scripts</strong>: If you need to interface with existing Python tools or scripts, make sure to understand how LangChain interacts with them and how you can best integrate them into your application.</p>
+</li>
+<li>
+<p><strong>Test and measure the performance of your application</strong>: When using LangChain, ensure that you thoroughly test your application and measure its performance against different prompts and configurations. This will help you identify potential issues and areas for improvement.</p>
+</li>
+<li>
+<p><strong>Keep an eye on the costs</strong>: Be mindful of the API costs associated with using LangChain and consider optimizing your application to reduce the number of API calls and tokens used.</p>
+</li>
+</ol>
+<p><a id="conclusion"></a></p>
+<h2>Conclusion</h2>
+<p>In considering LangChain, it's vital to acknowledge its limitations and challenges before embracing it enthusiastically. Although LangChain has garnered significant attention and investment, users have pinpointed various drawbacks that could impede its effectiveness in more intricate, production-ready applications. To make well-informed decisions about LangChain's suitability for their projects, developers should gain an understanding of these issues.
+In the ever-evolving landscape of LLM-driven development, assessing the available tools and libraries is crucial to determining which aligns best with your specific needs and requirements. It's worth noting that the ideal solution might not yet exist, necessitating adaptation or customization of existing tools or even the creation of your own to realize your vision for AI-driven applications.</p>
+        </div>
+
+
+
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>@article{Saf202310,
+    author  = {Krystian Safjan},
+    title   = {10 Problems with Langchain and how to minimize their impact?},
+    journal = {Krystian's Safjan Blog},
+    year    = {2023},
+}</pre>
+            </div>
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/langchain/">langchain</a>
+                        <a href="https://www.safjan.com/tag/prompt-engineering/">prompt-engineering</a>
+                        <a href="https://www.safjan.com/tag/tokens/">tokens</a>
+                        <a href="https://www.safjan.com/tag/llm/">llm</a>
+                        <a href="https://www.safjan.com/tag/gpt/">gpt</a>
+                        <a href="https://www.safjan.com/tag/openai/">openai</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/">The Best Vector Databases for Storing Embeddings</a></li>
+                        <li><a href="https://www.safjan.com/python-dependency-injection-for-the-testability/">Harnessing the Power of Dependency Injection for Improved Testability in Python</a></li>
+                        <li><a href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/">The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap Between Software Products and Customer Needs</a></li>
+                        <li><a href="https://www.safjan.com/attacking-differential-privacy-using-the-correlation-between-the-features/">Attacking Differential Privacy Using the Correlation Between the Features</a></li>
+                        <li><a href="https://www.safjan.com/measure-quality-of-embeddings-intrinsic-vs-extrinsic/">Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/jaro-winkler-similarity/" title="Jaro-Winkler Similarity">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

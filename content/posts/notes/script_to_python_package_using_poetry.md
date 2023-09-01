@@ -12,7 +12,7 @@ X::[[badges_for_readme]]
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [The task](#the-task)
-- [Package creation](#package-creation)
+- [Steps for Package Creation](#steps-for-package-creation)
     - [Create Project Directory](#create-project-directory)
     - [Open the Project in PyCharm](#open-the-project-in-pycharm)
     - [Configure Poetry Virtual Environment](#configure-poetry-virtual-environment)
@@ -90,8 +90,8 @@ Replace `script_name.py` with the actual name of your script file, and `file_pat
 pip install tiktoken
 ```
 
-<a id="package-creation"></a>
-## Package creation
+<a id="steps-for-package-creation"></a>
+## Steps for Package Creation
 To create and publish a Python package based on the provided script, you can follow the steps below:
 
 <a id="create-project-directory"></a>
@@ -104,7 +104,7 @@ Start by creating a new directory for your project. You can choose an appropriat
 poetry init
 ```
 
-   This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.
+This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.
 
 <a id="open-the-project-in-pycharm"></a>
 ### Open the Project in PyCharm
@@ -124,13 +124,13 @@ In your command-line interface, navigate to the project directory if you're not 
 poetry install
 ```
 
-   This command will create a virtual environment and install the required packages specified in your project's `pyproject.toml` file.
+This command will create a virtual environment and install the required packages specified in your project's `pyproject.toml` file.
 
 <a id="configure-pycharm-interpreter"></a>
 ### Configure PyCharm Interpreter
 In PyCharm, go to "File" > "Settings" > "Project: <project_name>" > "Python Interpreter". Click on the gear icon and choose "Add...".
 
-   Select "Poetry Environment" and choose the existing local Poetry interpreter associated with your project's virtual environment. Click "OK" to apply the changes.
+Select "Poetry Environment" and choose the existing local Poetry interpreter associated with your project's virtual environment. Click "OK" to apply the changes.
 
 <a id="initialize-git-repository"></a>
 ### Initialize Git Repository
@@ -140,10 +140,31 @@ In your command-line interface, navigate to the project directory if you're not 
 git init
 ```
 
-   This will set up a new Git repository for version control.
+This will set up a new Git repository for version control.
 
 At this point, you have set up the project structure, initialized Poetry, configured the virtual environment in PyCharm, installed dependencies, and initialized a Git repository. Now, you can proceed with packaging and publishing your Python script.
 
+> NOTE: you might want to add `.gitignore` file at this stage
+Minimal `.gitignore` can be:
+
+```
+# Compiled Python files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+env/
+
+# IDEs and editors
+.idea/
+```
 <a id="create-package-structure"></a>
 ### Create Package Structure
 Inside your project directory, create a package structure that follows Python's best practices. For example, you can create a directory named `my_package` that will contain your script and other necessary files.
@@ -172,10 +193,32 @@ Replace `my_script` with the desired command name for your script, and `my_packa
 <a id="add-readmemd-file"></a>
 ### Add README.md file
 In the root of the project directory create `README.md` and fill it with useful information. See also:[[writing_good_readme]]
+
+> NOTE: You can add some badges relate to your pypi package, e.g.:
+
+```
+![img](https://img.shields.io/pypi/v/package_name.svg)
+![](https://img.shields.io/pypi/pyversions/package_name.svg)
+![](https://img.shields.io/pypi/dm/package_name.svg)
+```
+
+### Add LICENSE file
+You can create a LICENSE file manually. Here's how you can do it:
+
+1. Create a new file in your project root directory named `LICENSE`.    
+2. Go to the [MIT License template](https://opensource.org/licenses/MIT), copy the text.
+3. Paste the copied text into your `LICENSE` file.
+4. Replace `[year]` with the current year and `[fullname]` with your name or your organization's name.
+5. Save the file.
+
 <a id="test-the-script"></a>
 ### Test the Script
 Before publishing your package, it's essential to test your script to ensure it works as expected. You can execute the script locally to verify its functionality.
 
+If you want to use pytest for testing add it as development dependency and install:
+```sh
+poetry add --group dev poetry
+```
 <a id="package-the-project"></a>
 ### Package the Project
 In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:
@@ -205,3 +248,14 @@ When you make updates to your package, ensure to increment the version number in
 That's it! You have now packaged and published your Python script using Poetry. Users can install your package using pip and use your script as a command-line tool.
 
 Please note that publishing a package is a significant step, and it's essential to review and test your code thoroughly before sharing it with others.
+
+## Correcting metadata
+
+```
+authors = ["Krystian Safjan <ksafjan@gmail.com>"]
+
+keywords = ["keyword1", "keyword2"]
+homepage = "https://github.com/user/repo"
+repository = "https://github.com/user/repo"
+documentation = "https://github.com/user/repo"
+```

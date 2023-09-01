@@ -9,7 +9,7 @@ Status: published
 Summary: "Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts. \U0001F5DD\uFE0F"
 Tags: machine-learning, python
 Title: Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platforms
-banner: /images/head/abstract_1.jpg
+banner: "/images/head/abstract_1.jpg"
 prompt: what are the best dataset sharing platforms
 ---
 

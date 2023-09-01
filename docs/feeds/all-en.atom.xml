@@ -1,5 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-08-29T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Jaro-Winkler Similarity</title><link href="https://www.safjan.com/jaro-winkler-similarity/" rel="alternate"></link><published>2023-08-29T00:00:00+02:00</published><updated>2023-08-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-08-29:/jaro-winkler-similarity/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all-en.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2023-09-01T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>10 Problems with Langchain and how to minimize their impact?</title><link href="https://www.safjan.com/10-problems-with-Langchain-and-how-to-minimize-their-impact/" rel="alternate"></link><published>2023-09-01T00:00:00+02:00</published><updated>2023-09-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-09-01:/10-problems-with-Langchain-and-how-to-minimize-their-impact/</id><summary type="html">&lt;p&gt;Beyond the Hype: LangChain's Hidden Flaws and How to Master AI Development.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://docs.langchain.com/docs/"&gt;LangChain&lt;/a&gt;, a popular framework for building applications with &lt;a href="https://en.wikipedia.org/wiki/Large_language_model"&gt;large language models&lt;/a&gt; (LLMs), has been touted as a game-changer in the world of AI-driven development. However, as more users dive into the library and its capabilities, some have found that it falls short of expectations. In this section, we'll discuss ten issues with LangChain that have left users underwhelmed and questioning its value proposition.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#problems"&gt;Problems&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#1-overly-complex-and-unnecessary-abstractions"&gt;1. Overly complex and unnecessary abstractions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-easy-breakable-and-unreliable"&gt;2. Easy breakable and unreliable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-poor-documentation"&gt;3. Poor documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-a-high-level-of-abstraction-hinders-customization"&gt;4. A high level of abstraction hinders customization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#5-inefficient-token-usage"&gt;5. Inefficient token usage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#6-difficult-integration-with-existing-tools"&gt;6. Difficult integration with existing tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#7-limited-value-proposition"&gt;7. Limited value proposition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#8-inconsistent-behavior-and-hidden-details"&gt;8. Inconsistent behavior and hidden details&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#9-better-alternatives-available"&gt;9. Better alternatives available&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#10-primarily-optimized-for-demos"&gt;10. Primarily optimized for demos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#takeaways---how-to-use-the-langchain-right-way"&gt;Takeaways - How to Use the LangChain Right Way?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="problems"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Problems&lt;/h2&gt;
+&lt;p&gt;&lt;a id="1-overly-complex-and-unnecessary-abstractions"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1. Overly complex and unnecessary abstractions&lt;/h3&gt;
+&lt;p&gt;LangChain has been criticized for having too many layers of abstraction, making it difficult to understand and modify the underlying code. These layers can lead to confusion, especially for those who are new to LLMs or LangChain itself. The complexity can also make it challenging to adapt the library to specific use cases or integrate it with existing tools and scripts. In some cases, users have found that they can achieve their goals more easily by using simpler, more straightforward code.&lt;/p&gt;
+&lt;p&gt;&lt;a id="2-easy-breakable-and-unreliable"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2. Easy breakable and unreliable&lt;/h3&gt;
+&lt;p&gt;Some users have found LangChain to be unreliable and difficult to fix due to its complex structure. The framework's fragility can lead to unexpected issues in production systems, making it challenging to maintain and scale applications built with LangChain. Users have reported that the deeper and more complex their application becomes, the more LangChain seems to become a risk to its maintainability.&lt;/p&gt;
+&lt;p&gt;&lt;a id="3-poor-documentation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;3. Poor documentation&lt;/h3&gt;
+&lt;p&gt;LangChain's documentation has been described as confusing and lacking in key details, making it challenging for users to fully understand the library's capabilities and limitations. The documentation often omits explanations of default parameters and important details, leaving users to piece together information from various sources. This lack of clarity can hinder users' ability to effectively leverage LangChain in their projects.&lt;/p&gt;
+&lt;p&gt;&lt;a id="4-a-high-level-of-abstraction-hinders-customization"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;4. A high level of abstraction hinders customization&lt;/h3&gt;
+&lt;p&gt;Users have reported that LangChain's high level of abstraction makes it difficult to modify and adapt the library for specific use cases. This can be particularly problematic when users want to make small changes to the default behavior of LangChain or integrate it with other tools and scripts. In these cases, users may find it easier to bypass LangChain altogether and build their own solutions from scratch.&lt;/p&gt;
+&lt;p&gt;&lt;a id="5-inefficient-token-usage"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;5. Inefficient token usage&lt;/h3&gt;
+&lt;p&gt;LangChain has been criticized for inefficient token usage in its API calls, which can result in higher costs. This can be particularly problematic for users who are trying to minimize their expenses while working with LLMs. Some users have found that they can achieve better results with fewer tokens by using custom Python code or other alternative libraries.&lt;/p&gt;
+&lt;p&gt;&lt;a id="6-difficult-integration-with-existing-tools"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;6. Difficult integration with existing tools&lt;/h3&gt;
+&lt;p&gt;Users have reported difficulties integrating LangChain with their existing Python tools and scripts. This can be especially challenging for those who have complex analytics or other advanced functionality built into their applications. The high level of abstraction in LangChain can make it difficult to interface with these existing tools, forcing users to build workarounds or abandon LangChain in favor of more compatible solutions.&lt;/p&gt;
+&lt;p&gt;&lt;a id="7-limited-value-proposition"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;7. Limited value proposition&lt;/h3&gt;
+&lt;p&gt;Some users feel that LangChain does not provide enough value compared to the effort required to implement and maintain it. They argue that the library's primary use case is to quickly create demos or prototypes, rather than building production-ready applications. In these cases, users may find it more efficient to build their own solutions or explore alternative libraries that offer a better balance of ease of use and functionality.&lt;/p&gt;
+&lt;p&gt;&lt;a id="8-inconsistent-behavior-and-hidden-details"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;8. Inconsistent behavior and hidden details&lt;/h3&gt;
+&lt;p&gt;LangChain has been criticized for hiding important details and having inconsistent behavior, which can lead to unexpected issues in production systems. Users have reported that LangChain's default settings and behaviors are often undocumented or poorly explained, making it difficult to predict how the library will behave in different scenarios. This lack of transparency can lead to frustration and wasted time troubleshooting issues that could have been avoided with better documentation.&lt;/p&gt;
+&lt;p&gt;&lt;a id="9-better-alternatives-available"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;9. Better alternatives available&lt;/h3&gt;
+&lt;p&gt;Users have mentioned other libraries, such as &lt;a href="https://github.com/microsoft/semantic-kernel"&gt;Semantic Kernel&lt;/a&gt;, &lt;a href="https://github.com/jerryjliu/llama_index"&gt;LlamaIndex&lt;/a&gt;, &lt;a href="https://haystack.deepset.ai/"&gt;Deepset Haystack&lt;/a&gt; , or &lt;a href="https://github.com/TransformerOptimus/SuperAGI"&gt;SuperAGI&lt;/a&gt;, as more suitable alternatives to LangChain. These alternatives often provide clearer documentation, more flexible customization options, and better integration with existing tools and scripts. In some cases, users have found that they can achieve their goals more easily and efficiently by using these alternative libraries instead of LangChain. See &lt;a href="https://github.com/kyrolabs/awesome-langchain#other-llm-frameworks"&gt;awesome-langchain&lt;/a&gt; for a list of LLM frameworks.&lt;/p&gt;
+&lt;p&gt;&lt;a id="10-primarily-optimized-for-demos"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;10. Primarily optimized for demos&lt;/h3&gt;
+&lt;p&gt;LangChain has been described as being primarily optimized for quickly creating demos, rather than for building production-ready applications. &lt;a href="https://blog.streamlit.io/langchain-streamlit/"&gt;Partnership&lt;/a&gt; with &lt;a href="https://streamlit.io/generative-ai?ref=blog.streamlit.io"&gt;Streamlit&lt;/a&gt; should ease demo creation even more. While this can be useful for those who want to quickly experiment with LLMs or showcase their ideas, it can be limiting for users who want to build more robust, scalable applications. In these cases, users may find that LangChain's focus on demos and prototypes hinders their ability to build high-quality, production-ready applications.&lt;/p&gt;
+&lt;p&gt;&lt;a id="takeaways---how-to-use-the-langchain-right-way"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Takeaways - How to Use the LangChain Right Way?&lt;/h2&gt;
+&lt;p&gt;Based on the community comments and experiences shared, here are some pieces of advice on how to create apps using LangChain that will be reliable, easy to maintain and debug:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Use LangChain for prototyping and experimentation&lt;/strong&gt;: LangChain can be useful for quickly creating prototypes and validating ideas. However, for more complex and production-level applications, you might want to consider implementing the functionality you need yourself.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Understand the underlying concepts&lt;/strong&gt;: Before using LangChain, make sure to understand the core concepts of LLMs, prompts, and how the different components of the framework interact. This will help you make informed decisions about which parts of LangChain to use and which to replace with custom implementations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Focus on the value of the ecosystem&lt;/strong&gt;: LangChain provides integrations with various tools, indexes, and prompt templates. Leverage these resources to build your application, but be aware of the limitations and potential issues that might arise from using the default settings and abstractions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Be prepared to write custom code&lt;/strong&gt;: LangChain might not cover all use cases or provide the level of control and customization you need for your application. Be prepared to write custom code to better suit your specific requirements and use case.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Keep an eye on alternative tools and libraries&lt;/strong&gt;: As the field of LLMs is rapidly evolving, new tools and libraries are being developed that might better suit your needs. Stay informed about the latest developments and consider using alternative libraries like Deepset Haystack, DSP, or GPTi if they better align with your project requirements.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Learn from LangChain's source code&lt;/strong&gt;: If you find that LangChain's abstractions and documentation are not sufficient for your needs, you can learn from the source code itself. Use the provided prompts and implementation details as inspiration and adapt them to your own project.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Consider local LLM models&lt;/strong&gt;: While LangChain primarily focuses on using OpenAI's models, you might want to explore using local LLM models like Llama, Galpaca, Vicuna, or Koala. These models can offer benefits in terms of cost, privacy, and offline capabilities. However, be aware that they might not be as powerful or accurate as GPT-3.5 Turbo.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Integrate with existing tools and scripts&lt;/strong&gt;: If you need to interface with existing Python tools or scripts, make sure to understand how LangChain interacts with them and how you can best integrate them into your application.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Test and measure the performance of your application&lt;/strong&gt;: When using LangChain, ensure that you thoroughly test your application and measure its performance against different prompts and configurations. This will help you identify potential issues and areas for improvement.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Keep an eye on the costs&lt;/strong&gt;: Be mindful of the API costs associated with using LangChain and consider optimizing your application to reduce the number of API calls and tokens used.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In considering LangChain, it's vital to acknowledge its limitations and challenges before embracing it enthusiastically. Although LangChain has garnered significant attention and investment, users have pinpointed various drawbacks that could impede its effectiveness in more intricate, production-ready applications. To make well-informed decisions about LangChain's suitability for their projects, developers should gain an understanding of these issues.
+In the ever-evolving landscape of LLM-driven development, assessing the available tools and libraries is crucial to determining which aligns best with your specific needs and requirements. It's worth noting that the ideal solution might not yet exist, necessitating adaptation or customization of existing tools or even the creation of your own to realize your vision for AI-driven applications.&lt;/p&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category><category term="langchain"></category><category term="prompt-engineering"></category><category term="tokens"></category><category term="llm"></category><category term="gpt"></category><category term="openai"></category></entry><entry><title>Jaro-Winkler Similarity</title><link href="https://www.safjan.com/jaro-winkler-similarity/" rel="alternate"></link><published>2023-08-29T00:00:00+02:00</published><updated>2023-08-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-08-29:/jaro-winkler-similarity/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#jaro-winkler-similarity"&gt;Jaro-Winkler Similarity&lt;/a&gt;&lt;ul&gt;
@@ -2702,7 +2795,7 @@ Bhattacharyya Coefficient: 0.9367406743736104
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#the-task"&gt;The task&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#package-creation"&gt;Package creation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#steps-for-package-creation"&gt;Steps for Package Creation&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#create-project-directory"&gt;Create Project Directory&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#open-the-project-in-pycharm"&gt;Open the Project in PyCharm&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#configure-poetry-virtual-environment"&gt;Configure Poetry Virtual Environment&lt;/a&gt;&lt;/li&gt;
@@ -2713,12 +2806,11 @@ Bhattacharyya Coefficient: 0.9367406743736104
 &lt;li&gt;&lt;a href="#move-script-and-files"&gt;Move Script and Files&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#create-__init__py"&gt;Create &lt;code&gt;__init__.py&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#update-pyprojecttoml"&gt;Update &lt;code&gt;pyproject.toml&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#add-readmemd-file"&gt;Add README.md file&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#test-the-script"&gt;Test …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+&lt;li&gt;&lt;a href="#add-readmemd-file"&gt;Add README.md …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#the-task"&gt;The task&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#package-creation"&gt;Package creation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#steps-for-package-creation"&gt;Steps for Package Creation&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#create-project-directory"&gt;Create Project Directory&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#open-the-project-in-pycharm"&gt;Open the Project in PyCharm&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#configure-poetry-virtual-environment"&gt;Configure Poetry Virtual Environment&lt;/a&gt;&lt;/li&gt;
@@ -2791,8 +2883,8 @@ Bhattacharyya Coefficient: 0.9367406743736104
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;tiktoken
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;a id="package-creation"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Package creation&lt;/h2&gt;
+&lt;p&gt;&lt;a id="steps-for-package-creation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Steps for Package Creation&lt;/h2&gt;
 &lt;p&gt;To create and publish a Python package based on the provided script, you can follow the steps below:&lt;/p&gt;
 &lt;p&gt;&lt;a id="create-project-directory"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Create Project Directory&lt;/h3&gt;
@@ -2830,6 +2922,28 @@ Bhattacharyya Coefficient: 0.9367406743736104
 
 &lt;p&gt;This will set up a new Git repository for version control.&lt;/p&gt;
 &lt;p&gt;At this point, you have set up the project structure, initialized Poetry, configured the virtual environment in PyCharm, installed dependencies, and initialized a Git repository. Now, you can proceed with packaging and publishing your Python script.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: you might want to add &lt;code&gt;.gitignore&lt;/code&gt; file at this stage
+Minimal &lt;code&gt;.gitignore&lt;/code&gt; can be:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Compiled&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;files&lt;/span&gt;
+&lt;span class="n"&gt;__pycache__&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cod&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Distribution&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;packaging&lt;/span&gt;
+&lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;egg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;egg&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Virtual&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;environments&lt;/span&gt;
+&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;IDEs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;editors&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;idea&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;a id="create-package-structure"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Create Package Structure&lt;/h3&gt;
 &lt;p&gt;Inside your project directory, create a package structure that follows Python's best practices. For example, you can create a directory named &lt;code&gt;my_package&lt;/code&gt; that will contain your script and other necessary files.&lt;/p&gt;
@@ -2851,10 +2965,31 @@ Bhattacharyya Coefficient: 0.9367406743736104
 &lt;p&gt;Replace &lt;code&gt;my_script&lt;/code&gt; with the desired command name for your script, and &lt;code&gt;my_package.my_script:main&lt;/code&gt; with the correct import path to your script and its main function.&lt;/p&gt;
 &lt;p&gt;&lt;a id="add-readmemd-file"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Add README.md file&lt;/h3&gt;
-&lt;p&gt;In the root of the project directory create &lt;code&gt;README.md&lt;/code&gt; and fill it with useful information. See also:writing_good_readme
-&lt;a id="test-the-script"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the root of the project directory create &lt;code&gt;README.md&lt;/code&gt; and fill it with useful information. See also:writing_good_readme&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: You can add some badges relate to your pypi package, e.g.:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shields&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pypi&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;package_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;svg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="err"&gt;![]&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shields&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pypi&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pyversions&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;package_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;svg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="err"&gt;![]&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shields&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pypi&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dm&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;package_name&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;svg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Add LICENSE file&lt;/h3&gt;
+&lt;p&gt;You can create a LICENSE file manually. Here's how you can do it:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new file in your project root directory named &lt;code&gt;LICENSE&lt;/code&gt;.    &lt;/li&gt;
+&lt;li&gt;Go to the &lt;a href="https://opensource.org/licenses/MIT"&gt;MIT License template&lt;/a&gt;, copy the text.&lt;/li&gt;
+&lt;li&gt;Paste the copied text into your &lt;code&gt;LICENSE&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;Replace &lt;code&gt;[year]&lt;/code&gt; with the current year and &lt;code&gt;[fullname]&lt;/code&gt; with your name or your organization's name.&lt;/li&gt;
+&lt;li&gt;Save the file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="test-the-script"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Test the Script&lt;/h3&gt;
 &lt;p&gt;Before publishing your package, it's essential to test your script to ensure it works as expected. You can execute the script locally to verify its functionality.&lt;/p&gt;
+&lt;p&gt;If you want to use pytest for testing add it as development dependency and install:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;poetry&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;--group&lt;span class="w"&gt; &lt;/span&gt;dev&lt;span class="w"&gt; &lt;/span&gt;poetry
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;a id="package-the-project"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Package the Project&lt;/h3&gt;
 &lt;p&gt;In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:&lt;/p&gt;
@@ -2876,7 +3011,15 @@ Bhattacharyya Coefficient: 0.9367406743736104
 &lt;h3&gt;Versioning and Updates&lt;/h3&gt;
 &lt;p&gt;When you make updates to your package, ensure to increment the version number in the &lt;code&gt;pyproject.toml&lt;/code&gt; file under the &lt;code&gt;[tool.poetry.version]&lt;/code&gt; section. This helps to track and manage different versions of your package.&lt;/p&gt;
 &lt;p&gt;That's it! You have now packaged and published your Python script using Poetry. Users can install your package using pip and use your script as a command-line tool.&lt;/p&gt;
-&lt;p&gt;Please note that publishing a package is a significant step, and it's essential to review and test your code thoroughly before sharing it with others.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="poetry"></category><category term="package"></category><category term="package-publish"></category><category term="pypi"></category><category term="git"></category><category term="tiktoken"></category></entry><entry><title>Bash - Rename Multiple Image Files to Match Pattern With Sequence Number</title><link href="https://www.safjan.com/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/" rel="alternate"></link><published>2023-06-27T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-27:/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/</id><summary type="html">&lt;p&gt;The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions, and you want to standardize their names for better organization or consistency.&lt;/p&gt;
+&lt;p&gt;Please note that publishing a package is a significant step, and it's essential to review and test your code thoroughly before sharing it with others.&lt;/p&gt;
+&lt;h2&gt;Correcting metadata&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;authors&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;&amp;quot;Krystian Safjan &amp;lt;ksafjan@gmail.com&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;&amp;quot;keyword1&amp;quot;, &amp;quot;keyword2&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;homepage&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;https://github.com/user/repo&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;repository&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;https://github.com/user/repo&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;documentation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;https://github.com/user/repo&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="python"></category><category term="poetry"></category><category term="package"></category><category term="package-publish"></category><category term="pypi"></category><category term="git"></category><category term="tiktoken"></category></entry><entry><title>Bash - Rename Multiple Image Files to Match Pattern With Sequence Number</title><link href="https://www.safjan.com/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/" rel="alternate"></link><published>2023-06-27T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-27:/bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number/</id><summary type="html">&lt;p&gt;The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions, and you want to standardize their names for better organization or consistency.&lt;/p&gt;
 &lt;p&gt;By executing the script, all image files with extensions such as &lt;code&gt;.jpg&lt;/code&gt;, &lt;code&gt;.jpeg&lt;/code&gt;, &lt;code&gt;.png&lt;/code&gt;, &lt;code&gt;.gif&lt;/code&gt;, &lt;code&gt;.tiff&lt;/code&gt;, &lt;code&gt;.heic&lt;/code&gt;, and &lt;code&gt;.heif&lt;/code&gt; in the current directory will be renamed. The new names will follow the pattern "img_xxx.ext", where "xxx" represents a sequence number starting from 000, and "ext" represents the original file extension.&lt;/p&gt;
 &lt;p&gt;For example, if you have the following image files in the directory:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;photo1.jpg
@@ -23261,10 +23404,10 @@ Plotly.plot('plotly-timeseries', graph, {});
 
 
 
-&lt;div id="ac4d9083-ebbe-44a7-8cc5-f07b2f45f6b7"&gt;&lt;/div&gt;
+&lt;div id="2f309a91-bebd-45dc-bc2a-dda49322d8a9"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_javascript "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#ac4d9083-ebbe-44a7-8cc5-f07b2f45f6b7');
+var element = $('#2f309a91-bebd-45dc-bc2a-dda49322d8a9');
 
 (function(root) {
   function now() {
