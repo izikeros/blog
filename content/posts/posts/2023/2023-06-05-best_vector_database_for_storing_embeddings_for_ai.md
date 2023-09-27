@@ -9,7 +9,7 @@ Status: published
 Summary: Delve into the World of Vector Databases Fueling NLP's Transformative Journey.
 Tags: machine-learning, python, embeddings, vectordb, database, transformers, chroma, langchain, pinecone, haystack, faiss, milvus, pgvector, supabase, qdrant, vespa, weaviate, deeplake, vectorstore
 Title: The Best Vector Databases for Storing Embeddings
-banner: /images/head/vectordb.jpg
+banner: "/images/head/vectordb.jpg"
 prompt: see chatGPT prompts
 prompt1: explain what vector databases are, and why there is demand for them when other types of databases exits and they are battlefield tested (like postgres)
 ---
@@ -337,3 +337,8 @@ By considering the diverse requirements of each group, we have recommended vecto
 5. [How vector databases can revolutionize our relationship with generative AI | VentureBeat](https://venturebeat.com/ai/how-vector-databases-can-revolutionize-our-relationship-with-generative-ai/)
 6. [Vector databases provide new ways to enable search and data analytics.](https://www.forbes.com/sites/adrianbridgwater/2023/05/19/the-rise-of-vector-databases/)
 7. [OpenAI’s Embeddings with Vector Database | Better Programming](https://betterprogramming.pub/openais-embedding-model-with-vector-database-b69014f04433)
+8. Vector Databases Demystified serie by [Adie Kaye](https://www.linkedin.com/in/adiekaye/)
+	- [Part 1 - An Introduction to the World of High-Dimensional Data Storage](https://www.linkedin.com/pulse/vector-databases-demystified-part-1-introduction-world-adie-kaye%3FtrackingId=Rswjt%252BgljDJ9YTjMB08LWw%253D%253D/?trackingId=Rswjt%2BgljDJ9YTjMB08LWw%3D%3D)
+	- [Part 2 - Building Your Own (Very) Simple Vector Database in Python](https://www.linkedin.com/pulse/vector-databases-demystified-part-2-building-your-own-adie-kaye?trackingId=CRILIdZ0zUFLlj3EZ69gXQ%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B1s%2FDztmATJWjL%2BLIoqi0XQ%3D%3D)
+	- [Part 3 - Build a colour matching app with Pinecone](https://www.linkedin.com/pulse/vector-databases-demystified-part-3-build-colour-matching-adie-kaye?trackingId=sS3mR3KmPvSwcPwdMJvbFQ%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B1s%2FDztmATJWjL%2BLIoqi0XQ%3D%3D)
+	- [Part 4 - Using Sentence Transformers with Pinecone](https://www.linkedin.com/pulse/vector-databases-demystified-part-4-using-sentence-pinecone-kaye?trackingId=vfLY3dFcGw%2FVygrCCFKZIQ%3D%3D)

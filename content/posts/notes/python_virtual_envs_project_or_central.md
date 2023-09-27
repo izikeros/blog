@@ -4,8 +4,13 @@ Slug: python-virtual-environments-choosing-between-project-based-and-centralized
 Date: 2023-07-27
 Modified: 2023-07-27
 Status: published
-Tags: python, virtualenv, location, venv-dir  
+tags:
+  - python
+  - virtualenv
+  - location
+  - venv-dir
 Category: note
+X: "[[python_create_virtualenv_methods]]"
 ---
 
 When it comes to managing Python virtual environments, there are two common approaches: project-based virtual environments and centralized virtual environments. Each approach has its merits, and the choice depends on the specific needs and requirements of your development workflow. Let's break down each method step by step and provide recommendations with justifications.

@@ -9,6 +9,9 @@ Status: published
 Tags: federated-social-web, manifesto, decentralization, openness, interoperability, user-control, privacy, accessibility, innovation
 Title: Federated Social Web Manifesto
 ---
+X::[[mastodon]]
+
+
 
 The Federated Social Web manifesto is a call to action for all those who believe in the power of decentralized social networking. It is a declaration of principles and values that guide the development of a new kind of social web, one that is built on the principles of openness, decentralization, and user control.
 

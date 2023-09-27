@@ -4,11 +4,19 @@ Slug: problems-with-Langchain-and-how-to-minimize-their-impact
 Date: 2023-09-01
 Modified: 2023-09-01
 Start: 2023-09-01
-Tags: machine-learning, python, langchain, prompt-engineering, tokens, llm, gpt, openai
+tags:
+  - machine-learning
+  - python
+  - langchain
+  - prompt-engineering
+  - tokens
+  - llm
+  - gpt
+  - openai
 Category: Machine Learning
 Image: /images/head/langchain_problems.jpg
-banner: "/images/head/langchain_problems.jpg"
-Summary: Beyond the Hype: LangChain's Hidden Flaws and How to Master AI Development.
+banner: /images/head/langchain_problems.jpg
+Summary: Beyond the Hype - LangChain's Hidden Flaws and How to Master AI Development.
 Status: published
 prompt:
 ---

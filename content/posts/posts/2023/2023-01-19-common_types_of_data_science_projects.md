@@ -9,7 +9,7 @@ Status: published
 Summary: Learn about common types of data science projects and best practices for approaching them. From end-to-end individual work to production-ready projects, this guide covers it all.
 Tags: machine-learning, project, software-maintenence, software-development, software-project, jupyter
 Title: Common Types of Data Science Projects
-banner: /images/head/team_project_head.jpg
+banner: "/images/head/team_project_head.jpg"
 ---
 
 ## Introduction
@@ -29,6 +29,7 @@ Data science is a rapidly growing field that encompasses a wide range of activit
 <a id="1-end-to-end-individual-work"></a>
 ### 1. End-to-end Individual Work
 
+
 ![End-to-end Individual Work - graphics](/images/ml_project_types/individual_e2e_project.jpg)
 
 End-to-end individual work is a type of data science project that is typically **short-term** and has **low complexity**. These projects may consist of a **single Jupyter notebook** and may be completed by a single person. Examples of end-to-end individual work include analyzing customer data for a retail store or building a simple machine learning model for personal use.
@@ -37,6 +38,7 @@ When working on an end-to-end individual project, it's important to keep the pro
 
 <a id="2-collaborative-project"></a>
 ### 2. Collaborative Project
+
 ![Collaborative Project - graphics](/images/ml_project_types/team_project.jpg)
 
 Collaborative projects are a type of data science project that involve multiple people working together to achieve a common goal. These projects may be of **medium complexity** and may involve **multiple Jupyter notebooks**. Examples of collaborative projects include predicting customer churn for a client or building a recommendation engine for a streaming service.
@@ -45,6 +47,7 @@ When working on a collaborative project, it's important to establish clear commu
 
 <a id="3-individual-work-but-final-notebook-shares-as-result"></a>
 ### 3. Individual Work but Final Notebook Shares as Result
+
 ![Individual Work but Final Notebook Shares as Result - graphics](/images/ml_project_types/individual_but_presented.jpg)
 
 Individual work but final notebook shares as result is a type of data science project that involves a single person working on a project, but the final results are shared with others. These projects may involve a single Jupyter notebook and may be completed by a single person. Examples of this type of project include an analysis on demand for a company's management team or a side-project/tutorial that is published on a blog.
