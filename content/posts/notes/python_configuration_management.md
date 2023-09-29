@@ -85,7 +85,7 @@ It also makes it easy for you to:
 define comprehensive default values;
 - properly convert values to the correct data type;
 - have only one configuration module to rule all your instances.
--It was originally designed for Django, but became an independent generic tool for separating settings from code.
+- It was originally designed for Django, but became an independent generic tool for separating settings from code.
 
 Envvars works, but since `os.environ` only returns strings, it’s tricky.
 
