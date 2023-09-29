@@ -4,11 +4,7 @@ Slug: python-virtual-environments-choosing-between-project-based-and-centralized
 Date: 2023-07-27
 Modified: 2023-07-27
 Status: published
-tags:
-  - python
-  - virtualenv
-  - location
-  - venv-dir
+tags: python, virtualenv, location, venv-dir
 Category: note
 X: "[[python_create_virtualenv_methods]]"
 ---
