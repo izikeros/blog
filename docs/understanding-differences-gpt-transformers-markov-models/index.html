@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="This article delves into the intricacies of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models."/>
+    <meta name="keywords" content="machine-learning, transformers, markov-models, attention, self-attention, natural-language-processing, nlp, AI, deep-learning, language-models, GPT">
+    <meta expr:content="2023-10-07 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-10-07 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-10-07 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-10-07 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding the Differences in Language Models - Transformers vs. Markov Models",
+  "datePublished": "2023-10-07 00:00:00+02:00",
+  "dateModified": "2023-10-07 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Understanding the Differences in Language Models - Transformers vs. Markov Models"/>
+  <meta property="og:description" content="This article delves into the intricacies of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-10-07 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-10-07 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="transformers"/>
+  <meta property="article:tag" content="markov-models"/>
+  <meta property="article:tag" content="attention"/>
+  <meta property="article:tag" content="self-attention"/>
+  <meta property="article:tag" content="natural-language-processing"/>
+  <meta property="article:tag" content="nlp"/>
+  <meta property="article:tag" content="AI"/>
+  <meta property="article:tag" content="deep-learning"/>
+  <meta property="article:tag" content="language-models"/>
+  <meta property="article:tag" content="GPT"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/markov_vs_transformers.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/markov_vs_transformers.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>This article delves into the intricacies of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.</p>"/>
+    <meta name="twitter:title" content="Understanding the Differences in Language Models - Transformers vs. Markov Models"/>
+
+
+    <title>    Understanding the Differences in Language Models - Transformers vs. Markov Models
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-10-07 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Understanding%20the%20Differences%20in%20Language%20Models%20-%20Transformers%20vs.%20Markov%20Models&url=https%3A//www.safjan.com/understanding-differences-gpt-transformers-markov-models/&hashtags=machine-learning,transformers,markov-models,attention,self-attention,natural-language-processing,nlp,ai,deep-learning,language-models,gpt" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/understanding-differences-gpt-transformers-markov-models/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Understanding%20the%20Differences%20in%20Language%20Models%20-%20Transformers%20vs.%20Markov%20Models&u=https%3A//www.safjan.com/understanding-differences-gpt-transformers-markov-models/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/understanding-differences-gpt-transformers-markov-models/&title=Understanding%20the%20Differences%20in%20Language%20Models%20-%20Transformers%20vs.%20Markov%20Models" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="understanding-differences-gpt-transformers-markov-models">Understanding the Differences in Language Models - Transformers vs. Markov Models</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>This article delves into the intricacies of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/">
+                        <img style="width: 100%; "
+                             src="/images/head/markov_vs_transformers.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <p>In the field of machine learning and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT (Generative Pretrained Transformer). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to delve into the intricacies of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.</p>
+<h2>Markov Models: A Brief Overview</h2>
+<p><a href="https://en.wikipedia.org/wiki/Markov_model">Markov Models</a>, named after the Russian mathematician <a href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrey Markov</a>, are a class of models that predict future states based solely on the current state, disregarding all past states. This property is known as the Markov Property, and it is the fundamental assumption that underlies all Markov models. </p>
+<p>In the context of language modeling, a Markov Model might predict the next word or character in a sentence based on the current word or character. For instance, given the word "The", a Markov Model might predict that the next word is "cat" based on the probability distribution of words that follow "The" in its training data.</p>
+<p>The main limitation of Markov Models is their lack of memory. Since they only consider the current state, they are unable to capture long-term dependencies in a sequence. For example, in the sentence "I grew up in France... I speak fluent ___", a Markov Model might struggle to fill in the blank correctly because the relevant context ("France") is several words back.</p>
+<p><img alt="Markov Chain text generation" src="/images/transformers_vs_markov/markov_model_text_generation.png">
+<strong>Figure 1.</strong> <em>Markov Model might predict  the next word based on the probability distribution of words in its training data. Image Source: <a href="https://jaroslawwiosna.github.io/markov-chain-text/">markov-chain-text | Modern C++ Markov chain text generator</a> by Jarosław Wiosna</em> </p>
+<h2>Transformer Models: An Introduction</h2>
+<p>Transformer models, on the other hand, were introduced in the seminal paper <a href="https://arxiv.org/abs/1706.03762">"Attention is All You Need"</a> by Vaswani et al. (2017). They represent a significant departure from previous sequence-to-sequence models, eschewing recurrent and convolutional layers in favor of self-attention mechanisms.</p>
+<p>GPT, developed by OpenAI, is a prominent example of a Transformer model. It is a generative model that can generate human-like text by predicting the next word in a sequence. Unlike Markov Models, GPT considers the entire context of a sequence when making predictions, allowing it to capture long-term dependencies.</p>
+<h2>The Power of Self-Attention</h2>
+<p>The key innovation of Transformer models is the self-attention mechanism. This mechanism allows the model to weigh the importance of different words in the context when predicting the next word. For instance, in the sentence "The cat, which was black and white, jumped over the ___", the model might assign more importance to "cat" and "jumped" when predicting the next word.</p>
+<p>Self-attention is calculated using the dot product of the query and key vectors, which are learned representations of the input. The resulting attention scores are then used to weight the value vectors, which are also learned representations of the input. This weighted sum forms the output of the self-attention layer.</p>
+<p>The self-attention mechanism allows Transformer models to consider the entire context of a sequence, rather than just the current state. This is a significant advantage over Markov Models, which are limited by their fixed context length.</p>
+<p><img alt="Transformer model - Context and Attention" src="/images/transformers_vs_markov/transformers_context_and_atention.png">
+<strong>Figure 2.</strong> <em>The self-attention mechanism allows Transformer models to consider the entire context of a sequence, rather than just the current state. Image Source:  <a href="https://dzone.com/articles/a-deep-dive-into-the-transformer-architecture-the">A Deep Dive Into the Transformer Architecture – The Development of Transformer Models</a> by Kevin Hooke</em></p>
+<h2>Fixed Context Length vs. Variable Context Length</h2>
+<p>Markov Models, due to their inherent design, have a fixed context length. They only consider the current state when making predictions, which limits their ability to capture long-term dependencies. This can lead to less accurate predictions, especially in complex sequences where the relevant context might be several states back.</p>
+<p>Transformer models, on the other hand, have a variable context length. Thanks to the self-attention mechanism, they can consider the entire context of a sequence when making predictions. This allows them to capture long-term dependencies and make more accurate predictions.</p>
+<p>Moreover, the self-attention mechanism allows Transformer models to dynamically adjust the context length based on the input. For instance, in a sentence with many irrelevant words, the model might focus on a few key words, effectively reducing the context length. This dynamic context length is another advantage of Transformer models over Markov Models.</p>
+<h2>Conclusion</h2>
+<p>While both Markov Models and Transformer models like GPT can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. Markov Models, with their fixed context length, are limited in their ability to capture long-term dependencies. Transformer models, with their self-attention mechanism, can consider the entire context of a sequence, allowing them to capture long-term dependencies and make more accurate predictions.</p>
+<h2>References</h2>
+<ol>
+<li>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... &amp; Polosukhin, I. (2017). <a href="https://arxiv.org/abs/1706.03762">Attention is all you need</a>. In Advances in neural information processing systems (pp. 5998-6008).</li>
+<li>Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). <a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">Language Models are Unsupervised Multitask Learners</a>. OpenAI Blog.</li>
+<li>Bishop, C. M. (2006). <a href="https://www.springer.com/gp/book/9780387310732">Pattern Recognition and Machine Learning</a>. Springer.</li>
+<li>Ruder, S. (2019). <a href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a>. Jay Alammar's Blog.</li>
+<li>Brown, T. B., Mann, B., Ryder, N., Subbiah, M., Kaplan, J., Dhariwal, P., ... &amp; Amodei, D. (2020). <a href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners</a>. In Advances in Neural Information Processing Systems.</li>
+<li>Chollet, F. (2018). <a href="https://www.manning.com/books/deep-learning-with-python">Deep Learning with Python</a>. Manning Publications Co.</li>
+<li>Jurafsky, D., &amp; Martin, J. H. (2019). <a href="https://web.stanford.edu/~jurafsky/slp3/">Speech and Language Processing</a>. Stanford University.</li>
+<li>Al-Rfou, R., Choe, D., Constant, N., Guo, M., &amp; Jones, L. (2019). <a href="https://arxiv.org/abs/1808.04444">Character-Level Language Modeling with Deeper Self-Attention</a>. In Proceedings of the AAAI Conference on Artificial Intelligence.</li>
+<li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <a href="http://www.deeplearningbook.org/">Deep Learning</a>. MIT press.</li>
+<li>Manning, C. D., &amp; Schütze, H. (1999). <a href="https://mitpress.mit.edu/books/foundations-statistical-natural-language-processing">Foundations of Statistical Natural Language Processing</a>. MIT Press.</li>
+<li>Jurafsky, D., &amp; Martin, J. H. (2009). <a href="https://www.pearson.com/us/higher-education/program/Jurafsky-Speech-and-Language-Processing-An-Introduction-to-Natural-Language-Processing-Computational-Linguistics-and-Speech-Recognition-2nd-Edition/PGM319216.html">Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition</a>. Prentice Hall.</li>
+<li>Jelinek, F. (1997). <a href="https://mitpress.mit.edu/books/statistical-methods-speech-recognition">Statistical Methods for Speech Recognition</a>. MIT Press.</li>
+<li>Russell, S., &amp; Norvig, P. (2016). <a href="http://aima.cs.berkeley.edu/">Artificial Intelligence: A Modern Approach</a>. Pearson.</li>
+<li>Charniak, E. (1993). <a href="https://mitpress.mit.edu/books/statistical-language-learning">Statistical Language Learning</a>. MIT Press.</li>
+<li>Lin, T. (2015). <a href="https://towardsdatascience.com/markov-chains-and-text-generation-162fd4ec8f26">Markov Chains and Text Generation</a>. Towards Data Science Blog.</li>
+<li>Goodman, J. (2001). <a href="https://www.microsoft.com/en-us/research/publication/a-bit-of-progress-in-language-modeling/">A bit of progress in language modeling</a>. Microsoft Research.</li>
+<li>Rosenfeld, R. (2000). <a href="https://www.cs.cmu.edu/~roni/papers/SLM-hlt01.pdf">Two Decades of Statistical Language Modeling: Where Do We Go From Here?</a>. Proceedings of the IEEE.</li>
+<li>Nazarko K. (2021). <a href="https://towardsdatascience.com/text-generation-gpt-2-lstm-markov-chain-9ea371820e1e">Word-level text generation using GPT-2, LSTM and Markov Chain</a>. Towards Data Science Blog.</li>
+<li>Adyatama A (2020). <a href="https://algotech.netlify.app/blog/text-generating-with-markov-chains/">Text Generation with Markov Chains</a> Algoritma Technical Blog.</li>
+</ol>
+        </div>
+
+
+
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>@article{Saf2023Understanding,
+    author  = {Krystian Safjan},
+    title   = {Understanding the Differences in Language Models - Transformers vs. Markov Models},
+    journal = {Krystian's Safjan Blog},
+    year    = {2023},
+}</pre>
+            </div>
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/transformers/">transformers</a>
+                        <a href="https://www.safjan.com/tag/markov-models/">markov-models</a>
+                        <a href="https://www.safjan.com/tag/attention/">attention</a>
+                        <a href="https://www.safjan.com/tag/self-attention/">self-attention</a>
+                        <a href="https://www.safjan.com/tag/natural-language-processing/">natural-language-processing</a>
+                        <a href="https://www.safjan.com/tag/nlp/">nlp</a>
+                        <a href="https://www.safjan.com/tag/ai/">AI</a>
+                        <a href="https://www.safjan.com/tag/deep-learning/">deep-learning</a>
+                        <a href="https://www.safjan.com/tag/language-models/">language-models</a>
+                        <a href="https://www.safjan.com/tag/gpt/">GPT</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/top-10-python-libraries-for-document-classification/">Top 10 Python Libraries for Document Classification</a></li>
+                        <li><a href="https://www.safjan.com/contextual_understanding-speech-to-text/">Contextual Understanding in Automated Speech-to-Text Transcription - Machine Learning Techniques and Challenges</a></li>
+                        <li><a href="https://www.safjan.com/datasets-for-sentiment-analysis/">Datasets for Sentiment Analysis</a></li>
+                        <li><a href="https://www.safjan.com/language-models-for-knowledge-management-in-corporate/">Leveraging Language Models in Corporate Environments - The Future of Knowledge Management</a></li>
+                        <li><a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/">The Best Vector Databases for Storing Embeddings</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/how-agile-can-kill-creativity-in-data-science-team/" title="How Agile Can Kill Creativity in Data Science team?">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

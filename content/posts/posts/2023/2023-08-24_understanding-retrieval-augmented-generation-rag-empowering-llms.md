@@ -58,3 +58,8 @@ Retrieval-Augmented Generation offers a promising solution to the limitations of
 - Exemplary notebooks on amazon Sagemaker:
 	- [Retrieval-Augmented Generation: Question Answering based on Custom Dataset](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_jumpstart_knn.html)
 	- [Retrieval-Augmented Generation: Question Answering based on Custom Dataset with Open-sourced LangChain Library](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_langchain_jumpstart.html)
+- Python library with RAG implementation: [GitHub - llmware-ai/llmware: Providing enterprise-grade LLM-based development framework, tools and fine-tuned models.](https://github.com/llmware-ai/llmware)
+- Analytics: [Vectorview](https://www.vectorview.ai/)
+- Deep-dive into specific use-case of RAG with scaling in mind: [Building RAG-based LLM Applications for Production (Part 1)](https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1)
+
+

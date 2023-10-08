@@ -22,4 +22,6 @@ Dataset: [SentEval](https://github.com/facebookresearch/SentEval) (MR, CR, SUB
 
 Source: [New and Improved Embedding Model](https://openai.com/blog/new-and-improved-embedding-model/)
 
+See also: [Vectorview](https://www.vectorview.ai/) - analyzing data and user queries, providing actionable insights for a better fit between model and user needs
+
 up::[[MOC_AI]]
