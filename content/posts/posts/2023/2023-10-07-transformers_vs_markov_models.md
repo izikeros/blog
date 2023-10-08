@@ -4,17 +4,17 @@ Slug: understanding-differences-gpt-transformers-markov-models
 Date: 2023-10-07
 Modified: 2023-10-07
 Start: 2023-10-07
-tags: machine-learning, transformers, markov-models, attention, self-attention, natural-language-processing, nlp, AI, deep-learning, language-models, GPT
 Category: Machine Learning
 Image: /images/head/markov_vs_transformers.jpg
-banner: "/images/head/markov_vs_transformers.jpg"
-Summary: This article delves into the intricacies of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
+banner: /images/head/markov_vs_transformers.jpg
+Summary: This article explores distinguishing details of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
 Status: published
 prompt: Give me a long article that points How LLMs like GPT, transformers differ from Markov Models? Both predict next character. The target audience is professionals so do a deep dive, and delve into the details of both types of models. Use proper introduction. Focus on explaining how the self attention makes difference to a fixed context length for markov models.
 System-prompt: You are Data Science expert and statistical methods expert. Carefully heed the user's instructions. Respond using Markdown. GPT-4, temp 0.7, top-p:0.4
+tags: machine-learning, transformers, markov-models, attention, self-attention, natural-language-processing, nlp, AI, deep-learning, language-models, GPT
 ---
 
-In the field of machine learning and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT (Generative Pretrained Transformer). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to delve into the intricacies of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
+In the field of machine learning and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT ([Generative Pretrained Transformer](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer)). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to delve into the intricacies of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
 
 ## Markov Models: A Brief Overview
 
@@ -26,6 +26,7 @@ The main limitation of Markov Models is their lack of memory. Since they only co
 
 
 ![Markov Chain text generation](/images/transformers_vs_markov/markov_model_text_generation.png)
+
 **Figure 1.** *Markov Model might predict  the next word based on the probability distribution of words in its training data. Image Source: [markov-chain-text | Modern C++ Markov chain text generator](https://jaroslawwiosna.github.io/markov-chain-text/) by Jarosław Wiosna* 
 
 ## Transformer Models: An Introduction
@@ -44,6 +45,7 @@ The self-attention mechanism allows Transformer models to consider the entire co
 
 
 ![Transformer model - Context and Attention](/images/transformers_vs_markov/transformers_context_and_atention.png)
+
 **Figure 2.** *The self-attention mechanism allows Transformer models to consider the entire context of a sequence, rather than just the current state. Image Source:  [A Deep Dive Into the Transformer Architecture – The Development of Transformer Models](https://dzone.com/articles/a-deep-dive-into-the-transformer-architecture-the) by Kevin Hooke*
 
 ## Fixed Context Length vs. Variable Context Length
@@ -77,7 +79,7 @@ While both Markov Models and Transformer models like GPT can predict the next ch
 15. Lin, T. (2015). [Markov Chains and Text Generation](https://towardsdatascience.com/markov-chains-and-text-generation-162fd4ec8f26). Towards Data Science Blog.
 16. Goodman, J. (2001). [A bit of progress in language modeling](https://www.microsoft.com/en-us/research/publication/a-bit-of-progress-in-language-modeling/). Microsoft Research.
 17. Rosenfeld, R. (2000). [Two Decades of Statistical Language Modeling: Where Do We Go From Here?](https://www.cs.cmu.edu/~roni/papers/SLM-hlt01.pdf). Proceedings of the IEEE.
-18. Nazarko K. (2021). [Word-level text generation using GPT-2, LSTM and Markov Chain](https://towardsdatascience.com/text-generation-gpt-2-lstm-markov-chain-9ea371820e1e). Towards Data Science Blog.
-19. Adyatama A (2020). [Text Generation with Markov Chains](https://algotech.netlify.app/blog/text-generating-with-markov-chains/) Algoritma Technical Blog.
+18. Nazarko, K. (2021). [Word-level text generation using GPT-2, LSTM and Markov Chain](https://towardsdatascience.com/text-generation-gpt-2-lstm-markov-chain-9ea371820e1e). Towards Data Science Blog.
+19. Adyatama, A. (2020). [Text Generation with Markov Chains](https://algotech.netlify.app/blog/text-generating-with-markov-chains/) Algoritma Technical Blog.
 
 X::[[transformers_vs_markov_models_illustrations]]
