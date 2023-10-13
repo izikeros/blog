@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?"/>
+    <meta name="keywords" content="chunking, text-processing, nlp, semantic-search, language-models, fixed-size-chunking, recursive-structure-aware-splitting, structure-aware-splitting, nlp-chunking, content-aware-splitting, metadata, summaries, keyword-tagging, sentiment-analysis, entity-recognition, topic-classification, chunk-linking, llm, rag">
+    <meta expr:content="2023-09-11 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-10-13 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-10-13 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2023-09-11 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques",
+  "datePublished": "2023-09-11 00:00:00+02:00",
+  "dateModified": "2023-10-13 00:00:00+02:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques"/>
+  <meta property="og:description" content="Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-09-11 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-10-13 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="chunking"/>
+  <meta property="article:tag" content="text-processing"/>
+  <meta property="article:tag" content="nlp"/>
+  <meta property="article:tag" content="semantic-search"/>
+  <meta property="article:tag" content="language-models"/>
+  <meta property="article:tag" content="fixed-size-chunking"/>
+  <meta property="article:tag" content="recursive-structure-aware-splitting"/>
+  <meta property="article:tag" content="structure-aware-splitting"/>
+  <meta property="article:tag" content="nlp-chunking"/>
+  <meta property="article:tag" content="content-aware-splitting"/>
+  <meta property="article:tag" content="metadata"/>
+  <meta property="article:tag" content="summaries"/>
+  <meta property="article:tag" content="keyword-tagging"/>
+  <meta property="article:tag" content="sentiment-analysis"/>
+  <meta property="article:tag" content="entity-recognition"/>
+  <meta property="article:tag" content="topic-classification"/>
+  <meta property="article:tag" content="chunk-linking"/>
+  <meta property="article:tag" content="llm"/>
+  <meta property="article:tag" content="rag"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_4.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_4.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?</p>"/>
+    <meta name="twitter:title" content="From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques"/>
+
+
+    <title>    From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-09-11 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=From%20Fixed-Size%20to%20NLP%20Chunking%20-%20A%20Deep%20Dive%20into%20Text%20Chunking%20Techniques&url=https%3A//www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/&hashtags=chunking,text-processing,nlp,semantic-search,language-models,fixed-size-chunking,recursive-structure-aware-splitting,structure-aware-splitting,nlp-chunking,content-aware-splitting,metadata,summaries,keyword-tagging,sentiment-analysis,entity-recognition,topic-classification,chunk-linking,llm,rag" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=From%20Fixed-Size%20to%20NLP%20Chunking%20-%20A%20Deep%20Dive%20into%20Text%20Chunking%20Techniques&u=https%3A//www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/&title=From%20Fixed-Size%20to%20NLP%20Chunking%20-%20A%20Deep%20Dive%20into%20Text%20Chunking%20Techniques" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques">From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/">
+                        <img style="width: 100%; "
+                             src="/images/head/abstract_4.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <h2>Understanding Chunking</h2>
+<p>Chunking is a process that aims to embed a piece of content with as little noise as possible while maintaining semantic relevance[^2]. This process is particularly useful in semantic search, where we index a corpus of documents, each containing valuable information on a specific topic. </p>
+<p>An effective chunking strategy ensures that search results accurately capture the essence of a user's query. If our chunks are too small or too large, it may lead to imprecise search results or missed opportunities to surface relevant content. As a <strong>rule of thumb</strong>, if the <strong>chunk of text makes sense without the surrounding context to a human</strong>, it will likely make sense to the language model as well[^2]. Therefore, finding the optimal chunk size for the documents in the corpus is crucial to ensuring that the search results are accurate and relevant.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#factors-influencing-chunking-strategy">Factors Influencing Chunking Strategy</a><ul>
+<li><a href="#size-of-the-texts-to-be-indexed">Size of the Texts to be Indexed</a></li>
+<li><a href="#length-and-complexity-of-user-queries">Length and Complexity of User Queries</a></li>
+<li><a href="#utilization-of-the-retrieved-results-in-the-application">Utilization of the Retrieved Results in the Application</a></li>
+</ul>
+</li>
+<li><a href="#chunking-methods">Chunking Methods</a><ul>
+<li><a href="#fixed-size-in-characters-overlapping-sliding-window">Fixed-size (in characters) Overlapping Sliding Window</a></li>
+<li><a href="#fixed-size-in-tokens-overlapping-sliding-window">Fixed-size (in tokens) Overlapping Sliding Window</a></li>
+<li><a href="#recursive-structure-aware-splitting">Recursive Structure Aware Splitting</a></li>
+<li><a href="#structure-aware-splitting-by-sentence-paragraph-section-chapter">Structure Aware Splitting (by Sentence, Paragraph, Section, Chapter)</a></li>
+<li><a href="#nlp-chunking-tracking-topic-changes">NLP Chunking: Tracking Topic Changes</a></li>
+<li><a href="#content-aware-splitting-markdown-latex-html">Content-Aware Splitting (Markdown, LaTeX, HTML)</a></li>
+<li><a href="#adding-extra-context-to-the-chunk-metadata-summaries">Adding Extra Context to the Chunk (metadata, summaries)</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="factors-influencing-chunking-strategy"></a></p>
+<h2>Factors Influencing Chunking Strategy</h2>
+<p>There are three main factors to consider when determining a chunking strategy for a specific use case and application:</p>
+<ol>
+<li>The size of the texts to be indexed and chunked</li>
+<li>The length and complexity of user queries</li>
+<li>The utilization of the retrieved results in the application</li>
+</ol>
+<p><a id="size-of-the-texts-to-be-indexed"></a></p>
+<h3>Size of the Texts to be Indexed</h3>
+<p>The chunking unit and size should be adjusted according to the nature of the text. The chunk should be long enough to contain the relevant semantic load. For instance, individual words may not convey a specific message or piece of information, while putting an entire encyclopedia in one chunk may result in a chunk that is "about everything."</p>
+<p><a id="length-and-complexity-of-user-queries"></a></p>
+<h3>Length and Complexity of User Queries</h3>
+<ul>
+<li><strong>Longer queries</strong> or those with greater complexity typically <strong>benefit from a smaller chunk length</strong>. This helps to narrow down the search space and improve the precision of the search results. Smaller chunks allow more focused matching against embeddings, reducing the impact of irrelevant parts within the query.</li>
+<li><strong>Shorter and simpler queries</strong> might not require chunking at all, as they can be processed as a single unit. Chunking may introduce unnecessary overhead in these cases, potentially hampering search performance.</li>
+</ul>
+<p><a id="utilization-of-the-retrieved-results-in-the-application"></a></p>
+<h3>Utilization of the Retrieved Results in the Application</h3>
+<p>In cases where search results are only an intermediate step in the whole chain in the app, the size of the chunk might have significant importance for the seamless operation of the application. For example, if results from multiple search queries are the input context for the prompt to the LLM, having small chunks might ease fitting all inputs in the maximum allowed context size for a given LLM. Conversely, if the search result is presented to the user, larger chunks may be more appropriate.</p>
+<p><a id="chunking-methods"></a></p>
+<h2>Chunking Methods</h2>
+<p>There are several methods for chunking text, each with its own advantages and disadvantages. The choice of method depends on the specific requirements of the use case and application.</p>
+<p><a id="fixed-size-in-characters-overlapping-sliding-window"></a></p>
+<h3>Fixed-size (in characters) Overlapping Sliding Window</h3>
+<p>The Fixed-size overlapping sliding window method is a naive approach to text chunking, dividing the text into fixed-size pieces regarded as chunks. In this method, the text is divided based on the count of characters, making it straightforward to implement. The use of overlap in this method aids in preserving the integrity of sentences or thoughts, ensuring they are not cut in the middle. If one window truncates a thought, another window might contain the complete thought.</p>
+<p>However, this method presents certain limitations. One significant drawback is the lack of precise control over the context size. Most language models operate on the basis of tokens rather than characters or words, making this method less efficient. The strict and fixed-size nature of the window might also result in severing words, sentences, or paragraphs in the middle, which could impede comprehension and disrupt the flow of information.</p>
+<p>Furthermore, this method does not take semantics into account, providing no guarantee that the semantic unit of the text capturing a given idea or thought will be accurately encapsulated within a chunk. Consequently, one chunk may not be semantically distinct from another.</p>
+<h4>Use Cases</h4>
+<p>The Fixed-size overlapping sliding window method can be beneficial in certain scenarios. It is especially useful in preliminary exploratory data analysis, where the goal is to obtain a general understanding of the text structure rather than a deep semantic analysis. Additionally, it could be employed in scenarios where the text data does not have a strong semantic structure, such as in certain types of raw data or logs.</p>
+<p>However, for tasks that require semantic understanding and precise context, such as sentiment analysis, question-answering systems, or text summarization, more sophisticated text chunking methods would be more appropriate.</p>
+<h4>Summary</h4>
+<p><strong>Pros:</strong>
+- Counting characters makes implementation easy
+- Using overlap helps to avoid having sentences or thoughts cut in the middle - if one window is cutting the thought, perhaps another will have it in one piece.</p>
+<p><strong>Cons:</strong>
+- Not precise control of the context size - models work and size the text in tokens not in characters or words
+- Having a strict, fixed-size window might lead to cutting words, sentences, or paragraphs in the middle.
+- Doesn't take semantics into account, no guarantee that the semantic unit of text capturing the given idea, thought will be accurately captured in the chunk and another chunk will be dedicated to another idea</p>
+<p><strong>Use cases:</strong>
+- Preliminary exploratory data analysis where a general understanding of the text is required
+- Scenarios where the text does not have a strong semantic structure, such as certain types of raw data or logs
+- Not recommended for tasks requiring semantic understanding and precise contexts like sentiment analysis, question-answering systems, or text summarization</p>
+<p><a id="fixed-size-in-tokens-overlapping-sliding-window"></a></p>
+<h3>Fixed-size (in tokens) Overlapping Sliding Window</h3>
+<p>The Fixed-size sliding window method in tokens is another approach to text chunking. Unlike the character-based method, this approach divides the text into chunks based on the count of tokens that came out from the tokenizer, making it more aligned with the way language models operate.</p>
+<p>In this method, the size of the context is more precisely controlled as it works on tokens rather than characters. A helpful rule of thumb is that one token generally corresponds to ~4 characters of text for common English text. This can make avoiding cutting words in the middle a little better than when counting characters, but the problem still persists. It can still sever sentences or thoughts in the middle, which could disrupt the flow of information. Moreover, similar to the character-based method, this approach does not take semantics into account. There's no guarantee that a chunk accurately captures a unique thought or idea, making the chunks potentially semantically inconsistent.</p>
+<h4>Where to Use It</h4>
+<p>The use cases are similar to the fixed size window based on characters count with one difference - when the count is based on tokens it works better for the tasks where we are limited by the LLM context size. </p>
+<h4>Summary</h4>
+<p><strong>Pros:</strong>
+- More precise control over LLM context size as it operates on tokens, not characters.
+- Still, relatively easy to implement</p>
+<p><strong>Cons:</strong>
+- Can still sever sentences or thoughts in the middle
+- Does not take semantics into account, hence no guarantee that a chunk accurately captures a unique thought or idea</p>
+<p><strong>Use cases:</strong>
+- For exploratory, initial work with LLMs
+- Not recommended for tasks requiring a deep understanding of the semantics and context of the text, like sentiment analysis or text summarization</p>
+<p><a id="recursive-structure-aware-splitting"></a></p>
+<h3>Recursive Structure Aware Splitting</h3>
+<p>Recursive Structure-aware Aware Splitting is a hybrid approach to text chunking, combining elements of the fixed-size sliding window method and the structure-aware splitting method. This method attempts to create chunks of approximately fixed sizes, either in characters or tokens, while also trying to preserve the original units of text such as words, sentences, or paragraphs.</p>
+<p>In this method, the text is recursively split using various separators such as paragraph breaks ("\n\n"), new lines ("\n"), or spaces (" "), moving to the next level of granularity only when necessary. This allows the method to balance the need for a fixed chunk size with the desire to respect the natural linguistic boundaries of the text.</p>
+<p>The major advantage of this method is its flexibility. It provides more precise control over context size compared to fixed-size methods, while also ensuring that semantic units of text are not unnecessarily severed.</p>
+<p>However, this method also has its drawbacks. The complexity of implementation is higher due to the recursive nature of the splitting. There's also the risk of ending up with chunks of highly variable sizes, especially with texts of varying structural complexity.</p>
+<blockquote>
+<p>NOTE: <a href="https://www.langchain.com/">LangChain</a> has an implementation of <a href="https://python.langchain.com/docs/modules/data_connection/document_transformers/text_splitters/recursive_text_splitter">Recursively split</a></p>
+</blockquote>
+<h4>Where to Use It</h4>
+<p>Recursive Structure Aware Splitting is particularly useful in tasks where both the granularity of tokens and the preservation of semantic integrity are crucial. This includes tasks such as text summarization, sentiment analysis, and document classification.</p>
+<p>However, due to its complexity, it might not be the best fit for tasks that require quick and simple text chunking, or for tasks involving texts with inconsistent or unclear structural divisions.</p>
+<h4>Summary</h4>
+<p><strong>Pros:</strong>
+- Balances the need for fixed chunk sizes with the preservation of natural linguistic boundaries
+- Provides more precise control over the context size</p>
+<p><strong>Cons:</strong>
+- Higher complexity of implementation due to the recursive nature of the splitting
+- Risk of ending up with chunks of highly variable sizes</p>
+<p><strong>Use cases:</strong>
+- Useful in tasks where both the granularity of tokens and the preservation of semantic integrity are crucial, such as text summarization, sentiment analysis, and document classification
+- Not recommended for tasks requiring quick and simple text chunking, or tasks involving texts with inconsistent or unclear structural divisions</p>
+<p><a id="structure-aware-splitting-by-sentence-paragraph-section-chapter"></a></p>
+<h3>Structure Aware Splitting (by Sentence, Paragraph, Section, Chapter)</h3>
+<p>Structure Aware Splitting is an advanced approach to text chunking, which takes into account the inherent structure of the text. Instead of using a fixed-size window, this method divides the text into chunks based on its natural divisions such as sentences, paragraphs, sections, or chapters.</p>
+<p>This method is particularly beneficial as it respects the natural linguistic boundaries of the text, ensuring that words, sentences, and thoughts are not cut in the middle. This aids in preserving the semantic integrity of the information within each chunk.</p>
+<p>However, this method does have certain limitations. Handling text of varying structural complexity might be challenging. For instance, some texts might not have clearly defined sections or chapters, e.g. text extracted from the OCR output, unformatted speech-to-text outputs, text extracted from tables. Also, while it's more semantically aware than the fixed-size methods, it still doesn't guarantee perfect semantic consistency within chunks, especially for larger structural units like sections or chapters.</p>
+<h4>Where to Use It</h4>
+<p>Structure Aware Splitting is highly effective for tasks that require a good understanding of the context and semantics of the text. It is particularly useful for text summarization, sentiment analysis, and document classification tasks.</p>
+<p>However, it might not be the best fit for tasks involving texts that lack defined structural divisions, or for tasks that require a finer granularity, such as word-level Named Entity Recognition (NER).</p>
+<h4>Summary</h4>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Respects natural linguistic boundaries, avoiding severing words, sentences, or thoughts</li>
+<li>Preserves the semantic integrity of information within each chunk</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Challenging to handle text with varying structural complexity</li>
+<li>Does not guarantee perfect semantic consistency within chunks, especially for larger structural units</li>
+<li>We don't have control over chunk size. Chunks from given document might significantly vary in the size.</li>
+</ul>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Effective for tasks requiring good understanding of context and semantics, such as text summarization, sentiment analysis, and document classification</li>
+<li>Not recommended for tasks involving texts that lack defined structural divisions, or tasks needing finer granularity, like word-level NER</li>
+</ul>
+<p><a id="nlp-chunking-tracking-topic-changes"></a></p>
+<h3>NLP Chunking: Tracking Topic Changes</h3>
+<p>NLP Chunking with Topic Tracking is a sophisticated approach to text chunking. This method divides the text into chunks based on semantic understanding, specifically by detecting significant shifts in the topics of sentences. If the topic of a sentence significantly differs from the topic of the previous chunk, this sentence is considered the beginning of a new chunk.</p>
+<p>This method has the distinct advantage of maintaining semantic consistency within each chunk. By tracking the changes in topics, this method ensures that each chunk is semantically distinct from the others, thereby capturing the inherent structure and meaning of the text.</p>
+<p>However, this method is not without its challenges. It requires advanced NLP techniques to accurately detect topic shifts, which adds to the complexity of implementation. Additionally, the accuracy of chunking heavily depends on the effectiveness of the topic modeling and detection techniques used.</p>
+<p><img alt="NLP Chunking" src="https://vectara.com/wp-content/uploads/2023/09/chunking-blog-post.png"></p>
+<p><strong>Figure 2.</strong> <em>Example of NLP chunking (source: [^4])</em></p>
+<h4>Where to Use It</h4>
+<p>NLP Chunking with Topic Tracking is highly effective for tasks that require an understanding of the semantic context and topic continuity. It is particularly useful for text summarization, sentiment analysis, and document classification tasks.</p>
+<p>This method might not be the best fit for tasks involving texts that have a high degree of topic overlap or for tasks that require simple text chunking without the need for deep semantic understanding.</p>
+<h4>Summary</h4>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Maintains semantic consistency within each chunk</li>
+<li>Captures the inherent structure and meaning of the text by tracking topic changes</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Requires advanced NLP techniques, increasing the complexity of implementation</li>
+<li>The accuracy of chunking heavily depends on the effectiveness of the topic modeling and detection techniques used</li>
+</ul>
+<p><strong>Use cases:</strong>
+- Highly effective for tasks requiring semantic context and topic continuity, such as text summarization, sentiment analysis, and document classification
+- Not recommended for tasks involving texts with high degrees of topic overlap or tasks requiring simple text chunking without the need for deep semantic understanding</p>
+<p><a id="content-aware-splitting-markdown-latex-html"></a></p>
+<h3>Content-Aware Splitting (Markdown, LaTeX, HTML)</h3>
+<p>Content-Aware Splitting is a method of text chunking that focuses on the type and structure of the content, particularly in structured documents like those written in Markdown, LaTeX, or HTML. This method identifies and respects the inherent structure and divisions of the content, such as headings, code blocks, and tables, to create distinct chunks.</p>
+<p>The primary advantage of this method is that it ensures different types of content are not mixed within a single chunk. For instance, a chunk containing a code block will not also contain a part of a table. This helps maintain the integrity and context of the content within each chunk.</p>
+<p>However, this method also presents certain challenges. It requires understanding and parsing the specific syntax of the structured document format, which can increase the complexity of implementation. Moreover, it might not be suitable for documents that lack clear structural divisions or those written in plain text without any specific format.</p>
+<h4>Where to Use It</h4>
+<p>Content Aware Splitting is especially useful when dealing with structured documents or content with clear formatting, such as technical documentation, academic papers, or web pages. It helps ensure that the chunks created are meaningful and contextually consistent.</p>
+<p>However, this method might not be the best fit for unstructured or plain text documents, or for tasks that do not require a deep understanding of the content structure.</p>
+<h4>Summary</h4>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Ensures different types of content are not mixed within a single chunk</li>
+<li>Respects and maintains the integrity and context of the content within each chunk</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Requires understanding and parsing the specific syntax of the structured document format</li>
+<li>Might not be suitable for unstructured or plain text documents</li>
+</ul>
+<p><strong>Where to Use It:</strong></p>
+<ul>
+<li>Particularly useful for structured documents or content with clear formatting, such as technical documentation, academic papers, or web pages</li>
+<li>Not recommended for unstructured or plain text documents, or tasks that do not require a deep understanding of the content structure</li>
+</ul>
+<p><a id="adding-extra-context-to-the-chunk-metadata-summaries"></a></p>
+<h3>Adding Extra Context to the Chunk (metadata, summaries)</h3>
+<p>Adding extra context to the chunks in the form of metadata or summaries can significantly enhance the value of each chunk and improve the overall understanding of the text[^3]. Here are two strategies:</p>
+<h4>Adding Metadata to Each Chunk</h4>
+<p>This strategy involves adding relevant metadata to each chunk. Metadata could include information such as the source of the text, the author, the date of publication, or even data about the content of the chunk itself, like its topic or keywords. This extra context can provide valuable insights and make the chunks more meaningful and easier to analyze.</p>
+<blockquote>
+<p>NOTE: In the case of the chunks that are vectorized using text embeddings,  be aware, that vector databases typically allow storage of metadata alongside the embedding vectors.</p>
+</blockquote>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Provides additional information about each chunk</li>
+<li>Enhances the value of each chunk, making them more meaningful and easier to analyze</li>
+<li>Can help to produce more effective embeddings by fixing the broader context for the chunk.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Requires additional processing to generate and attach the metadata</li>
+<li>The usefulness of the metadata depends on its relevance and accuracy</li>
+</ul>
+<p><strong>Where to Use It:</strong></p>
+<ul>
+<li>Especially useful in tasks that involve analyzing the origin, authorship, or content of the chunks, such as text classification, document clustering, or information retrieval</li>
+<li>Can be used to filter the sources used to provide context to LLMs.</li>
+</ul>
+<h4>Passing on Chunk Summaries</h4>
+<p>In this strategy, each chunk is summarized, and that summary is passed on to the next chunk. This method provides a 'running context' that can enhance the understanding of the text and maintain the continuity of information.</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Enhances the understanding of the text by maintaining a running context</li>
+<li>Helps to ensure the continuity of information across chunks</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Requires advanced NLP techniques to generate accurate and meaningful summaries</li>
+<li>The effectiveness of this method depends on the quality of the summaries</li>
+</ul>
+<p><strong>Where to Use It:</strong></p>
+<ul>
+<li>Particularly useful in tasks where understanding the continuity and context of the text is crucial, such as text summarization or reading comprehension tasks</li>
+</ul>
+<h4>Other Experimental Strategies for Adding Context to the Chunks</h4>
+<ol>
+<li>
+<p><strong>Keyword Tagging:</strong> This method involves identifying and tagging the most important keywords or phrases in each chunk. These tags then serve as a quick reference or summary of the chunk's content. Advanced NLP techniques can be used to identify these keywords based on their relevance and frequency.</p>
+</li>
+<li>
+<p><strong>Sentiment Analysis:</strong> For text that contains opinions or reviews, performing sentiment analysis on each chunk and attaching the sentiment score (positive, negative, neutral) as metadata can provide valuable context. This can be particularly useful in tasks such as customer feedback analysis or social media monitoring.</p>
+</li>
+<li>
+<p><strong>Entity Recognition:</strong> Applying Named Entity Recognition (NER) techniques to each chunk can identify and label entities such as names of people, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This entity information can be added to each chunk, providing valuable context, especially in tasks like information extraction or knowledge graph construction.</p>
+</li>
+<li>
+<p><strong>Topic Classification:</strong> Each chunk can be classified into one or more topics using machine learning or NLP techniques. This topic label can provide a quick understanding of what each chunk is about, adding valuable context, especially for tasks like document classification or recommendation.</p>
+</li>
+<li>
+<p><strong>Chunk Linking:</strong> This method involves creating links between related chunks based on shared keywords, entities, or topics. These links can provide a 'map' of the content, showing how different chunks relate to each other. This can be particularly useful in tasks involving large and complex texts, where understanding the overall structure and relations between different parts is important.
+<a id="references"></a></p>
+</li>
+</ol>
+<h2>References</h2>
+<ul>
+<li>[^1] <a href="https://blog.abacus.ai/blog/2023/08/10/create-your-custom-chatgpt-pick-the-best-llm-that-works-for-you/">Create a CustomGPT And Supercharge your Company with AI  -  Pick the Best LLM - The Abacus.AI Blog</a></li>
+<li>[^2] <a href="https://www.pinecone.io/learn/chunking-strategies/">Chunking Strategies for LLM Applications | Pinecone</a></li>
+<li>[^3] <a href="https://actalyst.medium.com/optimize-llm-enterprise-applications-through-embeddings-and-chunking-strategy-1bbdb03bedae">Optimize LLM Enterprise Applications through Embeddings and Chunking Strategy. | by Actalyst | Aug, 2023 | Medium</a> </li>
+<li>[^4] <a href="https://vectara.com/grounded-generation-done-right-chunking/">Retrieval Augmented Generation (RAG) Done Right: Chunking - Vectara</a></li>
+</ul>
+<p><a id="further-reading"></a></p>
+<h2>Further Reading</h2>
+<ul>
+<li><a href="https://medium.com/aimonks/simple-guide-to-text-chunking-for-your-llm-applications-bddfe8ad7892">Simple guide to Text Chunking for Your LLM Applications | by NoCode AI | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium</a></li>
+<li><a href="https://arxiv.org/abs/2307.03172">[2307.03172] Lost in the Middle: How Language Models Use Long Contexts</a></li>
+<li><a href="https://community.openai.com/t/the-length-of-the-embedding-contents/111471">The length of the embedding contents - API - OpenAI Developer Forum</a></li>
+<li><a href="https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1">Building RAG-based LLM Applications for Production (Part 1)</a></li>
+<li>expanding context, hierarchical search, ...: <a href="https://reframe.is/wiki/Effects-of-Chunk-Sizes-on-Retrieval-Augmented-Generation-RAG-Applications-8b728c36d005434dba39ad19be9b82cc/">Effects of Chunk Sizes on Retrieval Augmented Generation (RAG) Applications</a></li>
+<li><a href="https://dl.acm.org/doi/10.1007/s10579-013-9250-3">A novel method for performance evaluation of text chunking | Language Resources and Evaluation</a></li>
+</ul>
+<p>X::<a href="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/">From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques</a></p>
+        </div>
+
+
+
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>@article{Saf2023From,
+    author  = {Krystian Safjan},
+    title   = {From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques},
+    journal = {Krystian's Safjan Blog},
+    year    = {2023},
+}</pre>
+            </div>
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/chunking/">chunking</a>
+                        <a href="https://www.safjan.com/tag/text-processing/">text-processing</a>
+                        <a href="https://www.safjan.com/tag/nlp/">nlp</a>
+                        <a href="https://www.safjan.com/tag/semantic-search/">semantic-search</a>
+                        <a href="https://www.safjan.com/tag/language-models/">language-models</a>
+                        <a href="https://www.safjan.com/tag/fixed-size-chunking/">fixed-size-chunking</a>
+                        <a href="https://www.safjan.com/tag/recursive-structure-aware-splitting/">recursive-structure-aware-splitting</a>
+                        <a href="https://www.safjan.com/tag/structure-aware-splitting/">structure-aware-splitting</a>
+                        <a href="https://www.safjan.com/tag/nlp-chunking/">nlp-chunking</a>
+                        <a href="https://www.safjan.com/tag/content-aware-splitting/">content-aware-splitting</a>
+                        <a href="https://www.safjan.com/tag/metadata/">metadata</a>
+                        <a href="https://www.safjan.com/tag/summaries/">summaries</a>
+                        <a href="https://www.safjan.com/tag/keyword-tagging/">keyword-tagging</a>
+                        <a href="https://www.safjan.com/tag/sentiment-analysis/">sentiment-analysis</a>
+                        <a href="https://www.safjan.com/tag/entity-recognition/">entity-recognition</a>
+                        <a href="https://www.safjan.com/tag/topic-classification/">topic-classification</a>
+                        <a href="https://www.safjan.com/tag/chunk-linking/">chunk-linking</a>
+                        <a href="https://www.safjan.com/tag/llm/">llm</a>
+                        <a href="https://www.safjan.com/tag/rag/">rag</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/language-models-for-knowledge-management-in-corporate/">Leveraging Language Models in Corporate Environments - The Future of Knowledge Management</a></li>
+                        <li><a href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/">Understanding the Differences in Language Models - Transformers vs. Markov Models</a></li>
+                        <li><a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/">Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</a></li>
+                        <li><a href="https://www.safjan.com/datasets-for-sentiment-analysis/">Datasets for Sentiment Analysis</a></li>
+                        <li><a href="https://www.safjan.com/pros-and-cons-of-reliance-on-ai-generating-models/">New Cognitive Skills in the Age of AI Tailored Information Presentation</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/jaro-winkler-similarity/" title="Jaro-Winkler Similarity">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/langchain-recursivecharactertextsplitter-split-by-tokens-instead-of-characters/" title="LangChain RecursiveCharacterTextSplitter - Split by Tokens instead of characters">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

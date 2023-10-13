@@ -76,10 +76,10 @@ LambdaMART is an advanced algorithm used by tech giants like Microsoft and Yahoo
 The LambdaMART algorithm involves constructing a set of weak rankers (usually decision trees) that are iteratively refined to minimize the LambdaRank objective, which directly measures the pairwise disagreement between ranks.
 
 $$
-\text{LambdaRank Objective} = \sum_{i=1}^{m} \sum_{j=1}^{m} \text{DCG\_gain}(i, j) \cdot \text{Lambda}(i, j)
+\text{LambdaRank Objective} = \sum_{i=1}^{m} \sum_{j=1}^{m} \text{DCG gain}(i, j) \cdot \text{Lambda}(i, j)
 $$
 
-Where $\text{DCG\_gain}(i, j)$ is the gain of swapping items at ranks $i$ and $j$ in the ranking, and $\text{Lambda}(i, j)$ is a weight function that depends on the gradients of the individual models.
+Where $\text{DCG gain}(i, j)$ is the gain of swapping items at ranks $i$ and $j$ in the ranking, and $\text{Lambda}(i, j)$ is a weight function that depends on the gradients of the individual models.
 
 LambdaMART's ability to optimize for ranking measures directly contributes to its superior performance in learning-to-rank scenarios.
 
@@ -118,7 +118,8 @@ Rank fusion serves as a potent tool in the arsenal of data scientists and search
 Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands out for its ability to **combine multiple result sets with varying relevance indicators** **without the need for tuning**. This makes it a robust and effective choice for many applications.
 
 
-**Edits**
+**Edits**:
+
 - 2023-10-09 - Added "Reciprocal rank fusion", rewrite conclusion
 <a id="references"></a>
 ## References
@@ -130,4 +131,4 @@ Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands o
 5. [Reciprocal rank fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
 
 
-X::[[implementing_rank_fussion]]
+X::[[implementing_rank_fusion]]

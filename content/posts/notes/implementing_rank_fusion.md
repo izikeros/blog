@@ -1,8 +1,13 @@
-2023-07-28
-#hybrid-search #rank #search 
+---
+Title: Implementing Rank Fusion in Python
+Slug: implementing-rank-fusion-in-python
+Date: 2023-07-28
+Modified: 2023-10-09
+Status: published
+tags: rank-fusion, hybrid-search, rank, search
+Category: note
+---
 
-
-## Implementing Rank Fusion in Python
 In the world of Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.
 
