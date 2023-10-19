@@ -9,13 +9,13 @@ Status: published
 Summary: "Making sense of AI's inner workings with KernelShap and TreeShap \u2013 the powerfull tools for responsible AI."
 Tags: shap, xai, explainable-ai
 Title: KernelShap and TreeShap - Two Most Popular Variations of the SHAP Method
-banner: /images/head/treeshap_kernelshap.jpg
+banner: "/images/head/treeshap_kernelshap.jpg"
 prompt: null
 ---
 
 ## Introduction 
   
-Responsible AI is an approach to artificial intelligence that ensures fairness, transparency, and accountability in the development, deployment, and management of AI systems. In the era of increasing reliance on AI-driven decision-making, understanding and explaining the predictions made by these models is essential. Interpretability of AI models helps build trust, enables better decision-making, and allows us to mitigate biases.   
+Responsible AI is an approach to artificial intelligence that ensures fairness, transparency, and accountability in the development, deployment, and management of AI systems. In the era of increasing reliance on AI-driven decision-making, understanding and explaining the predictions made by these models is essential. The interpretability of AI models helps build trust, enables better decision-making, and allows us to mitigate biases.   
   
 Two popular methods for explaining AI models are KernelShap and TreeShap. These techniques are part of the SHAP (SHapley Additive exPlanations) family, which is based on cooperative game theory. In this blog post, we will delve into the details of KernelShap and TreeShap, exploring their underlying principles, advantages, and use cases.   
 

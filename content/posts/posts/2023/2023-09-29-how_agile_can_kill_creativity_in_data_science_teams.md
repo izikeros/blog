@@ -73,6 +73,8 @@ The data science teams need to adapt Agile practices to suit their specific need
 
 By adjusting Agile practices to accommodate these considerations, data science/analytics teams can create a balance between efficient project management and fostering creativity and innovation.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
 <a id="references"></a>
 ## References
 
@@ -80,4 +82,3 @@ By adjusting Agile practices to accommodate these considerations, data science/a
  2. [Agile Data Science - Data Science Process Alliance](https://www.datascience-pm.com/agile-data-science/)
  3. [Data Science and Agile (What Works, and What Doesn't)](https://eugeneyan.com/writing/data-science-and-agile-what-works-and-what-doesnt/) (read about poor resource planning)
  4. [Agile Methodology Advantages and Disadvantages - GeeksforGeeks](https://www.geeksforgeeks.org/agile-methodology-advantages-and-disadvantages/)
- 

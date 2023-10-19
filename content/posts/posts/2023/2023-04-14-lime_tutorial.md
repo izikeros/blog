@@ -9,7 +9,7 @@ Status: published
 Summary: Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box.
 Tags: machine-learning, python, explainable-ai, lime
 Title: LIME Tutorial
-banner: /images/head/lime_tutorial.jpg
+banner: "/images/head/lime_tutorial.jpg"
 prompt: null
 ---
 

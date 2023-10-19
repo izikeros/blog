@@ -342,3 +342,5 @@ By considering the diverse requirements of each group, we have recommended vecto
 	- [Part 2 - Building Your Own (Very) Simple Vector Database in Python](https://www.linkedin.com/pulse/vector-databases-demystified-part-2-building-your-own-adie-kaye?trackingId=CRILIdZ0zUFLlj3EZ69gXQ%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B1s%2FDztmATJWjL%2BLIoqi0XQ%3D%3D)
 	- [Part 3 - Build a colour matching app with Pinecone](https://www.linkedin.com/pulse/vector-databases-demystified-part-3-build-colour-matching-adie-kaye?trackingId=sS3mR3KmPvSwcPwdMJvbFQ%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B1s%2FDztmATJWjL%2BLIoqi0XQ%3D%3D)
 	- [Part 4 - Using Sentence Transformers with Pinecone](https://www.linkedin.com/pulse/vector-databases-demystified-part-4-using-sentence-pinecone-kaye?trackingId=vfLY3dFcGw%2FVygrCCFKZIQ%3D%3D)
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

@@ -4,12 +4,13 @@ Date: '2023-02-23'
 Modified: '2023-07-12'
 Slug: model-stacking-bagging-ensembling-boosting-5yo
 Status: published
-Tags: machine-learning, model-stacking, bagging, ensembling, boosting, legos, data, prediction, artificial-intelligence, AI, models, complexity
+Tags: machine-learning, model-stacking, bagging, ensemble, boosting, legos, data, prediction, artificial-intelligence, AI, models, complexity
 Title: Model Stacking, Bagging, Ensembling, and Boosting Explained With LEGO Metaphor
 ---
 up::[[MOC_AI]]
 X::[[ensemble]]
 X::[[ensemble_best_performing_low_correlated_models]]
+X::[[model_stacking_bagging_ensembling_and_boosting]]
 
 ## Model Stacking, Bagging, Ensembling and Boosting Explained Like to 5 Years Old
 

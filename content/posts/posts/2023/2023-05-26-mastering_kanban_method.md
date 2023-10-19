@@ -9,7 +9,7 @@ Status: published
 Summary: Ever wondered how to supercharge your team's productivity? Say hello to Kanban, the dynamic method that brings clarity and efficiency to your projects.
 Tags: kanban-method, kanban-board, project-management, workflow-management, productivity, visual-management, work-in-progress, collaboration, continuous-improvement, task-management, agile-methodology, prioritization, team-efficiency, transparency, WIP-limits, cross-functional-teamwork, cycle-times, retrospectives, swarming, class-of-service, blocked-tasks, swimlanes, agile-practices
 Title: Mastering the Kanban Method - Unveiling the Hidden Gems of Effective Kanban Board Usage
-banner: /images/head/kanban.jpg
+banner: "/images/head/kanban.jpg"
 prompt: null
 ---
 
@@ -106,3 +106,6 @@ Combine Kanban with agile practices to amplify its impact. Techniques like daily
 The Kanban method, with its emphasis on visualization, limiting work in progress, and continuous improvement, offers organizations a powerful tool to optimize their workflows and enhance team productivity. By avoiding common mistakes and incorporating lesser-known tips and tricks, teams can unlock the full potential of Kanban, streamline their processes, and achieve remarkable results. Embrace the power of Kanban, and watch your projects flourish in an environment of transparency, collaboration, and continuous improvement.
 
 **Credits**: heading image from [unsplash](https://unsplash.com/photos/OXmym9cuaEY) by [edenconstantin0](https://unsplash.com/@edenconstantin0)
+
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

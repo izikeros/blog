@@ -232,3 +232,5 @@ user_service = injector.get(UserService)
 <a id="conclusion"></a>
 ## Conclusion
 Dependency injection is a powerful technique for improving testability, code modularity, and reusability in Python. By applying various injection techniques and exploring different use cases, you can design more robust and maintainable code. Additionally, the lesser-known tricks and techniques covered in this blog post can further enhance your understanding and application of dependency injection in various scenarios.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

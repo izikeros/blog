@@ -9,7 +9,7 @@ Status: published
 Summary: Don't let black box models hold you back. With LIME, you can interpret the predictions of even the most complex machine learning models.
 Tags: machine-learning, lime, xai, explainable-ai
 Title: Are LIME Explanations Any Useful?
-banner: /images/head/abstract_7.jpg
+banner: "/images/head/abstract_7.jpg"
 prompt: Are the local explanations obtained with LIME method any useful? What are the practical use cases when using LIME gave tangible results? Give me long, blog post style article for data science expert audience.
 ---
 
@@ -52,3 +52,5 @@ Second, LIME **requires a significant amount of computational resources** to gen
 
 ## Conclusion
 In conclusion, LIME is a useful technique for interpreting the predictions of machine learning models. LIME can help increase the trust of users in machine learning models and identify areas of improvement for the models. LIME has been successfully applied in various domains, including healthcare, finance, and image recognition. However, LIME also has some limitations, such as providing local explanations and requiring significant computational resources. Therefore, data scientists and machine learning practitioners should carefully consider the use of LIME and its limitations when interpreting the predictions of their models.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

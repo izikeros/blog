@@ -91,3 +91,5 @@ where $N$ is the number of tokens in the test set, $\textbf{e}_i$ is the embeddi
 <a id="limitations"></a>
 ## Limitations
 While intrinsic and extrinsic evaluation metrics can provide useful insights into the quality of embeddings, they also have some limitations. Intrinsic evaluation may not always reflect the performance of embeddings on downstream tasks, and extrinsic evaluation may not always isolate the contribution of embeddings from other factors, such as the choice of model architecture or the quality of the training data. Moreover, the choice of evaluation metrics may depend on the specific use case and the available resources, and there is no one-size-fits-all solution.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

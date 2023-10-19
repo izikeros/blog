@@ -6,14 +6,14 @@ Modified: '2023-06-09'
 Slug: popular-and-lesser-known-dataset-sharing-platforms
 Start: '2023-06-09'
 Status: published
-Summary: "Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts. \U0001F5DD\uFE0F"
+Summary: "Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts."
 Tags: machine-learning, python
 Title: Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platforms
 banner: "/images/head/abstract_1.jpg"
-prompt: what are the best dataset sharing platforms
+prompt: what are the best dataset-sharing platforms
 ---
 
-There are several popular dataset sharing platforms available that researchers, data scientists, and machine learning practitioners can utilize to access and share datasets. Here are some of the best dataset sharing platforms:
+There are several popular dataset-sharing platforms available that researchers, data scientists, and machine learning practitioners can utilize to access and share datasets. Here are some of the best dataset-sharing platforms:
 
 ## Kaggle
 Kaggle is a well-known platform for data science competitions, but it also provides a [dataset repository](https://www.kaggle.com/datasets) where users can discover and share datasets. It offers a wide range of datasets in various domains, along with tools for data exploration and collaboration.
@@ -35,7 +35,7 @@ OpenML is an open-source platform that allows users to share, discover, and anal
 Although GitHub is primarily a code hosting platform, it also serves as a repository for datasets. Many researchers and organizations share datasets on GitHub, making it a valuable resource for finding datasets across various domains. You can search for datasets using specific keywords or explore repositories dedicated to datasets.
     
 ## Other platforms
-Here are 30 lesser-known dataset sharing platforms that you can explore:
+Here are 30 lesser-known dataset-sharing platforms that you can explore:
 
 1. DataHub: [https://datahub.io/](https://datahub.io/)
 2. Figshare: [https://figshare.com/](https://figshare.com/)
@@ -67,3 +67,5 @@ Here are 30 lesser-known dataset sharing platforms that you can explore:
 28. DataONE: [https://www.dataone.org/](https://www.dataone.org/)
 29. International Monetary Fund (IMF) Data: [https://www.imf.org/en/data](https://www.imf.org/en/data)
 30. Open Data Soft: [https://www.opendatasoft.com/](https://www.opendatasoft.com/)
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

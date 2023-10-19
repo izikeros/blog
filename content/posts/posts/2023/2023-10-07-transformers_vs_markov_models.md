@@ -6,7 +6,7 @@ Modified: 2023-10-07
 Start: 2023-10-07
 Category: Machine Learning
 Image: /images/head/markov_vs_transformers.jpg
-banner: /images/head/markov_vs_transformers.jpg
+banner: "/images/head/markov_vs_transformers.jpg"
 Summary: This article explores distinguishing details of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
 Status: published
 prompt: Give me a long article that points How LLMs like GPT, transformers differ from Markov Models? Both predict next character. The target audience is professionals so do a deep dive, and delve into the details of both types of models. Use proper introduction. Focus on explaining how the self attention makes difference to a fixed context length for markov models.
@@ -60,6 +60,7 @@ Moreover, the self-attention mechanism allows Transformer models to dynamically 
 
 While both Markov Models and Transformer models like GPT can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. Markov Models, with their fixed context length, are limited in their ability to capture long-term dependencies. Transformer models, with their self-attention mechanism, can consider the entire context of a sequence, allowing them to capture long-term dependencies and make more accurate predictions.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
 ## References
 1. Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). [Attention is all you need](https://arxiv.org/abs/1706.03762). In Advances in neural information processing systems (pp. 5998-6008).

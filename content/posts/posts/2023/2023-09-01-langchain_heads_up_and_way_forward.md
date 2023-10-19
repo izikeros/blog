@@ -2,20 +2,12 @@
 Title: Problems with Langchain and how to minimize their impact
 Slug: problems-with-Langchain-and-how-to-minimize-their-impact
 Date: 2023-09-01
-Modified: 2023-09-01
+Modified: 2023-10-19
 Start: 2023-09-01
-tags:
-  - machine-learning
-  - python
-  - langchain
-  - prompt-engineering
-  - tokens
-  - llm
-  - gpt
-  - openai
+tags: machine-learning, python, langchain, prompt-engineering, tokens, llm, gpt, openai
 Category: Machine Learning
 Image: /images/head/langchain_problems.jpg
-banner: /images/head/langchain_problems.jpg
+banner: "/images/head/langchain_problems.jpg"
 Summary: Beyond the Hype - LangChain's Hidden Flaws and How to Master AI Development.
 Status: published
 prompt:
@@ -98,7 +90,7 @@ Based on the community comments and experiences shared, here are some pieces of 
 
 4. **Be prepared to write custom code**: LangChain might not cover all use cases or provide the level of control and customization you need for your application. Be prepared to write custom code to better suit your specific requirements and use case.
 
-5. **Keep an eye on alternative tools and libraries**: As the field of LLMs is rapidly evolving, new tools and libraries are being developed that might better suit your needs. Stay informed about the latest developments and consider using alternative libraries like Deepset Haystack, DSP, or GPTi if they better align with your project requirements.
+5. **Keep an eye on alternative tools and libraries**: As the field of LLMs is rapidly evolving, new tools and libraries are being developed that might better suit your needs. Stay informed about the latest developments and consider using alternative libraries like [Deepset Haystack](https://haystack.deepset.ai/), [DSPy](https://github.com/stanfordnlp/dspy) , or Microsoft tools like [semantic-kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/) and [AutoGen](https://github.com/microsoft/autogen) if they better align with your project requirements. The [list](https://github.com/kyrolabs/awesome-langchain#other-llm-frameworks) is huge and growing!
 
 6. **Learn from LangChain's source code**: If you find that LangChain's abstractions and documentation are not sufficient for your needs, you can learn from the source code itself. Use the provided prompts and implementation details as inspiration and adapt them to your own project.
 
@@ -110,7 +102,16 @@ Based on the community comments and experiences shared, here are some pieces of 
 
 10. **Keep an eye on the costs**: Be mindful of the API costs associated with using LangChain and consider optimizing your application to reduce the number of API calls and tokens used.
 
+My favourite choice from this list would be #6 - to learn from the LangChain implemented tools and techniques by looking into the code.
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
 <a id="conclusion"></a>
 ## Conclusion
 In considering LangChain, it's vital to acknowledge its limitations and challenges before embracing it enthusiastically. Although LangChain has garnered significant attention and investment, users have pinpointed various drawbacks that could impede its effectiveness in more intricate, production-ready applications. To make well-informed decisions about LangChain's suitability for their projects, developers should gain an understanding of these issues.
 In the ever-evolving landscape of LLM-driven development, assessing the available tools and libraries is crucial to determining which aligns best with your specific needs and requirements. It's worth noting that the ideal solution might not yet exist, necessitating adaptation or customization of existing tools or even the creation of your own to realize your vision for AI-driven applications.
+
+**edits:**
+
+- 2023-10-19: Added AutoGen and semantic-kernel, removed GPTi,
+- 2023-10-19: Added link to list of alternative frameworks

@@ -323,6 +323,7 @@ The choice of chunking method, whether it's fixed-size, structure-aware, or NLP 
 
 Moreover, adding extra context to the chunks, such as metadata or summaries, can further enhance the value of each chunk and improve the overall understanding of the text. Experimental strategies like keyword tagging, sentiment analysis, entity recognition, topic classification, and chunk linking offer promising avenues for further exploration.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 <a id="references"></a>
 ## References
 - [^1] [Create a CustomGPT And Supercharge your Company with AI  -  Pick the Best LLM - The Abacus.AI Blog](https://blog.abacus.ai/blog/2023/08/10/create-your-custom-chatgpt-pick-the-best-llm-that-works-for-you/)
@@ -345,3 +346,5 @@ X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
 X::[[context_generation_strategy]]
 X::[[2023-10-13-chunking_strategy]]
 X::[[embedding_strategy]]
+
+

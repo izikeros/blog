@@ -71,3 +71,4 @@ Please note that the code snippet above uses the "all-MiniLM-L6-v2" model as an 
 - [GitHub - RelevanceAI/vectorhub: Vector Hub - Library for easy discovery, and consumption of State-of-the-art models to turn data into vectors. (text2vec, image2vec, video2vec, graph2vec, bert, inception, etc)](https://github.com/RelevanceAI/vectorhub)
 - [Introduction - Guide To Vectors](https://learn.getvectorai.com/)
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

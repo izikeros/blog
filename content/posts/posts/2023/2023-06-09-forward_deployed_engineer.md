@@ -133,3 +133,5 @@ By working closely with customers, FDEs develop a deep understanding of their pa
 Forward Deployed Engineers play a vital role in enterprise software organizations, acting as the bridge between products and customer implementations. Their broad skill set, technical expertise, entrepreneurial mindset, and product intuition make them invaluable assets in driving customer success, revenue growth, and product evolution. As enterprise software continues to evolve, the demand for FDEs will likely increase, providing software engineers with a customer-facing path that allows them to thrive in both technical and business domains
 
 X::[[forward_deployed_engineer]]
+
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
