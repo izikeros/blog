@@ -8,7 +8,7 @@ Status: published
 Summary: The most widely used libraries for plotting in python are matplotlib, Plotly, seaborn, and bokeh. This article describes 10 other powerful plotting libraries available in Python that can be used to create high-quality plots and visualizations.
 Tags: holoviews, bokeh, matplotlib, plotly, bqplot, data-visualization, jupyter, pandas, ggplot2, grammar-of-graphics, plotnine, bar-plots, line-plots, scatter-plots, box-plots, heat-maps, geoplotlib, geospatial-visualization, choropleths, pygal, SVG charts, graphs, vega, python-data-structures, pandas-fu, pynl, scientific data, multidimensional data, ggplot2, tidyverse
 Title: 10 Lesser-Known, Yet Powerful Python Plotting Libraries
-banner: /images/head/lesser_known_plotting_libraries.jpg
+banner: "/images/head/lesser_known_plotting_libraries.jpg"
 citation_needed: false
 todo: get rid of hotlinking
 ---
@@ -99,9 +99,16 @@ PyQwt is a set of Python bindings for the [Qwt](http://qwt.sourceforge.net/) C
 
 PyQwt addresses the problem of integrating [PyQt](http://www.riverbankcomputing.co.uk/pyqt), Qt, Qwt, [NumPy](http://numpy.scipy.org/) and optionally [SciPy](http://www.scipy.org/). Look at the [Command Line Interface (CLI) examples](https://pyqwt.sourceforge.net/cli-examples.html) and the [Graphical User Interface (GUI) examples](https://pyqwt.sourceforge.net/gui-examples.html) to get an idea of what you can do with PyQwt.
 
+### 11. [Lets-plot](https://lets-plot.org/)
+
+Lets-Plot  is a multiplatform plotting library based on the Grammar of Graphics. It's based on ggplot2-like grammar-of-graphics language. See examples here: [https://lets-plot.org/pages/charts.html](https://lets-plot.org/pages/charts.html)
+
 ### [Plotly Express](https://plotly.com/python/plotly-express/) ![GitHub stars shield](https://img.shields.io/github/stars/plotly/plotly_express.svg?logo=github)
 
 <img src="https://images.plot.ly/logo/new-branding/plotly-logomark.png" style="max-height: 100px;" alt="Plotly Express logo"> 
 It is not a new plotting library but a high-level interface to Plotly, which allows you to create interactive plots and visualizations with minimal code.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+X::[[Blog_post_ideas/plotting_histogram_line_scatter_plot_with_5_python_libs|plotting_histogram_line_scatter_plot_with_5_python_libs]]
+X::[[Blog_post_ideas/best/plotting_histogram_line_scatter_plot_with_5_python_libs|plotting_histogram_line_scatter_plot_with_5_python_libs]]
