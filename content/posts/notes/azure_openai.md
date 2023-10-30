@@ -2,12 +2,12 @@
 Title: Azure OpenAI Langchain configuration 
 Slug: azure-openai-langchain-configuration
 Date: 2023-08-02
-Modified: 2023-08-02
+Modified: 2023-10-23
 Status: published
 Tags: langchain, azure, openai 
 Category: note
 ---
-This note contain recipe how to configure Langchain to use Azure OpenAI.
+This note contains a recipe for how to configure LangChain to use Azure OpenAI.
 
 NOTE: requires `python-dotenv` python package installed
 

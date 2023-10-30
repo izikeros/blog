@@ -2,7 +2,7 @@
 Title: Understanding Retrieval-Augmented Generation (RAG) empowering LLMs
 Slug: understanding-retrieval-augmented-generation-rag-empowering-llms
 Date: 2023-08-24
-Modified: 2023-08-24
+Modified: 2023-10-23
 Start: 2023-08-24
 Tags: llm, nlp, question-answering 
 Category: Machine Learning
@@ -58,6 +58,8 @@ Furthermore, there is ongoing research to improve both the retrieval and generat
 
 Retrieval-Augmented Generation offers a promising solution to the limitations of large language models by grounding them in external knowledge sources. By adopting RAG, businesses can achieve customized solutions, maintain data relevance, and optimize costs while harnessing the reasoning capabilities of LLMs. As research continues to advance in this area, we can expect even more powerful and efficient language models in the future.
 
+*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
 ## References
 - Original paper [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) by Patrick Lewis et al. (available as [paper with code](https://paperswithcode.com/method/rag))
 - Exemplary notebooks on amazon Sagemaker:
@@ -66,6 +68,10 @@ Retrieval-Augmented Generation offers a promising solution to the limitations of
 - Python library with RAG implementation: [GitHub - llmware-ai/llmware: Providing enterprise-grade LLM-based development framework, tools and fine-tuned models.](https://github.com/llmware-ai/llmware)
 - Analytics: [Vectorview](https://www.vectorview.ai/)
 - Deep-dive into specific use-case of RAG with scaling in mind: [Building RAG-based LLM Applications for Production (Part 1)](https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1)
+- Good section on possible improvements to RAG: [Retrieval Augmented Generation (RAG): What, Why and How? | LLMStack](https://llmstack.ai/blog/retrieval-augmented-generation)
+- General intro to RAG: [How do domain-specific chatbots work? An Overview of Retrieval Augmented Generation (RAG) | Scriv](https://scriv.ai/guides/retrieval-augmented-generation-overview/)
+- Optimization, async, using summaries: [Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium](https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a)
 
 
-*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+**Edits:**
+2023-10-23 - added link to LLMStack

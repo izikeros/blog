@@ -340,11 +340,14 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 - [Building RAG-based LLM Applications for Production (Part 1)](https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1)
 - expanding context, hierarchical search, ...: [Effects of Chunk Sizes on Retrieval Augmented Generation (RAG) Applications](https://reframe.is/wiki/Effects-of-Chunk-Sizes-on-Retrieval-Augmented-Generation-RAG-Applications-8b728c36d005434dba39ad19be9b82cc/)
 - [A novel method for performance evaluation of text chunking | Language Resources and Evaluation](https://dl.acm.org/doi/10.1007/s10579-013-9250-3)
+- [Matt Ambrogi](https://www.mattambrogi.com/posts/chunk-size-matters/) "Chunk Size Matters"
 
 
 X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
 X::[[context_generation_strategy]]
 X::[[2023-10-13-chunking_strategy]]
 X::[[embedding_strategy]]
+X::[[RAG_evaluation]]
+
 
 
