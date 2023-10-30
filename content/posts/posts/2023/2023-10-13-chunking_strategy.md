@@ -6,8 +6,8 @@ Modified: 2023-10-13
 Start: 2023-09-11
 tags: chunking, text-processing, nlp, semantic-search, language-models, fixed-size-chunking, recursive-structure-aware-splitting, structure-aware-splitting, nlp-chunking, content-aware-splitting, metadata, summaries, keyword-tagging, sentiment-analysis, entity-recognition, topic-classification, chunk-linking, llm, rag
 Category: Machine Learning
-Image: /images/head/abstract_4.jpg
-banner: "/images/head/abstract_4.jpg"
+Image: /images/head/chunking_puzzle_640px.jpg
+banner: "/images/head/chunking_puzzle_640px.jpg"
 Summary: Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?
 Status: published
 prompt:

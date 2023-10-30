@@ -6,8 +6,8 @@ Modified: 2023-10-23
 Start: 2023-08-24
 Tags: llm, nlp, question-answering 
 Category: Machine Learning
-Image: /images/head/abstract_9.jpg
-banner: "/images/head/abstract_9.jpg"
+Image: /images/head/rag_futuristic_library_640px.jpg
+banner: "/images/head/rag_futuristic_library_640px.jpg"
 Summary: Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.
 Status: published
 note: see RAG.excalidraw
