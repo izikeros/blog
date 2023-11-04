@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Generative AI
 Date: '2023-07-04'
 Image: /images/head/text_vectorization.jpg
 Modified: '2023-07-04'

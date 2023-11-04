@@ -8,8 +8,6 @@ Status: published
 Tags: markdown, content-creation, publishing, pandoc
 Title: Writing a Book or Ebook Using Pandoc
 ---
-
-#blog/post-idea 
 up::[[writing_a_book_or_ebook_in_markdown]]
 X::[[convert_markdown_to_pdf]]
 X::[[css_styles_for_ebook]]

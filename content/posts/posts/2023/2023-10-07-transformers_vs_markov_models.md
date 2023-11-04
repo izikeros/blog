@@ -4,7 +4,7 @@ Slug: understanding-differences-gpt-transformers-markov-models
 Date: 2023-10-07
 Modified: 2023-10-07
 Start: 2023-10-07
-Category: Machine Learning
+Category: Generative AI
 Image: /images/head/markov_vs_transformers.jpg
 banner: "/images/head/markov_vs_transformers.jpg"
 Summary: This article explores distinguishing details of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.

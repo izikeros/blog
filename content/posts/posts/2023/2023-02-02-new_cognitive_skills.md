@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Generative AI
 Date: '2023-02-02'
 Image: /images/head/cognitive_skills_ai_generative_models.jpg
 Modified: '2023-02-02'
@@ -9,7 +9,7 @@ Status: published
 Summary: Exploring the new cognitive skills of tomorrow with advanced AI generative models.
 Tags: AI, future, cognitive-skills, critical-thinking, language-models, llm
 Title: New Cognitive Skills in the Age of AI Tailored Information Presentation
-banner: /images/head/cognitive_skills_ai_generative_models.jpg
+banner: "/images/head/cognitive_skills_ai_generative_models.jpg"
 prompt: null
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -79,3 +79,5 @@ It is also possible that heavy users of these models may develop an increased ab
 However, it is important to note that while these potential cognitive skills are exciting to consider, they are purely speculative at this point. Further research is needed to determine the actual impact of these technologies on human cognitive skills and to understand the full range of new cognitive skills that may emerge as a result of their use. Nevertheless, the possibilities are exciting and highlight the potential for these technologies to greatly enhance our mental and cognitive capabilities in ways that we have yet to fully understand or imagine.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+X::[[new_cognitive_skills]]

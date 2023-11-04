@@ -10,8 +10,6 @@ Title: Writing a Book or Ebook Using Gitbook
 ---
 
 up::[[writing_a_book_or_ebook_in_markdown]]
-#blog/post-idea 
-
 
 ## Introduction
 

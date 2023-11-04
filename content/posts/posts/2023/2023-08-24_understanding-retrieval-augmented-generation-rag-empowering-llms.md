@@ -72,6 +72,7 @@ Retrieval-Augmented Generation offers a promising solution to the limitations of
 - General intro to RAG: [How do domain-specific chatbots work? An Overview of Retrieval Augmented Generation (RAG) | Scriv](https://scriv.ai/guides/retrieval-augmented-generation-overview/)
 - Optimization, async, using summaries: [Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium](https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a)
 
+X::[[2023-11-01-boosting_RAG]]
 
 **Edits:**
 2023-10-23 - added link to LLMStack
