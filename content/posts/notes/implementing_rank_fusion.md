@@ -83,6 +83,6 @@ Remember, the objective is not just to get automated rankings from the machine, 
 This post is a simple introduction to rank fusion concept in Python. There are packages out there like rank_aggregation providing other advanced rank fusion methods to use!
 
 X::[[rank_fusion_algorithms]]
-X::[[hybrid_search__keyword_and_semantic]]
+X::[[hybrid_search]]
 X::[[hybrid_search_re_ranking]]
 X::[[rank_fussion_borda]]
