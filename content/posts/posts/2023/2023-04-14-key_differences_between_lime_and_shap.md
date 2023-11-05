@@ -1,5 +1,5 @@
 ---
-Category: Explainable AI
+Category: Responsible AI
 Date: '2023-04-14'
 Image: /images/head/shap_lime_differences.jpg
 Modified: '2023-04-14'

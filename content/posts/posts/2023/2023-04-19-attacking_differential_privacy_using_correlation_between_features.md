@@ -1,5 +1,5 @@
 ---
-Category: Explainable AI
+Category: Responsible AI
 Date: '2023-04-19'
 Image: /images/head/attacking_differential_privacy.jpg
 Modified: '2023-04-19'

@@ -1,5 +1,5 @@
 ---
-Category: Explainable AI
+Category: Responsible AI
 Date: '2023-04-18'
 Image: /images/head/lime_black_box_640px.jpg
 Modified: '2023-04-18'

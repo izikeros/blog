@@ -1,23 +1,30 @@
 ---
-Category: Explainable AI
+Category: Responsible AI
 Date: '2023-04-14'
 Image: /images/head/treeshap_kernelshap.jpg
-Modified: '2023-04-14'
+Modified: 2023-11-05
 Slug: kernelshap-treeshap-two-most-popular-variations-of-the-shap-method
 Start: '2023-04-14'
 Status: published
-Summary: "Making sense of AI's inner workings with KernelShap and TreeShap \u2013 the powerfull tools for responsible AI."
+Summary: Making sense of AI's inner workings with KernelShap and TreeShap the powerfull tools for responsible AI.
 Tags: shap, xai, explainable-ai
 Title: KernelShap and TreeShap - Two Most Popular Variations of the SHAP Method
 banner: "/images/head/treeshap_kernelshap.jpg"
 prompt: null
 ---
+## TLDR;
+The **original SHAP does not scale well** with high dimensions data due to its exponential complexity associated with Shapley value calculations. KernelSHAP and TreeSHAP are two specific implementations of the SHAP method, developed to address the shortcomings of the original framework and to optimize it for different types of machine learning models, but they achieve this in different ways. 
+**KernelSHAP** uses a model-agnostic method to interpret the impact of features in a model. This means it can provide explanations **for any model** but **at the cost of computational efficiency**, making it **less suitable for complex**, high-dimensional situations or when real-time explanations are needed. In contrast, **TreeSHAP** is designed specifically **for tree-based models** (like decision tree and random forests, or boosting machines). It is **computationally efficient**, exploits the tree structure for **faster calculations**, and thus, can handle **more complex scenarios**. Moreover, TreeSHAP guarantees consistency—a helpful property for feature attribution methods to ensure that if a model relies more on a feature, the attributed importance of that feature should not decrease. However, it can't be used for non-tree models.
 
 ## Introduction 
   
 Responsible AI is an approach to artificial intelligence that ensures fairness, transparency, and accountability in the development, deployment, and management of AI systems. In the era of increasing reliance on AI-driven decision-making, understanding and explaining the predictions made by these models is essential. The interpretability of AI models helps build trust, enables better decision-making, and allows us to mitigate biases.   
   
 Two popular methods for explaining AI models are KernelShap and TreeShap. These techniques are part of the SHAP (SHapley Additive exPlanations) family, which is based on cooperative game theory. In this blog post, we will delve into the details of KernelShap and TreeShap, exploring their underlying principles, advantages, and use cases.   
+
+> **SHAP (SHapley Additive exPlanations)** is a game theoretic approach to explain the output of any machine learning model. It connects optimal credit allocation with local explanations using the classic Shapley values from game theory and their related extensions (see [papers](https://github.com/shap/shap#citations) for details and citations).
+> *(from [SHAP documentation](https://shap.readthedocs.io/en/latest/index.html))*
+
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
@@ -79,21 +86,21 @@ The KernelShap algorithm involves the following steps: 
 ### KernelShap advantages and limitations
 KernelShap has several **advantages**:   
     
--   It can be applied to any black-box model, regardless of its architecture or training algorithm.
--   It provides a unified measure of feature importance that is consistent across different models.
--   It takes into account the interactions between features.   
+- It can be applied to any black-box model, regardless of its architecture or training algorithm.
+- It provides a unified measure of feature importance that is consistent across different models.
+- It takes into account the interactions between features.   
       
 However, KernelShap also has some **limitations**:   
     
--   It can be computationally expensive, especially for high-dimensional data or complex models.
--   It requires a large number of samples to provide accurate estimates of the Shapley values.   
+- It can be computationally expensive, especially for high-dimensional data or complex models.
+- It requires a large number of samples to provide accurate estimates of the Shapley values.   
       
 <a id="treeshap"></a>
 ## TreeShap 
       
 TreeShap is a model-specific explanation method designed for tree-based models, such as decision trees, random forests, and gradient boosting machines. Like KernelShap, it is based on Shapley values, but it exploits the structure of tree-based models to compute the values efficiently.   
       
-TreeShap computes the exact Shapley values for each feature by recursively traversing the decision tree, attributing contributions to each feature as it moves down the tree. It uses a dynamic programming approach to avoid redundant calculations and reduce the computational complexity. 
+TreeShap **computes the exact Shapley values for each feature by recursively traversing the decision tree**, attributing contributions to each feature as it moves down the tree. It uses a dynamic programming approach to avoid redundant calculations and reduce the computational complexity. 
 
 <a id="steps-1"></a>
 ### Steps
@@ -108,9 +115,9 @@ The TreeShap algorithm involves the following steps: 
 ### TreeShap advantages and limitations
 TreeShap has several advantages:   
     
--   It computes the exact Shapley values without the need for sampling or approximations.
--   It is computationally efficient due to its dynamic programming approach.
--   It is specifically designed for tree-based models, which are widely used in practice.   
+- It computes the exact Shapley values without the need for sampling or approximations.
+- It is computationally efficient due to its dynamic programming approach.
+- It is specifically designed for tree-based models, which are widely used in practice.   
       
 However, TreeShap is limited to tree-based models and cannot be applied to other types of models, such as deep learning or support vector machines.   
 <a id="conclusion"></a>
@@ -121,3 +128,7 @@ KernelShap and TreeShap are powerful methods for explaining AI models in the con
 Understanding and implementing these methods is crucial for AI practitioners who aim to build transparent, accountable, and trustworthy AI systems. By providing insights into the inner workings of AI models, KernelShap and TreeShap enable developers to identify potential biases, improve the decision-making process, and ultimately foster trust in AI-driven technologies.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+**Edits:**
+
+- 2023-11-05: Added TLDR section, minor edits
