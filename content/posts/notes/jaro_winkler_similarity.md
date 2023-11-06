@@ -27,6 +27,7 @@ JW(s1, s2) = J(s1, s2) + \frac{L \cdot p \cdot (1 - J(s1, s2))}{10}
 $$
 
 Where:
+
 - $J(s1, s2)$ is the Jaro similarity between strings \(s1\) and \(s2\).
 - $L$ is the length of the common prefix between the strings.
 - $p$ is a constant scaling factor (typically 0.1) that increases the similarity for strings that share a common prefix.
@@ -37,6 +38,7 @@ $$
 J(s1, s2) = \frac{m}{\max(\text{len}(s1), \text{len}(s2))}, \quad 
 $$
 Where:
+
 - $m$  is the number of matching characters
 
 
@@ -130,48 +132,61 @@ The Jaro-Winkler similarity metric possesses several valuable properties that ma
 ## Examples
 Here are some concrete pairs of strings that demonstrate the properties of the Jaro-Winkler similarity metric ($p$=0.2 if not stated differently):
 
-1. **Common Prefix Emphasis:**
+**Common Prefix Emphasis:**
+
    - String 1: "Michael"
    - String 2: "Michelle"
    - Jaro-Winkler similarity: 0.963
-   - Explanation: The common prefix "Mich" contributes significantly to the similarity score in Jaro-Winkler, resulting in a high similarity even though the rest of the strings differ.
 
-2. **Case Sensitivity and Scaling Factor:**
+Explanation: The common prefix "Mich" contributes significantly to the similarity score in Jaro-Winkler, resulting in a high similarity even though the rest of the strings differ.
+
+**Case Sensitivity and Scaling Factor:**
+
    - String 1: "McDonald's"
    - String 2: "Mcdonells"
    - Jaro-Winkler similarity: 0.853
-   - Explanation: The common prefix "Mcdon" is considered due to the case difference. The scaling factor can adjust the impact of this prefix on the similarity score.
 
-3. **No Common Prefix:**
+Explanation: The common prefix "Mcdon" is considered due to the case difference. The scaling factor can adjust the impact of this prefix on the similarity score.
+
+**No Common Prefix:**
+
    - String 1: "hello"
    - String 2: "world"
    - Jaro-Winkler similarity: 0.433
-   - Explanation: Without a common prefix, the Jaro-Winkler similarity is low, even if the strings share some characters.
 
-4. **Short vs. Long Strings:**
+Explanation: Without a common prefix, the Jaro-Winkler similarity is low, even if the strings share some characters.
+
+**Short vs. Long Strings:**
+
    - String 1: "AI"
    - String 2: "Artificial Intelligence"
    - Jaro-Winkler similarity: 0.623
-   - Explanation: The short string "AI" has a higher similarity to the beginning of "Artificial Intelligence" due to the common prefix "A".
+Explanation: The short string "AI" has a higher similarity to the beginning of "Artificial Intelligence" due to the common prefix "A".
 
-5. **Typographical Errors:**
+**Typographical Errors:**
+
    - String 1: "telephone"
    - String 2: "telephne"
    - Jaro-Winkler similarity: 0.967
-   - Explanation: Despite the missing "o," the common prefix "teleph" contributes to a high Jaro-Winkler similarity score.
 
-6. **Short and Noisy Data:**
+Explanation: Despite the missing "o," the common prefix "teleph" contributes to a high Jaro-Winkler similarity score.
+
+**Short and Noisy Data:**
+
    - String 1: "abacus"
    - String 2: "abaxus"
    - Jaro-Winkler similarity: 0.956
-   - Explanation: The similarity captures the similarity in the common prefix "aba" and penalizes the difference at the end.
 
-7. **Significance of Scaling Factor:**
+Explanation: The similarity captures the similarity in the common prefix "aba" and penalizes the difference at the end.
+
+**Significance of Scaling Factor:**
+
    - String 1: "Thompson"
    - String 2: "Thomson"
    - Jaro-Winkler similarity with $p=0.1$: 0.975
    - Jaro-Winkler similarity with $p=0.2$: 0.992
-   - Explanation: The scaling factor $p$ affects the similarity score. A higher $p$ gives more emphasis to the common prefix, leading to a higher similarity.
+
+Explanation: The scaling factor $p$ affects the similarity score. A higher $p$ gives more emphasis to the common prefix, leading to a higher similarity.
 
 These examples illustrate how the Jaro-Winkler similarity metric behaves based on different characteristics of input strings, such as common prefixes, case sensitivity, typos, length, and the scaling factor $p$.
 
