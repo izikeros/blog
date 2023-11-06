@@ -131,4 +131,4 @@ Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands o
 5. [Reciprocal rank fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
 
 
-X::[[implementing_rank_fusion]]
+X::[[implementing_reciprocal_rank_fusion_in_python]]

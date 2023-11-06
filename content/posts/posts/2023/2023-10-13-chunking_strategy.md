@@ -2,7 +2,7 @@
 Title: From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques
 Slug: from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques
 Date: 2023-09-11
-Modified: 2023-10-13
+Modified: 2023-11-06
 Start: 2023-09-11
 tags: chunking, text-processing, nlp, semantic-search, language-models, fixed-size-chunking, recursive-structure-aware-splitting, structure-aware-splitting, nlp-chunking, content-aware-splitting, metadata, summaries, keyword-tagging, sentiment-analysis, entity-recognition, topic-classification, chunk-linking, llm, rag
 Category: Machine Learning
@@ -341,13 +341,18 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 - expanding context, hierarchical search, ...: [Effects of Chunk Sizes on Retrieval Augmented Generation (RAG) Applications](https://reframe.is/wiki/Effects-of-Chunk-Sizes-on-Retrieval-Augmented-Generation-RAG-Applications-8b728c36d005434dba39ad19be9b82cc/)
 - [A novel method for performance evaluation of text chunking | Language Resources and Evaluation](https://dl.acm.org/doi/10.1007/s10579-013-9250-3)
 - [Matt Ambrogi](https://www.mattambrogi.com/posts/chunk-size-matters/) "Chunk Size Matters"
+- [Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex | by Ravi Theja | Oct, 2023 | LlamaIndex Blog](https://blog.llamaindex.ai/evaluating-the-ideal-chunk-size-for-a-rag-system-using-llamaindex-6207e5d3fec5)
 
+**Edits:**
+
+- 2023-11-06 - added reference: Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex
 
 X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
 X::[[context_generation_strategy]]
 X::[[2023-10-13-chunking_strategy]]
 X::[[embedding_strategy]]
 X::[[RAG_evaluation]]
+
 
 
 

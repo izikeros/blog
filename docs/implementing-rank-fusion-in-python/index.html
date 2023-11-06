@@ -57,7 +57,7 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Implementing Rank Fusion in Python",
+  "headline": "Implementing Reciprocal Rank Fusion (RRF) in Python",
   "datePublished": "2023-07-28 00:00:00+02:00",
   "dateModified": "2023-10-09 00:00:00+02:00"
 }
@@ -74,7 +74,7 @@
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
-  <meta property="og:title" content="Implementing Rank Fusion in Python"/>
+  <meta property="og:title" content="Implementing Reciprocal Rank Fusion (RRF) in Python"/>
   <meta property="og:description" content="In the world of Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/implementing-rank-fusion-in-python/"/>
@@ -96,10 +96,10 @@
     <meta name="twitter:data1" content="4 min."/>
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:description" content=""/>
-    <meta name="twitter:title" content="Implementing Rank Fusion in Python"/>
+    <meta name="twitter:title" content="Implementing Reciprocal Rank Fusion (RRF) in Python"/>
 
 
-    <title>    Implementing Rank Fusion in Python
+    <title>    Implementing Reciprocal Rank Fusion (RRF) in Python
 </title>
 
 
@@ -271,19 +271,25 @@
 
                     <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Implementing%20Rank%20Fusion%20in%20Python&url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&hashtags=rank-fusion,hybrid-search,rank,search" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&hashtags=rank-fusion,hybrid-search,rank,search" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/" target="_blank" title="Share on Facebook">Facebook</a>
     |
-    <a href="https://news.ycombinator.com/submitlink?t=Implementing%20Rank%20Fusion%20in%20Python&u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    <a href="https://news.ycombinator.com/submitlink?t=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/" target="_blank" title="Share on HackerNews">HackerNews</a>
     |
-    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&title=Implementing%20Rank%20Fusion%20in%20Python" target="_blank" title="Share via Reddit">Reddit</a>
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&title=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python" target="_blank" title="Share via Reddit">Reddit</a>
   </span>
                 <br/>
             </p>
-            <h1 id="implementing-rank-fusion-in-python">Implementing Rank Fusion in Python</h1>
+            <h1 id="implementing-rank-fusion-in-python">Implementing Reciprocal Rank Fusion (RRF) in Python</h1>
             <div class="header-underline"></div>
 
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/implementing-rank-fusion-in-python/">
+                        <img style="width: 100%; "
+                             src="/images/Reciprocal_Rank_Fusion/Reciprocal_Rank_Fusion.png" alt="">
+                    </a>
+                </div>
 
 
         </header>
@@ -292,43 +298,27 @@
         <div>
             <p>In the world of Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.</p>
-<h2>Installation</h2>
-<p>First of all, we need to install the required libraries. If not already installed, use pip to install the following libraries:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas
-</code></pre></div>
-
-<h2>Importing Libraries</h2>
-<p>We will be using Pandas for handling data and Numpy for mathematical computations.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</code></pre></div>
-
-<h2>Sample Data</h2>
-<p>For the demonstration, let's consider we have three ranking models and their rankings for 5 different items/documents.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Creating a dataframe for the sample data</span>
-<span class="n">rankings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Item&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Item1&#39;</span><span class="p">,</span> <span class="s1">&#39;Item2&#39;</span><span class="p">,</span> <span class="s1">&#39;Item3&#39;</span><span class="p">,</span> <span class="s1">&#39;Item4&#39;</span><span class="p">,</span> <span class="s1">&#39;Item5&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;Rank_Model_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-    <span class="s1">&#39;Rank_Model_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="s1">&#39;Rank_Model_3&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="p">})</span>
-</code></pre></div>
-
-<h2>Implementing Rank Fusion</h2>
-<h3>Borda Count method</h3>
-<p>In our example, we will use the simple Borda Count method. The rank positions from each ranking model are summed for every item and the items are arranged in ascending order of their final scores.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">perform_rank_fusion</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Fused_Rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Item&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Fused_Rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">data</span>
-
-<span class="c1"># Fuse the ranks and print the final rankings</span>
-<span class="n">fuse</span> <span class="o">=</span> <span class="n">perform_rank_fusion</span><span class="p">(</span><span class="n">rankings</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fuse</span><span class="s1">&#39;Item&#39;</span><span class="p">,</span> <span class="s1">&#39;Fused_Rank&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p>The output is the final ranking of the items after performing the fusion.</p>
-<h3>Reciprocal rank fusion</h3>
+<h2>Understanding the RRF Ranking Process</h2>
+<p>The Reciprocal Rank Fusion (RRF) operates by collecting search outcomes from various strategies, assigning each document in the results a reciprocal rank score, and subsequently merging these scores to generate a new ranking. The underlying principle is that documents that consistently appear in top positions across diverse search strategies are likely more pertinent and should thus receive a higher rank in the consolidated result.</p>
+<p>Here's a simplified breakdown of the RRF process:</p>
+<ol>
+<li>
+<p>Collect ranked search outcomes from multiple simultaneous queries.</p>
+</li>
+<li>
+<p>Assign reciprocal rank scores to each result in the ranked lists. The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as 1/(rank + k), where 'rank' is the document's position in the list, and 'k' is a constant. Empirical observation suggests that 'k' performs best when set to a small value, such as 60. Note that this 'k' value is a constant in the RRF algorithm and is entirely distinct from the 'k' that regulates the number of nearest neighbors.</p>
+</li>
+<li>
+<p>Combine scores. The algorithm adds up the reciprocal rank scores acquired from each search strategy for each document, thereby generating a combined score for each document.</p>
+</li>
+<li>
+<p>The algorithm ranks documents based on the combined scores and arranges them accordingly. The resulting list constitutes the fused ranking.</p>
+</li>
+</ol>
+<p>To depict the Reciprocal Rank Fusion (RRF) process, we can use a flowchart.
+<img alt="Reciprocal Rank Fusion (RRF) process flow chart" src="/images/Reciprocal_Rank_Fusion/Reciprocal_Rank_Fusion.png"></p>
+<p><em><strong>Figure 1:</strong> Reciprocal Rank Fusion (RRF) Process Flowchart. The diagram illustrates the steps involved in the RRF ranking process. The process begins with multiple search queries (A), which are then ranked (B). Each result is assigned a reciprocal rank score (C), and these scores are combined (D). Documents are then ranked based on these combined scores (E), resulting in the final fused ranking (F). The orange nodes (B, D) represent decision-making steps, while the green nodes (A, C, E, F) represent action steps.</em></p>
+<h2>Implementing Reciprocal Rank Fusion</h2>
 <p>The <a href="https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf">Reciprocal Rank Fusion (RRF)</a> is an advanced algorithmic technique designed to amalgamate multiple result sets, each having distinct relevance indicators, into a unified result set. One of the key advantages of RRF is its ability to deliver high-quality results without the necessity for any tuning. Moreover, it does not mandate the relevance indicators to be interconnected or similar in nature.</p>
 <p>RRF uses the following formula to determine the score for ranking each document:</p>
 <div class="highlight"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -346,10 +336,57 @@ Let's learn how to implement a simple rank fusion approach in Python.</p>
 </code></pre></div>
 
 <p>(code from <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rrf.html">Elasticsearch documentation</a>)</p>
+<p>You could significantly improve performance by using maps and list comprehensions -  referred to as "vectorizing" in overlapping contexts.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">reciprocal_rank_fusion</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">result_func</span><span class="p">,</span> <span class="n">rank_func</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="n">rank_func</span><span class="p">(</span><span class="n">result_func</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">d</span><span class="p">))</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">result_func</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">])</span>
+</code></pre></div>
+
+<p>This function takes as arguments:</p>
+<ul>
+<li>A collection of queries</li>
+<li>A document <code>d</code></li>
+<li>A ranking constant <code>k</code></li>
+<li>A function <code>result_func</code> that represents the <code>result(q)</code> operation in your original code.</li>
+<li>A function <code>rank_func</code> that represents the <code>rank(result(q), d)</code> operation in your original code.</li>
+</ul>
+<blockquote>
+<p><strong>NOTE:</strong> list comprehension is used to perform the operations that for-loop did, allowing Python to compute the results in a more optimized way. However, this isn't truly "vectorized" computing as you would find in libraries like NumPy or in languages like R, where computations are performed concurrently rather than sequentially.</p>
+</blockquote>
+<p>The <code>result_func</code> function takes a query <code>q</code>, and returns a list of documents that are the results of the query. For simplicity, let's assume that each query corresponds to a list of documents in a dictionary called <code>database</code>.</p>
+<p>The <code>rank_func</code> function takes a list of documents (results of a query) and a specific document <code>d</code>, and returns the rank of <code>d</code> in the list.</p>
+<div class="highlight"><pre><span></span><code><span class="n">database</span> <span class="o">=</span> <span class="p">{</span>   <span class="c1"># assuming your queries and results are stored in a dictionary</span>
+    <span class="s1">&#39;query1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="s1">&#39;doc2&#39;</span><span class="p">,</span> <span class="s1">&#39;doc3&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;query2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;doc3&#39;</span><span class="p">,</span> <span class="s1">&#39;doc1&#39;</span><span class="p">,</span> <span class="s1">&#39;doc2&#39;</span><span class="p">],</span>
+    <span class="c1"># more queries and their document results...</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">result_func</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">database</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">rank_func</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># adding 1 because ranks start from 1</span>
+</code></pre></div>
+
+<p>Then, the <code>reciprocal_rank_fusion</code> function can be called like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span> 
+<span class="n">d</span> <span class="o">=</span> <span class="s1">&#39;doc1&#39;</span>
+<span class="n">queries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;query1&#39;</span><span class="p">,</span> <span class="s1">&#39;query2&#39;</span><span class="p">]</span> <span class="c1"># fill this with your actual query keys</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">reciprocal_rank_fusion</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">result_func</span><span class="p">,</span> <span class="n">rank_func</span><span class="p">))</span>
+</code></pre></div>
+
+<p>This assumes that queries and their corresponding results are uniquely stored in a dictionary, and that your document ranks are determined by their order in the list of results.</p>
+<p>Please modify the functions <code>result_func</code>, <code>rank_func</code>, and <code>database</code> to fit your specific application details and data.</p>
 <h2>Conclusion</h2>
-<p>In this post, we learned a simple method to fuse rankings from different models using the Borda Count algorithm. This methodology can be extended to more complex rank fusion algorithms and larger data sets.
-Remember, the objective is not just to get automated rankings from the machine, but to provide the most relevant and helpful information to the end users. To meet this, experimenting with different fusion methods, or even creating a unique one that suits your requirements, is key to successful information retrieval.
-This post is a simple introduction to rank fusion concept in Python. There are packages out there like rank_aggregation providing other advanced rank fusion methods to use!</p>
+<p>The concept of Rank Fusion, particularly the Reciprocal Rank Fusion (RRF) method, offers a promising approach to amalgamate multiple result sets into a unified one. This article has demonstrated how to implement a simple RRF in Python.</p>
+<p>While the example provided in this article is simplified, it provides a solid foundation for understanding the RRF process and how to implement it in Python. Depending on the specific application and data, the functions and database structure may need to be modified. However, the core concept and approach remain the same.</p>
+<p>In conclusion, the RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.</p>
+<p><strong>Edits:</strong></p>
+<ul>
+<li>2023-11-06: changed title to: Implementing Reciprocal Rank Fusion and Borda Count in Python</li>
+<li>2023-11-06: added RRF description</li>
+<li>2023-11-06: added optimized implementation</li>
+</ul>
 <p>X::<a href="https://www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/">Rank Fusion Algorithms - From Simple to Advanced</a></p>
         </div>
 

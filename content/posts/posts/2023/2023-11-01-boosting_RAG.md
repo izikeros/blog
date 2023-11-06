@@ -46,7 +46,9 @@ An efficient way to enhance the quality of generation and reduce the number of t
 <a id="applying-query-transformations"></a>
 ## Applying Query Transformations
 
-Query transformations can significantly enhance the quality of responses. For instance, if a system does not find relevant context for a query, the LLM can rephrase the query and try again. Similarly, the [HyDE](http://boston.lti.cs.cmu.edu/luyug/HyDE/HyDE.pdf) strategy generates a hypothetical response to a query and uses both for embedding lookup, which has been found to dramatically enhance performance. 
+Query transformations can significantly enhance the quality of responses. For instance, if a system does not find relevant context for a query, the LLM can rephrase the query and try again. See the [[rag_fussion|RAG Fusion]].
+
+Similarly, the [HyDE](http://boston.lti.cs.cmu.edu/luyug/HyDE/HyDE.pdf) strategy generates a hypothetical response to a query and uses both for embedding lookup, which has been found to dramatically enhance performance. 
 
 Another technique involves breaking down complex queries into sub-queries, a process that LLMs tend to handle better. This approach can be integrated into the RAG system to decompose a query into multiple simpler questions.
 
