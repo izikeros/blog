@@ -32,7 +32,7 @@ Here's a simplified breakdown of the RRF process:
 To depict the Reciprocal Rank Fusion (RRF) process, we can use a flowchart.
 ![Reciprocal Rank Fusion (RRF) process flow chart](/images/Reciprocal_Rank_Fusion/Reciprocal_Rank_Fusion.png)
 
-***Figure 1:** Reciprocal Rank Fusion (RRF) Process Flowchart. The diagram illustrates the steps involved in the RRF ranking process. The process begins with multiple search queries (A), which are then ranked (B). Each result is assigned a reciprocal rank score (C), and these scores are combined (D). Documents are then ranked based on these combined scores (E), resulting in the final fused ranking (F). The orange nodes (B, D) represent decision-making steps, while the green nodes (A, C, E, F) represent action steps.*
+***Figure 1:** Reciprocal Rank Fusion (RRF) Process Flowchart. The diagram illustrates the steps involved in the RRF ranking process. 
 
 ## Implementing Reciprocal Rank Fusion
 
