@@ -9,6 +9,7 @@ Tags: documentation, pdoc3, python, documentation-generator, sphinx
 Title: Python - Project Documentation From the Code With Pdoc3
 suggested_tags: documentation, pdoc3, python
 ---
+
 X::[[sphinx_for_documentation]]
 X::[[docusaurus_for_documentation]]
 X::[[mkdocs_material]]
