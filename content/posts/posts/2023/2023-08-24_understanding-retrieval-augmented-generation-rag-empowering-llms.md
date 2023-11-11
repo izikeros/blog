@@ -7,7 +7,7 @@ Start: 2023-08-24
 tags: llm, nlp, question-answering, rag, re-ranking, embeddings, Transformers, seq2seq, prompt, pretrained-dense-retrieval
 Category: Generative AI
 Image: /images/head/rag_futuristic_library_640px.jpg
-banner: /images/head/rag_futuristic_library_640px.jpg
+banner: "/images/head/rag_futuristic_library_640px.jpg"
 Summary: Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.
 Status: published
 note: see RAG.excalidraw
@@ -93,6 +93,9 @@ Retrieval-Augmented Generation offers a promising solution to the limitations of
 - Good section on possible improvements to RAG: [Retrieval Augmented Generation (RAG): What, Why and How? | LLMStack](https://llmstack.ai/blog/retrieval-augmented-generation)
 - General intro to RAG: [How do domain-specific chatbots work? An Overview of Retrieval Augmented Generation (RAG) | Scriv](https://scriv.ai/guides/retrieval-augmented-generation-overview/)
 - Optimization, async, using summaries: [Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium](https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a)
+- Check the GitHub for the RAG-related projects: [retrieval-augmented-generation · GitHub Topics](https://github.com/topics/retrieval-augmented-generation?l=python)
+- [Yet another RAG system - implementation details and lessons learned : r/LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/comments/16cbimi/yet_another_rag_system_implementation_details_and/)
+
 
 X::[[2023-11-01-boosting_RAG]]
 
