@@ -342,10 +342,12 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 - [A novel method for performance evaluation of text chunking | Language Resources and Evaluation](https://dl.acm.org/doi/10.1007/s10579-013-9250-3)
 - [Matt Ambrogi](https://www.mattambrogi.com/posts/chunk-size-matters/) "Chunk Size Matters"
 - [Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex | by Ravi Theja | Oct, 2023 | LlamaIndex Blog](https://blog.llamaindex.ai/evaluating-the-ideal-chunk-size-for-a-rag-system-using-llamaindex-6207e5d3fec5)
+- short (4min 25s) overview of chunking methods from Weaviate: [Chunking Methods to use Custom Data with LLMs](https://www.youtube.com/watch?v=h5id4erwD4s)
 
 **Edits:**
 
 - 2023-11-06 - added reference: Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex
+- 2023-11-13 - added video from weaviate
 
 X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
 X::[[context_generation_strategy]]

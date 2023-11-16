@@ -16,15 +16,24 @@ Random Forest is a popular machine learning algorithm, known for its high accura
 
 One of the most important aspects of a Random Forest classifier is understanding the relative importance of the features used to make predictions. `scikit-learn` provides a built-in function to compute feature importance, `feature_importances_`. However, this method can be misleading for high-dimensional datasets or datasets with correlated features. A better alternative is `permutation importance` which can be calculated using the `permutation_importance` function in the `sklearn.inspection` module. This method randomly shuffles the values of a single feature and calculates the decrease in the model's performance, providing a more accurate measure of feature importance.
 
-Another alternative is the `SHAP`(SHapley Additive exPlanations) library, which allows for the calculation of feature importance in a more explainable way. It considers all possible coalitions of features and assigns a value to each feature based on its contribution to the prediction.
+Another alternative is the SHAP (SHapley Additive exPlanations) library, which allows for the calculation of feature importance in a more explainable way. It considers all possible coalitions of features and assigns a value to each feature based on its contribution to the prediction. For the tree methods there is a speed-optimized [[2023-04-14-kernelshap_and_treeshap|Treeshap]] method to explain the tree-based models.
+
+See: [plot - Random Forest Feature Importance Chart using Python - Stack Overflow](https://stackoverflow.com/questions/44101458/random-forest-feature-importance-chart-using-python)
+
 
 ## 2. Partial Dependence Plots
 
 Partial dependence plots are a useful tool for visualizing the relationship between a feature and the model's prediction. They plot the average prediction of the model as a function of one feature, while holding the other features constant. `scikit-learn` provides a built-in function to generate partial dependence plots, `plot_partial_dependence`. However, this function only allows for the visualization of one or two features at a time. An alternative is the `PDPbox` library, which allows for the visualization of multiple features at once.
 
+![](https://scikit-optimize.github.io/dev/_images/sphx_glr_partial-dependence-plot-with-categorical_001.png)
+
+**Figure 1.** Example of Partial Dependence Plots with categorical values - plotted with scikit-optimize. (image source: [scikit-optimize documentation](https://scikit-optimize.github.io/dev/auto_examples/plots/partial-dependence-plot-with-categorical.html))
+
 ## 3. Tree Interpreter
 
-The `treeinterpreter` library provides an easy way to understand the predictions made by a Random Forest classifier. It decomposes the predictions of the ensemble into contributions from each individual tree, allowing you to understand the decision-making process of the model. This library can be used in combination with `SHAP` to understand how each feature contributes to the model's prediction.
+The [treeinterpreter](https://github.com/andosa/treeinterpreter) library provides an easy way to understand the predictions made by a Random Forest classifier. It decomposes the predictions of the ensemble into contributions from each individual tree, allowing you to understand the decision-making process of the model. This library can be used in combination with `SHAP` to understand how each feature contributes to the model's prediction.
+
+See: [Treeinterpreter - Interpreting Tree-Based Model's Prediction of Individual Sample [Python]](https://coderzcolumn.com/tutorials/machine-learning/treeinterpreter-interpreting-tree-based-models-prediction-of-individual-sample)
 
 ## 4. Random Forest Explorer
 
@@ -38,8 +47,10 @@ Note that the above instructions are a general guide and you should check the sp
 
 **References:**
 
--   [https://scikit-learn.org/stable/modules/permutation_importance.html](https://scikit-learn.org/stable/modules/permutation_importance.html)
--   [https://github.com/slundberg/shap](https://github.com/slundberg/shap)
--   [https://github.com/SauceCat/PDPbox](https://github.com/SauceCat/PDPbox)
--   [https://github.com/andosa/treeinterpreter](https://github.com/andosa/treeinterpreter)
--   [https://github.com/parrt/random-forest-explorer](https://github.com/parrt/random-forest-explorer)
+- [4.2. Permutation feature importance — scikit-learn 1.3.2 documentation](https://scikit-learn.org/stable/modules/permutation_importance.html)
+- [GitHub - shap/shap: A game theoretic approach to explain the output of any machine learning model.](https://github.com/slundberg/shap)
+- [GitHub - SauceCat/PDPbox: python partial dependence plot toolbox](https://github.com/SauceCat/PDPbox)
+- [GitHub - andosa/treeinterpreter](https://github.com/andosa/treeinterpreter)
+- [https://github.com/parrt/random-forest-explorer](https://github.com/parrt/random-forest-explorer)
+- [dice-ml - Diverse Counterfactual Explanations for ML Models [Python]](https://coderzcolumn.com/tutorials/machine-learning/dice-ml-diverse-counterfactual-explanations-for-ml-models)
+- 

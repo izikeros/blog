@@ -12,6 +12,7 @@ Title: Are LIME Explanations Any Useful?
 banner: "/images/head/lime_black_box_640px.jpg"
 prompt: Are the local explanations obtained with LIME method any useful? What are the practical use cases when using LIME gave tangible results? Give me long, blog post style article for data science expert audience.
 ---
+X::[[MOC_RAI]]
 
 LIME (Local Interpretable Model-agnostic Explanations) is a method used to interpret black box models. This technique is widely used in the field of data science to explain the predictions of complex machine learning models. By providing local explanations, LIME can help users understand the decision-making process of the models and increase their trust in the models' predictions. However, the question remains, are the local explanations obtained with LIME method useful? And what are the practical use cases when using LIME gave tangible results?
 

@@ -8,6 +8,9 @@ Tags: python, temporary-file, temp, tempfile,
 Category: note
 Summary: "Explore Python's tempfile module and learn how to create, manage, and customize temporary files and directories with ease. Master common use-cases and uncover lesser-known features of this powerful tool."
 ---
+
+up::[[MOC_Python]]
+
 Python's [tempfile](https://docs.python.org/3/library/tempfile.html) module is an incredibly powerful tool that allows you to create and manage temporary files and directories with ease. In this article, we'll dive deep into the most common use-cases and explore some lesser-known, but highly useful features of this versatile module.
 
 ## Why Use Temporary Files and Directories? 

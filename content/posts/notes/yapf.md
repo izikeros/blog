@@ -4,7 +4,7 @@ Date: '2023-03-08'
 Modified: '2023-07-12'
 Slug: yapf-toml-package-is-needed-for-using-pyproject-toml-as-a-configuration -file
 Status: published
-Tags: yapf, pre-commit
+Tags: yapf, pre-commit, code-quality, code-formatting , code-formatter 
 Title: Yapf Toml Package Is Needed for Using pyproject.toml as a Configuration File
 ---
 

@@ -113,4 +113,7 @@ generate_ebooks("book.md", "cover.jpg")
 
 **Note**: The above code uses the `markdown2` and `weasyprint` packages to convert markdown to HTML and PDF respectively, and the `ebooklib` package to generate ePUB. You may need to install these packages before running the script by running `pip install markdown2 weasyprint ebooklib`.
 
+## References
+- [Create a Book on Markdown](https://www.ssp.sh/brain/create-a-book-on-markdown/)
+
 up::[[MOC_content_creation]]
