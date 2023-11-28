@@ -8,6 +8,10 @@ tags: python, package, mypy, poetry, typink, type-hints, pep
 Category: note
 ---
 
+X::[[python_package]]
+X::[[python_packaging_tools]]
+X::[[python_manifest_in_file]]
+
 For the Python programming, type checking might be an important aspect aspect that ensures the correctness of your code. The `mypy` type checker is a powerful tool that uses type annotations to verify your code. However, it might not recognize the type hints provided by your package unless you include a `py.typed` file. This is a common oversight that can lead to incorrect package publishing.
 
 ## Understanding `py.typed`

@@ -9,7 +9,7 @@ Status: published
 Summary: Unlock the power of document classification with these top Python libraries! Discover the best tools for effortless text analysis and more.
 Tags: document-intelligence, AI, python, document-processing, document-data-extraction, machine-learning, natural-language-processing, NLP, text-classification, scikit-learn, NLTK, Gensim, TensorFlow, PyTorch, Keras, PyCaret, FastText, PyText, TextBlob, Spacy, Flair, AllenNLP, Transformers, Vowpal Wabbit, LightGBM, XGBoost, CatBoost, HuggingFace, MXNet, Theano, Caffe2, TorchText, Stanford-CoreNLP, Textacy, Pattern, Polyglot, Apache-Tika, Apache-Lucene, PyTorch-NLP
 Title: Top 10 Python Libraries for Document Classification
-banner: /images/head/document_classification.jpg
+banner: "/images/head/document_classification.jpg"
 prompt: give me long markdown blog-post text on Top 10 Python libraries for document classification
 ---
 
@@ -113,9 +113,9 @@ GitHub: https://github.com/pytorch/pytorch
 - [Text Classification with LSTMs in PyTorch | by Fernando López | Towards Data Science](https://towardsdatascience.com/text-classification-with-pytorch-7111dae111a6)
 - [Site Unreachable](https://www.analyticsvidhya.com/blog/2020/01/first-text-classification-in-pytorch/)
 - [Text Classification with BERT in PyTorch | by Ruben Winastwan | Towards Data Science](https://towardsdatascience.com/text-classification-with-bert-in-pytorch-887965e5820f)
-- [GitHub - prakashpandey9/Text-Classification-Pytorch: Text classification using deep learning models in Pytorch](https://github.com/prakashpandey9/Text-Classification-Pytorch)
+- [prakashpandey9/Text-Classification-Pytorch](https://github.com/prakashpandey9/Text-Classification-Pytorch) - Text classification using deep learning models in Pytorch
 - [Multiclass Text Classification using LSTM in Pytorch | by Aakanksha NS | Towards Data Science](https://towardsdatascience.com/multiclass-text-classification-using-lstm-in-pytorch-eac56baed8df)
-- [GitHub - RBeaudet/Text-Classification-Using-PyTorch: A didactic repository to understand Deep Learning models for text classification using PyTorch](https://github.com/RBeaudet/Text-Classification-Using-PyTorch)
+- [RBeaudet/Text-Classification-Using-PyTorch](https://github.com/RBeaudet/Text-Classification-Using-PyTorch) -  A didactic repository to understand Deep Learning models for text classification using PyTorch
 - [Text Classification Using Transformers (Pytorch Implementation) | by Yassine Hamdaoui | The Startup | Medium](https://medium.com/swlh/text-classification-using-transformers-pytorch-implementation-5ff9f21bd106)
 
 <a id="6-keras"></a>

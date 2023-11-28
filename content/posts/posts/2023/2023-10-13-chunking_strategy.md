@@ -200,10 +200,6 @@ This method has the distinct advantage of maintaining semantic consistency withi
 
 However, this method is not without its challenges. It requires advanced NLP techniques to accurately detect topic shifts, which adds to the complexity of implementation. Additionally, the accuracy of chunking heavily depends on the effectiveness of the topic modeling and detection techniques used.
 
-![NLP Chunking](https://vectara.com/wp-content/uploads/2023/09/chunking-blog-post.png)
-
-**Figure 2.** *Example of NLP chunking (source: [^4])*
-
 #### Where to Use It
 
 NLP Chunking with Topic Tracking is highly effective for tasks that require an understanding of the semantic context and topic continuity. It is particularly useful for text summarization, sentiment analysis, and document classification tasks.
@@ -329,7 +325,7 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 - [^1] [Create a CustomGPT And Supercharge your Company with AI  -  Pick the Best LLM - The Abacus.AI Blog](https://blog.abacus.ai/blog/2023/08/10/create-your-custom-chatgpt-pick-the-best-llm-that-works-for-you/)
 - [^2] [Chunking Strategies for LLM Applications | Pinecone](https://www.pinecone.io/learn/chunking-strategies/)
 - [^3] [Optimize LLM Enterprise Applications through Embeddings and Chunking Strategy. | by Actalyst | Aug, 2023 | Medium](https://actalyst.medium.com/optimize-llm-enterprise-applications-through-embeddings-and-chunking-strategy-1bbdb03bedae) 
-- [^4] [Retrieval Augmented Generation (RAG) Done Right: Chunking - Vectara](https://vectara.com/grounded-generation-done-right-chunking/)
+- [^4] [Retrieval Augmented Generation (RAG) Done Right: Chunking - Vectara](https://vectara.com/grounded-generation-done-right-chunking/) (NLP chunking, compare chunking strategies) + [notebook](https://github.com/vectara/example-notebooks/blob/main/notebooks/chunking-demo.ipynb)
 
 <a id="further-reading"></a>
 ## Further Reading
@@ -347,7 +343,7 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 **Edits:**
 
 - 2023-11-06 - added reference: Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex
-- 2023-11-13 - added video from weaviate
+- 2023-11-13 - added video from Weaviate
 
 X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
 X::[[context_generation_strategy]]

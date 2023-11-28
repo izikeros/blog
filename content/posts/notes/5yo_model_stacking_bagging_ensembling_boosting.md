@@ -12,8 +12,6 @@ X::[[ensemble]]
 X::[[ensemble_best_performing_low_correlated_models]]
 X::[[model_stacking_bagging_ensembling_and_boosting]]
 
-## Model Stacking, Bagging, Ensembling and Boosting Explained Like to 5 Years Old
-
 Hello there! Today we’re going to talk about some really cool techniques in machine learning called model stacking, bagging, ensembling, and boosting. These techniques are used to improve the accuracy of machine learning models, and they’re a lot like playing with Legos!
 
 ## Lego metaphor

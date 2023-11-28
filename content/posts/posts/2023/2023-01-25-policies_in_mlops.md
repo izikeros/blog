@@ -9,7 +9,7 @@ Status: published
 Summary: Discover the secrets to successful MLOps - From planning to deployment, get a comprehensive guide to ML policies.
 Tags: mlops,
 Title: Policies in MLOps
-banner: /images/head/mlops_policies.jpg
+banner: "/images/head/mlops_policies.jpg"
 prompt: When intoducing mlops you need to standardize some practices. Give me list of policies, guidelines and good-practices or convention documents that could be prepared in the process of introducing mlops.
 todo: add infographics - https://venngage.com/blog/process-infographic-template/
 ---

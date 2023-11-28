@@ -8,12 +8,6 @@ tags: startup, methodology, product-led-growth
 Category: note
 ---
 
-X::[[lean_startup_criticism]]
-X::[[lean_startup]]
-X::[[growth_hacking]]
-X::[[product_led_growth]]
-X::[[design_thinking]]
-
 Product Led Growth (PLG) is a business methodology in which the product itself serves as the primary driver of customer acquisition, conversion, and expansion. It's a model that prioritizes product usage as the key growth driver, rather than traditional marketing or sales efforts.
 
 Here are some key points about Product Led Growth:
@@ -32,6 +26,13 @@ Here are some key points about Product Led Growth:
 
 Examples of successful PLG companies include Slack, Dropbox, and Zoom. These companies have created products that users love, leading to rapid, organic growth.
 
+X::[[lean_startup_criticism]]
+
+X::[[lean_startup]]
+
+X::[[growth_hacking]]
+
+X::[[design_thinking]]
 
 ## References
 - [What is product-led growth?](https://www.productled.org/foundations/what-is-product-led-growth)

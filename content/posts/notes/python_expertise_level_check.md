@@ -11,6 +11,9 @@ prompt: I would like to create a simple classification of Python programmers int
 params: gpt-4, temp 0.4, topp=0.05
 ---
 
+X::[[MOC_Software_Development]]
+up::[[MOC_Python]]
+
 Sometimes you need to assess your own or candidate's level of expertise in Python programming. I have created some statements that roughly corresponds to the various level of expertise. Note that knowing programming language techniques contributes to expertise but does not make a great programmer automatically. Knowledge of algorithms and data structures, programming patterns, and software architectures are some other important factors - to mention a few.
 
 Having that said, I still find useful this simple classification of Python programmers into three categories: beginners, advanced, and experts. 

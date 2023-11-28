@@ -11,21 +11,25 @@ Python virtual environments are an essential tool for isolating project dependen
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
-- [Using `venv`](#using-venv)
-- [Using `virtualenv`](#using-virtualenv)
-- [Using `pyenv`](#using-pyenv)
-- [Using `conda`](#using-conda)
-- [Using `pipenv`](#using-pipenv)
-- [Using `Poetry`](#using-poetry)
-- [Using `Docker`](#using-docker)
-- [Using `PDM`](#using-pdm)
-- [Using `Hatch`](#using-hatch)
-- [Using `Pipx`](#using-pipx)
+- [Most popular methods](#most-popular-methods)
+	- [Using `venv`](#using-venv)
+	- [Using `virtualenv`](#using-virtualenv)
+	- [Using `pyenv`](#using-pyenv)
+	- [Using `conda`](#using-conda)
+- [Alternatives](#alternatives)
+	- [Using `pipenv`](#using-pipenv)
+	- [Using `Poetry`](#using-poetry)
+	- [Using `Docker`](#using-docker)
+	- [Using `PDM`](#using-pdm)
+	- [Using `Hatch`](#using-hatch)
+	- [Using `Pipx`](#using-pipx)
 
 <!-- /MarkdownTOC -->
 
+<a id="most-popular-methods"></a>
+## Most popular methods
 <a id="using-venv"></a>
-## Using `venv`
+### Using `venv`
 
 `venv` is a module that comes pre-installed with Python 3.3 and later versions. It allows you to create lightweight virtual environments with their own site directories.
 
@@ -56,7 +60,7 @@ source virtual_environment_name/bin/activate
 ```
 
 <a id="using-virtualenv"></a>
-## Using `virtualenv`
+### Using `virtualenv`
 
 `virtualenv` is a third-party Python package that you can install using pip. It allows you to create multiple side-by-side environments.
 
@@ -73,15 +77,11 @@ virtualenv -p 3.9 $HOME/.virtualenvs/safeeyes
 ```
 
 <a id="using-pyenv"></a>
-## Using `pyenv`
+### Using `pyenv`
 
 `pyenv` is a powerful tool for managing multiple Python versions. It doesn't come pre-installed with Python, so you'll need to install it separately. Once installed, you can use it to create virtual environments.
 
 Detailed instructions on how to use `pyenv` for creating virtual environments will be covered in a separate article.
-
-
-## Alternatives
-While `venv`, `virtualenv`, and `pyenv` are the most commonly used tools for creating virtual environments in Python, there are alternative methods available. Here are a few:
 
 <a id="using-conda"></a>
 ### Using `conda`
@@ -100,6 +100,9 @@ To activate the environment, use:
 conda activate virtual_environment_name
 ```
 
+<a id="alternatives"></a>
+## Alternatives
+While `venv`, `virtualenv`, and `pyenv` are the most commonly used tools for creating virtual environments in Python, there are alternative methods available. Here are a few:
 <a id="using-pipenv"></a>
 ### Using `pipenv`
 

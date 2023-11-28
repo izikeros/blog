@@ -4,15 +4,10 @@ Date: '2023-02-12'
 Modified: '2023-07-12'
 Slug: how-to-select-rows-from-DataFrame-based-on-column-values
 Status: published
-Tags: python, pandas, pandas/indexing
+Tags: python, pandas, pandas/indexing, dataframe
 Title: How to Select Rows From a DataFrame Based on Column Values
+prompt: Give me long, stacoverflow-style text with snippets of code, analyse various use cases and various methods how to achieve this. Give me response as pre-formatted text (do not render tables and code fences)
 ---
-
-How to select rows from a DataFrame based on column values?
-
-> Give me long, stacoverflow-style text with snippets of code, analyse various use cases and various methods how to achieve this. Give me response as pre-formatted text (do not render tables and code fences)
-
-
 To select rows from a pandas DataFrame based on column values, you can use various methods. Here are some of the most common ones:
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->

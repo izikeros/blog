@@ -62,7 +62,7 @@ cd ~/blog
 
 create virtual env if none exist:
 ```sh
-pipenv --python 3.9
+pyenv virtualenv 3.10.13 blog-3.10
 ```
 
 install packages from Pipfile:
@@ -73,10 +73,10 @@ pipenv install "pelican[markdown]"
 <a id="activate-environment"></a>
 ## activate environment
 
-Go to the directory containing the blog and activate Pipenv virtual envitonment with
+Go to the directory containing the blog and activate virtual environment with
 
 ```bash
-pipenv shell
+z blog && source ~/.pyenv/versions/3.10.13/envs/blog-3.10/bin/activate
 ```
 
 <a id="upgrade-environment"></a>

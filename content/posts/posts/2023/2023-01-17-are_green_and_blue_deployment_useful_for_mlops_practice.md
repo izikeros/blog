@@ -9,9 +9,11 @@ Status: published
 Summary: Learn about blue/green deployment in MLOps, its usefulness and when to use it, and the cost and complexity of maintaining two separate environments
 Tags: mlops, devops, machine-learning, deployment, production
 Title: Maximizing Efficiency in MLOps - How Blue/Green Deployment Can Help?
-banner: /images/head/blue_green.jpg
+banner: "/images/head/blue_green.jpg"
 prompt: Learn about blue/green deployment in MLOps, its usefulness and when to use it, and the cost and complexity of maintaining two separate environments.
 ---
+
+X::[[mlops]]
 
 MLOps (Machine Learning Operations) is a rapidly growing field that aims to bridge the gap between data science and production. One of the key practices in MLOps is the deployment of machine learning models. Blue/Green deployment is a deployment strategy that can be used to minimize downtime and reduce the risk of introducing new bugs when deploying machine learning models. In this article, we will explore the concept of Blue/Green deployment and its usefulness in MLOps.
 

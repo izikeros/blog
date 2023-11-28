@@ -12,6 +12,7 @@ Title: Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platfo
 banner: "/images/head/abstract_1.jpg"
 prompt: what are the best dataset-sharing platforms
 ---
+up::[[MOC_AI]]
 
 There are several popular dataset-sharing platforms available that researchers, data scientists, and machine learning practitioners can utilize to access and share datasets. Here are some of the best dataset-sharing platforms:
 

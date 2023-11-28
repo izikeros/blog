@@ -103,9 +103,9 @@ In conclusion, the performance of RAG in production can be significantly improve
 6. [Improving RAG effectiveness with Retrieval-Augmented Dual Instruction Tuning (RA-DIT) | by Emanuel Ferreira | Oct, 2023 | LlamaIndex Blog](https://blog.llamaindex.ai/improving-rag-effectiveness-with-retrieval-augmented-dual-instruction-tuning-ra-dit-01e73116655d)
 7. [Improving RAG (Retrieval Augmented Generation) Answer Quality with Re-ranker | by Shivam Solanki | Towards Generative AI | Medium](https://medium.com/towards-generative-ai/improving-rag-retrieval-augmented-generation-answer-quality-with-re-ranker-55a19931325)
 8. SingleStore (db), finetuning embeddings model, CacheGPT, Nemo-Guardrails, [Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium](https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a)
-	1. [GitHub - run-llama/finetune-embedding: Fine-Tuning Embedding for RAG with Synthetic Data](https://github.com/run-llama/finetune-embedding)
-	2. [GitHub - zilliztech/GPTCache: Semantic cache for LLMs. Fully integrated with LangChain and llama\_index.](https://github.com/zilliztech/GPTCache)
-	3. [GitHub - NVIDIA/NeMo-Guardrails: NeMo Guardrails is an open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems.](https://github.com/NVIDIA/NeMo-Guardrails)
+	1. [ run-llama/finetune-embedding: Fine-Tuning Embedding for RAG with Synthetic Data](https://github.com/run-llama/finetune-embedding)
+	2. [zilliztech/GPTCache: Semantic cache for LLMs. Fully integrated with LangChain and llama\_index.](https://github.com/zilliztech/GPTCache)
+	3. [NVIDIA/NeMo-Guardrails: NeMo Guardrails is an open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems.](https://github.com/NVIDIA/NeMo-Guardrails)
 	4. library to evaluate the context retrieved from your enterprise corpus of data (how do you know if the context being retrieved is accurate) [GitHub - explodinggradients/ragas: Evaluation framework for your Retrieval Augmented Generation (RAG) pipelines](https://github.com/explodinggradients/ragas)
 	5.  LangSmith, introduced by LangChain - a highly effective tool for monitoring and examining the responses between the app and the LLM.
 
