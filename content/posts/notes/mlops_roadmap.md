@@ -1,11 +1,11 @@
 ---
+Title: MLOps Roadmap
 Category: note
-Date: '2023-01-14'
-Modified: '2023-07-12'
+Date: 2023-01-14
+Modified: 2023-07-12
 Slug: mlops-roadmap
 Status: published
-Tags: mlops, learning
-Title: MLOps Roadmap
+tags: mlops, learning, data-management, reproducibility, pipeline, model-life-cycle, model-tuning, canary-release, jenkins, ansible
 ---
 Roadmap to become MLOps. The 6 points, ordered plan on things to learn.
 
@@ -27,14 +27,16 @@ Understand how to monitor models in production, and how to detect and diagnose i
 **6.  Automation**
 Learn about automation tools, such as Jenkins and Ansible, to automate ML workflows.
 
-```mermaid
+<script type="module"> import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true }); </script>
+
+
+<pre class="mermaid">
 graph TD;
     Data_Management-->Experimentation;
     Experimentation-->Model_Development;
     Model_Development-->Model_Deployment;
     Model_Deployment-->Model_Monitoring;
     Model_Monitoring-->Automation;
-
-```
+</pre>
 
 up::[[mlops]]

@@ -25,7 +25,7 @@ See: [plot - Random Forest Feature Importance Chart using Python - Stack Overflo
 
 Partial dependence plots are a useful tool for visualizing the relationship between a feature and the model's prediction. They plot the average prediction of the model as a function of one feature, while holding the other features constant. `scikit-learn` provides a built-in function to generate partial dependence plots, `plot_partial_dependence`. However, this function only allows for the visualization of one or two features at a time. An alternative is the `PDPbox` library, which allows for the visualization of multiple features at once.
 
-![](https://scikit-optimize.github.io/dev/_images/sphx_glr_partial-dependence-plot-with-categorical_001.png)
+![Example of Partial Dependence Plots with categorical values](https://scikit-optimize.github.io/dev/_images/sphx_glr_partial-dependence-plot-with-categorical_001.png)
 
 **Figure 1.** Example of Partial Dependence Plots with categorical values - plotted with scikit-optimize. (image source: [scikit-optimize documentation](https://scikit-optimize.github.io/dev/auto_examples/plots/partial-dependence-plot-with-categorical.html))
 
