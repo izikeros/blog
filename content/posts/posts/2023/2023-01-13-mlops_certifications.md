@@ -8,7 +8,7 @@ Status: published
 Summary: Learn about popular MLOps certifications offered by Amazon, Google, and Microsoft. Understand if they are worth the effort and money and discover free MLOps certifications available to gain knowledge and understanding of the field.
 Tags: mlops, certificates, job-search, interview, machine-learning
 Title: MLOps Certifications - A Comprehensive Guide
-banner: /images/head/mlops_certificates.jpg
+banner: "/images/head/mlops_certificates.jpg"
 modified: '2023-01-13'
 prompt: null
 todo: need to verify the offer and the links
@@ -88,7 +88,7 @@ It's worth noting that, Even though these certifications are free, they still re
 <a id="conclusion"></a>
 ## Conclusion
 
-In conclusion, MLOps is a rapidly growing field that combines the expertise of data science and software engineering to streamline and automate the deployment of machine learning models in production. As the demand for MLOps professionals increases, more and more organizations are offering certifications to validate the skills and knowledge of individuals in this field.
+MLOps is a rapidly growing field that combines the expertise of data science and software engineering to streamline and automate the deployment of machine learning models in production. As the demand for MLOps professionals increases, more and more organizations are offering certifications to validate the skills and knowledge of individuals in this field.
 
 In this article, we've looked at some of the most popular MLOps certifications available, including those offered by Amazon Web Services, Google Cloud, and Microsoft. We've also discussed the relevance of these certifications to the industry and whether or not they are worth your effort and money.
 

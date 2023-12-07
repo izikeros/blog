@@ -60,4 +60,4 @@ Gitbook provides a number of customization options to help you create a unique a
 
 ## Conclusion
 
-In conclusion, writing a book in Markdown using Gitbook is a simple and straightforward process. With this powerful tool, you can easily create a professional-looking book in a variety of formats, and customize it to your heart's content. Happy writing!
+Writing a book in Markdown using Gitbook is a simple and straightforward process. With this powerful tool, you can easily create a professional-looking book in a variety of formats, and customize it to your heart's content. Happy writing!

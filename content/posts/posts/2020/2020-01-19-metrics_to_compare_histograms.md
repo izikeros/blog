@@ -117,7 +117,7 @@ There are other metrics such as [Hellinger distance](https://en.wikipedia.org/wi
 
 <a id="conclusion"></a>
 ## Conclusion
-In conclusion, there are several metrics that can be used to compare histograms, each with its own strengths and weaknesses. 
+There are several metrics that can be used to compare histograms, each with its own strengths and weaknesses. 
 - The **Chi-Squared** distance is **sensitive to large differences in frequency**, 
 - the **Earth Mover's Distance** takes into account the **shape of the histograms**, and 
 - the **Kullback-Leibler Divergence** measures the **information lost** when approximating one histogram with the other.

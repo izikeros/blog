@@ -7,6 +7,8 @@ Status: published
 Tags: data-science, business, data-preprocessing, data-collection, feature-engineering, model-training, model-evaluation, decision-making
 Category: note
 ---
+up::[[MOC_AI]]
+
 > In the context of data science and business, the term "downstream task" refers to a task or process that occurs after the completion of an initial or preceding task in a data pipeline or workflow. In this data flow, information is processed and refined as it moves from one stage to another.
 
 To understand the concept better, let's consider a simplified data science workflow:

@@ -189,7 +189,8 @@ GitHub: https://github.com/facebookresearch/pytext
 
 [TextBlob](https://textblob.readthedocs.io/en/dev/) is a library for processing textual data in Python. It provides various tools for natural language processing, including sentiment analysis, part-of-speech tagging, and text classification. TextBlob offers a simple and easy-to-use interface for building text classifiers. TextBlob is widely used for document classification tasks, especially for small datasets.
 
-In conclusion, Python offers a wide range of libraries for document classification. Each library has its own strengths and weaknesses, and the choice of library depends on the specific requirements of the task at hand. Scikit-learn, NLTK, Gensim, TensorFlow, PyTorch, Keras, PyCaret, FastText, PyText, and TextBlob are the top 10 Python libraries for document classification that we have explored in this blog post. By using these libraries, we can easily build and deploy machine learning models for document classification tasks.
+## Summary
+Python offers a wide range of libraries for document classification. Each library has its own strengths and weaknesses, and the choice of library depends on the specific requirements of the task at hand. Scikit-learn, NLTK, Gensim, TensorFlow, PyTorch, Keras, PyCaret, FastText, PyText, and TextBlob are the top 10 Python libraries for document classification that we have explored in this blog post. By using these libraries, we can easily build and deploy machine learning models for document classification tasks.
 
 GitHub: https://github.com/sloria/TextBlob
 

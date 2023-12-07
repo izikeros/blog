@@ -9,10 +9,10 @@ Status: published
 Summary: Learn how Databricks can help you master big data, improve data processing and machine learning skills and excel in your career. Boost your career with this powerful platform.
 Tags: machine-learning, databricks, data-engineering
 Title: Becoming a Data Wizard - The Benefits of Learning Databricks
-banner: /images/head/databricks_logo.jpg
+banner: "/images/head/databricks_logo.jpg"
 prompt: null
 ---
-
+up::[[MOC_Databricks]]
 ## Introduction
 
 Data is becoming an increasingly important part of our world, and as such, the ability to work with and understand data is becoming a valuable skill. One tool that can help you develop this skill is Databricks, a powerful platform for working with big data.

@@ -98,7 +98,8 @@ Here are a few examples of command line tools for ML models:
 3.  [Scikit-learn Command Line Interface](https://github.com/sloria/sklearn-cli): sklearn-cli is a command line interface for scikit-learn, a popular machine learning library. It allows you to easily train and evaluate models, and also provides a simple interface for making predictions.
     
 
-In conclusion, creating command line tools from ML models is a simple and efficient way to distribute and deploy models. By using `argparse` and `pex` libraries, it is easy to create a command line interface and package it in a portable and efficient way. These tools can be integrated into existing systems and workflows, and can be run on a variety of platforms.
+## Conclusion
+Creating command line tools from ML models is a simple and efficient way to distribute and deploy models. By using `argparse` and `pex` libraries, it is easy to create a command line interface and package it in a portable and efficient way. These tools can be integrated into existing systems and workflows, and can be run on a variety of platforms.
 
 up::[[MOC_AI]]
 [[model_documentation]]

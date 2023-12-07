@@ -8,7 +8,7 @@ Status: published
 Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
 Tags: NLP, python
 Title: Visual Text Exploration as Part of Preprocessing Before Classification
-banner: /images/head/visual_text_exploration_wordcloud.jpg
+banner: "/images/head/visual_text_exploration_wordcloud.jpg"
 ---
 
 ## Introduction
@@ -59,7 +59,7 @@ LDAvis is a R package that provides interactive visualizations of LDA models. It
 Topic modeling can be a powerful tool for uncovering the hidden structure in large collections of text data. It can be used to classify text into predefined topics or to discover new and previously unknown topics. With the right tools and techniques, topic modeling can be a powerful way to gain insights and identify patterns in text data.
 
 ## Conclusion
-In conclusion, visual text exploration is a powerful tool that can be used to gain insights and understanding of text data as part of preprocessing before classification. We have seen how techniques such as wordcloud, Sentiment Analysis, topic modeling, and textual data cleaning can be used to explore text data and extract insights.
+Visual text exploration is a powerful tool that can be used to gain insights and understanding of text data as part of preprocessing before classification. We have seen how techniques such as wordcloud, Sentiment Analysis, topic modeling, and textual data cleaning can be used to explore text data and extract insights.
 
 Visual text exploration allows us to detect patterns and identify trends that might not be immediately apparent from just reading through the data. Additionally, these techniques can also bring ideas for processing actions that need to be taken on the dataset.
 

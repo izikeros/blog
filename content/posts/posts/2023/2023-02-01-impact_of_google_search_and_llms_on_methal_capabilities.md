@@ -9,7 +9,7 @@ Status: published
 Summary: Understand the effects of search engines and AI on our mental and cognitive capabilities. Equip yourself with the knowledge you need to make informed decisions about your own usage of these technologies.
 Tags: machine-learning, AI, cognitive-skills, memory, creativity
 Title: The Impact of Search Engines and AI Generative Models on Mental and Cognitive Capabilities
-banner: /images/head/search_engines_impact_on_cognitive_skills.jpg
+banner: "/images/head/search_engines_impact_on_cognitive_skills.jpg"
 prompt: null
 ---
 ## Contents
@@ -74,7 +74,7 @@ In addition to providing increased access to information and improved knowledge 
 
 Numerous studies have been conducted to explore the positive effects of search engines on mental and cognitive capabilities, and the results have been overwhelmingly positive. For example, a study published in the Journal of Educational Psychology found that students who used search engines to complete homework assignments had better critical thinking skills and higher achievement scores than students who did not use search engines. Another study published in the Journal of Computer Assisted Learning found that students who used search engines to research a topic were better able to synthesize information and understand the subject matter. These studies and many others provide strong evidence of the positive effects of search engines on mental and cognitive capabilities.
 
-In conclusion, search engines like Google have had a profound impact on our mental and cognitive capabilities, and their effects are largely positive. With increased access to information, improved knowledge and understanding of various subjects, and enhanced problem-solving skills, search engines have made it easier for us to learn, grow, and make informed decisions. The research supports these effects and provides a strong case for the continued use of search engines to enhance our mental and cognitive capabilities.
+Search engines like Google have had a profound impact on our mental and cognitive capabilities, and their effects are largely positive. With increased access to information, improved knowledge and understanding of various subjects, and enhanced problem-solving skills, search engines have made it easier for us to learn, grow, and make informed decisions. The research supports these effects and provides a strong case for the continued use of search engines to enhance our mental and cognitive capabilities.
 
 <a id="the-negative-effects-of-search-engines-on-mental-and-cognitive-capabilities"></a>
 ## The Negative Effects of Search Engines on Mental and Cognitive Capabilities
@@ -101,7 +101,7 @@ As we become more dependent on search engines for information, we may also becom
 
 Research has confirmed that the negative effects of search engines on mental and cognitive capabilities are real and significant. For example, a study published in the journal Computers in Human Behavior found that frequent use of search engines was associated with decreased critical thinking skills, decreased ability to retain information, and increased dependence on search engines for information. Another study published in the journal Science Direct found that the use of search engines for information was associated with decreased problem-solving skills and decreased creativity. These studies and many others provide strong evidence of the negative effects of search engines on mental and cognitive capabilities.
 
-In conclusion, while search engines like Google have made it easier for us to access information, they have also had some negative effects on our mental and cognitive capabilities. With decreased critical thinking skills, decreased ability to retain information, and dependence on search engines for information, it is important that we use search engines wisely and critically, and make an effort to develop our own mental and cognitive capabilities as well. The research supports these effects and highlights the need for caution in our use of search engines.
+While search engines like Google have made it easier for us to access information, they have also had some negative effects on our mental and cognitive capabilities. With decreased critical thinking skills, decreased ability to retain information, and dependence on search engines for information, it is important that we use search engines wisely and critically, and make an effort to develop our own mental and cognitive capabilities as well. The research supports these effects and highlights the need for caution in our use of search engines.
 
 Here are some references to research papers and books on the topic of the negative effects of search engines on mental and cognitive capabilities:
 
@@ -137,7 +137,7 @@ While there may be negative effects associated with the use of large language mo
 
 There is ongoing research on the impact of large language models and other AI technologies on mental and cognitive capabilities. Some studies have shown that they may have negative effects on critical thinking and problem-solving skills, while others suggest that they may help us develop new cognitive skills. However, much of this research is still in its early stages, and more studies are needed to fully understand the impact of these technologies on our mental and cognitive capabilities.
 
-In conclusion, the envisioned impact of mass usage of prompts to large language models is a topic of great interest and ongoing research. While these models have the potential to change the way we process and retain information, and to help us develop new cognitive skills, it is important to understand both the positive and negative effects that they may have on our mental and cognitive capabilities. Further research will help us better understand the impact of these technologies on our mental and cognitive capabilities, and to determine the best way to use them to enhance our cognitive abilities.
+The envisioned impact of mass usage of prompts to large language models is a topic of great interest and ongoing research. While these models have the potential to change the way we process and retain information, and to help us develop new cognitive skills, it is important to understand both the positive and negative effects that they may have on our mental and cognitive capabilities. Further research will help us better understand the impact of these technologies on our mental and cognitive capabilities, and to determine the best way to use them to enhance our cognitive abilities.
 
 <a id="conclusion"></a>
 ## Conclusion
@@ -159,7 +159,7 @@ The impact of search engines and large language models on mental and cognitive c
 <a id="final-thoughts-on-the-impact-of-search-engines-and-large-language-models-on-mental-and-cognitive-capabilities"></a>
 ### Final Thoughts on the Impact of Search Engines and Large Language Models on Mental and Cognitive Capabilities
 
-In conclusion, search engines and large language models have the potential to greatly impact our mental and cognitive capabilities, both positively and negatively. As we continue to rely on these technologies for information and knowledge, it is important to understand their impact and to determine the best ways to use them to enhance our cognitive abilities. Future research will be essential in helping us to fully understand the impact of these technologies on our mental and cognitive capabilities, and in guiding their development and use in the years to come.
+Search engines and large language models have the potential to greatly impact our mental and cognitive capabilities, both positively and negatively. As we continue to rely on these technologies for information and knowledge, it is important to understand their impact and to determine the best ways to use them to enhance our cognitive abilities. Future research will be essential in helping us to fully understand the impact of these technologies on our mental and cognitive capabilities, and in guiding their development and use in the years to come.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 <a id="references"></a>

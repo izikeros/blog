@@ -7,6 +7,9 @@ Status: published
 tags: mermaid, pelican, diagram, graph, plot
 Category: note
 ---
+
+up::[[MOC_Pelican]]
+
 Sometimes, you might want to embed the mermaid diagram in your blogpost written in markdown. Here is how to do it.
 
 ## Embed the HTML code (recommended)

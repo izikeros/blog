@@ -7,7 +7,7 @@ Status: published
 Tags: text-splitting, text-chunking, langchain, RecursiveCharacterTextSplitter, Tokens, Characters, natural-language-processing, language-modeling, chunk-size 
 Category: note
 ---
-
+up::[[MOC_LangChain]]
 # LangChain RecursiveCharacterTextSplitter - Split by Tokens instead of Characters
 
 The LangChain [RecursiveCharacterTextSplitter](https://python.langchain.com/docs/modules/data_connection/document_transformers/text_splitters/recursive_text_splitter) is a tool that allows you to split text on predefined characters that are considered as a potential division points. By default, the size of the chunk is in characters but by using `from_tiktoken_encoder()` method you can easily split to achieve given size of the chunk in tokens instead of characters. This is especially useful since LLMs have context limits expressed in tokens not in characters. This split can be useful in various natural language processing tasks, such as language modeling or text classification.

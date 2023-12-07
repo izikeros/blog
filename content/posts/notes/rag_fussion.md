@@ -33,9 +33,10 @@ RAG-fusion might be a powerful technique that brings together the strengths of l
 
 **NOTE:** For more methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].
 
-X::[[2023-08-24_understanding-retrieval-augmented-generation-rag-empowering-llms]]
-X::[[implementing_reciprocal_rank_fusion_in_python]]
+- X::[[2023-08-24_understanding-retrieval-augmented-generation-rag-empowering-llms]]
+- X::[[implementing_reciprocal_rank_fusion_in_python]]
 
+up::[[MOC_RAG]]
 
 ## References:
 - [GitHub - Raudaschl/rag-fusion](https://github.com/Raudaschl/rag-fusion/tree/master) - exemplary implementation

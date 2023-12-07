@@ -348,7 +348,7 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
 X::[[context_generation_strategy]]
 X::[[2023-10-13-chunking_strategy]]
-X::[[embedding_strategy]]
+X::[[2023-10-13-embedding_strategy]]
 X::[[RAG_evaluation]]
 
 

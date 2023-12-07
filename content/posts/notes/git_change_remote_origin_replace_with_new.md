@@ -9,6 +9,9 @@ Category: note
 prompt: in git how to change remote origin (replace with new)?
 prompt2: What are the examples of situations when you might want to do such an operation
 ---
+
+up::[[MOC_Git]]
+
 ## Git - Replace remote origin
 To change the remote origin in Git and replace it with a new one, you can use the following steps:
 

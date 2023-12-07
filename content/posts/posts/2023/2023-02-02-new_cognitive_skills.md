@@ -67,7 +67,7 @@ To use LLMs in a way that increases cognitive capabilities, it is important to *
 It is also important to be aware of the limitations of LLMs and **not to rely solely on them for information**. It is crucial to **verify the information provided by LLMs** and **consider multiple sources** to gain a well-rounded understanding of a subject. Additionally, individuals should **prioritize developing their own critical thinking** and problem-solving skills through practices such as **reading, writing,** and **engaging in discussions**.
 
 
-In conclusion, while large language models have many benefits, they also have the potential to negatively impact the ability to think creatively and solve complex problems. It is important to balance the use of these models with independent thought and problem-solving, in order to maintain and enhance these important cognitive skills.
+While large language models have many benefits, they also have the potential to negatively impact the ability to think creatively and solve complex problems. It is important to balance the use of these models with independent thought and problem-solving, in order to maintain and enhance these important cognitive skills.
 
 
 <a id="ability-to-multitasking-and-manage-multiple-streams-of-information-at-once"></a>

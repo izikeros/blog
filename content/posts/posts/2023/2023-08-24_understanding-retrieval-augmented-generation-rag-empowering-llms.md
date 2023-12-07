@@ -95,7 +95,11 @@ Retrieval-Augmented Generation offers a promising solution to the limitations of
 - Optimization, async, using summaries: [Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium](https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a)
 - Check the GitHub for the RAG-related projects: [retrieval-augmented-generation · GitHub Topics](https://github.com/topics/retrieval-augmented-generation?l=python)
 - [Yet another RAG system - implementation details and lessons learned : r/LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/comments/16cbimi/yet_another_rag_system_implementation_details_and/)
-
+- [Building and Evaluating Advanced RAG Applications - DeepLearning.AI](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) - recent course from deeplearning.ai (Andrew Ng). Instructors: Jerry Liu and Anupam Datta.
+	- In this course, we’ll explore:
+		- Two advanced retrieval methods: Sentence-window retrieval and auto-merging retrieval that perform better compared to the baseline RAG pipeline. 
+		- Evaluation and experiment tracking: A way evaluate and iteratively improve your RAG pipeline’s performance. 
+		- The RAG triad: Context Relevance, Groundedness, and Answer Relevance, which are methods to evaluate the relevance and truthfulness of your LLM’s response.
 
 X::[[2023-11-01-boosting_RAG]]
 

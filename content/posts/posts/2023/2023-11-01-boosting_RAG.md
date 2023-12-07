@@ -91,7 +91,7 @@ Meta-data, such as date tags, can be added to your chunks to improve retrieval. 
 
 Having multiple indexes and routing queries to the appropriate index can be beneficial. For instance, different indexes could handle summarization questions, pointed questions, and date-sensitive questions. Trying to optimize one index for all these behaviors may compromise its effectiveness. 
 
-In conclusion, the performance of RAG in production can be significantly improved by applying a range of techniques, including hybrid search, chunk summarization, overlapping chunks, fine-tuned embedding models, metadata enhancement, re-ranking, addressing the 'lost in the middle' problem, query transformations, meta-data filtering, and query routing. These strategies will help to optimize the RAG pipeline, ensuring higher quality output and improved overall performance.
+The performance of RAG in production can be significantly improved by applying a range of techniques, including hybrid search, chunk summarization, overlapping chunks, fine-tuned embedding models, metadata enhancement, re-ranking, addressing the 'lost in the middle' problem, query transformations, meta-data filtering, and query routing. These strategies will help to optimize the RAG pipeline, ensuring higher quality output and improved overall performance.
 
 <a id="references"></a>
 ## References
@@ -103,13 +103,15 @@ In conclusion, the performance of RAG in production can be significantly improve
 6. [Improving RAG effectiveness with Retrieval-Augmented Dual Instruction Tuning (RA-DIT) | by Emanuel Ferreira | Oct, 2023 | LlamaIndex Blog](https://blog.llamaindex.ai/improving-rag-effectiveness-with-retrieval-augmented-dual-instruction-tuning-ra-dit-01e73116655d)
 7. [Improving RAG (Retrieval Augmented Generation) Answer Quality with Re-ranker | by Shivam Solanki | Towards Generative AI | Medium](https://medium.com/towards-generative-ai/improving-rag-retrieval-augmented-generation-answer-quality-with-re-ranker-55a19931325)
 8. SingleStore (db), finetuning embeddings model, CacheGPT, Nemo-Guardrails, [Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium](https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a)
-	1. [ run-llama/finetune-embedding: Fine-Tuning Embedding for RAG with Synthetic Data](https://github.com/run-llama/finetune-embedding)
-	2. [zilliztech/GPTCache: Semantic cache for LLMs. Fully integrated with LangChain and llama\_index.](https://github.com/zilliztech/GPTCache)
-	3. [NVIDIA/NeMo-Guardrails: NeMo Guardrails is an open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems.](https://github.com/NVIDIA/NeMo-Guardrails)
-	4. library to evaluate the context retrieved from your enterprise corpus of data (how do you know if the context being retrieved is accurate) [GitHub - explodinggradients/ragas: Evaluation framework for your Retrieval Augmented Generation (RAG) pipelines](https://github.com/explodinggradients/ragas)
-	5.  LangSmith, introduced by LangChain - a highly effective tool for monitoring and examining the responses between the app and the LLM.
+9. [ run-llama/finetune-embedding: Fine-Tuning Embedding for RAG with Synthetic Data](https://github.com/run-llama/finetune-embedding)
+10. [zilliztech/GPTCache: Semantic cache for LLMs. Fully integrated with LangChain and llama\_index.](https://github.com/zilliztech/GPTCache)
+11. [NVIDIA/NeMo-Guardrails: NeMo Guardrails is an open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems.](https://github.com/NVIDIA/NeMo-Guardrails)
+12. library to evaluate the context retrieved from your enterprise corpus of data (how do you know if the context being retrieved is accurate) [GitHub - explodinggradients/ragas: Evaluation framework for your Retrieval Augmented Generation (RAG) pipelines](https://github.com/explodinggradients/ragas)
+13.  LangSmith, introduced by LangChain - a highly effective tool for monitoring and examining the responses between the app and the LLM.
+14. [[2310.15123] Branch-Solve-Merge Improves Large Language Model Evaluation and Generation](https://arxiv.org/abs/2310.15123)
 
 X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
+up::[[MOC_RAG]]
 
 
 

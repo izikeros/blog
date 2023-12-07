@@ -123,4 +123,4 @@ These advanced topics can help you take your book creation to the next level and
 
 ## Conclusion
 
-In conclusion, writing a book in Markdown using Pandoc is a simple and straightforward process. With this powerful tool, you can easily convert your book into a variety of formats, including PDF and ePub. Whether you're writing a novel, a technical manual, or a scholarly work, Pandoc makes it easy to create a well-formatted document that can be read
+Writing a book in Markdown using Pandoc is a simple and straightforward process. With this powerful tool, you can easily convert your book into a variety of formats, including PDF and ePub. Whether you're writing a novel, a technical manual, or a scholarly work, Pandoc makes it easy to create a well-formatted document that can be read

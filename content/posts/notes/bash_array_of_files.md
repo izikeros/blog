@@ -7,6 +7,7 @@ Status: published
 tags: bash, array, cli, script
 Category: note
 ---
+up::[[MOC_Shell_Bash_Zsh]]
 
 Both `mapfile` and `read -a` can be used to store the output of a command or a list of values into an array. However, the `mapfile` command is generally preferred when reading lines from a file, while `read -a` is well-suited for reading space-separated values from a string.
 

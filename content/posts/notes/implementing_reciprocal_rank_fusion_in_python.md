@@ -110,7 +110,7 @@ The concept of Rank Fusion, particularly the Reciprocal Rank Fusion (RRF) method
 
 While the example provided in this article is simplified, it provides a solid foundation for understanding the RRF process and how to implement it in Python. Depending on the specific application and data, the functions and database structure may need to be modified. However, the core concept and approach remain the same.
 
-In conclusion, the RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.
+The RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.
 
 **Edits:**
 

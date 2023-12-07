@@ -124,7 +124,7 @@ For the information on debugging in VS Code, you can refer to the official docum
 
 <a id="conclusion"></a>
 ## Conclusion
-In conclusion, setting up VSCode as a Nim IDE is relatively easy, and provides a great development experience. The Nim extension provides a wide range of features that make Nim development much more efficient and enjoyable. 
+Setting up VSCode as a Nim IDE is relatively easy, and provides a great development experience. The Nim extension provides a wide range of features that make Nim development much more efficient and enjoyable. 
 
 
 ## References

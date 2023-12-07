@@ -9,6 +9,8 @@ Category: note
 prompt: What is the key difference between PCA and SVD?
 ---
 
+up::[[MOC_AI]]
+
 Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) are two matrix factorization methods used in machine learning and data analysis for dimensionality reduction. Though they are used for similar purposes, there are some key differences between the two. The key difference between Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) lies in their respective applications and the matrices they operate on.
 
 ## Dealing with the data

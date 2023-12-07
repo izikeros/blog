@@ -76,7 +76,7 @@ plt.show()
 
 In this example, we load the iris dataset, standardize the data, perform PCA, and visualize the results. We can see that the first two principal components capture most of the variation in the data.
 
-In conclusion, before applying PCA to a dataset for dimensionality reduction, we need to perform data cleaning, data standardization, feature selection, and check for linearity. These steps can help to improve the accuracy of the PCA model and ensure that we are getting the most out of the data.
+Before applying PCA to a dataset for dimensionality reduction, we need to perform data cleaning, data standardization, feature selection, and check for linearity. These steps can help to improve the accuracy of the PCA model and ensure that we are getting the most out of the data.
 
 <a id="determine-the-number-of-components"></a>
 ### Determine the number of components
