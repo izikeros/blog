@@ -8,6 +8,7 @@ tags: github, search, productivity, code-search, project-search, project-discove
 Category: note
 ---
 
+X::[[github_project_discovery]]
 
 1. **Search By Name**: Use "in:name" along with your search term to find repositories with that name. Example: "Ruby-Projects in:name".
     

@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="X::SPLADE sparse vectors - explaination, properties TF-IDF stands for Term Frequency-Inverse Document Frequency. It&#39;s a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It&#39;s often used in information retrieval and text mining …"/>
+    <meta name="keywords" content="tfidf, tf-idf, bag-of-words, embeddings, text-vectorization, information-retrieval, text-mining">
+    <meta expr:content="2023-11-10 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-11-10 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-11-10 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-11-10 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TF-IDF with examples",
+  "datePublished": "2023-11-10 00:00:00+01:00",
+  "dateModified": "2023-11-10 00:00:00+01:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="TF-IDF with examples"/>
+  <meta property="og:description" content="X::SPLADE sparse vectors - explaination, properties TF-IDF stands for Term Frequency-Inverse Document Frequency. It&#39;s a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It&#39;s often used in information retrieval and text mining …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/tfidf-with-examples/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-11-10 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-11-10 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="tfidf"/>
+  <meta property="article:tag" content="tf-idf"/>
+  <meta property="article:tag" content="bag-of-words"/>
+  <meta property="article:tag" content="embeddings"/>
+  <meta property="article:tag" content="text-vectorization"/>
+  <meta property="article:tag" content="information-retrieval"/>
+  <meta property="article:tag" content="text-mining"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="TF-IDF with examples"/>
+
+
+    <title>    TF-IDF with examples
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-11-10 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=TF-IDF%20with%20examples&url=https%3A//www.safjan.com/tfidf-with-examples/&hashtags=tfidf,tf-idf,bag-of-words,embeddings,text-vectorization,information-retrieval,text-mining" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/tfidf-with-examples/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=TF-IDF%20with%20examples&u=https%3A//www.safjan.com/tfidf-with-examples/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/tfidf-with-examples/&title=TF-IDF%20with%20examples" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="tfidf-with-examples">TF-IDF with examples</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>X::<a href="https://www.safjan.com/splade-sparse-vectors/">SPLADE sparse vectors - explaination, properties</a></p>
+<p><strong>TF-IDF</strong> stands for <strong>Term Frequency-Inverse Document Frequency</strong>. It's a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It's often used in information retrieval and text mining.</p>
+<p>TF-IDF is composed of two parts:</p>
+<ol>
+<li>
+<p><strong>Term Frequency (TF)</strong>: This measures the frequency of a word in a document. It's the ratio of the number of times a word appears in a document compared to the total number of words in that document. It increases as the number of occurrences of that word within the document increases. Each document has its own term frequency.</p>
+</li>
+<li>
+<p><strong>Inverse Document Frequency (IDF)</strong>: This measures the importance of the word in the entire corpus. The IDF of a rare word is high, whereas the IDF of a frequent word is likely to be low. Thus, words that occur frequently across many documents will have a lower IDF, and rare words will have a high IDF.</p>
+</li>
+</ol>
+<p>The TF-IDF value is calculated by multiplying these two metrics: TF and IDF.</p>
+<h2>Minimal example</h2>
+<h2>High TF-IDF</h2>
+<p>Consider a document containing 100 words wherein the word 'cat' appears 3 times.</p>
+<p>The term frequency (TF) for 'cat' is then (3 / 100) = 0.03.</p>
+<p>Now, assume we have 10 million documents and the word 'cat' appears in one thousand of these. Then, the inverse document frequency (IDF) is calculated as log(10,000,000 / 1,000) = 4.</p>
+<p>So, the TF-IDF weight is the product of these quantities: 0.03 * 4 = 0.12.</p>
+<h3>Low TF-IDF</h3>
+<p>Now, let's consider a common word like 'the'. Assume it appears 20 times in a document of 100 words. So, TF for 'the' is (20/100) = 0.2.</p>
+<p>Assume 'the' appears in 1 million out of 10 million documents. So, IDF for 'the' is log(10,000,000 / 1,000,000) = 1.</p>
+<p>The TF-IDF weight for 'the' is 0.2 * 1 = 0.2.</p>
+<p>Even though 'the' appeared more times than 'cat' in the document, the TF-IDF weight for 'cat' is higher than 'the'. This is because IDF gives a higher weight to words that are less frequent in the corpus, making 'cat' more important than 'the' in the context of our corpus.</p>
+<h2>The formula</h2>
+<p>here is the TF-IDF equation in LaTeX format:</p>
+<p>The term frequency <span class="math">\(TF\)</span> is calculated as:</p>
+<div class="math">$$
+TF(t, d) = \frac{f_{t, d}}{\sum_{t' \in d} f_{t', d}}
+$$</div>
+<p>Where:
+- <span class="math">\(f_{t, d}\)</span> is the frequency of term <span class="math">\(t\)</span> in document <span class="math">\(d\)</span>
+- The denominator is the sum of frequencies of all terms in document <span class="math">\(d\)</span></p>
+<p>The inverse document frequency <span class="math">\(IDF\)</span> is calculated as:</p>
+<div class="math">$$
+IDF(t, D) = \log \frac{|D|}{|\{d \in D: t \in d\}|}
+$$</div>
+<p>Where:
+- <span class="math">\(|D|\)</span> is the total number of documents in the corpus
+- The denominator is the number of documents where the term <span class="math">\(t\)</span> appears</p>
+<p>Finally, the TF-IDF is calculated as:</p>
+<div class="math">$$
+TFIDF(t, d, D) = TF(t, d) \cdot IDF(t, D)
+$$</div>
+<p>Where:
+- <span class="math">\(t\)</span> is the term
+- <span class="math">\(d\)</span> is the document
+- <span class="math">\(D\)</span> is the corpus (set of all documents)</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/tfidf/">tfidf</a>
+                        <a href="https://www.safjan.com/tag/tf-idf/">tf-idf</a>
+                        <a href="https://www.safjan.com/tag/bag-of-words/">bag-of-words</a>
+                        <a href="https://www.safjan.com/tag/embeddings/">embeddings</a>
+                        <a href="https://www.safjan.com/tag/text-vectorization/">text-vectorization</a>
+                        <a href="https://www.safjan.com/tag/information-retrieval/">information-retrieval</a>
+                        <a href="https://www.safjan.com/tag/text-mining/">text-mining</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/splade-sparse-vectors/">SPLADE sparse vectors - explaination, properties</a></li>
+                        <li><a href="https://www.safjan.com/extracting-keywords-from-the-user-query/">Extracting Keywords From the User Query</a></li>
+                        <li><a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/">Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</a></li>
+                        <li><a href="https://www.safjan.com/text-vectorization-with-vectorhub-and-sentence-transformers/">Easy Text Vectorization With VectorHub and Sentence Transformers</a></li>
+                        <li><a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/">The Best Vector Databases for Storing Embeddings</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/growth-hacking-methodology/" title="Growth Hacking Methodology">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/splade-sparse-vectors/" title="SPLADE sparse vectors - explaination, properties">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

@@ -7,9 +7,9 @@ Slug: micro-and-macro-averages-in-multiclass-multilabel-problems
 Start: '2023-01-17'
 Status: published
 Summary: Learn about micro and macro averages in multiclass multilabel problems, the difference between multiclass and multilabel problems and when to use micro and macro averages.
-Tags: classification, metrics
+Tags: classification, metrics, precision, recal, f1, micro-average, macro-average, multi-class, multi-label 
 Title: Understanding Micro and Macro Averages in Multiclass Multilabel Problems
-banner: /images/head/micro_macro_averaging.jpg
+banner: "/images/head/micro_macro_averaging.jpg"
 prompt: Give me a long, markdown article with hyperlinks and references to learn more about it. Use hyperlinks on crucial terms and tools. Provide mathematical formulas in LaTeX in display format (not inline). Article should be on how to calculate micro/macro averages in case of multiclass multilabel problems. In the end provide also HTML page description for this article (less than 160 characters)
 ---
 
@@ -19,9 +19,9 @@ When working with multiclass multilabel problems, it's important to understand h
 
 Before diving into micro and macro averages, let's first understand the difference between multiclass and multilabel problems.
 
-In a multiclass problem, there is only one correct label per example. For example, in a problem of classifying animals into different categories (e.g. mammals, birds, reptiles, etc.) each example can only have one correct label.
+In a **multiclass** problem, there is only **one correct label** per example. For example, in a problem of classifying animals into different categories (e.g. mammals, birds, reptiles, etc.) each example can only have one correct label.
 
-On the other hand, in a multilabel problem, there can be multiple correct labels per example. For example, in a problem of categorizing music into different genres (e.g. rock, pop, hip hop, etc.) an example can belong to multiple genres.
+On the other hand, in a **multilabel** problem, there can be **multiple correct labels** per example. For example, in a problem of categorizing music into different genres (e.g. rock, pop, hip hop, etc.) an example can belong to multiple genres.
 
 ## Micro and Macro Averages
 
@@ -29,7 +29,7 @@ In multiclass multilabel problems, there are two commonly used measures of perfo
 
 ### Micro Average
 
-Micro average is calculated by taking the total number of true positives (TP), false positives (FP), true negatives (TN), and false negatives (FN) and then using these counts to calculate the precision, recall, and F1-score. Micro average gives more weight to the majority class and is particularly useful when the classes are imbalanced. The formula for calculating micro average is as follows:
+Micro average is calculated by taking the total number of true positives (TP), false positives (FP), true negatives (TN), and false negatives (FN) and then using these counts to calculate the precision, recall, and F1-score. Micro average gives more weight to the majority class and is particularly **useful when the classes are imbalanced**. The formula for calculating micro average is as follows:
 
 $$Precision_{micro} = \frac{\sum_{i=1}^{n} TP_i}{\sum_{i=1}^{n} (TP_i + FP_i)}$$
 
@@ -39,7 +39,7 @@ $$F1-score_{micro} = 2 * \frac{Precision_{micro} * Recall_{micro}}{Precision_{mi
 
 ### Macro Average
 
-Macro average, on the other hand, calculates the performance of each class individually and then takes the unweighted mean of the class-wise performance. Macro average gives equal weight to each class and is useful when all classes are of equal importance. The formula for calculating macro average is as follows:
+Macro average, on the other hand, calculates the performance of each class individually and then takes the unweighted mean of the class-wise performance. Macro average gives equal weight to each class and is **useful when all classes are of equal importance**. The formula for calculating macro average is as follows:
 
 $$Precision_{macro} = \frac{1}{n} \sum_{i=1}^{n} \frac{TP_i}{TP_i + FP_i}$$
 
@@ -56,7 +56,7 @@ It's important to note that in multilabel problems, these metrics are calculated
 The choice between micro and macro averages depends on the specific problem and the desired perspective on the model's performance. 
 
 > **Micro averages** are useful when the **classes are imbalanced** and it is important to have a better understanding of the model's **performance on the majority class**.
-> 
+
 
 > **Macro averages,** on the other hand, are useful when **all classes are of equal importance** and you want to have a better understanding of the model's **performance on each class individually**.
 

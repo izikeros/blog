@@ -48,7 +48,7 @@
 
     <meta name="author" content="Krystian Safjan"/>
     <meta name="description" content="Learn about micro and macro averages in multiclass multilabel problems, the difference between multiclass and multilabel problems and when to use micro and macro averages."/>
-    <meta name="keywords" content="classification, metrics">
+    <meta name="keywords" content="classification, metrics, precision, recal, f1, micro-average, macro-average, multi-class, multi-label">
     <meta expr:content="2021-12-22 00:00:00+01:00" itemprop='datePublished'/>
     <meta expr:content="2023-01-17 00:00:00+01:00" itemprop='dateModified'/>
     <meta property="article:modified_time" content="2023-01-17 00:00:00+01:00"/>
@@ -85,6 +85,13 @@
   <meta property="article:section" content="Machine Learning"/>
   <meta property="article:tag" content="classification"/>
   <meta property="article:tag" content="metrics"/>
+  <meta property="article:tag" content="precision"/>
+  <meta property="article:tag" content="recal"/>
+  <meta property="article:tag" content="f1"/>
+  <meta property="article:tag" content="micro-average"/>
+  <meta property="article:tag" content="macro-average"/>
+  <meta property="article:tag" content="multi-class"/>
+  <meta property="article:tag" content="multi-label"/>
   <meta property="og:image" content="https://www.safjan.com//images/head/micro_macro_averaging.jpg">
 
     <meta name="twitter:card" content="summary"/>
@@ -269,7 +276,7 @@
 
                     <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Understanding%20Micro%20and%20Macro%20Averages%20in%20Multiclass%20Multilabel%20Problems&url=https%3A//www.safjan.com/micro-and-macro-averages-in-multiclass-multilabel-problems/&hashtags=classification,metrics" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Understanding%20Micro%20and%20Macro%20Averages%20in%20Multiclass%20Multilabel%20Problems&url=https%3A//www.safjan.com/micro-and-macro-averages-in-multiclass-multilabel-problems/&hashtags=classification,metrics,precision,recal,f1,micro-average,macro-average,multi-class,multi-label" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/micro-and-macro-averages-in-multiclass-multilabel-problems/" target="_blank" title="Share on Facebook">Facebook</a>
     |
@@ -298,17 +305,17 @@
             <p>When working with multiclass multilabel problems, it's important to understand how to calculate micro and macro averages in order to evaluate the performance of a model. Micro and macro averages provide different perspectives on the performance of a model and are useful in different situations. In this article, we will explore the concepts of micro and macro averages and how to calculate them.</p>
 <h2>Multiclass vs Multilabel</h2>
 <p>Before diving into micro and macro averages, let's first understand the difference between multiclass and multilabel problems.</p>
-<p>In a multiclass problem, there is only one correct label per example. For example, in a problem of classifying animals into different categories (e.g. mammals, birds, reptiles, etc.) each example can only have one correct label.</p>
-<p>On the other hand, in a multilabel problem, there can be multiple correct labels per example. For example, in a problem of categorizing music into different genres (e.g. rock, pop, hip hop, etc.) an example can belong to multiple genres.</p>
+<p>In a <strong>multiclass</strong> problem, there is only <strong>one correct label</strong> per example. For example, in a problem of classifying animals into different categories (e.g. mammals, birds, reptiles, etc.) each example can only have one correct label.</p>
+<p>On the other hand, in a <strong>multilabel</strong> problem, there can be <strong>multiple correct labels</strong> per example. For example, in a problem of categorizing music into different genres (e.g. rock, pop, hip hop, etc.) an example can belong to multiple genres.</p>
 <h2>Micro and Macro Averages</h2>
 <p>In multiclass multilabel problems, there are two commonly used measures of performance: micro and macro averages.</p>
 <h3>Micro Average</h3>
-<p>Micro average is calculated by taking the total number of true positives (TP), false positives (FP), true negatives (TN), and false negatives (FN) and then using these counts to calculate the precision, recall, and F1-score. Micro average gives more weight to the majority class and is particularly useful when the classes are imbalanced. The formula for calculating micro average is as follows:</p>
+<p>Micro average is calculated by taking the total number of true positives (TP), false positives (FP), true negatives (TN), and false negatives (FN) and then using these counts to calculate the precision, recall, and F1-score. Micro average gives more weight to the majority class and is particularly <strong>useful when the classes are imbalanced</strong>. The formula for calculating micro average is as follows:</p>
 <div class="math">$$Precision_{micro} = \frac{\sum_{i=1}^{n} TP_i}{\sum_{i=1}^{n} (TP_i + FP_i)}$$</div>
 <div class="math">$$Recall_{micro} = \frac{\sum_{i=1}^{n} TP_i}{\sum_{i=1}^{n} (TP_i + FN_i)}$$</div>
 <div class="math">$$F1-score_{micro} = 2 * \frac{Precision_{micro} * Recall_{micro}}{Precision_{micro} + Recall_{micro}}$$</div>
 <h3>Macro Average</h3>
-<p>Macro average, on the other hand, calculates the performance of each class individually and then takes the unweighted mean of the class-wise performance. Macro average gives equal weight to each class and is useful when all classes are of equal importance. The formula for calculating macro average is as follows:</p>
+<p>Macro average, on the other hand, calculates the performance of each class individually and then takes the unweighted mean of the class-wise performance. Macro average gives equal weight to each class and is <strong>useful when all classes are of equal importance</strong>. The formula for calculating macro average is as follows:</p>
 <div class="math">$$Precision_{macro} = \frac{1}{n} \sum_{i=1}^{n} \frac{TP_i}{TP_i + FP_i}$$</div>
 <div class="math">$$Recall_{macro} = \frac{1}{n} \sum_{i=1}^{n} \frac{TP_i}{TP_i + FN_i}$$</div>
 <div class="math">$$F1-score_{macro} = 2 * \frac{Precision_{macro} * Recall_{macro}}{Precision_{macro} + Recall_{macro}}$$</div>
@@ -317,8 +324,7 @@
 <h2>Choosing between Micro and Macro averages</h2>
 <p>The choice between micro and macro averages depends on the specific problem and the desired perspective on the model's performance. </p>
 <blockquote>
-<p><strong>Micro averages</strong> are useful when the <strong>classes are imbalanced</strong> and it is important to have a better understanding of the model's <strong>performance on the majority class</strong>.
-</p>
+<p><strong>Micro averages</strong> are useful when the <strong>classes are imbalanced</strong> and it is important to have a better understanding of the model's <strong>performance on the majority class</strong>.</p>
 <p><strong>Macro averages,</strong> on the other hand, are useful when <strong>all classes are of equal importance</strong> and you want to have a better understanding of the model's <strong>performance on each class individually</strong>.</p>
 </blockquote>
 <p>In some cases, it may be useful to report both micro and macro averages to get a more comprehensive understanding of the model's performance.</p>
@@ -409,6 +415,13 @@
                     <br/><br/>Tags:&nbsp;
                         <a href="https://www.safjan.com/tag/classification/">classification</a>
                         <a href="https://www.safjan.com/tag/metrics/">metrics</a>
+                        <a href="https://www.safjan.com/tag/precision/">precision</a>
+                        <a href="https://www.safjan.com/tag/recal/">recal</a>
+                        <a href="https://www.safjan.com/tag/f1/">f1</a>
+                        <a href="https://www.safjan.com/tag/micro-average/">micro-average</a>
+                        <a href="https://www.safjan.com/tag/macro-average/">macro-average</a>
+                        <a href="https://www.safjan.com/tag/multi-class/">multi-class</a>
+                        <a href="https://www.safjan.com/tag/multi-label/">multi-label</a>
             </p>
         </div>
 
