@@ -15,7 +15,6 @@ X::[[black_formatter_avoid_destroying_git_blame]]
 X::[[black]]
 X::[[yapf]]
 
-
 ## Introduction
 
 Python code formatters are tools used to format Python code according to a set of rules or conventions. These tools help to maintain consistent code formatting, improve code readability, and reduce the time spent on code review. Several code formatters are available in the Python community, and two of the most popular ones are Black and yapf. In this blog post, we will compare Black and yapf, highlighting their strong and weak points, differences, and evaluating their usability in CI/CD pipelines and other automation tools like pre-commit hooks. We will also address some controversies surrounding these tools.
@@ -64,5 +63,6 @@ Both Black and yapf have active communities that contribute to their development
 There have been some controversies surrounding Black and yapf. One of the main controversies surrounding Black is its strict formatting rules, which some developers find too restrictive. Some developers feel that Black's strict formatting rules can lead to unreadable code and may not be suitable for all projects. On the other hand, yapf's configurable formatting rules have also received criticism. Some developers feel that yapf's configurable formatting rules can lead to inconsistent code formatting, which can be confusing when working on large projects.
 
 ## References
+
 - Black: [https://github.com/psf/black](https://github.com/psf/black)
 - yapf: [https://github.com/google/yapf](https://github.com/google/yapf)

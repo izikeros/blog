@@ -13,10 +13,10 @@ Title: How to Find Most Viewed Questions With Given Tag on Stackoverflow?
 
 You can use the Stack Exchange Data Explorer (SEDE) to find the most viewed questions with a given tag on Stack Overflow. Here are a few steps you can follow:
 
-1.  Go to [https://data.stackexchange.com/stackoverflow/queries](https://data.stackexchange.com/stackoverflow/queries) and select "Stack Overflow" as the site.
-    
-2.  Select "Compose Query" and write a query to find the most viewed questions with a given tag. For example, if you want to find the most viewed questions with the "python" tag, you can use the following query:
-    
+1. Go to [https://data.stackexchange.com/stackoverflow/queries](https://data.stackexchange.com/stackoverflow/queries) and select "Stack Overflow" as the site.
+
+2. Select "Compose Query" and write a query to find the most viewed questions with a given tag. For example, if you want to find the most viewed questions with the "python" tag, you can use the following query:
+
 ```sql
 SELECT TOP 1000
     Id AS [Post Link],
@@ -32,11 +32,10 @@ ORDER BY ViewCount DESC
 ```
 
 This query will return the top 1000 questions with the "python" tag, sorted by view count.
-    
-3.  Click "Run Query" to execute the query and see the results.
-    
-4.  You can export the results as a CSV file or other formats by clicking "Export" at the top of the query results.
-    
+
+3. Click "Run Query" to execute the query and see the results.
+
+4. You can export the results as a CSV file or other formats by clicking "Export" at the top of the query results.
 
 **NOTE:** SEDE is updated only once a week, so the data may not be up-to-date with the latest changes on Stack Overflow.
 

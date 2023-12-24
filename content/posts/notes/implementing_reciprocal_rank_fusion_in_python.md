@@ -13,7 +13,6 @@ X::[[borda_count_python]]
 In the world of Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.
 
-
 ## Understanding the RRF Ranking Process
 
 The Reciprocal Rank Fusion (RRF) operates by collecting search outcomes from various strategies, assigning each document in the results a reciprocal rank score, and subsequently merging these scores to generate a new ranking. The underlying principle is that documents that consistently appear in top positions across diverse search strategies are likely more pertinent and should thus receive a higher rank in the consolidated result.
@@ -28,11 +27,10 @@ Here's a simplified breakdown of the RRF process:
 
 4. The algorithm ranks documents based on the combined scores and arranges them accordingly. The resulting list constitutes the fused ranking.
 
-
 To depict the Reciprocal Rank Fusion (RRF) process, we can use a flowchart.
 ![Reciprocal Rank Fusion (RRF) process flow chart](/images/Reciprocal_Rank_Fusion/Reciprocal_Rank_Fusion.png)
 
-***Figure 1:** Reciprocal Rank Fusion (RRF) Process Flowchart. The diagram illustrates the steps involved in the RRF ranking process. 
+***Figure 1:** Reciprocal Rank Fusion (RRF) Process Flowchart. The diagram illustrates the steps involved in the RRF ranking process.
 
 ## Implementing Reciprocal Rank Fusion
 
@@ -54,9 +52,11 @@ return score
 # result(q) is the result set of q
 # rank( result(q), d ) is d's rank within the result(q) starting from 1
 ```
+
 (code from [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/rrf.html))
 
 You could significantly improve performance by using maps and list comprehensions -  referred to as "vectorizing" in overlapping contexts.
+
 ```python
 def reciprocal_rank_fusion(queries, d, k, result_func, rank_func):
     return sum([1.0 / (k + rank_func(result_func(q), d)) if d in result_func(q) else 0 for q in queries])

@@ -13,7 +13,7 @@ Status: published
 prompt:
 ---
 
-Prompt discovery, in the context of large language models and prompt engineering, refers to the systematic process of identifying, optimizing, and fine-tuning prompts that elicit desired responses from the language model. It involves a blend of linguistic, computational, and experimental techniques to formulate prompts that yield accurate and contextually relevant outputs from the model. 
+Prompt discovery, in the context of large language models and prompt engineering, refers to the systematic process of identifying, optimizing, and fine-tuning prompts that elicit desired responses from the language model. It involves a blend of linguistic, computational, and experimental techniques to formulate prompts that yield accurate and contextually relevant outputs from the model.
 
 > The goal of prompt discovery is to uncover the most effective prompts and combinations thereof to achieve specific tasks, while also considering factors like response quality, model performance, and computational efficiency.
 
@@ -30,7 +30,6 @@ In highly technical terms, prompt discovery encompasses several complex problems
 5. **Generalization and Transfer Learning**: Investigating the extent to which prompts can be generalized across tasks or domains is a challenging problem. Researchers need to explore how prompts can be adapted or transferred to different tasks without sacrificing performance.
 
 6. **Exploration of Novel Prompts**: As the field evolves, prompt engineers must continuously come up with innovative prompt formulations that push the boundaries of the model's capabilities. This might involve experimenting with new query structures, linguistic constructs, or contextual cues.
-
 
 ![process](/images/prompt_discovery/prompt_discovery_process.png)
 
@@ -56,6 +55,6 @@ For prompt discovery, a range of tools, both existing and potentially developed 
 
 ![mindmap](/images/prompt_discovery/prompt_discovery_mindmap.png)
 
-***Figure 2:** Mindmap illustrating the key aspects of prompt discovery. It includes formulation, permutations, fine-tuning, benchmarking, generalization, novel prompts, and the different tools involved in the process. 
+***Figure 2:** Mindmap illustrating the key aspects of prompt discovery. It includes formulation, permutations, fine-tuning, benchmarking, generalization, novel prompts, and the different tools involved in the process.
 
 In summary, prompt discovery is a process that involves intricate prompt formulation, thorough benchmarking, fine-tuning, and adaptation. The tools mentioned above, along with future advancements, will play a vital role in shaping the efficiency and effectiveness of prompt discovery efforts.

@@ -17,8 +17,8 @@ X::[[hybrid_search]]
 - [Machine Learning \(ML\) and Statistical Methods](#machine-learning-ml-and-statistical-methods)
 - [Hybrid Approaches:](#hybrid-approaches)
 - [What about using \(large\) language models?](#what-about-using-large-language-models)
-    - [Pros:](#pros)
-    - [Cons:](#cons)
+  - [Pros:](#pros)
+  - [Cons:](#cons)
 - [More on Machine Learning and statistical Methods for Keywords Extraction](#more-on-machine-learning-and-statistical-methods-for-keywords-extraction)
 - [Exemplary implementation](#exemplary-implementation)
 
@@ -27,32 +27,37 @@ X::[[hybrid_search]]
 When it comes to extracting keywords or key terms from a user query, there are several approaches that can be used. Each approach has its own set of pros and cons, which I will discuss below:
 
 <a id="rule-based-approach"></a>
+
 ## Rule-Based Approach
-   
+
 - **Pros**: This approach involves defining a set of rules or patterns to identify keywords based on specific criteria. It can be effective for simple queries and known patterns, allowing for precise keyword extraction.
 - **Cons**: Rule-based approaches can be limited in their flexibility and scalability. They require manual effort to create and maintain the rules, making them less suitable for handling complex or evolving queries. Additionally, they may not perform well when faced with ambiguous or unstructured input.
 
 <a id="linguistic-analysis"></a>
+
 ## Linguistic Analysis
   
 - **Pros**: Linguistic analysis techniques utilize natural language processing (NLP) algorithms to analyze the grammatical structure and semantics of a query. By considering parts of speech, syntactic relationships, and semantic associations, they can extract relevant keywords effectively.
 - **Cons**: This approach can be computationally expensive and may require substantial linguistic resources such as parsers, lexicons, and ontologies. Handling languages with complex grammar or processing highly contextual queries can be challenging. It might also struggle with ambiguous phrases or idiomatic expressions.
 
 <a id="machine-learning-ml-and-statistical-methods"></a>
+
 ## Machine Learning (ML) and Statistical Methods
-    
+
 - **Pros**: ML techniques, such as supervised or unsupervised learning, can automatically learn patterns and extract keywords based on training data. They can adapt to different query types and improve over time with more data. Statistical methods, such as term frequency-inverse document frequency (TF-IDF), can also identify important keywords based on their prevalence and relevance within a dataset.
 - **Cons**: Building ML models requires labeled training data, which can be time-consuming and expensive to create. Models may struggle with rare or domain-specific queries if not adequately trained. They can also be susceptible to biases present in the training data, and their performance may degrade when faced with queries significantly different from the training distribution.
 
 <a id="hybrid-approaches"></a>
-## Hybrid Approaches:
-   
+
+## Hybrid Approaches
+
 - **Pros**: Hybrid approaches combine multiple techniques, leveraging the strengths of each to improve keyword extraction. For example, combining rule-based methods with ML models can enhance accuracy and handle a wider range of queries.
 - **Cons**: Designing and implementing hybrid approaches can be complex and require expertise in multiple areas. Combining different techniques may introduce additional computational overhead, impacting performance and response time.
 
 It's important to note that the effectiveness of these approaches can vary depending on factors such as the nature of the queries, available resources, and the desired level of accuracy. A well-designed solution often involves a combination of techniques to achieve the best results.
 
 <a id="what-about-using-large-language-models"></a>
+
 ## What about using (large) language models?
 
 Using language models, such as GPT-3.5, can be a powerful approach for extracting keywords or key terms from a user query. Language models are trained on vast amounts of text data and have the ability to understand and generate human-like language.
@@ -60,7 +65,8 @@ Using language models, such as GPT-3.5, can be a powerful approach for extractin
 Here are the pros and cons of using language models for keyword extraction:
 
 <a id="pros"></a>
-### Pros:
+
+### Pros
 
 1. **Contextual Understanding**: Language models can capture the contextual meaning of words and phrases in a query. They can consider the surrounding words and sentences to extract keywords that are most relevant to the overall query.
 2. **Handling Ambiguity**: Language models can handle ambiguous queries by considering the broader context. They can interpret the query based on available information and generate keywords that make the most sense in the given context.
@@ -68,7 +74,8 @@ Here are the pros and cons of using language models for keyword extraction:
 4. **Continuous Learning**: Language models can be fine-tuned on specific domains or datasets to improve their keyword extraction capabilities. This allows them to adapt to specific contexts and improve their accuracy over time.
 
 <a id="cons"></a>
-### Cons:
+
+### Cons
 
 1. **Lack of Control**: Language models generate keywords based on their learned patterns and training data, which may not always align with specific user requirements or domain-specific terminology. They may produce keywords that are technically correct but not exactly what the user intended.
 2. **Over-reliance on Training Data**: Language models heavily depend on the data they were trained on. If the training data contains biases or limitations, the model may exhibit the same biases or struggle with specific types of queries that were underrepresented in the training data.
@@ -78,26 +85,31 @@ Here are the pros and cons of using language models for keyword extraction:
 While language models can be effective for keyword extraction, it's important to consider these pros and cons and carefully evaluate the trade-offs before integrating them into a production system. It may be necessary to fine-tune the language model or combine it with other techniques to address specific limitations or requirements.
 
 <a id="more-on-machine-learning-and-statistical-methods-for-keywords-extraction"></a>
+
 ## More on Machine Learning and statistical Methods for Keywords Extraction
+
 There are several machine learning and statistical methods commonly used for keyword extraction from text. Here are some popular techniques:
 
 1. **Term Frequency-Inverse Document Frequency (TF-IDF)**: TF-IDF is a statistical method that measures the importance of a term within a document and across a collection of documents. It calculates a weight for each term based on its frequency in the document and inversely proportional to its frequency in the entire document collection. Keywords with higher TF-IDF scores are considered more significant.
-    
+
 2. **TextRank**: TextRank is an algorithm inspired by Google's PageRank algorithm for ranking web pages. It applies a graph-based ranking approach to identify important keywords in a text. In this method, the text is represented as a graph, where each word is a node, and edges represent the co-occurrence or semantic similarity between words. TextRank assigns scores to words based on their centrality in the graph, with higher scores indicating more important keywords.
-    
+
 3. **Latent Dirichlet Allocation (LDA)**: LDA is a generative probabilistic model that represents a collection of documents as a mixture of topics. It assumes that each document contains a distribution of topics, and each topic is characterized by a distribution of words. LDA can be used for keyword extraction by identifying the most probable words associated with each topic. Keywords are then selected based on their relevance to the document's topics.
-    
+
 4. **Support Vector Machines (SVM)**: SVM is a supervised learning algorithm that can be used for keyword extraction by treating it as a binary classification problem. Training data is labeled with keywords and non-keywords, and SVM learns a decision boundary to separate the two classes. New text can be classified using the trained SVM model, and the words contributing most to the classification decision are considered keywords.
-    
+
 5. **Neural Networks**: Various neural network architectures can be employed for keyword extraction, such as recurrent neural networks (RNNs), convolutional neural networks (CNNs), and transformers. These models can learn representations of words and capture complex relationships between them. They can be trained using labeled data or trained in an unsupervised manner by formulating the problem as an autoencoder or sequence-to-sequence learning.
-    
+
 6. **Rule-based methods**: Rule-based approaches define a set of linguistic rules or patterns to identify keywords based on specific criteria such as part-of-speech tags, syntactic structures, or domain-specific rules. These methods can be effective when the domain or language has well-defined patterns for keywords.
 
 <a id="exemplary-implementation"></a>
+
 ## Exemplary implementation
+
 One state-of-the-art solution for keyword extraction from short texts is the TextRank algorithm, which is an unsupervised approach based on the PageRank algorithm. It has been proven to be highly effective in identifying important keywords in a text.
 
 Here's a Python implementation using the `nltk` library, which provides an implementation of the TextRank algorithm:
+
 ```python
 import nltk
 from nltk.tokenize import word_tokenize, sent_tokenize
@@ -190,6 +202,7 @@ print(keywords)
 NOTE: before you can start using it you will need to download certain data resources from NLTK (Natural Language Toolkit) in order to use it for keyword extraction. Specifically, you will need to download the stopwords corpus and WordNet data.
 
 To download the necessary data, you can use the following code snippet:
+
 ```python
 import nltk
 

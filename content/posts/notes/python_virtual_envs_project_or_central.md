@@ -9,11 +9,13 @@ Category: note
 ---
 
 ## Project-folder Virtual Environments
-> In this approach, you create a virtual environment **within the project directory** itself. This means that each project has its isolated Python environment, and you manage dependencies specific to that project. 
+>
+> In this approach, you create a virtual environment **within the project directory** itself. This means that each project has its isolated Python environment, and you manage dependencies specific to that project.
 
 With this approach you have clarity where the associated venv resides - helpful when doing cleanup or backup.
 
 ## Centralized Location for Virtual Environments
+>
 > In this approach, you create a **centralized directory** where **all virtual environments reside**. This directory can be outside your projects, e.g., `~/.virtualenvs` or any other location you prefer.
 
 With this approach you keep project directory containing mainly code - the other, replicable content - virtual environment files - are located somewhere outside the project. This helps to e.g. backup whole directory without worrying about excluding virtualenv which is typically not worth backing-up.

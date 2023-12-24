@@ -19,6 +19,7 @@ Prompt discovery in the context of large language models refers to the systemati
 <!-- /MarkdownTOC -->
 
 <a id="technical-aspects-of-prompt-discovery"></a>
+
 ## Technical Aspects of Prompt Discovery
 
 1. **Prompt Formulation and Structure**: This involves crafting prompts using appropriate syntax, keywords, and context to provide clear instructions to the model. Experimentation with different sentence structures, question formats, and contextual cues can impact the model's understanding and response.
@@ -36,6 +37,7 @@ Prompt discovery in the context of large language models refers to the systemati
 7. **Prompt Targeting**: Experimenting with prompts that explicitly mention the desired answer or output, guiding the model toward a specific response.
 
 <a id="activities-and-challenges-in-prompt-discovery"></a>
+
 ## Activities and Challenges in Prompt Discovery
 
 1. **Prompt Effectiveness Evaluation**: Developing methodologies to quantitatively and qualitatively assess the effectiveness of different prompts in eliciting accurate and relevant responses.
@@ -51,6 +53,7 @@ Prompt discovery in the context of large language models refers to the systemati
 6. **Prompt Diversity Exploration**: Analyzing the impact of diverse prompts on model behavior, uncovering potential biases, and ensuring fairness in responses.
 
 <a id="types-of-tools-and-technologies-for-prompt-discovery"></a>
+
 ## Types of Tools and Technologies for Prompt Discovery
 
 1. **Prompt Generation Assistants**: AI-driven tools that provide prompt suggestions, permutations, and optimizations based on user-defined criteria and objectives.

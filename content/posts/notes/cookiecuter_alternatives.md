@@ -11,25 +11,26 @@ Category: note
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Alternative Tools to Cookiecutter for Scaffolding Projects](#alternative-tools-to-cookiecutter-for-scaffolding-projects)
-	- [1. **Yeoman**](#1-yeoman)
-	- [2. **Hygen**](#2-hygen)
-	- [3. **Plop**](#3-plop)
-	- [4. **Hyde**](#4-hyde)
-	- [5. **Slush**](#5-slush)
-	- [6. **Blueprint**](#6-blueprint)
-	- [7. **Sao**](#7-sao)
-	- [8. **Plopdown**](#8-plopdown)
-	- [9. **Jolt**](#9-jolt)
-	- [10. **Boilr**](#10-boilr)
+ 	- [1. **Yeoman**](#1-yeoman)
+ 	- [2. **Hygen**](#2-hygen)
+ 	- [3. **Plop**](#3-plop)
+ 	- [4. **Hyde**](#4-hyde)
+ 	- [5. **Slush**](#5-slush)
+ 	- [6. **Blueprint**](#6-blueprint)
+ 	- [7. **Sao**](#7-sao)
+ 	- [8. **Plopdown**](#8-plopdown)
+ 	- [9. **Jolt**](#9-jolt)
+ 	- [10. **Boilr**](#10-boilr)
 - [Recommendations for various use-cases](#recommendations-for-various-use-cases)
-	- [Use Case 1: Rapid Prototyping and Small Projects - Plop](#use-case-1-rapid-prototyping-and-small-projects---plop)
-	- [Use Case 2: Large-Scale Projects with Opinionated Conventions - Yeoman](#use-case-2-large-scale-projects-with-opinionated-conventions---yeoman)
-	- [Use Case 3: Advanced File Processing and Task Automation - Slush](#use-case-3-advanced-file-processing-and-task-automation---slush)
+ 	- [Use Case 1: Rapid Prototyping and Small Projects - Plop](#use-case-1-rapid-prototyping-and-small-projects---plop)
+ 	- [Use Case 2: Large-Scale Projects with Opinionated Conventions - Yeoman](#use-case-2-large-scale-projects-with-opinionated-conventions---yeoman)
+ 	- [Use Case 3: Advanced File Processing and Task Automation - Slush](#use-case-3-advanced-file-processing-and-task-automation---slush)
 - [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->
 
 <a id="alternative-tools-to-cookiecutter-for-scaffolding-projects"></a>
+
 ## Alternative Tools to Cookiecutter for Scaffolding Projects
 
 Scaffolding tools are essential for accelerating the process of project setup and code generation by providing predefined templates and structures. One of the popular tools for this purpose is Cookiecutter, which allows developers to create projects from project templates. However, the software development ecosystem is diverse, and there are several alternative tools to Cookiecutter, each with unique features and characteristics that differentiate them from one another.
@@ -37,6 +38,7 @@ Scaffolding tools are essential for accelerating the process of project setup an
 In this article, we will explore ten alternative tools to Cookiecutter and highlight their standout features and best-suited use cases.
 
 <a id="1-yeoman"></a>
+
 ### 1. **Yeoman**
 
 Yeoman is a robust scaffolding tool that offers a vast collection of generators to create projects across various languages and frameworks. It provides a strong community support and an extensive library of community-contributed generators.
@@ -48,6 +50,7 @@ Yeoman's wide range of generators and its integration with popular build tools l
 **Best Use Case:** Yeoman is best suited for developers who want a structured and opinionated approach to project generation, especially in scenarios where adherence to specific conventions is crucial.
 
 <a id="2-hygen"></a>
+
 ### 2. **Hygen**
 
 Hygen is a fast and flexible code generator that allows developers to create custom templates for their projects. It offers a template language with conditional logic and supports both built-in and custom helpers.
@@ -59,6 +62,7 @@ The ability to generate code snippets and templates quickly and effortlessly mak
 **Best Use Case:** Hygen is best suited for developers who need a lightweight, customizable, and language-agnostic solution for scaffolding projects.
 
 <a id="3-plop"></a>
+
 ### 3. **Plop**
 
 Plop is a simple yet powerful micro-generator tool that focuses on creating small and reusable templates. It allows developers to define custom generators with ease, making it a popular choice for smaller projects.
@@ -70,6 +74,7 @@ Plop's ability to create small, self-contained generators with custom logic and 
 **Best Use Case:** Plop is best suited for developers who work on component-based architectures and require a quick and straightforward way to generate components, modules, or boilerplate code.
 
 <a id="4-hyde"></a>
+
 ### 4. **Hyde**
 
 Hyde is a lightweight scaffolding tool that allows developers to create projects using a simple YAML configuration file. It offers a minimalist approach to project generation, making it easy to use and understand.
@@ -81,6 +86,7 @@ Hyde's unique feature lies in its simplicity, making it an excellent choice for 
 **Best Use Case:** Hyde is best suited for developers who want a straightforward and lightweight solution for setting up projects without the complexity of template languages.
 
 <a id="5-slush"></a>
+
 ### 5. **Slush**
 
 Slush is a streaming scaffolding tool built on top of Gulp.js, providing a pipeline-based approach to project generation. It allows developers to compose complex generators using Gulp plugins, offering powerful customization capabilities.
@@ -92,6 +98,7 @@ Slush's streaming nature and its compatibility with Gulp plugins make it stand o
 **Best Use Case:** Slush is best suited for developers who are already familiar with Gulp and need to integrate project generation with complex build processes.
 
 <a id="6-blueprint"></a>
+
 ### 6. **Blueprint**
 
 Blueprint is a modern scaffolding tool designed for simplicity and flexibility. It allows developers to create project templates using Handlebars templates, YAML configuration, or JavaScript code, providing multiple options for customizing templates.
@@ -103,8 +110,8 @@ Blueprint's versatility and support for various template creation methods make i
 **Best Use Case:** Blueprint is best suited for developers who want a lightweight and flexible scaffolding tool with support for multiple template languages.
 
 <a id="7-sao"></a>
-### 7. **Sao**
 
+### 7. **Sao**
 
 Sao is a pluggable and customizable scaffolding tool that provides a simple JSON-based template definition. It enables developers to create their own template plugins and extend existing ones seamlessly.
 
@@ -115,6 +122,7 @@ The ability to create custom plugins and extend existing templates makes Sao a p
 **Best Use Case:** Sao is best suited for developers who need a versatile and extensible scaffolding tool with the option to create and share their custom plugins.
 
 <a id="8-plopdown"></a>
+
 ### 8. **Plopdown**
 
 Plopdown is a powerful scaffolding tool that generates templates using a JSON configuration file. It offers advanced features like dynamic prompts, glob pattern matching, and custom logic for template generation.
@@ -126,6 +134,7 @@ Plopdown's ability to handle dynamic inputs and patterns make it ideal for proje
 **Best Use Case:** Plopdown is best suited for developers who need a flexible and powerful scaffolding tool capable of handling dynamic inputs and complex project structures.
 
 <a id="9-jolt"></a>
+
 ### 9. **Jolt**
 
 Jolt is a lightweight and straightforward scaffolding tool that allows developers to create templates using a concise YAML syntax. It emphasizes minimal configuration and aims to reduce boilerplate code.
@@ -137,6 +146,7 @@ Jolt's simplicity and focus on reducing boilerplate code make it stand out for q
 **Best Use Case:** Jolt is best suited for developers who prefer a lightweight and minimalistic scaffolding tool for rapid project setup.
 
 <a id="10-boilr"></a>
+
 ### 10. **Boilr**
 
 Boilr is a command-line scaffolding tool that utilizes a template registry, allowing developers to share and discover templates easily. It provides a curated list of templates for various languages and frameworks.
@@ -147,15 +157,18 @@ Boilr's extensive template registry and its command-line interface make it stand
 
 **Best Use Case:** Boilr is best suited for developers who prefer a command-line tool with access to a wide variety of pre-built templates for different project types.
 
-
 <a id="recommendations-for-various-use-cases"></a>
+
 ## Recommendations for various use-cases
+
 Sure! Here are three distinct use cases with specific requirements, along with recommended tools for each use case:
 
 <a id="use-case-1-rapid-prototyping-and-small-projects---plop"></a>
+
 ### Use Case 1: Rapid Prototyping and Small Projects - Plop
 
 **Requirements:**
+
 - Lightweight and easy-to-use tool.
 - Minimal configuration and setup.
 - Ability to quickly generate boilerplate code and components.
@@ -165,9 +178,11 @@ Sure! Here are three distinct use cases with specific requirements, along with r
 **Reasoning:** Plop is an excellent choice for rapid prototyping and small projects due to its simplicity and focus on generating small, reusable templates. Its straightforward YAML-based configuration allows developers to get started quickly without the overhead of extensive setup. Plop's ability to create self-contained generators with custom logic and prompts makes it perfect for generating boilerplate code and components in a fast and efficient manner.
 
 <a id="use-case-2-large-scale-projects-with-opinionated-conventions---yeoman"></a>
+
 ### Use Case 2: Large-Scale Projects with Opinionated Conventions - Yeoman
 
 **Requirements:**
+
 - Strong community support and a wide range of templates.
 - Ability to enforce best practices and conventions for specific frameworks.
 - Interactive user prompts for customizable project setups.
@@ -177,9 +192,11 @@ Sure! Here are three distinct use cases with specific requirements, along with r
 **Reasoning:** Yeoman is a powerful scaffolding tool with an extensive library of community-contributed generators, making it suitable for large-scale projects. It enforces opinionated conventions, which is beneficial for maintaining consistency and best practices across the codebase. Yeoman's interactive user prompts make project setup user-friendly, allowing developers to customize the generated code according to their specific requirements.
 
 <a id="use-case-3-advanced-file-processing-and-task-automation---slush"></a>
+
 ### Use Case 3: Advanced File Processing and Task Automation - Slush
 
 **Requirements:**
+
 - Integration with build tools for advanced file processing.
 - Flexibility to manipulate and modify project structure during generation.
 - Support for custom plugins and extensibility.
@@ -191,5 +208,7 @@ Sure! Here are three distinct use cases with specific requirements, along with r
 These recommended tools cater to different use cases, ensuring that developers can find the most suitable scaffolding tool based on their project requirements and preferences.
 
 <a id="conclusion"></a>
+
 ## Conclusion
+
 While Cookiecutter is a popular choice for scaffolding projects, developers have several alternative tools to consider, each with its own unique features and characteristics. Depending on the project requirements, preferences, and familiarity with specific tools, developers can choose the one that best fits their needs. Whether it's Yeoman's opinionated approach, Plop's focus on micro-generators, or Sao's pluggable architecture, there is a suitable alternative for every scenario. Experimenting with these tools can significantly enhance the development workflow and productivity.

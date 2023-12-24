@@ -344,10 +344,12 @@
 <p><img alt="segmentation for n=80" src="/images/trend_segmentation/segments_n_80.jpg">
 <strong>Figure 4. Signal segmentation with rough granularity (strong generalization), n=80.</strong></p>
 <h2>An exemplary application of trend detection and segmentation</h2>
-<p>This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:
-- up-trend
-- down-trend
-- the signal is in a horizontal channel</p>
+<p>This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:</p>
+<ul>
+<li>up-trend</li>
+<li>down-trend</li>
+<li>the signal is in a horizontal channel</li>
+</ul>
 <p>We can write a very basic classifier based on the slope parameter. If the slope is positive, or higher than the threshold value, consider this segment with an up-trend. There are also separate rules for down-trend and horizontal-trend types.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">segment_classifier</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="n">th</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">segment</span><span class="o">.</span><span class="n">slope</span> <span class="o">&gt;</span> <span class="n">th</span><span class="p">:</span>
@@ -381,10 +383,12 @@
 <strong>Figure 7. Segments classified as "horizontal-trend".</strong></p>
 <p>The classification function used in the example was very simple and one can implement a more robust function e.g. one, that uses other than <code>slope</code> data stored in the segment object.</p>
 <h2>Summary</h2>
-<p>This article describes the <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
-- there is a trade-off between the efficiency (best fit) and the generalization (number of segments) - the smaller window size (parameter <code>n</code> of the <code>Segmenter()</code>) the better fit but also more resulting segments and less generalization.
-- arbitrary (but configurable) threshold values are used to determine if the window is a continuation of the trend from the previous window or if it should be a new segment with a different trend)
-- since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.</p>
+<p>This article describes the <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:</p>
+<ul>
+<li>there is a trade-off between the efficiency (best fit) and the generalization (number of segments) - the smaller window size (parameter <code>n</code> of the <code>Segmenter()</code>) the better fit but also more resulting segments and less generalization.</li>
+<li>arbitrary (but configurable) threshold values are used to determine if the window is a continuation of the trend from the previous window or if it should be a new segment with a different trend)</li>
+<li>since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.</li>
+</ul>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
         </div>
 

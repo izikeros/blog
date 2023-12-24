@@ -13,13 +13,16 @@ citation_needed: false
 Black is a non-configurable code formatter.
 
 ## Install Black for Jupyter notebook
+
 ```sh
 jupyter nbextension install https://github.com/drillan/jupyter-black/archive/master.zip --user
 jupyter nbextension enable jupyter-black-master/jupyter-black
 ```
 
 ## Change the line length character limit in Black
+
 To change the character limit for the Black Python formatter, you can add the following section to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/) file:
+
 ```ini
 [tool.black]
 line-length = 119
@@ -32,6 +35,7 @@ line-length = 119
 For info on how to configure black with vscode? See [[change_black_line_length|here]].
 
 ## Usages of black
+
 - with tox
 - in pre-commit hooks
 - as an external tool in PyCharm

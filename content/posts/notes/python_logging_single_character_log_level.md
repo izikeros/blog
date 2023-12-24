@@ -12,6 +12,7 @@ You can use the precision field to set a maximum field width:
 ```python
 formatter = logging.Formatter('%(levelname).1s %(message)s')
 ```
+
 `.1` sets the field width to at most one character, truncating the level to the first character:
 
 ```
@@ -25,4 +26,4 @@ W Hello world!
 D Hello world!
 ```
 
-from: https://stackoverflow.com/a/27453084/3247880
+from: <https://stackoverflow.com/a/27453084/3247880>

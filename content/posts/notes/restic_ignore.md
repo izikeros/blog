@@ -23,6 +23,7 @@ Here's how you can use `ignore` in Restic:
    In the `.resticignore` file, list the files and directories you want to ignore during the backup. Each pattern should be on a separate line. You can use the same syntax as you would in a `.gitignore` file.
 
    For example, a simple `.resticignore` file might look like this:
+
    ```
    *.log
    temp/
@@ -36,6 +37,7 @@ Here's how you can use `ignore` in Restic:
    When running Restic to perform the backup, specify the `.resticignore` file using the `--ignore-file` option. This tells Restic to use the patterns in that file to exclude certain files and directories.
 
    Here's an example command:
+
    ```
    restic backup /path/to/your/data --ignore-file /path/to/.resticignore
    ```

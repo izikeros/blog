@@ -13,6 +13,7 @@ banner: "/images/head/team_project_head.jpg"
 ---
 
 ## Introduction
+
 Data science is a rapidly growing field that encompasses a wide range of activities and applications. As a data scientist, you may find yourself working on a variety of different types of projects, each with their own unique challenges and requirements. In this article, we'll explore some of the most common types of data science projects and discuss best practices for approaching them.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -27,8 +28,8 @@ Data science is a rapidly growing field that encompasses a wide range of activit
 <!-- /MarkdownTOC -->
 
 <a id="1-end-to-end-individual-work"></a>
-### 1. End-to-end Individual Work
 
+### 1. End-to-end Individual Work
 
 ![End-to-end Individual Work - graphics](/images/ml_project_types/individual_e2e_project.jpg)
 
@@ -37,6 +38,7 @@ End-to-end individual work is a type of data science project that is typically *
 When working on an end-to-end individual project, it's important to keep the project organized and **structured**. A good way to do this is to use a template or a framework such as [Cookiecutter Data Science](https://github.com/drivendata/cookiecutter-data-science), which provides a standardized directory structure and files for data science projects. Additionally, it is recommended to use version control tools such as [Git](https://git-scm.com/) to track changes in the project over time.
 
 <a id="2-collaborative-project"></a>
+
 ### 2. Collaborative Project
 
 ![Collaborative Project - graphics](/images/ml_project_types/team_project.jpg)
@@ -46,6 +48,7 @@ Collaborative projects are a type of data science project that involve multiple 
 When working on a collaborative project, it's important to establish clear communication and collaboration practices. [Git](https://git-scm.com/) is a powerful version control system that allows multiple people to work on the same project at the same time. Additionally, it is important to extract some mature code into a python module that is imported into a notebook and take some effort to clean up and test the code. Tools such as [pytest](https://docs.pytest.org/en/latest/) and [flake8](https://flake8.pycqa.org/en/latest/) can help to ensure that the code is of high quality.
 
 <a id="3-individual-work-but-final-notebook-shares-as-result"></a>
+
 ### 3. Individual Work but Final Notebook Shares as Result
 
 ![Individual Work but Final Notebook Shares as Result - graphics](/images/ml_project_types/individual_but_presented.jpg)
@@ -55,6 +58,7 @@ Individual work but final notebook shares as result is a type of data science pr
 When working on an individual work but final notebook shares as result project, it's important to keep the project organized and structured. A good way to do this is to use a template or a framework such as [Cookiecutter Data Science](https://github.com/drivendata/cookiecutter-data-science), which provides a standardized directory structure and files for data science projects. Additionally, it is recommended to use version control tools such as [Git](https://git-scm.com/) to track changes in the project over time.
 
 <a id="4-production-ready-projects"></a>
+
 ### 4. Production-Ready Projects
 
 ![Production-Ready Projects - graphics](/images/ml_project_types/production_ready.jpg)
@@ -65,6 +69,7 @@ Production-ready projects are a type of data science project that involve develo
 When working on a production-ready project, it's important to consider the scalability and performance of the final model. Tools such as [Docker](https://www.docker.com/) and [Kubernetes](https://kubernetes.io/) can be used to deploy the model in a production environment. Additionally, it is important to extract some mature code into a python module that is imported into a notebook and take some effort to clean up and test the code using tools such as [pytest](https://docs.pytest.org/en/latest/) and [flake8](https://flake8.pycqa.org/en/latest/).
 
 <a id="5-research-projects"></a>
+
 ### 5. Research Projects
 
 ![Research Projects - graphics](/images/ml_project_types/scientific.jpg)
@@ -74,7 +79,9 @@ Research projects are a type of data science project that involve developing new
 When working on a research project, it's important to keep detailed records of the experimentation process. Tools such as [TensorBoard](https://www.tensorflow.org/tensorboard) and [MLflow](https://mlflow.org/) can be used to track the progress of the project and visualize the results. Additionally, it is important to use version control tools such as [Git](https://git-scm.com/) to track changes in the project over time.
 
 <a id="conclusion"></a>
+
 ## Conclusion
+
 Data science projects can take many forms, each with its own unique challenges and requirements. By understanding the **different types of projects** and **best practices for approaching them**, data scientists can work more efficiently and effectively to deliver valuable insights and solutions.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

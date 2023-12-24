@@ -21,12 +21,11 @@ LIME is a library for explaining the predictions of machine learning models. It 
 
 Why is LIME useful for explainable AI? There are a few reasons:
 
-1.  **Transparency:** LIME allows us to peek "under the hood" of a black box model and see how it's making its decisions.
-    
-2.  **Trust:** By providing human-understandable explanations, LIME can increase our trust in the model's decisions.
-    
-3.  **Debugging:** LIME can help us identify problems with our model by highlighting areas where the model is making incorrect or unexpected predictions.
-    
+1. **Transparency:** LIME allows us to peek "under the hood" of a black box model and see how it's making its decisions.
+
+2. **Trust:** By providing human-understandable explanations, LIME can increase our trust in the model's decisions.
+
+3. **Debugging:** LIME can help us identify problems with our model by highlighting areas where the model is making incorrect or unexpected predictions.
 
 Now that we understand why LIME is useful, let's dive into the code.
 
@@ -147,7 +146,6 @@ This will create a bar chart that shows the contribution of each feature to the 
 
 ![LIME bar chart](/images/lime_tutorial/lime_bar_chart.png)
 
-
 ## Visualizing Model Decisions
 
 In addition to explaining individual predictions, LIME can also be used to visualize how the model is making decisions more generally. We can do this by generating multiple explanations for different samples and visualizing the patterns that emerge.
@@ -174,6 +172,7 @@ We saw how LIME can be used to identify the most important features for a predic
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
 ## Related
+
 - [python - How to plot Lime report when there is a lot of features in data-set - Stack Overflow](https://stackoverflow.com/questions/63937620/how-to-plot-lime-report-when-there-is-a-lot-of-features-in-data-set)
 - [LIME: How to Interpret Machine Learning Models With Python | Better Data Science](https://betterdatascience.com/lime/)
 - [How to Use LIME to Interpret Predictions of ML Models [Python]?](https://coderzcolumn.com/tutorials/machine-learning/how-to-use-lime-to-understand-sklearn-models-predictions)

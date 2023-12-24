@@ -14,20 +14,23 @@ Rank fusion is a fundamental technique used in various domains, including data s
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Algorithms](#algorithms)
-	- [Borda Algorithm](#borda-algorithm)
-	- [Combining Probability Mass Function \(CPMF\)](#combining-probability-mass-function-cpmf)
-	- [Rank-Biased Precision \(RBP\)](#rank-biased-precision-rbp)
-	- [LambdaMART](#lambdamart)
-	- [Neural Rank Fusion](#neural-rank-fusion)
-	- [Reciprocal rank fusion](#reciprocal-rank-fusion)
+ 	- [Borda Algorithm](#borda-algorithm)
+ 	- [Combining Probability Mass Function \(CPMF\)](#combining-probability-mass-function-cpmf)
+ 	- [Rank-Biased Precision \(RBP\)](#rank-biased-precision-rbp)
+ 	- [LambdaMART](#lambdamart)
+ 	- [Neural Rank Fusion](#neural-rank-fusion)
+ 	- [Reciprocal rank fusion](#reciprocal-rank-fusion)
 - [Conclusion](#conclusion)
 - [References](#references)
 
 <!-- /MarkdownTOC -->
 
 <a id="algorithms"></a>
+
 ## Algorithms
+
 <a id="borda-algorithm"></a>
+
 ### Borda Algorithm
 
 The Borda algorithm is one of the simplest rank fusion techniques. It assigns scores to items based on their positions in the individual rankings and then combines these scores to obtain a fused ranking. In the context of search engine results, each document receives points based on its position in the ranked lists. The points are then summed up to form the final rank.
@@ -42,6 +45,7 @@ Where $\text{rank}_j(i)$ denotes the position of item $i$ in the $j$th ranked li
 The Borda algorithm is easy to implement, but it might lag in performance for large datasets or when the individual rankings are significantly diverse.
 
 <a id="combining-probability-mass-function-cpmf"></a>
+
 ### Combining Probability Mass Function (CPMF)
 
 CPMF is a probabilistic rank fusion method that incorporates the probability of an item being at a certain rank in individual lists. It assumes that the rankings are probabilistic and uses the Probability Mass Function (PMF) to calculate the fused ranking. CPMF outperforms Borda for diverse and noisy datasets.
@@ -49,12 +53,13 @@ CPMF is a probabilistic rank fusion method that incorporates the probability of 
 Let $p_{ij}$ be the probability that item $i$ appears at rank $j$ in the $n$ lists. The CPMF score for item $i$ is given by:
 
 $$
-\text{CPMF Score}(i) = \sum_{j=1}^{m} p_{ij} 
+\text{CPMF Score}(i) = \sum_{j=1}^{m} p_{ij}
 $$
 
 The probabilities $p_{ij}$ can be estimated using techniques like the [Plackett-Luce model](https://hturner.github.io/PlackettLuce/articles/Overview.html) or the Thurstone-Mosteller model.
 
 <a id="rank-biased-precision-rbp"></a>
+
 ### Rank-Biased Precision (RBP)
 
 RBP is a rank fusion method widely used in information retrieval systems. It incorporates a user-defined persistence parameter $p$ to reflect the probability that a user will examine the search results up to a certain rank. This parameter allows the search engine to optimize rankings based on user behavior.
@@ -69,6 +74,7 @@ Where $\text{rel}(R_j[k])$ is an indicator function representing the relevance o
 RBP provides more flexibility in tuning the importance of different ranks based on user preferences.
 
 <a id="lambdamart"></a>
+
 ### LambdaMART
 
 LambdaMART is an advanced algorithm used by tech giants like Microsoft and Yahoo for learning-to-rank tasks. It is based on the gradient boosting framework and employs LambdaRank, which optimizes the ListNet loss function using gradient descent.
@@ -84,6 +90,7 @@ Where $\text{DCG gain}(i, j)$ is the gain of swapping items at ranks $i$ and $j$
 LambdaMART's ability to optimize for ranking measures directly contributes to its superior performance in learning-to-rank scenarios.
 
 <a id="neural-rank-fusion"></a>
+
 ### Neural Rank Fusion
 
 With the rise of deep learning, neural rank fusion methods have gained popularity due to their ability to learn complex patterns from data. Neural rank fusion models typically employ techniques like siamese networks or transformer-based architectures to process individual rankings and generate a fused ranking.
@@ -95,6 +102,7 @@ On the other hand, transformer-based rank fusion models utilize attention mechan
 Neural rank fusion methods often outperform traditional algorithms when sufficient training data is available, but they may require substantial computational resources.
 
 <a id="reciprocal-rank-fusion"></a>
+
 ### Reciprocal rank fusion
 
 The [Reciprocal Rank Fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf) is an advanced algorithmic technique designed to amalgamate multiple result sets, each having distinct relevance indicators, into a unified result set. One of the key advantages of RRF is its ability to deliver high-quality results without the necessity for any tuning. Moreover, it does not mandate the relevance indicators to be interconnected or similar in nature.
@@ -111,17 +119,18 @@ Where $k$ is a constant (usually set to 60), and $rank$ is the rank of the docum
 
 The properties of the RRF algorithm include its simplicity, effectiveness, and robustness. It is simple because it only requires the ranks of the documents and does not need any tuning. It is effective because it can combine result sets with different relevance indicators and still produce high-quality results. It is robust because it is not sensitive to the choice of $k$ and can handle a large number of result sets.
 <a id="conclusion"></a>
+
 ## Conclusion
 
 Rank fusion serves as a potent tool in the arsenal of data scientists and search engine experts, enhancing the efficacy of ranking performance. The spectrum of rank fusion algorithms ranges from the **straightforward Borda algorithm** to the more complex Neural Rank Fusion, each tailored to meet specific scenarios and data attributes. While the **Borda** algorithm is **appreciated** for its **simplicity** and **ease of implementation**, more advanced techniques like **LambdaMART** and **Neural Rank Fusion** are capable of delivering **cutting-edge results for large-scale applications**.
 
 Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands out for its ability to **combine multiple result sets with varying relevance indicators** **without the need for tuning**. This makes it a robust and effective choice for many applications.
 
-
 **Edits**:
 
 - 2023-10-09 - Added "Reciprocal rank fusion", rewrite conclusion
 <a id="references"></a>
+
 ## References
 
 1. Wikipedia article: [Borda algorithm](https://en.wikipedia.org/wiki/Borda_count)
@@ -129,6 +138,5 @@ Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands o
 3. [Burges, Christopher. "From RankNet to LambdaRank to LambdaMART: An overview." Learning 11.23-581 (2010): 81.](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
 4. [Rank-Biased Precision for Measurement of Retrieval Effectiveness](https://people.eng.unimelb.edu.au/jzobel/fulltext/acmtois08.pdf)
 5. [Reciprocal rank fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
-
 
 X::[[implementing_reciprocal_rank_fusion_in_python]]

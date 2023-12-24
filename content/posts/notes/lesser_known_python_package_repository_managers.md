@@ -23,6 +23,7 @@ The [Artifactory](https://jfrog.com/artifactory/) (paid) and [Devpi](https://dev
 <!-- /MarkdownTOC -->
 
 <a id="warehouse"></a>
+
 ## Warehouse
 
 ![github stars shield](https://img.shields.io/github/stars/pypa/warehouse.svg?logo=github)
@@ -32,6 +33,7 @@ The current codebase behind the Python Package Index (PyPI). While not lesser-kn
 - Source Code: [https://github.com/pypa/warehouse](https://github.com/pypa/warehouse)
 
 <a id="pypiserver"></a>
+
 ## pypiserver
 
   ![github stars shield](https://img.shields.io/github/stars/pypiserver/pypiserver.svg?logo=github)
@@ -41,6 +43,7 @@ PyHockey is a minimal Python package server that's easy to set up and use for ho
 - Source Code: [https://github.com/pypiserver/pypiserver](https://github.com/pypiserver/pypiserver)
 
 <a id="bandersnatch"></a>
+
 ## Bandersnatch
 
 ![github stars shield](https://img.shields.io/github/stars/pypa/bandersnatch.svg?logo=github)
@@ -50,8 +53,8 @@ A PyPI mirror client that can be used to create a complete copy of the Python Pa
 - Home: [https://pypi.org/project/bandersnatch/](https://pypi.org/project/bandersnatch/)
 - Source Code: [https://github.com/pypa/bandersnatch](https://github.com/pypa/bandersnatch)
 
-
 <a id="eggbasket"></a>
+
 ## EggBasket
 
 EggBasket is a lightweight, easily-configurable Python package server designed for simplicity and ease of use.

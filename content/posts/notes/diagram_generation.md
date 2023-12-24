@@ -14,31 +14,37 @@ prompt_2: Give me exemplary diagrams in ASCII art and LaTeX Tikz
 
 - [Methods](#methods)
 - [Examples](#examples)
-    - [Graphviz](#graphviz)
-    - [Mermaid](#mermaid)
-    - [ASCII Art](#ascii-art)
-    - [LaTeX Tikz](#latex-tikz)
+  - [Graphviz](#graphviz)
+  - [Mermaid](#mermaid)
+  - [ASCII Art](#ascii-art)
+  - [LaTeX Tikz](#latex-tikz)
 
 <!-- /MarkdownTOC -->
 
 <a id="methods"></a>
+
 ## Methods
+
 There are several ways to represent diagrams in text format, including:
 
-1.  **Ascii art**: This is a form of drawing using characters from the ASCII character set, such as +, -, and | to create simple diagrams.
-    
-2.  **Graphviz**: This is an open-source graph visualization software that can be used to create diagrams using a simple text-based language.
-    
-3.  **PlantUML**: This is a tool that allows users to create UML diagrams using a simple text-based language.
-    
-4.  **Mermaid**: This is a simple markdown-like language for generating diagrams and flowcharts.
-    
-5.  **LaTeX Tikz**: This is a powerful and flexible graphics package for TeX/LaTeX. It allows the creation of high-quality diagrams and graphics using a simple text-based language.
-    
+1. **Ascii art**: This is a form of drawing using characters from the ASCII character set, such as +, -, and | to create simple diagrams.
+
+2. **Graphviz**: This is an open-source graph visualization software that can be used to create diagrams using a simple text-based language.
+
+3. **PlantUML**: This is a tool that allows users to create UML diagrams using a simple text-based language.
+
+4. **Mermaid**: This is a simple markdown-like language for generating diagrams and flowcharts.
+
+5. **LaTeX Tikz**: This is a powerful and flexible graphics package for TeX/LaTeX. It allows the creation of high-quality diagrams and graphics using a simple text-based language.
+
 <a id="examples"></a>
+
 ## Examples
+
 <a id="graphviz"></a>
+
 ### Graphviz
+
 Here is an example of a diagram in Graphviz format:
 
 ```
@@ -51,7 +57,9 @@ digraph G {
 ```
 
 <a id="mermaid"></a>
+
 ### Mermaid
+
 And this is an example of a diagram in Mermaid format:
 
 ```
@@ -67,7 +75,9 @@ C -->|Three| F[Car]
 You can use these languages to generate a diagram by using the corresponding engine, and then include the generated image in your document or export it to different format.
 
 <a id="ascii-art"></a>
+
 ### ASCII Art
+
 Here is an example of a diagram represented in ASCII art:
 
 ```
@@ -80,7 +90,9 @@ Here is an example of a diagram represented in ASCII art:
 ```
 
 <a id="latex-tikz"></a>
+
 ### LaTeX Tikz
+
 And here is an example of a diagram represented in LaTeX Tikz:
 
 ```tex
@@ -88,6 +100,7 @@ And here is an example of a diagram represented in LaTeX Tikz:
 \draw (0,0) rectangle (1,1);
 \end{tikzpicture}
 ```
+
 This code will produce a simple box as a rectangle.
 
 You can use different options and commands to customize the appearance and add more details to your diagrams in LaTeX Tikz.
@@ -100,6 +113,7 @@ For example, you can use the `\filldraw` command to fill the rectangle with a co
 \node[text width=1cm, align=center] at (0.5,0.5) {Box};
 \end{tikzpicture}
 ```
+
 This will produce a blue filled rectangle with black border, and with the text "Box" in the center.
 
 #### How to produce png image from LaTeX Tikz?
@@ -108,24 +122,21 @@ There are a few ways to produce a PNG image from LaTeX Tikz code. One of the mos
 
 Here is an example of how you can use these tools to produce a PNG image of a Tikz diagram:
 
-1.  Create a LaTeX file with your Tikz code and save it with a `.tex` extension.
-    
-2.  Run `pdflatex` on the LaTeX file to produce a PDF file with the same name as the LaTeX file.
-    
+1. Create a LaTeX file with your Tikz code and save it with a `.tex` extension.
+
+2. Run `pdflatex` on the LaTeX file to produce a PDF file with the same name as the LaTeX file.
+
     `pdflatex mytikzdiagram.tex`
-    
-3.  Use `convert` to convert the PDF file into a PNG image.
-    
+
+3. Use `convert` to convert the PDF file into a PNG image.
+
     `convert -density 300 mytikzdiagram.pdf -quality 90 mytikzdiagram.png`
-    
+
     This command will convert the pdf to a PNG image with a resolution of 300dpi, and a quality of 90%
-    
 
 Alternatively, you can use some online converters that do not require you to install any software, or you can use some LaTeX editors such as overleaf, which has the option to export the document to png, jpeg or other image formats.
 
 Note that, in order to use `pdflatex` and `convert` you need to have them installed on your system.
-
-
 
 **full content of the input mytikzdiagram.tex file**
 

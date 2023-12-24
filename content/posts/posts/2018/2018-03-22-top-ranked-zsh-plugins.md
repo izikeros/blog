@@ -12,7 +12,7 @@ modified: 2022-09-01
 banner: "/images/head/inside-work-tree.jpg"
 ---
 
-> **NOTE:** This article was written in 2019, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/). 
+> **NOTE:** This article was written in 2019, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/).
 > There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/index.html), [2019](../top-popular-zsh-plugins-on-github-2019/index.html), [2021](../top-popular-zsh-plugins-on-github-2021/index.html), [2023](../top-popular-zsh-plugins-on-github-2023/index.html). The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
 On the GitHub project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) you can find 800+ links to plugins, themes, and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from the Zsh users community. This post aims at identifying the most popular plugins where popularity is measured by the number of stars that GitHub users added to the given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on "Awesome Zsh plugins" website.
@@ -82,6 +82,7 @@ This package provides support for completing:
 * remote feature, hotfix, and release branch names
 
 ## 6. [zsh-completions](https://github.com/zsh-users/zsh-completions)
+
 This project aims at gathering/develop new completion scripts that are not available in Zsh yet.
 Demo:
 
@@ -115,7 +116,5 @@ Thanks to this mechanism, the users can intuitively and easily change the direct
 [![git-secret terminal preview](https://asciinema.org/a/41811.png)](https://asciinema.org/a/41811?autoplay=1)
 
 On the list there are 300+ projects that are falling into the scope of this research, you can get the complete dataset by downloading this CSV file: [CSV](/downloads/180322_results_sorted.csv).
-
-
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

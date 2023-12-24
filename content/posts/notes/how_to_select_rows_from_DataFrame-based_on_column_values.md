@@ -20,7 +20,9 @@ To select rows from a pandas DataFrame based on column values, you can use vario
 <!-- /MarkdownTOC -->
 
 <a id="1-using-boolean-indexing"></a>
+
 ## 1.  Using Boolean indexing
+
 This involves creating a Boolean condition based on the values in a specific column, and then passing that condition to the DataFrame to select only the rows that meet the condition. For example:
 
 ```python
@@ -50,7 +52,9 @@ This will output:
 ```
 
 <a id="2-using-the-query-method"></a>
+
 ## 2.  Using the query() method
+
 This method allows you to select rows based on a more complex condition using a string expression. For example:
 
 ```python
@@ -70,7 +74,9 @@ This will output:
 ```
 
 <a id="3-using-the-loc-method"></a>
+
 ## 3.  Using the loc() method
+
 This method allows you to select rows based on a specific label or index. For example:
 
 ```python
@@ -93,7 +99,9 @@ Name: Bob, dtype: object
 ```
 
 <a id="4-using-the-iloc-method"></a>
+
 ## 4.  Using the iloc() method
+
 This method allows you to select rows based on their integer position in the DataFrame. For example:
 
 ```python

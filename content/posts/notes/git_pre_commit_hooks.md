@@ -13,14 +13,17 @@ up:: [[MOC_Git]]
 Pre-commit is a convenient framework to manage git hooks. Uses configuration in YAML file, handles the installation of required hooks and tools.
 
 # Pre-commit
+
 repo with [hooks](https://github.com/pre-commit/pre-commit-hooks) to be used with [pre-commit](https://pre-commit.com/)
 
 ## Install pre-commit
+
 ```sh
 pip install pre-commit
 ```
 
-## Create config file e.g.:
+## Create config file e.g
+
 ```yaml
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
@@ -36,22 +39,27 @@ repos:
 ```
 
 ## Install hooks
+
 run `pre-commit install` to set up the git hook scripts. Now pre-commit will run automatically on git commit
 
 ## Run against all files before committing (optional)
+
 It's usually a good idea to run the hooks against all the files when adding new hooks (usually pre-commit will only run on the changed files during git hooks)
+
 ```sh
 pre-commit run --all-files
 ```
 
 upgrade pre-commit hooks to the most recent version:
+
 ```sh
 pre-commit autoupdate
 ```
 
-see also: https://github.com/sds/overcommit
+see also: <https://github.com/sds/overcommit>
 
 An exemplary set of hooks
+
 ```yaml
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
@@ -99,11 +107,14 @@ repos:
 ```
 
 ## Selection of hooks for organizing imports
+
 Perhaps the most used import organizer is [isort](https://github.com/PyCQA/isort) (4.5k stars).
 The others are:
+
 - [reorder_python_imports](https://github.com/asottile/reorder_python_imports) (423 stars)
 - [zimports](https://github.com/sqlalchemyorg/zimports) (64 stars)
 - [importantize](https://github.com/miki725/importanize) (57 stars)
+
 ```yaml
   # ------------ Sort imports ------------
    - repo: https://github.com/pycqa/isort
@@ -130,7 +141,9 @@ The others are:
 ```
 
 ## Excluding
+
 If you don't want some directories to be subject to pre-commit exclude them as in the example:
+
 ```yaml
 -   repo: https://github.com/pycqa/flake8
     rev: '4.0.1'  
@@ -142,9 +155,7 @@ If you don't want some directories to be subject to pre-commit exclude them as i
 
 use `files` to define pattern which files to include. E.g. `files: \.x$` - files ending with `.x` (?)
 
-for more advanced filtering see section "Filtering files with types" on: https://pre-commit.com/#advanced
-
-
+for more advanced filtering see section "Filtering files with types" on: <https://pre-commit.com/#advanced>
 
 example:
 
@@ -156,5 +167,3 @@ example:
 will match any of `foo/bar.js` / `foo/bar.jsx` / `foo/bar.ts` / `foo/bar.tsx` but not `baz.js`.
 
 up:: [[MOC_Git]]]
-
-

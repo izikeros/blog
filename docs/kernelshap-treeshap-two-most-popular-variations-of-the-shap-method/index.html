@@ -296,12 +296,12 @@
 
 
         <div>
-            <h2>TLDR;</h2>
-<p>The <strong>original SHAP does not scale well</strong> with high dimensions data due to its exponential complexity associated with Shapley value calculations. KernelSHAP and TreeSHAP are two specific implementations of the SHAP method, developed to address the shortcomings of the original framework and to optimize it for different types of machine learning models, but they achieve this in different ways. 
+            <h2>TLDR</h2>
+<p>The <strong>original SHAP does not scale well</strong> with high dimensions data due to its exponential complexity associated with Shapley value calculations. KernelSHAP and TreeSHAP are two specific implementations of the SHAP method, developed to address the shortcomings of the original framework and to optimize it for different types of machine learning models, but they achieve this in different ways.
 <strong>KernelSHAP</strong> uses a model-agnostic method to interpret the impact of features in a model. This means it can provide explanations <strong>for any model</strong> but <strong>at the cost of computational efficiency</strong>, making it <strong>less suitable for complex</strong>, high-dimensional situations or when real-time explanations are needed. In contrast, <strong>TreeSHAP</strong> is designed specifically <strong>for tree-based models</strong> (like decision tree and random forests, or boosting machines). It is <strong>computationally efficient</strong>, exploits the tree structure for <strong>faster calculations</strong>, and thus, can handle <strong>more complex scenarios</strong>. Moreover, TreeSHAP guarantees consistency—a helpful property for feature attribution methods to ensure that if a model relies more on a feature, the attributed importance of that feature should not decrease. However, it can't be used for non-tree models.</p>
 <h2>Introduction</h2>
-<p>Responsible AI is an approach to artificial intelligence that ensures fairness, transparency, and accountability in the development, deployment, and management of AI systems. In the era of increasing reliance on AI-driven decision-making, understanding and explaining the predictions made by these models is essential. The interpretability of AI models helps build trust, enables better decision-making, and allows us to mitigate biases.   </p>
-<p>Two popular methods for explaining AI models are KernelShap and TreeShap. These techniques are part of the SHAP (SHapley Additive exPlanations) family, which is based on cooperative game theory. In this blog post, we will delve into the details of KernelShap and TreeShap, exploring their underlying principles, advantages, and use cases.   </p>
+<p>Responsible AI is an approach to artificial intelligence that ensures fairness, transparency, and accountability in the development, deployment, and management of AI systems. In the era of increasing reliance on AI-driven decision-making, understanding and explaining the predictions made by these models is essential. The interpretability of AI models helps build trust, enables better decision-making, and allows us to mitigate biases.</p>
+<p>Two popular methods for explaining AI models are KernelShap and TreeShap. These techniques are part of the SHAP (SHapley Additive exPlanations) family, which is based on cooperative game theory. In this blog post, we will delve into the details of KernelShap and TreeShap, exploring their underlying principles, advantages, and use cases.</p>
 <blockquote>
 <p><strong>SHAP (SHapley Additive exPlanations)</strong> is a game theoretic approach to explain the output of any machine learning model. It connects optimal credit allocation with local explanations using the classic Shapley values from game theory and their related extensions (see <a href="https://github.com/shap/shap#citations">papers</a> for details and citations).
 <em>(from <a href="https://shap.readthedocs.io/en/latest/index.html">SHAP documentation</a>)</em></p>
@@ -325,17 +325,17 @@
 
 <p><a id="kernelshap"></a></p>
 <h2>KernelShap</h2>
-<p>KernelShap is a model-agnostic explanation method that provides interpretable explanations for any black-box model. It uses the concept of Shapley values from cooperative game theory to attribute feature importance to individual features in the context of a specific prediction.   </p>
-<p>The Shapley value for feature <span class="math">\(i\)</span> in a model <span class="math">\(f\)</span> can be calculated using the following formula:   </p>
+<p>KernelShap is a model-agnostic explanation method that provides interpretable explanations for any black-box model. It uses the concept of Shapley values from cooperative game theory to attribute feature importance to individual features in the context of a specific prediction.</p>
+<p>The Shapley value for feature <span class="math">\(i\)</span> in a model <span class="math">\(f\)</span> can be calculated using the following formula:</p>
 <div class="math">$$ϕ_i(f) = \sum_{S ⊆ N \setminus {i}} \frac{|S|!(|N|-|S|-1)!}{|N|!} [f(S ∪ {i}) - f(S)]$$</div>
 <p>Here, <span class="math">\(S\)</span> is a subset of features excluding <span class="math">\(i\)</span>, and <span class="math">\(N\)</span> is the total number of features. The term <span class="math">\(|S|!\)</span> represents the factorial of the number of features in subset <span class="math">\(S\)</span>, while <span class="math">\(|N|-|S|-1!\)</span> represents the factorial of the remaining features outside of the subset. The denominator <span class="math">\(|N|!\)</span> is the factorial of the total number of features.</p>
-<p>Shapley values, in the context of AI, are used to distribute the contribution of each feature to the final prediction. It ensures that the contribution of each feature is fairly allocated in a way that is efficient, symmetric, and additive.   </p>
+<p>Shapley values, in the context of AI, are used to distribute the contribution of each feature to the final prediction. It ensures that the contribution of each feature is fairly allocated in a way that is efficient, symmetric, and additive.</p>
 <p>KernelShap approximates the Shapley values by solving a weighted linear regression problem. It samples instances from the feature space and estimates the Shapley values using the Lasso regression model. The Lasso model is a linear model with an L1 penalty term, which helps in feature selection and makes the explanation sparse.</p>
-<p>Lasso (Least Absolute Shrinkage and Selection Operator) regression is a linear regression technique that includes an L1 penalty term to shrink the coefficients of less important features towards zero. This allows for both regularization and feature selection, resulting in a more interpretable and parsimonious model.   </p>
-<p>The equation for Lasso regression is given by:   </p>
+<p>Lasso (Least Absolute Shrinkage and Selection Operator) regression is a linear regression technique that includes an L1 penalty term to shrink the coefficients of less important features towards zero. This allows for both regularization and feature selection, resulting in a more interpretable and parsimonious model.</p>
+<p>The equation for Lasso regression is given by:</p>
 <div class="math">$$L(\beta) = \sum_{i=1}^{n}(y_i - X_i\beta)^2 + \lambda\sum_{j=1}^{p}|\beta_j|$$</div>
-<p> <br>
-In this equation:   </p>
+<p>
+In this equation:</p>
 <ul>
 <li><span class="math">\(L(\beta)\)</span> represents the objective function to be minimized,</li>
 <li><span class="math">\(y_i\)</span> is the actual response (outcome) for the <span class="math">\(i^{th}\)</span> observation,</li>
@@ -344,57 +344,57 @@ In this equation:   </p>
 <li><span class="math">\(n\)</span> is the total number of observations,</li>
 <li><span class="math">\(p\)</span> is the total number of features,</li>
 <li><span class="math">\(\lambda\)</span> is a non-negative regularization parameter, and</li>
-<li><span class="math">\(|\beta_j|\)</span> is the absolute value of the <span class="math">\(j^{th}\)</span> coefficient.   </li>
+<li><span class="math">\(|\beta_j|\)</span> is the absolute value of the <span class="math">\(j^{th}\)</span> coefficient.</li>
 </ul>
-<p>The first term, <span class="math">\(\sum_{i=1}{n}(y_i - X_i\beta)2\)</span>, is the sum of squared residuals, which represents the difference between the actual and predicted responses. Minimizing this term alone would result in an ordinary least squares regression.   </p>
+<p>The first term, <span class="math">\(\sum_{i=1}{n}(y_i - X_i\beta)2\)</span>, is the sum of squared residuals, which represents the difference between the actual and predicted responses. Minimizing this term alone would result in an ordinary least squares regression.</p>
 <p>The second term, <span class="math">\(\lambda\sum_{j=1}^{p}|\beta_j|\)</span>, is the L1 penalty term that adds the absolute values of the coefficients multiplied by the regularization parameter <span class="math">\(\lambda\)</span>. By increasing <span class="math">\(\lambda\)</span>, the penalty term forces some coefficients to be exactly zero, effectively selecting a subset of features for the final model. The optimal value of <span class="math">\(\lambda\)</span> is usually determined through cross-validation.</p>
 <p><a id="steps"></a></p>
 <h3>Steps</h3>
-<p>The KernelShap algorithm involves the following steps:   </p>
+<p>The KernelShap algorithm involves the following steps:</p>
 <ol>
 <li>Generate a dataset of binary-masked instances by randomly selecting feature combinations.</li>
 <li>Compute the output of the black-box model for each instance.</li>
 <li>Fit a weighted linear regression model on the generated dataset, where the weights are determined by the similarity between the instance and the instance of interest.</li>
-<li>The coefficients of the linear regression model represent the approximate Shapley values.   </li>
+<li>The coefficients of the linear regression model represent the approximate Shapley values.</li>
 </ol>
 <p><a id="kernelshap-advantages-and-limitations"></a></p>
 <h3>KernelShap advantages and limitations</h3>
-<p>KernelShap has several <strong>advantages</strong>:   </p>
+<p>KernelShap has several <strong>advantages</strong>:</p>
 <ul>
 <li>It can be applied to any black-box model, regardless of its architecture or training algorithm.</li>
 <li>It provides a unified measure of feature importance that is consistent across different models.</li>
-<li>It takes into account the interactions between features.   </li>
+<li>It takes into account the interactions between features.</li>
 </ul>
-<p>However, KernelShap also has some <strong>limitations</strong>:   </p>
+<p>However, KernelShap also has some <strong>limitations</strong>:</p>
 <ul>
 <li>It can be computationally expensive, especially for high-dimensional data or complex models.</li>
-<li>It requires a large number of samples to provide accurate estimates of the Shapley values.   </li>
+<li>It requires a large number of samples to provide accurate estimates of the Shapley values.</li>
 </ul>
 <p><a id="treeshap"></a></p>
 <h2>TreeShap</h2>
-<p>TreeShap is a model-specific explanation method designed for tree-based models, such as decision trees, random forests, and gradient boosting machines. Like KernelShap, it is based on Shapley values, but it exploits the structure of tree-based models to compute the values efficiently.   </p>
-<p>TreeShap <strong>computes the exact Shapley values for each feature by recursively traversing the decision tree</strong>, attributing contributions to each feature as it moves down the tree. It uses a dynamic programming approach to avoid redundant calculations and reduce the computational complexity. </p>
+<p>TreeShap is a model-specific explanation method designed for tree-based models, such as decision trees, random forests, and gradient boosting machines. Like KernelShap, it is based on Shapley values, but it exploits the structure of tree-based models to compute the values efficiently.</p>
+<p>TreeShap <strong>computes the exact Shapley values for each feature by recursively traversing the decision tree</strong>, attributing contributions to each feature as it moves down the tree. It uses a dynamic programming approach to avoid redundant calculations and reduce the computational complexity.</p>
 <p><a id="steps-1"></a></p>
 <h3>Steps</h3>
-<p>The TreeShap algorithm involves the following steps:   </p>
+<p>The TreeShap algorithm involves the following steps:</p>
 <ol>
 <li>Traverse the tree from the root to the leaf nodes, recording the decision path for the instance of interest.</li>
 <li>Attribute contributions to each feature encountered along the path, taking into account the number of possible feature combinations and the probability of each combination.</li>
 <li>Repeat the process for all trees in the ensemble, if applicable.</li>
-<li>Average the contributions across all trees to obtain the final Shapley values.   </li>
+<li>Average the contributions across all trees to obtain the final Shapley values.</li>
 </ol>
 <p><a id="treeshap-advantages-and-limitations"></a></p>
 <h3>TreeShap advantages and limitations</h3>
-<p>TreeShap has several advantages:   </p>
+<p>TreeShap has several advantages:</p>
 <ul>
 <li>It computes the exact Shapley values without the need for sampling or approximations.</li>
 <li>It is computationally efficient due to its dynamic programming approach.</li>
-<li>It is specifically designed for tree-based models, which are widely used in practice.   </li>
+<li>It is specifically designed for tree-based models, which are widely used in practice.</li>
 </ul>
-<p>However, TreeShap is limited to tree-based models and cannot be applied to other types of models, such as deep learning or support vector machines. <br>
+<p>However, TreeShap is limited to tree-based models and cannot be applied to other types of models, such as deep learning or support vector machines.
 <a id="conclusion"></a></p>
 <h2>Conclusion</h2>
-<p>KernelShap and TreeShap are powerful methods for explaining AI models in the context of responsible AI. Both techniques leverage the concept of Shapley values to provide interpretable and fair attributions of feature importance. While KernelShap is a model-agnostic approach that can be applied to any black-box model, TreeShap is tailored for tree-based models and offers exact Shapley values with computational efficiency.   </p>
+<p>KernelShap and TreeShap are powerful methods for explaining AI models in the context of responsible AI. Both techniques leverage the concept of Shapley values to provide interpretable and fair attributions of feature importance. While KernelShap is a model-agnostic approach that can be applied to any black-box model, TreeShap is tailored for tree-based models and offers exact Shapley values with computational efficiency.</p>
 <p>Understanding and implementing these methods is crucial for AI practitioners who aim to build transparent, accountable, and trustworthy AI systems. By providing insights into the inner workings of AI models, KernelShap and TreeShap enable developers to identify potential biases, improve the decision-making process, and ultimately foster trust in AI-driven technologies.</p>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
 <p><strong>Edits:</strong></p>

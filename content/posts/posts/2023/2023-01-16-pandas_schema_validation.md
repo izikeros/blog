@@ -16,11 +16,11 @@ todo: validate the text for libraries, validate code snippets, consider adding e
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Overview of Available Tools and Methods](#overview-of-available-tools-and-methods)
-    - [Built-in Attributes](#built-in-attributes)
-    - [Pandas Schema](#pandas-schema)
-    - [Great Expectations](#great-expectations)
-    - [Pandera](#pandera)
-    - [Data-enforce](#data-enforce)
+  - [Built-in Attributes](#built-in-attributes)
+  - [Pandas Schema](#pandas-schema)
+  - [Great Expectations](#great-expectations)
+  - [Pandera](#pandera)
+  - [Data-enforce](#data-enforce)
 - [Comparison and Discussion](#comparison-and-discussion)
 
 <!-- /MarkdownTOC -->
@@ -32,9 +32,11 @@ There are several tools and methods available for schema validation in pandas su
 In this article, we will overview the available tools and methods for schema validation in pandas and provide example code snippets and links to further resources. We will also discuss the advantages and disadvantages of each tool and provide recommendations for when to use them.
 
 <a id="overview-of-available-tools-and-methods"></a>
+
 ## Overview of Available Tools and Methods
 
 The tools and methods discussed below accompanying exemplary code snippets. You can use the following contents of a `data.csv` that comply with the schema used in this article:
+
 ```
 name,age,gender,col1,col2,col3,col4,col5
 Alice,25,female,1,2.5,text1,True,2022-01-01
@@ -44,12 +46,12 @@ Charlie,35,male,3,4.5,text3,True,2022-03-01
 
 This file contains a dataframe with 8 columns: name, age, gender, col1, col2, col3, col4 and col5.
 
--   `name` and `gender` are of type object
--   `age` is of type int
--   `col1`,`col2` are of type int and float respectively
--   `col3` is of type object
--   `col4` is of type boolean
--   `col5` is of type datetime
+- `name` and `gender` are of type object
+- `age` is of type int
+- `col1`,`col2` are of type int and float respectively
+- `col3` is of type object
+- `col4` is of type boolean
+- `col5` is of type datetime
 
 This file can be used in the examples above to perform data validation using different libraries and methods.
 
@@ -65,11 +67,12 @@ David,170,male,4,5.5,text4,True,2022-04-01
 
 This file contains a dataframe with 8 columns: name, age, gender, col1, col2, col3, col4 and col5.
 
--   The age of David is 170 which is out of range of the schema defined in the article which is range(0, 150)
--   This file will not comply with the schema defined in the article and will raise an error when trying to validate it using the code provided in the article
--   This file can be used to demonstrate the validation process and how it will raise errors for invalid data.
+- The age of David is 170 which is out of range of the schema defined in the article which is range(0, 150)
+- This file will not comply with the schema defined in the article and will raise an error when trying to validate it using the code provided in the article
+- This file can be used to demonstrate the validation process and how it will raise errors for invalid data.
 
 <a id="built-in-attributes"></a>
+
 ### Built-in Attributes
 
 Pandas provides built-in attributes such as `.dtypes` and `.shape` that can be used to check the data types and dimensions of a DataFrame. Here's an example of using these attributes to check that a DataFrame has the expected number of rows and columns, and that the columns have the expected data types:
@@ -88,6 +91,7 @@ assert df.dtypes == {"col1": int, "col2": float, "col3": object, "col4": bool, "
 ```
 
 <a id="pandas-schema"></a>
+
 ### Pandas Schema
 
 `pandas_schema` is a library that allows you to specify constraints on a DataFrame and then validate that the DataFrame conforms to those constraints. Here's an example of using the `pandas_schema` library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:
@@ -107,6 +111,7 @@ errors = schema.validate(df)
 ```
 
 <a id="great-expectations"></a>
+
 ### Great Expectations
 
 [Great Expectations](https://docs.greatexpectations.io/docs/) is a library that allows you to define and validate schemas using a more human-readable syntax. Here's an example of using the `great_expectations` library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:
@@ -139,6 +144,7 @@ else:
 ```
 
 <a id="pandera"></a>
+
 ### Pandera
 
 `pandera` is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the `pandera` library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:
@@ -163,6 +169,7 @@ schema.validate(df)
 ```
 
 <a id="data-enforce"></a>
+
 ### Data-enforce
 
 `data-enforce` is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the `data-enforce` library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:
@@ -186,6 +193,7 @@ de.enforce(df, schema)
 ```
 
 <a id="comparison-and-discussion"></a>
+
 ## Comparison and Discussion
 
 Each of these tools has its own advantages and disadvantages depending on the specific use case.

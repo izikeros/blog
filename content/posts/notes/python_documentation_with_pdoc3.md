@@ -16,35 +16,37 @@ X::[[mkdocs_material]]
 
 Despite Sphinx seems to be the most common tool for generating documentation, the pdoc3 is an interesting option.
 
-
 Generate html documentation:
+
 ```sh
 pdoc --force --html --output-dir ./doc_myproject myproject
 ```
+
 where `--force` will overwrite any existing generated (`--output-dir`) files.
 
-
 Generate html documentation and open in browser:
+
 ```sh
 pdoc --force --html --output-dir ./doc_myproject myproject && xdg-open ./doc_myproject/myproject/index.html
 ```
 
 I used to add these two documentation-related targets to the project's Makefile:
+
 ```makefile
 ## Generate pdoc HTML documentation for prolog package
 doc:
-	pdoc --force --html --output-dir ./doc_myproject myproject
+ pdoc --force --html --output-dir ./doc_myproject myproject
 
 ## Generate pdoc HTML documentation for prolog package and open in browser
 doc_view:
-	pdoc --force --html --output-dir ./doc_myproject myproject && xdg-open ./doc_myproject/myproject/index.html
+ pdoc --force --html --output-dir ./doc_myproject myproject && xdg-open ./doc_myproject/myproject/index.html
 ```
 
 ## alternatives
+
 X::[[project_documentation_tool_alternatives]]
 
 - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 - [Build optimized websites quickly, focus on your content | Docusaurus](https://docusaurus.io/) + [HN](https://news.ycombinator.com/item?id=32303052)
 - mkdocs material
 - [VitePress | Vite & Vue Powered Static Site Generator](https://vitepress.dev/)
-

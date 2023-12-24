@@ -11,9 +11,9 @@ citation_needed: false
 up::[[python]]
 
 Sometimes there is a need to serve HTML page instead of just displaying it in the browser:
+
 - share content with others (allowing download)
 - serve HTTP document with javascript when javascript can't be read due to CORS limitations.
-
 
 From the directory with the content you want to serve type in terminal:
 
@@ -21,4 +21,4 @@ From the directory with the content you want to serve type in terminal:
 python -m http.server 9000
 ```
 
-Read more [here](https://www.askpython.com/python-modules/python-httpserver) 
+Read more [here](https://www.askpython.com/python-modules/python-httpserver)

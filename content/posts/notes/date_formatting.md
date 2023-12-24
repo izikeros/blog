@@ -7,6 +7,7 @@ slug: date-formatting
 tags: date-formatting
 ---
 up::[[MOC_Python]]
+
 # Date formatting
 
 These are the most common formatting characters for the date command:

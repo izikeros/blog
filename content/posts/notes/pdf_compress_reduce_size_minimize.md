@@ -9,9 +9,11 @@ Title: Compress, Reduce or Minimize Size of PDF Document
 ---
 
 ## pdfminify
+
 use python package: pdfminify
 
 ## ghostscript
+
 ```
 gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=compressed_PDF_file.pdf input_PDF_file.pdf
 ```
@@ -21,6 +23,7 @@ In the above command, you should add the correct path of the input and out PDF f
 The command looks scary and confusing. I advise copying and pasting most of it. What you need to know is the `dPDFSETTINGS` parameter. This is what determines the compression level and thus the quality of your compressed PDF file.
 
 **`dPDFSETTINGS`** **description**:
+
 ```
 /prepress (default) - Higher quality output (300 dpi) but bigger size
 /ebook - Medium quality output (150 dpi) with moderate output file size

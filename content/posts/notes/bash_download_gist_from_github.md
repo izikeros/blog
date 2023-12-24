@@ -15,6 +15,7 @@ curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6b
 ```
 
 ## Download, and save the output to file `my_file`
+
 ```
 curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6bad20/raw/ -o my_file
 ```
@@ -24,7 +25,8 @@ curl -L https://gist.githubusercontent.com/izikeros/937b05e81b5dca81d3daf309ea6b
 curl -LJO
 ```
 
-### Options (excepts from the curl man page):
+### Options (excepts from the curl man page)
+
 ```
 -L, --location
       (HTTP) If the server reports that the requested page has moved to a different location
@@ -45,4 +47,5 @@ curl -LJO
        (HTTP) This option tells the -O, --remote-name option to use the server-specified
        Content-Disposition filename instead of extracting a filename from the URL.
 ```
+
 up::[[MOC_Shell_Bash_Zsh]]

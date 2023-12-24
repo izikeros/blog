@@ -20,7 +20,6 @@ Another alternative is the SHAP (SHapley Additive exPlanations) library, which a
 
 See: [plot - Random Forest Feature Importance Chart using Python - Stack Overflow](https://stackoverflow.com/questions/44101458/random-forest-feature-importance-chart-using-python)
 
-
 ## 2. Partial Dependence Plots
 
 Partial dependence plots are a useful tool for visualizing the relationship between a feature and the model's prediction. They plot the average prediction of the model as a function of one feature, while holding the other features constant. `scikit-learn` provides a built-in function to generate partial dependence plots, `plot_partial_dependence`. However, this function only allows for the visualization of one or two features at a time. An alternative is the `PDPbox` library, which allows for the visualization of multiple features at once.
@@ -53,4 +52,4 @@ Note that the above instructions are a general guide and you should check the sp
 - [GitHub - andosa/treeinterpreter](https://github.com/andosa/treeinterpreter)
 - [https://github.com/parrt/random-forest-explorer](https://github.com/parrt/random-forest-explorer)
 - [dice-ml - Diverse Counterfactual Explanations for ML Models [Python]](https://coderzcolumn.com/tutorials/machine-learning/dice-ml-diverse-counterfactual-explanations-for-ml-models)
-- 
+-

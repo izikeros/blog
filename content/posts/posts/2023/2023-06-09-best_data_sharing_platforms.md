@@ -17,25 +17,31 @@ up::[[MOC_AI]]
 There are several popular dataset-sharing platforms available that researchers, data scientists, and machine learning practitioners can utilize to access and share datasets. Here are some of the best dataset-sharing platforms:
 
 ## Kaggle
+
 Kaggle is a well-known platform for data science competitions, but it also provides a [dataset repository](https://www.kaggle.com/datasets) where users can discover and share datasets. It offers a wide range of datasets in various domains, along with tools for data exploration and collaboration.
-    
+
 ## UCI Machine Learning Repository
+
 The University of California, Irvine (UCI) hosts a [repository of datasets](https://archive.ics.uci.edu/) specifically designed for machine learning research. It provides a diverse collection of datasets, including text, image, and time series data, covering a wide range of domains.
-    
+
 ## Google Dataset Search
+
 [Google Dataset Search](https://datasetsearch.research.google.com/) is a search engine that specifically focuses on indexing datasets. It aggregates datasets from various sources on the web, making it easier to find publicly available datasets. It provides information about the dataset, including its description, author, and availability.
-    
+
 ## Data.gov
+
 [Data.gov](https://data.gov/) is a U.S. government initiative that provides access to a wide range of datasets from different federal agencies. It offers datasets covering various domains such as health, climate, finance, transportation, and more. The platform aims to promote transparency and facilitate public access to government data.
-    
-    
+
 ## OpenML
+
 OpenML is an open-source platform that allows users to share, discover, and analyze [datasets](https://www.openml.org/search?type=data&sort=runs&status=active) and machine learning experiments. It provides a collaborative environment for researchers and practitioners to collaborate and contribute to the development of machine learning algorithms.
-    
+
 ## GitHub
+
 Although GitHub is primarily a code hosting platform, it also serves as a repository for datasets. Many researchers and organizations share datasets on GitHub, making it a valuable resource for finding datasets across various domains. You can search for datasets using specific keywords or explore repositories dedicated to datasets.
-    
+
 ## Other platforms
+
 Here are 30 lesser-known dataset-sharing platforms that you can explore:
 
 1. DataHub: [https://datahub.io/](https://datahub.io/)

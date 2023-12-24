@@ -16,10 +16,10 @@ When it comes to visualizing data using Plotly, one of the most important aspect
 
 There are many different scenarios in which you might want to set the range of the Y axis in Plotly. For example, you might want to:
 
--   Zoom in on a specific range of data
--   Focus on a specific data point or cluster of data points
--   Compare the relative sizes of different data sets
--   Ensure that your data fits within a specific range of values
+- Zoom in on a specific range of data
+- Focus on a specific data point or cluster of data points
+- Compare the relative sizes of different data sets
+- Ensure that your data fits within a specific range of values
 
 ### Method 1: Setting the Range Manually
 
@@ -36,6 +36,7 @@ fig = go.Figure(
 fig.show()
 
 ```
+
 This code will create a simple scatter plot with Y values of 1, 3, and 2. The `yaxis.range` property is set to `[0, 5]`, which will ensure that the Y axis ranges from 0 to 5.
 
 ### Method 2: Automatically Scaling the Y Axis
@@ -53,6 +54,7 @@ fig = go.Figure(
 fig.show()
 
 ```
+
 This code will create the same scatter plot as before, but with the Y axis automatically scaled based on the values in the data set.
 
 ### Method 3: Setting the Range Based on Data

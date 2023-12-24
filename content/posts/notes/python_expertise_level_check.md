@@ -16,7 +16,7 @@ up::[[MOC_Python]]
 
 Sometimes you need to assess your own or candidate's level of expertise in Python programming. I have created some statements that roughly corresponds to the various level of expertise. Note that knowing programming language techniques contributes to expertise but does not make a great programmer automatically. Knowledge of algorithms and data structures, programming patterns, and software architectures are some other important factors - to mention a few.
 
-Having that said, I still find useful this simple classification of Python programmers into three categories: beginners, advanced, and experts. 
+Having that said, I still find useful this simple classification of Python programmers into three categories: beginners, advanced, and experts.
 
 ## Beginners
 
@@ -54,7 +54,6 @@ Having that said, I still find useful this simple classification of Python progr
 7. Proficient in Python's debugging and profiling, using tools like `pdb` for debugging and `cProfile` for profiling to optimize their code.
 8. Have a deep understanding of Python's Global Interpreter Lock (GIL) and how it affects multithreaded programs.
 
-
 There is [HN](https://news.ycombinator.com/item?id=38032092) discussion on this note.
 
 **Edits:**
@@ -62,4 +61,4 @@ There is [HN](https://news.ycombinator.com/item?id=38032092) discussion on this 
 - 2023-10-30: remove from Experts: 7. Understands and uses Python's garbage collection system.
 - 2023-10-30: remove from Experts: Have a good understanding of Python's internals, such as bytecode, the Python interpreter's execution model, and how Python's data types are implemented at the C level.
 - 2023-10-30: remove from Advanced: Can use advanced Python libraries like `numpy`, `pandas`, `matplotlib` not a python std lib.
-- added note: 
+- added note:

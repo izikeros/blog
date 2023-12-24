@@ -16,22 +16,22 @@ todo: None
 
 
 ## TLDR
+
 To get accurate autosuggestion from Copilot you can:
 
 1. **Modify signature** of received suggestion to one that capture all relevant inputs and wait for new suggestion.
 2. **Write pseudocode**: describe steps for the function with complex business logic.
 3. For functions with complex business logic **divide them into multiple smaller functions**. Purpose of smaller function is easier to describe with just function name or the comment/docstring.
 
-## Outline:
+## Outline
 
 1. What is GitHub Copilot?
 2. How to get it?
 3. How to use it?
 4. How to get most of GitHub Copilot?
 
-
-
 ## 1. What is GitHub Copilot?
+
 In brief: [GitHub Copilot](https://copilot.github.com/), gives suggestions for whole lines or entire functions right inside your editor as you type. Currently, there is support for Visual Studio Code, Neovim, and JetBrains IDEs like PyCharm and IntelliJ IDEA.
 GitHub Copilot is powered by the OpenAI Codex AI system, and, as authors claimed, trained on public internet text and billions of lines of code.
 
@@ -41,12 +41,15 @@ The way how it is used is that human programmer provides comment with intention 
 Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and Private Code and IDE. Image from: copilot.github.com
 
 ## 2. How to get it?
+
 Access to GitHub Copilot is limited to a small group of testers during the technical preview. You can sign up and join the wait-list to try it out [here](https://github.com/features/copilot/signup).
 
 ## 3. How to use it?
+
 Provide a docstring, comment, function name, or the piece of code itself, GitHub Copilot will use the context you’ve provided and generate code as suggestion.
 
 ## 4. How to get most of GitHub Copilot?
+
 After using the GitHub Copilot service for almost three months, I was amazed how useful suggestions from Copilot can be. Of course, it is not ideal - suggestions are not always meeting my expectations. Sometimes it took few attempts to formulate my expectations to get the code that was looking good to me.
 What I learned by the time of writing this post, are the few simple rules that can increase accuracy of the suggestions. I will outline them below. I'm using three main strategies to communicate my expectations with the GitHub Copilot service:
 
@@ -69,12 +72,15 @@ old signature was:
 ```python
 def get_images_in_dir(directory):
 ```
+
 new signature:
+
 ```python
 def get_images_in_dir(directory: str, extensions: List[str]) -> list:
 ```
 
 And this time resulting code that meet requirements:
+
 ```python
 def get_images_in_dir(directory: str, extensions: List[str]) -> list:
     """
@@ -92,8 +98,6 @@ def get_images_in_dir(directory: str, extensions: List[str]) -> list:
     return images
 ```
 
-
-
 Other examples of functions that short comment can sufficiently describe responsibility:
 
 ```
@@ -104,16 +108,10 @@ Other examples of functions that short comment can sufficiently describe respons
 # get information using public API from stocktwits
 ```
 
-
-
 ## Simple case - write function name
 
 Starting with descriptive function name can work as well:
  ![img](/images/copilot/copilot_2.gif)
-
-
-
-
 
 ### More complex cases - write pseudocode
 
@@ -121,6 +119,7 @@ For the complex cases: write line of comment that describe behavior for the code
 Example:
 
 Comment with purpose of the function and pseudocode describing elements of solution
+
 ```python
 # Check if two nested lists have the same dictionaries
 # pseudocode:
@@ -129,8 +128,8 @@ Comment with purpose of the function and pseudocode describing elements of solut
 # 3. Check if each pair of lower-level lists have the same keys and values
 ```
 
-
 Resulting code:
+
 ```python
 def check_lists_equal_nested(list_1: list, list_2: list) -> bool:
     """
@@ -156,6 +155,7 @@ def check_lists_equal_nested(list_1: list, list_2: list) -> bool:
 
     return True
 ```
+
  ![img](/images/copilot/copilot_1.gif)
 
 ## More complex cases - write pseudocode
@@ -168,20 +168,14 @@ For functions with complex business logic **divide them into multiple smaller fu
 
 This rule also works when applied to using GitHub Copilot, I will not go into details since the method is pretty obvious and if not one can easily find multiple texts on applying "Divide and conquer" applications to software engineering.
 
-
-
 ### My impressions after using Copilot
 
 I have started using Copilot in November 2021. When I had copilot plugin enabled I put more attention to use meaningful function names expecting the reward in form of auto-suggested code that will fit my needs.
 
 I found Copilot great for using python for automation tasks - many simple functions that somebody else for sure has written someday, but it is too expensive to search e.g. GitHub snippet or code. Copilot comes in handy as replacement of gists of basic functions for manipulating text, files, etc.
 
-
-
 **Credits:**
 
 warp speed image comes from [here](https://videohive.net/item/warp-speed-effect-v10/47100)
-
-
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

@@ -38,6 +38,7 @@ However, in reality, using a single cloud provider can limit your ability to tak
 Instead of using a single cloud provider, consider using a multi-cloud approach to your MLOps. This means using multiple cloud providers for different tasks. For example, you might use AWS for data storage, GCP for model training and Azure for model deployment. This allows you to take advantage of the best tools and services available from each provider and to reduce vendor lock-in.
 
 ## Conclusion
+
 While it may be tempting to follow popular MLOps advice, it's important to consider whether these recommendations are actually the best fit for your specific needs. By using a modular, polyglot, and multi-cloud approach, you can ensure that you're using the best tools for each task and building a more flexible, scalable, and cost-effective MLOps pipeline.
 
 up::[[mlops]]

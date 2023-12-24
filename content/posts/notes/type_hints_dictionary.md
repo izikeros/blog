@@ -24,6 +24,6 @@ def get_info(name: str) -> NameInfo:
     return {'name': name, 'first_letter': name[0]}
 ```
 
-from: https://stackoverflow.com/a/54198204/3247880
+from: <https://stackoverflow.com/a/54198204/3247880>
 
 up::[[python_type_hints]]

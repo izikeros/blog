@@ -14,6 +14,7 @@ prompt: Give me long texts for the data security experts on How to use correlati
 ---
 
 ## Introduction
+
 Differential privacy is a technique that adds random noise to the data to protect individual privacy while still allowing for accurate data analysis. However, differential privacy can still be vulnerable to attacks that can compromise the privacy of individuals. One such attack is through the use of correlation between features. In this blog post, we will discuss how an attacker can use correlation between features to attack differential privacy and how to mitigate this attack.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -35,11 +36,15 @@ Differential privacy is a technique that adds random noise to the data to protec
 <!-- /MarkdownTOC -->
 
 <a id="background"></a>
+
 ## Background
+
 Differential privacy adds random noise to the data to protect the privacy of individuals. The amount of noise added depends on a parameter called the privacy budget. The higher the privacy budget, the less noise is added, and the lower the privacy budget, the more noise is added. The privacy budget is usually set based on the desired level of privacy and the size of the data set. A smaller privacy budget leads to better privacy but less accurate data analysis, while a larger privacy budget leads to less privacy but more accurate data analysis.
 
 <a id="correlation-between-features"></a>
+
 ## Correlation Between Features
+
 In many data sets, the features are not independent but are correlated with each other. Correlation between features can be measured using the correlation coefficient. The correlation coefficient between two features x and y is defined as:
 
 $$
@@ -51,39 +56,55 @@ where $cov(x,y)$ is the covariance between $x$ and $y$, and $\sigma_x$ and $\sig
 Correlation between features can be used to attack differential privacy. An attacker can use the correlation between features to infer the presence or absence of an individual's data in the data set. For example, suppose an attacker knows that two features x and y are highly correlated. If the attacker sees that the value of y is very different from what they would expect based on the value of x, they can infer that the individual's data was not included in the data set.
 
 <a id="steps-for-the-attack-using-correlation-between-features"></a>
+
 ## Steps for the attack using correlation between features
+
 An attacker can use the following steps to attack differential privacy using correlation between features:
 
 <a id="1-identify-highly-correlated-features"></a>
+
 ### 1. Identify highly correlated features
+
 The attacker identifies which features in the data set are highly correlated with each other.
-    
+
 <a id="2-compute-expected-values"></a>
+
 ### 2. Compute expected values
+
 The attacker computes the expected values of the features based on the values of the other features.
-    
+
 <a id="3-compare-expected-and-observed-values"></a>
+
 ### 3. Compare expected and observed values
+
 The attacker compares the expected values with the observed values of the features. If the observed values are significantly different from the expected values, the attacker can infer that the individual's data was not included in the data set.
-    
 
 <a id="mitigating-the-attack"></a>
+
 ## Mitigating the Attack
+
 There are several ways to mitigate the attack using correlation between features. One approach is to **decorrelate the features** by transforming the data. For example, principal component analysis (PCA) can be used to decorrelate the features. Another approach is to **add noise to the data** in a way that preserves the correlation between features. This approach is called differentially private PCA (DP-PCA). DP-PCA adds noise to the data in a way that satisfies differential privacy while preserving the correlation between features.
 
 <a id="summary"></a>
+
 ## Summary
+
 Correlation between features can be used to attack differential privacy. An attacker can use the correlation between features to infer the presence or absence of an individual's data in the data set. To mitigate this attack, the features can be decorrelated or noise can be added to the data using DP-PCA. Data security experts should be aware of this attack and take appropriate measures to mitigate its effects.
 
 <a id="tutorial"></a>
+
 ## Tutorial
+
 In this tutorial, we will go through the steps of attacking differential privacy by exploiting correlations between features, using Python code to demonstrate each step.
 
 In the tutorial we will be using pydp Python library, so you need to install it first:
+
 ```sh
 pip install python-dp
 ```
+
 <a id="select-a-dataset-that-requires-privacy-protection"></a>
+
 ### Select a dataset that requires privacy protection
 
 For this tutorial, we will use the Adult dataset from the UCI Machine Learning Repository. This dataset contains information about individuals, including their age, education level, marital status, occupation, and more. The goal is to predict whether an individual earns more than $50K per year. We will load this dataset using pandas:
@@ -100,10 +121,10 @@ df = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/adul
 ```
 
 <a id="apply-differential-privacy"></a>
+
 ### Apply differential privacy
 
 We will use the PyDP library to apply differential privacy to the dataset. We will add Laplace noise to the age and education-num features, with a privacy budget of 1.0:
-
 
 ```python
 from pydp.algorithms.laplacian import BoundedMean
@@ -121,6 +142,7 @@ df["education-num"] = df["education-num"].apply(lambda x: bm.quick_result(x))
 ```
 
 <a id="perform-the-attack---reconstruct-original-data-by-exploiting-correlation-between-features"></a>
+
 ### Perform the attack - reconstruct original data by exploiting correlation between features
 
 Now that we have applied differential privacy to the dataset, we will attempt to reconstruct the original data by exploiting the correlation between features. Specifically, we will use the age and education-num features, which we know are highly correlated, to infer the values of the original data.
@@ -153,6 +175,7 @@ synthetic_df = pd.DataFrame(synthetic_data, columns=df_attack.columns)
 ```
 
 Finally, we will reconstruct the age and education-num features using the generated synthetic data:
+
 ```python
 # reconstruct age and education-num features
 reconstructed_age = (df["education-num"].values - mean[1]) / cov[1, 1] * cov[0, 1] + mean[0]
@@ -193,6 +216,7 @@ Reconstructed: [13.19164695 13.19406455  9.04750693  6.8549391  13.25155432 13.7
 As we can see, the reconstructed values are quite similar to the original values. This suggests that an attacker could use the correlation between the age and education-num features to infer the original values, even with the protection of differential privacy.
 
 <a id="conclusion"></a>
+
 ### Conclusion
 
 In this tutorial, we have demonstrated how an attacker can exploit correlations between features to attack differential privacy. We used the PyDP library to apply differential privacy to a dataset, and then showed how an attacker could use the correlation between the age and education-num features to reconstruct the original values. This highlights the importance of considering the correlations between features when applying differential privacy, and suggests that additional protections may be necessary to prevent attacks based on feature correlations.

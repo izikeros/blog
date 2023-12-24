@@ -9,12 +9,14 @@ Title: Python - Get File and Path Parts (Dirname, Base Name, Extension)
 ---
 To split the full file name (e.g. `/root/dir/sub/file.ext`) with a path into various parts you can use python built-in functions from the `os` module.
 You can retrieve:
+
 - base name - just file name with extension (in our example: `file.ext`)
 - file path (in our example: `/root/dir/sub/`)
 - core name from the file name (in our example: `file`)
 - extension from the file name (in our example: `.ext`)
 
 See the code below:
+
 ```python
     import os
     full_file = '/root/dir/sub/file.ext'
@@ -33,6 +35,7 @@ See the code below:
 ```
 
 Example results:
+
 ```python
 >>> import os
 >>> base=os.path.basename('/root/dir/sub/file.ext')
@@ -45,6 +48,7 @@ Example results:
 ```
 
 **Reference:**
+
 - Stackoverflow - [How to get the filename without the extension from a path in Python?](https://stackoverflow.com/questions/678236)
 
 up::[[MOC_Python]]

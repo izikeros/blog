@@ -13,11 +13,11 @@ up::[[MOC_Python]]
 
 Python's [tempfile](https://docs.python.org/3/library/tempfile.html) module is an incredibly powerful tool that allows you to create and manage temporary files and directories with ease. In this article, we'll dive deep into the most common use-cases and explore some lesser-known, but highly useful features of this versatile module.
 
-## Why Use Temporary Files and Directories? 
+## Why Use Temporary Files and Directories?
 
 Temporary files and directories are essential when you need to store intermediate results, cache data, or hold information during the execution of a program. They can help you minimize memory usage and improve performance by reducing the need to recompute expensive operations. Moreover, temporary files can be useful in scenarios like [unit testing](https://en.wikipedia.org/wiki/Unit_testing), where you need to create mock files and directories for testing purposes.
 
-## Creating Temporary Files 
+## Creating Temporary Files
 
 The `tempfile` module provides several functions to create temporary files, including `TemporaryFile`, `NamedTemporaryFile`, and `SpooledTemporaryFile`.
 
@@ -104,7 +104,7 @@ with open(temp_file_path, 'rb') as temp_file:
     print(temp_file.read())
 ```
 
-## Securely Generating Random Strings 
+## Securely Generating Random Strings
 
 The `tempfile` module also provides the [`mkstemp`](https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp) and [`mkdtemp`](https://docs.python.org/3/library/tempfile.html#tempfile.mkdtemp) functions, which generate random strings for file and directory names, respectively. These functions can be useful when you need to generate unique names for your application:
 

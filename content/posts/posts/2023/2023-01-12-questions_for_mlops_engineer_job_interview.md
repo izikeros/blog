@@ -15,11 +15,11 @@ modified: '2023-01-12'
 
 [Get for $2.99](https://ksafjanuser.gumroad.com/l/mlops)
 
--   **PDF, ePUB format EBook, no DRM**
--   **50 questions and answers**
--   **Stories from real projects**
--   **92 multiple choice quiz questions**
--   **80 pages**
+- **PDF, ePUB format EBook, no DRM**
+- **50 questions and answers**
+- **Stories from real projects**
+- **92 multiple choice quiz questions**
+- **80 pages**
 
 Machine learning has become an integral part of many industries, and as the use of machine learning models in production environments has increased, so has the need for MLOps (Machine Learning Operations). MLOps is a practice that combines the principles of DevOps with the unique requirements of machine learning to improve the speed, quality, and reliability of machine learning models in production.
 
@@ -82,33 +82,33 @@ Please find below a set of 50 questions that can be used in the MLOps engineer j
 
 Here are examples of questions for more advanced candidates:
 
-1.  How do you handle distributed training and deployment of machine learning models in a multi-cloud environment?
-2.  Can you discuss an experience you have had with implementing auto-scaling for machine learning models in production?
-3.  How do you handle model interpretability and explainability in an ensemble or multi-model setting?
-4.  Can you discuss your experience with using machine learning on time-series data in an MLOps pipeline?
-5.  How do you handle security and compliance for machine learning models in a regulated industry?
-6.  Can you discuss an experience you have had with implementing reinforcement learning in an MLOps pipeline?
-7.  How do you handle model interpretability and explainability for deep learning models?
-8.  Can you discuss your experience with using machine learning in a distributed or edge computing environment?
-9.  How do you handle data pipeline and feature engineering for time-series data in an MLOps pipeline?
-10.  Can you discuss your experience with implementing federated learning in an MLOps pipeline?
+1. How do you handle distributed training and deployment of machine learning models in a multi-cloud environment?
+2. Can you discuss an experience you have had with implementing auto-scaling for machine learning models in production?
+3. How do you handle model interpretability and explainability in an ensemble or multi-model setting?
+4. Can you discuss your experience with using machine learning on time-series data in an MLOps pipeline?
+5. How do you handle security and compliance for machine learning models in a regulated industry?
+6. Can you discuss an experience you have had with implementing reinforcement learning in an MLOps pipeline?
+7. How do you handle model interpretability and explainability for deep learning models?
+8. Can you discuss your experience with using machine learning in a distributed or edge computing environment?
+9. How do you handle data pipeline and feature engineering for time-series data in an MLOps pipeline?
+10. Can you discuss your experience with implementing federated learning in an MLOps pipeline?
 
 ## EBook with questions and answers
+
 If you would like to prepare to answer these questions take look on my ebook that helps job-candidates to get MLOps job.
 
 [![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://ksafjanuser.gumroad.com/l/mlops)
 
 [Get for $2.99](https://gumroad.com/)
 
--   **PDF, ePUB format EBook, no DRM**
--   **50 questions and answers**
--   **Stories from real projects**
--   **92 multiple choice quiz questions**
--   **80 pages**
+- **PDF, ePUB format EBook, no DRM**
+- **50 questions and answers**
+- **Stories from real projects**
+- **92 multiple choice quiz questions**
+- **80 pages**
 
 **Credits:**
 
 Heading image from [unsplash](https://unsplash.com/photos/JaoVGh5aJ3E) @[Amy Hirschi](https://unsplash.com/@amyhirschi)
-
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

@@ -24,16 +24,20 @@ Python is a powerful programming language that is widely used in a variety of ap
 <!-- /MarkdownTOC -->
 
 <a id="hydra"></a>
+
 ## hydra
+
 [Hydra](https://hydra.cc/) is a Python library that allows you to access parameters from a configuration file inside a Python script.
 
 Features:
+
 - composite configs
 - various options for launching:
-	- easy config modifications from cli
-	- multiruns
+ 	- easy config modifications from cli
+ 	- multiruns
 
 Create exemplary `main.yaml` in directory `config`
+
 ```yaml
 raw: 
   path: data/raw/sample.csv
@@ -46,7 +50,6 @@ final:
 ```
 
 then we can access the value inside the configuration file by adding the decorator `@hydra.main` on a specific function. Inside this function, we can access the value under `processed` and `path` by using a dot notation: `config.processed.path` .
-
 
 ```python
 """
@@ -70,11 +73,12 @@ if __name__ == '__main__':
     process_data()
 ```
 
-From: https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800
-
+From: <https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800>
 
 <a id="decouple"></a>
+
 ## decouple
+>
 > Python Decouple: Strict separation of settings from code
 
 Decouple helps you to organize your settings so that you can change parameters without having to redeploy your app.
@@ -90,12 +94,14 @@ define comprehensive default values;
 Envvars works, but since `os.environ` only returns strings, it’s tricky.
 
 Let’s say you have an envvar `DEBUG=False`. If you run:
+
 ```
 if os.environ['DEBUG']:
     print True
 else:
     print False
 ```
+
 It will print `True`, because `os.environ['DEBUG']` returns the string "False". Since it’s a non-empty string, it will be evaluated as True.
 
 Decouple provides a solution that doesn’t look like a workaround: `config('DEBUG', cast=bool)`.
@@ -103,37 +109,44 @@ Decouple provides a solution that doesn’t look like a workaround: `config('DEB
 From: package description on pypi
 
 <a id="omegaconf"></a>
+
 ## omegaconf
+
 [OmegaConf](https://github.com/omry/omegaconf) is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.
 
  > OmegaConf is also the backbone for the more advanced [Hydra](https://hydra.cc/) framework.
- 
- 
+
 Documentation v2.2: [Installation — OmegaConf 2.2.4.dev0 documentation](https://omegaconf.readthedocs.io/en/2.2_branch/usage.html)
 
 <a id="upsilonconf"></a>
+
 ## Upsilonconf
+
 Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the `antlr` dependency). It is also very similar to the (discontinued) [AttrDict](https://github.com/bcj/AttrDict) library. In the meantime, there is also the [ml_collections](https://github.com/google/ml_collections) library, which seems to build on similar ideas as this project.
 
 <a id="ml_collections"></a>
+
 ## ml_collections
+
 [google/ml_collections](https://github.com/google/ml_collections)
 ML Collections is a library of Python Collections designed for ML use cases.
 The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
 <a id="features"></a>
+
 ### Features
 
--   Dot-based access to fields.
--   Locking mechanism to prevent spelling mistakes.
--   Lazy computation.
--   FrozenConfigDict() class which is immutable and hashable.
--   Type safety.
--   "Did you mean" functionality.
--   Human readable printing (with valid references and cycles), using valid YAML format.
--   Fields can be passed as keyword arguments using the `**` operator.
--   There is one exception to the strong type-safety of the ConfigDict: `int` values can be passed in to fields of type `float`. In such a case, the value is type-converted to a `float` before being stored. (Back in the day of Python 2, there was a similar exception to allow both `str` and `unicode` values in string fields.)
+- Dot-based access to fields.
+- Locking mechanism to prevent spelling mistakes.
+- Lazy computation.
+- FrozenConfigDict() class which is immutable and hashable.
+- Type safety.
+- "Did you mean" functionality.
+- Human readable printing (with valid references and cycles), using valid YAML format.
+- Fields can be passed as keyword arguments using the `**` operator.
+- There is one exception to the strong type-safety of the ConfigDict: `int` values can be passed in to fields of type `float`. In such a case, the value is type-converted to a `float` before being stored. (Back in the day of Python 2, there was a similar exception to allow both `str` and `unicode` values in string fields.)
 
 <a id="basic-usage-of-ml_collections"></a>
+
 ### [Basic Usage of ml_collections](https://github.com/google/ml_collections#basic-usage)
 
 ```python

@@ -22,5 +22,6 @@ You can customize the message and title by modifying the strings inside the doub
 Note that starting from macOS Big Sur (11.0), AppleScript-based notifications require user authorization. The first time you run this command, you will be prompted to grant permission to Terminal (or whichever application you are using) to send notifications.
 
 ## reading
+
 - [What is Osascript?. Learning about Osascript started with… | by Victor Scholz | Medium](https://victorscholz.medium.com/what-is-osascript-e48f11b8dec6)
 - [osascript Man Page - macOS - SS64.com](https://ss64.com/osx/osascript.html)

@@ -21,14 +21,14 @@ while IFS= read -r -d $'\0' line; do
     projects+=("$line")
 done < <(find "${projects[@]}" -maxdepth 0 -type d -print0)
 ```
+
 In the provided code, the `read` command is used together with some parameters. Here is a brief explanation:
 
 - `-a` : This option is used when we want to read from input and store it in an array. In the given code snippet, the input is obtained from a subshell command that lists directories (`ls -d ${projects[@]}`).
-    
+
 - `-r` : This option prevents backslash escapes from being interpreted. It helps you to read the strings "as is".
-    
+
 - `-d $'\0'` : This tells `read` to continue until it encounters a null byte (`\0`), which is the delimiter used by `find . -print0`.
-    
 
 So `read -r -d $'\0' line` reads input separated by null characters into the variable `line`. This is done inside a `while` loop, which continues to perform this reading operation for each directory returned by `find`, assigned to the `projects` array one by one.
 

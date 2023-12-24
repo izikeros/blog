@@ -16,12 +16,15 @@ prompt: null
 [Remote Procedure Call (RPC)](https://en.wikipedia.org/wiki/Remote_procedure_call) is a protocol that allows two different processes or applications to communicate with each other across different machines, even if they are using different programming languages. RPC is a popular technique used in distributed computing environments, where applications running on different systems need to communicate with each other to perform a task. In this blog post, we will explore how to use RPC in Python and provide an example of two instances communicating using RPC.
 
 ## Using RPC in Python
+
 Python provides built-in support for RPC through the [xmlrpc](https://docs.python.org/3/library/xmlrpc.html) and [jsonrpc](https://json-rpc.readthedocs.io/en/latest/) libraries. These libraries allow Python applications to expose their functions as RPC services and also consume RPC services provided by other applications.
 
 To use RPC in Python, you need to create a server that exposes a set of functions or methods that can be invoked by remote clients. You can then use a client application to connect to the server and call these functions remotely.
 
 ### Simple client-server
+
 #### Server
+
 Let's start with an example of a **simple server** that exposes a function to add two numbers:
 
 ```python
@@ -40,6 +43,7 @@ server.serve_forever()
 In the code above, we first define a class called `MyServer` that exposes a single method called add, which takes two arguments and returns their sum. We then create an instance of the `SimpleXMLRPCServer` class, passing in the host and port where the server should listen for incoming requests. We register an instance of the `MyServer` class with the server, which means that any requests received by the server will be forwarded to the methods of the `MyServer` class. Finally, we call the `serve_forever` method to start the server and listen for incoming requests.
 
 #### Client
+
 Now that we have a server running, let's create a **client application** that can connect to the server and call the add method remotely:
 
 ```python
@@ -55,7 +59,8 @@ In the code above, we create an instance of the `ServerProxy` class, passing in 
 
 That's it! We have successfully used RPC to call a method on a remote server from a client application.
 
-### Example of Two Instances Communicating Using RPC 
+### Example of Two Instances Communicating Using RPC
+
 Now let's explore an example of two instances communicating using RPC. In this example, we will create a server application that exposes a set of methods that can be called by a client application. The client application will then call these methods to perform a task.
 
 First, let's create the server application:
@@ -101,18 +106,19 @@ The cube of 3 is: 27
 
 As you can see, we have successfully used RPC to call methods on a remote server from a client application.
 
-## Conclusion 
+## Conclusion
+
 RPC is a powerful technique for building distributed applications, and Python provides built-in support for RPC through the xmlrpc and jsonrpc libraries. Using RPC in Python is straightforward and can be done with just a few lines of code. By following the examples provided in this blog post, you should now understand how to use RPC in Python and how to create a server that exposes methods that can be called remotely by a client application.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
-
 You might be interested in reading my ["Guide to building a Python RPC server using Flask"](./guide-building-python-rpc-server-using-flask)
 
 ## Further Reading
-1.  The Python documentation on xmlrpc: [https://docs.python.org/3/library/xmlrpc.html](https://docs.python.org/3/library/xmlrpc.html)
-2.  The Python documentation on jsonrpc: 
-	[https://json-rpc.readthedocs.io/en/latest/](https://json-rpc.readthedocs.io/en/latest/)
-1.  A tutorial on using XML-RPC in Python: [https://pymotw.com/2/xmlrpc.client/index.html](https://pymotw.com/2/xmlrpc.client/index.html)
-4.  List of material on distributed systems:
-	[https://github.com/theanalyst/awesome-distributed-systems](https://github.com/theanalyst/awesome-distributed-systems)
+
+1. The Python documentation on xmlrpc: [https://docs.python.org/3/library/xmlrpc.html](https://docs.python.org/3/library/xmlrpc.html)
+2. The Python documentation on jsonrpc:
+ [https://json-rpc.readthedocs.io/en/latest/](https://json-rpc.readthedocs.io/en/latest/)
+1. A tutorial on using XML-RPC in Python: [https://pymotw.com/2/xmlrpc.client/index.html](https://pymotw.com/2/xmlrpc.client/index.html)
+4. List of material on distributed systems:
+ [https://github.com/theanalyst/awesome-distributed-systems](https://github.com/theanalyst/awesome-distributed-systems)

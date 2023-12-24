@@ -13,11 +13,11 @@ Title: Using Markmap Mindmap Diagrams in Pelican Blog
 
 Embedding a markmap mindmap in a Pelican blog post written in Markdown requires a few steps:
 
-1.  Install the markmap library by running `npm install -g markmap` in your command line.
-    
-2.  Create a mindmap file in the `.mm` format using a tool such as [Markmap](https://markmap.js.org/) or [Vim Markmap](https://github.com/dundalek/vim-markmap)
-    
-3.  Add the following code to the head of your Pelican HTML template:
+1. Install the markmap library by running `npm install -g markmap` in your command line.
+
+2. Create a mindmap file in the `.mm` format using a tool such as [Markmap](https://markmap.js.org/) or [Vim Markmap](https://github.com/dundalek/vim-markmap)
+
+3. Add the following code to the head of your Pelican HTML template:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap@2.4.2/dist/markmap.css" integrity="sha256-f1gjK1a7DwY52ePb7Jf0e9cKd26aOiZaN0Z1zKjH1Dc=" crossorigin="anonymous">
@@ -25,9 +25,9 @@ Embedding a markmap mindmap in a Pelican blog post written in Markdown requires 
 
 ```
 
-4.  In your Markdown file, add a `div` element where you want the mindmap to appear, and give it an id: `<div id="mindmap"></div>`
+4. In your Markdown file, add a `div` element where you want the mindmap to appear, and give it an id: `<div id="mindmap"></div>`
 
-5.  Add a script to your Markdown file that loads the mindmap file and renders it in the div element:
+5. Add a script to your Markdown file that loads the mindmap file and renders it in the div element:
 
 ```html
 <script>
@@ -39,10 +39,9 @@ Embedding a markmap mindmap in a Pelican blog post written in Markdown requires 
 </script>
 ```
 
-6.  Make sure that your `mindmap.mm` file is in the same directory as your pelican project and the path to it is correct.
-    
-7.  Build and run your Pelican project to see the mindmap in your blog post.
-    
+6. Make sure that your `mindmap.mm` file is in the same directory as your pelican project and the path to it is correct.
+
+7. Build and run your Pelican project to see the mindmap in your blog post.
 
 Note that, you could also use a plugin to add the necessary links and script to your HTML template.
 

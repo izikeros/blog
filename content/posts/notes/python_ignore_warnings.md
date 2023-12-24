@@ -7,6 +7,7 @@ title: How to ignore warnings in Python
 status: published
 ---
 ## use warnings module directly
+
 ```python
 # disable
 import warnings
@@ -17,6 +18,7 @@ warnings.filterwarnings('default') # or 'once' to show warnings only once
 ```
 
 ## use context manager
+
 You can use the `warnings.catch_warnings()` context manager to temporarily suppress warnings within a block of code. Here's an example:
 
 ```python
@@ -36,4 +38,3 @@ You can modify the `filterwarnings()` call within the context manager to fine-tu
 
 up::[[MOC_Python]]
 X::[[python_warnings]]
-

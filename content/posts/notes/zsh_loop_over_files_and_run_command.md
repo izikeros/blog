@@ -13,4 +13,5 @@ up::[[MOC_Shell_Bash_Zsh]]
 ```sh
 for file in ~/folder/*; gpg $file
 ```
-from: https://quintussential.com/archive/2019/01/26/Looping-over-files-in-zsh/
+
+from: <https://quintussential.com/archive/2019/01/26/Looping-over-files-in-zsh/>

@@ -19,8 +19,8 @@ todo: need to verify the offer and the links
 - [Introduction](#introduction)
 - [MLOps Certificates - Are They Worth Your Effort and Money?](#mlops-certificates---are-they-worth-your-effort-and-money)
 - [Certifications](#certifications)
-	- [AWS Certified Machine Learning - Specialty](#aws-certified-machine-learning---specialty)
-	- [Google Cloud Professional Machine Learning Engineer](#google-cloud-professional-machine-learning-engineer)
+ 	- [AWS Certified Machine Learning - Specialty](#aws-certified-machine-learning---specialty)
+ 	- [Google Cloud Professional Machine Learning Engineer](#google-cloud-professional-machine-learning-engineer)
 - [Free MLOps Certifications](#free-mlops-certifications)
 - [Conclusion](#conclusion)
 <!-- /MarkdownTOC -->
@@ -74,10 +74,10 @@ Here are a few examples of free MLOps certifications, first one is specializatio
 **The one from Coursera:**
 
 - [Machine Learning Engineering for Production (MLOps) | Coursera](https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops). There are 4 Courses in this Specialization:
- 	- [Introduction to Machine Learning in Production](https://www.coursera.org/learn/introduction-to-machine-learning-in-production?specialization=machine-learning-engineering-for-production-mlops)
- 	- [Machine Learning Data Lifecycle in Production](https://www.coursera.org/learn/machine-learning-data-lifecycle-in-production?specialization=machine-learning-engineering-for-production-mlops)
- 	- [Machine Learning Modeling Pipelines in Production](https://www.coursera.org/learn/machine-learning-modeling-pipelines-in-production?specialization=machine-learning-engineering-for-production-mlops)
- 	- [Deploying Machine Learning Models in Production](https://www.coursera.org/learn/deploying-machine-learning-models-in-production?specialization=machine-learning-engineering-for-production-mlops)
+  - [Introduction to Machine Learning in Production](https://www.coursera.org/learn/introduction-to-machine-learning-in-production?specialization=machine-learning-engineering-for-production-mlops)
+  - [Machine Learning Data Lifecycle in Production](https://www.coursera.org/learn/machine-learning-data-lifecycle-in-production?specialization=machine-learning-engineering-for-production-mlops)
+  - [Machine Learning Modeling Pipelines in Production](https://www.coursera.org/learn/machine-learning-modeling-pipelines-in-production?specialization=machine-learning-engineering-for-production-mlops)
+  - [Deploying Machine Learning Models in Production](https://www.coursera.org/learn/deploying-machine-learning-models-in-production?specialization=machine-learning-engineering-for-production-mlops)
 
 **Offering from edEx:**
 

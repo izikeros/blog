@@ -13,7 +13,7 @@ Docker is a popular tool that allows you to package, deploy, and run your applic
 
 ### Prerequisites
 
--   [Docker](https://www.docker.com/) should be installed on your local machine. If it's not installed please follow [these instructions](https://docs.docker.com/get-docker/) to install it.
+- [Docker](https://www.docker.com/) should be installed on your local machine. If it's not installed please follow [these instructions](https://docs.docker.com/get-docker/) to install it.
 
 ### Steps
 
@@ -69,7 +69,6 @@ To stop the container, you can find the container id by running `docker ps` then
 
 To persist the data, you can use volumes. For example, you can run
 
-
 ```sh
 docker run -p 5000:5000 -v /path/on/host:/path/on/container mlflow/mlflow` 
 ```
@@ -77,7 +76,6 @@ docker run -p 5000:5000 -v /path/on/host:/path/on/container mlflow/mlflow`
 to map the host directory `/path/on/host` to the container directory `/path/on/container`.
 
 > **NOTE**:  Running MLFlow on Docker on your local machine will not give you the ability to scale horizontally or ensure high availability. You may want to consider using cloud-based MLFlow services or deploying MLFlow on a virtual machine for more production-ready
-
 
 X::[[mlFlow]]
 X::[[How_to_experiment_with_MLFlow _locally_on laptop_or_PC_instructions_for_the_local_setup]]

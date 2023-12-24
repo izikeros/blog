@@ -33,6 +33,7 @@ y = [1, 3, 4, 2, 5, 8, 6]
 # Big
 
 Next, let's draw the big picture. First determine the position, width, and height of the lower left corner of the large image:
+
 ```python
 left, bottom, width, height = 0.1, 0.1, 0.8, 0.8
 ```
@@ -81,9 +82,11 @@ plt.title('title inside 2')
 ```
 
 Finally display the image:
+
 ```python
 plt.show()
 ```
+
 ​![[pip_fig_4.png]]
 
 **Credits:**

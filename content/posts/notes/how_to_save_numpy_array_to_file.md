@@ -16,7 +16,9 @@ Title: How to Save Numpy Array to File?
 <!-- /MarkdownTOC -->
 
 <a id="saveload-single-array"></a>
+
 ## Save/Load single array
+
 To save a NumPy array to a file, you can use the `np.save` function. The `np.save` function can save a NumPy array to a binary file with a `.npy` extension.
 
 ```python
@@ -31,6 +33,7 @@ np.save('my_array.npy', my_array)
 ```
 
 To load the saved array back into memory, you can use the `np.load` function:
+
 ```python
 # Load the saved array from the file
 loaded_array = np.load('my_array.npy')
@@ -42,7 +45,9 @@ print(loaded_array)
 > **Note:** you can also save multiple arrays to a single file using `np.savez`, which creates a compressed archive of the arrays with a `.npz` extension.
 
 <a id="saveload-multiple-arrays"></a>
+
 ## Save/Load multiple arrays
+
 ```python
 import numpy as np
 

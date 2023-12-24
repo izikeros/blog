@@ -16,16 +16,16 @@ Machine Learning Development and traditional Software Development are similar in
 
 ### Similarities
 
--   Both involve writing code and using software development tools such as text editors, version control systems, and debugging tools.
--   Both require an understanding of programming concepts such as data structures, algorithms, and programming languages.
+- Both involve writing code and using software development tools such as text editors, version control systems, and debugging tools.
+- Both require an understanding of programming concepts such as data structures, algorithms, and programming languages.
 
 ### Differences
 
--   **Focus**: Traditional software development focuses on creating programs that perform specific tasks, whereas machine learning development focuses on creating models that can learn and make predictions from data.
--   **Data**: Machine learning models require large amounts of data to learn from, whereas traditional software programs may not. Additionally, machine learning development often involves tasks such as data cleaning, preprocessing, and annotation that are not typically part of traditional software development.
--   **Testing**: Testing traditional software often involves writing and running manual tests, whereas testing machine learning models typically involves evaluating their performance on a held-out test set of data.
--   **Deployment**: Traditional software is often deployed on a specific set of hardware, whereas machine learning models can be deployed on a wide range of hardware, from smartphones to servers to specialized hardware such as GPUs.
--   **Performance evaluation**: The performance of traditional software is often evaluated using metrics such as memory usage and response time, whereas the performance of machine learning models is evaluated using metrics such as accuracy, precision, and recall.
+- **Focus**: Traditional software development focuses on creating programs that perform specific tasks, whereas machine learning development focuses on creating models that can learn and make predictions from data.
+- **Data**: Machine learning models require large amounts of data to learn from, whereas traditional software programs may not. Additionally, machine learning development often involves tasks such as data cleaning, preprocessing, and annotation that are not typically part of traditional software development.
+- **Testing**: Testing traditional software often involves writing and running manual tests, whereas testing machine learning models typically involves evaluating their performance on a held-out test set of data.
+- **Deployment**: Traditional software is often deployed on a specific set of hardware, whereas machine learning models can be deployed on a wide range of hardware, from smartphones to servers to specialized hardware such as GPUs.
+- **Performance evaluation**: The performance of traditional software is often evaluated using metrics such as memory usage and response time, whereas the performance of machine learning models is evaluated using metrics such as accuracy, precision, and recall.
 
 ### Conclusion
 
@@ -33,6 +33,7 @@ While machine learning development and traditional software development share ma
 
 **References:**
 Here are two articles that broaden the perspective of this post.
+
 - [Software Development vs. Machine Learning Engineering](https://www.datarevenue.com/en-blog/software-development-vs-machine-learning-engineering) - discuss difference between proof-of-concept and production model building, different flavours of software.
 - [Machine Learning vs Traditional Software Development | by Bill Richmond | Medium](https://billcrichmond.medium.com/machine-learning-vs-traditional-software-development-96923dc5ffbc)
 

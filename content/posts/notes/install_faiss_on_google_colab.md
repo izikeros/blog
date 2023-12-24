@@ -9,6 +9,7 @@ Category: note
 "X:": "[[2023-06-08-Similarity_search_using_IVFPQ]]"
 ---
 To install [faiss](https://github.com/facebookresearch/faiss) on Colab use:
+
 ```
 !pip install faiss-cpu --no-cache
 ```

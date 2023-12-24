@@ -12,6 +12,7 @@ This note contains a recipe for how to configure LangChain to use Azure OpenAI.
 NOTE: requires `python-dotenv` python package installed
 
 ## create `.env` with configuration and secrets
+
 ```
 OPENAI_API_TYPE="azure"
 OPENAI_API_KEY="***"
@@ -20,6 +21,7 @@ OPENAI_API_VERSION="***"
 ```
 
 ## initialize langchain
+
 ```python
 from dotenv import load_dotenv,find_dotenv
 from langchain.llms import AzureOpenAI

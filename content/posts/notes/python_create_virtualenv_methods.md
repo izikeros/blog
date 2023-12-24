@@ -12,23 +12,26 @@ Python virtual environments are an essential tool for isolating project dependen
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Most popular methods](#most-popular-methods)
-	- [Using `venv`](#using-venv)
-	- [Using `virtualenv`](#using-virtualenv)
-	- [Using `pyenv`](#using-pyenv)
-	- [Using `conda`](#using-conda)
+ 	- [Using `venv`](#using-venv)
+ 	- [Using `virtualenv`](#using-virtualenv)
+ 	- [Using `pyenv`](#using-pyenv)
+ 	- [Using `conda`](#using-conda)
 - [Alternatives](#alternatives)
-	- [Using `pipenv`](#using-pipenv)
-	- [Using `Poetry`](#using-poetry)
-	- [Using `Docker`](#using-docker)
-	- [Using `PDM`](#using-pdm)
-	- [Using `Hatch`](#using-hatch)
-	- [Using `Pipx`](#using-pipx)
+ 	- [Using `pipenv`](#using-pipenv)
+ 	- [Using `Poetry`](#using-poetry)
+ 	- [Using `Docker`](#using-docker)
+ 	- [Using `PDM`](#using-pdm)
+ 	- [Using `Hatch`](#using-hatch)
+ 	- [Using `Pipx`](#using-pipx)
 
 <!-- /MarkdownTOC -->
 
 <a id="most-popular-methods"></a>
+
 ## Most popular methods
+
 <a id="using-venv"></a>
+
 ### Using `venv`
 
 `venv` is a module that comes pre-installed with Python 3.3 and later versions. It allows you to create lightweight virtual environments with their own site directories.
@@ -60,6 +63,7 @@ source virtual_environment_name/bin/activate
 ```
 
 <a id="using-virtualenv"></a>
+
 ### Using `virtualenv`
 
 `virtualenv` is a third-party Python package that you can install using pip. It allows you to create multiple side-by-side environments.
@@ -77,6 +81,7 @@ virtualenv -p 3.9 $HOME/.virtualenvs/safeeyes
 ```
 
 <a id="using-pyenv"></a>
+
 ### Using `pyenv`
 
 `pyenv` is a powerful tool for managing multiple Python versions. It doesn't come pre-installed with Python, so you'll need to install it separately. Once installed, you can use it to create virtual environments.
@@ -84,6 +89,7 @@ virtualenv -p 3.9 $HOME/.virtualenvs/safeeyes
 Detailed instructions on how to use `pyenv` for creating virtual environments will be covered in a separate article.
 
 <a id="using-conda"></a>
+
 ### Using `conda`
 
 `conda` is a package, dependency, and environment management tool for any language, but it is particularly popular in the Python community. It comes pre-installed with the Anaconda Python distribution.
@@ -101,9 +107,12 @@ conda activate virtual_environment_name
 ```
 
 <a id="alternatives"></a>
+
 ## Alternatives
+
 While `venv`, `virtualenv`, and `pyenv` are the most commonly used tools for creating virtual environments in Python, there are alternative methods available. Here are a few:
 <a id="using-pipenv"></a>
+
 ### Using `pipenv`
 
 `pipenv` is a tool that aims to bring the best of all packaging worlds to the Python world. It harnesses Pipfile, pip, and virtualenv into one single command.
@@ -129,6 +138,7 @@ pipenv shell
 ```
 
 <a id="using-poetry"></a>
+
 ### Using `Poetry`
 
 `Poetry` is a tool for dependency management and packaging in Python. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
@@ -154,6 +164,7 @@ poetry shell
 ```
 
 <a id="using-docker"></a>
+
 ### Using `Docker`
 
 While not a Python-specific tool, Docker can be used to create isolated environments for Python applications. A Docker container can be thought of as a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the system tools, libraries, and settings.
@@ -161,6 +172,7 @@ While not a Python-specific tool, Docker can be used to create isolated environm
 To use Docker, you need to create a `Dockerfile` that specifies the Python version and the dependencies your application needs. Then, you can build a Docker image from this `Dockerfile` and run your application inside a Docker container based on this image.
 
 <a id="using-pdm"></a>
+
 ### Using `PDM`
 
 PDM is a modern Python package manager with PEP 582 support. It uses the pyproject.toml file to manage dependencies and environments, which makes it compatible with other tools that use this standard.
@@ -178,6 +190,7 @@ pdm shell
 ```
 
 <a id="using-hatch"></a>
+
 ### Using `Hatch`
 
 Hatch is a productivity tool designed to make your workflow easier and more efficient, while also reducing the number of other tools you need to know. It is heavily inspired by npm.
@@ -191,6 +204,7 @@ hatch new my_project
 The command above will create a new directory named `my_project`, set up a new virtual environment, and initialize a new Git repository.
 
 <a id="using-pipx"></a>
+
 ### Using `Pipx`
 
 Pipx is a tool to help you install and run end-user applications written in Python. It's like `pip`, but for whole Python applications rather than for Python libraries.

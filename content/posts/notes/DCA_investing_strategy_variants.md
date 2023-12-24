@@ -76,6 +76,7 @@ Momentum DCA involves investing in assets that have been performing well over a 
 With tax-loss harvesting DCA, investors sell losing assets to realize a tax deduction, and use the proceeds to invest in new assets. This strategy can help investors offset capital gains and reduce their tax liability.
 
 ## Conclusion
+
 The Dollar-Cost Averaging strategy can be a powerful tool for investors who want to build a diversified portfolio over time. While the traditional DCA approach is the simplest and most common form of the strategy, there are several variants that investors can use to tailor the approach to their individual needs and preferences. By understanding the different variants of the DCA strategy, investors can choose the one that best suits their investment goals and risk tolerance.
 
 up::[[MOC_Finance]]

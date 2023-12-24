@@ -18,10 +18,12 @@ There are simple ways to store private Python packages on a local NAS (Network A
 This approach involves creating a directory on your NAS to store your Python packages. You can use the `pip` command's `--find-links` option to specify the location of your custom package directory.
 
 **Pros:**
+
 - Very simple setup and usage.
 - Well-suited for small teams or personal projects.
 
 **Cons:**
+
 - Lack of advanced features like access control, versioning, and replication.
 
 **Tutorial:**
@@ -34,6 +36,7 @@ This approach involves creating a directory on your NAS to store your Python pac
 
 3. **Install Packages from NAS**:
    - Install packages from your NAS using the `pip` command with the `--find-links` option:
+
      ```
      pip install --find-links=file:///path/to/nas/packages/ <package>
      ```
@@ -43,16 +46,19 @@ This approach involves creating a directory on your NAS to store your Python pac
 You can set up a lightweight local PyPI server like `pypiserver` to serve your private Python packages.
 
 **Pros:**
+
 - Simple setup with basic package management features.
 - Suitable for small teams and projects.
 
 **Cons:**
+
 - May lack advanced features like access control and versioning compared to full repository managers.
 
 **Tutorial:**
 
 1. **Install `pypiserver`**:
    - Install `pypiserver` using pip:
+
      ```
      pip install pypiserver
      ```
@@ -62,6 +68,7 @@ You can set up a lightweight local PyPI server like `pypiserver` to serve your p
 
 3. **Start `pypiserver`**:
    - Start the `pypiserver` with the command:
+
      ```
      pypi-server -p 8080 /path/to/packages/
      ```
@@ -69,6 +76,7 @@ You can set up a lightweight local PyPI server like `pypiserver` to serve your p
 4. **Upload and Install Packages**:
    - Copy your Python packages to the packages directory.
    - Install packages using the `pip` command with the local PyPI server URL:
+
      ```
      pip install --index-url=http://localhost:8080/simple/ <package>
      ```

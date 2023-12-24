@@ -313,7 +313,7 @@
 
         <div>
             <h2>Understanding Chunking</h2>
-<p>Chunking is a process that aims to embed a piece of content with as little noise as possible while maintaining semantic relevance[^2]. This process is particularly useful in semantic search, where we index a corpus of documents, each containing valuable information on a specific topic. </p>
+<p>Chunking is a process that aims to embed a piece of content with as little noise as possible while maintaining semantic relevance[^2]. This process is particularly useful in semantic search, where we index a corpus of documents, each containing valuable information on a specific topic.</p>
 <p>An effective chunking strategy ensures that search results accurately capture the essence of a user's query. If our chunks are too small or too large, it may lead to imprecise search results or missed opportunities to surface relevant content. As a <strong>rule of thumb</strong>, if the <strong>chunk of text makes sense without the surrounding context to a human</strong>, it will likely make sense to the language model as well[^2]. Therefore, finding the optimal chunk size for the documents in the corpus is crucial to ensuring that the search results are accurate and relevant.</p>
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
@@ -371,33 +371,45 @@
 <p>The Fixed-size overlapping sliding window method can be beneficial in certain scenarios. It is especially useful in preliminary exploratory data analysis, where the goal is to obtain a general understanding of the text structure rather than a deep semantic analysis. Additionally, it could be employed in scenarios where the text data does not have a strong semantic structure, such as in certain types of raw data or logs.</p>
 <p>However, for tasks that require semantic understanding and precise context, such as sentiment analysis, question-answering systems, or text summarization, more sophisticated text chunking methods would be more appropriate.</p>
 <h4>Summary</h4>
-<p><strong>Pros:</strong>
-- Counting characters makes implementation easy
-- Using overlap helps to avoid having sentences or thoughts cut in the middle - if one window is cutting the thought, perhaps another will have it in one piece.</p>
-<p><strong>Cons:</strong>
-- Not precise control of the context size - models work and size the text in tokens not in characters or words
-- Having a strict, fixed-size window might lead to cutting words, sentences, or paragraphs in the middle.
-- Doesn't take semantics into account, no guarantee that the semantic unit of text capturing the given idea, thought will be accurately captured in the chunk and another chunk will be dedicated to another idea</p>
-<p><strong>Use cases:</strong>
-- Preliminary exploratory data analysis where a general understanding of the text is required
-- Scenarios where the text does not have a strong semantic structure, such as certain types of raw data or logs
-- Not recommended for tasks requiring semantic understanding and precise contexts like sentiment analysis, question-answering systems, or text summarization</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Counting characters makes implementation easy</li>
+<li>Using overlap helps to avoid having sentences or thoughts cut in the middle - if one window is cutting the thought, perhaps another will have it in one piece.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Not precise control of the context size - models work and size the text in tokens not in characters or words</li>
+<li>Having a strict, fixed-size window might lead to cutting words, sentences, or paragraphs in the middle.</li>
+<li>Doesn't take semantics into account, no guarantee that the semantic unit of text capturing the given idea, thought will be accurately captured in the chunk and another chunk will be dedicated to another idea</li>
+</ul>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Preliminary exploratory data analysis where a general understanding of the text is required</li>
+<li>Scenarios where the text does not have a strong semantic structure, such as certain types of raw data or logs</li>
+<li>Not recommended for tasks requiring semantic understanding and precise contexts like sentiment analysis, question-answering systems, or text summarization</li>
+</ul>
 <p><a id="fixed-size-in-tokens-overlapping-sliding-window"></a></p>
 <h3>Fixed-size (in tokens) Overlapping Sliding Window</h3>
 <p>The Fixed-size sliding window method in tokens is another approach to text chunking. Unlike the character-based method, this approach divides the text into chunks based on the count of tokens that came out from the tokenizer, making it more aligned with the way language models operate.</p>
 <p>In this method, the size of the context is more precisely controlled as it works on tokens rather than characters. A helpful rule of thumb is that one token generally corresponds to ~4 characters of text for common English text. This can make avoiding cutting words in the middle a little better than when counting characters, but the problem still persists. It can still sever sentences or thoughts in the middle, which could disrupt the flow of information. Moreover, similar to the character-based method, this approach does not take semantics into account. There's no guarantee that a chunk accurately captures a unique thought or idea, making the chunks potentially semantically inconsistent.</p>
 <h4>Where to Use It</h4>
-<p>The use cases are similar to the fixed size window based on characters count with one difference - when the count is based on tokens it works better for the tasks where we are limited by the LLM context size. </p>
+<p>The use cases are similar to the fixed size window based on characters count with one difference - when the count is based on tokens it works better for the tasks where we are limited by the LLM context size.</p>
 <h4>Summary</h4>
-<p><strong>Pros:</strong>
-- More precise control over LLM context size as it operates on tokens, not characters.
-- Still, relatively easy to implement</p>
-<p><strong>Cons:</strong>
-- Can still sever sentences or thoughts in the middle
-- Does not take semantics into account, hence no guarantee that a chunk accurately captures a unique thought or idea</p>
-<p><strong>Use cases:</strong>
-- For exploratory, initial work with LLMs
-- Not recommended for tasks requiring a deep understanding of the semantics and context of the text, like sentiment analysis or text summarization</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>More precise control over LLM context size as it operates on tokens, not characters.</li>
+<li>Still, relatively easy to implement</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Can still sever sentences or thoughts in the middle</li>
+<li>Does not take semantics into account, hence no guarantee that a chunk accurately captures a unique thought or idea</li>
+</ul>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>For exploratory, initial work with LLMs</li>
+<li>Not recommended for tasks requiring a deep understanding of the semantics and context of the text, like sentiment analysis or text summarization</li>
+</ul>
 <p><a id="recursive-structure-aware-splitting"></a></p>
 <h3>Recursive Structure Aware Splitting</h3>
 <p>Recursive Structure-aware Aware Splitting is a hybrid approach to text chunking, combining elements of the fixed-size sliding window method and the structure-aware splitting method. This method attempts to create chunks of approximately fixed sizes, either in characters or tokens, while also trying to preserve the original units of text such as words, sentences, or paragraphs.</p>
@@ -411,15 +423,21 @@
 <p>Recursive Structure Aware Splitting is particularly useful in tasks where both the granularity of tokens and the preservation of semantic integrity are crucial. This includes tasks such as text summarization, sentiment analysis, and document classification.</p>
 <p>However, due to its complexity, it might not be the best fit for tasks that require quick and simple text chunking, or for tasks involving texts with inconsistent or unclear structural divisions.</p>
 <h4>Summary</h4>
-<p><strong>Pros:</strong>
-- Balances the need for fixed chunk sizes with the preservation of natural linguistic boundaries
-- Provides more precise control over the context size</p>
-<p><strong>Cons:</strong>
-- Higher complexity of implementation due to the recursive nature of the splitting
-- Risk of ending up with chunks of highly variable sizes</p>
-<p><strong>Use cases:</strong>
-- Useful in tasks where both the granularity of tokens and the preservation of semantic integrity are crucial, such as text summarization, sentiment analysis, and document classification
-- Not recommended for tasks requiring quick and simple text chunking, or tasks involving texts with inconsistent or unclear structural divisions</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Balances the need for fixed chunk sizes with the preservation of natural linguistic boundaries</li>
+<li>Provides more precise control over the context size</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Higher complexity of implementation due to the recursive nature of the splitting</li>
+<li>Risk of ending up with chunks of highly variable sizes</li>
+</ul>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Useful in tasks where both the granularity of tokens and the preservation of semantic integrity are crucial, such as text summarization, sentiment analysis, and document classification</li>
+<li>Not recommended for tasks requiring quick and simple text chunking, or tasks involving texts with inconsistent or unclear structural divisions</li>
+</ul>
 <p><a id="structure-aware-splitting-by-sentence-paragraph-section-chapter"></a></p>
 <h3>Structure Aware Splitting (by Sentence, Paragraph, Section, Chapter)</h3>
 <p>Structure Aware Splitting is an advanced approach to text chunking, which takes into account the inherent structure of the text. Instead of using a fixed-size window, this method divides the text into chunks based on its natural divisions such as sentences, paragraphs, sections, or chapters.</p>
@@ -464,9 +482,11 @@
 <li>Requires advanced NLP techniques, increasing the complexity of implementation</li>
 <li>The accuracy of chunking heavily depends on the effectiveness of the topic modeling and detection techniques used</li>
 </ul>
-<p><strong>Use cases:</strong>
-- Highly effective for tasks requiring semantic context and topic continuity, such as text summarization, sentiment analysis, and document classification
-- Not recommended for tasks involving texts with high degrees of topic overlap or tasks requiring simple text chunking without the need for deep semantic understanding</p>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Highly effective for tasks requiring semantic context and topic continuity, such as text summarization, sentiment analysis, and document classification</li>
+<li>Not recommended for tasks involving texts with high degrees of topic overlap or tasks requiring simple text chunking without the need for deep semantic understanding</li>
+</ul>
 <p><a id="content-aware-splitting-markdown-latex-html"></a></p>
 <h3>Content-Aware Splitting (Markdown, LaTeX, HTML)</h3>
 <p>Content-Aware Splitting is a method of text chunking that focuses on the type and structure of the content, particularly in structured documents like those written in Markdown, LaTeX, or HTML. This method identifies and respects the inherent structure and divisions of the content, such as headings, code blocks, and tables, to create distinct chunks.</p>
@@ -559,7 +579,7 @@
 <ul>
 <li>[^1] <a href="https://blog.abacus.ai/blog/2023/08/10/create-your-custom-chatgpt-pick-the-best-llm-that-works-for-you/">Create a CustomGPT And Supercharge your Company with AI  -  Pick the Best LLM - The Abacus.AI Blog</a></li>
 <li>[^2] <a href="https://www.pinecone.io/learn/chunking-strategies/">Chunking Strategies for LLM Applications | Pinecone</a></li>
-<li>[^3] <a href="https://actalyst.medium.com/optimize-llm-enterprise-applications-through-embeddings-and-chunking-strategy-1bbdb03bedae">Optimize LLM Enterprise Applications through Embeddings and Chunking Strategy. | by Actalyst | Aug, 2023 | Medium</a> </li>
+<li>[^3] <a href="https://actalyst.medium.com/optimize-llm-enterprise-applications-through-embeddings-and-chunking-strategy-1bbdb03bedae">Optimize LLM Enterprise Applications through Embeddings and Chunking Strategy. | by Actalyst | Aug, 2023 | Medium</a></li>
 <li>[^4] <a href="https://vectara.com/grounded-generation-done-right-chunking/">Retrieval Augmented Generation (RAG) Done Right: Chunking - Vectara</a> (NLP chunking, compare chunking strategies) + <a href="https://github.com/vectara/example-notebooks/blob/main/notebooks/chunking-demo.ipynb">notebook</a></li>
 </ul>
 <p><a id="further-reading"></a></p>

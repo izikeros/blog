@@ -12,26 +12,29 @@ X::[[python_package]]
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Introduction](#introduction)
-    - [Cookiecutter and Poetry for Python Project Scaffolding](#cookiecutter-and-poetry-for-python-project-scaffolding)
-    - [Benefits of Using Cookiecutter for Project Scaffolding](#benefits-of-using-cookiecutter-for-project-scaffolding)
-    - [Advantages of Using Poetry for Dependency Management](#advantages-of-using-poetry-for-dependency-management)
+  - [Cookiecutter and Poetry for Python Project Scaffolding](#cookiecutter-and-poetry-for-python-project-scaffolding)
+  - [Benefits of Using Cookiecutter for Project Scaffolding](#benefits-of-using-cookiecutter-for-project-scaffolding)
+  - [Advantages of Using Poetry for Dependency Management](#advantages-of-using-poetry-for-dependency-management)
 - [Cookiecutters](#cookiecutters)
-    - [cjolowicz/cookiecutter-hypermodern-python](#cjolowiczcookiecutter-hypermodern-python)
-    - [fpgmaas/cookiecutter-poetry](#fpgmaascookiecutter-poetry)
-    - [radix-ai/poetry-cookiecutter](#radix-aipoetry-cookiecutter)
-    - [albertorios/cookiecutter-poetry-pypackage](#albertorioscookiecutter-poetry-pypackage)
-    - [timhughes/cookiecutter-poetry](#timhughescookiecutter-poetry)
-    - [johanvergeer/cookiecutter-poetry](#johanvergeercookiecutter-poetry)
-    - [elbakramer/cookiecutter-poetry](#elbakramercookiecutter-poetry)
-    - [wboxx1/cookiecutter-pypackage-poetry](#wboxx1cookiecutter-pypackage-poetry)
+  - [cjolowicz/cookiecutter-hypermodern-python](#cjolowiczcookiecutter-hypermodern-python)
+  - [fpgmaas/cookiecutter-poetry](#fpgmaascookiecutter-poetry)
+  - [radix-ai/poetry-cookiecutter](#radix-aipoetry-cookiecutter)
+  - [albertorios/cookiecutter-poetry-pypackage](#albertorioscookiecutter-poetry-pypackage)
+  - [timhughes/cookiecutter-poetry](#timhughescookiecutter-poetry)
+  - [johanvergeer/cookiecutter-poetry](#johanvergeercookiecutter-poetry)
+  - [elbakramer/cookiecutter-poetry](#elbakramercookiecutter-poetry)
+  - [wboxx1/cookiecutter-pypackage-poetry](#wboxx1cookiecutter-pypackage-poetry)
 - [cookiecutter wrapper](#cookiecutter-wrapper)
 - [Tools and services often used in python project cookiecutters](#tools-and-services-often-used-in-python-project-cookiecutters)
 
 <!-- /MarkdownTOC -->
 
 <a id="introduction"></a>
+
 ## Introduction
+
 <a id="cookiecutter-and-poetry-for-python-project-scaffolding"></a>
+
 ### Cookiecutter and Poetry for Python Project Scaffolding
 
 In the world of Python development, efficient project setup and management are essential for streamlined and successful software development. Two powerful tools that aid in this process are **Cookiecutter** and **Poetry**.
@@ -41,6 +44,7 @@ In the world of Python development, efficient project setup and management are e
 On the other hand, **Poetry** is a modern package manager and build tool for Python projects. It simplifies dependency management, packaging, and publishing while ensuring reproducible builds and version control. Poetry provides a user-friendly interface for managing project dependencies and virtual environments, making it a valuable asset for Python developers looking for an efficient way to manage their project's requirements.
 
 <a id="benefits-of-using-cookiecutter-for-project-scaffolding"></a>
+
 ### Benefits of Using Cookiecutter for Project Scaffolding
 
 Using Cookiecutter for project scaffolding offers several key advantages:
@@ -54,6 +58,7 @@ Using Cookiecutter for project scaffolding offers several key advantages:
 4. **Flexibility and Customization**: While offering pre-configured templates, Cookiecutter also allows developers to customize their project scaffolds. This flexibility ensures that developers can tailor the project structure to fit their specific needs and project requirements.
 
 <a id="advantages-of-using-poetry-for-dependency-management"></a>
+
 ### Advantages of Using Poetry for Dependency Management
 
 Poetry's features complement the benefits of Cookiecutter, making it an ideal companion for Python project development:
@@ -67,12 +72,14 @@ Poetry's features complement the benefits of Cookiecutter, making it an ideal co
 4. **Version Control and Reproducibility**: Poetry's `pyproject.toml` file allows for clear specification of package versions, ensuring reproducible builds and making it easier to manage version updates.
 
 <a id="cookiecutters"></a>
+
 ## Cookiecutters
 
 <a id="cjolowiczcookiecutter-hypermodern-python"></a>
+
 ### cjolowicz/cookiecutter-hypermodern-python
 
-https://github.com/cjolowicz/cookiecutter-hypermodern-python
+<https://github.com/cjolowicz/cookiecutter-hypermodern-python>
 
 ![github stars shield](https://img.shields.io/github/stars/cjolowicz/cookiecutter-hypermodern-python.svg?logo=github)
 
@@ -100,9 +107,10 @@ https://github.com/cjolowicz/cookiecutter-hypermodern-python
 - Manage project labels with [GitHub Labeler](https://github.com/marketplace/actions/github-labeler)
 
 <a id="fpgmaascookiecutter-poetry"></a>
+
 ### fpgmaas/cookiecutter-poetry
 
-https://github.com/fpgmaas/cookiecutter-poetry
+<https://github.com/fpgmaas/cookiecutter-poetry>
 
 ![github stars shield](https://img.shields.io/github/stars/fpgmaas/cookiecutter-poetry.svg?logo=github)
 
@@ -116,18 +124,19 @@ https://github.com/fpgmaas/cookiecutter-poetry
 - Compatibility testing for multiple versions of Python with [Tox](https://tox.wiki/en/latest/)
 - Containerization with [Docker](https://www.docker.com/)
 
-
 <a id="radix-aipoetry-cookiecutter"></a>
+
 ### radix-ai/poetry-cookiecutter
 
-https://github.com/radix-ai/poetry-cookiecutter
+<https://github.com/radix-ai/poetry-cookiecutter>
 
 ![github stars shield](https://img.shields.io/github/stars/radix-ai/poetry-cookiecutter.svg?logo=github)
 
 <a id="albertorioscookiecutter-poetry-pypackage"></a>
+
 ### albertorios/cookiecutter-poetry-pypackage
 
-https://github.com/albertorios/cookiecutter-poetry-pypackage
+<https://github.com/albertorios/cookiecutter-poetry-pypackage>
 
 ![github stars shield](https://img.shields.io/github/stars/albertorios/cookiecutter-poetry-pypackage.svg?logo=github)
 
@@ -138,9 +147,10 @@ https://github.com/albertorios/cookiecutter-poetry-pypackage
 - Repeatable build environments via [Docker](https://www.docker.com/)
 
 <a id="timhughescookiecutter-poetry"></a>
+
 ### timhughes/cookiecutter-poetry
 
-https://github.com/timhughes/cookiecutter-poetry
+<https://github.com/timhughes/cookiecutter-poetry>
 
 ![github stars shield](https://img.shields.io/github/stars/timhughes/cookiecutter-poetry.svg?logo=github)
 
@@ -155,9 +165,10 @@ Cookiecutter template configured with the following:
 - click
 
 <a id="johanvergeercookiecutter-poetry"></a>
+
 ### johanvergeer/cookiecutter-poetry
 
-https://github.com/johanvergeer/cookiecutter-poetry
+<https://github.com/johanvergeer/cookiecutter-poetry>
 
 ![github stars shield](https://img.shields.io/github/stars/johanvergeer/cookiecutter-poetry.svg?logo=github)
 
@@ -169,40 +180,42 @@ https://github.com/johanvergeer/cookiecutter-poetry
 - GitHub Issue templates for bug reports and feature requests
 
 <a id="elbakramercookiecutter-poetry"></a>
+
 ### elbakramer/cookiecutter-poetry
 
-https://github.com/elbakramer/cookiecutter-poetry
+<https://github.com/elbakramer/cookiecutter-poetry>
 (fork from johanvergeer/cookiecutter-poetry)
 
 ![github stars shield](https://img.shields.io/github/stars/elbakramer/cookiecutter-poetry.svg?logo=github)
 
 - Package and dependency management using [Poetry](https://python-poetry.org/)
-    - Has the option to stick with setuptools (setup.py)
+  - Has the option to stick with setuptools (setup.py)
 - [GitHub Actions](https://github.com/features/actions): Ready for GitHub Actions
-    - Build and test on push or pull request for continuous integration (CI) (+badge)
-    - Build documentation on push, publish the built documentation to Github Pages (+badge)
-    - Draft release on push, this draft can be published manually or even automatically when a new tag is pushed
-    - Build and release Python package to [PyPI](https://pypi.org/) when a new release tag is published on GitHub
+  - Build and test on push or pull request for continuous integration (CI) (+badge)
+  - Build documentation on push, publish the built documentation to Github Pages (+badge)
+  - Draft release on push, this draft can be published manually or even automatically when a new tag is pushed
+  - Build and release Python package to [PyPI](https://pypi.org/) when a new release tag is published on GitHub
 - Many [pre-commit](https://pre-commit.com/) hook-based formatting, linting, testing tools
-    - Upgrade syntax for newer Python with [pyupgrade](https://github.com/asottile/pyupgrade)
-    - Formatting with [black](https://github.com/psf/black)
-    - Import sorting with [isort](https://github.com/PyCQA/isort)
-    - Linting with [flake8](https://github.com/PyCQA/flake8) and [pylint](https://github.com/PyCQA/pylint/)
-    - Static typing with [mypy](https://github.com/python/mypy)
-    - Testing with [pytest](https://docs.pytest.org/en/stable/contents.html)
-    - Git hooks that run all the above with [pre-commit](https://pre-commit.com/)
+  - Upgrade syntax for newer Python with [pyupgrade](https://github.com/asottile/pyupgrade)
+  - Formatting with [black](https://github.com/psf/black)
+  - Import sorting with [isort](https://github.com/PyCQA/isort)
+  - Linting with [flake8](https://github.com/PyCQA/flake8) and [pylint](https://github.com/PyCQA/pylint/)
+  - Static typing with [mypy](https://github.com/python/mypy)
+  - Testing with [pytest](https://docs.pytest.org/en/stable/contents.html)
+  - Git hooks that run all the above with [pre-commit](https://pre-commit.com/)
 - Other integrations with external sites/services
-    - [Sphinx](http://sphinx-doc.org/) docs serving with [ReadTheDocs](https://readthedocs.io/) (+badge)
-    - Coverage report with [Codecov](https://about.codecov.io/) (+badge)
-    - Monitoring dependency version updates with [Requires.io](https://requires.io/) or [PyUp](https://pyup.io/) (+badge)
+  - [Sphinx](http://sphinx-doc.org/) docs serving with [ReadTheDocs](https://readthedocs.io/) (+badge)
+  - Coverage report with [Codecov](https://about.codecov.io/) (+badge)
+  - Monitoring dependency version updates with [Requires.io](https://requires.io/) or [PyUp](https://pyup.io/) (+badge)
 - Version bumping using [bump2version](https://github.com/c4urself/bump2version)
 - Dynamic versioning using [dunamai](https://github.com/mtkennerly/dunamai)
 - Command-line interface using [Click](https://click.palletsprojects.com/en/7.x/)
 
 <a id="wboxx1cookiecutter-pypackage-poetry"></a>
+
 ### wboxx1/cookiecutter-pypackage-poetry
 
-https://github.com/wboxx1/cookiecutter-pypackage-poetry
+<https://github.com/wboxx1/cookiecutter-pypackage-poetry>
 
 ![github stars shield](https://img.shields.io/github/stars/wboxx1/cookiecutter-pypackage-poetry.svg?logo=github)
 
@@ -216,14 +229,17 @@ https://github.com/wboxx1/cookiecutter-pypackage-poetry
 - Command-line interface using Click (optional)
 
 <a id="cookiecutter-wrapper"></a>
+
 ## cookiecutter wrapper
 
-https://pypi.org/project/cookiecutter-poetry/
+<https://pypi.org/project/cookiecutter-poetry/>
 
 Please note that the actual number of GitHub stars would be fetched dynamically when viewing the article in real-time. The badge URL with the GitHub stars includes a placeholder (`{shield}`) for the dynamic value, and the actual number will be displayed when the badge is rendered on the page.
 
 <a id="tools-and-services-often-used-in-python-project-cookiecutters"></a>
+
 ## Tools and services often used in python project cookiecutters
+
 - [Cookiecutter](https://cookiecutter.readthedocs.io/): Command-line utility for creating project templates.
 - [Poetry](https://python-poetry.org/): Package manager and build tool for Python projects.
 - [Pre-commit](https://pre-commit.com/): Framework for managing and maintaining multi-language pre-commit hooks.

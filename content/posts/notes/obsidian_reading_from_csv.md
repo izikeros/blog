@@ -14,6 +14,7 @@ The [obsidian-dataview](https://github.com/blacksmithgu/obsidian-dataview) plugi
 ## Reading with dataview
 
 Assume, that you have a CSV file `my_data.csv` with contents:
+
 ```
 eventDate;eventName
 2022-01-02;Birthday
@@ -27,29 +28,34 @@ eventDate;eventName
 
 Reading tabular data
 You can read and display the contents of that file as a table using `dataview` code:
+
 ```
-	```dataview
-	TABLE WITHOUT ID eventDate, eventName
-	FROM csv("my_data.csv")
-	```
+ ```dataview
+ TABLE WITHOUT ID eventDate, eventName
+ FROM csv("my_data.csv")
+ ```
 ```
 
 In this specific case, one column contains dates and you might want to display data in a specific format. In my case - I needed dates in `YYYY-MM-DD` format. You can do date formatting on reading using `dateformat`:
+
 ```
-	```dataview
-	TABLE WITHOUT ID dateformat(eventDate, "yyyy-MM-dd") As eventDate, eventName
-	FROM csv("my_data.csv")
-	```
+ ```dataview
+ TABLE WITHOUT ID dateformat(eventDate, "yyyy-MM-dd") As eventDate, eventName
+ FROM csv("my_data.csv")
+ ```
 ```
 
 ## Reading with dataviewjs
+
 For reading data from csv with dataviewjs you can use someting along this lines:
+
 ```
-	```dataviewjs
-	const myData = await dv.io.csv("my_data.csv");
-	dv.table(["eventDate", "eventName"], myData)
-	```
+ ```dataviewjs
+ const myData = await dv.io.csv("my_data.csv");
+ dv.table(["eventDate", "eventName"], myData)
+ ```
 ```
+
 Reading CSV files with `dataviewjs` is also possible. From the [official documentation](https://blacksmithgu.github.io/obsidian-dataview/api/code-reference/#dviocsvpath-origin-file):
 
 > Load a CSV from the given path (a link or string). Relative paths will be resolved relative to the optional origin file (defaulting to the current file if not provided). Return a dataview array, each element containing an object of the CSV values; if the file does not exist, return `undefined`.

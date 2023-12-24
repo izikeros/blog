@@ -17,15 +17,17 @@ Data processing is an essential step in data science and machine learning, and o
 - [Example 1: Synthetic Data](#example-1-synthetic-data)
 - [Example 2: Generated Data](#example-2-generated-data)
 - [Use Cases](#use-cases)
-	- [Customer behavior analysis](#customer-behavior-analysis)
-	- [Financial data analysis](#financial-data-analysis)
-	- [Medical data analysis](#medical-data-analysis)
+ 	- [Customer behavior analysis](#customer-behavior-analysis)
+ 	- [Financial data analysis](#financial-data-analysis)
+ 	- [Medical data analysis](#medical-data-analysis)
 - [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->
 
 <a id="the-box-cox-transformation"></a>
+
 ## The Box-Cox Transformation
+
 The Box-Cox transformation is a technique used to transform non-normal data into normal data. It was developed by statisticians George Box and David Cox in 1964.  The transformation involves applying a power function to the data, which can be expressed as:
 
 $$y(\lambda) = \frac{x^\lambda - 1}{\lambda}$$
@@ -41,6 +43,7 @@ The Box-Cox transformation of 1 + x is particularly useful when dealing with cou
 > **Note**: the Box-Cox transformation requires that the data are positive. If your arbitrary distribution produces negative values, you may need to add a constant to shift the data to be positive.
 
 <a id="example-1-synthetic-data"></a>
+
 ## Example 1: Synthetic Data
 
 To illustrate the Box-Cox transformation of 1 + x, we will generate a synthetic dataset using NumPy. Let's generate 1000 data points from a Poisson distribution with a mean of 5:
@@ -51,6 +54,7 @@ import numpy as np
 np.random.seed(42)
 x = np.random.poisson(5, 1000)
 ```
+
 If we plot the histogram of x, we can see that the data is right-skewed:
 
 ```python
@@ -63,6 +67,7 @@ _ = plt.subplots(figsize=(5, 3))
 sns.distplot(x, fit=norm);
 plt.show()
 ```
+
 ![histogram - poisson distribution](/images/box_cox/hist_poisson.png)
 
 We can apply the Box-Cox transformation of 1 + x to the data using the `boxcox1p` function from SciPy:
@@ -85,6 +90,7 @@ plt.show()
 ![histogram of transformed data](/images/box_cox/hist_after_box_cox.png)
 
 <a id="example-2-generated-data"></a>
+
 ## Example 2: Generated Data
 
 In this example, we will generate a dataset with two features, one of which is generated from a log-normal distribution, and the other from a Poisson distribution. We will then apply the Box-Cox transformation of 1 + x to both features and compare the results.
@@ -146,22 +152,31 @@ plt.show()
 ![histograms of features and transformed features](/images/box_cox/dist_plot_two_features_box_cox.png)
 
 <a id="use-cases"></a>
+
 ## Use Cases
+
 The Box-Cox transformation of 1 + x is particularly useful when dealing with count data or data with a large number of zeros, as it helps to normalize the data and reduce the impact of outliers. Here are some exemplary use cases:
 
 <a id="customer-behavior-analysis"></a>
+
 ### Customer behavior analysis
+
 If you are analyzing customer behavior, you may be interested in counting the number of times customers visit your website or interact with your products. Count data is typically right-skewed and can benefit from the Box-Cox transformation of 1 + x to normalize the data.
-    
+
 <a id="financial-data-analysis"></a>
+
 ### Financial data analysis
+
 Financial data often exhibits high levels of volatility and may contain outliers. The Box-Cox transformation of 1 + x can help to reduce the impact of outliers and make the data more amenable to statistical analysis or machine learning algorithms.
-    
+
 <a id="medical-data-analysis"></a>
+
 ### Medical data analysis
+
 Medical data often contains a large number of zeros, which can make it difficult to analyze. The Box-Cox transformation of 1 + x can help to normalize the data and make it more suitable for statistical analysis or machine learning algorithms.
-    
+
 <a id="conclusion"></a>
+
 ## Conclusion
 
 The Box-Cox transformation of 1 + x is a useful technique for normalizing non-normal data, particularly count data or data with a large number of zeros. In this blog post, I provided examples of the Box-Cox transformation of 1 + x using synthetic and generated datasets, and discussed exemplary use cases. I also provided Python code snippets to illustrate the process.

@@ -347,7 +347,7 @@
 <div class="math">$$
 \mathrm{TNUR} = \frac{1}{2}(n-1)!
 $$</div>
-<p>To help to grasp the order of complexity - when the number of cities grows beyond ~25, the time required to brute force search for an optimal solution would exceed the age of the known universe. </p>
+<p>To help to grasp the order of complexity - when the number of cities grows beyond ~25, the time required to brute force search for an optimal solution would exceed the age of the known universe.</p>
 <!-- ![TODO](tps_time_complexity_vs_age_of_universe.gif) -->
 
 <p>The traveling salesman is a beautiful problem to test various optimization algorithms against it. A big portion of metaheuristic solutions came from the evolution algorithm family.</p>
@@ -370,23 +370,25 @@ Algorithm initialization:</p>
 <p><strong>Figure 1. Steps of evolution algorithm</strong></p>
 <p><a id="adaptation"></a></p>
 <h2>Adaptation</h2>
-<p>I decided to include mechanisms for minor, local improvements that in nature, organisms might be able to perform to better fit the environment. The implementation of the adaptation is twofold:
-1. Swap two consecutive cities on the list that represents the route and check if the change brought an improvement - if so, keep the change and check another pair of cities until the end of the list.
-2. Reverse three elements route segments and similarly, as in the previous method - keep the change if the new, candidate route with the reversed segment is shorter than the version with the non-reversed segment.
-Both are implemented "swapper" or "reverser" as moving along the list of cities in the route.</p>
+<p>I decided to include mechanisms for minor, local improvements that in nature, organisms might be able to perform to better fit the environment. The implementation of the adaptation is twofold:</p>
+<ol>
+<li>Swap two consecutive cities on the list that represents the route and check if the change brought an improvement - if so, keep the change and check another pair of cities until the end of the list.</li>
+<li>Reverse three elements route segments and similarly, as in the previous method - keep the change if the new, candidate route with the reversed segment is shorter than the version with the non-reversed segment.
+Both are implemented "swapper" or "reverser" as moving along the list of cities in the route.</li>
+</ol>
 <!-- ![TODO](tsp_reverse_two.jpg) -->
 <!-- ![TODO](tsp_reverse_three.jpg) -->
 
 <p><a id="natural-selection"></a></p>
 <h2>Natural selection</h2>
-<p>Natural selection allows to remove of poor solutions and makes room for new experimental variants of routes that inherit features from the best solutions found so far. The implementation was to sort the solutions in the ascending order and keep only <code>10%</code> of the best solutions. </p>
+<p>Natural selection allows to remove of poor solutions and makes room for new experimental variants of routes that inherit features from the best solutions found so far. The implementation was to sort the solutions in the ascending order and keep only <code>10%</code> of the best solutions.</p>
 <p><a id="matching-for-the-reproduction"></a></p>
 <h2>Matching for the reproduction</h2>
 <p>"Elite" selected in the natural selection step is then used to create pairs of parents to be used in the single act of reproduction. The pairs were drawn randomly with returning, but the random distribution was not uniform. The shortest route of the solution, the higher chance that the solution will be taken as a parent. The probability of selecting the solution was proportional to the inverse of the solution route length i.e. the shorter route - a higher probability to be drawn as a parent. The given organism could be selected as a paired element for multiple reproductions - which should be the case, especially for best-fitted solutions (ones with the shortest route).</p>
 <p><a id="create-children"></a></p>
 <h2>Create children</h2>
 <p>In the process of reproduction always two children were born: one that was the effect of crossover routes from mother and father and the second, based on the same crossover but with mutation added.
-When drawing pairs, the organism is assigned to the role of mother or father which is important only for the crossover process. </p>
+When drawing pairs, the organism is assigned to the role of mother or father which is important only for the crossover process.</p>
 <p><a id="crossover"></a></p>
 <h2>Crossover</h2>
 <p>In crossover selected segment of a given length (e.g. 5 cities) of the route from the father is being injected into the mother's route. The starting element of the segment in being found in the mother's route and the mother's route is divided into three parts: before the "anchor" element, "anchor" element, and after the "anchor" element. The "anchor" element is replaced by injection. In the next steps mother's route is cleaned up in order to remove duplicate cities (those that appeared in the injection from the father). The cities from the injection were removed from the before anchor and from the after anchor part.</p>
@@ -421,7 +423,7 @@ When drawing pairs, the organism is assigned to the role of mother or father whi
 <h1>Conclusion</h1>
 <ol>
 <li>The experiment showed me the beauty of the evolutionary approach - directed but random evolution leads to the emergence of the order and optimized solutions (however not optimal solutions).</li>
-<li>The fitness of the solution is stabilizing after ~100 epochs. The population doesn't have sufficient new genomes and variation decreases. With this, the ability to overcome imperfections in the best route found so far drops significantly.   </li>
+<li>The fitness of the solution is stabilizing after ~100 epochs. The population doesn't have sufficient new genomes and variation decreases. With this, the ability to overcome imperfections in the best route found so far drops significantly.</li>
 <li>Being under the impression of the robustness of the evolutionary system I'm eager to try the evolutional approach as an alternative to Reinforcement learning such as described on <a href="https://blog.openai.com/evolution-strategies/">openai blog</a></li>
 <li>Technical one: even such a side project playing with numerical problems benefits from accompanying tests. Many annoying bugs that appeared during the implementation (mainly from a global range of variables), and covering (at least partially) code with tests helped out to progress.</li>
 </ol>
@@ -460,7 +462,7 @@ When drawing pairs, the organism is assigned to the role of mother or father whi
 <p><a id="credits"></a></p>
 <h1>Credits</h1>
 <p><a id="cover-image-from-httpscommonswikimediaorgwikifilehigh_school_biology_1-13pdf-by-ck-12-foundation-on-cc-license"></a>
-Cover image from https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf by CK-12 Foundation on CC license</p>
+Cover image from <a href="https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf">https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf</a> by CK-12 Foundation on CC license</p>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

@@ -28,7 +28,9 @@ citation_needed: false
 Two things I found most useful and use most are Pandera and Dataenforce.
 
 <a id="pandera-515-stars---column-validation-columns-types-dataframe-schema"></a>
+
 ## Pandera (515 stars) - column validation (columns, types), DataFrame Schema
+
 ```python
 import pandera as pa
 
@@ -43,14 +45,19 @@ schema = pa.DataFrameSchema(
 # Usage for schema check
 schema(df_dataset)
 ```
+
 Medium article ["Validate Your pandas DataFrame with Pandera](
 https://towardsdatascience.com/validate-your-pandas-dataframe-with-pandera-2995910e564)
 
 <a id="dataenforce-59-stars---columns-presence-validation"></a>
+
 ## Dataenforce (59 stars) - columns presence validation
+
 used for
 <a id="for-type-hinting-column-names-check-dtype-check"></a>
+
 ### for type hinting (column names check, dtype check)
+
 ```python
 from dataenforce import Dataset
 def process_data(data: Dataset["id": int, "name": object, "latitude": float, "longitude": float])
@@ -58,7 +65,9 @@ def process_data(data: Dataset["id": int, "name": object, "latitude": float, "lo
 ```
 
 <a id="to-enforce-validation-at-runtime"></a>
+
 ### to enforce validation at runtime
+
 ```python
 from dataenforce import Dataset, validate
 
@@ -66,16 +75,19 @@ from dataenforce import Dataset, validate
 def process_data(data: Dataset["id", "name"]):
   pass
 ```
+
 Github Link: [dataenforce](https://github.com/CedricFR/dataenforce)
 
-
 <a id="great-expectations---data-validation"></a>
+
 ## Great expectations - data validation
 
 <a id="automated-expectations-from-profiling"></a>
+
 ### automated expectations from profiling
-https://greatexpectations.io/blog/pandas-profiling-integration/
+<https://greatexpectations.io/blog/pandas-profiling-integration/>
 great expectations + Pandas Profiling
+
 ```python
 import pandas as pd
 from pandas_profiling import ProfileReport
@@ -91,20 +103,26 @@ suite = profile.to_expectation_suite(suite_name="my_pandas_profiling_suite")
 ```
 
 <a id="pandas_schema-135-stars"></a>
+
 ## pandas_schema (135 stars)
 
-
 <a id="other-data-validation-libraries"></a>
+
 ## Other Data Validation Libraries
+
 Here are a few other alternatives for validating Python data structures.
 
 <a id="generic-python-object-data-validation"></a>
+
 ### Generic Python object data validation
+
 - voloptuous
 - schema
 
 <a id="pandas-specific-data-validation"></a>
+
 ### pandas-specific data validation
+
 - opulent-pandas
 - PandasSchema
 - pandas-validator (archived)

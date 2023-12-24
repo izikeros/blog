@@ -8,9 +8,10 @@ Tags: hashing, salt, pepper, anonymisation, obfuscation
 Title: Salt and Pepper in the Context of Hashing/Obfuscation
 ---
 
-In the context of hashing/obfuscation, "salt and pepper" refer to two different techniques used to enhance the security of hash functions. 
+In the context of hashing/obfuscation, "salt and pepper" refer to two different techniques used to enhance the security of hash functions.
 
 ## Salt
+
 Salt is a random value that is added to the input before it is hashed. This makes it much more difficult for attackers to use precomputed hash tables or rainbow tables to attack the hash. By using a unique salt for each input, even if two inputs have the same value, their hashes will be different, making it much harder for attackers to determine the original input value.
 
 ```python
@@ -33,6 +34,7 @@ print(f"Hashed Password: {hashed_password}")
 ```
 
 ## Pepper
+
 Pepper, on the other hand, is a secret key that is used to further obscure the hash output. Unlike a salt, which is stored alongside the hash, the pepper is kept secret and never stored. This makes it much harder for attackers to reverse-engineer the original input value from the hash output.
 
 ```python

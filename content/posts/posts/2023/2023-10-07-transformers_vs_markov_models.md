@@ -18,16 +18,15 @@ In the field of machine learning and natural language processing (NLP), differen
 
 ## Markov Models: A Brief Overview
 
-[Markov Models](https://en.wikipedia.org/wiki/Markov_model), named after the Russian mathematician [Andrey Markov](https://en.wikipedia.org/wiki/Andrey_Markov), are a class of models that predict future states based solely on the current state, disregarding all past states. This property is known as the Markov Property, and it is the fundamental assumption that underlies all Markov models. 
+[Markov Models](https://en.wikipedia.org/wiki/Markov_model), named after the Russian mathematician [Andrey Markov](https://en.wikipedia.org/wiki/Andrey_Markov), are a class of models that predict future states based solely on the current state, disregarding all past states. This property is known as the Markov Property, and it is the fundamental assumption that underlies all Markov models.
 
 In the context of language modeling, a Markov Model might predict the next word or character in a sentence based on the current word or character. For instance, given the word "The", a Markov Model might predict that the next word is "cat" based on the probability distribution of words that follow "The" in its training data.
 
 The main limitation of Markov Models is their lack of memory. Since they only consider the current state, they are unable to capture long-term dependencies in a sequence. For example, in the sentence "I grew up in France... I speak fluent ___", a Markov Model might struggle to fill in the blank correctly because the relevant context ("France") is several words back.
 
-
 ![Markov Chain text generation](/images/transformers_vs_markov/markov_model_text_generation.png)
 
-**Figure 1.** *Markov Model might predict  the next word based on the probability distribution of words in its training data. Image Source: [markov-chain-text | Modern C++ Markov chain text generator](https://jaroslawwiosna.github.io/markov-chain-text/) by Jarosław Wiosna* 
+**Figure 1.** *Markov Model might predict  the next word based on the probability distribution of words in its training data. Image Source: [markov-chain-text | Modern C++ Markov chain text generator](https://jaroslawwiosna.github.io/markov-chain-text/) by Jarosław Wiosna*
 
 ## Transformer Models: An Introduction
 
@@ -42,7 +41,6 @@ The key innovation of Transformer models is the self-attention mechanism. This m
 Self-attention is calculated using the dot product of the query and key vectors, which are learned representations of the input. The resulting attention scores are then used to weight the value vectors, which are also learned representations of the input. This weighted sum forms the output of the self-attention layer.
 
 The self-attention mechanism allows Transformer models to consider the entire context of a sequence, rather than just the current state. This is a significant advantage over Markov Models, which are limited by their fixed context length.
-
 
 ![Transformer model - Context and Attention](/images/transformers_vs_markov/transformers_context_and_atention.png)
 
@@ -63,6 +61,7 @@ While both Markov Models and Transformer models like GPT can predict the next ch
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
 ## References
+
 1. Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). [Attention is all you need](https://arxiv.org/abs/1706.03762). In Advances in neural information processing systems (pp. 5998-6008).
 2. Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I. (2019). [Language Models are Unsupervised Multitask Learners](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf). OpenAI Blog.
 3. Bishop, C. M. (2006). [Pattern Recognition and Machine Learning](https://www.springer.com/gp/book/9780387310732). Springer.

@@ -9,11 +9,11 @@ Title: Bash - File Base Name (Without Extension)
 ---
 
 ## file base name (without extension)
+
 ```bash
 i="movie.mp4"
 echo ${basename ${i/.mp4}}
 ```
-
 
 ## Get the current directory name (without full path) in a Bash script
 

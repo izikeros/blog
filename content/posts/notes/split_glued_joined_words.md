@@ -11,9 +11,11 @@ Category: note
 up::[[MOC_Python]]
 
 ## wordninja package
+
 ![github stars shield](https://img.shields.io/github/stars/keredson/wordninja.svg?logo=github)
 
 install [wordninja](https://github.com/keredson/wordninja) package: `pip install wordnija`
+
 ```python
 >>> import wordninja
 >>> wordninja.split('bettergood')
@@ -21,11 +23,13 @@ install [wordninja](https://github.com/keredson/wordninja) package: `pip install
 ```
 
 ## wordsegment package
+
 ![github stars shield](https://img.shields.io/github/stars/grantjenks/python-wordsegment.svg?logo=github)
 
 install the [wordsegment](https://github.com/grantjenks/python-wordsegment) package: `pip install wordsegment`.
 
 use programatically:
+
 ```python
 >>> from wordsegment import load, segment
 >>> load()
@@ -34,10 +38,10 @@ use programatically:
 ```
 
 or from CLI
+
 ```bash
 $ echo thisisatest | python -m wordsegment
 this is a test
 ```
 
 Solutions from: [string - How can I split multiple joined words? - Stack Overflow](https://stackoverflow.com/a/58010290)
-

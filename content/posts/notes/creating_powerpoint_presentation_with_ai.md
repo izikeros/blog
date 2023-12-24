@@ -127,8 +127,8 @@ While the script we've created is already capable of generating PowerPoint prese
 By implementing these features, the presentation generation script can become more versatile and provide a richer experience for users.
 
 ## Alternative approach - let LLM generate VisualBasic script
-In this article we use python to generate the slides. You can also ask model (ChatGPT) for a VisualBasic script that will generate presentation for you. You can learn this approach from the video: [Create Beautiful PowerPoint Slides with ChatGPT + VBA: Quick Tip! - YouTube](https://www.youtube.com/watch?v=JoedhPPi3O0)
 
+In this article we use python to generate the slides. You can also ask model (ChatGPT) for a VisualBasic script that will generate presentation for you. You can learn this approach from the video: [Create Beautiful PowerPoint Slides with ChatGPT + VBA: Quick Tip! - YouTube](https://www.youtube.com/watch?v=JoedhPPi3O0)
 
 ## Conclusion
 

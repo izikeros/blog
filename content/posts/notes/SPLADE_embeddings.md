@@ -13,7 +13,6 @@ Category: note
 
 I have learned about SPLADE from the article: [SPLADE for Sparse Vector Search Explained | Pinecone](https://www.pinecone.io/learn/splade/). Here below are the key concepts from the article (LLM summary)
 
-
 The article discusses the evolution of search and recommendation systems, focusing on the shift from traditional "bag of words" methods to modern vector search. It explains how big tech companies like Google, Netflix, and Amazon use vector search to power their systems.
 
 The traditional **bag of words** methods transform documents into a set of words, populating a sparse "frequency vector". While these methods are **efficient and interpretable**, they are **not perfect** due to their **reliance on exact term matching,** which doesn't align with human nature.
@@ -29,4 +28,5 @@ The article concludes by acknowledging the **limitations of SPLADE**, such as it
 X::[[tf_idf]]
 
 ## References
+
 - [GitHub - naver/splade: SPLADE: sparse neural search (SIGIR21, SIGIR22)](https://github.com/naver/splade)

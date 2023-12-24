@@ -15,14 +15,12 @@ MLOps, short for Machine Learning Operations, is the practice of applying DevOps
 
 On the other hand, ModelOps, short for Model Operations, is a subset of MLOps that specifically focuses on the management and deployment of machine learning models. It involves implementing processes and infrastructure to ensure that models are deployed and operationalized in a reliable and scalable manner.
 
-
 |    | MLOps                             | ModelOps                              |
 |----|-----------------------------------|---------------------------------------|
 |Scope| Covers all aspects of ML development | Focuses on model deployment and management |
 |Focus| Data management, model training, deployment and monitoring | Model deployment, versioning, monitoring, maintenance |
 |Tools and Processes| Diverse set of tools and processes for data management, model training, deployment and monitoring | Tools and processes focused on model deployment, versioning, monitoring, and automation |
 |Culture| Collaborative, cross-functional approach to ML development | Emphasis on operational aspects of ML, such as reliability and scalability |
-
 
 So, what are the key differences between MLOps and ModelOps? Let's take a closer look.
 
@@ -41,7 +39,6 @@ Because MLOps encompasses a wider range of activities, it requires a broader ran
 ### Culture
 
 Another difference between MLOps and ModelOps is the culture they promote. MLOps encourages a collaborative and cross-functional approach to machine learning development, with an emphasis on communication and sharing of knowledge across teams. In contrast, ModelOps is more focused on the operational aspects of machine learning, with an emphasis on reliability, scalability, and automation.
-
 
 ### Conclusion
 

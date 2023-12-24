@@ -35,5 +35,6 @@ X::[[growth_hacking]]
 X::[[design_thinking]]
 
 ## References
+
 - [What is product-led growth?](https://www.productled.org/foundations/what-is-product-led-growth)
 - [Why activation is the most important pirate metric for SaaS growth | Appcues Blog](https://www.appcues.com/blog/pirate-metric-saas-growth)

@@ -59,19 +59,21 @@ For a more detailed explanation and additional examples, you can refer to the Op
 If you're looking to experiment with text tokenization, OpenAI provides a convenient web application called the Tokenization Sandbox. You can access it [here](https://platform.openai.com/tokenizer). The sandbox allows you to input text and observe the resulting tokens, helping you better understand the tokenization process.
 
 ### Text splitter module
+
 A Python script for splitting text into parts with controlled (limited) length in tokens. This script utilizes the `tiktoken` library for encoding and decoding text.:
-https://gist.github.com/izikeros/17d9c8ab644bd2762acf6b19dd0cea39
+<https://gist.github.com/izikeros/17d9c8ab644bd2762acf6b19dd0cea39>
 
 ### Count tokens cli tool
+
 Check this simple CLI tool that have one purpose - count tokens in a text file:
 
 [izikeros/count\_tokens: Count tokens in a text file.](https://github.com/izikeros/count_tokens)
 
 ### Rule of thumb
+
 OpenAI on the [website](https://platform.openai.com/tokenizer) with the tokenizer sandbox provides rule of thumb that helps to estimate approximate number of tokens in given text.
 
 > A helpful rule of thumb is that one token generally corresponds to ~4 characters of text for common English text. This translates to roughly ¾ of a word (so 100 tokens ~= 75 words).
-
 
 ### References
 
@@ -80,4 +82,3 @@ To develop this guide, we drew inspiration from the token counting instructions 
 Token counting is essential when working with NLP, enabling us to analyze and process text effectively. By leveraging OpenAI's `tiktoken` library and following the guidelines outlined in this blog post, you'll be well-equipped to count tokens accurately and efficiently.
 
 See also: [Tokens, the secret language of AI | Omar Kamali](https://omarkama.li/blog/tokens-the-secret-language-of-ai)
-

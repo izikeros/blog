@@ -68,6 +68,7 @@ Finally, we iterate over the `sentences` and `embeddings` lists together using `
 Please note that the code snippet above uses the "all-MiniLM-L6-v2" model as an example. You can explore and choose from a wide range of models provided by Sentence Transformers according to your specific requirements.
 
 ## References
+
 - [GitHub - RelevanceAI/vectorhub: Vector Hub - Library for easy discovery, and consumption of State-of-the-art models to turn data into vectors. (text2vec, image2vec, video2vec, graph2vec, bert, inception, etc)](https://github.com/RelevanceAI/vectorhub)
 - [Introduction - Guide To Vectors](https://learn.getvectorai.com/)
 

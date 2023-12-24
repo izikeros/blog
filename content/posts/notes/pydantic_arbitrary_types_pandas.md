@@ -18,9 +18,10 @@ citation_needed: false
 
 <!-- /MarkdownTOC -->
 
-
 <a id="solution-1---allow-arbitrary-types"></a>
+
 ## Solution 1 - allow arbitrary types
+
 ```python
 import pandas as pd
 from pydantic import BaseModel
@@ -35,7 +36,9 @@ class SubModelInput(BaseModel):
 ```
 
 <a id="solution-2---create-a-pythonic-type-hint-for-a-pddataframe"></a>
+
 ## Solution 2 - create a pythonic type hint for a pd.Dataframe
+
 ```python
 import pandas as pd
 from pydantic import BaseModel
@@ -51,10 +54,10 @@ class SubModelInput(BaseModel):
 ```
 
 <a id="see-also"></a>
+
 ## See also
+
 [Pandas DataFrame Validation with Pydantic](
 https://www.inwt-statistics.com/read-blog/pandas-dataframe-validation-with-pydantic.html)
 
-
 Hints from: [python - Using Pandas Data Frame as a Type in Pydantic - Stack Overflow](https://stackoverflow.com/questions/65412984/using-pandas-data-frame-as-a-type-in-pydantic)
-

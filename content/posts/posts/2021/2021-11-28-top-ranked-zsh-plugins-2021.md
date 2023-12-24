@@ -11,21 +11,19 @@ modified: '2021-11-29'
 slug: top-popular-zsh-plugins-on-github-2021
 ---
 
-> **NOTE:** This article was written in 2021, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/). 
+> **NOTE:** This article was written in 2021, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/).
 > There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/index.html), [2019](../top-popular-zsh-plugins-on-github-2019/index.html), [2021](../top-popular-zsh-plugins-on-github-2021/index.html), [2023](../top-popular-zsh-plugins-on-github-2023/index.html). The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
 The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users or in most cases console users. I have divided them into four categories:
 
 - **Tools** - general tools that are popular among console lovers, in most cases not limited to Zsh
-- **Frameworks - tools for managing Zsh configuration and plugins** 
+- **Frameworks - tools for managing Zsh configuration and plugins**
 - **Prompts** - projects that help to configure shell prompts
 - **Python tools** - tools that ease work with Python virtual environments
 
 # GitHub Stars as an indicator of project popularity
 
 One of the ways to estimate project popularity is to look at the number of stars. GitHub users often use stars as a kind of bookmark to mark interesting projects to come back to later. People that marked a project with a star are called "Star gazers". For sake of this article, to extract the "most popular" plugin projects I have used stars.
-
-
 
 # Top popular plugins as of November 2021
 
@@ -73,11 +71,9 @@ In the main view, you can interactively browse commit history and jump into insp
 
 Next to git-gui it is my favorite tool for staging git changes.
 
-
-
 # Frameworks
 
-Here is a quick glance at the most popular frameworks that manage configuration and plugins for Zsh. [Oh-my-zsh]((https://github.com/ohmyzsh/ohmyzsh)) regins here having ~10x stars compared to the closest contender [prezto](https://github.com/sorin-ionescu/prezto). 
+Here is a quick glance at the most popular frameworks that manage configuration and plugins for Zsh. [Oh-my-zsh]((https://github.com/ohmyzsh/ohmyzsh)) regins here having ~10x stars compared to the closest contender [prezto](https://github.com/sorin-ionescu/prezto).
 
 |                                      link                                       |                                                                                                                                                                     description                                                                                                                                                                     |stars |
 |---------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------|
@@ -120,7 +116,5 @@ Since Python dominates in the code I write, I have added a section for two proje
 # Final words
 
 It is interesting how the number of starts growing - the IT world includes more and more people every day. Lots of these people wish to optimize their work environment. Those who work often in console takes look at the helper tools listed on pages as [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) or [Terminals Are Sexy](https://github.com/k4m4/terminals-are-sexy). This article aimed to highlight projects gaining a lot of attention and brings added value to the awesome lists that are ordered alphabetically without information on the number of stars.
-
-
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

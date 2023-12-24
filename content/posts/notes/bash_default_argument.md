@@ -40,7 +40,7 @@ bar
 Thu Mar 29 10:03:40 ADT 2018
 ```
 
-**Credits:** 
+**Credits:**
 This solution is taken from [How to write a bash script that takes optional input arguments? - Stack Overflow](https://stackoverflow.com/a/33419280/3247880)
 
 up::[[MOC_Shell_Bash_Zsh]]

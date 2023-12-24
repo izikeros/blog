@@ -29,7 +29,6 @@ Learn about automation tools, such as Jenkins and Ansible, to automate ML workfl
 
 <script type="module"> import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs'; mermaid.initialize({ startOnLoad: true }); </script>
 
-
 <pre class="mermaid">
 graph TD;
     Data_Management-->Experimentation;

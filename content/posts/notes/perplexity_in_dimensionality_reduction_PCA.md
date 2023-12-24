@@ -125,5 +125,5 @@ We also provided a Python implementation to calculate perplexity and demonstrate
 
 Perplexity is a valuable tool in the evaluation and comparison of dimensionality reduction methods. It offers insights into the preservation of the local structure and can guide the selection of appropriate techniques for different datasets and applications.
 
-See also: 
+See also:
 [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)

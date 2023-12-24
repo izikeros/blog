@@ -11,17 +11,22 @@ suggested_tags: docstring, python, style
 ---
 
 # Docstring examples in various styles
+
 [Reference](http://queirozf.com/entries/python-docstrings-reference-examples)
 
 # Support across the tools I use
+
 ## pyment
+
 supports: "javadoc", "reST", "numpydoc", "google"
 See: [Pyment](), [Python convert docstring styles](./python-convert-docstring-styles/)
 
 ## pdoc3
+
 Currently, pure Markdown (with [extensions](https://python-markdown.github.io/extensions/#officially-supported-extensions), [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html), and [Google-style](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings) docstrings formats are supported, along with some reST directives.
 
 ## pycharm
+
 supports the following styles for docstrings:
 
 - plain (handwritten, no template or format enforcement)
@@ -30,9 +35,10 @@ supports the following styles for docstrings:
 - [google](http://sphinxcontrib-napoleon.readthedocs.org/en/latest/example_google.html)
 - [numpy](http://sphinxcontrib-napoleon.readthedocs.org/en/latest/example_numpy.html)
 
-
 # Python Docstring conventions
+
 ## Google-style example
+
 from: [Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/extensions/example_google.html)
 
 ```python
@@ -81,7 +87,6 @@ def fetch_smalltable_rows(table_handle: smalltable.Table,
 
 from: [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html)
 
-
 ```
 """Docstring for the example.py module.
 
@@ -119,7 +124,6 @@ import matplotlib.pyplot as plt
 # be able to paste and execute docstrings after importing only the
 # numpy module itself, unabbreviated.
 ```
-
 
 ```python
 

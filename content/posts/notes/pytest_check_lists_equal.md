@@ -8,6 +8,7 @@ Tags: pytest, python, assert
 Title: Pytest Check if Lists Are Equal
 ---
 In the assertions this can be useful to check if two lists are equal:
+
 ```python
 def check_lists_equal(list_1: list, list_2: list) -> bool:
     """Check if two lists are equal."""

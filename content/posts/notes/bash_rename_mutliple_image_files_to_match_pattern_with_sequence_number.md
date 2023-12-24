@@ -70,6 +70,7 @@ To use this script, follow these steps:
 After running the script, all the image files in the directory should be renamed according to the pattern you specified.
 
 ## Oneliner
+
 Here's a one-liner Bash command that renames all image files in the current directory to match the pattern "img_xxx.jpg" where "xxx" is a sequence number starting from 000:
 
 ```bash
@@ -91,6 +92,7 @@ Save the file and then run `source ~/.bashrc` or `source ~/.bash_aliases` to app
 Afterward, you can use the `rename_images` command in your terminal to execute the one-liner script and rename the image files in the current directory accordingly.
 
 ## Python version
+
 Here's a Python script that achieves the same functionality as the Bash script, renaming image files while preserving their original extensions:
 
 ```python

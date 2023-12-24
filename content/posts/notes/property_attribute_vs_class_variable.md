@@ -12,7 +12,8 @@ todo: verify the code
 
 In Python, you can store data within a class using properties/attributes or class variables.
 
-## Properties/Attributes:
+## Properties/Attributes
+
 Properties, also called attributes, are variables that store data within a class instance. They are defined within the class, but outside of any methods. Here's an example:
 
 ```python
@@ -32,6 +33,7 @@ print(person.age)   # Output: 31
 ```
 
 ## Class Variables
+
 Class variables are variables that are shared among all instances of a class. They are defined within the class, but outside of any methods and are prefixed with the class name. Here's an example:
 
 ```python
@@ -55,7 +57,8 @@ print(Person.count)  # Output: 2
 ```
 
 ### Difference
-> The main difference between attributes/properties and class variables is that **attributes are specific to each instance** of a class, while **class variables are shared among all instances**. 
+>
+> The main difference between attributes/properties and class variables is that **attributes are specific to each instance** of a class, while **class variables are shared among all instances**.
 
 Attributes are defined within the `__init__` method and can be different for each instance. Class variables are defined outside of any methods and are shared by all instances.
 
@@ -64,4 +67,5 @@ Another difference is that attributes/properties can be accessed and modified us
 In general, if you need to store data that is specific to each instance of a class, use attributes/properties. If you need to store data that is shared among all instances of a class, use class variables.
 
 ## References
+
 [python - difference between class variable and class attribute - Stack Overflow](https://stackoverflow.com/questions/22822710/difference-between-class-variable-and-class-attribute)

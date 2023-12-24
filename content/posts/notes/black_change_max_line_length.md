@@ -34,6 +34,7 @@ Once you have installed Black, you need to create a configuration file that spec
 ```toml
 [tool.black] line-length = 88
 ```
+
 In the example above, we have set the maximum line length to 88 characters. You can set the maximum line length to any value you prefer.
 
 ### Step 3: Run Black
@@ -49,6 +50,7 @@ The command above will format all Python files in the current directory using th
 Setting the maximum line length for Black is an important step in maintaining consistent and readable code. By following the steps outlined in this blog post, you can easily change the maximum line length for Black and ensure that your code is easy to read and review. Remember to choose a maximum line length that works for your project and be consistent in your coding style. Happy coding!
 
 ## The debate over the maximum line length
+
 The concept of maximum line length is something that has been ingrained in the world of programming for a long time. In particular, the concept of a "maximum line length" has been used to set a hard limit on the number of characters that can be used in a single line of code. This concept has been widely adopted by various programming languages and tools, including Black - a popular code formatting tool for Python.
 
 Black is an opinionated code formatter that automatically formats your code to adhere to a set of predefined rules. One of these rules is the maximum line length, which is set by default to 88 characters. This means that any line of code that exceeds 88 characters will be automatically reformatted by Black to fit within this limit. While this may seem like a relatively minor aspect of coding, it is a topic that has generated a lot of debate among developers.

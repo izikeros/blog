@@ -17,7 +17,7 @@ slug: top-popular-zsh-plugins-on-github-2023
 The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 2100+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users and console users in general. As in previous year, I have divided them into four categories:
 
 - **Tools** - general tools that are popular among console lovers, in most cases not limited to Zsh
-- **Frameworks** - tools for managing Zsh configuration and plugins 
+- **Frameworks** - tools for managing Zsh configuration and plugins
 - **Prompts** - projects that help to configure shell prompts
 - **Python tools** - tools that ease work with Python virtual environments
 
@@ -39,7 +39,9 @@ Shortcuts to categories:
 <!-- /MarkdownTOC -->
 
 <a id="tools"></a>
+
 ## Tools
+
 | link                                                                            | description                                                                                                                                                                      | stars |
 | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
 | [thefuck](https://github.com/nvbn/thefuck)                                      | Magnificent app which corrects your previous console command.                                                                                                                    | 75.5k |
@@ -60,11 +62,12 @@ Shortcuts to categories:
 | [powerlevel9k](https://github.com/bhilburn/powerlevel9k)                        | Powerlevel9k was a tool for building a beautiful and highly functional CLI, customized for you. P9k had a substantial impact on CLI UX, and its legacy is now continued by P10k. | 13.4k |
 | [ranger](https://github.com/ranger/ranger)                                      | A VIM-inspired filemanager for the console                                                                                                                                       | 12.8k |
 | [navi](https://github.com/denisidoro/navi)                                      | An interactive cheatsheet tool for the command-line                                                                                                                              | 12.4k |
-|[shellfirm](https://github.com/kaplanelad/shellfirm)               |Intercept any risky patterns (default or defined by you) and prompt you a small challenge for double verification                                                    |0.7k |                                                                                
+|[shellfirm](https://github.com/kaplanelad/shellfirm)               |Intercept any risky patterns (default or defined by you) and prompt you a small challenge for double verification                                                    |0.7k |
 
 Please find description of selected tools that were not described in previous years.
 
 ### navi
+
 An interactive cheatsheet tool for the command-line.
 
 [![Demo](https://camo.githubusercontent.com/d3cba877034f1c46a893a248355c1f923ce96906df8bd42c321f68923d09da29/68747470733a2f2f61736369696e656d612e6f72672f612f3430363436312e737667)](https://asciinema.org/a/406461)
@@ -72,11 +75,14 @@ An interactive cheatsheet tool for the command-line.
 **navi** allows you to browse through cheatsheets (that you may write yourself or download from maintainers) and execute commands. Suggested values for arguments are dynamically displayed in a list.
 
 ### shellfirm
+
 `shellfirm` will intercept any risky patterns and immediately prompt a small challenge that will double verify your action, think of it as a captcha for your terminal.
 ![shellfirm example](https://github.com/kaplanelad/shellfirm/raw/main/docs/media/example.gif)
 
 <a id="frameworks"></a>
+
 ## Frameworks
+
 The top-3 Zsh frameworks in the ranking remains the same: Oh My Zsh, prezto and antigen.
 
 |                                   link                                    |                                                                             description                                                                             |stars |
@@ -92,7 +98,9 @@ The top-3 Zsh frameworks in the ranking remains the same: Oh My Zsh, prezto and 
 
 Personally, I use zgen, which works well however, last commits to the repo of this projects are from 2018. There is continuation of the heritage of this plugin manager in the project called: [zgenom](https://github.com/jandamm/zgenom)
 <a id="prompts"></a>
+
 ## Prompts
+
 |                               link                                |                                                                             description                                                                             |stars|
 |-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
 |[spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt)| Minimalistic, powerful and extremely customizable Zsh prompt                                                                                                        |17.9k|
@@ -113,7 +121,9 @@ Personally, I use zgen, which works well however, last commits to the repo of th
 |[posh-git-sh](https://github.com/lyze/posh-git-sh)                 |Bash/ZSH version of the posh-git command prompt                                                                                                                      |0.4k |
 
 <a id="python-tools"></a>
+
 ## Python tools
+
 Since I work a lot in Python environment - this category will be bit longer than it normally should be.
 
 |                                          link                                           |                                                                                    description                                                                                     |stars|
@@ -133,10 +143,10 @@ Since I work a lot in Python environment - this category will be bit longer than
 |[one-key-linux-setup](https://github.com/miracleyoo/one-key-linux-setup)                 |Scripts which aims to initialize and configure a linux system quickly. Mainly include update, zsh, oh-my-zsh, zsh plugins, python, and so on. Continue to update and welcome issues.|7    |
 |[zsh-activate-py-environment](https://github.com/se-jaeger/zsh-activate-py-environment)  |ZSH plugin that automagically detects and activates your python environments (poetry, virtualenv, conda) while traversing directories.                                              |7    |
 
-
-
 <a id="fuzzy-finders"></a>
+
 ## Fuzzy finders
+
 | link                                                                        | description                                                                               | stars |
 | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----- |
 | [fzf](https://github.com/junegunn/fzf)                                      | A command-line fuzzy finder                                                               | 49.5k |
@@ -151,7 +161,9 @@ Note other, less popular tools in that category:
 [pmy](https://github.com/relastle/pmy), [zeno.zsh](https://github.com/yuki-yano/zeno.zsh), [fzf-zsh-completions](https://github.com/chitoku-k/fzf-zsh-completions),[fzshell](https://github.com/mnowotnik/fzshell),[zsh-fzy](https://github.com/aperezdc/zsh-fzy),[zsh-history-filter](https://github.com/MichaelAquilina/zsh-history-filter),[zsh-fzf-pass](https://github.com/smeagol74/zsh-fzf-pass),[zsh-plugin-fd](https://github.com/aubreypwd/zsh-plugin-fd),[zsh-fuzzy-wd](https://github.com/spodin/zsh-fuzzy-wd), [qwy](https://github.com/Ryooooooga/qwy)
 
 <a id="dockercontainers"></a>
+
 ## Docker/Containers
+
 Not mentioned in the ranking below but worth checking is [k9s](https://github.com/derailed/k9s) (19.4k stars).
 
 |                                         link                                          |                                         description                                         |stars|
@@ -163,12 +175,9 @@ Not mentioned in the ranking below but worth checking is [k9s](https://github.co
 |[docker-zsh-completion](https://github.com/greymd/docker-zsh-completion)               |Zsh completion for docker and docker-compose.                                                |40 |
 |[docker-compose-zsh-plugin](https://github.com/sroze/docker-compose-zsh-plugin)        |ZSH plugin that display status of project containers                                         |45 |
 
-
-
-
 ### K9s
+
 [K9s](https://github.com/derailed/k9s) provides a curses based terminal UI to interact with your Kubernetes clusters. The aim of this project is to make it easier to navigate, observe and manage your applications in the wild. K9s continually watches Kubernetes for changes and offers subsequent commands to interact with observed resources.
 ![k9s](https://golangexample.com/content/images/2019/02/screen_po.png)
-
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

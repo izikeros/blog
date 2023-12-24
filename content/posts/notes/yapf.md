@@ -13,6 +13,7 @@ if you are getting error:
 yapf: toml package is needed for using pyproject.toml as a configuration file
 
 you can use:
+
 ```
 -   repo: https://github.com/pre-commit/mirrors-yapf
     rev: v0.31.0
@@ -22,7 +23,7 @@ you can use:
 ```
 
 solution from user **[asottile](https://github.com/asottile)**
-https://github.com/pre-commit/mirrors-yapf/issues/15#issuecomment-814037905
+<https://github.com/pre-commit/mirrors-yapf/issues/15#issuecomment-814037905>
 
 X::[[black_yapf]]
 X::[[black_formatter]]

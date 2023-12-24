@@ -14,7 +14,7 @@ up::[[MOC_AI]]
 Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) are two matrix factorization methods used in machine learning and data analysis for dimensionality reduction. Though they are used for similar purposes, there are some key differences between the two. The key difference between Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) lies in their respective applications and the matrices they operate on.
 
 ## Dealing with the data
-   
+
 - **PCA** primarily deals with the covariance structure of the data. It's a statistical procedure that transforms the coordinates of a dataset into a new coordinate system. In the new system, the first axis corresponds to the first principal component that accounts for the maximum variance in the data. The second axis, perpendicular to the first, aligns with the direction of the second largest variance, and so on. PCA effectively tries to find orthogonal axes (the principal components) along which the variance of the data is maximized.
 - **SVD**, on the other hand, does not rely on a covariance matrix. It is a factorization of the original data matrix, and it decomposes the original data into three matrices. This can be done without computing covariance, and even allows to work with missing data.
 

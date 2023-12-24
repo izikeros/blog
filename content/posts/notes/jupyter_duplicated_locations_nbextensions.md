@@ -26,7 +26,6 @@ To diagnose the current state of your nbextensions, you can run the command `jup
 
 In summary, managing and preventing duplicated nbextensions files in Jupyter notebooks is important to prevent conflicts and errors. By understanding how nbextensions are installed and using the appropriate flags, you can control where they're installed and avoid duplicates. And if you do encounter duplicates, you can use the `jupyter nbextension uninstall` command to remove them and ensure smooth operation of your Jupyter notebooks.
 
-See also related GitHub issue: https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/25
+See also related GitHub issue: <https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/25>
 
 up::[[MOC_Jupyter_notebooks]]
-

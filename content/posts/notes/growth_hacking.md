@@ -29,16 +29,17 @@ Here are some key points about Growth Hacking:
 An example of a successful growth hack is Dropbox's referral program. They offered extra storage space to users who referred their friends, which led to a significant increase in user sign-ups. This is a classic example of a growth hack – a simple, cost-effective solution that led to substantial growth.
 
 ## References
+
 1. Book: "Growth Hacker Marketing: A Primer on the Future of PR, Marketing, and Advertising" by Ryan Holiday. This book is a good starting point for understanding the concept of growth hacking.
-    
+
 2. Book: "Hacking Growth: How Today's Fastest-Growing Companies Drive Breakout Success" by Sean Ellis and Morgan Brown. Sean Ellis is the person who coined the term "growth hacking," and this book provides a deep dive into the methodology.
-    
+
 3. [GrowthHackers](https://growthhackers.com/) - An online community where growth hackers share case studies, articles, and resources.
-    
+
 4. [The Growth Hacking Starter Guide - Real Examples](https://www.quicksprout.com/growth-hacking/) - An online guide that provides a comprehensive overview of growth hacking.
-    
+
 5. [Growth Hacking Made Simple: Definition](https://neilpatel.com/what-is-growth-hacking/) by Neil Patel
-    
+
 6. [Top 17 Growth Hacking Books to Read in 2022](https://growthrocks.com/blog/growth-hacking-books/)
 
 X::[[lean_startup]]
