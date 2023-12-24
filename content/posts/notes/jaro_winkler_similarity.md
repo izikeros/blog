@@ -7,6 +7,9 @@ Status: published
 Tags: nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex
 Category: note
 ---
+
+X::[[Tverski_similarity]]
+
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Jaro-Winkler Similarity](#jaro-winkler-similarity)

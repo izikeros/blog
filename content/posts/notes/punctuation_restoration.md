@@ -39,4 +39,4 @@ Despite these challenges, punctuation restoration using ML has shown promising r
 - [X-Punctuator](https://github.com/kaituoxu/X-Punctuator) - A PyTorch implementation of a punctuation prediction system using (B)LSTM, which automatically adds suitable punctuation into text without punctuation.
 
 up::[[MOC_AI]]
-X::[[nlp_deep_learning]]
+X::[[nlp]]

@@ -4,7 +4,7 @@ Slug: techniques-to-boost-rag-performance-in-production
 Date: 2023-11-01
 Modified: 2023-11-04
 Start: 2023-10-27
-tags: machine-learning, python, rag, llm, retrieval-augmented-generation, re-reanking, 
+tags: machine-learning, python, rag, llm, retrieval-augmented-generation, re-ranking, 
 Category: Generative AI
 Image: /images/head/boosting_RAG.jpg
 banner: "/images/head/boosting_RAG.jpg"

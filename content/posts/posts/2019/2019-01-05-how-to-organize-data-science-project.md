@@ -132,6 +132,14 @@ To bootstrap the software projects from a template one can use cookiecutter. You
 >
 > The replaced names can be file names, directory names, and strings inside files.
 
+X::[[2023-02-13-how_to_organize_datascience_project]]
+X::[[competitive_data_science_project]]
+X::[[MOC_Python_Project]]
+
+See also:
+- [[2023-01-19-common_types_of_data_science_projects|Common Types of Data Science Projects]]
+
+
 
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

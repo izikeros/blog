@@ -7,6 +7,8 @@ Status: published
 Tags: powerpoint-presentation, language-model, OpenAI-API, automation, artificial-intelligence, python-script, ChatGPT, presentation-outline, content-generation, python-pptx, openai, authentication, slide-customization, image-integration, interactive-presentations, natural-language-processing, advanced-features
 Category: note
 ---
+up::[[MOC_Generative_AI]]
+
 In this article, we'll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process.
 
 ## Prerequisites
@@ -124,7 +126,7 @@ While the script we've created is already capable of generating PowerPoint prese
 
 By implementing these features, the presentation generation script can become more versatile and provide a richer experience for users.
 
-## Alternative approach
+## Alternative approach - let LLM generate VisualBasic script
 In this article we use python to generate the slides. You can also ask model (ChatGPT) for a VisualBasic script that will generate presentation for you. You can learn this approach from the video: [Create Beautiful PowerPoint Slides with ChatGPT + VBA: Quick Tip! - YouTube](https://www.youtube.com/watch?v=JoedhPPi3O0)
 
 
@@ -133,5 +135,3 @@ In this article we use python to generate the slides. You can also ask model (Ch
 In this article, we've explored how to create a PowerPoint presentation using a language model, specifically OpenAI's GPT model through the Azure API. We've covered the steps from setting up the OpenAI API to generating an outline and filling the slides with content. Additionally, we discussed possible next features to enhance the script, such as slide customization, image integration, interactive presentations, and natural language processing. By expanding upon these features, you can create powerful presentation automation tools tailored to your specific needs.
 
 Automating presentation generation not only saves time and effort but also opens up new possibilities for creating engaging and informative presentations. With the help of AI and language models, we can revolutionize the way presentations are created, allowing presenters to focus more on refining their ideas and delivering impactful content.
-
-Remember, the possibilities are endless, and it's up to your creativity to take this script to the next level!

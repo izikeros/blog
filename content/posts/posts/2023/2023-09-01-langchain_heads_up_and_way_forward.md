@@ -13,6 +13,8 @@ Status: published
 prompt:
 ---
 
+X::[[langchain_alternatives]]
+
 ## Introduction
 
 [LangChain](https://docs.langchain.com/docs/), a popular framework for building applications with [large language models](https://en.wikipedia.org/wiki/Large_language_model) (LLMs), has been touted as a game-changer in the world of AI-driven development. However, as more users dive into the library and its capabilities, some have found that it falls short of expectations. In this section, we'll discuss ten issues with LangChain that have left users underwhelmed and questioning its value proposition.
