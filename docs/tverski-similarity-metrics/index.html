@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Tversky similarity and Jaro-Winkler Similarity similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications. Tversky Similarity Formula Python Example Jaro-Winkler Similarity (for reference) Summary …"/>
+    <meta name="keywords" content="nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex">
+    <meta expr:content="2023-12-10 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-12-10 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-12-10 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-12-10 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tverski Similarity Metrics",
+  "datePublished": "2023-12-10 00:00:00+01:00",
+  "dateModified": "2023-12-10 00:00:00+01:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Tverski Similarity Metrics"/>
+  <meta property="og:description" content="Tversky similarity and Jaro-Winkler Similarity similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications. Tversky Similarity Formula Python Example Jaro-Winkler Similarity (for reference) Summary …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/tverski-similarity-metrics/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-12-10 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-12-10 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="nlp"/>
+  <meta property="article:tag" content="text-similarity"/>
+  <meta property="article:tag" content="string-similarity"/>
+  <meta property="article:tag" content="similarity-metrics"/>
+  <meta property="article:tag" content="jaccard"/>
+  <meta property="article:tag" content="cosine-similarity"/>
+  <meta property="article:tag" content="levenshtein"/>
+  <meta property="article:tag" content="word-embeddings"/>
+  <meta property="article:tag" content="soundex"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Tverski Similarity Metrics"/>
+
+
+    <title>    Tverski Similarity Metrics
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-12-10 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Tverski%20Similarity%20Metrics&url=https%3A//www.safjan.com/tverski-similarity-metrics/&hashtags=nlp,text-similarity,string-similarity,similarity-metrics,jaccard,cosine-similarity,levenshtein,word-embeddings,soundex" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/tverski-similarity-metrics/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Tverski%20Similarity%20Metrics&u=https%3A//www.safjan.com/tverski-similarity-metrics/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/tverski-similarity-metrics/&title=Tverski%20Similarity%20Metrics" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="tverski-similarity-metrics">Tverski Similarity Metrics</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>Tversky similarity and <a href="https://www.safjan.com/jaro-winkler-similarity/">Jaro-Winkler Similarity</a> similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#tversky-similarity">Tversky Similarity</a></li>
+<li><a href="#formula">Formula</a></li>
+<li><a href="#python-example">Python Example</a></li>
+<li><a href="#jaro-winkler-similarity-for-reference">Jaro-Winkler Similarity (for reference)</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="tversky-similarity"></a></p>
+<h2>Tversky Similarity</h2>
+<p><strong>Tversky similarity is a metric used to compare sets</strong>, typically in the context of information retrieval, information retrieval evaluation, and recommendation systems. It was introduced by Amos Tversky in his work on set comparison. Tversky similarity takes into account the <strong>number of common elements</strong> between two sets as well as the <strong>differences in elements between them</strong>. It has two parameters, alpha and beta, which control the balance between precision and recall.</p>
+<p>Let's dive into the mathematical formula, explanation, and Python examples for  Tversky similarity.</p>
+<p><a id="formula"></a></p>
+<h3>Formula</h3>
+<p>Tversky similarity measures the similarity between two sets A and B, considering the trade-off between false positives and false negatives. The formula for Tversky similarity is:</p>
+<div class="math">$$
+Tversky(A, B) = \frac{|A \cap B|}{|A \cap B| + \alpha |A - B| + \beta |B - A|}
+$$</div>
+<p>Where:
+- <span class="math">\((|A \cap B|)\)</span> is the size of the intersection of sets A and B.
+- <span class="math">\((|A - B|)\)</span> is the size of the set difference of A minus B.
+- (<span class="math">\(|B - A|)\)</span> is the size of the set difference of B minus A.
+- <span class="math">\(\alpha\)</span> and <span class="math">\(\beta\)</span> are parameters that control the trade-off between precision and recall. When <span class="math">\(\alpha = \beta = 1\)</span>, the Tversky similarity becomes the Jaccard similarity.</p>
+<p><a id="python-example"></a></p>
+<h3>Python Example</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">tversky_similarity</span><span class="p">(</span><span class="n">set_a</span><span class="p">,</span> <span class="n">set_b</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+    <span class="n">intersection</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_a</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set_b</span><span class="p">))</span>
+    <span class="n">a_minus_b</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_a</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">set_b</span><span class="p">))</span>
+    <span class="n">b_minus_a</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_b</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">set_a</span><span class="p">))</span>
+
+    <span class="n">similarity</span> <span class="o">=</span> <span class="n">intersection</span> <span class="o">/</span> <span class="p">(</span><span class="n">intersection</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">a_minus_b</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">b_minus_a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">similarity</span>
+
+<span class="n">set1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">}</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;elderberry&quot;</span><span class="p">}</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">similarity</span> <span class="o">=</span> <span class="n">tversky_similarity</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tversky Similarity:&quot;</span><span class="p">,</span> <span class="n">similarity</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a id="jaro-winkler-similarity-for-reference"></a></p>
+<h2>Jaro-Winkler Similarity (for reference)</h2>
+<p>Jaro-Winkler similarity is a metric used to compare two strings, often used in record linkage and fuzzy string matching tasks. It was developed by William E. Winkler and Matthew A. Jaro. Jaro-Winkler similarity calculates a score between 0 and 1, where 1 indicates a perfect match and 0 indicates no similarity. It considers the number of matching characters between two strings and the positions of those matching characters. The Jaro-Winkler similarity gives more weight to the common prefix of the strings, making it particularly useful for comparing names and short strings. For more information about Jaro-Winkler similarity see: <a href="https://www.safjan.com/jaro-winkler-similarity/">Jaro-Winkler Similarity</a>.</p>
+<p><a id="summary"></a></p>
+<h2>Summary</h2>
+<p>The main differences between Tversky similarity and Jaro-Winkler similarity are:</p>
+<ul>
+<li><strong>Application Domain:</strong> Tversky similarity is used to compare sets, while Jaro-Winkler similarity is used to compare strings.</li>
+<li><strong>Parameters:</strong> Tversky similarity has parameters alpha and beta to control precision and recall, while Jaro-Winkler similarity does not have such parameters.</li>
+<li><strong>Target Data:</strong> Tversky similarity works with sets of items, while Jaro-Winkler similarity works with individual strings.</li>
+<li><strong>Use Cases:</strong> Tversky similarity is commonly used in information retrieval and recommendation systems, while Jaro-Winkler similarity is used in fuzzy string matching and record linkage tasks.</li>
+</ul>
+<p>X::<a href="https://www.safjan.com/jaro-winkler-similarity/">Jaro-Winkler Similarity</a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/nlp/">nlp</a>
+                        <a href="https://www.safjan.com/tag/text-similarity/">text-similarity</a>
+                        <a href="https://www.safjan.com/tag/string-similarity/">string-similarity</a>
+                        <a href="https://www.safjan.com/tag/similarity-metrics/">similarity-metrics</a>
+                        <a href="https://www.safjan.com/tag/jaccard/">jaccard</a>
+                        <a href="https://www.safjan.com/tag/cosine-similarity/">cosine-similarity</a>
+                        <a href="https://www.safjan.com/tag/levenshtein/">levenshtein</a>
+                        <a href="https://www.safjan.com/tag/word-embeddings/">word-embeddings</a>
+                        <a href="https://www.safjan.com/tag/soundex/">soundex</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/jaro-winkler-similarity/">Jaro-Winkler Similarity</a></li>
+                        <li><a href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/">Understanding the Differences in Language Models - Transformers vs. Markov Models</a></li>
+                        <li><a href="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/">From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques</a></li>
+                        <li><a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/">Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</a></li>
+                        <li><a href="https://www.safjan.com/split-glued-or-joined-words/">Split glued or joined words</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/github-search-techniques/" title="GitHub Search Techniques">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

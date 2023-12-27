@@ -12,9 +12,11 @@ In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique kn
 
 ## What is RAG-fusion?
 
-The principle behind RAG-fusion is to generate multiple versions of the user's original query using a LLM, and then re-rank the results to select the most relevant answers.
+**The principle behind RAG-fusion is to generate multiple versions of the user's original query using a LLM, and then re-rank the results to select the most relevant retrieved parts.**
 
-For instance, the prompt template for this task might look something like this: "Generate multiple search queries related to: {original_query}", where `{original_query}` is a placeholder for the user's original query. This step enables the model to explore different perspectives and interpretations of the original query, thereby broadening the range of potential responses.
+> NOTE: The term RAG in the name of the technique might be a bit misleading since "RAG-fusion" refers only to the first part of RAG - retrieval process.
+
+How it works? For instance, the prompt template for this task might look something like this: "Generate multiple search queries related to: {original_query}", where `{original_query}` is a placeholder for the user's original query. This step enables the model to explore different perspectives and interpretations of the original query, thereby broadening the range of potential responses.
 
 ## Re-ranking: A Crucial Step
 
@@ -42,3 +44,4 @@ up::[[MOC_RAG]]
 
 - [GitHub - Raudaschl/rag-fusion](https://github.com/Raudaschl/rag-fusion/tree/master) - exemplary implementation
 - [Forget RAG, the Future is RAG-Fusion | by Adrian H. Raudaschl | Oct, 2023 | Towards Data Science](https://towardsdatascience.com/forget-rag-the-future-is-rag-fusion-1147298d8ad1)
+- RAG-fussion in LangChain: [usage](https://python.langchain.com/docs/templates/rag-fusion), template [code](https://github.com/langchain-ai/langchain/tree/master/templates/rag-fusion)

@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="NIM is a statically typed, efficient language that, despite being less popular than Python or Java, has a unique set of characteristics making it ideal for specific use-cases. One of these involves implementing deep learning algorithms. This blog post will guide you …"/>
+    <meta name="keywords" content="nim, deep-learning, scinim, arraymancer, flambleau">
+    <meta expr:content="2023-02-26 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2023-02-26 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-02-26 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2023-02-26 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deep Learning with Nim",
+  "datePublished": "2023-02-26 00:00:00+01:00",
+  "dateModified": "2023-02-26 00:00:00+01:00"
+}
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Deep Learning with Nim"/>
+  <meta property="og:description" content="NIM is a statically typed, efficient language that, despite being less popular than Python or Java, has a unique set of characteristics making it ideal for specific use-cases. One of these involves implementing deep learning algorithms. This blog post will guide you …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/deep-learning-in-nim/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-02-26 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2023-02-26 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="nim"/>
+  <meta property="article:tag" content="deep-learning"/>
+  <meta property="article:tag" content="scinim"/>
+  <meta property="article:tag" content="arraymancer"/>
+  <meta property="article:tag" content="flambleau"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Deep Learning with Nim"/>
+
+
+    <title>    Deep Learning with Nim
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2023-02-26 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Deep%20Learning%20with%20Nim&url=https%3A//www.safjan.com/deep-learning-in-nim/&hashtags=nim,deep-learning,scinim,arraymancer,flambleau" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/deep-learning-in-nim/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Deep%20Learning%20with%20Nim&u=https%3A//www.safjan.com/deep-learning-in-nim/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/deep-learning-in-nim/&title=Deep%20Learning%20with%20Nim" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="deep-learning-in-nim">Deep Learning with Nim</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>NIM is a statically typed, efficient language that, despite being less popular than Python or Java, has a unique set of characteristics making it ideal for specific use-cases. One of these involves implementing deep learning algorithms. This blog post will guide you through the process of getting started with deep learning in NIM and will explore some existing libraries such as SciNim, Arraymancer, and Flambleau.</p>
+<h2>What is NIM?</h2>
+<p><a href="https://nim-lang.org/">Nim</a> is an expressive language that combines the readability of Python, speed of C, and expressiveness of metaprogramming. It has a strong static type system that prevents numerous bugs at compile-time, creating reliable and maintainable programs. What makes Nim interesting for deep learning is its efficiency and ability to interface with other programming languages, such as C, C++, and Python.</p>
+<h2>Deep Learning in NIM</h2>
+<p>NIM is a general-purpose programming language that is statically typed and compiled, which makes it fast and efficient. NIM has a syntax that is similar to Python, which makes it easy for developers who are familiar with Python to learn and use NIM. NIM has built-in support for multi-dimensional arrays, which is essential for implementing deep learning algorithms. NIM also has a powerful macro system, which enables developers to write code that is concise and easy to read.</p>
+<h2>Deep Learning Libraries in NIM</h2>
+<p>To implement deep learning models in NIM, it’s crucial to be aware of some libraries that facilitate the task. This article will focus on three significant NIM libraries: SciNim, Arraymancer, and Flambleau.</p>
+<h3>SciNim</h3>
+<p><a href="https://github.com/SciNim">SciNim</a> is not a single library but more of a collective that provides scientific computation libraries for NIM. The aim is to provide high-speed, robust, and easy-to-use libraries for numeric computation. Let's look at two significant libraries under SciNim:</p>
+<ol>
+<li><a href="https://github.com/SciNim/getting-started"><em>getting-started</em></a>: Serves as a blueprint to demonstrate how to use the other libraries.</li>
+<li><a href="https://github.com/SciNim/nimblas"><em>nimblas</em></a>: Basic linear algebra bindings used by other modules.</li>
+<li><a href="https://github.com/SciNim/flambeau"><em>Flambleau</em></a>: Nim bindings to libtorch</li>
+</ol>
+<p>Although SciNim is still relatively new, it can already perform a lot of scientific computing tasks effectively.</p>
+<h3>Arraymancer</h3>
+<p><a href="https://mratsim.github.io/Arraymancer/">Arraymancer</a> is a tensor (N-dimensional array) project in Nim. The term "Arraymancer" is a combination of Array (data structure) and Necromancer (a magician who can revive the dead), symbolizing the revival of dead data through arrays.</p>
+<p>As a powerful numerical library, Arraymancer provides elegance and speed for machine learning and deep learning applications. It relies heavily on metaprogramming to provide an intuitive syntax for tensor operations. Features include:</p>
+<ol>
+<li>Array operations - It supports basic arithmetic, matrix multiplication, and numerical computations, which are crucial elements for any deep learning task.</li>
+<li>Deep learning - With support for manual and automatic differentiation, it makes defining and training deep learning models straightforward.</li>
+<li>Interoperability - Arraymancer can use and provide data to C, Python, and OpenCL, allowing for straightforward integration with existing codebases or libraries.</li>
+</ol>
+<h3>Flambleau</h3>
+<p><a href="https://github.com/SciNim/flambeau">Flambleau</a>, one of the newest additions to the Nim ecosystem, is a wrapper around PyTorch through the C++ API.</p>
+<p>While being still in development, Flambleau already offers:</p>
+<ol>
+<li>Tensors, Variables, and Functions - Gives you first-class citizens to work with deep learning.</li>
+<li>Auto-differentiation - Simplifies backpropagation in gradient descent algorithms.</li>
+<li>Neural Networks - Implement and train complex neural architectures.</li>
+</ol>
+<p>Even though Flambleau's capabilities are currently limited, it presents a significant future contribution to the field of deep learning, particularly for those programming in Nim.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://github.com/SciNim">SciNim</a></li>
+<li><a href="https://mratsim.github.io/Arraymancer/">Arraymancer</a></li>
+<li><a href="https://github.com/SciNim/flambeau">Flambleau</a> </li>
+<li><a href="https://www.reddit.com/r/nim/comments/vqoa62/deeplearning_in_nim/">nim vs. Flux.jl : r/nim</a></li>
+<li><a href="https://scinim.github.io/getting-started/">Introduction - SciNim Getting Started</a></li>
+</ul>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/nim/">nim</a>
+                        <a href="https://www.safjan.com/tag/deep-learning/">deep-learning</a>
+                        <a href="https://www.safjan.com/tag/scinim/">scinim</a>
+                        <a href="https://www.safjan.com/tag/arraymancer/">arraymancer</a>
+                        <a href="https://www.safjan.com/tag/flambleau/">flambleau</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/vscode-as-nim-ide/">Setup VS Code as NIM IDE</a></li>
+                        <li><a href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/">Understanding the Differences in Language Models - Transformers vs. Markov Models</a></li>
+                        <li><a href="https://www.safjan.com/contextual_understanding-speech-to-text/">Contextual Understanding in Automated Speech-to-Text Transcription - Machine Learning Techniques and Challenges</a></li>
+                        <li><a href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/">15 Tools for Document Deskewing and Dewarping</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/linux-for-old-x86-laptop-windows-like/" title="The Best Linux Distributions for Old X86 Laptop to Have Windows-Like Look and Feel.">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/best-alternatives-to-jupyter-notebooks/" title="Best Alternatives to Jupyter Notebooks">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2023 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
