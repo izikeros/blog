@@ -137,7 +137,6 @@ DATE_FOR_ARTICLE_GROUPS = False
 
 
 DIRECT_TEMPLATES = ["index", "categories", "tags", "archives", "til"]
-# DIRECT_TEMPLATES = ['index', 'categories', 'tags', 'archives']
 
 # ------- Footer ---------------------------
 from datetime import datetime
@@ -221,6 +220,8 @@ PLUGIN_PATHS = ["./pelican-plugins"]
 
 MARKUP = ("md", "ipynb")
 
+from pelican_jupyter import markup as nb_markup
+
 # to use mermaid install:
 # pip install git+https://github.com/Lee-W/md_mermaid#egg=md_mermaid
 # pip install Markdown==3.1.1 (<3.2)
@@ -235,7 +236,8 @@ BIBTEX_JOURNAL = "Krystian's Safjan Blog"
 
 if MY_THEME == "flex":
     PLUGINS = [
-        "pelican-ipynb.markup",
+        # "pelican-ipynb.markup",
+        nb_markup,
         # 'post_stats',
         "representative_image",
         "render_math",
