@@ -230,7 +230,7 @@ from pelican_jupyter import markup as nb_markup
 #         "md_mermaid": {},
 #     },
 # }
-# USE_MERMAID = True  # Adds javascript to base.html template
+USE_MERMAID = False  # Adds javascript to base.html template
 ADD_BIBTEX_NOTE = True
 BIBTEX_JOURNAL = "Krystian's Safjan Blog"
 

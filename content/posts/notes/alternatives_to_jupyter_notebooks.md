@@ -5,9 +5,10 @@ Modified: '2023-07-12'
 Prompt: what are the alternatives to jupyter notebooks. add quick characterization of each solution
 Slug: best-alternatives-to-jupyter-notebooks
 Status: published
-Tags: openai, jupyter, jupyter-notebooks, alternatives, r-studio, spyder, visual-studio-code, pycharm, zeppelin, databricks-notebook, colaboratory, apache-zeppelin, matlab-live-editor, r-markdown, emacs-org-mode, hydrogen, datacamp-light, trinket, observable, data-science, programming-languages, integrated-development-environment, web-based-notebook, machine-learning, data-visualization, interactive-documents, code-editor, debugging, statistical-modeling, version-control, data-analysis
+Tags: openai, jupyter, jupyter-notebooks, alternatives, r-studio, spyder, visual-studio-code, vscode, pycharm, zeppelin, databricks-notebook, colaboratory, apache-zeppelin, matlab-live-editor, r-markdown, emacs-org-mode, hydrogen, datacamp-light, trinket, observable, data-science, programming-languages, integrated-development-environment, web-based-notebook, machine-learning, data-visualization, interactive-documents, code-editor, debugging, statistical-modeling, version-control, data-analysis
 Title: Best Alternatives to Jupyter Notebooks
 ---
+up::[[MOC_Jupyter_notebooks]]
 
 There are several alternatives to Jupyter Notebooks, each with their own strengths and weaknesses. Here are some popular ones:
 
@@ -66,5 +67,7 @@ Trinket is a web-based code editor that allows for the creation of interactive c
 ## Observable
 
 Observable is a web-based notebook that allows for the creation of interactive visualizations and data-driven documents. It supports JavaScript and provides a variety of libraries and tools for data analysis and visualization.
+
+X::[[quarto_jupyter_publishing_notebooks_as_websites]]
 
 up::[[MOC_Jupyter_notebooks]]

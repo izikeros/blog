@@ -8,6 +8,7 @@ Status: published
 Tags: git, tag
 Title: Git - Annotated vs. Lightweight Tags
 ---
+
 In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.
 
 ## Annotated tags
