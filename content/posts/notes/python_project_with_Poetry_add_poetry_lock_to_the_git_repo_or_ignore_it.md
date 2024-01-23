@@ -7,6 +7,7 @@ Status: published
 tags: python, python-project, poetry, gitignore, git, repo
 Category: note
 ---
+up:[[MOC_Python_Project]]
 
 In a Python project managed with Poetry, you should definitely add the `poetry.lock` file to your Git repository. The `poetry.lock` file ensures that all project dependencies are specified with fixed versions, providing deterministic builds across different environments.
 

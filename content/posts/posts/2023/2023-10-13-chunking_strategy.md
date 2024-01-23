@@ -302,6 +302,8 @@ This strategy involves adding relevant metadata to each chunk. Metadata could in
 - Especially useful in tasks that involve analyzing the origin, authorship, or content of the chunks, such as text classification, document clustering, or information retrieval
 - Can be used to filter the sources used to provide context to LLMs.
 
+You can get intuition what is possible by reading llama_index documentation on metadata extraction and usage: [Metadata Extraction Usage Pattern - LlamaIndex 🦙 0.9.30](https://docs.llamaindex.ai/en/stable/module_guides/loading/documents_and_nodes/usage_metadata_extractor.html)
+
 #### Passing on Chunk Summaries
 
 In this strategy, each chunk is summarized, and that summary is passed on to the next chunk. This method provides a 'running context' that can enhance the understanding of the text and maintain the continuity of information.
@@ -363,6 +365,8 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 - [Matt Ambrogi](https://www.mattambrogi.com/posts/chunk-size-matters/) "Chunk Size Matters"
 - [Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex | by Ravi Theja | Oct, 2023 | LlamaIndex Blog](https://blog.llamaindex.ai/evaluating-the-ideal-chunk-size-for-a-rag-system-using-llamaindex-6207e5d3fec5)
 - short (4min 25s) overview of chunking methods from Weaviate: [Chunking Methods to use Custom Data with LLMs](https://www.youtube.com/watch?v=h5id4erwD4s)
+- [The 5 Levels Of Text Splitting For Retrieval - YouTube](https://www.youtube.com/watch?v=8OJC21T2SL4) (Fixed Size Chunking,  Recursive Chunking, Document Based Chunking, **Semantic Chunking**, Agentic Chunking - chunking strategy that explore the possibility to use LLM to determine how much and what text should be included in a chunk based on the context.) + [notebook](https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb)
+- Visualization of chunking - [ChunkViz](https://chunkviz.up.railway.app/)
 
 **Edits:**
 

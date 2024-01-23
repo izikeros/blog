@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="None"/>
+    <meta name="keywords" content="python, configuration, hydra, decouple">
+    <meta expr:content="2022-04-14 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-07-12 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2022-04-14 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Python - Configuration Management",
+  "datePublished": "2022-04-14 00:00:00+02:00",
+  "dateModified": "2023-07-12 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Python - Configuration Management"/>
+  <meta property="og:description" content="None"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/python-configuration-management/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-04-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="configuration"/>
+  <meta property="article:tag" content="hydra"/>
+  <meta property="article:tag" content="decouple"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>None</p>"/>
+    <meta name="twitter:title" content="Python - Configuration Management"/>
+
+
+    <title>    Python - Configuration Management
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2022-04-14 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Python%20-%20Configuration%20Management&url=https%3A//www.safjan.com/python-configuration-management/&hashtags=python,configuration,hydra,decouple" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/python-configuration-management/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Python%20-%20Configuration%20Management&u=https%3A//www.safjan.com/python-configuration-management/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/python-configuration-management/&title=Python%20-%20Configuration%20Management" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="python-configuration-management">Python - Configuration Management</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>Python is a powerful programming language that is widely used in a variety of applications, from web development and data science to machine learning and AI. One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.</p>
+<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
+<ul>
+<li><a href="#hydra">hydra</a></li>
+<li><a href="#decouple">decouple</a></li>
+<li><a href="#omegaconf">omegaconf</a></li>
+<li><a href="#upsilonconf">Upsilonconf</a></li>
+<li><a href="#ml_collections">ml_collections</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#basic-usage-of-ml_collections">Basic Usage of ml_collections</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="hydra"></a></p>
+<h2>hydra</h2>
+<p><a href="https://hydra.cc/">Hydra</a> is a Python library that allows you to access parameters from a configuration file inside a Python script.</p>
+<p>Features:</p>
+<ul>
+<li>composite configs</li>
+<li>various options for launching:<ul>
+<li>easy config modifications from cli</li>
+<li>multiruns</li>
+</ul>
+</li>
+</ul>
+<p>Create exemplary <code>main.yaml</code> in directory <code>config</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">raw</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/raw/sample.csv</span>
+
+<span class="nt">processed</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/processed/processed.csv</span>
+
+<span class="nt">final</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/final/final.csv</span>
+</code></pre></div>
+
+<p>then we can access the value inside the configuration file by adding the decorator <code>@hydra.main</code> on a specific function. Inside this function, we can access the value under <code>processed</code> and <code>path</code> by using a dot notation: <code>config.processed.path</code> .</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This is the demo code that uses hydra to access the parameters in under the directory config.</span>
+<span class="sd">Author: Khuyen Tran</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">hydra</span>
+<span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span>
+<span class="kn">from</span> <span class="nn">hydra.utils</span> <span class="kn">import</span> <span class="n">to_absolute_path</span> <span class="k">as</span> <span class="n">abspath</span>
+
+<span class="nd">@hydra</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="s2">&quot;../config&quot;</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="s1">&#39;main&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to process the data&quot;&quot;&quot;</span>
+
+    <span class="n">raw_path</span> <span class="o">=</span> <span class="n">abspath</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Process data using </span><span class="si">{</span><span class="n">raw_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columns used: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">use_columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">process_data</span><span class="p">()</span>
+</code></pre></div>
+
+<p>From: <a href="https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800">https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800</a></p>
+<p><a id="decouple"></a></p>
+<h2>decouple</h2>
+<blockquote>
+<p>Python Decouple: Strict separation of settings from code</p>
+</blockquote>
+<p>Decouple helps you to organize your settings so that you can change parameters without having to redeploy your app.</p>
+<p>It also makes it easy for you to:</p>
+<ul>
+<li>store parameters in ini or .env files;
+define comprehensive default values;</li>
+<li>properly convert values to the correct data type;</li>
+<li>have only one configuration module to rule all your instances.</li>
+<li>It was originally designed for Django, but became an independent generic tool for separating settings from code.</li>
+</ul>
+<p>Envvars works, but since <code>os.environ</code> only returns strings, it’s tricky.</p>
+<p>Let’s say you have an envvar <code>DEBUG=False</code>. If you run:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;DEBUG&#39;</span>]:
+<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">True</span>
+<span class="k">else</span>:
+<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">False</span>
+</code></pre></div>
+
+<p>It will print <code>True</code>, because <code>os.environ['DEBUG']</code> returns the string "False". Since it’s a non-empty string, it will be evaluated as True.</p>
+<p>Decouple provides a solution that doesn’t look like a workaround: <code>config('DEBUG', cast=bool)</code>.</p>
+<p>From: package description on pypi</p>
+<p><a id="omegaconf"></a></p>
+<h2>omegaconf</h2>
+<p><a href="https://github.com/omry/omegaconf">OmegaConf</a> is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.</p>
+<blockquote>
+<p>OmegaConf is also the backbone for the more advanced <a href="https://hydra.cc/">Hydra</a> framework.</p>
+</blockquote>
+<p>Documentation v2.2: <a href="https://omegaconf.readthedocs.io/en/2.2_branch/usage.html">Installation — OmegaConf 2.2.4.dev0 documentation</a></p>
+<p><a id="upsilonconf"></a></p>
+<h2>Upsilonconf</h2>
+<p>Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the <code>antlr</code> dependency). It is also very similar to the (discontinued) <a href="https://github.com/bcj/AttrDict">AttrDict</a> library. In the meantime, there is also the <a href="https://github.com/google/ml_collections">ml_collections</a> library, which seems to build on similar ideas as this project.</p>
+<p><a id="ml_collections"></a></p>
+<h2>ml_collections</h2>
+<p><a href="https://github.com/google/ml_collections">google/ml_collections</a>
+ML Collections is a library of Python Collections designed for ML use cases.
+The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</code> are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
+<a id="features"></a></p>
+<h3>Features</h3>
+<ul>
+<li>Dot-based access to fields.</li>
+<li>Locking mechanism to prevent spelling mistakes.</li>
+<li>Lazy computation.</li>
+<li>FrozenConfigDict() class which is immutable and hashable.</li>
+<li>Type safety.</li>
+<li>"Did you mean" functionality.</li>
+<li>Human readable printing (with valid references and cycles), using valid YAML format.</li>
+<li>Fields can be passed as keyword arguments using the <code>**</code> operator.</li>
+<li>There is one exception to the strong type-safety of the ConfigDict: <code>int</code> values can be passed in to fields of type <code>float</code>. In such a case, the value is type-converted to a <code>float</code> before being stored. (Back in the day of Python 2, there was a similar exception to allow both <code>str</code> and <code>unicode</code> values in string fields.)</li>
+</ul>
+<p><a id="basic-usage-of-ml_collections"></a></p>
+<h3><a href="https://github.com/google/ml_collections#basic-usage">Basic Usage of ml_collections</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ml_collections</span> <span class="kn">import</span> <span class="n">config_dict</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">float_field</span> <span class="o">=</span> <span class="mf">12.6</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">another_integer_field</span> <span class="o">=</span> <span class="mi">234</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">string_field</span> <span class="o">=</span> <span class="s1">&#39;tom&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span><span class="p">)</span>  <span class="c1"># Prints 123.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;integer_field&#39;</span><span class="p">])</span>  <span class="c1"># Prints 123 as well.</span>
+
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">cfg</span><span class="o">.</span><span class="n">integer_field</span> <span class="o">=</span> <span class="s1">&#39;tom&#39;</span>  <span class="c1"># Raises TypeError as this field is an integer.</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="n">cfg</span><span class="o">.</span><span class="n">float_field</span> <span class="o">=</span> <span class="mi">12</span>  <span class="c1"># Works: `Int` types can be assigned to `Float`.</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">string_field</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;bob&#39;</span>  <span class="c1"># `String` fields can store Unicode strings.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/configuration/">configuration</a>
+                        <a href="https://www.safjan.com/tag/hydra/">hydra</a>
+                        <a href="https://www.safjan.com/tag/decouple/">decouple</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/the-importance-of-adding-py-typed-file-to-your-typed-package/">The Importance of Adding a `py.typed` File to Your Typed Package</a></li>
+                        <li><a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a></li>
+                        <li><a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/">Techniques to Boost RAG Performance in Production</a></li>
+                        <li><a href="https://www.safjan.com/python-expertise-level-self-assessment/">Python Expertise Level - Self-Assessment</a></li>
+                        <li><a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/">Problems with Langchain and how to minimize their impact</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/clone-partition-in-linux/" title="Clone Partition in Linux">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/allow-arbitrary-types-pandas-in-pydantic/" title="Allow Arbitrary Types (Such as Pandas Dataframe) in Pydantic">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

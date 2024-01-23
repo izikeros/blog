@@ -1,5 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-01-01T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>entr - run arbitrary command when files change</title><link href="https://www.safjan.com/entr-run-arbitrary-command-when-files-change/" rel="alternate"></link><published>2024-01-01T00:00:00+01:00</published><updated>2024-01-01T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-01-01:/entr-run-arbitrary-command-when-files-change/</id><summary type="html">&lt;p&gt;&lt;code&gt;entr&lt;/code&gt; is a UNIX utility which runs arbitrary commands when files change. It helps in automating tasks during development such as rebuilding projects, running tests, or syncing files.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-01-20T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Avoid using curl -u “username:secret”!</title><link href="https://www.safjan.com/avoid-using-curl-u-usernamesecret/" rel="alternate"></link><published>2024-01-20T00:00:00+01:00</published><updated>2024-01-20T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-01-20:/avoid-using-curl-u-usernamesecret/</id><summary type="html">&lt;p&gt;When invoking an endpoint guarded by Basic Authentication, you might resort to the -u username:password feature in curl.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;curl -u "jane@examplewebsite.com:mySecretGuard" http://api.myawesomeapp.com/information&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;However, this approach is not the most efficient or secure.&lt;/p&gt;
+&lt;p&gt;In executing …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When invoking an endpoint guarded by Basic Authentication, you might resort to the -u username:password feature in curl.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;curl -u "jane@examplewebsite.com:mySecretGuard" http://api.myawesomeapp.com/information&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;However, this approach is not the most efficient or secure.&lt;/p&gt;
+&lt;p&gt;In executing this command, the credentials are archived in your shell history, posing a considerable security threat.&lt;/p&gt;
+&lt;p&gt;On the bright side, there's a straightforward solution to this issue!&lt;/p&gt;
+&lt;p&gt;Now you can generate a file in your home directory titled &lt;code&gt;.netrc&lt;/code&gt; as shown below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;myawesomeapp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;login&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;jane&lt;/span&gt;&lt;span class="nv"&gt;@examplewebsite&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mySecretGuard&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Afterwards, when running the curl command, just include -n and the credentials will be fetched from the file you just created.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;curl -n http://api.myawesomeapp.com/information&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To give you more context, curl is a command-line tool for getting or sending data using URL syntax. It supports various protocols, including but not limited to HTTP, HTTPS, FTP, and FTPS. Curl is widely used for making API requests.&lt;/p&gt;
+&lt;p&gt;In addition, the &lt;code&gt;.netrc&lt;/code&gt; file is a special file that stores login and initialisation information used by the auto-login process. It generally resides in the user's home directory. This file can contain information like the name of the machine to which to connect, and any necessary usernames and passwords.&lt;/p&gt;
+&lt;p&gt;On a final note, remember that this method works only with the curl command. Other command-line tools may require different approaches to secure authentication. Always prioritise data security by opting for methods that safeguard your login credentials.&lt;/p&gt;</content><category term="note"></category><category term="curl"></category><category term="security"></category><category term="shell-history"></category><category term="netrc"></category></entry><entry><title>HTML5 interactive elements</title><link href="https://www.safjan.com/html5-interactive-elements/" rel="alternate"></link><published>2024-01-04T00:00:00+01:00</published><updated>2024-01-04T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-01-04:/html5-interactive-elements/</id><summary type="html">&lt;h1&gt;HTML5 Interactive Elements: An Overview and Usage Guide&lt;/h1&gt;
+&lt;p&gt;HyperText Markup Language (HTML) is the standard markup language for documents designed to be rendered in a web browser. Over the years, HTML has evolved to keep up with the growing need for better …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;HTML5 Interactive Elements: An Overview and Usage Guide&lt;/h1&gt;
+&lt;p&gt;HyperText Markup Language (HTML) is the standard markup language for documents designed to be rendered in a web browser. Over the years, HTML has evolved to keep up with the growing need for better structure and interactivity. &lt;/p&gt;
+&lt;p&gt;HTML5, the latest version, introduces several interactive tags or elements, which makes building interactive, dynamic web content easier without having to resort to JavaScript or CSS. Let's dive into these interactive elements and have a look at some examples to understand their usage better.&lt;/p&gt;
+&lt;h2&gt;The &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;summary&amp;gt;&lt;/code&gt; Elements&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;summary&amp;gt;&lt;/code&gt; tags allow us to create an interactive widget that the user can open or close. The &lt;code&gt;&amp;lt;summary&amp;gt;&lt;/code&gt; tag is a child of the &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; tag, representing the summary or brief description of the content in &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;details&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;The Solar System&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;The Solar System includes the Sun, the Earth (where you are now!) and all the other planets.&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;details&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;details&gt;
+    &lt;summary&gt;The Solar System&lt;/summary&gt;
+    &lt;p&gt;The Solar System includes the Sun, the Earth (where you are now!) and all the other planets.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;h2&gt;The &lt;code&gt;&amp;lt;dialog&amp;gt;&lt;/code&gt; Element&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;dialog&amp;gt;&lt;/code&gt; element presents content in a dialogue box or a window. You can toggle the visibility of the &lt;code&gt;&amp;lt;dialog&amp;gt;&lt;/code&gt; by changing the 'open' attribute.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;dialog&lt;/span&gt; &lt;span class="na"&gt;open&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    This is a dialog box!&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;br&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;onclick&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;this.parentElement.close()&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Close&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;dialog&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;dialog open&gt;
+    This is a dialog box!&lt;br&gt;
+    &lt;button onclick="this.parentElement.close()"&gt;Close&lt;/button&gt;
+&lt;/dialog&gt;&lt;/p&gt;
+&lt;h2&gt;The &lt;code&gt;&amp;lt;datalist&amp;gt;&lt;/code&gt; Element&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;datalist&amp;gt;&lt;/code&gt; element permits the creation of pre-defined options for an &lt;code&gt;&amp;lt;input&amp;gt;&lt;/code&gt; element. User can either select an option or type in their input.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;label&lt;/span&gt; &lt;span class="na"&gt;for&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;browsers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Choose a browser from the list:&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;label&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;input&lt;/span&gt; &lt;span class="na"&gt;list&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;browsers&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;browser&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;browser&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;datalist&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;browsers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;option&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Chrome&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;option&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Firefox&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;option&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Internet Explorer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;option&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Opera&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;option&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Safari&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;label for="browsers"&gt;Choose a browser from the list:&lt;/label&gt;
+&lt;input list="browsers" name="browser" id="browser"&gt;
+&lt;datalist id="browsers"&gt;
+&lt;br&gt;
+&lt;option value="Chrome"&gt;
+  &lt;option value="Firefox"&gt;
+  &lt;option value="Internet Explorer"&gt;
+  &lt;option value="Opera"&gt;
+  &lt;option value="Safari"&gt;
+&lt;/datalist&gt;
+
+## The `&lt;progress&gt;` Element
+
+The `&lt;progress&gt;` element serves to represent the progress of a task. Use the `value` attribute to specify the current progress and the `max` attribute to indicate the progress bar's maximum value.
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;progress&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;70&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;progress&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;progress value="70" max="100"&gt;&lt;/progress&gt;
+
+## The `&lt;meter&gt;` Element
+
+The `&lt;meter&gt;` tag is used to represent the scalar measurement within a known range, or a fractional value. This could be the disk usage, the relevance of a query result or any other form of gauge.
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Disk usage: &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meter&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0.6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;60%&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;meter&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+Disk usage: &lt;meter value="0.6"&gt;60%&lt;/meter&gt;
+
+## The `&lt;output&gt;` Element
+
+The `&lt;output&gt;` tag is a container for calculation results. To link the output element with other elements, you can use the `for` attribute. 
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;form&lt;/span&gt; &lt;span class="na"&gt;oninput&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x.value=parseInt(a.value)+parseInt(b.value)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  0&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;input&lt;/span&gt; &lt;span class="na"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;range&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;50&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;100 +
+  0&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;input&lt;/span&gt; &lt;span class="na"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;range&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;b&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;50&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;100 =
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt; &lt;span class="na"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;for&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a b&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;output&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;form&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;form oninput="x.value=parseInt(a.value)+parseInt(b.value)"&gt;
+  0&lt;input type="range" id="a" value="50"&gt;100 +
+  0&lt;input type="range" id="b" value="50"&gt;100 =
+  &lt;output name="x" for="a b"&gt;&lt;/output&gt;
+&lt;/form&gt;
+
+## The `&lt;canvas&gt;` Element
+
+The `&lt;canvas&gt;` tag allows for dynamic and scriptable rendering of shapes and bitmap images. It's a low-level, procedural model that updates a bitmap.
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;canvas&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;myCanvas&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;200&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;height&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;100&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;border:1px solid #000000;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;canvas&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+
+You can then use JavaScript to interact with this element:
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;myCanvas&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ctx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getContext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;ctx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fillStyle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#FF0000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;ctx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fillRect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;80&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"&gt;
+&lt;/canvas&gt;
+&lt;script&gt;
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0, 0, 80, 80);
+&lt;/script&gt;
+
+
+
+&lt;/p&gt;</content><category term="note"></category><category term="html5"></category></entry><entry><title>entr - run arbitrary command when files change</title><link href="https://www.safjan.com/entr-run-arbitrary-command-when-files-change/" rel="alternate"></link><published>2024-01-01T00:00:00+01:00</published><updated>2024-01-01T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-01-01:/entr-run-arbitrary-command-when-files-change/</id><summary type="html">&lt;p&gt;&lt;code&gt;entr&lt;/code&gt; is a UNIX utility which runs arbitrary commands when files change. It helps in automating tasks during development such as rebuilding projects, running tests, or syncing files.&lt;/p&gt;
 &lt;p&gt;Here's a simple usage example:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ls *.c | entr make
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -491,8 +640,10 @@ Here is a mermaid diagram:
 &lt;p&gt;After adding the &lt;code&gt;py.typed&lt;/code&gt; file, release &lt;a href="https://github.com/whtsky/pixelmatch-py/commit/9c6297cedd10232ffbe23cc54a4e46e76d1fa13a"&gt;a new version for your package&lt;/a&gt;. This will ensure that the type information from your packages works as expected.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;If you're a Python package maintainer, don't forget to include a &lt;code&gt;py.typed&lt;/code&gt; file in your typed package. This simple step can make a significant difference in ensuring the correctness of your code and the usability of your package. It's a small effort that goes a long way in maintaining the quality and reliability of your Python package.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Credits&lt;/strong&gt; to &lt;a href="https://dev.to/whtsky"&gt;Wu Haotian&lt;/a&gt; for the article &lt;a href="https://dev.to/whtsky/don-t-forget-py-typed-for-your-typed-python-package-2aa3"&gt;Don't forget &lt;code&gt;py.typed&lt;/code&gt; for your typed Python package - DEV Community&lt;/a&gt; - I have learned about this mechanism from that post.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="package"></category><category term="mypy"></category><category term="poetry"></category><category term="typink"></category><category term="type-hints"></category><category term="pep"></category></entry><entry><title>In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</title><link href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/" rel="alternate"></link><published>2023-11-12T00:00:00+01:00</published><updated>2023-11-12T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-11-12:/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/</id><summary type="html">&lt;p&gt;In a Python project managed with Poetry, you should definitely add the &lt;code&gt;poetry.lock&lt;/code&gt; file to your Git repository. The &lt;code&gt;poetry.lock&lt;/code&gt; file ensures that all project dependencies are specified with fixed versions, providing deterministic builds across different environments.&lt;/p&gt;
-&lt;p&gt;By including the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In a Python project managed with Poetry, you should definitely add the &lt;code&gt;poetry.lock&lt;/code&gt; file to your Git repository. The &lt;code&gt;poetry.lock&lt;/code&gt; file ensures that all project dependencies are specified with fixed versions, providing deterministic builds across different environments.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Credits&lt;/strong&gt; to &lt;a href="https://dev.to/whtsky"&gt;Wu Haotian&lt;/a&gt; for the article &lt;a href="https://dev.to/whtsky/don-t-forget-py-typed-for-your-typed-python-package-2aa3"&gt;Don't forget &lt;code&gt;py.typed&lt;/code&gt; for your typed Python package - DEV Community&lt;/a&gt; - I have learned about this mechanism from that post.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="package"></category><category term="mypy"></category><category term="poetry"></category><category term="typink"></category><category term="type-hints"></category><category term="pep"></category></entry><entry><title>In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</title><link href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/" rel="alternate"></link><published>2023-11-12T00:00:00+01:00</published><updated>2023-11-12T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-11-12:/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/</id><summary type="html">&lt;p&gt;up:MOC_Python_Project&lt;/p&gt;
+&lt;p&gt;In a Python project managed with Poetry, you should definitely add the &lt;code&gt;poetry.lock&lt;/code&gt; file to your Git repository. The &lt;code&gt;poetry.lock&lt;/code&gt; file ensures that all project dependencies are specified with fixed versions, providing deterministic builds across different environments.&lt;/p&gt;
+&lt;p&gt;By …&lt;/p&gt;</summary><content type="html">&lt;p&gt;up:MOC_Python_Project&lt;/p&gt;
+&lt;p&gt;In a Python project managed with Poetry, you should definitely add the &lt;code&gt;poetry.lock&lt;/code&gt; file to your Git repository. The &lt;code&gt;poetry.lock&lt;/code&gt; file ensures that all project dependencies are specified with fixed versions, providing deterministic builds across different environments.&lt;/p&gt;
 &lt;p&gt;By including the &lt;code&gt;poetry.lock&lt;/code&gt; file in your repository, you ensure that anyone cloning or checking out your project will have the exact same versions of the dependencies installed. This guarantees that they will have a consistent development environment and can reproduce the same build and execution results.&lt;/p&gt;
 &lt;p&gt;Including the &lt;code&gt;poetry.lock&lt;/code&gt; file also serves as documentation for the specific versions of the dependencies used in your project. This information can be helpful for troubleshooting and debugging purposes.&lt;/p&gt;
 &lt;p&gt;When working with Poetry, you can also add the &lt;code&gt;pyproject.toml&lt;/code&gt; file to your Git repository. This file contains the project metadata and the dependencies specified in a readable format, giving a high-level overview of your project's requirements.&lt;/p&gt;
@@ -1462,6 +1613,7 @@ hybrid_search&lt;/p&gt;
 &lt;li&gt;Especially useful in tasks that involve analyzing the origin, authorship, or content of the chunks, such as text classification, document clustering, or information retrieval&lt;/li&gt;
 &lt;li&gt;Can be used to filter the sources used to provide context to LLMs.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;You can get intuition what is possible by reading llama_index documentation on metadata extraction and usage: &lt;a href="https://docs.llamaindex.ai/en/stable/module_guides/loading/documents_and_nodes/usage_metadata_extractor.html"&gt;Metadata Extraction Usage Pattern - LlamaIndex 🦙 0.9.30&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Passing on Chunk Summaries&lt;/h4&gt;
 &lt;p&gt;In this strategy, each chunk is summarized, and that summary is passed on to the next chunk. This method provides a 'running context' that can enhance the understanding of the text and maintain the continuity of information.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Pros:&lt;/strong&gt;&lt;/p&gt;
@@ -1521,6 +1673,8 @@ hybrid_search&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://www.mattambrogi.com/posts/chunk-size-matters/"&gt;Matt Ambrogi&lt;/a&gt; "Chunk Size Matters"&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://blog.llamaindex.ai/evaluating-the-ideal-chunk-size-for-a-rag-system-using-llamaindex-6207e5d3fec5"&gt;Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex | by Ravi Theja | Oct, 2023 | LlamaIndex Blog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;short (4min 25s) overview of chunking methods from Weaviate: &lt;a href="https://www.youtube.com/watch?v=h5id4erwD4s"&gt;Chunking Methods to use Custom Data with LLMs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=8OJC21T2SL4"&gt;The 5 Levels Of Text Splitting For Retrieval - YouTube&lt;/a&gt; (Fixed Size Chunking,  Recursive Chunking, Document Based Chunking, &lt;strong&gt;Semantic Chunking&lt;/strong&gt;, Agentic Chunking - chunking strategy that explore the possibility to use LLM to determine how much and what text should be included in a chunk based on the context.) + &lt;a href="https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb"&gt;notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Visualization of chunking - &lt;a href="https://chunkviz.up.railway.app/"&gt;ChunkViz&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Edits:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -7934,161 +8088,4 @@ X::&lt;a href="https://www.safjan.com/black-code-formatter/"&gt;Black - The Code
 &lt;li&gt;Diaspora protocol: &lt;a href="https://diaspora.github.io/diaspora_federation/protocol.html"&gt;https://diaspora.github.io/diaspora_federation/protocol.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Zot: &lt;a href="https://zotlabs.org/page/zot/zot-protocol"&gt;https://zotlabs.org/page/zot/zot-protocol&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Matrix: &lt;a href="https://matrix.org/docs/spec/"&gt;https://matrix.org/docs/spec/&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><category term="note"></category><category term="activitypub"></category><category term="social-networking"></category><category term="federated-social-web"></category><category term="rss"></category><category term="gitea"></category><category term="xmpp"></category></entry><entry><title>Federated Social Web Manifesto</title><link href="https://www.safjan.com/federated-social-web-manifesto/" rel="alternate"></link><published>2023-03-06T00:00:00+01:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-06:/federated-social-web-manifesto/</id><summary type="html">&lt;p&gt;The Federated Social Web manifesto is a call to action for all those who believe in the power of decentralized social networking. It is a declaration of principles and values that guide the development of a new kind of social web, one …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The Federated Social Web manifesto is a call to action for all those who believe in the power of decentralized social networking. It is a declaration of principles and values that guide the development of a new kind of social web, one that is built on the principles of openness, decentralization, and user control.&lt;/p&gt;
-&lt;p&gt;We believe that the web should be a place where &lt;strong&gt;individuals can express themselves freely&lt;/strong&gt; and connect with others without fear of censorship or surveillance. We believe that the web should be a platform for creativity, collaboration, and innovation, not a tool for centralized control and exploitation.&lt;/p&gt;
-&lt;p&gt;We recognize that the current state of social networking is dominated by a handful of &lt;strong&gt;large corporations&lt;/strong&gt; who control vast amounts of personal data and wield enormous power over what content is seen and shared. This &lt;strong&gt;centralization of power&lt;/strong&gt; is dangerous and undermines the core values of democracy and freedom of expression.&lt;/p&gt;
-&lt;p&gt;We reject the notion that social networking should be a &lt;strong&gt;walled garden&lt;/strong&gt;, where users are locked into closed platforms and forced to surrender control of their data and identity. We believe that social networking should be a &lt;strong&gt;distributed network of interconnected platforms&lt;/strong&gt;, where users can choose the services and features that best suit their needs, and where the power of decision-making is distributed across the network.&lt;/p&gt;
-&lt;p&gt;We believe that the Federated Social Web should be built on &lt;strong&gt;open standards&lt;/strong&gt; and protocols, and that &lt;strong&gt;interoperability&lt;/strong&gt; should be a key principle. Users should be able to communicate and share content seamlessly across different platforms, without the need for proprietary software or closed ecosystems.&lt;/p&gt;
-&lt;p&gt;We call on developers, designers, activists, and users to &lt;strong&gt;work together to create a new kind of social web&lt;/strong&gt;, one that is owned and controlled by the people, not by corporations or governments. We believe that the Federated Social Web can be a powerful tool for social change, and that it can help to create a more just, democratic, and equitable society.&lt;/p&gt;
-&lt;p&gt;We acknowledge that &lt;strong&gt;building a decentralized social web will not be easy&lt;/strong&gt;. It will require new technologies, new business models, and new ways of thinking about social networking. But we are committed to this vision, and we believe that with determination, creativity, and collaboration, we can build a better web for all.&lt;/p&gt;
-&lt;p&gt;We believe that the Federated Social Web should be guided by the following principles:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Openness&lt;/strong&gt;: The Federated Social Web should be built on open standards and protocols, and should be transparent and accessible to all.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Decentralization&lt;/strong&gt;: The Federated Social Web should be a distributed network of interconnected platforms, where users can choose the services and features that best suit their needs.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Interoperability&lt;/strong&gt;: The Federated Social Web should prioritize interoperability, so that users can communicate and share content seamlessly across different platforms.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;User Control&lt;/strong&gt;: Users should have complete control over their data and identity, and should be able to choose how and with whom they share their information.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Privacy&lt;/strong&gt;: The Federated Social Web should prioritize privacy and security, and should be designed to protect users from surveillance, censorship, and other forms of online oppression.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Accessibility&lt;/strong&gt;: The Federated Social Web should be accessible to all, regardless of their location, language, or ability.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Innovation&lt;/strong&gt;: The Federated Social Web should be a platform for creativity, collaboration, and innovation, where new ideas can be shared and developed freely.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;We believe that these principles can guide the development of a new kind of social web, one that is more democratic, more equitable, and more just. We call on all those who share this vision to join us in building a better web for all.&lt;/p&gt;</content><category term="note"></category><category term="federated-social-web"></category><category term="manifesto"></category><category term="decentralization"></category><category term="openness"></category><category term="interoperability"></category><category term="user-control"></category><category term="privacy"></category><category term="accessibility"></category><category term="innovation"></category></entry><entry><title>Rustification of Python</title><link href="https://www.safjan.com/rustification-of-python/" rel="alternate"></link><published>2023-03-06T00:00:00+01:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-06:/rustification-of-python/</id><summary type="html">&lt;p&gt;Python has been one of the most popular programming languages for years now. It’s known for its simplicity, ease of use, and versatility. However, with the growing demand for high-performance applications, the limitations of Python have become more apparent. To address …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python has been one of the most popular programming languages for years now. It’s known for its simplicity, ease of use, and versatility. However, with the growing demand for high-performance applications, the limitations of Python have become more apparent. To address these limitations, the Python community has started to Rustify Python. Rust is a systems programming language that emphasizes safety, speed, and concurrency. It's becoming increasingly popular, and many Python infrastructure and tools are now being built using Rust.&lt;/p&gt;
-&lt;p&gt;In this article, we’ll explore the trend of Rustification of Python, provide some concrete examples, and discuss the future role of Rust in Python.&lt;/p&gt;
-&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#rustification-of-python"&gt;Rustification of Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#concrete-examples"&gt;Concrete Examples&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#pyo3---use-rust-as-a-python-extension-module"&gt;PyO3 - use Rust as a Python extension module&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#maturin---build-and-publish-python-packages-with-rust-extensions"&gt;Maturin - build and publish Python packages with Rust extensions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#tokenizers---tokenization-of-natural-language-texts"&gt;Tokenizers - tokenization of natural language texts&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#ruff---linter-for-python-code"&gt;Ruff - linter for python code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#huak---python-package-manager"&gt;huak - python package manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#crossbeam---library-for-concurrent-programming"&gt;Crossbeam - library for concurrent programming&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#tantivy---full-text-search-engine"&gt;Tantivy - full-text search engine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#cursive---building-user-interfaces"&gt;Cursive - building user interfaces&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#pyoxidizer---standalone-python-applications"&gt;PyOxidizer - standalone Python applications&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-future-role-of-rust-in-python"&gt;The Future Role of Rust in Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#rustpython"&gt;RustPython&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#drawbacks-and-controversies-around-the-rustification-of-python"&gt;Drawbacks and controversies around the Rustification of Python&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#increased-complexity"&gt;Increased complexity&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#fragmentation-of-the-python-ecosystem"&gt;Fragmentation of the Python ecosystem&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#potential-for-bugs-in-rust-code"&gt;Potential for bugs in Rust code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#community-backlash"&gt;Community backlash&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-
-&lt;p&gt;&lt;a id="rustification-of-python"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Rustification of Python&lt;/h2&gt;
-&lt;p&gt;Rustification of Python is the process of integrating Rust code into Python applications. The primary reason for Rustification is to improve performance and memory safety. Rust has been designed to be a safe and efficient language. Its memory safety features ensure that programs are free from memory errors like null pointers, buffer overflows, and data races. Rust’s performance, coupled with its safety, makes it an ideal language for building critical infrastructure and applications.&lt;/p&gt;
-&lt;p&gt;Over the years, Rust has gained significant popularity, and its adoption is increasing at an impressive rate. Many companies, including Dropbox, Microsoft, Mozilla, and Amazon, are using Rust in their infrastructure. The Python community has also embraced Rust and is using it to improve performance and safety in Python applications.&lt;/p&gt;
-&lt;p&gt;&lt;a id="concrete-examples"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Concrete Examples&lt;/h2&gt;
-&lt;p&gt;Let's look at some concrete examples of how Rust is being used to Rustify Python.&lt;/p&gt;
-&lt;p&gt;&lt;a id="pyo3---use-rust-as-a-python-extension-module"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;PyO3 - use Rust as a Python extension module&lt;/h3&gt;
-&lt;p&gt;PyO3 is a Rust library that allows Rust to be used as a Python extension module. It allows Python developers to write performance-critical code in Rust and then expose it as a Python module. PyO3 is easy to use and has excellent documentation. It supports both Python 2 and 3.&lt;/p&gt;
-&lt;p&gt;Using PyO3, developers can write Rust code that can be called from Python. The Rust code can be compiled into a shared library, which can then be loaded into Python using the ctypes module. PyO3 makes it easy to write high-performance Python extensions in Rust.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;PyO3&lt;/strong&gt;: &lt;a href="https://github.com/PyO3/pyo3"&gt;https://github.com/PyO3/pyo3&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a id="maturin---build-and-publish-python-packages-with-rust-extensions"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Maturin - build and publish Python packages with Rust extensions&lt;/h3&gt;
-&lt;p&gt;Maturin is a Rust tool that makes it easy to build and publish Python packages with Rust extensions. It's designed to work with the Python packaging ecosystem and provides a simple command-line interface for building and publishing Rust extensions.&lt;/p&gt;
-&lt;p&gt;Maturin can be used to build Python wheels with Rust extensions, which can then be distributed through the Python Package Index (PyPI). Maturin also supports cross-compiling Rust extensions for different platforms.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Maturin&lt;/strong&gt;: &lt;a href="https://github.com/PyO3/maturin"&gt;https://github.com/PyO3/maturin&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a id="tokenizers---tokenization-of-natural-language-texts"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Tokenizers - tokenization of natural language texts&lt;/h3&gt;
-&lt;p&gt;Tokenizers is a Python library that provides efficient tokenization of natural language texts. It's used by many natural language processing libraries, including Transformers, Hugging Face, and spaCy. Tokenizers uses Rust to implement its performance-critical parts, such as byte-level encoding and decoding.&lt;/p&gt;
-&lt;p&gt;By using Rust, Tokenizers can achieve high performance while ensuring memory safety. Tokenizers is written in Python, and Rust is used only for performance-critical parts.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tokenizers&lt;/strong&gt;: &lt;a href="https://github.com/huggingface/tokenizers"&gt;https://github.com/huggingface/tokenizers&lt;/a&gt;
-&lt;a id="ruff---linter-for-python-code"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Ruff - linter for python code&lt;/h3&gt;
-&lt;p&gt;Ruff is a linter for Python code that's written in Rust. It's designed to be faster and more efficient than traditional Python linters. Ruff uses the PyO3 library to interact with Python's AST (Abstract Syntax Tree), which makes it easy to write Rust code that can analyze Python code.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Ruff&lt;/strong&gt;: &lt;a href="https://github.com/johnthagen/ruff"&gt;https://github.com/johnthagen/ruff&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a id="huak---python-package-manager"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;huak - python package manager&lt;/h3&gt;
-&lt;p&gt;A Python package manager written in Rust. The &lt;a href="https://github.com/rust-lang/cargo"&gt;Cargo&lt;/a&gt; for Python.
-Huak ("hwok") aims to support a base workflow for developing Python packages and projects. The process is linear and purpose oriented, establishing better familiarization with the steps.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;huak:&lt;/strong&gt; &lt;a href="https://github.com/cnpryer/huak"&gt;https://github.com/cnpryer/huak&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a id="crossbeam---library-for-concurrent-programming"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Crossbeam - library for concurrent programming&lt;/h3&gt;
-&lt;p&gt;Crossbeam is a Rust library for concurrent programming. It provides a set of data structures and synchronization primitives that make it easier to write high-performance, concurrent code. Crossbeam can be used in Python applications using the PyO3 library.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Crossbeam&lt;/strong&gt;: &lt;a href="https://github.com/crossbeam-rs/crossbeam"&gt;https://github.com/crossbeam-rs/crossbeam&lt;/a&gt;
-&lt;a id="tantivy---full-text-search-engine"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Tantivy - full-text search engine&lt;/h3&gt;
-&lt;p&gt;Tantivy is a full-text search engine library that's written in Rust. It's designed to be fast, memory-efficient, and easy to use. Tantivy can be used in Python applications using the PyO3 library.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tantivy&lt;/strong&gt;: &lt;a href="https://github.com/tantivy-search/tantivy"&gt;https://github.com/tantivy-search/tantivy&lt;/a&gt;
-&lt;a id="cursive---building-user-interfaces"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Cursive - building user interfaces&lt;/h3&gt;
-&lt;p&gt;Cursive is a Rust library for building user interfaces. It provides a set of widgets and layout primitives that make it easy to create interactive UIs. Cursive can be used in Python applications using the PyO3 library.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cursive&lt;/strong&gt;: &lt;a href="https://github.com/gyscos/cursive"&gt;https://github.com/gyscos/cursive&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a id="pyoxidizer---standalone-python-applications"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;PyOxidizer - standalone Python applications&lt;/h3&gt;
-&lt;p&gt;PyOxidizer is a Rust tool for building standalone Python applications. It allows Python developers to create a self-contained executable that includes the Python interpreter and all dependencies. PyOxidizer can be used to create Python applications that are easy to deploy and distribute.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;PyOxidizer&lt;/strong&gt;: &lt;a href="https://github.com/indygreg/PyOxidizer"&gt;https://github.com/indygreg/PyOxidizer&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;These are just a few examples of Rust-based tools for Python developers. Rust's performance and memory safety make it a great language for building critical infrastructure and high-performance applications, and the PyO3 library makes it easy to integrate Rust code into Python applications. As Rust continues to gain popularity, we can expect to see more Rust-based tools and libraries for Python developers.&lt;/p&gt;
-&lt;h3&gt;Rye - alternative to pip/poetry/hatch/virtualenv/&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://github.com/mitsuhiko/rye"&gt;mitsuhiko/rye&lt;/a&gt; - It installs and manages Python installations, manages &lt;code&gt;pyproject.toml&lt;/code&gt; files, installs and uninstalls dependencies, manages virtualenvs behind the scenes. It supports monorepos and global tool installations.&lt;/p&gt;
-&lt;p&gt;Rye: &lt;a href="https://github.com/mitsuhiko/rye"&gt;https://github.com/mitsuhiko/rye&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a id="the-future-role-of-rust-in-python"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;The Future Role of Rust in Python&lt;/h2&gt;
-&lt;p&gt;Rust has already made significant contributions to the Python ecosystem. Rust’s emphasis on performance and memory safety has made it an ideal language for building critical infrastructure and applications. Its adoption in the Python community is increasing at a rapid pace.&lt;/p&gt;
-&lt;p&gt;In the future, we can expect to see more Python infrastructure and tools being built using Rust. Rust's performance and memory safety features will be critical in building high-performance Python applications. We can also expect to see more Rust libraries being used in Python applications, like Tokenizers.&lt;/p&gt;
-&lt;p&gt;Furthermore, as Rust continues to gain popularity, we may see it becoming a first-class citizen in the Python ecosystem. We may see Python developers learning Rust to write performance-critical extensions for their Python applications. We may also see more Rust-specific tools and libraries being built for the Python ecosystem.&lt;/p&gt;
-&lt;p&gt;Rust’s popularity in the Python community has also led to the creation of Rust-based web frameworks, such as Tide and Rocket. These frameworks have the potential to compete with popular Python web frameworks like Django and Flask.&lt;/p&gt;
-&lt;p&gt;The Rustification of Python is not limited to performance-critical applications. Rust can also be used to build high-level abstractions that make it easier to write Python code. For example, the Rust-based library RustPython aims to create a Python interpreter entirely in Rust. This could lead to better performance and memory safety in Python programs.&lt;/p&gt;
-&lt;p&gt;Overall, Rustification of Python is an exciting trend that has the potential to revolutionize the Python ecosystem. By using Rust, Python developers can build high-performance, memory-safe applications that can scale to meet the demands of modern computing. Rust’s adoption in the Python community is a sign of its growing importance in the world of programming languages.&lt;/p&gt;
-&lt;p&gt;Rust is becoming an integral part of the Python ecosystem. Its emphasis on performance and memory safety has made it an ideal language for building critical infrastructure and applications. With the Rustification of Python, we can expect to see more high-performance, memory-safe Python applications being built. As Rust continues to gain popularity, it may even become a first-class citizen in the Python ecosystem.&lt;/p&gt;
-&lt;p&gt;&lt;a id="rustpython"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;RustPython&lt;/h2&gt;
-&lt;p&gt;There are many implementations of Python, e.g.: &lt;a href="https://github.com/python/cpython"&gt;CPython&lt;/a&gt; (C), &lt;a href="https://www.jython.org/"&gt;Jython&lt;/a&gt; (Java), &lt;a href="https://ironpython.net/"&gt;IronPython&lt;/a&gt; (.NET), &lt;a href="https://www.pypy.org/"&gt;PyPy&lt;/a&gt; (Python). Using Jython or IronPython ease integration respectively with Java or .NET applications. It is the same case with Rust - Python interpreter can be implemented in Rust and such implementation already exists: &lt;a href="https://rustpython.github.io/"&gt;RustPython&lt;/a&gt;. Why Rust implementation of Python? RustPython can be embedded into Rust programs to use Python as a scripting language for your application, or it can be compiled to WebAssembly in order to run Python in the browser.&lt;/p&gt;
-&lt;p&gt;&lt;a id="drawbacks-and-controversies-around-the-rustification-of-python"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Drawbacks and controversies around the Rustification of Python&lt;/h2&gt;
-&lt;p&gt;While the Rustification of Python has many benefits, there are also some drawbacks and controversies surrounding the trend. Here are a few criticisms and controversies:&lt;/p&gt;
-&lt;p&gt;&lt;a id="increased-complexity"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Increased complexity&lt;/h3&gt;
-&lt;p&gt;One criticism of using Rust in Python applications is that it adds complexity to the codebase. Rust is a complex language with a steep learning curve, and integrating Rust code into a Python application requires developers to have knowledge of both languages.&lt;/p&gt;
-&lt;p&gt;&lt;a id="fragmentation-of-the-python-ecosystem"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Fragmentation of the Python ecosystem&lt;/h3&gt;
-&lt;p&gt;Another concern is that the Rustification of Python may lead to fragmentation of the Python ecosystem. As more and more tools and libraries are built in Rust, it may become more difficult for Python developers to find and use compatible libraries and tools.&lt;/p&gt;
-&lt;p&gt;&lt;a id="potential-for-bugs-in-rust-code"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Potential for bugs in Rust code&lt;/h3&gt;
-&lt;p&gt;While Rust is designed to be memory-safe, it's still possible to introduce bugs and errors in Rust code. This can be a concern if Rust code is tightly integrated with a Python application, as a bug in the Rust code could potentially crash the entire application.&lt;/p&gt;
-&lt;p&gt;&lt;a id="community-backlash"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Community backlash&lt;/h3&gt;
-&lt;p&gt;Finally, there has been some backlash in the Python community to the Rustification trend. Some developers feel that Rust is being hyped as a solution to all of Python's problems, and that it's being overhyped at the expense of other languages and tools.&lt;/p&gt;
-&lt;p&gt;Overall, while there are some concerns and criticisms of the Rustification of Python, it's clear that Rust has become an important language in the Python ecosystem. As more and more tools and libraries are built in Rust, it will be interesting to see how Python developers adopt and integrate Rust into their workflows.
-&lt;a id="references"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;PyO3&lt;/strong&gt;: &lt;a href="https://github.com/PyO3/pyo3"&gt;https://github.com/PyO3/pyo3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Maturin&lt;/strong&gt;: &lt;a href="https://github.com/PyO3/maturin"&gt;https://github.com/PyO3/maturin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tokenizers&lt;/strong&gt;: &lt;a href="https://github.com/huggingface/tokenizers"&gt;https://github.com/huggingface/tokenizers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Ruff&lt;/strong&gt;: &lt;a href="https://github.com/johnthagen/ruff"&gt;https://github.com/johnthagen/ruff&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Crossbeam&lt;/strong&gt;: &lt;a href="https://github.com/crossbeam-rs/crossbeam"&gt;https://github.com/crossbeam-rs/crossbeam&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tantivy&lt;/strong&gt;: &lt;a href="https://github.com/tantivy-search/tantivy"&gt;https://github.com/tantivy-search/tantivy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cursive&lt;/strong&gt;: &lt;a href="https://github.com/gyscos/cursive"&gt;https://github.com/gyscos/cursive&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PyOxidizer&lt;/strong&gt;: &lt;a href="https://github.com/indygreg/PyOxidizer"&gt;https://github.com/indygreg/PyOxidizer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;case-study: speed-up python with Rust&lt;/strong&gt;: &lt;a href="https://ohadravid.github.io/posts/2023-03-rusty-python/"&gt;https://ohadravid.github.io/posts/2023-03-rusty-python/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Significant Revisions&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;2023-04-21: Add huak&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="rustification-of-python"></category><category term="python"></category><category term="rust"></category><category term="pyo3"></category><category term="maturin"></category><category term="tokenizers"></category><category term="performance"></category><category term="memory-safety"></category><category term="concurrent-programming"></category><category term="full-text-search"></category><category term="user-interface"></category><category term="standalone-applications"></category><category term="community"></category><category term="fragmentation"></category><category term="complexity"></category><category term="bugs"></category><category term="backlash"></category><category term="controversy"></category></entry></feed>
+&lt;/ol&gt;</content><category term="note"></category><category term="activitypub"></category><category term="social-networking"></category><category term="federated-social-web"></category><category term="rss"></category><category term="gitea"></category><category term="xmpp"></category></entry></feed>

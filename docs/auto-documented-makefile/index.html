@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="When working on large projects, it can be challenging to keep track of all the different make targets and their purposes. Fortunately, there&#39;s a solution to this problem: an auto-documented makefile. With this approach, you can add help information to your makefile …"/>
+    <meta name="keywords" content="auto-documented, makefile, documentation, help, make-help">
+    <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2023-07-12 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2022-05-12 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Auto Documented Makefile",
+  "datePublished": "2022-05-12 00:00:00+02:00",
+  "dateModified": "2023-07-12 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Auto Documented Makefile"/>
+  <meta property="og:description" content="When working on large projects, it can be challenging to keep track of all the different make targets and their purposes. Fortunately, there&#39;s a solution to this problem: an auto-documented makefile. With this approach, you can add help information to your makefile …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/auto-documented-makefile/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-05-12 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="auto-documented"/>
+  <meta property="article:tag" content="makefile"/>
+  <meta property="article:tag" content="documentation"/>
+  <meta property="article:tag" content="help"/>
+  <meta property="article:tag" content="make-help"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Auto Documented Makefile"/>
+
+
+    <title>    Auto Documented Makefile
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $0.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2022-05-12 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Auto%20Documented%20Makefile&url=https%3A//www.safjan.com/auto-documented-makefile/&hashtags=auto-documented,makefile,documentation,help,make-help" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/auto-documented-makefile/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Auto%20Documented%20Makefile&u=https%3A//www.safjan.com/auto-documented-makefile/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/auto-documented-makefile/&title=Auto%20Documented%20Makefile" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="auto-documented-makefile">Auto Documented Makefile</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>When working on large projects, it can be challenging to keep track of all the different make targets and their purposes. Fortunately, there's a solution to this problem: an auto-documented makefile. With this approach, you can add help information to your makefile, which will be automatically generated based on the comments in your code. This way, you can quickly and easily see what each target does, without having to go through the entire makefile to find the relevant information.</p>
+<p>The code provided in the example below is an example of how to add an auto-documented help option to make. The key part of the code is the <code>help</code> target, which is a <code>PHONY</code> target, meaning it's not associated with a file. The target uses <code>sed</code> to extract the comments that start with "##" and save them in a hold space. These comments are then printed and sorted in alphabetical order.</p>
+<p>The following is the key part of the code:</p>
+<div class="highlight"><pre><span></span><code>.PHONY:<span class="w"> </span>help
+help:
+<span class="w"> </span>@echo<span class="w"> </span>&quot;$$(tput<span class="w"> </span>bold)Available<span class="w"> </span>rules:$$(tput<span class="w"> </span>sgr0)&quot;
+<span class="w"> </span>@echo
+<span class="w"> </span>@sed<span class="w"> </span>-n<span class="w"> </span>-e<span class="w"> </span>&quot;/^##<span class="w"> </span>/<span class="w"> </span>{<span class="w"> </span>\
+<span class="w">  </span>h;<span class="w"> </span>\
+<span class="w">  </span>s/.*//;<span class="w"> </span>\
+<span class="w">  </span>:doc&quot;<span class="w"> </span>\
+<span class="w">  </span>-e<span class="w"> </span>&quot;H;<span class="w"> </span>\
+<span class="w">  </span>n;<span class="w"> </span>\
+<span class="w">  </span>s/^##<span class="w"> </span>//;<span class="w"> </span>\
+<span class="w">  </span>t<span class="w"> </span>doc&quot;<span class="w"> </span>\
+<span class="w">  </span>-e<span class="w"> </span>&quot;s/:.*//;<span class="w"> </span>\
+<span class="w">  </span>G;<span class="w"> </span>\
+<span class="w">  </span>s/\\n##<span class="w"> </span>/---/;<span class="w"> </span>\
+<span class="w">  </span>s/\\n/<span class="w"> </span>/g;<span class="w"> </span>\
+<span class="w">  </span>p;<span class="w"> </span>\
+<span class="w"> </span>}&quot;<span class="w"> </span><span class="cp">${</span><span class="n">MAKEFILE_LIST</span><span class="cp">}</span><span class="w"> </span>\
+</code></pre></div>
+
+<p>This <code>sed</code> script is used to extract the comments that start with "##" and save them in a hold space. Each option should have a comment above, as in the example:</p>
+<div class="highlight"><pre><span></span><code>## Convert markdown to pdf
+pdf: 
+ pandoc -N --toc --template template.latex --filter pandoc-citeproc -o README.pdf README.md
+</code></pre></div>
+
+<p>Then, the script uses <code>awk</code> to format the output and <code>more</code> to display the help information. The script uses the <code>MAKEFILE_LIST</code> variable, which contains the names of all the makefiles that are included by make.</p>
+<p>To use this code, you should add the code snippet at the end of your makefile and make sure that your makefile follows the pattern where each option should have a comment above, as in the example above.</p>
+<p>With this code in place, you can simply run <code>make help</code> in your terminal, and you'll see a list of all the available make targets, along with their associated help information. This can save you a lot of time and make it much easier to navigate your makefile, even on large projects.</p>
+<h2>Original makefile</h2>
+<p>Code at the end of Makefile.</p>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inspired</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">marmelab</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">blog</span><span class="o">/</span><span class="mi">2016</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="mi">29</span><span class="o">/</span><span class="n">auto</span><span class="o">-</span><span class="n">documented</span><span class="o">-</span><span class="n">makefile</span><span class="p">.</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="err">#</span><span class="w"> </span><span class="n">sed</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="nl">explained</span><span class="p">:</span>
+<span class="err">#</span><span class="w"> </span><span class="o">/^</span><span class="err">##</span><span class="o">/</span><span class="err">:</span>
+<span class="err">#</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="k">save</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">hold</span><span class="w"> </span><span class="nf">space</span>
+<span class="err">#</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="n">purge</span><span class="w"> </span><span class="n">line</span>
+<span class="err">#</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="nl">Loop</span><span class="p">:</span>
+<span class="err">#</span><span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="n">newline</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">hold</span><span class="w"> </span><span class="nf">space</span>
+<span class="err">#</span><span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="k">go</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">next</span><span class="w"> </span><span class="n">line</span>
+<span class="err">#</span><span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">starts</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">doc</span><span class="w"> </span><span class="n">comment</span><span class="p">,</span><span class="w"> </span><span class="n">strip</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">off</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">loop</span>
+<span class="err">#</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="n">prerequisites</span>
+<span class="err">#</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="k">hold</span><span class="w"> </span><span class="nf">space</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="w"> </span><span class="n">newline</span><span class="p">)</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">line</span>
+<span class="err">#</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="nf">replace</span><span class="w"> </span><span class="n">newline</span><span class="w"> </span><span class="n">plus</span><span class="w"> </span><span class="n">comments</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="err">`</span><span class="o">---</span><span class="err">`</span>
+<span class="err">#</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="k">print</span><span class="w"> </span><span class="n">line</span>
+<span class="err">#</span><span class="w"> </span><span class="n">Separate</span><span class="w"> </span><span class="n">expressions</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">necessary</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">delimited</span><span class="w"> </span><span class="k">by</span>
+<span class="err">#</span><span class="w"> </span><span class="n">semicolon</span><span class="p">;</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">stackoverflow</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="mi">11799865</span><span class="o">/</span><span class="mi">1968</span><span class="o">&gt;</span>
+<span class="p">.</span><span class="nl">PHONY</span><span class="p">:</span><span class="w"> </span><span class="n">help</span>
+<span class="nl">help</span><span class="p">:</span>
+<span class="w"> </span><span class="nv">@echo</span><span class="w"> </span><span class="ss">&quot;$$(tput bold)Available rules:$$(tput sgr0)&quot;</span>
+<span class="w"> </span><span class="nv">@echo</span>
+<span class="w"> </span><span class="nv">@sed</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="ss">&quot;/^## / { \</span>
+<span class="ss">  h; \</span>
+<span class="ss">  s/.*//; \</span>
+<span class="ss">  :doc&quot;</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="ss">&quot;H; \</span>
+<span class="ss">  n; \</span>
+<span class="ss">  s/^## //; \</span>
+<span class="ss">  t doc&quot;</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="ss">&quot;s/:.*//; \</span>
+<span class="ss">  G; \</span>
+<span class="ss">  s/\\n## /---/; \</span>
+<span class="ss">  s/\\n/ /g; \</span>
+<span class="ss">  p; \</span>
+<span class="ss"> }&quot;</span><span class="w"> </span><span class="err">${</span><span class="n">MAKEFILE_LIST</span><span class="err">}</span><span class="w"> </span><span class="err">\</span>
+<span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">LC_ALL</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">--</span><span class="k">ignore</span><span class="o">-</span><span class="k">case</span><span class="w"> </span><span class="err">\</span>
+<span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">awk</span><span class="w"> </span><span class="o">-</span><span class="n">F</span><span class="w"> </span><span class="s1">&#39;---&#39;</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="err">$$</span><span class="p">(</span><span class="n">tput</span><span class="w"> </span><span class="n">cols</span><span class="p">)</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">19</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">col_on</span><span class="o">=</span><span class="ss">&quot;$$(tput setaf 6)&quot;</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">col_off</span><span class="o">=</span><span class="ss">&quot;$$(tput sgr0)&quot;</span><span class="w"> </span><span class="err">\</span>
+<span class="w"> </span><span class="s1">&#39;{ \</span>
+<span class="s1">  printf &quot;%s%*s%s &quot;, col_on, -indent, $$1, col_off; \</span>
+<span class="s1">  n = split($$2, words, &quot; &quot;); \</span>
+<span class="s1">  line_length = ncol - indent; \</span>
+<span class="s1">  for (i = 1; i &lt;= n; i++) { \</span>
+<span class="s1">   line_length -= length(words[i]) + 1; \</span>
+<span class="s1">   if (line_length &lt;= 0) { \</span>
+<span class="s1">    line_length = ncol - indent - length(words[i]) - 1; \</span>
+<span class="s1">    printf &quot;\n%*s &quot;, -indent, &quot; &quot;; \</span>
+<span class="s1">   } \</span>
+<span class="s1">   printf &quot;%s &quot;, words[i]; \</span>
+<span class="s1">  } \</span>
+<span class="s1">  printf &quot;\n&quot;; \</span>
+<span class="s1"> }&#39;</span><span class="w"> </span><span class="err">\</span>
+<span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="n">shell</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="n">shell</span><span class="w"> </span><span class="n">uname</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Darwin</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="s1">&#39;--no-init --raw-control-chars&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Credits:</strong></p>
+<p>Code was found in some project, original author of the code unknown.
+<a href="http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html">http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html</a></p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/auto-documented/">auto-documented</a>
+                        <a href="https://www.safjan.com/tag/makefile/">makefile</a>
+                        <a href="https://www.safjan.com/tag/documentation/">documentation</a>
+                        <a href="https://www.safjan.com/tag/help/">help</a>
+                        <a href="https://www.safjan.com/tag/make-help/">make-help</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/python-documentation-with-pdoc3/">Python - Project Documentation From the Code With Pdoc3</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/awk/" title="Awk">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/bash-encode-decode-base64-and-hex/" title="Bash - Encode, Decode Base64 and Hex">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

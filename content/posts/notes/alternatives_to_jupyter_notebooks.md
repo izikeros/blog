@@ -24,6 +24,8 @@ Spyder is another IDE that is specifically designed for scientific computing wit
 
 Visual Studio Code (VSCode) is a general-purpose code editor that can be used for many programming languages. It has a rich ecosystem of extensions that can be used for data science tasks. VSCode also supports Markdown and provides a variety of debugging and testing tools.
 
+X::[[vscode_for_jupyter_notebooks]]
+
 ## PyCharm
 
 PyCharm is an IDE for Python that is popular among data scientists and developers. It provides a variety of features, such as a code editor, a debugger, and support for version control systems. PyCharm also supports scientific libraries and allows for the creation of interactive plots.
