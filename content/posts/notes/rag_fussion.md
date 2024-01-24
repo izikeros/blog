@@ -20,7 +20,7 @@ How it works? For instance, the prompt template for this task might look somethi
 
 ## Re-ranking: A Crucial Step
 
-The next vital step in the RAG-fusion process is re-ranking. This step is critical in determining the most pertinent answers to the user's query. The re-ranking process, often referred to as [[implementing_reciprocal_rank_fusion_in_python|Reciprocal Rank Fusion (RRF)]], involves collecting ranked search outcomes from multiple strategies.
+The next vital step in the RAG-fusion process is re-ranking. This step is critical in determining the most pertinent answers to the user's query. The re-ranking process, often referred to as [[posts/notes/implementing_reciprocal_rank_fusion_in_python|Reciprocal Rank Fusion (RRF)]], involves collecting ranked search outcomes from multiple strategies.
 
 Each document is assigned a reciprocal rank score. These scores are then merged to create a new ranking. The underlying principle here is that documents that consistently appear in top positions across diverse search strategies are likely more pertinent and should, therefore, receive a higher rank in the consolidated result.
 
@@ -36,7 +36,7 @@ RAG-fusion might be a powerful technique that brings together the strengths of l
 **NOTE:** For more methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].
 
 - X::[[2023-08-24_understanding-retrieval-augmented-generation-rag-empowering-llms]]
-- X::[[implementing_reciprocal_rank_fusion_in_python]]
+- X::[[posts/notes/implementing_reciprocal_rank_fusion_in_python]]
 
 up::[[MOC_RAG]]
 

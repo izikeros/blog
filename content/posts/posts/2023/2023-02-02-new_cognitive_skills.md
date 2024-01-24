@@ -12,6 +12,9 @@ Title: New Cognitive Skills in the Age of AI Tailored Information Presentation
 banner: "/images/head/cognitive_skills_ai_generative_models.jpg"
 prompt: null
 ---
+
+up::[[MOC_Generative_AI]]
+
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 ## Contents

@@ -139,4 +139,4 @@ Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands o
 4. [Rank-Biased Precision for Measurement of Retrieval Effectiveness](https://people.eng.unimelb.edu.au/jzobel/fulltext/acmtois08.pdf)
 5. [Reciprocal rank fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
 
-X::[[implementing_reciprocal_rank_fusion_in_python]]
+X::[[posts/notes/implementing_reciprocal_rank_fusion_in_python]]
