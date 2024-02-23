@@ -85,5 +85,9 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 <a id="references"></a>
 ## References
 - [LLM Monitoring and Observability — A Summary of Techniques and Approaches for Responsible AI | by Josh Poduska | Towards Data Science](https://towardsdatascience.com/llm-monitoring-and-observability-c28121e75c2f)
+- [Monitoring LLMs: Metrics, challenges, & hallucinations](https://www.aporia.com/learn/how-to-monitor-large-language-models/)
 - [mattcvincent/intro-_llm_-_observability_](https://github.com/mattcvincent/intro-llm-observability) - Intro to LLM Observability
+- [Demystifying Perplexity: An AI Expert‘s Comprehensive Guide - 33rd Square](https://www.33rdsquare.com/what-is-perplexity-ai/)
+- [Perplexity - a Hugging Face Space by evaluate-metric](https://huggingface.co/spaces/evaluate-metric/perplexity)
+
 
