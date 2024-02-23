@@ -13,7 +13,7 @@ banner: "/images/head/intrisic_vs_ext_640px.jpg"
 prompt: In machine learning, NLP - How to measure quality of embeddings (e.g. word embeddings or sentence embeddings). Give me long blog-post style text on that, audience for the article should be expert data scientists. Provide mathematical formulas in LaTeX in display format (not inline) if needed. - If there is any process described provide mermaid diagram of mermaid gantt chart - propose 10 intriguing or catchy titles for this article - In the end provide also HTML page description for this article (less than 140-200 characters)
 ---
 X::[[perplexity_in_dimensionality_reduction_PCA]]
-X::[[emulating_human_expression_by_controlling_the_burstines_and_perplexity]]
+X::[[emulating_human_expression_by_controlling_the_burstines_and_perplexity 1]]
 
 ## Introduction
 

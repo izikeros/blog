@@ -33,15 +33,20 @@ It provides a boost to the LLM's ability to generate more accurate, contextually
 
 RAG-fusion might be a powerful technique that brings together the strengths of large language models and advanced information retrieval strategies. By employing multiple query generation and re-ranking, it takes a leap towards making AI-powered systems more responsive, accurate, and user-friendly.
 
-**NOTE:** For more methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].
+**NOTE 1:** For more methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].
+**NOTE 2:** This technique is also referred as Query-Rewriting. You can find a section on that on LlamaIndex documentation ([Query Transformation Cookbook](https://docs.llamaindex.ai/en/stable/examples/query_transformations/query_transform_cookbook.html))
 
 - X::[[2023-08-24_understanding-retrieval-augmented-generation-rag-empowering-llms]]
 - X::[[posts/notes/implementing_reciprocal_rank_fusion_in_python]]
 
 up::[[MOC_RAG]]
 
+**Edits:**
+2024-02-01 - add reference to LLamaIndex Query Transform Cookbook
+
 ## References
 
 - [GitHub - Raudaschl/rag-fusion](https://github.com/Raudaschl/rag-fusion/tree/master) - exemplary implementation
 - [Forget RAG, the Future is RAG-Fusion | by Adrian H. Raudaschl | Oct, 2023 | Towards Data Science](https://towardsdatascience.com/forget-rag-the-future-is-rag-fusion-1147298d8ad1)
 - RAG-fussion in LangChain: [usage](https://python.langchain.com/docs/templates/rag-fusion), template [code](https://github.com/langchain-ai/langchain/tree/master/templates/rag-fusion)
+- [Query Transformation Cookbook](https://docs.llamaindex.ai/en/stable/examples/query_transformations/query_transform_cookbook.html)

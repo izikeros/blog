@@ -8,7 +8,7 @@ Tags: nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosi
 Category: note
 ---
 
-X::[[Tverski_similarity]]
+X::[[posts/notes/Tverski_similarity]]
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 

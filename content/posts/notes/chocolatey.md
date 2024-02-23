@@ -9,7 +9,7 @@ Title: Chocolatey (Windows)
 ---
 
 > **NOTE:**
-> there is already an official tool from Microsoft for downloading and upgrading software as packages: [[winget]]
+> there is already an official tool from Microsoft for downloading and upgrading software as packages: [[windows_winget_install_update_packages|winget]]
 
 ## install
 

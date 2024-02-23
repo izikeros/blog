@@ -7,7 +7,7 @@ Slug: mlops-scorecard
 Start: '2023-01-26'
 Status: published
 Summary: Use proposed scorecard to assess how advanced is your organization in implementing MLOps processes.
-Tags: mlops
+Tags: mlops, scorecard, checklist, mlops-maturity, mlops-readines, organization, governance, data-management, model-deployment, deployment, model-monitoring, model-evaluation
 Title: MLOps Scorecard - How Advanced Is Your Organization in Implementing MLOps Processes?
 banner: "/images/head/mlops_scorecard_640px.jpg"
 prompt: give me MLOps score card - a detailed check-list that will help organization to asses to which extend they have mlops process in place.

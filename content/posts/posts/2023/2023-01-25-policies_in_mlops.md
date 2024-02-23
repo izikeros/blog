@@ -14,6 +14,7 @@ prompt: When intoducing mlops you need to standardize some practices. Give me li
 todo: add infographics - https://venngage.com/blog/process-infographic-template/
 ---
 
+
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Introduction](#introduction)

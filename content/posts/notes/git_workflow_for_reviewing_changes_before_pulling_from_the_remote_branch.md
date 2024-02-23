@@ -66,6 +66,10 @@ This command displays a detailed diff of the changes made in that specific commi
 
 If you prefer a more visual representation of changes, you can leverage Git GUI tools like GitKraken, Sourcetree, Git Cola or tig. These tools provide an intuitive interface that allows you to navigate through commits, inspect changes, and even visualize branching patterns.
 
+##### tig
+
+`tig test..master` - Show difference between two branches `test` and `master`
+
 <a id="step-4-resolve-conflicts-if-any"></a>
 
 ## Step 4: Resolve Conflicts (if any)

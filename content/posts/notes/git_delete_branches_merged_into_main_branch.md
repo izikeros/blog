@@ -36,6 +36,8 @@ git fetch --all && git remote prune
 
 > NOTE: The generic `git prune` command is entirely different. it will delete locally detached commits.
 
+Read more about it: [Git Cleanup: "git Remote Prune" Explained | by Maroun Maroun | Better Programming](https://betterprogramming.pub/git-cleanup-git-remote-prune-explained-679fadc53ba7)
+
 <a id="how-do-i-clean-outdated-branches"></a>
 
 ### How Do I Clean Outdated Branches?
@@ -50,6 +52,12 @@ No `git remote prune origin` will only delete the refs to remote branches that n
 To remove local branches you need to use `git branch -d` or replace `-d` with `-D`.
 
 **Credits:** Prune explanation comes from an excellent article on [Git Prune](https://www.atlassian.com/git/tutorials/git-prune)
+
+If you want to have prune executed with every fetch operation, you can configure Git accordingly:
+
+```sh
+git config --global fetch.prune true
+```
 
 <a id="second---delete-merged-local-branches"></a>
 

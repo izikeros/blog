@@ -4,7 +4,7 @@ Slug: techniques-to-boost-rag-performance-in-production
 Date: 2023-11-01
 Modified: 2023-11-04
 Start: 2023-10-27
-tags: machine-learning, python, rag, llm, retrieval-augmented-generation, re-ranking, 
+tags: machine-learning, python, rag, llm, retrieval-augmented-generation, re-ranking, lost-in-the-middle 
 Category: Generative AI
 Image: /images/head/boosting_RAG.jpg
 banner: "/images/head/boosting_RAG.jpg"
@@ -36,7 +36,7 @@ Retrieval-Augmented Generation (RAG) is a powerful tool in the domain of machine
 ## Leveraging Hybrid Search
 
 Hybrid search, a fusion of semantic search and keyword search, can be employed to retrieve pertinent data from a vector store. This method often yields superior results across a range of use cases. It essentially combines the strength of keyword search (precision) and semantic search (recall), providing a more comprehensive search solution.
-[[hybrid_search]]
+[[dups/hybrid_search]]
 
 <a id="utilizing-summaries-for-data-chunks"></a>
 
@@ -49,7 +49,7 @@ An efficient way to enhance the quality of generation and reduce the number of t
 
 ## Applying Query Transformations
 
-Query transformations can significantly enhance the quality of responses. For instance, if a system does not find relevant context for a query, the LLM can rephrase the query and try again. See the [[rag_fussion|RAG Fusion]].
+Query transformations can significantly enhance the quality of responses. For instance, if a system does not find relevant context for a query, the LLM can rephrase the query and try again. See the [[rag_fusion|RAG Fusion]].
 
 Similarly, the [HyDE](http://boston.lti.cs.cmu.edu/luyug/HyDE/HyDE.pdf) strategy generates a hypothetical response to a query and uses both for embedding lookup, which has been found to dramatically enhance performance.
 

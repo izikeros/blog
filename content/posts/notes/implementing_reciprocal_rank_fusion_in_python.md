@@ -119,6 +119,6 @@ The RRF method is a powerful tool in the field of Information Retrieval, providi
 - 2023-11-06: added optimized implementation
 
 X::[[rank_fusion_algorithms]]
-X::[[hybrid_search]]
-X::[[hybrid_search_re_ranking]]
-X::[[rank_fussion_borda]]
+X::[[dups/hybrid_search]]
+X::[[dups/hybrid_search_re_ranking]]
+X::[[dups/rank_fussion_borda]]

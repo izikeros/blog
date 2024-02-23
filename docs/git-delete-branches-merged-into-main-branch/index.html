@@ -308,6 +308,7 @@
 <blockquote>
 <p>NOTE: The generic <code>git prune</code> command is entirely different. it will delete locally detached commits.</p>
 </blockquote>
+<p>Read more about it: <a href="https://betterprogramming.pub/git-cleanup-git-remote-prune-explained-679fadc53ba7">Git Cleanup: "git Remote Prune" Explained | by Maroun Maroun | Better Programming</a></p>
 <p><a id="how-do-i-clean-outdated-branches"></a></p>
 <h3>How Do I Clean Outdated Branches?</h3>
 <p><code>git fetch --prune</code> is the best utility for cleaning outdated branches. It will connect to a shared remote repository remote and fetch all remote branch refs. It will then delete remote refs that are no longer in use on the remote repository.</p>
@@ -316,6 +317,10 @@
 <p>No <code>git remote prune origin</code> will only delete the refs to remote branches that no longer exist. Git stores both local and remote refs. A repository will have <code>local/origin</code> and <code>remote/origin</code> ref collections. <code>git remote prune origin</code> will only prune the refs in <code>remote/origin</code>. This safely leaves local work in <code>local/origin.</code>
 To remove local branches you need to use <code>git branch -d</code> or replace <code>-d</code> with <code>-D</code>.</p>
 <p><strong>Credits:</strong> Prune explanation comes from an excellent article on <a href="https://www.atlassian.com/git/tutorials/git-prune">Git Prune</a></p>
+<p>If you want to have prune executed with every fetch operation, you can configure Git accordingly:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>fetch.prune<span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+
 <p><a id="second---delete-merged-local-branches"></a></p>
 <h2>Second - delete merged local branches</h2>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>branch<span class="w"> </span>--merged<span class="w"> </span>origin/develop<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>develop<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-d
