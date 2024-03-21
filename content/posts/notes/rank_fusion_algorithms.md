@@ -103,7 +103,7 @@ Neural rank fusion methods often outperform traditional algorithms when sufficie
 
 <a id="reciprocal-rank-fusion"></a>
 
-### Reciprocal rank fusion
+### Reciprocal Rank Fusion
 
 The [Reciprocal Rank Fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf) is an advanced algorithmic technique designed to amalgamate multiple result sets, each having distinct relevance indicators, into a unified result set. One of the key advantages of RRF is its ability to deliver high-quality results without the necessity for any tuning. Moreover, it does not mandate the relevance indicators to be interconnected or similar in nature.
 
@@ -127,8 +127,8 @@ Rank fusion serves as a potent tool in the arsenal of data scientists and search
 Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands out for its ability to **combine multiple result sets with varying relevance indicators** **without the need for tuning**. This makes it a robust and effective choice for many applications.
 
 **Edits**:
-
-- 2023-10-09 - Added "Reciprocal rank fusion", rewrite conclusion
+- 2024-03-06 - Added Panjete/rankAggr to references
+- 2023-10-09 - Added "Reciprocal Rank Fusion", rewrite conclusion
 <a id="references"></a>
 
 ## References
@@ -138,5 +138,7 @@ Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands o
 3. [Burges, Christopher. "From RankNet to LambdaRank to LambdaMART: An overview." Learning 11.23-581 (2010): 81.](https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/)
 4. [Rank-Biased Precision for Measurement of Retrieval Effectiveness](https://people.eng.unimelb.edu.au/jzobel/fulltext/acmtois08.pdf)
 5. [Reciprocal rank fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
+6. [GitHub - Panjete/rankAggr: Analysis and implementational details of rank aggregation methods for combing results of multiple engines to achieve best mAP and P@5,10 values](https://github.com/Panjete/rankAggr)
+
 
 X::[[posts/notes/implementing_reciprocal_rank_fusion_in_python]]

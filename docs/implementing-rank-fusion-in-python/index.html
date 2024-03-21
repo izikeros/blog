@@ -287,16 +287,22 @@
 Let's learn how to implement a simple rank fusion approach in Python.</p>
 <h2>Understanding the RRF Ranking Process</h2>
 <p>The Reciprocal Rank Fusion (RRF) operates by collecting search outcomes from various strategies, assigning each document in the results a reciprocal rank score, and subsequently merging these scores to generate a new ranking. The underlying principle is that documents that consistently appear in top positions across diverse search strategies are likely more pertinent and should thus receive a higher rank in the consolidated result.</p>
-<p>Here's a simplified breakdown of the RRF process:</p>
+<h3>A simplified breakdown of the RRF process</h3>
 <ol>
 <li>
-<p>Collect ranked search outcomes from multiple simultaneous queries.</p>
+<p><strong>Collect ranked search outcomes</strong> from multiple simultaneous queries. E.g. one query to semantic search and one query to text search.</p>
 </li>
 <li>
-<p>Assign reciprocal rank scores to each result in the ranked lists. The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as 1/(rank + k), where 'rank' is the document's position in the list, and 'k' is a constant. Empirical observation suggests that 'k' performs best when set to a small value, such as 60. Note that this 'k' value is a constant in the RRF algorithm and is entirely distinct from the 'k' that regulates the number of nearest neighbors.</p>
+<p><strong>Assign reciprocal rank scores to each result in the ranked lists.</strong> The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as <span class="math">\(1/(rank + k)\)</span>, where <span class="math">\(rank\)</span> is the document's position in the list, and <span class="math">\(k\)</span> is a constant. </p>
 </li>
+</ol>
+<blockquote>
+<p><strong>Choosing the k constant</strong>
+Empirical observation suggests that <span class="math">\(k\)</span> performs best when set to a small value, such as <code>60</code>. Note that this <span class="math">\(k\)</span> value is a constant in the RRF algorithm and is entirely distinct from the <code>k</code> that regulates the number of nearest neighbours.</p>
+</blockquote>
+<ol>
 <li>
-<p>Combine scores. The algorithm adds up the reciprocal rank scores acquired from each search strategy for each document, thereby generating a combined score for each document.</p>
+<p><strong>Combine scores.</strong> The algorithm adds up the reciprocal rank scores acquired from each search strategy for each document, thereby generating a combined score for each document.</p>
 </li>
 <li>
 <p>The algorithm ranks documents based on the combined scores and arranges them accordingly. The resulting list constitutes the fused ranking.</p>
@@ -309,9 +315,9 @@ Let's learn how to implement a simple rank fusion approach in Python.</p>
 <p>The <a href="https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf">Reciprocal Rank Fusion (RRF)</a> is an advanced algorithmic technique designed to amalgamate multiple result sets, each having distinct relevance indicators, into a unified result set. One of the key advantages of RRF is its ability to deliver high-quality results without the necessity for any tuning. Moreover, it does not mandate the relevance indicators to be interconnected or similar in nature.</p>
 <p>RRF uses the following formula to determine the score for ranking each document:</p>
 <div class="highlight"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span> <span class="c1"># loop over queries send to different search engines </span>
     <span class="k">if</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">result</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-        <span class="n">score</span> <span class="o">+=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span> <span class="n">k</span> <span class="o">+</span> <span class="n">rank</span><span class="p">(</span> <span class="n">result</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">d</span> <span class="p">)</span> <span class="p">)</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span> <span class="n">k</span> <span class="o">+</span> <span class="n">rank</span><span class="p">(</span><span class="n">result</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">d</span><span class="p">))</span>
 <span class="k">return</span> <span class="n">score</span>
 
 <span class="c1"># where</span>
@@ -368,6 +374,11 @@ Let's learn how to implement a simple rank fusion approach in Python.</p>
 <p>The concept of Rank Fusion, particularly the Reciprocal Rank Fusion (RRF) method, offers a promising approach to amalgamate multiple result sets into a unified one. This article has demonstrated how to implement a simple RRF in Python.</p>
 <p>While the example provided in this article is simplified, it provides a solid foundation for understanding the RRF process and how to implement it in Python. Depending on the specific application and data, the functions and database structure may need to be modified. However, the core concept and approach remain the same.</p>
 <p>The RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.</p>
+<h2>See also</h2>
+<ul>
+<li>Condorcet Fuse (Montague, M., and Aslam, J. A. Condorcet fusion for improved retrieval. In CIKM (2002).)</li>
+<li>CombMNZ</li>
+</ul>
 <p><strong>Edits:</strong></p>
 <ul>
 <li>2023-11-06: changed title to: Implementing Reciprocal Rank Fusion and Borda Count in Python</li>
@@ -375,6 +386,68 @@ Let's learn how to implement a simple rank fusion approach in Python.</p>
 <li>2023-11-06: added optimized implementation</li>
 </ul>
 <p>X::<a href="https://www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/">Rank Fusion Algorithms - From Simple to Advanced</a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
         </div>
 
 

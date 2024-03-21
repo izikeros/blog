@@ -1,14 +1,21 @@
 #!/usr/bin/env python
+""" Blog configuration file
 
-# Pelican documentation (latest)
-# https://docs.getpelican.com/en/latest/settings.html#basic-settings
-#
-# Trying to apply literate configurations (https://leanpub.com/lit-config/read)
+Pelican documentation (latest)
+https://docs.getpelican.com/en/latest/settings.html#basic-settings
 
+Trying to apply literate configurations (https://leanpub.com/lit-config/read)
+--Elegant theme
+https://jackdewinter.github.io/
+"""
 
-# --Elegant theme
-# https://jackdewinter.github.io/
-
+from datetime import datetime
+from pelican_jupyter import markup as nb_markup
+from nbconvert.preprocessors import (
+    RegexRemovePreprocessor,
+    TagRemovePreprocessor,
+)
+from traitlets.config import Config
 
 AUTHOR = "Krystian Safjan"
 SITENAME = "Krystian Safjan's Blog"
@@ -139,7 +146,6 @@ DATE_FOR_ARTICLE_GROUPS = False
 DIRECT_TEMPLATES = ["index", "categories", "tags", "archives", "til"]
 
 # ------- Footer ---------------------------
-from datetime import datetime
 
 COPYRIGHT_YEAR = datetime.now().year
 COPYRIGHT_NAME = AUTHOR
@@ -220,7 +226,6 @@ PLUGIN_PATHS = ["./pelican-plugins"]
 
 MARKUP = ("md", "ipynb")
 
-from pelican_jupyter import markup as nb_markup
 
 # to use mermaid install:
 # pip install git+https://github.com/Lee-W/md_mermaid#egg=md_mermaid
@@ -252,11 +257,7 @@ elif MY_THEME == "elegant":
 
 # Preprocessing - remove empty cells and cells tagged with "remove_cell"
 #  NOTE: Tag cells to remove with "remove_cell" (View -> Cell Toolbar -> Tags)
-from nbconvert.preprocessors import (
-    RegexRemovePreprocessor,
-    TagRemovePreprocessor,
-)
-from traitlets.config import Config
+
 
 c = Config()
 c.TagRemovePreprocessor.enabled = True

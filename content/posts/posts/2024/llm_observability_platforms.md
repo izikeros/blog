@@ -72,7 +72,9 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 13. [Fiddler AI](https://github.com/fiddler-labs/fiddler-auditor) - ![github stars shield](https://img.shields.io/github/stars/fiddler-labs/fiddler-auditor.svg?logo=github) - Evaluate, monitor, analyse, and improve machine learning and generative models from pre-production to production. Ship more ML and LLMs into production, and monitor ML and LLM metrics like hallucination, PII, and toxicity.
 14. [OmniLog](https://github.com/Theodo-UK/OmniLog) - ![github stars shield](https://img.shields.io/github/stars/Theodo-UK/OmniLog.svg?logo=github) - Observability tool for your LLM prompts.
 
-
+## Non-open source
+- [Generative AI Studio - Galileo](https://docs.rungalileo.io/galileo/galileo-gen-ai-studio/llm-studio)
+- 
 <a id="other---related"></a>
 ## Other - related
 - [Great Expectations](https://github.com/great-expectations/great_expectations) - Always know what to expect from your data.
@@ -81,6 +83,7 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 - [LLM Observability](https://github.com/AstronomerAmber/LLM_Observability) 
 - [baml](https://github.com/BoundaryML/baml)  - A programming language to build strongly-typed LLM functions. Testing and observability included
 - [aperture](https://github.com/fluxninja/aperture) - Rate limiting, caching, and request prioritization for modern workloads
+
 
 <a id="references"></a>
 ## References

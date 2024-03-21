@@ -17,15 +17,18 @@ Let's learn how to implement a simple rank fusion approach in Python.
 
 The Reciprocal Rank Fusion (RRF) operates by collecting search outcomes from various strategies, assigning each document in the results a reciprocal rank score, and subsequently merging these scores to generate a new ranking. The underlying principle is that documents that consistently appear in top positions across diverse search strategies are likely more pertinent and should thus receive a higher rank in the consolidated result.
 
-Here's a simplified breakdown of the RRF process:
+### A simplified breakdown of the RRF process
 
-1. Collect ranked search outcomes from multiple simultaneous queries.
+1. **Collect ranked search outcomes** from multiple simultaneous queries. E.g. one query to semantic search and one query to text search.
 
-2. Assign reciprocal rank scores to each result in the ranked lists. The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as 1/(rank + k), where 'rank' is the document's position in the list, and 'k' is a constant. Empirical observation suggests that 'k' performs best when set to a small value, such as 60. Note that this 'k' value is a constant in the RRF algorithm and is entirely distinct from the 'k' that regulates the number of nearest neighbors.
+2. **Assign reciprocal rank scores to each result in the ranked lists.** The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as $1/(rank + k)$, where $rank$ is the document's position in the list, and $k$ is a constant. 
 
-3. Combine scores. The algorithm adds up the reciprocal rank scores acquired from each search strategy for each document, thereby generating a combined score for each document.
+> **Choosing the k constant**
+> Empirical observation suggests that $k$ performs best when set to a small value, such as `60`. Note that this $k$ value is a constant in the RRF algorithm and is entirely distinct from the `k` that regulates the number of nearest neighbours.
 
-4. The algorithm ranks documents based on the combined scores and arranges them accordingly. The resulting list constitutes the fused ranking.
+4. **Combine scores.** The algorithm adds up the reciprocal rank scores acquired from each search strategy for each document, thereby generating a combined score for each document.
+
+5. The algorithm ranks documents based on the combined scores and arranges them accordingly. The resulting list constitutes the fused ranking.
 
 To depict the Reciprocal Rank Fusion (RRF) process, we can use a flowchart.
 ![Reciprocal Rank Fusion (RRF) process flow chart](/images/Reciprocal_Rank_Fusion/Reciprocal_Rank_Fusion.png)
@@ -40,9 +43,9 @@ RRF uses the following formula to determine the score for ranking each document:
 
 ```python
 score = 0.0
-for q in queries:
+for q in queries: # loop over queries send to different search engines 
     if d in result(q):
-        score += 1.0 / ( k + rank( result(q), d ) )
+        score += 1.0 / ( k + rank(result(q), d))
 return score
 
 # where
@@ -111,6 +114,10 @@ The concept of Rank Fusion, particularly the Reciprocal Rank Fusion (RRF) method
 While the example provided in this article is simplified, it provides a solid foundation for understanding the RRF process and how to implement it in Python. Depending on the specific application and data, the functions and database structure may need to be modified. However, the core concept and approach remain the same.
 
 The RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.
+
+## See also
+- Condorcet Fuse (Montague, M., and Aslam, J. A. Condorcet fusion for improved retrieval. In CIKM (2002).)
+- CombMNZ
 
 **Edits:**
 

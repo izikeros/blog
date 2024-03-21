@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # from: https://stackoverflow.com/a/30935242/3247880
 

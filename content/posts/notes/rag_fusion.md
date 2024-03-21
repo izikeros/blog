@@ -42,11 +42,12 @@ RAG-fusion might be a powerful technique that brings together the strengths of l
 up::[[MOC_RAG]]
 
 **Edits:**
-2024-02-01 - add reference to LLamaIndex Query Transform Cookbook
+- 2024-03-06 - added RAG fusion paper
+- 2024-02-01 - add reference to LLamaIndex Query Transform Cookbook
 
 ## References
-
+- [RAG-Fusion: a New Take on Retrieval-Augmented Generation](https://arxiv.org/html/2402.03367v2)
 - [GitHub - Raudaschl/rag-fusion](https://github.com/Raudaschl/rag-fusion/tree/master) - exemplary implementation
 - [Forget RAG, the Future is RAG-Fusion | by Adrian H. Raudaschl | Oct, 2023 | Towards Data Science](https://towardsdatascience.com/forget-rag-the-future-is-rag-fusion-1147298d8ad1)
-- RAG-fussion in LangChain: [usage](https://python.langchain.com/docs/templates/rag-fusion), template [code](https://github.com/langchain-ai/langchain/tree/master/templates/rag-fusion)
+- RAG-fusion in LangChain: [usage](https://python.langchain.com/docs/templates/rag-fusion), template [code](https://github.com/langchain-ai/langchain/tree/master/templates/rag-fusion)
 - [Query Transformation Cookbook](https://docs.llamaindex.ai/en/stable/examples/query_transformations/query_transform_cookbook.html)
