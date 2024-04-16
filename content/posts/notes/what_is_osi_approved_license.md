@@ -40,23 +40,23 @@ Each of these licenses has its own terms and conditions, varying in terms of how
 There are several licenses that are not approved by the Open Source Initiative (OSI) either because they have not been submitted for approval, they discriminate against persons or groups, they discriminate against fields of endeavor, they are not technology-neutral, or for other reasons that conflict with the Open Source Definition. Some examples include:
 
 1. Various Creative Commons licenses (excluding CC0):
-    
-    - Licenses such as Creative Commons Attribution-NonCommercial (CC BY-NC), Creative Commons Attribution-NoDerivatives (CC BY-ND), and others are not OSI-approved because they impose restrictions on commercial use or the creation of derivative works, which goes against the Open Source Definition that requires the license to allow modifications and derived works.
+ 
+Licenses such as Creative Commons Attribution-NonCommercial (CC BY-NC), Creative Commons Attribution-NoDerivatives (CC BY-ND), and others are not OSI-approved because they impose restrictions on commercial use or the creation of derivative works, which goes against the Open Source Definition that requires the license to allow modifications and derived works.
 
-1. JSON License ("The Software shall be used for Good, not Evil"):
-    
-    - The JSON License includes a clause that specifies "The Software shall be used for Good, not Evil," which introduces a subjective and non-legal term. This clause can be interpreted in various ways and thus makes it non-free according to the open-source criteria, which insist on no discrimination against fields of endeavor.
-- 
-1. The Apple Public Source License 1.x:
-    
-    - The earlier versions of the Apple Public Source License were not approved by the OSI due to concerns about the license's compatibility and restrictions on the usage of the covered software. Apple addressed these issues in version 2.0, which was approved by the OSI.
+2. JSON License ("The Software shall be used for Good, not Evil"):
+   
+The JSON License includes a clause that specifies "The Software shall be used for Good, not Evil," which introduces a subjective and non-legal term. This clause can be interpreted in various ways and thus makes it non-free according to the open-source criteria, which insist on no discrimination against fields of endeavor.
 
-1. Badgeware Licenses (Original Attribution Assurance License, the Honest Public License, etc.):
-    
-    - These licenses require the display of a logo, badge, or attribution in a manner that the OSI considers overly burdensome and not in line with the Open Source Definition's requirements for free redistribution.
+3. The Apple Public Source License 1.x:
 
-1. Microsoft Limited Public License (Ms-LPL) and the Microsoft Reciprocal License (Ms-RL):
-    
-    - These licenses were specific to Windows and were not technology-neutral, making them incompatible with the OSI's requirement that open-source licenses must not restrict the software to run on a particular operating system or environment.
+The earlier versions of the Apple Public Source License were not approved by the OSI due to concerns about the license's compatibility and restrictions on the usage of the covered software. Apple addressed these issues in version 2.0, which was approved by the OSI.
 
-It's important to note that the landscape of software licenses evolves, and new licenses can be submitted to and approved by the OSI, while others may fall out of favour or be superseded by more permissive alternatives. When using software under a specific license or choosing a license for your own work, checking the current OSI-approved list is advisable for the most up-to-date information.
+4. Badgeware Licenses (Original Attribution Assurance License, the Honest Public License, etc.):
+   
+These licenses require the display of a logo, badge, or attribution in a manner that the OSI considers overly burdensome and not in line with the Open Source Definition's requirements for free redistribution.
+
+5. Microsoft Limited Public License (Ms-LPL) and the Microsoft Reciprocal License (Ms-RL):
+   
+These licenses were specific to Windows and were not technology-neutral, making them incompatible with the OSI's requirement that open-source licenses must not restrict the software to run on a particular operating system or environment.
+
+> **NOTE:** When using software under a specific license or choosing a license for your own work, checking the current OSI-approved list is advisable for the most up-to-date information.
