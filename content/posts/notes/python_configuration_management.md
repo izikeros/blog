@@ -1,11 +1,11 @@
 ---
 Category: note
-Date: '2022-04-14'
-Modified: '2023-07-12'
+Date: 2022-04-14
+Modified: 2023-07-12
 Slug: python-configuration-management
 Status: published
 Summary: None
-Tags: python, configuration, hydra, decouple
+tags: python, configuration, hydra, decouple, omegaconf, yaml, config, experiment, experiment-management
 Title: Python - Configuration Management
 citation_needed: true
 ---
@@ -35,6 +35,7 @@ Features:
 - various options for launching:
  	- easy config modifications from cli
  	- multiruns
+- CLI: completion for model parameters
 
 Create exemplary `main.yaml` in directory `config`
 
@@ -75,10 +76,18 @@ if __name__ == '__main__':
 
 From: <https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800>
 
+EuroPython 2022 conference talk about Hydra and integration with MLFlow
+```vid
+https://www.youtube.com/watch?v=bNGu8A6F3-8
+```
+
+Hands-on tutorial how to introduce hydra to the exemplary data science project
+```vid
+https://www.youtube.com/watch?v=tEsPyYnzt8s
+```
 <a id="decouple"></a>
 
 ## decouple
->
 > Python Decouple: Strict separation of settings from code
 
 Decouple helps you to organize your settings so that you can change parameters without having to redeploy your app.
@@ -95,7 +104,7 @@ Envvars works, but since `os.environ` only returns strings, it’s tricky.
 
 Let’s say you have an envvar `DEBUG=False`. If you run:
 
-```
+```python
 if os.environ['DEBUG']:
     print True
 else:
@@ -121,8 +130,8 @@ Documentation v2.2: [Installation — OmegaConf 2.2.4.dev0 documentation](https:
 <a id="upsilonconf"></a>
 
 ## Upsilonconf
-
-Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the `antlr` dependency). It is also very similar to the (discontinued) [AttrDict](https://github.com/bcj/AttrDict) library. In the meantime, there is also the [ml_collections](https://github.com/google/ml_collections) library, which seems to build on similar ideas as this project.
+![github stars shield](https://img.shields.io/github/stars/hoedt/upsilonconf.svg?logo=github) 
+Concretely, the idea of [upsilonconf](https://github.com/hoedt/upsilonconf) library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the `antlr` dependency). It is also very similar to the (discontinued) [AttrDict](https://github.com/bcj/AttrDict) library. In the meantime, there is also the [ml_collections](https://github.com/google/ml_collections) library, which seems to build on similar ideas as this project.
 
 <a id="ml_collections"></a>
 

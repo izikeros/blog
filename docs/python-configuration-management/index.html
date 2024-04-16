@@ -48,7 +48,7 @@
 
     <meta name="author" content="Krystian Safjan"/>
     <meta name="description" content="None"/>
-    <meta name="keywords" content="python, configuration, hydra, decouple">
+    <meta name="keywords" content="python, configuration, hydra, decouple, omegaconf, yaml, config, experiment, experiment-management">
     <meta expr:content="2022-04-14 00:00:00+02:00" itemprop='datePublished'/>
     <meta expr:content="2023-07-12 00:00:00+02:00" itemprop='dateModified'/>
     <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
@@ -80,6 +80,11 @@
   <meta property="article:tag" content="configuration"/>
   <meta property="article:tag" content="hydra"/>
   <meta property="article:tag" content="decouple"/>
+  <meta property="article:tag" content="omegaconf"/>
+  <meta property="article:tag" content="yaml"/>
+  <meta property="article:tag" content="config"/>
+  <meta property="article:tag" content="experiment"/>
+  <meta property="article:tag" content="experiment-management"/>
   <meta property="og:image" content="/images/profile_new.jpg">
 
     <meta name="twitter:card" content="summary"/>
@@ -264,7 +269,7 @@
 
                     <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Python%20-%20Configuration%20Management&url=https%3A//www.safjan.com/python-configuration-management/&hashtags=python,configuration,hydra,decouple" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Python%20-%20Configuration%20Management&url=https%3A//www.safjan.com/python-configuration-management/&hashtags=python,configuration,hydra,decouple,omegaconf,yaml,config,experiment,experiment-management" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/python-configuration-management/" target="_blank" title="Share on Facebook">Facebook</a>
     |
@@ -308,6 +313,7 @@
 <li>multiruns</li>
 </ul>
 </li>
+<li>CLI: completion for model parameters</li>
 </ul>
 <p>Create exemplary <code>main.yaml</code> in directory <code>config</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">raw</span><span class="p">:</span><span class="w"> </span>
@@ -343,6 +349,14 @@
 </code></pre></div>
 
 <p>From: <a href="https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800">https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800</a></p>
+<p>EuroPython 2022 conference talk about Hydra and integration with MLFlow</p>
+<div class="highlight"><pre><span></span><code>https://www.youtube.com/watch?v=bNGu8A6F3-8
+</code></pre></div>
+
+<p>Hands-on tutorial how to introduce hydra to the exemplary data science project</p>
+<div class="highlight"><pre><span></span><code>https://www.youtube.com/watch?v=tEsPyYnzt8s
+</code></pre></div>
+
 <p><a id="decouple"></a></p>
 <h2>decouple</h2>
 <blockquote>
@@ -359,10 +373,10 @@ define comprehensive default values;</li>
 </ul>
 <p>Envvars works, but since <code>os.environ</code> only returns strings, it’s tricky.</p>
 <p>Let’s say you have an envvar <code>DEBUG=False</code>. If you run:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">os</span>.<span class="nv">environ</span>[<span class="s1">&#39;DEBUG&#39;</span>]:
-<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">True</span>
-<span class="k">else</span>:
-<span class="w">    </span><span class="nv">print</span><span class="w"> </span><span class="nv">False</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span> <span class="kc">True</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="kc">False</span>
 </code></pre></div>
 
 <p>It will print <code>True</code>, because <code>os.environ['DEBUG']</code> returns the string "False". Since it’s a non-empty string, it will be evaluated as True.</p>
@@ -377,7 +391,8 @@ define comprehensive default values;</li>
 <p>Documentation v2.2: <a href="https://omegaconf.readthedocs.io/en/2.2_branch/usage.html">Installation — OmegaConf 2.2.4.dev0 documentation</a></p>
 <p><a id="upsilonconf"></a></p>
 <h2>Upsilonconf</h2>
-<p>Concretely, the idea of this library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the <code>antlr</code> dependency). It is also very similar to the (discontinued) <a href="https://github.com/bcj/AttrDict">AttrDict</a> library. In the meantime, there is also the <a href="https://github.com/google/ml_collections">ml_collections</a> library, which seems to build on similar ideas as this project.</p>
+<p><img alt="github stars shield" src="https://img.shields.io/github/stars/hoedt/upsilonconf.svg?logo=github"> 
+Concretely, the idea of <a href="https://github.com/hoedt/upsilonconf">upsilonconf</a> library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the <code>antlr</code> dependency). It is also very similar to the (discontinued) <a href="https://github.com/bcj/AttrDict">AttrDict</a> library. In the meantime, there is also the <a href="https://github.com/google/ml_collections">ml_collections</a> library, which seems to build on similar ideas as this project.</p>
 <p><a id="ml_collections"></a></p>
 <h2>ml_collections</h2>
 <p><a href="https://github.com/google/ml_collections">google/ml_collections</a>
@@ -430,6 +445,11 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
                         <a href="https://www.safjan.com/tag/configuration/">configuration</a>
                         <a href="https://www.safjan.com/tag/hydra/">hydra</a>
                         <a href="https://www.safjan.com/tag/decouple/">decouple</a>
+                        <a href="https://www.safjan.com/tag/omegaconf/">omegaconf</a>
+                        <a href="https://www.safjan.com/tag/yaml/">yaml</a>
+                        <a href="https://www.safjan.com/tag/config/">config</a>
+                        <a href="https://www.safjan.com/tag/experiment/">experiment</a>
+                        <a href="https://www.safjan.com/tag/experiment-management/">experiment-management</a>
             </p>
         </div>
 
@@ -443,11 +463,11 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
             <div class="related-posts">
                 <h4>You might enjoy</h4>
                 <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/python-packages-yaml-front-matter-markdown/">Exploring Python Packages for Loading and Processing YAML Front Matter in Markdown Documents</a></li>
                         <li><a href="https://www.safjan.com/the-importance-of-adding-py-typed-file-to-your-typed-package/">The Importance of Adding a `py.typed` File to Your Typed Package</a></li>
                         <li><a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a></li>
                         <li><a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/">Techniques to Boost RAG Performance in Production</a></li>
                         <li><a href="https://www.safjan.com/python-expertise-level-self-assessment/">Python Expertise Level - Self-Assessment</a></li>
-                        <li><a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/">Problems with Langchain and how to minimize their impact</a></li>
                 </ul>
             </div>
 

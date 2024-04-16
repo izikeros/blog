@@ -41,7 +41,8 @@ Websites usually use RSS feeds to publish frequently updated information, such a
 >
 > *(source: Wikipedia)*
 
-> **Did you know?:** In 2000, at the age of 14, [Aaron Swartz](https://www.rollingstone.com/culture/culture-news/the-brilliant-life-and-tragic-death-of-aaron-swartz-177191/?sub_action=logged_in) co-authored RSS version 1.0, and shortly thereafter joined a working group at the World Wide Web Consortium to help develop common data formats used on the World Wide Web.
+> **Did you know?** 
+> In 2000, at the age of 14, [Aaron Swartz](https://www.rollingstone.com/culture/culture-news/the-brilliant-life-and-tragic-death-of-aaron-swartz-177191/?sub_action=logged_in) co-authored RSS version 1.0, and shortly thereafter joined a working group at the World Wide Web Consortium to help develop common data formats used on the World Wide Web.
 
 <a id="actively-developed-and-popular-self-hosted-feed-readers"></a>
 
@@ -52,15 +53,13 @@ The [Feed Readers](https://github.com/awesome-selfhosted/awesome-selfhosted#feed
 <a id="newsblur"></a>
 
 ### [NewsBlur](https://www.newsblur.com/) ![github stars shield](https://img.shields.io/github/stars/samuelclay/NewsBlur.svg?logo=github)
->
-> NewsBlur is a personal news reader bringing people together to talk about the world
+>> NewsBlur is a personal news reader bringing people together to talk about the world
 
 ![NewsBlur screenshoot](https://www.newsblur.com/media/img/welcome/feature_1.png)
 
 <a id="tiny-tiny-rss"></a>
 
 ### [Tiny Tiny RSS](https://git.tt-rss.org/)
->
 > Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 
 ![Tiny Tiny RSS screenshoot](https://tt-rss.org/images/ttrss/21.03/Screenshot%202021-03-10%20152046.webp)
@@ -69,8 +68,7 @@ NOTE: While Tiny Tiny RSS is popular and has many plugins, official build is onl
 <a id="freshrss"></a>
 
 ### [FreshRSS](https://github.com/FreshRSS/FreshRSS) ![github stars shield](https://img.shields.io/github/stars/FreshRSS/FreshRSS.svg?logo=github)
->
-> FreshRSS is a self-hosted RSS feed aggregator.
+>> FreshRSS is a self-hosted RSS feed aggregator.
 
 If you want to get look & feel of FreshRSS there is [demo](https://demo.freshrss.org/i/?rid=657dd0c01d6eb) available.
 ![screenshoot](https://github.com/FreshRSS/FreshRSS/raw/edge/docs/img/FreshRSS-screenshot.png)
@@ -78,7 +76,6 @@ If you want to get look & feel of FreshRSS there is [demo](https://demo.freshrss
 <a id="miniflux"></a>
 
 ### [miniflux](https://miniflux.app/) ![github stars shield](https://img.shields.io/github/stars/miniflux/v2.svg?logo=github)
->
 > Miniflux is a minimalist and opinionated feed reader, Written in Go, It's simple, fast, lightweight and super easy to install.
 
 ![miniflux screenshoot](https://miniflux.app/images/overview.png)
@@ -88,7 +85,6 @@ Here is information on Miniflux Docker/docker-compose installation: [Miniflux In
 <a id="stringer"></a>
 
 ### [Stringer](https://github.com/stringer-rss/stringer) ![github stars shield](https://img.shields.io/github/stars/stringer-rss/stringer.svg?logo=github)
->
 > A self-hosted, anti-social RSS reader. Stringer has no external dependencies, no social recommendations/sharing, and no fancy machine learning algorithms.
 
 ![Stringer screenshoot](https://github.com/stringer-rss/stringer/raw/main/screenshots/stories.png)
@@ -96,7 +92,6 @@ Here is information on Miniflux Docker/docker-compose installation: [Miniflux In
 <a id="selfoss"></a>
 
 ### [selfoss](https://selfoss.aditu.de/) ![github stars shield](https://img.shields.io/github/stars/fossar/selfoss.svg?logo=github)
->
 > Multipurpose RSS reader and feed aggregation web application. It allows you to easily follow updates from different web sites, social networks and other platforms, all in single place.
 
 ![selfoss screenshoot](https://selfoss.aditu.de/images/screenshot-desktop.png)
@@ -104,7 +99,6 @@ Here is information on Miniflux Docker/docker-compose installation: [Miniflux In
 <a id="commafeed"></a>
 
 ### [CommaFeed](https://github.com/Athou/commafeed) ![github stars shield](https://img.shields.io/github/stars/Athou/commafeed.svg?logo=github)
->
 > Google Reader inspired self-hosted RSS reader, based on Dropwizard and AngularJS. CommaFeed is now considered feature-complete and is in maintenance mode
 
 ![CommaFeed screenshoot](https://user-images.githubusercontent.com/1256795/184886828-1973f148-58a9-4c6d-9587-ee5e5d3cc2cb.png)
@@ -112,7 +106,6 @@ Here is information on Miniflux Docker/docker-compose installation: [Miniflux In
 <a id="yarr"></a>
 
 ### [yarr](https://github.com/nkanaev/yarr) ![github stars shield](https://img.shields.io/github/stars/nkanaev/yarr.svg?logo=github)
->
 >(yet another rss reader) is a web-based feed aggregator which can be used both as a desktop application and a personal self-hosted server.
 
 ![yarr screenshoot](https://github.com/nkanaev/yarr/raw/master/etc/promo.png)

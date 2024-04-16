@@ -12,7 +12,8 @@ suggested_tags: documentation, pdoc3, python
 
 X::[[sphinx_for_documentation]]
 X::[[docusaurus_for_documentation]]
-X::[[dups/mkdocs_material]]
+X::[[mkdocs_material]]
+X::[[pdoc3_documentation_dir]]
 
 Despite Sphinx seems to be the most common tool for generating documentation, the pdoc3 is an interesting option.
 
