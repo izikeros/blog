@@ -76,12 +76,12 @@ if __name__ == '__main__':
 
 From: <https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800>
 
-EuroPython 2022 conference talk about Hydra and integration with MLFlow
+EuroPython 2022 conference talk about Hydra and integration with MLFlow:
 ```vid
 https://www.youtube.com/watch?v=bNGu8A6F3-8
 ```
 
-Hands-on tutorial how to introduce hydra to the exemplary data science project
+Hands-on tutorial how to introduce hydra to the exemplary data science project:
 ```vid
 https://www.youtube.com/watch?v=tEsPyYnzt8s
 ```
@@ -90,15 +90,15 @@ https://www.youtube.com/watch?v=tEsPyYnzt8s
 ## decouple
 > Python Decouple: Strict separation of settings from code
 
-Decouple helps you to organize your settings so that you can change parameters without having to redeploy your app.
+[Decouple](https://pypi.org/project/python-decouple/) helps you to organize your settings so that you can change parameters without having to redeploy your app.
 
 It also makes it easy for you to:
 
-- store parameters in ini or .env files;
-define comprehensive default values;
-- properly convert values to the correct data type;
-- have only one configuration module to rule all your instances.
-- It was originally designed for Django, but became an independent generic tool for separating settings from code.
+- store **parameters in** **ini** or **.env** files;
+- define comprehensive **default values**;
+- properly **convert values to the correct data type**;
+- have only **one configuration module** to rule **all your instances**.
+
 
 Envvars works, but since `os.environ` only returns strings, it’s tricky.
 
@@ -117,6 +117,7 @@ Decouple provides a solution that doesn’t look like a workaround: `config('DEB
 
 From: package description on pypi
 
+> **NOTE:** Since `config` can read parameters from .env (and .ini) - decouple can replace using dotenv.
 <a id="omegaconf"></a>
 
 ## omegaconf

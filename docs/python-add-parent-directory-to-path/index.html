@@ -50,8 +50,8 @@
     <meta name="description" content="None"/>
     <meta name="keywords" content="python, gist, snippet, jupyter, notebook">
     <meta expr:content="2022-02-22 00:00:00+01:00" itemprop='datePublished'/>
-    <meta expr:content="2023-07-12 00:00:00+02:00" itemprop='dateModified'/>
-    <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+    <meta expr:content="2024-05-29 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-05-29 00:00:00+02:00"/>
     <meta property="article:published_time" content="2022-02-22 00:00:00+01:00"/>
     <script type="application/ld+json">
 {
@@ -59,7 +59,7 @@
   "@type": "BlogPosting",
   "headline": "Adding Parent Directory to Python Path",
   "datePublished": "2022-02-22 00:00:00+01:00",
-  "dateModified": "2023-07-12 00:00:00+02:00"
+  "dateModified": "2024-05-29 00:00:00+02:00"
 }
 
     </script>
@@ -73,7 +73,7 @@
   <meta property="og:url" content="https://www.safjan.com/python-add-parent-directory-to-path/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2022-02-22 00:00:00+01:00"/>
-  <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-05-29 00:00:00+02:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="python"/>
@@ -322,23 +322,34 @@
 <p>This way the parent directory will be added to the python path for the current terminal session. To make the change permanent, you can add the above line to your shell startup file, such as <code>~/.bashrc</code> or <code>~/.bash_profile</code></p>
 <p><a id="method-4-using-pth-file"></a></p>
 <h2>Method 4: Using <code>.pth</code> file</h2>
-<p>Another way to add parent directory to the python path is to create a <code>.pth</code> file in python's site-packages directory.</p>
+<p>Another way to add parent directory to the python path is to create a <code>.pth</code> file in python's <strong>site-packages</strong> directory.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;..&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>/usr/local/lib/python3.8/site-packages/my_project.pth<span class="sb">`</span>
 </code></pre></div>
 
 <p>This will add the parent directory as a permanent path to python's sys.path list.</p>
-<p>It's important to note that the above solutions will work for Python 2 and Python 3</p>
+<blockquote>
+<p><strong>from Python documentation:</strong>
+- a path configuration file is a file whose name has the form <code>name.pth</code> 
+ - its contents are additional items (one per line) to be added to <code>sys.path</code>. 
+ - blank lines and lines beginning with <code>#</code> are skipped.
+ - lines starting with <code>import</code> (followed by space or tab) are executed.</p>
+</blockquote>
+<p>See the official Python documentation:  <a href="https://docs.python.org/3/library/site.html">site — Site-specific configuration hook — Python 3.12.3 documentation</a></p>
 <p><a id="using-pathlib"></a></p>
 <h2>Using <code>Pathlib</code></h2>
 <p>There is a way to add a parent directory to the Python path using the <code>pathlib</code> module with method 1 or method 2 explained above.  <code>pathlib</code> is a built-in Python module that provides an object-oriented interface for working with file paths.</p>
 <p>One way to add a parent directory to the Python path using <code>pathlib</code> is to use the <code>parent</code> attribute of a <code>Path</code> object. This attribute returns a new <code>Path</code> object representing the parent directory of the original <code>Path</code> object. For example, you can use the following code to add a parent directory to the Python path:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span> <span class="kn">import</span> <span class="nn">sys</span>  <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span> <span class="kn">import</span> <span class="nn">sys</span> 
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
 </code></pre></div>
 
 <p>This code imports the <code>Path</code> class from the <code>pathlib</code> module, and then uses the <code>__file__</code> special variable to get the current file's path. It uses the <code>resolve()</code> method to get the absolute path of the current file and then uses the <code>parent</code> attribute to get the parent directory of the current file and again parent directory of the parent directory of current file. This new <code>Path</code> object is then passed to the <code>append()</code> method of the <code>sys.path</code> list to add the parent directory to the Python path.</p>
 <p>Another way to use pathlib is to use <code>pathlib.Path().joinpath()</code> to add the parent directory to the python path.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">sys</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">sys</span> 
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
 </code></pre></div>
 
@@ -348,6 +359,8 @@
 <h2>Conclusion</h2>
 <p>In this article, we have covered different ways to add a parent directory to the Python path, which can be useful when working with Jupyter notebooks or other projects that require a specific directory structure.</p>
 <p>CAUTION: Keep in mind that adding the parent directory to the python path will make the modules inside it available for import, but it also makes the entire directory structure available for import, so it's important to have a clear and organized directory structure.</p>
+<p><strong>Edits:</strong>
+- 2024-05-29 - added more explanations on using .pth file</p>
         </div>
 
 
