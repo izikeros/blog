@@ -367,6 +367,8 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 - short (4min 25s) overview of chunking methods from Weaviate: [Chunking Methods to use Custom Data with LLMs](https://www.youtube.com/watch?v=h5id4erwD4s)
 - [The 5 Levels Of Text Splitting For Retrieval - YouTube](https://www.youtube.com/watch?v=8OJC21T2SL4) (Fixed Size Chunking,  Recursive Chunking, Document Based Chunking, **Semantic Chunking**, Agentic Chunking - chunking strategy that explore the possibility to use LLM to determine how much and what text should be included in a chunk based on the context.) + [notebook](https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb)
 - Visualization of chunking - [ChunkViz](https://chunkviz.up.railway.app/)
+- [Breaking up is hard to do: Chunking in RAG applications - Stack Overflow](https://stackoverflow.blog/2024/06/06/breaking-up-is-hard-to-do-chunking-in-rag-applications/)
+	- size matters: “You are going to compare that with an embedding of your content. If the size of the content that you're embedding is wildly different from the size of the user's query, you're going to have a higher chance of getting a lower similarity score.”
 
 **Edits:**
 

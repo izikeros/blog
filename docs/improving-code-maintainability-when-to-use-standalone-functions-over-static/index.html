@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In …"/>
+    <meta name="keywords" content="python, function, python-method, idiomatic-python, refactoring, static-method, testability, python-class, flexilility, reusability, code-organization, code-reuse, testing, polymorphysm, docstrings">
+    <meta expr:content="2024-06-22 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2024-06-22 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-06-22 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2024-06-22 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python",
+  "datePublished": "2024-06-22 00:00:00+02:00",
+  "dateModified": "2024-06-22 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python"/>
+  <meta property="og:description" content="When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-06-22 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-06-22 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="function"/>
+  <meta property="article:tag" content="python-method"/>
+  <meta property="article:tag" content="idiomatic-python"/>
+  <meta property="article:tag" content="refactoring"/>
+  <meta property="article:tag" content="static-method"/>
+  <meta property="article:tag" content="testability"/>
+  <meta property="article:tag" content="python-class"/>
+  <meta property="article:tag" content="flexilility"/>
+  <meta property="article:tag" content="reusability"/>
+  <meta property="article:tag" content="code-organization"/>
+  <meta property="article:tag" content="code-reuse"/>
+  <meta property="article:tag" content="testing"/>
+  <meta property="article:tag" content="polymorphysm"/>
+  <meta property="article:tag" content="docstrings"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python"/>
+
+
+    <title>    Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2024-06-22 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Improving%20Code%20Maintainability%20-%20When%20to%20Use%20Standalone%20Functions%20Over%20Static%20Methods%20in%20Python&url=https%3A//www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/&hashtags=python,function,python-method,idiomatic-python,refactoring,static-method,testability,python-class,flexilility,reusability,code-organization,code-reuse,testing,polymorphysm,docstrings" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Improving%20Code%20Maintainability%20-%20When%20to%20Use%20Standalone%20Functions%20Over%20Static%20Methods%20in%20Python&u=https%3A//www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/&title=Improving%20Code%20Maintainability%20-%20When%20to%20Use%20Standalone%20Functions%20Over%20Static%20Methods%20in%20Python" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="improving-code-maintainability-when-to-use-standalone-functions-over-static">Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In particular, the choice between converting a method into a static method or a standalone function can have far-reaching consequences. While static methods can help encapsulate utility functions within a class, they still maintain a degree of coupling with the class. On the other hand, standalone functions offer greater flexibility, reusability, and testability, making them an attractive alternative for many scenarios. I will explore the factors that influence this decision and provide guidelines for determining when to refactor a method into a standalone function or mark it as a static method.</p>
+<h2>TLDR</h2>
+<p>In Python, it is generally better to use standalone functions instead of static methods when the functionality can be used independently of any particular class. </p>
+<h2>Why to use functions?</h2>
+<p>Here are some reasons why:</p>
+<ol>
+<li>
+<p><strong>Code organization</strong>: Standalone functions can help keep your code organized by separating concerns. When you have a utility function that doesn't depend on any class-specific state or behavior, it makes sense to keep it separate from the class. This improves readability and maintainability.</p>
+</li>
+<li>
+<p><strong>Code reuse</strong>: Functions can be more easily reused across different modules and projects compared to static methods, which are tied to a specific class.</p>
+</li>
+<li>
+<p><strong>Testing</strong>: Functions are generally easier to test than static methods, as you don't need to create an instance of the class or worry about its state.</p>
+</li>
+<li>
+<p><strong>Polymorphism</strong>: Functions can be more easily replaced or mocked for testing or extension purposes, whereas static methods are more tightly coupled to the class.</p>
+</li>
+<li>
+<p><strong>Documentation</strong>: Functions can be documented using docstrings, which can be easily accessed using help() or third-party tools like Sphinx. Static methods can be documented, but their documentation might be less discoverable.</p>
+</li>
+</ol>
+<p>On the other hand, you might want to keep a method as a static method if:</p>
+<ul>
+<li><strong>It's closely related to the class</strong>: If a method is closely related to the class and is used to provide additional functionality that's specific to the class, it's better to keep it as a static method.</li>
+<li><strong>It's used as a factory function</strong>: If a method is used as a factory function to create instances of the class, it's better to keep it as a static method.</li>
+</ul>
+<h2>Summary</h2>
+<p>when a method can be implemented and used independently of a class, consider refactoring it to a standalone function. This approach can lead to cleaner, more modular, and more maintainable code.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/function/">function</a>
+                        <a href="https://www.safjan.com/tag/python-method/">python-method</a>
+                        <a href="https://www.safjan.com/tag/idiomatic-python/">idiomatic-python</a>
+                        <a href="https://www.safjan.com/tag/refactoring/">refactoring</a>
+                        <a href="https://www.safjan.com/tag/static-method/">static-method</a>
+                        <a href="https://www.safjan.com/tag/testability/">testability</a>
+                        <a href="https://www.safjan.com/tag/python-class/">python-class</a>
+                        <a href="https://www.safjan.com/tag/flexilility/">flexilility</a>
+                        <a href="https://www.safjan.com/tag/reusability/">reusability</a>
+                        <a href="https://www.safjan.com/tag/code-organization/">code-organization</a>
+                        <a href="https://www.safjan.com/tag/code-reuse/">code-reuse</a>
+                        <a href="https://www.safjan.com/tag/testing/">testing</a>
+                        <a href="https://www.safjan.com/tag/polymorphysm/">polymorphysm</a>
+                        <a href="https://www.safjan.com/tag/docstrings/">docstrings</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/">Mastering kwargs in Python - Best Practices for Experienced Developers</a></li>
+                        <li><a href="https://www.safjan.com/python-dependency-injection-for-the-testability/">Harnessing the Power of Dependency Injection for Improved Testability in Python</a></li>
+                        <li><a href="https://www.safjan.com/how_to_prepare_python_project_to_pass_it_over_to_another_developer/">How to Prepare Python Project to Pass It Over to Another Developer</a></li>
+                        <li><a href="https://www.safjan.com/python-docstrings-styles/">Python - Docstrings Styles</a></li>
+                        <li><a href="https://www.safjan.com/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/">Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/" title="Mastering kwargs in Python - Best Practices for Experienced Developers">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

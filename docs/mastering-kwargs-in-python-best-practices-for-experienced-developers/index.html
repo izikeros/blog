@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Python&#39;s **kwargs is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It&#39;s particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of **kwargs comes …"/>
+    <meta name="keywords" content="python, kwargs, idiomatic-python, clean-code, refactoring, static-type-checking, security-risk">
+    <meta expr:content="2024-06-13 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2024-06-13 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-06-13 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2024-06-13 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mastering kwargs in Python - Best Practices for Experienced Developers",
+  "datePublished": "2024-06-13 00:00:00+02:00",
+  "dateModified": "2024-06-13 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Mastering kwargs in Python - Best Practices for Experienced Developers"/>
+  <meta property="og:description" content="Python&#39;s **kwargs is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It&#39;s particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of **kwargs comes …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-06-13 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-06-13 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="kwargs"/>
+  <meta property="article:tag" content="idiomatic-python"/>
+  <meta property="article:tag" content="clean-code"/>
+  <meta property="article:tag" content="refactoring"/>
+  <meta property="article:tag" content="static-type-checking"/>
+  <meta property="article:tag" content="security-risk"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Mastering kwargs in Python - Best Practices for Experienced Developers"/>
+
+
+    <title>    Mastering kwargs in Python - Best Practices for Experienced Developers
+</title>
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2024-06-13 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Mastering%20kwargs%20in%20Python%20-%20Best%20Practices%20for%20Experienced%20Developers&url=https%3A//www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/&hashtags=python,kwargs,idiomatic-python,clean-code,refactoring,static-type-checking,security-risk" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Mastering%20kwargs%20in%20Python%20-%20Best%20Practices%20for%20Experienced%20Developers&u=https%3A//www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/&title=Mastering%20kwargs%20in%20Python%20-%20Best%20Practices%20for%20Experienced%20Developers" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="mastering-kwargs-in-python-best-practices-for-experienced-developers">Mastering kwargs in Python - Best Practices for Experienced Developers</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>Python's <code>**kwargs</code> is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of <code>**kwargs</code> comes with its own set of challenges. In this article, we'll delve into the potential pitfalls of using <code>**kwargs</code> and how to mitigate them, helping you write more idiomatic and robust Python code.</p>
+<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#1-loss-of-clarity">1. Loss of Clarity</a></li>
+<li><a href="#2-typos-in-argument-names">2. Typos in Argument Names</a></li>
+<li><a href="#3-difficulty-in-refactoring">3. Difficulty in Refactoring</a></li>
+<li><a href="#4-incompatibility-with-static-type-checking">4. Incompatibility with Static Type Checking</a></li>
+<li><a href="#5-introspection-limitations">5. Introspection Limitations</a></li>
+<li><a href="#6-performance-overhead">6. Performance Overhead</a></li>
+<li><a href="#7-security-risks">7. Security Risks</a></li>
+<li><a href="#8-default-values-and-none-checks">8. Default Values and None Checks</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<p><a id="1-loss-of-clarity"></a></p>
+<h2>1. Loss of Clarity</h2>
+<p>The first challenge with <code>**kwargs</code> is that it can make your code less clear. When a function accepts <code>**kwargs</code>, it's not immediately apparent what arguments it expects.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Process data based on kwargs</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>Use explicit parameters where possible and reserve <code>**kwargs</code> for truly dynamic cases. Always document the expected keyword arguments using docstrings.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process data based on the provided format and additional options.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    data: The data to be processed.</span>
+<span class="sd">    format: The format of the data. Default is &#39;csv&#39;.</span>
+<span class="sd">    **kwargs: Additional options to control the data processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Process data based on format and kwargs</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p><a id="2-typos-in-argument-names"></a></p>
+<h2>2. Typos in Argument Names</h2>
+<p>Misspelled keyword argument names will not raise an error, which can lead to hard-to-trace bugs.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">plot_graph</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;titel&#39;</span><span class="p">)</span>  <span class="c1"># Misspelled &#39;title&#39;</span>
+    <span class="c1"># Plot graph with title</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>Implement argument validation within the function to check for required parameters and raise errors for unexpected arguments.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">plot_graph</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;title&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing required argument &#39;title&#39;&quot;</span><span class="p">)</span>
+    <span class="c1"># Plot graph with title</span>
+</code></pre></div>
+
+<p><a id="3-difficulty-in-refactoring"></a></p>
+<h2>3. Difficulty in Refactoring</h2>
+<p>Refactoring tools may not be able to update keyword arguments automatically, as they are not explicitly defined in the function signature.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Process data based on kwargs</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Later in the code</span>
+<span class="n">process_data</span><span class="p">(</span><span class="n">dat</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>  <span class="c1"># Misspelled &#39;data&#39;</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>Limit the use of <code>**kwargs</code> to cases where it's truly beneficial. When refactoring, manually verify and update the usage of functions that accept <code>**kwargs</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Process data</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Later in the code</span>
+<span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a id="4-incompatibility-with-static-type-checking"></a></p>
+<h2>4. Incompatibility with Static Type Checking</h2>
+<p><code>**kwargs</code> can make it harder to use static type checking, as the types of the passed arguments are not explicit.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Process data based on kwargs</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>Use Python's type hints to specify the expected types of the keyword arguments, and use <code>TypedDict</code> when you expect a dictionary with a specific structure.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="k">class</span> <span class="nc">ProcessDataKwargs</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">validate</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">preprocess</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">callable</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">ProcessDataKwargs</span><span class="p">):</span>
+    <span class="c1"># Process data based on kwargs</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p><a id="5-introspection-limitations"></a></p>
+<h2>5. Introspection Limitations</h2>
+<p>Tools and IDEs may not provide accurate autocompletion or parameter hints for functions that use <code>**kwargs</code>.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Process data based on kwargs</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>Provide clear documentation and consider using wrapper functions with explicit parameters for common use cases.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process data based on the provided format and additional options.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    data: The data to be processed.</span>
+<span class="sd">    format: The format of the data. Default is &#39;csv&#39;.</span>
+<span class="sd">    **kwargs: Additional options to control the data processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Process data based on format and kwargs</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">process_csv_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A wrapper function for processing CSV data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a id="6-performance-overhead"></a></p>
+<h2>6. Performance Overhead</h2>
+<p>Functions that use <code>**kwargs</code> have a slight performance overhead because of the dictionary packing and unpacking.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Perform calculation</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>This is usually not significant, but for performance-critical code, consider using explicit parameters.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Perform calculation</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p><a id="7-security-risks"></a></p>
+<h2>7. Security Risks</h2>
+<p>If <code>**kwargs</code> is used to pass user input to functions or classes (like ORM queries), it can lead to security vulnerabilities if not properly sanitized.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>Always validate and sanitize user input before passing it to functions that use <code>**kwargs</code>. Use explicit parameters for sensitive operations.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Validate and sanitize username and password</span>
+    <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a id="8-default-values-and-none-checks"></a></p>
+<h2>8. Default Values and None Checks</h2>
+<p>It can be unclear whether a <code>None</code> value for a keyword argument was intentional or if the argument was omitted.</p>
+<p><strong>Problematic Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">preprocess</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;preprocess&#39;</span><span class="p">,</span> <span class="n">default_preprocess</span><span class="p">)</span>
+    <span class="c1"># If &#39;preprocess&#39; is explicitly set to None, default_preprocess will still be used</span>
+</code></pre></div>
+
+<p><strong>Mitigation Advice:</strong></p>
+<p>Use sentinel objects or explicit checks to differentiate between <code>None</code> as a default value and <code>None</code> as an intentional argument.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">preprocess</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;preprocess&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;preprocess&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="n">default_preprocess</span>
+    <span class="c1"># Now if &#39;preprocess&#39; is explicitly set to None, None will be used</span>
+</code></pre></div>
+
+<p>In conclusion, while <code>**kwargs</code> provides flexibility, it should be used judiciously and with consideration of the potential drawbacks. By following the best practices outlined in this article, you can harness the power of <code>**kwargs</code> to write cleaner, more maintainable, and idiomatic Python code. Happy coding!</p>
+<h2>Related articles</h2>
+<ul>
+<li><a href="https://softwareengineering.stackexchange.com/questions/384743/how-can-i-resolve-this-kwargs-antipattern">python - How can I resolve this **kwargs antipattern? - Software Engineering Stack Exchange</a></li>
+<li><a href="https://www.slingacademy.com/article/python-typing-a-function-with-args-and-kwargs/">Python: Typing a function with *args and **kwargs - Sling Academy</a></li>
+</ul>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/kwargs/">kwargs</a>
+                        <a href="https://www.safjan.com/tag/idiomatic-python/">idiomatic-python</a>
+                        <a href="https://www.safjan.com/tag/clean-code/">clean-code</a>
+                        <a href="https://www.safjan.com/tag/refactoring/">refactoring</a>
+                        <a href="https://www.safjan.com/tag/static-type-checking/">static-type-checking</a>
+                        <a href="https://www.safjan.com/tag/security-risk/">security-risk</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/">Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python</a></li>
+                        <li><a href="https://www.safjan.com/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/">Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App</a></li>
+                        <li><a href="https://www.safjan.com/the-importance-of-adding-py-typed-file-to-your-typed-package/">The Importance of Adding a `py.typed` File to Your Typed Package</a></li>
+                        <li><a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a></li>
+                        <li><a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/">Techniques to Boost RAG Performance in Production</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/ragas-metrics-cheat-sheet/" title="RAGAS metrics cheat sheet">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/" title="Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

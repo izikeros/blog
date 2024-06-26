@@ -1,5 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-05-31T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>RAGAS metrics cheat sheet</title><link href="https://www.safjan.com/ragas-metrics-cheat-sheet/" rel="alternate"></link><published>2024-05-31T00:00:00+02:00</published><updated>2024-05-31T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-05-31:/ragas-metrics-cheat-sheet/</id><summary type="html">&lt;p&gt;Here is a cheat sheet with the RAGAS metrics and their brief description and indication what input data is needed to calculate given metrics. Note that the descriptions are oversimplified, they just serve are reminder. For the metrics definitions please visit &lt;a href="https://docs.ragas.io/en/latest/concepts/metrics/index.html"&gt;RAGAS …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a cheat sheet with the RAGAS metrics and their brief description and indication what input data is needed to calculate given metrics. Note that the descriptions are oversimplified, they just serve are reminder. For the metrics definitions please visit &lt;a href="https://docs.ragas.io/en/latest/concepts/metrics/index.html"&gt;RAGAS documentation page&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-06-22T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python</title><link href="https://www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/" rel="alternate"></link><published>2024-06-22T00:00:00+02:00</published><updated>2024-06-22T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-22:/improving-code-maintainability-when-to-use-standalone-functions-over-static/</id><summary type="html">&lt;p&gt;When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In particular, the choice between converting a method into a static method or a standalone function can have far-reaching consequences. While static methods can help encapsulate utility functions within a class, they still maintain a degree of coupling with the class. On the other hand, standalone functions offer greater flexibility, reusability, and testability, making them an attractive alternative for many scenarios. I will explore the factors that influence this decision and provide guidelines for determining when to refactor a method into a standalone function or mark it as a static method.&lt;/p&gt;
+&lt;h2&gt;TLDR&lt;/h2&gt;
+&lt;p&gt;In Python, it is generally better to use standalone functions instead of static methods when the functionality can be used independently of any particular class. &lt;/p&gt;
+&lt;h2&gt;Why to use functions?&lt;/h2&gt;
+&lt;p&gt;Here are some reasons why:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Code organization&lt;/strong&gt;: Standalone functions can help keep your code organized by separating concerns. When you have a utility function that doesn't depend on any class-specific state or behavior, it makes sense to keep it separate from the class. This improves readability and maintainability.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Code reuse&lt;/strong&gt;: Functions can be more easily reused across different modules and projects compared to static methods, which are tied to a specific class.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Testing&lt;/strong&gt;: Functions are generally easier to test than static methods, as you don't need to create an instance of the class or worry about its state.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Polymorphism&lt;/strong&gt;: Functions can be more easily replaced or mocked for testing or extension purposes, whereas static methods are more tightly coupled to the class.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Documentation&lt;/strong&gt;: Functions can be documented using docstrings, which can be easily accessed using help() or third-party tools like Sphinx. Static methods can be documented, but their documentation might be less discoverable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;On the other hand, you might want to keep a method as a static method if:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;It's closely related to the class&lt;/strong&gt;: If a method is closely related to the class and is used to provide additional functionality that's specific to the class, it's better to keep it as a static method.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;It's used as a factory function&lt;/strong&gt;: If a method is used as a factory function to create instances of the class, it's better to keep it as a static method.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;when a method can be implemented and used independently of a class, consider refactoring it to a standalone function. This approach can lead to cleaner, more modular, and more maintainable code.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="function"></category><category term="python-method"></category><category term="idiomatic-python"></category><category term="refactoring"></category><category term="static-method"></category><category term="testability"></category><category term="python-class"></category><category term="flexilility"></category><category term="reusability"></category><category term="code-organization"></category><category term="code-reuse"></category><category term="testing"></category><category term="polymorphysm"></category><category term="docstrings"></category></entry><entry><title>Mastering kwargs in Python - Best Practices for Experienced Developers</title><link href="https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/" rel="alternate"></link><published>2024-06-13T00:00:00+02:00</published><updated>2024-06-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-13:/mastering-kwargs-in-python-best-practices-for-experienced-developers/</id><summary type="html">&lt;p&gt;Python's &lt;code&gt;**kwargs&lt;/code&gt; is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of &lt;code&gt;**kwargs&lt;/code&gt; comes …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;**kwargs&lt;/code&gt; is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of &lt;code&gt;**kwargs&lt;/code&gt; comes with its own set of challenges. In this article, we'll delve into the potential pitfalls of using &lt;code&gt;**kwargs&lt;/code&gt; and how to mitigate them, helping you write more idiomatic and robust Python code.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#1-loss-of-clarity"&gt;1. Loss of Clarity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-typos-in-argument-names"&gt;2. Typos in Argument Names&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-difficulty-in-refactoring"&gt;3. Difficulty in Refactoring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-incompatibility-with-static-type-checking"&gt;4. Incompatibility with Static Type Checking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#5-introspection-limitations"&gt;5. Introspection Limitations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#6-performance-overhead"&gt;6. Performance Overhead&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#7-security-risks"&gt;7. Security Risks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#8-default-values-and-none-checks"&gt;8. Default Values and None Checks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+&lt;p&gt;&lt;a id="1-loss-of-clarity"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;1. Loss of Clarity&lt;/h2&gt;
+&lt;p&gt;The first challenge with &lt;code&gt;**kwargs&lt;/code&gt; is that it can make your code less clear. When a function accepts &lt;code&gt;**kwargs&lt;/code&gt;, it's not immediately apparent what arguments it expects.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data based on kwargs&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Use explicit parameters where possible and reserve &lt;code&gt;**kwargs&lt;/code&gt; for truly dynamic cases. Always document the expected keyword arguments using docstrings.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Process data based on the provided format and additional options.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;    data: The data to be processed.&lt;/span&gt;
+&lt;span class="sd"&gt;    format: The format of the data. Default is &amp;#39;csv&amp;#39;.&lt;/span&gt;
+&lt;span class="sd"&gt;    **kwargs: Additional options to control the data processing.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data based on format and kwargs&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="2-typos-in-argument-names"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;2. Typos in Argument Names&lt;/h2&gt;
+&lt;p&gt;Misspelled keyword argument names will not raise an error, which can lead to hard-to-trace bugs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;plot_graph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;titel&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Misspelled &amp;#39;title&amp;#39;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Plot graph with title&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Implement argument validation within the function to check for required parameters and raise errors for unexpected arguments.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;plot_graph&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Missing required argument &amp;#39;title&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# Plot graph with title&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="3-difficulty-in-refactoring"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;3. Difficulty in Refactoring&lt;/h2&gt;
+&lt;p&gt;Refactoring tools may not be able to update keyword arguments automatically, as they are not explicitly defined in the function signature.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data based on kwargs&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Later in the code&lt;/span&gt;
+&lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dataset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Misspelled &amp;#39;data&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Limit the use of &lt;code&gt;**kwargs&lt;/code&gt; to cases where it's truly beneficial. When refactoring, manually verify and update the usage of functions that accept &lt;code&gt;**kwargs&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Later in the code&lt;/span&gt;
+&lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dataset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="4-incompatibility-with-static-type-checking"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;4. Incompatibility with Static Type Checking&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;**kwargs&lt;/code&gt; can make it harder to use static type checking, as the types of the passed arguments are not explicit.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data based on kwargs&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Use Python's type hints to specify the expected types of the keyword arguments, and use &lt;code&gt;TypedDict&lt;/code&gt; when you expect a dictionary with a specific structure.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TypedDict&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ProcessDataKwargs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TypedDict&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;total&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;bool&lt;/span&gt;
+    &lt;span class="n"&gt;preprocess&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;callable&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ProcessDataKwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data based on kwargs&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="5-introspection-limitations"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;5. Introspection Limitations&lt;/h2&gt;
+&lt;p&gt;Tools and IDEs may not provide accurate autocompletion or parameter hints for functions that use &lt;code&gt;**kwargs&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data based on kwargs&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Provide clear documentation and consider using wrapper functions with explicit parameters for common use cases.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Process data based on the provided format and additional options.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Args:&lt;/span&gt;
+&lt;span class="sd"&gt;    data: The data to be processed.&lt;/span&gt;
+&lt;span class="sd"&gt;    format: The format of the data. Default is &amp;#39;csv&amp;#39;.&lt;/span&gt;
+&lt;span class="sd"&gt;    **kwargs: Additional options to control the data processing.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process data based on format and kwargs&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_csv_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    A wrapper function for processing CSV data.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="6-performance-overhead"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;6. Performance Overhead&lt;/h2&gt;
+&lt;p&gt;Functions that use &lt;code&gt;**kwargs&lt;/code&gt; have a slight performance overhead because of the dictionary packing and unpacking.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Perform calculation&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is usually not significant, but for performance-critical code, consider using explicit parameters.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Perform calculation&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="7-security-risks"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;7. Security Risks&lt;/h2&gt;
+&lt;p&gt;If &lt;code&gt;**kwargs&lt;/code&gt; is used to pass user input to functions or classes (like ORM queries), it can lead to security vulnerabilities if not properly sanitized.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Always validate and sanitize user input before passing it to functions that use &lt;code&gt;**kwargs&lt;/code&gt;. Use explicit parameters for sensitive operations.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Validate and sanitize username and password&lt;/span&gt;
+    &lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="8-default-values-and-none-checks"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;8. Default Values and None Checks&lt;/h2&gt;
+&lt;p&gt;It can be unclear whether a &lt;code&gt;None&lt;/code&gt; value for a keyword argument was intentional or if the argument was omitted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problematic Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;preprocess&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;preprocess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_preprocess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# If &amp;#39;preprocess&amp;#39; is explicitly set to None, default_preprocess will still be used&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitigation Advice:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Use sentinel objects or explicit checks to differentiate between &lt;code&gt;None&lt;/code&gt; as a default value and &lt;code&gt;None&lt;/code&gt; as an intentional argument.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;preprocess&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;preprocess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;preprocess&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="n"&gt;default_preprocess&lt;/span&gt;
+    &lt;span class="c1"&gt;# Now if &amp;#39;preprocess&amp;#39; is explicitly set to None, None will be used&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In conclusion, while &lt;code&gt;**kwargs&lt;/code&gt; provides flexibility, it should be used judiciously and with consideration of the potential drawbacks. By following the best practices outlined in this article, you can harness the power of &lt;code&gt;**kwargs&lt;/code&gt; to write cleaner, more maintainable, and idiomatic Python code. Happy coding!&lt;/p&gt;
+&lt;h2&gt;Related articles&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://softwareengineering.stackexchange.com/questions/384743/how-can-i-resolve-this-kwargs-antipattern"&gt;python - How can I resolve this **kwargs antipattern? - Software Engineering Stack Exchange&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.slingacademy.com/article/python-typing-a-function-with-args-and-kwargs/"&gt;Python: Typing a function with *args and **kwargs - Sling Academy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="python"></category><category term="kwargs"></category><category term="idiomatic-python"></category><category term="clean-code"></category><category term="refactoring"></category><category term="static-type-checking"></category><category term="security-risk"></category></entry><entry><title>RAGAS metrics cheat sheet</title><link href="https://www.safjan.com/ragas-metrics-cheat-sheet/" rel="alternate"></link><published>2024-05-31T00:00:00+02:00</published><updated>2024-05-31T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-05-31:/ragas-metrics-cheat-sheet/</id><summary type="html">&lt;p&gt;Here is a cheat sheet with the RAGAS metrics and their brief description and indication what input data is needed to calculate given metrics. Note that the descriptions are oversimplified, they just serve are reminder. For the metrics definitions please visit &lt;a href="https://docs.ragas.io/en/latest/concepts/metrics/index.html"&gt;RAGAS …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a cheat sheet with the RAGAS metrics and their brief description and indication what input data is needed to calculate given metrics. Note that the descriptions are oversimplified, they just serve are reminder. For the metrics definitions please visit &lt;a href="https://docs.ragas.io/en/latest/concepts/metrics/index.html"&gt;RAGAS documentation page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="RAGAS metrics cheat sheet - JPG version" src="/images/ragas_metrics_cheat_sheet/RAGAS_metrics_cheat_sheet_v1.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Download &lt;a href="/pdfs/RAGAS_metrics_cheat_sheet_v1.pdf"&gt;PDF version&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="RAGAS"></category><category term="RAG-evaluation"></category><category term="consistency"></category><category term="relevancy"></category><category term="precision"></category><category term="faithfulness"></category><category term="answer-relevance"></category><category term="context-relevancy"></category><category term="context-precision"></category><category term="context-recall"></category><category term="context-entities-recall"></category><category term="answer-semantic-similarity"></category><category term="answer-correctness"></category><category term="harmfulness"></category><category term="malicousness"></category><category term="coherence"></category><category term="correctness"></category><category term="conciseness"></category></entry><entry><title>Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App</title><link href="https://www.safjan.com/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/" rel="alternate"></link><published>2024-04-19T00:00:00+02:00</published><updated>2024-04-19T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-04-19:/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/</id><summary type="html">&lt;p&gt;X::&lt;a href="https://www.safjan.com/python-configuration-management/"&gt;Python - Configuration Management&lt;/a&gt;&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
@@ -2060,6 +2272,10 @@ dups/hybrid_search&lt;/p&gt;
 &lt;li&gt;short (4min 25s) overview of chunking methods from Weaviate: &lt;a href="https://www.youtube.com/watch?v=h5id4erwD4s"&gt;Chunking Methods to use Custom Data with LLMs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=8OJC21T2SL4"&gt;The 5 Levels Of Text Splitting For Retrieval - YouTube&lt;/a&gt; (Fixed Size Chunking,  Recursive Chunking, Document Based Chunking, &lt;strong&gt;Semantic Chunking&lt;/strong&gt;, Agentic Chunking - chunking strategy that explore the possibility to use LLM to determine how much and what text should be included in a chunk based on the context.) + &lt;a href="https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb"&gt;notebook&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Visualization of chunking - &lt;a href="https://chunkviz.up.railway.app/"&gt;ChunkViz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.blog/2024/06/06/breaking-up-is-hard-to-do-chunking-in-rag-applications/"&gt;Breaking up is hard to do: Chunking in RAG applications - Stack Overflow&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;size matters: “You are going to compare that with an embedding of your content. If the size of the content that you're embedding is wildly different from the size of the user's query, you're going to have a higher chance of getting a lower similarity score.”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Edits:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -8219,60 +8435,4 @@ Silvio Micali, won the &lt;a href="https://amturing.acm.org/award_winners/micali
 &lt;p&gt;In addition to these machine learning techniques, there are also hybrid approaches that combine multiple techniques to improve contextual understanding. For example, some systems use a combination of NLP techniques and deep learning algorithms to transcribe speech with high accuracy and understanding of the context in which words are being used.&lt;/p&gt;
 &lt;p&gt;&lt;a id="summary"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Summary&lt;/h2&gt;
-&lt;p&gt;Machine learning techniques are critical for improving contextual understanding in automated speech-to-text transcription. NLP techniques, such as POS tagging and NER, can help machines to better understand the context in which words are being used. Deep learning algorithms, such as RNNs and CNNs, can help machines to learn complex patterns in speech and improve accuracy. As the technology continues to evolve, it is likely that new machine learning techniques will be developed to further improve contextual understanding and accuracy in automated speech-to-text transcription.&lt;/p&gt;</content><category term="note"></category><category term="speech-to-text"></category><category term="ai"></category><category term="machine-learning"></category><category term="deep-learning"></category><category term="pos"></category><category term="ner"></category><category term="cnn"></category><category term="rnn"></category><category term="asr"></category></entry><entry><title>How to Prepare Python Project to Pass It Over to Another Developer</title><link href="https://www.safjan.com/how_to_prepare_python_project_to_pass_it_over_to_another_developer/" rel="alternate"></link><published>2023-03-30T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-30:/how_to_prepare_python_project_to_pass_it_over_to_another_developer/</id><summary type="html">&lt;p&gt;Preparing a Python project to be passed on to another developer requires attention to detail and documentation to ensure that the new developer can understand the project and make modifications with ease. Here is a long and detailed guide on how to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Preparing a Python project to be passed on to another developer requires attention to detail and documentation to ensure that the new developer can understand the project and make modifications with ease. Here is a long and detailed guide on how to prepare a Python project to be handed over to another developer:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Organize your files&lt;/strong&gt;
-Make sure that your project files are organized logically and in a way that is easy to navigate. Create folders for each major section of your project, such as source code, data, and documentation.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Use a version control system&lt;/strong&gt;
-Use a version control system such as Git to keep track of changes to your code. This will make it easier for the new developer to understand the history of the project and any changes that have been made.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Document your code&lt;/strong&gt;
-Document your code using comments and docstrings. Comments should explain the purpose of each section of code, while docstrings should explain the purpose of each function and class. This will make it easier for the new developer to understand how your code works.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Write a README file&lt;/strong&gt;
-Create a README file that explains the purpose of your project, how to run it, and any dependencies that are required. This should also include instructions on how to set up a development environment and how to run tests.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Include requirements files&lt;/strong&gt;
-Include a requirements.txt file that lists all of the dependencies required to run your project. This will make it easier for the new developer to set up a development environment.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Add instructions on how to recreate a virtual environment&lt;/strong&gt;
-Use a virtual environment to create an isolated environment for your project. This will ensure that the new developer has the same environment as you did when you developed the project.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Use consistent coding style&lt;/strong&gt;
-Use a consistent coding style throughout your project to make it easier to read and understand. Use a tool such as PEP 8 to check for compliance with the Python coding style guidelines.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Include test cases&lt;/strong&gt;
-Include test cases that cover all major functionality of your project. This will make it easier for the new developer to ensure that any modifications they make do not break existing functionality.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Include a license&lt;/strong&gt;
-Include a license file that specifies the terms under which your project can be used, modified, and distributed. This will protect your project and ensure that the new developer understands the legal implications of using and modifying your code.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Provide ongoing support&lt;/strong&gt;
-Provide ongoing support to the new developer as they take over the project. This may involve answering questions, providing documentation, or even offering training.&lt;/p&gt;
-&lt;p&gt;Preparing a Python project to be passed on to another developer requires attention to detail and documentation. By following these guidelines, you can ensure that the new developer can understand your project and make modifications with ease.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; There is interesting write-up, proposing approach that will result in projects always ready to handover to another persons:  &lt;a href="https://jmmv.dev/2021/04/always-be-quitting.html"&gt;Always be quitting - Julio Merino (jmmv.dev)&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="python/project"></category><category term="project"></category><category term="handover"></category><category term="python/documentation"></category><category term="testing"></category><category term="readme"></category></entry><entry><title>DCA Investing Strategy Variants</title><link href="https://www.safjan.com/dca_investing_strategy_variants/" rel="alternate"></link><published>2023-03-26T00:00:00+01:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-26:/dca_investing_strategy_variants/</id><summary type="html">&lt;p&gt;Investing can be a daunting task, especially for those new to the game. The world of finance is full of complicated terminology and sophisticated techniques, making it difficult for the average person to know where to start. Fortunately, there are a few …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Investing can be a daunting task, especially for those new to the game. The world of finance is full of complicated terminology and sophisticated techniques, making it difficult for the average person to know where to start. Fortunately, there are a few simple strategies that can help novice investors get started with building their portfolio. One of the most popular and effective strategies is the Dollar-Cost Averaging (DCA) method.&lt;/p&gt;
-&lt;p&gt;Dollar-Cost Averaging (DCA) is a strategy where an investor purchases a fixed amount of a particular asset, such as stocks or bonds, at regular intervals over a period of time, regardless of the price of the asset. The idea behind DCA is to reduce the impact of market fluctuations by buying more shares when prices are low and fewer shares when prices are high. This can help investors avoid the temptation to buy a large amount of an asset all at once, only to see the price drop shortly after.&lt;/p&gt;
-&lt;p&gt;There are several variants of the DCA strategy that investors can use to tailor their investment approach to their individual needs and preferences. Here are some of the most common variants of the DCA strategy:&lt;/p&gt;
-&lt;h3&gt;Traditional DCA&lt;/h3&gt;
-&lt;p&gt;The traditional DCA strategy involves investing a fixed amount of money at regular intervals, such as monthly or quarterly, into the same asset or fund. This is the simplest and most common form of DCA, as it involves consistent, automatic investments over a long period of time.&lt;/p&gt;
-&lt;h3&gt;Value Averaging&lt;/h3&gt;
-&lt;p&gt;Value averaging is a more dynamic form of DCA that involves adjusting the amount invested based on the performance of the asset. With value averaging, the investor sets a target value for the investment and adjusts the amount invested each period to maintain the target value. For example, if the value of the investment increases, the investor will invest less money in the next period, whereas if the value decreases, the investor will invest more money to bring the value back up to the target level.&lt;/p&gt;
-&lt;h3&gt;Constant Proportion Portfolio Insurance (CPPI)&lt;/h3&gt;
-&lt;p&gt;CPPI is a more complex form of DCA that involves setting a floor value for the investment and adjusting the allocation of the portfolio between a risk-free asset and a risky asset to maintain the floor value. The risk-free asset acts as a cushion to prevent the portfolio from falling below the floor value, while the risky asset provides potential upside. This strategy can be particularly useful for investors who want to limit their downside risk while still having exposure to the potential upside of the market.&lt;/p&gt;
-&lt;h3&gt;Asset Allocation DCA&lt;/h3&gt;
-&lt;p&gt;Asset allocation DCA involves investing a fixed amount of money at regular intervals into multiple assets or funds, rather than just one. This approach can help investors diversify their portfolio and reduce the risk of having all their eggs in one basket. The investor sets a target allocation for each asset class, and the DCA strategy is used to maintain the target allocation over time.&lt;/p&gt;
-&lt;h3&gt;Reverse DCA&lt;/h3&gt;
-&lt;p&gt;Reverse DCA is a strategy that involves selling a fixed amount of an asset at regular intervals, rather than buying it. This strategy is often used by retirees or investors who want to draw down their portfolio gradually over time. Reverse DCA can help investors avoid selling all their assets at once and potentially locking in losses during a market downturn.&lt;/p&gt;
-&lt;h3&gt;Step-Up DCA&lt;/h3&gt;
-&lt;p&gt;With step-up DCA, the investor starts with a small investment and gradually increases the amount invested over time. This strategy can be particularly useful for investors who are just starting out and want to ease into investing, or for investors who want to build up their investments gradually.&lt;/p&gt;
-&lt;h3&gt;Seasonal DCA&lt;/h3&gt;
-&lt;p&gt;Seasonal DCA involves investing in an asset only during a specific season or time of year. For example, an investor might choose to invest in a particular stock or fund only during the summer months when the company typically experiences higher sales or during a specific quarter when the company releases its earnings report.&lt;/p&gt;
-&lt;h3&gt;Dynamic DCA&lt;/h3&gt;
-&lt;p&gt;Dynamic DCA is a strategy that adjusts the investment amount based on market conditions or other factors, rather than investing a fixed amount at regular intervals. For example, an investor might increase their investment during a market dip or decrease their investment during a market rally.&lt;/p&gt;
-&lt;h3&gt;Fixed Period DCA&lt;/h3&gt;
-&lt;p&gt;Fixed period DCA involves investing a fixed amount of money over a set period of time, rather than indefinitely. For example, an investor might choose to invest $1,000 per month for a year, after which they reassess their investment strategy.&lt;/p&gt;
-&lt;h3&gt;Dividend Reinvestment DCA&lt;/h3&gt;
-&lt;p&gt;With dividend reinvestment DCA, investors use the dividends earned from an investment to purchase additional shares of the same asset or fund. This strategy can help investors increase their investment over time without having to contribute additional funds from their own pockets.&lt;/p&gt;
-&lt;h3&gt;Fund Transfer DCA&lt;/h3&gt;
-&lt;p&gt;Fund transfer DCA involves transferring a fixed amount of money from one asset or fund to another at regular intervals, rather than investing a fixed amount into a single asset. This strategy can be useful for investors who want to diversify their portfolio across multiple assets.&lt;/p&gt;
-&lt;h3&gt;Progressive DCA&lt;/h3&gt;
-&lt;p&gt;Progressive DCA involves gradually increasing the investment amount over time, typically by a fixed percentage or dollar amount. For example, an investor might start with a $100 investment and increase it by $10 each month.&lt;/p&gt;
-&lt;h3&gt;Threshold DCA&lt;/h3&gt;
-&lt;p&gt;Threshold DCA involves investing a fixed amount only when the price of an asset falls below a certain threshold. This strategy can be useful for investors who want to take advantage of buying opportunities during market dips.&lt;/p&gt;
-&lt;h3&gt;Momentum DCA&lt;/h3&gt;
-&lt;p&gt;Momentum DCA involves investing in assets that have been performing well over a recent period of time. For example, an investor might choose to invest in stocks that have been experiencing a positive trend in their price or earnings.&lt;/p&gt;
-&lt;h3&gt;Tax-Loss Harvesting DCA&lt;/h3&gt;
-&lt;p&gt;With tax-loss harvesting DCA, investors sell losing assets to realize a tax deduction, and use the proceeds to invest in new assets. This strategy can help investors offset capital gains and reduce their tax liability.&lt;/p&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;The Dollar-Cost Averaging strategy can be a powerful tool for investors who want to build a diversified portfolio over time. While the traditional DCA approach is the simplest and most common form of the strategy, there are several variants that investors can use to tailor the approach to their individual needs and preferences. By understanding the different variants of the DCA strategy, investors can choose the one that best suits their investment goals and risk tolerance.&lt;/p&gt;</content><category term="note"></category><category term="finance"></category><category term="strategy"></category><category term="dca"></category><category term="variants"></category></entry></feed>
+&lt;p&gt;Machine learning techniques are critical for improving contextual understanding in automated speech-to-text transcription. NLP techniques, such as POS tagging and NER, can help machines to better understand the context in which words are being used. Deep learning algorithms, such as RNNs and CNNs, can help machines to learn complex patterns in speech and improve accuracy. As the technology continues to evolve, it is likely that new machine learning techniques will be developed to further improve contextual understanding and accuracy in automated speech-to-text transcription.&lt;/p&gt;</content><category term="note"></category><category term="speech-to-text"></category><category term="ai"></category><category term="machine-learning"></category><category term="deep-learning"></category><category term="pos"></category><category term="ner"></category><category term="cnn"></category><category term="rnn"></category><category term="asr"></category></entry></feed>
