@@ -2,19 +2,27 @@
 Title: Open Source LLM Observability Tools and Platforms
 Slug: open-source-llm-observability-tools-and-platforms
 Date: 2024-02-22
-Modified: 2024-02-22
+Modified: 2024-06-26
 Start: 2024-02-22
 tags: observability, mlops, llmops, llm, monitoring, model-monitoring, prompt-management, data-logging, model-logging
 Category: Generative AI
 Image: /images/head/observability_998_cr_640px.jpg
 banner: "/images/head/observability_998_cr_640px.jpg"
-Summary: 
+Summary: Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article delves into the critical aspects of LLM Observability in the realm of generative AI.
 Status: published
 prompt:
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+- [LLM Observability in the Context of LLMOps for Generative AI](#llm-observability-in-the-context-of-llmops-for-generative-ai)
+- [What is LLM Observability?](#what-is-llm-observability)
+- [Expected Functionalities of an LLM Observability Solution](#expected-functionalities-of-an-llm-observability-solution)
+- [Open Source LLM Observability Tools and Platforms](#open-source-llm-observability-tools-and-platforms)
+- [Non-open source](#non-open-source)
+- [Other - related](#other---related)
+- [References](#references)
 
+<!-- /MarkdownTOC -->
 
 <a id="llm-observability-in-the-context-of-llmops-for-generative-ai"></a>
 ## LLM Observability in the Context of LLMOps for Generative AI
@@ -72,9 +80,10 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 13. [Fiddler AI](https://github.com/fiddler-labs/fiddler-auditor) - ![github stars shield](https://img.shields.io/github/stars/fiddler-labs/fiddler-auditor.svg?logo=github) - Evaluate, monitor, analyse, and improve machine learning and generative models from pre-production to production. Ship more ML and LLMs into production, and monitor ML and LLM metrics like hallucination, PII, and toxicity.
 14. [OmniLog](https://github.com/Theodo-UK/OmniLog) - ![github stars shield](https://img.shields.io/github/stars/Theodo-UK/OmniLog.svg?logo=github) - Observability tool for your LLM prompts.
 
+<a id="non-open-source"></a>
 ## Non-open source
 - [Generative AI Studio - Galileo](https://docs.rungalileo.io/galileo/galileo-gen-ai-studio/llm-studio)
-- 
+
 <a id="other---related"></a>
 ## Other - related
 - [Great Expectations](https://github.com/great-expectations/great_expectations) - Always know what to expect from your data.
@@ -94,3 +103,6 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 - [Perplexity - a Hugging Face Space by evaluate-metric](https://huggingface.co/spaces/evaluate-metric/perplexity)
 
 
+**Edits:**
+
+- 2024-06-26 - added summary
