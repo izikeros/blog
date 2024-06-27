@@ -1,5 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-06-26T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python</title><link href="https://www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/" rel="alternate"></link><published>2024-06-22T00:00:00+02:00</published><updated>2024-06-22T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-22:/improving-code-maintainability-when-to-use-standalone-functions-over-static/</id><summary type="html">&lt;p&gt;When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In particular, the choice between converting a method into a static method or a standalone function can have far-reaching consequences. While static methods can help encapsulate utility functions within a class, they still maintain a degree of coupling with the class. On the other hand, standalone functions offer greater flexibility, reusability, and testability, making them an attractive alternative for many scenarios. I will explore the factors that influence this decision and provide guidelines for determining when to refactor a method into a standalone function or mark it as a static method.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-06-27T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Remove Noise From Screen Recording</title><link href="https://www.safjan.com/remove-noise-from-screen-recording/" rel="alternate"></link><published>2024-06-27T00:00:00+02:00</published><updated>2024-06-27T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-27:/remove-noise-from-screen-recording/</id><summary type="html">&lt;p&gt;To remove noise from the speaker audio in your screen capture video, I can recommend a solution using the tools FFmpeg and Audacity as well as some free alternatives. Here's a step-by-step approach.&lt;/p&gt;
+&lt;h2&gt;1. Extract the audio with ffmpeg&lt;/h2&gt;
+&lt;p&gt;Use FFmpeg to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To remove noise from the speaker audio in your screen capture video, I can recommend a solution using the tools FFmpeg and Audacity as well as some free alternatives. Here's a step-by-step approach.&lt;/p&gt;
+&lt;h2&gt;1. Extract the audio with ffmpeg&lt;/h2&gt;
+&lt;p&gt;Use FFmpeg to extract the audio from your video:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ffmpeg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;input_video.mp4&lt;span class="w"&gt; &lt;/span&gt;-vn&lt;span class="w"&gt; &lt;/span&gt;-acodec&lt;span class="w"&gt; &lt;/span&gt;pcm_s16le&lt;span class="w"&gt; &lt;/span&gt;-ar&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;44100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-ac&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;output_audio.wav
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;2. Noise reduction with Audacity (Free, open-source)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Import the extracted audio into Audacity&lt;/li&gt;
+&lt;li&gt;Select a portion of the audio that contains only background noise&lt;/li&gt;
+&lt;li&gt;Go to &lt;code&gt;Effect &amp;gt; Noise Reduction&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Click "Get Noise Profile"&lt;/li&gt;
+&lt;li&gt;Select the entire audio track&lt;/li&gt;
+&lt;li&gt;Go to &lt;code&gt;Effect &amp;gt; Noise Reduction&lt;/code&gt; again&lt;/li&gt;
+&lt;li&gt;Adjust settings and preview until satisfied&lt;/li&gt;
+&lt;li&gt;Click "OK" to apply&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Export the cleaned audio: &lt;code&gt;File &amp;gt; Export &amp;gt; Export as WAV&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;3. Recombine audio with video:&lt;/h2&gt;
+&lt;p&gt;Use FFmpeg to merge the cleaned audio with the original video:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ffmpeg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;input_video.mp4&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;cleaned_audio.wav&lt;span class="w"&gt; &lt;/span&gt;-c:v&lt;span class="w"&gt; &lt;/span&gt;copy&lt;span class="w"&gt; &lt;/span&gt;-c:a&lt;span class="w"&gt; &lt;/span&gt;aac&lt;span class="w"&gt; &lt;/span&gt;-map&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;:v:0&lt;span class="w"&gt; &lt;/span&gt;-map&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;:a:0&lt;span class="w"&gt; &lt;/span&gt;output_video.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Alternative free, video editing tools&lt;/h3&gt;
+&lt;h4&gt;1. DaVinci Resolve (Free version)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Powerful video editor with built-in noise reduction&lt;/li&gt;
+&lt;li&gt;Import video, separate audio, apply &lt;code&gt;Fairlight FX &amp;gt; Noise Reduction&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Export the final video&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;2. Kdenlive (Free, open-source)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Video editor with basic noise reduction capabilities&lt;/li&gt;
+&lt;li&gt;Import video, separate audio, apply &lt;code&gt;Audio Effects &amp;gt; Noise Reduction&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Export the final video&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. Olive Video Editor (Free, open-source)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Another video editor with audio filtering options&lt;/li&gt;
+&lt;li&gt;Import video, separate audio, apply audio effects&lt;/li&gt;
+&lt;li&gt;Export the final video&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For best results, experiment with different tools and settings. The effectiveness of noise reduction depends on the type and amount of noise in your original recording.&lt;/p&gt;
+&lt;h2&gt;Noise removal from CLI alternatives&lt;/h2&gt;
+&lt;p&gt;There are CLI (Command Line Interface) tools available for macOS that can help you remove noise from audio. Here are some options:&lt;/p&gt;
+&lt;h3&gt;1. FFmpeg with FFmpeg-normalize&lt;/h3&gt;
+&lt;p&gt;FFmpeg itself doesn't have advanced noise reduction capabilities, but when combined with FFmpeg-normalize, you can apply some basic noise reduction.&lt;/p&gt;
+&lt;p&gt;First, install FFmpeg and FFmpeg-normalize if you haven't already:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ffmpeg
+pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ffmpeg-normalize
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, you can use this command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ffmpeg-normalize&lt;span class="w"&gt; &lt;/span&gt;input_audio.wav&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;output_audio.wav&lt;span class="w"&gt; &lt;/span&gt;--normalization-type&lt;span class="w"&gt; &lt;/span&gt;ebu&lt;span class="w"&gt; &lt;/span&gt;--target-level&lt;span class="w"&gt; &lt;/span&gt;-23&lt;span class="w"&gt; &lt;/span&gt;--audio-codec&lt;span class="w"&gt; &lt;/span&gt;pcm_s16le&lt;span class="w"&gt; &lt;/span&gt;--audio-bitrate&lt;span class="w"&gt; &lt;/span&gt;192k&lt;span class="w"&gt; &lt;/span&gt;--keep-loudness-range-target&lt;span class="w"&gt; &lt;/span&gt;--loudness-range-target&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;7&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--true-peak&lt;span class="w"&gt; &lt;/span&gt;-2&lt;span class="w"&gt; &lt;/span&gt;--offset&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This command normalizes the audio, which can help reduce some background noise.&lt;/p&gt;
+&lt;h3&gt;2. SoX (Sound eXchange)&lt;/h3&gt;
+&lt;p&gt;SoX is a powerful command-line audio processing tool that includes noise reduction capabilities.&lt;/p&gt;
+&lt;p&gt;Install SoX:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sox
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Use SoX for noise reduction:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sox&lt;span class="w"&gt; &lt;/span&gt;input_audio.wav&lt;span class="w"&gt; &lt;/span&gt;output_audio.wav&lt;span class="w"&gt; &lt;/span&gt;noisered&lt;span class="w"&gt; &lt;/span&gt;noise_profile&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.21
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note: You'll need to create a noise profile first:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sox&lt;span class="w"&gt; &lt;/span&gt;input_audio.wav&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;trim&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.5&lt;span class="w"&gt; &lt;/span&gt;noiseprof&lt;span class="w"&gt; &lt;/span&gt;noise_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This captures the first 0.5 seconds of the audio as the noise profile.&lt;/p&gt;
+&lt;h3&gt;3. AFNI's 3dTcorrMap&lt;/h3&gt;
+&lt;p&gt;AFNI is a set of C programs for processing, analyzing, and displaying functional MRI (fMRI) data, but it includes some audio processing tools.&lt;/p&gt;
+&lt;p&gt;Install AFNI:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--cask&lt;span class="w"&gt; &lt;/span&gt;afni
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Use 3dTcorrMap for noise reduction:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;3dTcorrMap&lt;span class="w"&gt; &lt;/span&gt;-prefix&lt;span class="w"&gt; &lt;/span&gt;output_audio.wav&lt;span class="w"&gt; &lt;/span&gt;-input&lt;span class="w"&gt; &lt;/span&gt;input_audio.wav&lt;span class="w"&gt; &lt;/span&gt;-mask_only_targets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;4. RNNoise&lt;/h3&gt;
+&lt;p&gt;RNNoise is a noise suppression library based on a recurrent neural network. While it's not a standalone CLI tool, you can use it with FFmpeg if you compile FFmpeg with RNNoise support.&lt;/p&gt;
+&lt;p&gt;Here's a general approach (requires advanced setup):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ffmpeg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;input_audio.wav&lt;span class="w"&gt; &lt;/span&gt;-af&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;arnndn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;./rnnoise-models/sh.rnnn&lt;span class="w"&gt; &lt;/span&gt;output_audio.wav
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; that this requires compiling FFmpeg with RNNoise support, which is a more advanced process.&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="note"></category><category term="noise"></category><category term="denoising"></category><category term="video"></category><category term="video-editing"></category><category term="video-processing"></category><category term="audio-processing"></category><category term="postprocessing"></category></entry><entry><title>Measuring Quality and Quantity of Unit Tests in Python Projects - Advanced Strategies</title><link href="https://www.safjan.com/measuring-quality-and-quantity-of-unit-tests-in-python-projects-advanced-strategies/" rel="alternate"></link><published>2024-06-25T00:00:00+02:00</published><updated>2024-06-25T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-25:/measuring-quality-and-quantity-of-unit-tests-in-python-projects-advanced-strategies/</id><summary type="html">&lt;p&gt;For Python professionals seeking to elevate their unit testing practices beyond basic code coverage, this guide outlines advanced metrics and approaches. By integrating these strategies, you can gain deeper insights into your test suite's effectiveness and overall code quality.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#metrics-and-methods"&gt;Metrics and methods …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;For Python professionals seeking to elevate their unit testing practices beyond basic code coverage, this guide outlines advanced metrics and approaches. By integrating these strategies, you can gain deeper insights into your test suite's effectiveness and overall code quality.&lt;/p&gt;
+&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#metrics-and-methods"&gt;Metrics and methods&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#1-code-coverage-metrics"&gt;1. Code Coverage Metrics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2-mutation-testing"&gt;2. Mutation Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3-cyclomatic-complexity-coverage"&gt;3. Cyclomatic Complexity Coverage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#4-test-smell-detection"&gt;4. Test Smell Detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#5-assertion-density"&gt;5. Assertion Density&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#6-test-execution-time"&gt;6. Test Execution Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#7-flakiness-score"&gt;7. Flakiness Score&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#8-code-to-test-ratio"&gt;8. Code to Test Ratio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#9-test-coverage-of-critical-paths"&gt;9. Test Coverage of Critical Paths&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#10-property-based-testing"&gt;10. Property-based Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#11-static-analysis-integration"&gt;11. Static Analysis Integration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#12-mocking-coverage"&gt;12. Mocking Coverage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#13-test-suite-cohesion"&gt;13. Test Suite Cohesion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#14-test-design-quality"&gt;14. Test Design Quality&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#15-behavior-driven-development-bdd"&gt;15. Behavior-Driven Development (BDD)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#16-test-metrics-and-reporting"&gt;16. Test Metrics and Reporting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#tools-to-consider"&gt;Tools to Consider&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="metrics-and-methods"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Metrics and methods&lt;/h2&gt;
+&lt;p&gt;&lt;a id="1-code-coverage-metrics"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1. Code Coverage Metrics&lt;/h3&gt;
+&lt;p&gt;While not sufficient on its own, code coverage remains a fundamental metric. Track:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Line Coverage&lt;/strong&gt;: Percentage of executed lines&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Branch Coverage&lt;/strong&gt;: Percentage of executed branches in control structures&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Path Coverage&lt;/strong&gt;: Percentage of executed unique code paths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="2-mutation-testing"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;2. Mutation Testing&lt;/h3&gt;
+&lt;p&gt;This technique introduces small, random changes (mutations) to your code and verifies if tests catch these alterations. Tools like &lt;a href="[boxed/mutmut: Mutation testing system (github.com)](https://github.com/boxed/mutmut)"&gt;mutmut&lt;/a&gt;, &lt;a href="https://github.com/sixty-north/cosmic-ray"&gt;cosmic-ray&lt;/a&gt;, or &lt;a href="https://pitest.org/"&gt;PITest&lt;/a&gt; can automate this process, revealing areas where tests might be insufficient or overly permissive.&lt;/p&gt;
+&lt;p&gt;&lt;a id="3-cyclomatic-complexity-coverage"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;3. Cyclomatic Complexity Coverage&lt;/h3&gt;
+&lt;p&gt;Measure how well your tests cover complex code paths. High cyclomatic complexity often indicates areas more prone to bugs that require thorough testing.&lt;/p&gt;
+&lt;p&gt;&lt;a id="4-test-smell-detection"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;4. Test Smell Detection&lt;/h3&gt;
+&lt;p&gt;Identify common issues in test code that might indicate poor quality:
+- &lt;strong&gt;Long Test Methods&lt;/strong&gt;: Overly long tests that are hard to understand and maintain
+- &lt;strong&gt;Test Duplication&lt;/strong&gt;: Similar or identical test logic in multiple places
+- &lt;strong&gt;Assertion Roulette&lt;/strong&gt;: Multiple assertions in a test without clear messages&lt;/p&gt;
+&lt;p&gt;&lt;a id="5-assertion-density"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;5. Assertion Density&lt;/h3&gt;
+&lt;p&gt;Calculate the ratio of assertions to lines of test code. A higher density often indicates more thorough testing, though this metric should be used cautiously as it can be manipulated.&lt;/p&gt;
+&lt;p&gt;&lt;a id="6-test-execution-time"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;6. Test Execution Time&lt;/h3&gt;
+&lt;p&gt;Monitor test execution time to maintain a balance between thoroughness and development speed.&lt;/p&gt;
+&lt;p&gt;&lt;a id="7-flakiness-score"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;7. Flakiness Score&lt;/h3&gt;
+&lt;p&gt;Track how often tests fail intermittently. Flaky tests can indicate poor test design or underlying code issues.&lt;/p&gt;
+&lt;p&gt;&lt;a id="8-code-to-test-ratio"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;8. Code to Test Ratio&lt;/h3&gt;
+&lt;p&gt;Compare the amount of production code to test code. While there's no universal ideal ratio, this can provide insights into under-tested areas.&lt;/p&gt;
+&lt;p&gt;&lt;a id="9-test-coverage-of-critical-paths"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;9. Test Coverage of Critical Paths&lt;/h3&gt;
+&lt;p&gt;Identify and ensure comprehensive testing of the most crucial workflows in your application. Implement risk-based testing to focus more efforts on high-risk or complex areas.&lt;/p&gt;
+&lt;p&gt;&lt;a id="10-property-based-testing"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;10. Property-based Testing&lt;/h3&gt;
+&lt;p&gt;Use tools like &lt;a href="https://github.com/HypothesisWorks/hypothesis"&gt;Hypothesis&lt;/a&gt; to generate a wide range of inputs and test properties of your code, rather than specific examples.&lt;/p&gt;
+&lt;p&gt;&lt;a id="11-static-analysis-integration"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;11. Static Analysis Integration&lt;/h3&gt;
+&lt;p&gt;Combine unit test results with static analysis tools like &lt;a href="https://pylint.readthedocs.io/en/latest/"&gt;pylint&lt;/a&gt;, &lt;a href="https://flake8.pycqa.org/en/latest/"&gt;Flake8&lt;/a&gt;, or &lt;a href="https://www.mypy-lang.org/"&gt;mypy&lt;/a&gt; to get a more comprehensive view of code quality and adherence to best practices.&lt;/p&gt;
+&lt;p&gt;&lt;a id="12-mocking-coverage"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;12. Mocking Coverage&lt;/h3&gt;
+&lt;p&gt;Assess how well your tests cover different scenarios when external dependencies are mocked.&lt;/p&gt;
+&lt;p&gt;&lt;a id="13-test-suite-cohesion"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;13. Test Suite Cohesion&lt;/h3&gt;
+&lt;p&gt;Analyze how changes in one part of the codebase affect test results in other parts, indicating how well your tests isolate functionality.&lt;/p&gt;
+&lt;p&gt;&lt;a id="14-test-design-quality"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;14. Test Design Quality&lt;/h3&gt;
+&lt;p&gt;Evaluate the design and readability of your tests:
+- &lt;strong&gt;Test Independence&lt;/strong&gt;: Ensure tests don't depend on each other
+- &lt;strong&gt;Clear Naming&lt;/strong&gt;: Use descriptive names that state what is being tested
+- &lt;a href="https://methodpoet.com/aaa-in-unit-testing/"&gt;Arrange-Act-Assert (AAA) Pattern&lt;/a&gt;: Structure tests into clear setup, execution, and verification phases&lt;/p&gt;
+&lt;p&gt;&lt;a id="15-behavior-driven-development-bdd"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;15. Behavior-Driven Development (BDD)&lt;/h3&gt;
+&lt;p&gt;Adopt BDD practices to improve test coverage and clarity using tools like &lt;a href="https://github.com/behave/behave"&gt;Behave&lt;/a&gt; or &lt;a href="https://github.com/pytest-dev/pytest-bdd"&gt;pytest-bdd&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a id="16-test-metrics-and-reporting"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;16. Test Metrics and Reporting&lt;/h3&gt;
+&lt;p&gt;Implement metrics and reporting to track and improve test quality:
+- &lt;strong&gt;Test Success Rate&lt;/strong&gt;: Measure the percentage of passing tests
+- &lt;strong&gt;Test Maintenance&lt;/strong&gt;: Track the effort needed to maintain and update tests
+- &lt;strong&gt;Coverage Trends&lt;/strong&gt;: Monitor code coverage over time to prevent degradation&lt;/p&gt;
+&lt;p&gt;&lt;a id="tools-to-consider"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Tools to Consider&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://coverage.readthedocs.io/"&gt;Coverage.py&lt;/a&gt;: For code coverage&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mutmut.readthedocs.io/en/latest/index.html"&gt;Mutmut&lt;/a&gt;: For mutation testing&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sonarsource.com/products/sonarqube/"&gt;SonarQube&lt;/a&gt;: For static analysis and test smell detection&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://allurereport.org/"&gt;Allure&lt;/a&gt;: For test reporting&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="code-coverage"></category><category term="test"></category><category term="testing"></category></entry><entry><title>Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python</title><link href="https://www.safjan.com/improving-code-maintainability-when-to-use-standalone-functions-over-static/" rel="alternate"></link><published>2024-06-22T00:00:00+02:00</published><updated>2024-06-22T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-22:/improving-code-maintainability-when-to-use-standalone-functions-over-static/</id><summary type="html">&lt;p&gt;When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In particular, the choice between converting a method into a static method or a standalone function can have far-reaching consequences. While static methods can help encapsulate utility functions within a class, they still maintain a degree of coupling with the class. On the other hand, standalone functions offer greater flexibility, reusability, and testability, making them an attractive alternative for many scenarios. I will explore the factors that influence this decision and provide guidelines for determining when to refactor a method into a standalone function or mark it as a static method.&lt;/p&gt;
 &lt;h2&gt;TLDR&lt;/h2&gt;
 &lt;p&gt;In Python, it is generally better to use standalone functions instead of static methods when the functionality can be used independently of any particular class. &lt;/p&gt;
 &lt;h2&gt;Why to use functions?&lt;/h2&gt;
@@ -8346,111 +8538,4 @@ Silvio Micali, won the &lt;a href="https://amturing.acm.org/award_winners/micali
 
 &lt;p&gt;Here, &lt;code&gt;Tuple[str, ...]&lt;/code&gt; is used to indicate that &lt;code&gt;t&lt;/code&gt; is a tuple of strings, and the &lt;code&gt;...&lt;/code&gt; indicates that the tuple can have an arbitrary number of elements.&lt;/p&gt;
 &lt;p&gt;X::&lt;a href="https://www.safjan.com/type-hint-for-undetermined-number-of-elements/"&gt;Python - How to Make Type Hint for the Tuple With Undetermined Number of Strings?&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;X::&lt;a href="https://www.safjan.com/use-python-typeddict-to-type-hint-dictionaries/"&gt;Use Python TypedDict to Type Hint Dictionaries&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="type-hints"></category><category term="mypy"></category><category term="elypsis"></category><category term="python-typing"></category></entry><entry><title>Git - Annotated vs. Lightweight Tags</title><link href="https://www.safjan.com/git-annotated-vs-lightweight-tags/" rel="alternate"></link><published>2023-03-31T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-31:/git-annotated-vs-lightweight-tags/</id><summary type="html">&lt;p&gt;In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.&lt;/p&gt;
-&lt;h2&gt;Annotated tags&lt;/h2&gt;
-&lt;p&gt;Annotated tags are more informative than lightweight tags. When creating an annotated tag, Git stores a full object in the repository that contains the tagger name, email, and date, a tagging message, and a SHA-1 checksum of the commit being tagged. Annotated tags are essentially Git objects that are separate from the commit objects they reference, whereas lightweight tags are simply pointers to specific commits.&lt;/p&gt;
-&lt;p&gt;The additional information stored in an annotated tag makes them useful for documenting significant events in the project's history. The tagging message can provide context about why the tag was created and what it represents. Additionally, annotated tags can be signed and verified to ensure their authenticity. Signed tags provide assurance that the tag was created by an authorized person and that the commit being tagged has not been tampered with.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;tag&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;v1.2&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;my version 1.4&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Lightweight tags&lt;/h2&gt;
-&lt;p&gt;Lightweight tags, on the other hand, are simply references to specific commits. They do not store any additional information beyond the tag name and the commit ID. Lightweight tags are useful for marking temporary or internal points in the repository history, such as to label a specific commit for testing or debugging purposes. Lightweight tags are created with the &lt;code&gt;git tag&lt;/code&gt; command without the &lt;code&gt;-a&lt;/code&gt; or &lt;code&gt;-m&lt;/code&gt; options.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;tag&lt;span class="w"&gt; &lt;/span&gt;v1.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;When to use Annotated and when Lightweight tags?&lt;/h2&gt;
-&lt;p&gt;So when should you use annotated tags versus lightweight tags? Annotated tags are ideal for marking significant events in the project's history, such as releases, milestones, or important changes. They are also useful for documenting the context and reasoning behind a particular tag. Lightweight tags, on the other hand, are useful for temporary or internal purposes, such as marking specific commits for debugging or testing purposes.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In general, it is a good practice to &lt;strong&gt;use annotated&lt;/strong&gt; tags for any &lt;strong&gt;official releases&lt;/strong&gt; or &lt;strong&gt;milestones&lt;/strong&gt;, as they provide a clear and detailed record of the project's progress. &lt;strong&gt;Lightweight&lt;/strong&gt; tags can be used for more informal purposes, such as to &lt;strong&gt;mark experimental&lt;/strong&gt; or &lt;strong&gt;intermediate points&lt;/strong&gt; in the project's history.&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="note"></category><category term="git"></category><category term="tag"></category></entry><entry><title>Contextual Understanding in Automated Speech-to-Text Transcription - Machine Learning Techniques and Challenges</title><link href="https://www.safjan.com/contextual_understanding-speech-to-text/" rel="alternate"></link><published>2023-03-30T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-03-30:/contextual_understanding-speech-to-text/</id><summary type="html">&lt;p&gt;Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to limit the capabilities of automated speech recognition technology. In this blog post, we will explore some of the biggest unsolved problems in automated speech-to-text transcription.&lt;/p&gt;
-&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#challenges"&gt;Challenges&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#1-accurate-transcription-of-spontaneous-speech"&gt;1.  Accurate transcription of spontaneous speech&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#2-handling-multiple-speakers"&gt;2.  Handling multiple speakers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#3-handling-accents-and-dialects"&gt;3.  Handling accents and dialects&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#4-contextual-understanding"&gt;4.  Contextual understanding&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#5-real-time-transcription"&gt;5.  Real-time transcription&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#6-data-privacy-and-security"&gt;6.  Data privacy and security&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#contextual-understanding"&gt;Contextual understanding&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#importance"&gt;Importance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#approaches"&gt;Approaches&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#machine-learning-techniques-for-contextual-understanding"&gt;Machine Learning techniques for Contextual understanding&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#disambiguation"&gt;Disambiguation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#hybrid-approaches"&gt;hybrid approaches&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#summary"&gt;Summary&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-
-&lt;p&gt;&lt;a id="challenges"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Challenges&lt;/h2&gt;
-&lt;p&gt;&lt;a id="1-accurate-transcription-of-spontaneous-speech"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;1.  Accurate transcription of spontaneous speech&lt;/h3&gt;
-&lt;p&gt;One of the biggest challenges in automated speech-to-text transcription is accurately transcribing spontaneous speech. Spontaneous speech is characterized by its lack of structure and tendency to contain many disfluencies, such as repetitions, false starts, and filled pauses. This type of speech is particularly challenging for machines to transcribe accurately, as it can be difficult to distinguish between disfluencies and actual words. This can lead to errors in the transcribed text, which can be frustrating for users and limit the usefulness of the technology.&lt;/p&gt;
-&lt;p&gt;&lt;a id="2-handling-multiple-speakers"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;2.  Handling multiple speakers&lt;/h3&gt;
-&lt;p&gt;Another major challenge in automated speech-to-text transcription is handling multiple speakers. When there are multiple speakers involved, it can be difficult for machines to distinguish between them and accurately attribute the words to the correct speaker. This can lead to confusion and errors in the transcribed text, which can be particularly problematic in applications where it is important to know who said what. There has been some progress in this area, with some automated transcription services now able to recognize multiple speakers, but there is still room for improvement.&lt;/p&gt;
-&lt;p&gt;&lt;a id="3-handling-accents-and-dialects"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;3.  Handling accents and dialects&lt;/h3&gt;
-&lt;p&gt;Accents and dialects can also pose a significant challenge for automated speech-to-text transcription. Different accents and dialects can vary greatly in terms of pronunciation, intonation, and grammar, which can make it difficult for machines to accurately transcribe speech from speakers with different accents or dialects. This is particularly problematic in applications where it is important to accurately capture the nuances of the speaker's speech, such as in legal or medical settings.&lt;/p&gt;
-&lt;p&gt;&lt;a id="4-contextual-understanding"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;4.  Contextual understanding&lt;/h3&gt;
-&lt;p&gt;Another major challenge in automated speech-to-text transcription is contextual understanding. Machines are able to transcribe speech accurately based on the words that are spoken, but they may not always be able to understand the context in which those words are being used. For example, machines may struggle to accurately transcribe a sentence that contains homophones, such as "I saw the bear" versus "I saw the bare". In order to accurately transcribe speech, machines need to be able to understand the context in which the words are being used.&lt;/p&gt;
-&lt;p&gt;&lt;a id="5-real-time-transcription"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;5.  Real-time transcription&lt;/h3&gt;
-&lt;p&gt;Real-time transcription is another major challenge for automated speech-to-text transcription. Real-time transcription involves transcribing speech as it is being spoken, rather than after the fact. This can be particularly challenging, as machines need to be able to transcribe speech quickly and accurately, without the benefit of being able to go back and review what was said. Real-time transcription is becoming increasingly important in a number of applications, such as live captioning of video content, but there is still room for improvement in this area.&lt;/p&gt;
-&lt;p&gt;&lt;a id="6-data-privacy-and-security"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;6.  Data privacy and security&lt;/h3&gt;
-&lt;p&gt;Finally, data privacy and security is a major concern in automated speech-to-text transcription. In order to transcribe speech accurately, machines need to be trained on large amounts of data, which may contain sensitive information. This raises concerns about how that data is collected, stored, and used, and whether appropriate safeguards are in place to protect user privacy. As the use of automated speech-to-text transcription continues to grow, it will be important to ensure that user data is handled in a responsible and secure manner.&lt;/p&gt;
-&lt;p&gt;&lt;a id="contextual-understanding"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Contextual understanding&lt;/h2&gt;
-&lt;p&gt;Contextual understanding is one of the biggest challenges facing automated speech-to-text transcription. Machines are able to transcribe speech accurately based on the words that are spoken, but they may not always be able to understand the context in which those words are being used. In order to accurately transcribe speech, machines need to be able to understand the context in which the words are being used, including the speaker's tone, mood, and intent.&lt;/p&gt;
-&lt;p&gt;&lt;a id="importance"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Importance&lt;/h3&gt;
-&lt;p&gt;Contextual understanding is important for a number of reasons. First, it can help to reduce errors in automated speech-to-text transcription. When machines are able to understand the context in which words are being used, they are less likely to make mistakes or misinterpret the speaker's meaning. This can improve the accuracy of the transcribed text and make it more useful for a variety of applications.&lt;/p&gt;
-&lt;p&gt;Second, contextual understanding can help to improve the quality of the transcribed text. When machines are able to understand the context in which words are being used, they can more accurately transcribe the speaker's tone and mood. This can be particularly important in applications such as customer service or support, where it is important to accurately capture the speaker's emotions in order to provide an appropriate response.&lt;/p&gt;
-&lt;p&gt;Finally, contextual understanding can help to improve the overall user experience. When machines are able to accurately transcribe speech and understand the context in which words are being used, users are more likely to have a positive experience with the technology. This can help to increase adoption and usage of automated speech-to-text transcription in a variety of applications.&lt;/p&gt;
-&lt;p&gt;&lt;a id="approaches"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Approaches&lt;/h3&gt;
-&lt;p&gt;There are several approaches that can be used to improve contextual understanding in automated speech-to-text transcription. One approach is to use machine learning algorithms to analyze the context in which words are being used. Machine learning algorithms can be trained on large datasets of speech and text data to learn how to identify patterns in the way that words are used in different contexts. This can help machines to more accurately transcribe speech and understand the context in which words are being used.&lt;/p&gt;
-&lt;p&gt;Another approach is to incorporate additional information into the transcription process. For example, machines can be programmed to recognize certain words or phrases that are commonly used in specific contexts, such as in a medical setting or in a legal deposition. This can help to improve the accuracy of the transcribed text and ensure that the context in which words are being used is correctly understood.&lt;/p&gt;
-&lt;p&gt;Contextual understanding is an important area of research in automated speech-to-text transcription, and there is still much work to be done in this area. As the technology continues to evolve and improve, it is likely that machines will become increasingly capable of understanding the context in which words are being used. This will help to improve the accuracy and quality of the transcribed text, and make automated speech-to-text transcription a more valuable tool for a variety of applications.&lt;/p&gt;
-&lt;p&gt;However, there are also important ethical considerations when it comes to contextual understanding. Machines that can accurately understand the context in which words are being used may also be able to infer personal information about the speaker, such as their emotions, intent, or political beliefs. This raises important questions about data privacy and security, and highlights the need for responsible use and handling of user data in automated speech-to-text transcription. As the technology continues to evolve, it will be important to ensure that user data is protected and used in a responsible and ethical manner.&lt;/p&gt;
-&lt;p&gt;In addition to machine learning and incorporating additional information, another approach to improving contextual understanding in automated speech-to-text transcription is to incorporate other types of data into the transcription process. For example, machines can be programmed to recognize the speaker's accent or dialect, which can provide important contextual information about the way that words are being used.&lt;/p&gt;
-&lt;p&gt;Similarly, machines can be programmed to recognize the speaker's gender, age, or other demographic characteristics. This can provide important contextual information about the way that words are being used, and can help machines to more accurately transcribe speech and understand the context in which words are being used.&lt;/p&gt;
-&lt;p&gt;There are also challenges associated with contextual understanding in automated speech-to-text transcription. For example, there is often a significant amount of variation in the way that words are used in different contexts, which can make it difficult for machines to accurately transcribe speech and understand the context in which words are being used. Additionally, there may be cultural or regional differences in the way that words are used, which can further complicate the transcription process.&lt;/p&gt;
-&lt;p&gt;Another challenge is that context can be dynamic and change rapidly over the course of a conversation. Machines need to be able to adapt to changes in context in real time in order to accurately transcribe speech and understand the context in which words are being used.&lt;/p&gt;
-&lt;p&gt;&lt;a id="machine-learning-techniques-for-contextual-understanding"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Machine Learning techniques for Contextual understanding&lt;/h2&gt;
-&lt;p&gt;Machine learning techniques are commonly used to improve contextual understanding in automated speech-to-text transcription. In this post, we will discuss some of the key machine learning techniques used for this purpose.&lt;/p&gt;
-&lt;p&gt;&lt;a id="disambiguation"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Disambiguation&lt;/h3&gt;
-&lt;p&gt;One of the most widely used machine learning techniques for contextual understanding is natural language processing (NLP). NLP is a subfield of machine learning that focuses on analyzing and understanding human language. NLP algorithms are trained on large datasets of text data and are used to analyze the context in which words are being used in speech.&lt;/p&gt;
-&lt;p&gt;One of the key challenges in NLP is disambiguation, or the process of determining the correct meaning of a word based on its context. For example, the word "bank" can refer to a financial institution or the side of a river. To accurately transcribe speech, machines need to be able to accurately disambiguate words based on their context.&lt;/p&gt;
-&lt;h4&gt;part-of-speech (POS) tagging&lt;/h4&gt;
-&lt;p&gt;One technique for disambiguation is part-of-speech (POS) tagging. POS tagging involves analyzing each word in a sentence and assigning it a part-of-speech tag, such as noun, verb, adjective, or adverb. By analyzing the parts of speech used in a sentence, machines can gain a better understanding of the context in which words are being used.&lt;/p&gt;
-&lt;h4&gt;named entity recognition (NER)&lt;/h4&gt;
-&lt;p&gt;Another NLP technique used for contextual understanding is named entity recognition (NER). NER involves identifying and classifying named entities in text data, such as people, organizations, and locations. By identifying named entities in speech, machines can gain a better understanding of the context in which words are being used.&lt;/p&gt;
-&lt;h4&gt;sentiment analysis&lt;/h4&gt;
-&lt;p&gt;Another machine learning technique used for contextual understanding is sentiment analysis. Sentiment analysis involves analyzing the emotional tone of a piece of text data, such as whether it is positive, negative, or neutral. By analyzing the sentiment of speech, machines can gain a better understanding of the speaker's emotions and intent.&lt;/p&gt;
-&lt;h4&gt;Deep learning&lt;/h4&gt;
-&lt;p&gt;Deep learning is another machine learning technique that is commonly used for contextual understanding. Deep learning algorithms are designed to learn complex patterns in data, and are often used for tasks such as speech recognition and image recognition.&lt;/p&gt;
-&lt;h5&gt;recurrent neural network (RNN)&lt;/h5&gt;
-&lt;p&gt;One common type of deep learning algorithm used for contextual understanding is the recurrent neural network (RNN). RNNs are designed to analyze sequences of data, such as sentences or audio clips. By analyzing the sequence of words or sounds in speech, RNNs can gain a better understanding of the context in which words are being used.&lt;/p&gt;
-&lt;h4&gt;convolutional neural network (CNN)&lt;/h4&gt;
-&lt;p&gt;Another type of deep learning algorithm used for contextual understanding is the convolutional neural network (CNN). CNNs are often used for image recognition tasks, but can also be used for speech recognition. By analyzing the frequency and amplitude of sound waves in speech, CNNs can gain a better understanding of the context in which words are being used.&lt;/p&gt;
-&lt;p&gt;&lt;a id="hybrid-approaches"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;hybrid approaches&lt;/h3&gt;
-&lt;p&gt;In addition to these machine learning techniques, there are also hybrid approaches that combine multiple techniques to improve contextual understanding. For example, some systems use a combination of NLP techniques and deep learning algorithms to transcribe speech with high accuracy and understanding of the context in which words are being used.&lt;/p&gt;
-&lt;p&gt;&lt;a id="summary"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Summary&lt;/h2&gt;
-&lt;p&gt;Machine learning techniques are critical for improving contextual understanding in automated speech-to-text transcription. NLP techniques, such as POS tagging and NER, can help machines to better understand the context in which words are being used. Deep learning algorithms, such as RNNs and CNNs, can help machines to learn complex patterns in speech and improve accuracy. As the technology continues to evolve, it is likely that new machine learning techniques will be developed to further improve contextual understanding and accuracy in automated speech-to-text transcription.&lt;/p&gt;</content><category term="note"></category><category term="speech-to-text"></category><category term="ai"></category><category term="machine-learning"></category><category term="deep-learning"></category><category term="pos"></category><category term="ner"></category><category term="cnn"></category><category term="rnn"></category><category term="asr"></category></entry></feed>
+&lt;p&gt;X::&lt;a href="https://www.safjan.com/use-python-typeddict-to-type-hint-dictionaries/"&gt;Use Python TypedDict to Type Hint Dictionaries&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="type-hints"></category><category term="mypy"></category><category term="elypsis"></category><category term="python-typing"></category></entry></feed>
