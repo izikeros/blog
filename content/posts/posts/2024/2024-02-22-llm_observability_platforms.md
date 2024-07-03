@@ -66,6 +66,10 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 ## Open Source LLM Observability Tools and Platforms
 
 1. [Azure OpenAI Logger](https://github.com/aavetis/azure-openai-logger) - ![github stars shield](https://img.shields.io/github/stars/aavetis/azure-openai-logger.svg?logo=github) - "Batteries included" logging solution for your Azure OpenAI instance.
+
+![Azure OpenAI Logger](https://github.com/aavetis/azure-openai-logger/raw/main/images/demo.gif)
+
+
 2. [Deepchecks](https://github.com/deepchecks/deepchecks) - ![github stars shield](https://img.shields.io/github/stars/deepchecks/deepchecks.svg?logo=github) - Tests for Continuous Validation of ML Models & Data. Deepchecks is a Python package for comprehensively validating your machine learning models and data with minimal effort.
 3. [Evidently](https://github.com/evidentlyai/evidently) - ![github stars shield](https://img.shields.io/github/stars/evidentlyai/evidently.svg?logo=github) - Evaluate and monitor ML models from validation to production.
 4. [Giskard](https://github.com/Giskard-AI/giskard) - ![github stars shield](https://img.shields.io/github/stars/Giskard-AI/giskard.svg?logo=github) - Testing framework dedicated to ML models, from tabular to LLMs. Detect risks of biases, performance issues and errors in 4 lines of code.
