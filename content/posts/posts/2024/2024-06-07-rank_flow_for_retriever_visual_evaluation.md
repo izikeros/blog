@@ -14,6 +14,7 @@ summary3: The retriever is a critical component in RAG systems. Monitoring how d
 summary4: Effective retrieval is the cornerstone of RAG system performance. Tracing document rank changes through multiple re-ranking stages can be daunting. This piece delves into techniques for gathering ranking data and generating visualizations to enhance retriever analysis.
 summary5: 1. RAG systems live and die by the quality of their retrieval. Understanding rank evolution across re-ranking steps is key but often difficult. We'll explore approaches for capturing rank data and creating visual tools to accelerate retriever optimization.
 prompt:
+status: published
 ---
 
 
