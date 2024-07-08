@@ -10,6 +10,15 @@ Category: note
 X:[[fine_tune_large_language_models_LLM]]
 X::[[RAG_evaluation]]
 
+![[Pasted image 20240708122914.png]]
+
+**Ranking:**
+1. llama-3-8b
+2. phi-3-4k
+3. zephyr-7b-beta
+4. llama-3-8b-instruct
+5. mistral-7b
+
 ```vid
 https://www.youtube.com/watch?v=kFdfDJ1fQxY
 ```
