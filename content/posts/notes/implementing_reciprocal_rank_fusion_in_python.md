@@ -2,7 +2,7 @@
 Title: Implementing Reciprocal Rank Fusion (RRF) in Python
 Slug: implementing-rank-fusion-in-python
 Date: 2023-07-28
-Modified: 2023-10-09
+Modified: 2024-07-14
 Status: published
 tags: rank-fusion, hybrid-search, rank, search
 Category: note
@@ -12,6 +12,8 @@ X::[[borda_count_python]]
 
 In the world of Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.
+
+> NOTE:  If you want to analyse rank changes over time in a visual manner, you might be interested in using [[2024-06-07-rank_flow_for_retriever_visual_evaluation|rankflow]] package.
 
 ## Understanding the RRF Ranking Process
 
@@ -121,11 +123,9 @@ The RRF method is a powerful tool in the field of Information Retrieval, providi
 
 **Edits:**
 
+- 2024-07-14: Added reference to the rankflow plotting package
 - 2023-11-06: changed title to: Implementing Reciprocal Rank Fusion and Borda Count in Python
 - 2023-11-06: added RRF description
 - 2023-11-06: added optimized implementation
 
 X::[[rank_fusion_algorithms]]
-X::[[dups/hybrid_search]]
-X::[[dups/hybrid_search_re_ranking]]
-X::[[dups/rank_fussion_borda]]

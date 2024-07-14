@@ -2,14 +2,14 @@
 Title: Rank Fusion Algorithms - From Simple to Advanced
 Slug: Rank-fusion-algorithms-from-simple-to-advanced
 Date: 2023-07-28
-Modified: 2023-10-09
+Modified: 2024-07-14
 Status: published
 tags: rank-fusion, rank, search, hybrid-search
 Category: note
 ---
 ## Introduction
 
-Rank fusion is a fundamental technique used in various domains, including data science and search engine optimization, to combine multiple ranked lists into a single, more reliable ranking. This process aims to exploit the strengths of individual ranking algorithms and mitigate their weaknesses, leading to improved overall performance. In this blog post, we will explore a range of rank fusion algorithms, starting from simple yet effective methods to advanced techniques employed by tech giants to achieve state-of-the-art results.
+Rank fusion is a fundamental technique used in various domains, including data science and search engine optimization, to combine multiple ranked lists into a single, more reliable ranking. This process aims to exploit the strengths of individual ranking algorithms and mitigate their weaknesses, leading to improved overall performance. In this blog post, we will explore a range of rank fusion algorithms, starting from simple yet effective methods to advanced techniques employed by tech giants to achieve state-of-the-art results. If you want to analyse rank changes over time in a visual manner, you might be interested in using [[2024-06-07-rank_flow_for_retriever_visual_evaluation|rankflow]] package.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
@@ -30,7 +30,6 @@ Rank fusion is a fundamental technique used in various domains, including data s
 ## Algorithms
 
 <a id="borda-algorithm"></a>
-
 ### Borda Algorithm
 
 The Borda algorithm is one of the simplest rank fusion techniques. It assigns scores to items based on their positions in the individual rankings and then combines these scores to obtain a fused ranking. In the context of search engine results, each document receives points based on its position in the ranked lists. The points are then summed up to form the final rank.
@@ -127,6 +126,7 @@ Rank fusion serves as a potent tool in the arsenal of data scientists and search
 Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands out for its ability to **combine multiple result sets with varying relevance indicators** **without the need for tuning**. This makes it a robust and effective choice for many applications.
 
 **Edits**:
+- 2024-07-14 - Added reference to rankflow (ranks plotting)
 - 2024-03-06 - Added Panjete/rankAggr to references
 - 2023-10-09 - Added "Reciprocal Rank Fusion", rewrite conclusion
 <a id="references"></a>
