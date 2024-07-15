@@ -1,5 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-07-14T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>RankFlow plot for retriever visual evaluation</title><link href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" rel="alternate"></link><published>2024-07-08T00:00:00+02:00</published><updated>2024-07-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-07-08:/rankflow-plot-for-retriever-visual-evaluation/</id><summary type="html">&lt;p&gt;RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-07-15T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data</title><link href="https://www.safjan.com/borda-count-vs-reciprocal-rank/" rel="alternate"></link><published>2024-07-15T00:00:00+02:00</published><updated>2024-07-15T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-07-15:/borda-count-vs-reciprocal-rank/</id><summary type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#borda-count-and-reciprocal-rank-combining---approach-and-calculation"&gt;Borda count and Reciprocal Rank Combining - approach and calculation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#borda-count"&gt;Borda Count&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reciprocal-rank"&gt;Reciprocal Rank&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#key-differences"&gt;Key differences&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#example"&gt;Example&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#key-observations"&gt;Key observations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#the-main-differences"&gt;The main differences&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#which-one-to-use-and-when"&gt;Which one to use and when?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#borda-count-is-better-when"&gt;Borda Count is better when...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reciprocal-rank-is-better-when"&gt;Reciprocal Rank is better when...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#additional-considerations"&gt;Additional considerations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#summary"&gt;Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="borda-count-and-reciprocal-rank-combining---approach-and-calculation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Borda count …&lt;/h2&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#borda-count-and-reciprocal-rank-combining---approach-and-calculation"&gt;Borda count and Reciprocal Rank Combining - approach and calculation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#borda-count"&gt;Borda Count&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reciprocal-rank"&gt;Reciprocal Rank&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#key-differences"&gt;Key differences&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#example"&gt;Example&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#key-observations"&gt;Key observations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#the-main-differences"&gt;The main differences&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#which-one-to-use-and-when"&gt;Which one to use and when?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#borda-count-is-better-when"&gt;Borda Count is better when...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reciprocal-rank-is-better-when"&gt;Reciprocal Rank is better when...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#additional-considerations"&gt;Additional considerations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#summary"&gt;Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;p&gt;&lt;a id="borda-count-and-reciprocal-rank-combining---approach-and-calculation"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Borda count and Reciprocal Rank Combining - approach and calculation&lt;/h2&gt;
+&lt;p&gt;Borda count and Reciprocal Rank are both methods used in information retrieval and voting systems to combine rankings, but they differ in their approach and calculation. For details of the calculation see borda_count_python and &lt;a href="https://www.safjan.com/implementing-rank-fusion-in-python/"&gt;Implementing Reciprocal Rank Fusion (RRF) in Python&lt;/a&gt;. In this blog post we will focus on comparison of both algorithms and key differences.&lt;/p&gt;
+&lt;p&gt;&lt;a id="borda-count"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Borda Count&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Assigns points to each item based on its position in each ranking&lt;/li&gt;
+&lt;li&gt;Typically gives n points to the top-ranked item, n-1 to the second, and so on, where n is the number of items&lt;/li&gt;
+&lt;li&gt;Sums up the points across all rankings&lt;/li&gt;
+&lt;li&gt;Final ranking is determined by the total points, with higher scores ranking better&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="reciprocal-rank"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Reciprocal Rank&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Focuses on the position of each item in the rankings&lt;/li&gt;
+&lt;li&gt;Calculates the reciprocal of the rank for each item (1/rank)&lt;/li&gt;
+&lt;li&gt;Averages these reciprocal ranks across all rankings&lt;/li&gt;
+&lt;li&gt;Final ranking is determined by the average reciprocal rank, with higher values ranking better&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a id="key-differences"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Key differences&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Scale&lt;/strong&gt;: Borda count uses a linear scale, while Reciprocal Rank uses a non-linear scale that emphasizes top rankings more heavily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sensitivity&lt;/strong&gt;: Reciprocal Rank is more sensitive to high rankings and less affected by lower rankings compared to Borda count.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Range&lt;/strong&gt;: Borda count scores depend on the number of items, while Reciprocal Rank scores are always between 0 and 1.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interpretation&lt;/strong&gt;: Borda count provides a cumulative score, while Reciprocal Rank gives an average of inverse rankings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="example"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;p&gt;This is example that demonstrates both the Borda Count and Reciprocal Rank methods, highlighting their differences. This example will use six different rankings of six items.&lt;/p&gt;
+&lt;p&gt;Here's a Python script that will demonstrate this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;borda_count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;n_items&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_items&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ranking&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;scores&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_items&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))[&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ranking&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;scores&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;reciprocal_rank&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;n_items&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_items&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ranking&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;scores&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ranking&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# +1 because ranks start from 0&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;scores&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# New rankings (0-indexed) designed to produce different results&lt;/span&gt;
+&lt;span class="n"&gt;rankings&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Ranking 1&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Ranking 2&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Ranking 3&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Ranking 4&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Ranking 5&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="c1"&gt;# Ranking 6&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;borda_scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;borda_count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;rr_scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reciprocal_rank&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rankings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Borda Count Scores:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;score&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;borda_scores&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Item &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Reciprocal Rank Scores:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;score&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rr_scores&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Item &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.4f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Borda Count Ranking:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;borda_scores&lt;/span&gt;&lt;span class="p"&gt;)[::&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Reciprocal Rank Ranking:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argsort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rr_scores&lt;/span&gt;&lt;span class="p"&gt;)[::&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here's the output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Borda Count Scores:
+Item 0: 27.0
+Item 1: 29.0
+Item 2: 28.0
+Item 3: 24.0
+Item 4: 12.0
+Item 5: 6.0
+
+Reciprocal Rank Scores:
+Item 0: 0.5972
+Item 1: 0.4861
+Item 2: 0.4583
+Item 3: 0.5417
+Item 4: 0.2000
+Item 5: 0.1667
+
+Borda Count Ranking:
+[1 2 0 3 4 5]
+
+Reciprocal Rank Ranking:
+[0 3 1 2 4 5]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a id="key-observations"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Key observations&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Borda Count Ranking: [1 2 0 3 4 5]&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Item 1 has the highest score, followed by 2, 0, 3, 4, and 5.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reciprocal Rank Ranking: [0 3 1 2 4 5]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Item 0 has the highest score, followed by 3, 1, 2, 4, and 5.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="the-main-differences"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;The main differences&lt;/h3&gt;
+&lt;h4&gt;Top Ranking&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Borda Count ranks item 1 first, while Reciprocal Rank ranks item 0 first.&lt;/li&gt;
+&lt;li&gt;This is because Reciprocal Rank gives more weight to the first-place rankings, which item 0 has more of (item 1 has 2 times rank 0, two times rank 1, and item 0 has also 2 times rank 0 but only once rank 1).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Score Distribution&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;In Borda Count, (typically) the scores are more evenly distributed, especially among the top items.&lt;/li&gt;
+&lt;li&gt;In Reciprocal Rank, (typically) there's a larger gap between the top-ranked items and the rest.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Sensitivity to Top Rankings&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Reciprocal Rank is more sensitive to first-place rankings, which benefits item 0.&lt;/li&gt;
+&lt;li&gt;Borda Count considers all positions more equally, which benefits item 1 due to its consistent high (but not always first) rankings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This example clearly demonstrates how Borda Count and Reciprocal Rank can produce different final rankings based on their different approaches to scoring. Borda Count tends to favor consistent performance across all ranks, while Reciprocal Rank gives more weight to top rankings, especially first-place finishes.&lt;/p&gt;
+&lt;p&gt;&lt;a id="which-one-to-use-and-when"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Which one to use and when?&lt;/h2&gt;
+&lt;p&gt;The choice between Borda Count and Reciprocal Rank Combining depends on the specific context and goals of your ranking task. Here are some practical recommendations for when to use each method:&lt;/p&gt;
+&lt;p&gt;&lt;a id="borda-count-is-better-when"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Borda Count is better when...&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Equal importance across all ranks&lt;/strong&gt;: You want to give equal weight to all positions in the ranking.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Comprehensive evaluation&lt;/strong&gt;: The goal is to reward consistent performance across all ranks, not just top positions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Large number of items&lt;/strong&gt;: Dealing with a large set of items where distinguishing between lower ranks is important.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Transparency&lt;/strong&gt;: You need a method that's easy to explain to stakeholders or users.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Voting systems&lt;/strong&gt;: In scenarios like political elections where fairness across all options is crucial.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="reciprocal-rank-is-better-when"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Reciprocal Rank is better when...&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Emphasis on top rankings&lt;/strong&gt;: The top few positions are significantly more important than lower ones.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Information retrieval&lt;/strong&gt;: Particularly useful in search engine result evaluation where the first few results matter most.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;User behavior modeling&lt;/strong&gt;: When modeling scenarios where users typically focus on top results (e.g., web search, recommendations).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sparse data&lt;/strong&gt;: In cases where you have incomplete rankings or only care about the position of relevant items.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Normalization&lt;/strong&gt;: You need scores that are always between 0 and 1, regardless of the number of items.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="additional-considerations"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Additional considerations&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;If you're dealing with expert opinions where being consistently in the top few ranks is crucial, Reciprocal Rank might be more appropriate.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For competitions or evaluations where performance across all levels matters, Borda Count could be more suitable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In scenarios where you want to balance between rewarding top performance and consistent overall performance, you might consider using a combination of both methods or a modified version.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If your ranking problem involves a mix of complete and partial rankings, Reciprocal Rank might be more flexible.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a id="summary"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;These tables summarize the main properties and key differences between Borda Count and Reciprocal Rank, highlighting how they differ in their approach to combining rankings and the resulting implications for their use in various scenarios.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Table 1:&lt;/strong&gt; &lt;em&gt;Main Properties of Borda Count and Reciprocal Rank&lt;/em&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Property&lt;/th&gt;
+&lt;th&gt;Borda Count&lt;/th&gt;
+&lt;th&gt;Reciprocal Rank&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Scoring Method&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Assigns points based on position (n points for top, n-1 for second, etc.)&lt;/td&gt;
+&lt;td&gt;Uses reciprocal of rank (1/rank)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Calculation&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Sums points across all rankings&lt;/td&gt;
+&lt;td&gt;Averages reciprocal ranks across all rankings&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Score Range&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Depends on number of items and rankings&lt;/td&gt;
+&lt;td&gt;Always between 0 and 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Final Ranking&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Determined by total points (higher is better)&lt;/td&gt;
+&lt;td&gt;Determined by average reciprocal rank (higher is better)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Table 2:&lt;/strong&gt; &lt;em&gt;Key Differences between Borda Count and Reciprocal Rank.&lt;/em&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Aspect&lt;/th&gt;
+&lt;th&gt;Borda Count&lt;/th&gt;
+&lt;th&gt;Reciprocal Rank&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Scale&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Linear&lt;/td&gt;
+&lt;td&gt;Non-linear&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Sensitivity to Top Rankings&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Treats all positions with equal weight difference&lt;/td&gt;
+&lt;td&gt;More sensitive to top rankings&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Lower Ranking Impact&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Significant impact&lt;/td&gt;
+&lt;td&gt;Less impact&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Ties Handling&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Can often result in ties&lt;/td&gt;
+&lt;td&gt;Less likely to produce ties&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Interpretation&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Cumulative score across all rankings&lt;/td&gt;
+&lt;td&gt;Average of inverse rankings&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</content><category term="note"></category><category term="borda"></category><category term="rank"></category><category term="rank-combining"></category><category term="rank-fussion"></category><category term="reciprocal-rank-fussion"></category><category term="reciprocal-rank-combining"></category></entry><entry><title>RankFlow plot for retriever visual evaluation</title><link href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" rel="alternate"></link><published>2024-07-08T00:00:00+02:00</published><updated>2024-07-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-07-08:/rankflow-plot-for-retriever-visual-evaluation/</id><summary type="html">&lt;p&gt;RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#introduction-and-problem-statement"&gt;Introduction and problem statement&lt;/a&gt;&lt;/li&gt;
@@ -4235,11 +4541,13 @@ $$&lt;/div&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Rank fusion serves as a potent tool in the arsenal of data scientists and search engine experts, enhancing the efficacy of ranking performance. The spectrum of rank fusion algorithms ranges from the &lt;strong&gt;straightforward Borda algorithm&lt;/strong&gt; to the more complex Neural Rank Fusion, each tailored to meet specific scenarios and data attributes. While the &lt;strong&gt;Borda&lt;/strong&gt; algorithm is &lt;strong&gt;appreciated&lt;/strong&gt; for its &lt;strong&gt;simplicity&lt;/strong&gt; and &lt;strong&gt;ease of implementation&lt;/strong&gt;, more advanced techniques like &lt;strong&gt;LambdaMART&lt;/strong&gt; and &lt;strong&gt;Neural Rank Fusion&lt;/strong&gt; are capable of delivering &lt;strong&gt;cutting-edge results for large-scale applications&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands out for its ability to &lt;strong&gt;combine multiple result sets with varying relevance indicators&lt;/strong&gt; &lt;strong&gt;without the need for tuning&lt;/strong&gt;. This makes it a robust and effective choice for many applications.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Edits&lt;/strong&gt;:
-- 2024-07-14 - Added reference to rankflow (ranks plotting)
-- 2024-03-06 - Added Panjete/rankAggr to references
-- 2023-10-09 - Added "Reciprocal Rank Fusion", rewrite conclusion
-&lt;a id="references"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Edits&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2024-07-14 - Added reference to rankflow (ranks plotting)&lt;/li&gt;
+&lt;li&gt;2024-03-06 - Added Panjete/rankAggr to references&lt;/li&gt;
+&lt;li&gt;2023-10-09 - Added "Reciprocal Rank Fusion", rewrite conclusion
+&lt;a id="references"&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Wikipedia article: &lt;a href="https://en.wikipedia.org/wiki/Borda_count"&gt;Borda algorithm&lt;/a&gt;&lt;/li&gt;
@@ -8835,70 +9143,4 @@ In this equation:&lt;/p&gt;
 &lt;p&gt;Once the SSL certificate is provisioned, you should be able to access FreshRSS securely using your custom domain.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;X::&lt;a href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/"&gt;How to Deploy FreshRSS in the Cloud for Free on GCP?&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="freshrss"></category><category term="cloud-deploy"></category><category term="free-deploy"></category><category term="azure"></category></entry><entry><title>How to Deploy FreshRSS in the Cloud for Free on GCP?</title><link href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/" rel="alternate"></link><published>2023-04-11T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-11:/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/</id><summary type="html">&lt;p&gt;To deploy FreshRSS in the cloud for free on Google Cloud Platform (GCP), you can follow these steps:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create a new project on GCP and enable billing. FreshRSS requires a web server and a database, and GCP provides free usage limits for …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;To deploy FreshRSS in the cloud for free on Google Cloud Platform (GCP), you can follow these steps:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create a new project on GCP and enable billing. FreshRSS requires a web server and a database, and GCP provides free usage limits for these services for a limited time. You will need to provide billing information to verify your account and enable these services.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Launch a Compute Engine instance. FreshRSS can run on any Linux-based server, so you can choose an instance that meets your needs. For this example, we'll use a micro instance with Debian 10.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Connect to the instance using SSH. You can use the SSH button in the GCP Console or connect from your terminal using the external IP address.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Install the necessary packages. Run the following command to update the package index and install the required packages:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;update
-sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;apache2&lt;span class="w"&gt; &lt;/span&gt;mariadb-server&lt;span class="w"&gt; &lt;/span&gt;php7.3&lt;span class="w"&gt; &lt;/span&gt;php7.3-mysql&lt;span class="w"&gt; &lt;/span&gt;php7.3-curl&lt;span class="w"&gt; &lt;/span&gt;php7.3-xml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Configure the database. Follow these steps to create a new database and user for FreshRSS:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;mysql&lt;span class="w"&gt; &lt;/span&gt;-u&lt;span class="w"&gt; &lt;/span&gt;root
-
-CREATE&lt;span class="w"&gt; &lt;/span&gt;DATABASE&lt;span class="w"&gt; &lt;/span&gt;freshrss&lt;span class="p"&gt;;&lt;/span&gt;
-GRANT&lt;span class="w"&gt; &lt;/span&gt;ALL&lt;span class="w"&gt; &lt;/span&gt;PRIVILEGES&lt;span class="w"&gt; &lt;/span&gt;ON&lt;span class="w"&gt; &lt;/span&gt;freshrss.*&lt;span class="w"&gt; &lt;/span&gt;TO&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;freshrssuser&amp;#39;&lt;/span&gt;@&lt;span class="s1"&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;IDENTIFIED&lt;span class="w"&gt; &lt;/span&gt;BY&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-FLUSH&lt;span class="w"&gt; &lt;/span&gt;PRIVILEGES&lt;span class="p"&gt;;&lt;/span&gt;
-EXIT&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Download and install FreshRSS. Run the following commands to download the latest version of FreshRSS and extract it to the web root:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/var/www/html
-sudo&lt;span class="w"&gt; &lt;/span&gt;wget&lt;span class="w"&gt; &lt;/span&gt;https://github.com/FreshRSS/FreshRSS/archive/master.tar.gz
-sudo&lt;span class="w"&gt; &lt;/span&gt;tar&lt;span class="w"&gt; &lt;/span&gt;-xzf&lt;span class="w"&gt; &lt;/span&gt;master.tar.gz&lt;span class="w"&gt; &lt;/span&gt;--strip-components&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
-sudo&lt;span class="w"&gt; &lt;/span&gt;chown&lt;span class="w"&gt; &lt;/span&gt;-R&lt;span class="w"&gt; &lt;/span&gt;www-data:www-data&lt;span class="w"&gt; &lt;/span&gt;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Configure the web server. Edit the default Apache configuration file to enable URL rewriting:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;nano&lt;span class="w"&gt; &lt;/span&gt;/etc/apache2/sites-enabled/000-default.conf
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Add the following lines inside the `&amp;lt;VirtualHost&amp;gt;` block:
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;/var/www/html&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;AllowOverride&lt;span class="w"&gt; &lt;/span&gt;All
-&lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Restart the web server. Run the following command to apply the changes:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;restart&lt;span class="w"&gt; &lt;/span&gt;apache2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Complete the FreshRSS setup. Open your web browser and navigate to the external IP address of your instance. Follow the on-screen instructions to configure FreshRSS.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Congratulations, you have successfully deployed FreshRSS in the cloud for free on GCP!&lt;/p&gt;
-&lt;p&gt;X::&lt;a href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-azure/"&gt;How to Deploy FreshRSS in the Cloud for Free on Azure?&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="freshrss"></category><category term="cloud-deploy"></category><category term="free-deploy"></category><category term="gcp"></category><category term="google-cloud-platform"></category><category term="google"></category></entry></feed>
+&lt;p&gt;X::&lt;a href="https://www.safjan.com/how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp/"&gt;How to Deploy FreshRSS in the Cloud for Free on GCP?&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="rss"></category><category term="freshrss"></category><category term="cloud-deploy"></category><category term="free-deploy"></category><category term="azure"></category></entry></feed>

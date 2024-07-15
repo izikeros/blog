@@ -126,6 +126,7 @@ Rank fusion serves as a potent tool in the arsenal of data scientists and search
 Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands out for its ability to **combine multiple result sets with varying relevance indicators** **without the need for tuning**. This makes it a robust and effective choice for many applications.
 
 **Edits**:
+
 - 2024-07-14 - Added reference to rankflow (ranks plotting)
 - 2024-03-06 - Added Panjete/rankAggr to references
 - 2023-10-09 - Added "Reciprocal Rank Fusion", rewrite conclusion

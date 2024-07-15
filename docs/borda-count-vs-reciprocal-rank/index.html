@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Borda count and Reciprocal Rank Combining - approach and calculation Borda Count Reciprocal Rank Key differences Example Key observations The main differences Which one to use and when? Borda Count is better when... Reciprocal Rank is better when... Additional considerations Summary Borda count …"/>
+    <meta name="keywords" content="borda, rank, rank-combining, rank-fussion, reciprocal-rank-fussion, reciprocal-rank-combining">
+    <meta expr:content="2024-07-15 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2024-07-15 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-07-15 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2024-07-15 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data",
+  "datePublished": "2024-07-15 00:00:00+02:00",
+  "dateModified": "2024-07-15 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data"/>
+  <meta property="og:description" content="Borda count and Reciprocal Rank Combining - approach and calculation Borda Count Reciprocal Rank Key differences Example Key observations The main differences Which one to use and when? Borda Count is better when... Reciprocal Rank is better when... Additional considerations Summary Borda count …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/borda-count-vs-reciprocal-rank/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-07-15 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-07-15 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="borda"/>
+  <meta property="article:tag" content="rank"/>
+  <meta property="article:tag" content="rank-combining"/>
+  <meta property="article:tag" content="rank-fussion"/>
+  <meta property="article:tag" content="reciprocal-rank-fussion"/>
+  <meta property="article:tag" content="reciprocal-rank-combining"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data"/>
+
+
+    <title>    Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2024-07-15 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Borda%20Count%20vs.%20Reciprocal%20Rank%20-%20Choosing%20the%20Right%20Ranking%20Method%20for%20Your%20Data&url=https%3A//www.safjan.com/borda-count-vs-reciprocal-rank/&hashtags=borda,rank,rank-combining,rank-fussion,reciprocal-rank-fussion,reciprocal-rank-combining" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/borda-count-vs-reciprocal-rank/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Borda%20Count%20vs.%20Reciprocal%20Rank%20-%20Choosing%20the%20Right%20Ranking%20Method%20for%20Your%20Data&u=https%3A//www.safjan.com/borda-count-vs-reciprocal-rank/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/borda-count-vs-reciprocal-rank/&title=Borda%20Count%20vs.%20Reciprocal%20Rank%20-%20Choosing%20the%20Right%20Ranking%20Method%20for%20Your%20Data" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="borda-count-vs-reciprocal-rank">Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+<ul>
+<li><a href="#borda-count-and-reciprocal-rank-combining---approach-and-calculation">Borda count and Reciprocal Rank Combining - approach and calculation</a><ul>
+<li><a href="#borda-count">Borda Count</a></li>
+<li><a href="#reciprocal-rank">Reciprocal Rank</a></li>
+</ul>
+</li>
+<li><a href="#key-differences">Key differences</a></li>
+<li><a href="#example">Example</a><ul>
+<li><a href="#key-observations">Key observations</a></li>
+<li><a href="#the-main-differences">The main differences</a></li>
+</ul>
+</li>
+<li><a href="#which-one-to-use-and-when">Which one to use and when?</a><ul>
+<li><a href="#borda-count-is-better-when">Borda Count is better when...</a></li>
+<li><a href="#reciprocal-rank-is-better-when">Reciprocal Rank is better when...</a></li>
+<li><a href="#additional-considerations">Additional considerations</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="borda-count-and-reciprocal-rank-combining---approach-and-calculation"></a></p>
+<h2>Borda count and Reciprocal Rank Combining - approach and calculation</h2>
+<p>Borda count and Reciprocal Rank are both methods used in information retrieval and voting systems to combine rankings, but they differ in their approach and calculation. For details of the calculation see borda_count_python and <a href="https://www.safjan.com/implementing-rank-fusion-in-python/">Implementing Reciprocal Rank Fusion (RRF) in Python</a>. In this blog post we will focus on comparison of both algorithms and key differences.</p>
+<p><a id="borda-count"></a></p>
+<h3>Borda Count</h3>
+<ul>
+<li>Assigns points to each item based on its position in each ranking</li>
+<li>Typically gives n points to the top-ranked item, n-1 to the second, and so on, where n is the number of items</li>
+<li>Sums up the points across all rankings</li>
+<li>Final ranking is determined by the total points, with higher scores ranking better</li>
+</ul>
+<p><a id="reciprocal-rank"></a></p>
+<h3>Reciprocal Rank</h3>
+<ul>
+<li>Focuses on the position of each item in the rankings</li>
+<li>Calculates the reciprocal of the rank for each item (1/rank)</li>
+<li>Averages these reciprocal ranks across all rankings</li>
+<li>Final ranking is determined by the average reciprocal rank, with higher values ranking better</li>
+</ul>
+<p><a id="key-differences"></a></p>
+<h2>Key differences</h2>
+<ol>
+<li><strong>Scale</strong>: Borda count uses a linear scale, while Reciprocal Rank uses a non-linear scale that emphasizes top rankings more heavily.</li>
+<li><strong>Sensitivity</strong>: Reciprocal Rank is more sensitive to high rankings and less affected by lower rankings compared to Borda count.</li>
+<li><strong>Range</strong>: Borda count scores depend on the number of items, while Reciprocal Rank scores are always between 0 and 1.</li>
+<li><strong>Interpretation</strong>: Borda count provides a cumulative score, while Reciprocal Rank gives an average of inverse rankings.</li>
+</ol>
+<p><a id="example"></a></p>
+<h2>Example</h2>
+<p>This is example that demonstrates both the Borda Count and Reciprocal Rank methods, highlighting their differences. This example will use six different rankings of six items.</p>
+<p>Here's a Python script that will demonstrate this:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">borda_count</span><span class="p">(</span><span class="n">rankings</span><span class="p">):</span>
+    <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rankings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_items</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ranking</span> <span class="ow">in</span> <span class="n">rankings</span><span class="p">:</span>
+        <span class="n">scores</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ranking</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">scores</span>
+
+<span class="k">def</span> <span class="nf">reciprocal_rank</span><span class="p">(</span><span class="n">rankings</span><span class="p">):</span>
+    <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rankings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_items</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ranking</span> <span class="ow">in</span> <span class="n">rankings</span><span class="p">:</span>
+        <span class="n">scores</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ranking</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># +1 because ranks start from 0</span>
+    <span class="k">return</span> <span class="n">scores</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">rankings</span><span class="p">)</span>
+
+<span class="c1"># New rankings (0-indexed) designed to produce different results</span>
+<span class="n">rankings</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>  <span class="c1"># Ranking 1</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>  <span class="c1"># Ranking 2</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>  <span class="c1"># Ranking 3</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>  <span class="c1"># Ranking 4</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>  <span class="c1"># Ranking 5</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>  <span class="c1"># Ranking 6</span>
+<span class="p">]</span>
+
+<span class="n">borda_scores</span> <span class="o">=</span> <span class="n">borda_count</span><span class="p">(</span><span class="n">rankings</span><span class="p">)</span>
+<span class="n">rr_scores</span> <span class="o">=</span> <span class="n">reciprocal_rank</span><span class="p">(</span><span class="n">rankings</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Borda Count Scores:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">borda_scores</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reciprocal Rank Scores:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rr_scores</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Borda Count Ranking:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">borda_scores</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reciprocal Rank Ranking:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">rr_scores</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p>Here's the output:</p>
+<div class="highlight"><pre><span></span><code>Borda Count Scores:
+Item 0: 27.0
+Item 1: 29.0
+Item 2: 28.0
+Item 3: 24.0
+Item 4: 12.0
+Item 5: 6.0
+
+Reciprocal Rank Scores:
+Item 0: 0.5972
+Item 1: 0.4861
+Item 2: 0.4583
+Item 3: 0.5417
+Item 4: 0.2000
+Item 5: 0.1667
+
+Borda Count Ranking:
+[1 2 0 3 4 5]
+
+Reciprocal Rank Ranking:
+[0 3 1 2 4 5]
+</code></pre></div>
+
+<p><a id="key-observations"></a></p>
+<h3>Key observations</h3>
+<ol>
+<li>Borda Count Ranking: [1 2 0 3 4 5]</li>
+<li>
+<p>Item 1 has the highest score, followed by 2, 0, 3, 4, and 5.</p>
+</li>
+<li>
+<p>Reciprocal Rank Ranking: [0 3 1 2 4 5]</p>
+</li>
+<li>Item 0 has the highest score, followed by 3, 1, 2, 4, and 5.</li>
+</ol>
+<p><a id="the-main-differences"></a></p>
+<h3>The main differences</h3>
+<h4>Top Ranking</h4>
+<ul>
+<li>Borda Count ranks item 1 first, while Reciprocal Rank ranks item 0 first.</li>
+<li>This is because Reciprocal Rank gives more weight to the first-place rankings, which item 0 has more of (item 1 has 2 times rank 0, two times rank 1, and item 0 has also 2 times rank 0 but only once rank 1).</li>
+</ul>
+<h4>Score Distribution</h4>
+<ul>
+<li>In Borda Count, (typically) the scores are more evenly distributed, especially among the top items.</li>
+<li>In Reciprocal Rank, (typically) there's a larger gap between the top-ranked items and the rest.</li>
+</ul>
+<h4>Sensitivity to Top Rankings</h4>
+<ul>
+<li>Reciprocal Rank is more sensitive to first-place rankings, which benefits item 0.</li>
+<li>Borda Count considers all positions more equally, which benefits item 1 due to its consistent high (but not always first) rankings.</li>
+</ul>
+<p>This example clearly demonstrates how Borda Count and Reciprocal Rank can produce different final rankings based on their different approaches to scoring. Borda Count tends to favor consistent performance across all ranks, while Reciprocal Rank gives more weight to top rankings, especially first-place finishes.</p>
+<p><a id="which-one-to-use-and-when"></a></p>
+<h2>Which one to use and when?</h2>
+<p>The choice between Borda Count and Reciprocal Rank Combining depends on the specific context and goals of your ranking task. Here are some practical recommendations for when to use each method:</p>
+<p><a id="borda-count-is-better-when"></a></p>
+<h3>Borda Count is better when...</h3>
+<ol>
+<li>
+<p><strong>Equal importance across all ranks</strong>: You want to give equal weight to all positions in the ranking.</p>
+</li>
+<li>
+<p><strong>Comprehensive evaluation</strong>: The goal is to reward consistent performance across all ranks, not just top positions.</p>
+</li>
+<li>
+<p><strong>Large number of items</strong>: Dealing with a large set of items where distinguishing between lower ranks is important.</p>
+</li>
+<li>
+<p><strong>Transparency</strong>: You need a method that's easy to explain to stakeholders or users.</p>
+</li>
+<li>
+<p><strong>Voting systems</strong>: In scenarios like political elections where fairness across all options is crucial.</p>
+</li>
+</ol>
+<p><a id="reciprocal-rank-is-better-when"></a></p>
+<h3>Reciprocal Rank is better when...</h3>
+<ol>
+<li>
+<p><strong>Emphasis on top rankings</strong>: The top few positions are significantly more important than lower ones.</p>
+</li>
+<li>
+<p><strong>Information retrieval</strong>: Particularly useful in search engine result evaluation where the first few results matter most.</p>
+</li>
+<li>
+<p><strong>User behavior modeling</strong>: When modeling scenarios where users typically focus on top results (e.g., web search, recommendations).</p>
+</li>
+<li>
+<p><strong>Sparse data</strong>: In cases where you have incomplete rankings or only care about the position of relevant items.</p>
+</li>
+<li>
+<p><strong>Normalization</strong>: You need scores that are always between 0 and 1, regardless of the number of items.</p>
+</li>
+</ol>
+<p><a id="additional-considerations"></a></p>
+<h3>Additional considerations</h3>
+<ol>
+<li>
+<p>If you're dealing with expert opinions where being consistently in the top few ranks is crucial, Reciprocal Rank might be more appropriate.</p>
+</li>
+<li>
+<p>For competitions or evaluations where performance across all levels matters, Borda Count could be more suitable.</p>
+</li>
+<li>
+<p>In scenarios where you want to balance between rewarding top performance and consistent overall performance, you might consider using a combination of both methods or a modified version.</p>
+</li>
+<li>
+<p>If your ranking problem involves a mix of complete and partial rankings, Reciprocal Rank might be more flexible.</p>
+</li>
+</ol>
+<p><a id="summary"></a></p>
+<h2>Summary</h2>
+<p>These tables summarize the main properties and key differences between Borda Count and Reciprocal Rank, highlighting how they differ in their approach to combining rankings and the resulting implications for their use in various scenarios.</p>
+<p><strong>Table 1:</strong> <em>Main Properties of Borda Count and Reciprocal Rank</em></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Borda Count</th>
+<th>Reciprocal Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scoring Method</strong></td>
+<td>Assigns points based on position (n points for top, n-1 for second, etc.)</td>
+<td>Uses reciprocal of rank (1/rank)</td>
+</tr>
+<tr>
+<td><strong>Calculation</strong></td>
+<td>Sums points across all rankings</td>
+<td>Averages reciprocal ranks across all rankings</td>
+</tr>
+<tr>
+<td><strong>Score Range</strong></td>
+<td>Depends on number of items and rankings</td>
+<td>Always between 0 and 1</td>
+</tr>
+<tr>
+<td><strong>Final Ranking</strong></td>
+<td>Determined by total points (higher is better)</td>
+<td>Determined by average reciprocal rank (higher is better)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2:</strong> <em>Key Differences between Borda Count and Reciprocal Rank.</em></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Borda Count</th>
+<th>Reciprocal Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Linear</td>
+<td>Non-linear</td>
+</tr>
+<tr>
+<td><strong>Sensitivity to Top Rankings</strong></td>
+<td>Treats all positions with equal weight difference</td>
+<td>More sensitive to top rankings</td>
+</tr>
+<tr>
+<td><strong>Lower Ranking Impact</strong></td>
+<td>Significant impact</td>
+<td>Less impact</td>
+</tr>
+<tr>
+<td><strong>Ties Handling</strong></td>
+<td>Can often result in ties</td>
+<td>Less likely to produce ties</td>
+</tr>
+<tr>
+<td><strong>Interpretation</strong></td>
+<td>Cumulative score across all rankings</td>
+<td>Average of inverse rankings</td>
+</tr>
+</tbody>
+</table>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/borda/">borda</a>
+                        <a href="https://www.safjan.com/tag/rank/">rank</a>
+                        <a href="https://www.safjan.com/tag/rank-combining/">rank-combining</a>
+                        <a href="https://www.safjan.com/tag/rank-fussion/">rank-fussion</a>
+                        <a href="https://www.safjan.com/tag/reciprocal-rank-fussion/">reciprocal-rank-fussion</a>
+                        <a href="https://www.safjan.com/tag/reciprocal-rank-combining/">reciprocal-rank-combining</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/">Rank Fusion Algorithms - From Simple to Advanced</a></li>
+                        <li><a href="https://www.safjan.com/implementing-rank-fusion-in-python/">Implementing Reciprocal Rank Fusion (RRF) in Python</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" title="RankFlow plot for retriever visual evaluation">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
