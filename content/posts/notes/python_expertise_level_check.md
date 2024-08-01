@@ -58,7 +58,7 @@ There is [HN](https://news.ycombinator.com/item?id=38032092) discussion on this 
 
 **Edits:**
 
-- 2023-10-30: remove from Experts: 7. Understands and uses Python's garbage collection system.
-- 2023-10-30: remove from Experts: Have a good understanding of Python's internals, such as bytecode, the Python interpreter's execution model, and how Python's data types are implemented at the C level.
-- 2023-10-30: remove from Advanced: Can use advanced Python libraries like `numpy`, `pandas`, `matplotlib` not a python std lib.
-- added note:
+- 2023-10-30: Remove from Experts: 7. Understands and uses Python's garbage collection system.
+- 2023-10-30: Remove from Experts: Have a good understanding of Python's internals, such as bytecode, the Python interpreter's execution model, and how Python's data types are implemented at the C level.
+- 2023-10-30: Remove from Advanced: Can use advanced Python libraries like `numpy`, `pandas`, `matplotlib` not a python std lib.
+

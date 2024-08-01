@@ -4,7 +4,7 @@ Slug: how-to-check-latest-version-of-python-package
 Date: 2024-07-03
 Modified: 2024-07-03
 Status: published
-tags: pip, package-version, pypi, pypi-api, jq, curl, yolk, json
+tags: pip, package-version, pypi, pypi-api, jq, curl, yolk, json, python
 Category: note
 ---
 

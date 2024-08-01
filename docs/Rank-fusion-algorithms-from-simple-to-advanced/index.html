@@ -26,10 +26,10 @@
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
 
-        <link href="https://www.safjan.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
               title="Krystian Safjan's Blog Atom">
 
-        <link href="https://www.safjan.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
               title="Krystian Safjan's Blog RSS">
 
 
@@ -48,7 +48,7 @@
 
     <meta name="author" content="Krystian Safjan"/>
     <meta name="description" content="Introduction Rank fusion is a fundamental technique used in various domains, including data science and search engine optimization, to combine multiple ranked lists into a single, more reliable ranking. This process aims to exploit the strengths of individual ranking algorithms and mitigate …"/>
-    <meta name="keywords" content="rank-fusion, rank, search, hybrid-search">
+    <meta name="keywords" content="rank-fusion, rank, search, hybrid-search, borda, combining-probability-mass-function, rank-biased-precision, neural-rank-fusion, reciprocal-rank-fusion">
     <meta expr:content="2023-07-28 00:00:00+02:00" itemprop='datePublished'/>
     <meta expr:content="2024-07-14 00:00:00+02:00" itemprop='dateModified'/>
     <meta property="article:modified_time" content="2024-07-14 00:00:00+02:00"/>
@@ -80,6 +80,11 @@
   <meta property="article:tag" content="rank"/>
   <meta property="article:tag" content="search"/>
   <meta property="article:tag" content="hybrid-search"/>
+  <meta property="article:tag" content="borda"/>
+  <meta property="article:tag" content="combining-probability-mass-function"/>
+  <meta property="article:tag" content="rank-biased-precision"/>
+  <meta property="article:tag" content="neural-rank-fusion"/>
+  <meta property="article:tag" content="reciprocal-rank-fusion"/>
   <meta property="og:image" content="/images/profile_new.jpg">
 
     <meta name="twitter:card" content="summary"/>
@@ -265,7 +270,7 @@
 
                     <span id="post-share-links">
     &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Rank%20Fusion%20Algorithms%20-%20From%20Simple%20to%20Advanced&url=https%3A//www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/&hashtags=rank-fusion,rank,search,hybrid-search" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Rank%20Fusion%20Algorithms%20-%20From%20Simple%20to%20Advanced&url=https%3A//www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/&hashtags=rank-fusion,rank,search,hybrid-search,borda,combining-probability-mass-function,rank-biased-precision,neural-rank-fusion,reciprocal-rank-fusion" target="_blank" title="Share on Twitter">Twitter</a>
     |
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/" target="_blank" title="Share on Facebook">Facebook</a>
     |
@@ -314,7 +319,10 @@
 $$</div>
 <p>
 Where <span class="math">\(\text{rank}_j(i)\)</span> denotes the position of item <span class="math">\(i\)</span> in the <span class="math">\(j\)</span>th ranked list.</p>
-<p>The Borda algorithm is easy to implement, but it might lag in performance for large datasets or when the individual rankings are significantly diverse.</p>
+<p>The Borda algorithm is easy to implement, but it might lag in performance for large datasets or when the individual rankings are significantly diverse. </p>
+<blockquote>
+<p>See also: <a href="https://www.safjan.com/borda-count-vs-reciprocal-rank/">Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data</a> for algorithm characterization and examples.</p>
+</blockquote>
 <p><a id="combining-probability-mass-function-cpmf"></a></p>
 <h3>Combining Probability Mass Function (CPMF)</h3>
 <p>CPMF is a probabilistic rank fusion method that incorporates the probability of an item being at a certain rank in individual lists. It assumes that the rankings are probabilistic and uses the Probability Mass Function (PMF) to calculate the fused ranking. CPMF outperforms Borda for diverse and noisy datasets.</p>
@@ -357,13 +365,17 @@ $$</div>
 \text{RRF Score} = \frac{1}{k + rank}
 $$</div>
 <p>Where <span class="math">\(k\)</span> is a constant (usually set to 60), and <span class="math">\(rank\)</span> is the rank of the document in a particular result set. The RRF score is calculated for each document in each result set, and the scores are then summed up to get the final score for each document.</p>
-<p>The properties of the RRF algorithm include its simplicity, effectiveness, and robustness. It is simple because it only requires the ranks of the documents and does not need any tuning. It is effective because it can combine result sets with different relevance indicators and still produce high-quality results. It is robust because it is not sensitive to the choice of <span class="math">\(k\)</span> and can handle a large number of result sets.
+<p>The properties of the RRF algorithm include its simplicity, effectiveness, and robustness. It is simple because it only requires the ranks of the documents and does not need any tuning. It is effective because it can combine result sets with different relevance indicators and still produce high-quality results. It is robust because it is not sensitive to the choice of <span class="math">\(k\)</span> and can handle a large number of result sets.</p>
+<blockquote>
+<p>See also <a href="https://www.safjan.com/borda-count-vs-reciprocal-rank/">Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data</a> for algorithm characterization and examples and <a href="https://www.safjan.com/implementing-rank-fusion-in-python/">Implementing Reciprocal Rank Fusion (RRF) in Python</a>.
 <a id="conclusion"></a></p>
+</blockquote>
 <h2>Conclusion</h2>
 <p>Rank fusion serves as a potent tool in the arsenal of data scientists and search engine experts, enhancing the efficacy of ranking performance. The spectrum of rank fusion algorithms ranges from the <strong>straightforward Borda algorithm</strong> to the more complex Neural Rank Fusion, each tailored to meet specific scenarios and data attributes. While the <strong>Borda</strong> algorithm is <strong>appreciated</strong> for its <strong>simplicity</strong> and <strong>ease of implementation</strong>, more advanced techniques like <strong>LambdaMART</strong> and <strong>Neural Rank Fusion</strong> are capable of delivering <strong>cutting-edge results for large-scale applications</strong>.</p>
 <p>Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands out for its ability to <strong>combine multiple result sets with varying relevance indicators</strong> <strong>without the need for tuning</strong>. This makes it a robust and effective choice for many applications.</p>
 <p><strong>Edits</strong>:</p>
 <ul>
+<li>2024-07-15 - Added cross-link to borda vs reciprocal rank comparison and reciprocal rank implementation in Python.</li>
 <li>2024-07-14 - Added reference to rankflow (ranks plotting)</li>
 <li>2024-03-06 - Added Panjete/rankAggr to references</li>
 <li>2023-10-09 - Added "Reciprocal Rank Fusion", rewrite conclusion
@@ -378,6 +390,7 @@ $$</div>
 <li><a href="https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf">Reciprocal rank fusion (RRF)</a></li>
 <li><a href="https://github.com/Panjete/rankAggr">GitHub - Panjete/rankAggr: Analysis and implementational details of rank aggregation methods for combing results of multiple engines to achieve best mAP and P@5,10 values</a></li>
 </ol>
+<p>X::<a href="https://www.safjan.com/borda-count-vs-reciprocal-rank/">Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data</a></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -450,6 +463,11 @@ $$</div>
                         <a href="https://www.safjan.com/tag/rank/">rank</a>
                         <a href="https://www.safjan.com/tag/search/">search</a>
                         <a href="https://www.safjan.com/tag/hybrid-search/">hybrid-search</a>
+                        <a href="https://www.safjan.com/tag/borda/">borda</a>
+                        <a href="https://www.safjan.com/tag/combining-probability-mass-function/">combining-probability-mass-function</a>
+                        <a href="https://www.safjan.com/tag/rank-biased-precision/">rank-biased-precision</a>
+                        <a href="https://www.safjan.com/tag/neural-rank-fusion/">neural-rank-fusion</a>
+                        <a href="https://www.safjan.com/tag/reciprocal-rank-fusion/">reciprocal-rank-fusion</a>
             </p>
         </div>
 

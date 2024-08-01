@@ -121,4 +121,5 @@ In this article, we have covered different ways to add a parent directory to the
 CAUTION: Keep in mind that adding the parent directory to the python path will make the modules inside it available for import, but it also makes the entire directory structure available for import, so it's important to have a clear and organized directory structure.
 
 **Edits:**
-- 2024-05-29 - added more explanations on using .pth file
+
+- 2024-05-29: Added more explanations on using .pth file

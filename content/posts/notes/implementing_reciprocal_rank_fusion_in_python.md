@@ -4,7 +4,7 @@ Slug: implementing-rank-fusion-in-python
 Date: 2023-07-28
 Modified: 2024-07-14
 Status: published
-tags: rank-fusion, hybrid-search, rank, search
+tags: rank-fusion, hybrid-search, rank, search, python
 Category: note
 ---
 
@@ -118,14 +118,14 @@ While the example provided in this article is simplified, it provides a solid fo
 The RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.
 
 ## See also
-- Condorcet Fuse (Montague, M., and Aslam, J. A. Condorcet fusion for improved retrieval. In CIKM (2002).)
+- Condorcet Fuse ([pdf](https://www.khoury.northeastern.edu/~jaa/IS4200.10X1/resources/condorcet.pdf)) Montague, M., and Aslam, J. A. Condorcet fusion for improved retrieval. In CIKM (2002).)
 - CombMNZ
 
 **Edits:**
 
 - 2024-07-14: Added reference to the rankflow plotting package
-- 2023-11-06: changed title to: Implementing Reciprocal Rank Fusion and Borda Count in Python
-- 2023-11-06: added RRF description
-- 2023-11-06: added optimized implementation
+- 2023-11-06: Changed title to: Implementing Reciprocal Rank Fusion and Borda Count in Python
+- 2023-11-06: Added RRF description
+- 2023-11-06: Added optimized implementation
 
 X::[[rank_fusion_algorithms]]

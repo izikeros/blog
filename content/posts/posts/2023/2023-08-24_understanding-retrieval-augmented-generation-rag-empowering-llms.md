@@ -113,6 +113,6 @@ X::[[2023-11-01-boosting_RAG]]
 
 **Edits:**
 
-- 2023-10-23 - added link to LLMStack
-- 2023-11-06 - added TLDR section
-- 2023-11-06 - added ToC
+- 2023-10-23: Added link to LLMStack
+- 2023-11-06: Added TLDR section
+- 2023-11-06: Added ToC

@@ -40,11 +40,13 @@ For info on how to configure black with vscode? See [[change_black_line_length|h
 - in pre-commit hooks
 - as an external tool in PyCharm
 
-## similar tools
-- yapf
+## Similar tools
+- [[yapf]]
 - [google/pyink](https://github.com/google/pyink) a Python formatter, forked from Black with a few different formatting behaviors.
-- 
+
 up::[[MOC_Python]]
 X::[[black_keep_single_strings]]
 X::[[black_change_max_line_length]]
 X::[[black_formatter_avoid_destroying_git_blame]]
+X::[[black_yapf]]
+X::[[black_configuration_files]]

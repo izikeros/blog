@@ -131,5 +131,6 @@ X::[[quarto_jupyter_publishing_notebooks_as_websites]]
 up::[[MOC_Jupyter_notebooks]]
 
 **Edits:**
-2024-03-25 - Added marimo
-2024-03-25 - Added links, changed order of the tools
+
+2024-03-25: Added marimo
+2024-03-25: Added links, changed order of the tools

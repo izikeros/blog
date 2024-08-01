@@ -138,7 +138,7 @@ My favourite choice from this list would be #6 - to learn from the LangChain imp
 In considering LangChain, it's vital to acknowledge its limitations and challenges before embracing it enthusiastically. Although LangChain has garnered significant attention and investment, users have pinpointed various drawbacks that could impede its effectiveness in more intricate, production-ready applications. To make well-informed decisions about LangChain's suitability for their projects, developers should gain an understanding of these issues.
 In the ever-evolving landscape of LLM-driven development, assessing the available tools and libraries is crucial to determining which aligns best with your specific needs and requirements. It's worth noting that the ideal solution might not yet exist, necessitating adaptation or customization of existing tools or even the creation of your own to realize your vision for AI-driven applications.
 
-**edits:**
+**Edits:**
 
 - 2023-10-19: Added AutoGen and semantic-kernel, removed GPTi,
 - 2023-10-19: Added link to list of alternative frameworks

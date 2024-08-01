@@ -372,8 +372,8 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 
 **Edits:**
 
-- 2023-11-06 - added reference: Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex
-- 2023-11-13 - added video from Weaviate
+- 2023-11-06: Added reference: Evaluating the Ideal Chunk Size for a RAG System using LlamaIndex
+- 2023-11-13: Added video from Weaviate
 
 X::[[RAG_question_answering_deciding_on_the_strategies_Architecture]]
 X::[[context_generation_strategy]]

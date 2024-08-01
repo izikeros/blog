@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Pyenv Python is a popular programming language used for a wide range of applications, from web development to data analysis and machine learning. As a Python developer, it is important to manage your Python installations properly to avoid conflicts and ensure consistent …"/>
+    <meta name="keywords" content="macos, pyenv, python, pipx">
+    <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2024-07-17 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-07-17 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2022-05-12 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Using Pyenv",
+  "datePublished": "2022-05-12 00:00:00+02:00",
+  "dateModified": "2024-07-17 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Using Pyenv"/>
+  <meta property="og:description" content="Pyenv Python is a popular programming language used for a wide range of applications, from web development to data analysis and machine learning. As a Python developer, it is important to manage your Python installations properly to avoid conflicts and ensure consistent …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/using-pyenv/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-05-12 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-07-17 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="macos"/>
+  <meta property="article:tag" content="pyenv"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="pipx"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Using Pyenv"/>
+
+
+    <title>    Using Pyenv
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2022-05-12 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Using%20Pyenv&url=https%3A//www.safjan.com/using-pyenv/&hashtags=macos,pyenv,python,pipx" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/using-pyenv/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Using%20Pyenv&u=https%3A//www.safjan.com/using-pyenv/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/using-pyenv/&title=Using%20Pyenv" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="using-pyenv">Using Pyenv</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <h1>Pyenv</h1>
+<p>Python is a popular programming language used for a wide range of applications, from web development to data analysis and machine learning. As a Python developer, it is important to manage your Python installations properly to avoid conflicts and ensure consistent behavior across different projects. One tool that can help with this is pyenv, a simple and powerful Python version management tool.</p>
+<p>Pyenv is particularly useful for macOS users, as it allows you to easily install and manage multiple versions of Python on your system without affecting the system Python that comes with macOS. This is important because some macOS applications and scripts rely on the system Python, and modifying or replacing it can cause unexpected issues.</p>
+<p>To get started with pyenv on macOS, you can use Homebrew, a popular package manager for macOS. Open your terminal and run the following command:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>pyenv
+</code></pre></div>
+
+<p>This will install pyenv and its dependencies on your system. Once installed, you need to add some configuration to your shell startup script (.bashrc, .zshrc, etc.) to enable pyenv. Add the following lines to the end of your shell startup script:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>pyenv<span class="w"> </span><span class="m">1</span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pyenv<span class="w"> </span>init<span class="w"> </span>-<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+
+<p>This tells your shell to initialize pyenv when you start a new shell session. You can then use pyenv to manage your Python installations.</p>
+<h2>Usage</h2>
+<p>Here are some common pyenv commands:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># list python versions available for installation</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>install<span class="w"> </span>-l
+
+<span class="c1"># list python versions available for installation, filter results to given version of python</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>install<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">3</span>.11
+
+<span class="c1"># remove other versions of python than main (e.g. exclude pypy, conda,...)</span>
+<span class="c1"># and filter results to given version of python</span>
+pyenv<span class="w"> </span>install<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;^:space:*[0-9]&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">3</span>.11
+
+<span class="c1"># install selected version</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.8.5
+
+<span class="c1"># display all currently installed Python versions</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>versions
+
+<span class="c1"># create virtualenv `myenv` with default pyenv python version (see )</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>virtualenv<span class="w"> </span>myenv
+
+<span class="c1"># set as global interpreter for the system</span>
+$<span class="w"> </span>c
+
+<span class="c1"># uninstall selected version</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>uninstall<span class="w"> </span><span class="m">3</span>.8.4
+
+<span class="c1"># check the path to where virtualenv is created</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>activate<span class="w"> </span>myenv
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$VIRTUAL_ENV</span>
+
+<span class="c1"># remove pyenv virtualenv</span>
+<span class="c1">#   3.8.2/envs/greenhouse obtained with `pyenv versions`</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>uninstall<span class="w"> </span><span class="m">3</span>.8.2/envs/greenhouse
+<span class="c1">#   or</span>
+$<span class="w"> </span>pyenv<span class="w"> </span>virtualenv-delete<span class="w"> </span>greenhouse
+</code></pre></div>
+
+<h3>Using with PyCharm</h3>
+<p>You can also use pyenv with PyCharm, a popular Python IDE. To use pyenv with PyCharm, you need to create a virtual environment using pyenv first, and then add it to PyCharm as a local interpreter. Here are the steps:</p>
+<ol>
+<li>Create a new virtual environment using pyenv: <code>pyenv virtualenv &lt;version&gt; &lt;name&gt;</code></li>
+<li>In PyCharm, go to <code>Settings &gt; Project &gt; Python Interpreter</code>.</li>
+<li>Click the "Add..." button and select "Local".</li>
+<li>Browse to the location of the Python executable in your pyenv virtual environment. It should be something like <code>/Users/username/.pyenv/versions/&lt;version&gt;/envs/&lt;name&gt;/bin/python</code>.</li>
+<li>Click "OK" to add the interpreter.</li>
+</ol>
+<p>You can now use the virtual environment with PyCharm, and any packages you install will be installed in the virtual environment rather than globally on your system.</p>
+<h3>Installing python with tkinter</h3>
+<p>There is stackoverflow question on that: <a href="https://stackoverflow.com/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos">Unable to install tkinter with pyenv Pythons on MacOS - Stack Overflow</a></p>
+<p>See also:</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/macos/">macos</a>
+                        <a href="https://www.safjan.com/tag/pyenv/">pyenv</a>
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/pipx/">pipx</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/python-create-virtualenv-methods/">Creating Virtual Environments in Python</a></li>
+                        <li><a href="https://www.safjan.com/the-most-powerful-mac-productivity-and-automation-apps/">The Most Powerful Mac Productivity and Automation Apps</a></li>
+                        <li><a href="https://www.safjan.com/Boosting Productivity and Automation with AppleScript on macOS/">Boosting Productivity and Automation With AppleScript on macOS</a></li>
+                        <li><a href="https://www.safjan.com/display-a-notification-on-the-screen-in-macos/">Display a Notification on the Screen in macOS</a></li>
+                        <li><a href="https://www.safjan.com/bash-determine-if-linux-or-macos/">Bash - Determine if Script Runs on Linux, macOS or Other System</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/top-10-python-libraries-for-document-classification/" title="Top 10 Python Libraries for Document Classification">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/python-ignore-warnings/" title="How to ignore warnings in Python">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

@@ -42,8 +42,9 @@ RAG-fusion might be a powerful technique that brings together the strengths of l
 up::[[MOC_RAG]]
 
 **Edits:**
-- 2024-03-06 - added RAG fusion paper
-- 2024-02-01 - add reference to LLamaIndex Query Transform Cookbook
+
+- 2024-03-06: Added RAG fusion paper
+- 2024-02-01: Add reference to LLamaIndex Query Transform Cookbook
 
 ## References
 - [RAG-Fusion: a New Take on Retrieval-Augmented Generation](https://arxiv.org/html/2402.03367v2)
