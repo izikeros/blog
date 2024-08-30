@@ -7,6 +7,7 @@ Status: published
 Tags: pdf, ghostscript, pdfminify, compress, publishing
 Title: Compress, Reduce or Minimize Size of PDF Document
 ---
+X::[[convert_pdf_to_image]]
 
 ## pdfminify
 

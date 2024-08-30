@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="When working with international text data, you often need to convert characters with diacritical marks (like accents, umlauts, or other language-specific symbols) to their basic Latin equivalents. This process, known as diacritic removal or string sanitization, can be crucial for tasks such …"/>
+    <meta name="keywords" content="python, nlp, sanitize, sanitization, diacritics, accent, umlaut, unidecode">
+    <meta expr:content="2024-08-30 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2024-08-30 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-08-30 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2024-08-30 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Remove Diacritics and Sanitize Strings in Python",
+  "datePublished": "2024-08-30 00:00:00+02:00",
+  "dateModified": "2024-08-30 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="How to Remove Diacritics and Sanitize Strings in Python"/>
+  <meta property="og:description" content="When working with international text data, you often need to convert characters with diacritical marks (like accents, umlauts, or other language-specific symbols) to their basic Latin equivalents. This process, known as diacritic removal or string sanitization, can be crucial for tasks such …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-08-30 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-08-30 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="nlp"/>
+  <meta property="article:tag" content="sanitize"/>
+  <meta property="article:tag" content="sanitization"/>
+  <meta property="article:tag" content="diacritics"/>
+  <meta property="article:tag" content="accent"/>
+  <meta property="article:tag" content="umlaut"/>
+  <meta property="article:tag" content="unidecode"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="How to Remove Diacritics and Sanitize Strings in Python"/>
+
+
+    <title>    How to Remove Diacritics and Sanitize Strings in Python
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2024-08-30 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=How%20to%20Remove%20Diacritics%20and%20Sanitize%20Strings%20in%20Python&url=https%3A//www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/&hashtags=python,nlp,sanitize,sanitization,diacritics,accent,umlaut,unidecode" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=How%20to%20Remove%20Diacritics%20and%20Sanitize%20Strings%20in%20Python&u=https%3A//www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/&title=How%20to%20Remove%20Diacritics%20and%20Sanitize%20Strings%20in%20Python" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="how-to-remove-diacritics-and-sanitize-strings-in-python">How to Remove Diacritics and Sanitize Strings in Python</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>When working with international text data, you often need to convert characters with diacritical marks (like accents, umlauts, or other language-specific symbols) to their basic Latin equivalents. This process, known as diacritic removal or string sanitization, can be crucial for tasks such as:</p>
+<ul>
+<li>Improving search functionality</li>
+<li>Normalizing data for analysis</li>
+<li>Ensuring compatibility with systems that only support ASCII characters</li>
+</ul>
+<p>In this guide, we'll show you how to easily sanitize strings in Python using the <code>unidecode</code> library.</p>
+<h2>Step 1: Install the unidecode Library</h2>
+<p>First, you need to install the <code>unidecode</code> library. Open your terminal or command prompt and run:</p>
+<div class="highlight"><pre><span></span><code>pip install unidecode
+</code></pre></div>
+
+<h2>Step 2: Import the Library</h2>
+<p>In your Python script, import the <code>unidecode</code> module:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">unidecode</span>
+</code></pre></div>
+
+<h2>Step 3: Create a Sanitization Function</h2>
+<p>Define a function that will sanitize your strings:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">sanitize_string</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">unidecode</span><span class="o">.</span><span class="n">unidecode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This function takes a string as input and returns the sanitized version.</p>
+<h2>Step 4: Use the Function</h2>
+<p>Now you can use this function to sanitize any string. Here's an example with various languages:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example usage</span>
+<span class="n">examples</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Łódź&quot;</span><span class="p">,</span>  <span class="c1"># Polish</span>
+    <span class="s2">&quot;España&quot;</span><span class="p">,</span>  <span class="c1"># Spanish</span>
+    <span class="s2">&quot;München&quot;</span><span class="p">,</span>  <span class="c1"># German</span>
+    <span class="s2">&quot;François&quot;</span><span class="p">,</span>  <span class="c1"># French</span>
+    <span class="s2">&quot;Νίκος&quot;</span><span class="p">,</span>  <span class="c1"># Greek</span>
+    <span class="s2">&quot;Россия&quot;</span>  <span class="c1"># Russian</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">:</span>
+    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">sanitize_string</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original: </span><span class="si">{</span><span class="n">example</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sanitized: </span><span class="si">{</span><span class="n">sanitized</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</code></pre></div>
+
+<h2>Step 5: Run the Script</h2>
+<p>When you run this script, you'll see output like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Original</span><span class="o">:</span><span class="w"> </span><span class="err">Łó</span><span class="n">dź</span>
+<span class="n">Sanitized</span><span class="o">:</span><span class="w"> </span><span class="n">Lodz</span>
+
+<span class="n">Original</span><span class="o">:</span><span class="w"> </span><span class="n">España</span>
+<span class="n">Sanitized</span><span class="o">:</span><span class="w"> </span><span class="n">Espana</span>
+
+<span class="n">Original</span><span class="o">:</span><span class="w"> </span><span class="n">München</span>
+<span class="n">Sanitized</span><span class="o">:</span><span class="w"> </span><span class="n">Munchen</span>
+
+<span class="n">Original</span><span class="o">:</span><span class="w"> </span><span class="n">François</span>
+<span class="n">Sanitized</span><span class="o">:</span><span class="w"> </span><span class="n">Francois</span>
+
+<span class="n">Original</span><span class="o">:</span><span class="w"> </span><span class="err">Νίκος</span>
+<span class="n">Sanitized</span><span class="o">:</span><span class="w"> </span><span class="n">Nikos</span>
+
+<span class="n">Original</span><span class="o">:</span><span class="w"> </span><span class="err">Россия</span>
+<span class="n">Sanitized</span><span class="o">:</span><span class="w"> </span><span class="n">Rossiia</span>
+</code></pre></div>
+
+<h2>Alternative Libraries</h2>
+<p>While <code>unidecode</code> is comprehensive, you might also explore alternatives like <code>unicodedata</code> from the Python standard library for more control over the process.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/nlp/">nlp</a>
+                        <a href="https://www.safjan.com/tag/sanitize/">sanitize</a>
+                        <a href="https://www.safjan.com/tag/sanitization/">sanitization</a>
+                        <a href="https://www.safjan.com/tag/diacritics/">diacritics</a>
+                        <a href="https://www.safjan.com/tag/accent/">accent</a>
+                        <a href="https://www.safjan.com/tag/umlaut/">umlaut</a>
+                        <a href="https://www.safjan.com/tag/unidecode/">unidecode</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</a></li>
+                        <li><a href="https://www.safjan.com/visual-text-exploration-as-part-of-preprocessing-before-classification/">Visual Text Exploration as Part of Preprocessing Before Classification</a></li>
+                        <li><a href="https://www.safjan.com/top-10-python-libraries-for-document-classification/">Top 10 Python Libraries for Document Classification</a></li>
+                        <li><a href="https://www.safjan.com/whats-cooking/">What's Cooking</a></li>
+                        <li><a href="https://www.safjan.com/how-to-check-latest-version-of-python-package/">How to Check Latest Version of Python Package?</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" title="Implementing Sentence Boundary Detection in Python for Improved Text Chunking">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

@@ -6,7 +6,7 @@ status: published
 slug: convert-pdf-to-image
 tags: convert, image, pdf
 ---
-
+X::[[pdf_compress_reduce_size_minimize]]
 
 ## install poppler-utils
 

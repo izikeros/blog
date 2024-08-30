@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Sentence boundary detection also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries …"/>
+    <meta name="keywords" content="Python, NLP, sentence-boundary-detection, text-chunking, spaCy, preprocessing, edge-cases, abbreviations, ellipsis, performance-optimization, multiprocessing, evaluation, multilingual-support, language-models, script-detection, non-English-texts, bidirectional-text, fine-tuning, CJK-languages, Arabic, Unicode, regular-expressions, machine-learning, text-analysis, data-preprocessing, NLP-pipeline, language-detection, model-training, cross-lingual-evaluation">
+    <meta expr:content="2024-08-30 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2024-08-30 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-08-30 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2024-08-30 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Implementing Sentence Boundary Detection in Python for Improved Text Chunking",
+  "datePublished": "2024-08-30 00:00:00+02:00",
+  "dateModified": "2024-08-30 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Implementing Sentence Boundary Detection in Python for Improved Text Chunking"/>
+  <meta property="og:description" content="Sentence boundary detection also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-08-30 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-08-30 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="Python"/>
+  <meta property="article:tag" content="NLP"/>
+  <meta property="article:tag" content="sentence-boundary-detection"/>
+  <meta property="article:tag" content="text-chunking"/>
+  <meta property="article:tag" content="spaCy"/>
+  <meta property="article:tag" content="preprocessing"/>
+  <meta property="article:tag" content="edge-cases"/>
+  <meta property="article:tag" content="abbreviations"/>
+  <meta property="article:tag" content="ellipsis"/>
+  <meta property="article:tag" content="performance-optimization"/>
+  <meta property="article:tag" content="multiprocessing"/>
+  <meta property="article:tag" content="evaluation"/>
+  <meta property="article:tag" content="multilingual-support"/>
+  <meta property="article:tag" content="language-models"/>
+  <meta property="article:tag" content="script-detection"/>
+  <meta property="article:tag" content="non-English-texts"/>
+  <meta property="article:tag" content="bidirectional-text"/>
+  <meta property="article:tag" content="fine-tuning"/>
+  <meta property="article:tag" content="CJK-languages"/>
+  <meta property="article:tag" content="Arabic"/>
+  <meta property="article:tag" content="Unicode"/>
+  <meta property="article:tag" content="regular-expressions"/>
+  <meta property="article:tag" content="machine-learning"/>
+  <meta property="article:tag" content="text-analysis"/>
+  <meta property="article:tag" content="data-preprocessing"/>
+  <meta property="article:tag" content="NLP-pipeline"/>
+  <meta property="article:tag" content="language-detection"/>
+  <meta property="article:tag" content="model-training"/>
+  <meta property="article:tag" content="cross-lingual-evaluation"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="Implementing Sentence Boundary Detection in Python for Improved Text Chunking"/>
+
+
+    <title>    Implementing Sentence Boundary Detection in Python for Improved Text Chunking
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2024-08-30 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Implementing%20Sentence%20Boundary%20Detection%20in%20Python%20for%20Improved%20Text%20Chunking&url=https%3A//www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/&hashtags=python,nlp,sentence-boundary-detection,text-chunking,spacy,preprocessing,edge-cases,abbreviations,ellipsis,performance-optimization,multiprocessing,evaluation,multilingual-support,language-models,script-detection,non-english-texts,bidirectional-text,fine-tuning,cjk-languages,arabic,unicode,regular-expressions,machine-learning,text-analysis,data-preprocessing,nlp-pipeline,language-detection,model-training,cross-lingual-evaluation" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Implementing%20Sentence%20Boundary%20Detection%20in%20Python%20for%20Improved%20Text%20Chunking&u=https%3A//www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/&title=Implementing%20Sentence%20Boundary%20Detection%20in%20Python%20for%20Improved%20Text%20Chunking" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p><a href="https://en.wikipedia.org/wiki/Sentence_boundary_disambiguation">Sentence boundary detection</a> also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries.</p>
+<h2>1. Understanding the Challenge</h2>
+<p>Accurate SBD is non-trivial due to ambiguities in punctuation usage. For instance, periods can indicate abbreviations, decimals, or sentence boundaries. A sophisticated SBD system must handle these nuances.</p>
+<h2>2. Choosing the Right Tools</h2>
+<p>We'll use <a href="https://spacy.io/">spaCy</a>, a powerful NLP library in Python, for its efficiency and accuracy in SBD tasks.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">spacy</span>
+</code></pre></div>
+
+<h2>3. Loading a Pre-trained Model</h2>
+<p>spaCy offers pre-trained models with varying levels of complexity. For optimal performance, we'll use the large English model.</p>
+<div class="highlight"><pre><span></span><code><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_lg&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>4. Implementing the SBD Function</h2>
+<p>Let's create a function that takes a text input and returns a list of sentences:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">detect_sentence_boundaries</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">sent</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">]</span>
+</code></pre></div>
+
+<h2>5. Handling Edge Cases</h2>
+<p>To improve accuracy, we'll implement custom rules for common edge cases:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># Handle ellipsis</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\.{3,}&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;ellipsis&gt;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># Handle common abbreviations</span>
+    <span class="n">abbr_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\b([A-Z]\.)+[A-Z]?\b&#39;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">abbr_pattern</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;dot&gt;&#39;</span><span class="p">),</span> <span class="n">text</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="k">def</span> <span class="nf">postprocess_sentences</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">sent</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;ellipsis&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;dot&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">improved_sentence_detection</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">preprocessed_text</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">raw_sentences</span> <span class="o">=</span> <span class="n">detect_sentence_boundaries</span><span class="p">(</span><span class="n">preprocessed_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">postprocess_sentences</span><span class="p">(</span><span class="n">raw_sentences</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Handle common abbreviations - explanation</h2>
+<p>This part of the code is designed to handle common abbreviations in the text to prevent them from being mistakenly identified as sentence boundaries. Let's break it down:</p>
+<ol>
+<li>The regular expression pattern:
+   <code>python
+   abbr_pattern = r'\b([A-Z]\.)+[A-Z]?\b'</code>
+   This pattern matches:</li>
+<li><code>\b</code>: A word boundary</li>
+<li><code>([A-Z]\.)</code>: A capital letter followed by a period, grouped</li>
+<li><code>+</code>: One or more occurrences of the previous group</li>
+<li><code>[A-Z]?</code>: Optionally followed by another capital letter</li>
+<li>
+<p><code>\b</code>: Another word boundary</p>
+</li>
+<li>
+<p>The substitution:
+   <code>python
+   text = re.sub(abbr_pattern, lambda m: m.group().replace('.', '&lt;dot&gt;'), text)</code>
+   This replaces all matches of the pattern in the text. For each match, it applies a lambda function that replaces all periods (<code>.</code>) with <code>&lt;dot&gt;</code>.</p>
+</li>
+</ol>
+<p>Here are some examples of how this works:</p>
+<p>Example 1:</p>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I work for the U.S. Government. It&#39;s a good job.&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">abbr_pattern</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;dot&gt;&#39;</span><span class="p">),</span> <span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="c1"># Output: &quot;I work for the U&lt;dot&gt;S&lt;dot&gt; Government. It&#39;s a good job.&quot;</span>
+</code></pre></div>
+
+<p>Example 2:</p>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;He has a Ph.D. in Computer Science. He also has an M.A.&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">abbr_pattern</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;dot&gt;&#39;</span><span class="p">),</span> <span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="c1"># Output: &quot;He has a Ph&lt;dot&gt;D&lt;dot&gt; in Computer Science. He also has an M&lt;dot&gt;A&lt;dot&gt;&quot;</span>
+</code></pre></div>
+
+<p>Example 3:</p>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Visit the U.S.A. for your vacation. Don&#39;t forget your I.D.&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">abbr_pattern</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;dot&gt;&#39;</span><span class="p">),</span> <span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="c1"># Output: &quot;Visit the U&lt;dot&gt;S&lt;dot&gt;A&lt;dot&gt; for your vacation. Don&#39;t forget your I&lt;dot&gt;D&lt;dot&gt;&quot;</span>
+</code></pre></div>
+
+<p>In these examples, the abbreviations are modified so that their periods are replaced with <code>&lt;dot&gt;</code>. This prevents the sentence boundary detection algorithm from mistaking these periods as sentence endings.</p>
+<p>The advantage of this approach is that it preserves the structure of common abbreviations while making them distinct from sentence-ending periods. Later in the process, these <code>&lt;dot&gt;</code> placeholders can be replaced back with actual periods, maintaining the original text's integrity while improving sentence boundary detection accuracy.</p>
+<h2>6. Integrating with Text Chunking</h2>
+<p>Now, let's integrate our SBD function into a text chunking pipeline:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">chunk_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">max_chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">sentences</span> <span class="o">=</span> <span class="n">improved_sentence_detection</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_chunk</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_chunk</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_chunk_size</span><span class="p">:</span>
+            <span class="n">current_chunk</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">sentence</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_chunk</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">current_chunk</span> <span class="o">=</span> <span class="n">sentence</span>
+
+    <span class="k">if</span> <span class="n">current_chunk</span><span class="p">:</span>
+        <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_chunk</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">chunks</span>
+</code></pre></div>
+
+<h2>7. Optimizing Performance</h2>
+<p>Chunking large amount of text can take significant amount of time. For large-scale applications, consider the following optimizations:</p>
+<ol>
+<li>Use spaCy's <code>pipe()</code> method for batch processing.</li>
+<li>Implement multiprocessing for parallel sentence detection.</li>
+<li>Fine-tune the spaCy model on your specific domain if needed.</li>
+</ol>
+<blockquote>
+<p>See also: <a href="https://spacy.io/api/sentencizer/">Sentencizer</a> - Pipeline component for rule-based sentence boundary detection</p>
+</blockquote>
+<h2>8. Evaluating the System</h2>
+<p>To assess the quality of your SBD implementation:</p>
+<ol>
+<li>Use standard datasets like <a href="https://huggingface.co/datasets/eriktks/conll2003">CoNLL-2003</a> for benchmarking.</li>
+<li>Implement metrics such as <a href="https://en.wikipedia.org/wiki/F-score">F1 score</a> for boundary detection accuracy.</li>
+<li>Conduct error analysis to identify and address remaining issues.</li>
+</ol>
+<p>Certainly. Here's an additional section on working with non-English texts for our article:</p>
+<h2>9. Working with Non-English Texts</h2>
+<p>Implementing sentence boundary detection for non-English texts presents unique challenges due to varying punctuation rules, writing systems, and linguistic structures. Here's how to adapt our approach for multilingual support:</p>
+<h3>9.1 Using Language-Specific Models</h3>
+<p>spaCy offers models for various languages. Load the appropriate model based on the input language:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">load_language_model</span><span class="p">(</span><span class="n">lang_code</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lang_code</span><span class="si">}</span><span class="s2">_core_news_lg&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model for </span><span class="si">{</span><span class="n">lang_code</span><span class="si">}</span><span class="s2"> not found. Downloading...&quot;</span><span class="p">)</span>
+        <span class="n">spacy</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lang_code</span><span class="si">}</span><span class="s2">_core_news_lg&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lang_code</span><span class="si">}</span><span class="s2">_core_news_lg&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">de_nlp</span> <span class="o">=</span> <span class="n">load_language_model</span><span class="p">(</span><span class="s2">&quot;de&quot;</span><span class="p">)</span>  <span class="c1"># German</span>
+<span class="n">ja_nlp</span> <span class="o">=</span> <span class="n">load_language_model</span><span class="p">(</span><span class="s2">&quot;ja&quot;</span><span class="p">)</span>  <span class="c1"># Japanese</span>
+</code></pre></div>
+
+<h3>9.2 Handling Script-Specific Challenges</h3>
+<p>Different writing systems require tailored approaches:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">unicodedata</span>
+
+<span class="k">def</span> <span class="nf">detect_script</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">scripts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">char</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">scripts</span><span class="p">[</span><span class="n">script</span><span class="p">]</span> <span class="o">=</span> <span class="n">scripts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">script</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">scripts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">scripts</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">preprocess_by_script</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">detect_script</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">script</span> <span class="o">==</span> <span class="s2">&quot;CJK&quot;</span><span class="p">:</span>
+        <span class="c1"># For Chinese, Japanese, Korean</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;。&quot;</span><span class="p">,</span> <span class="s2">&quot;.&lt;stop&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;！&quot;</span><span class="p">,</span> <span class="s2">&quot;!&lt;stop&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;？&quot;</span><span class="p">,</span> <span class="s2">&quot;?&lt;stop&gt;&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">script</span> <span class="o">==</span> <span class="s2">&quot;ARABIC&quot;</span><span class="p">:</span>
+        <span class="c1"># For Arabic and Persian</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;.&lt;stop&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;؟&quot;</span><span class="p">,</span> <span class="s2">&quot;?&lt;stop&gt;&quot;</span><span class="p">)</span>
+    <span class="c1"># Add more script-specific rules as needed</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="k">def</span> <span class="nf">postprocess_by_script</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">script</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">script</span> <span class="o">==</span> <span class="s2">&quot;CJK&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sent</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;stop&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">script</span> <span class="o">==</span> <span class="s2">&quot;ARABIC&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sent</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;stop&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">sentences</span>
+</code></pre></div>
+
+<h3>9.3 Implementing a Multilingual SBD Function</h3>
+<p>Combine the above approaches into a unified multilingual SBD function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multilingual_sbd</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lang_code</span><span class="p">):</span>
+    <span class="n">nlp</span> <span class="o">=</span> <span class="n">load_language_model</span><span class="p">(</span><span class="n">lang_code</span><span class="p">)</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">detect_script</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="n">preprocessed_text</span> <span class="o">=</span> <span class="n">preprocess_by_script</span><span class="p">(</span><span class="n">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">preprocessed_text</span><span class="p">)</span>
+    <span class="n">raw_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">sent</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">]</span>
+
+    <span class="n">cleaned_sentences</span> <span class="o">=</span> <span class="n">postprocess_by_script</span><span class="p">(</span><span class="n">raw_sentences</span><span class="p">,</span> <span class="n">script</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">postprocess_sentences</span><span class="p">(</span><span class="n">cleaned_sentences</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">german_text</span> <span class="o">=</span> <span class="s2">&quot;Hallo Welt! Wie geht es dir? Dr. Müller ist hier.&quot;</span>
+<span class="n">german_sentences</span> <span class="o">=</span> <span class="n">multilingual_sbd</span><span class="p">(</span><span class="n">german_text</span><span class="p">,</span> <span class="s2">&quot;de&quot;</span><span class="p">)</span>
+
+<span class="n">japanese_text</span> <span class="o">=</span> <span class="s2">&quot;こんにちは世界！お元気ですか？山田先生がいらっしゃいました。&quot;</span>
+<span class="n">japanese_sentences</span> <span class="o">=</span> <span class="n">multilingual_sbd</span><span class="p">(</span><span class="n">japanese_text</span><span class="p">,</span> <span class="s2">&quot;ja&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>9.4 Handling Bidirectional Text</h3>
+<p>For languages with right-to-left script, such as Arabic or Hebrew, ensure proper handling:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">bidi.algorithm</span> <span class="k">as</span> <span class="nn">bidi</span>
+
+<span class="k">def</span> <span class="nf">handle_bidi_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bidi</span><span class="o">.</span><span class="n">get_display</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># Incorporate this into the multilingual_sbd function for relevant scripts</span>
+</code></pre></div>
+
+<h3>9.5 Fine-tuning for Specific Languages</h3>
+<p>If the pre-trained models don't perform well for your specific use case, consider fine-tuning:</p>
+<ol>
+<li>Collect a dataset of sentences in your target language.</li>
+<li>Use spaCy's training API to fine-tune the model on your dataset.</li>
+<li>Evaluate the fine-tuned model against a held-out test set.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">train_custom_sbd</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">):</span>
+    <span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">blank</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+    <span class="n">sbd</span> <span class="o">=</span> <span class="n">nlp</span><span class="o">.</span><span class="n">add_pipe</span><span class="p">(</span><span class="s2">&quot;sentencizer&quot;</span><span class="p">)</span>
+
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">nlp</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">annotations</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">:</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="o">.</span><span class="n">make_doc</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">example</span> <span class="o">=</span> <span class="n">Example</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">annotations</span><span class="p">)</span>
+            <span class="n">nlp</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">example</span><span class="p">],</span> <span class="n">sgd</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">losses</span><span class="o">=</span><span class="n">losses</span><span class="p">)</span>
+
+    <span class="n">nlp</span><span class="o">.</span><span class="n">to_disk</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>9.6 Evaluating Multilingual Performance</h3>
+<p>To ensure your multilingual SBD system performs well across languages:</p>
+<ol>
+<li>Create or obtain evaluation datasets for each supported language.</li>
+<li>Implement language-specific evaluation metrics when necessary.</li>
+<li>Conduct regular cross-lingual evaluations to maintain quality across all supported languages.</li>
+</ol>
+<h2>Conclusion</h2>
+<p>This guide has provided a comprehensive approach to implementing sentence boundary detection (SBD) in Python, focusing on improving text chunking accuracy. We've covered core SBD techniques, edge case handling, integration with text chunking, performance optimization, and expansion into multilingual support. By combining pre-trained models with custom rules and language-specific adaptations, this system offers a robust solution for diverse NLP applications. As you apply these techniques, remember to continuously evaluate and refine your implementation to meet the specific needs of your projects and to adapt to the evolving landscape of natural language processing.</p>
+<h2>References</h2>
+<h2>- <a href="https://github.com/topics/sentence-boundary-detection">sentence-boundary-detection · GitHub Topics · GitHub</a></h2>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/python/">Python</a>
+                        <a href="https://www.safjan.com/tag/nlp/">NLP</a>
+                        <a href="https://www.safjan.com/tag/sentence-boundary-detection/">sentence-boundary-detection</a>
+                        <a href="https://www.safjan.com/tag/text-chunking/">text-chunking</a>
+                        <a href="https://www.safjan.com/tag/spacy/">spaCy</a>
+                        <a href="https://www.safjan.com/tag/preprocessing/">preprocessing</a>
+                        <a href="https://www.safjan.com/tag/edge-cases/">edge-cases</a>
+                        <a href="https://www.safjan.com/tag/abbreviations/">abbreviations</a>
+                        <a href="https://www.safjan.com/tag/ellipsis/">ellipsis</a>
+                        <a href="https://www.safjan.com/tag/performance-optimization/">performance-optimization</a>
+                        <a href="https://www.safjan.com/tag/multiprocessing/">multiprocessing</a>
+                        <a href="https://www.safjan.com/tag/evaluation/">evaluation</a>
+                        <a href="https://www.safjan.com/tag/multilingual-support/">multilingual-support</a>
+                        <a href="https://www.safjan.com/tag/language-models/">language-models</a>
+                        <a href="https://www.safjan.com/tag/script-detection/">script-detection</a>
+                        <a href="https://www.safjan.com/tag/non-english-texts/">non-English-texts</a>
+                        <a href="https://www.safjan.com/tag/bidirectional-text/">bidirectional-text</a>
+                        <a href="https://www.safjan.com/tag/fine-tuning/">fine-tuning</a>
+                        <a href="https://www.safjan.com/tag/cjk-languages/">CJK-languages</a>
+                        <a href="https://www.safjan.com/tag/arabic/">Arabic</a>
+                        <a href="https://www.safjan.com/tag/unicode/">Unicode</a>
+                        <a href="https://www.safjan.com/tag/regular-expressions/">regular-expressions</a>
+                        <a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a>
+                        <a href="https://www.safjan.com/tag/text-analysis/">text-analysis</a>
+                        <a href="https://www.safjan.com/tag/data-preprocessing/">data-preprocessing</a>
+                        <a href="https://www.safjan.com/tag/nlp-pipeline/">NLP-pipeline</a>
+                        <a href="https://www.safjan.com/tag/language-detection/">language-detection</a>
+                        <a href="https://www.safjan.com/tag/model-training/">model-training</a>
+                        <a href="https://www.safjan.com/tag/cross-lingual-evaluation/">cross-lingual-evaluation</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/top-10-python-libraries-for-document-classification/">Top 10 Python Libraries for Document Classification</a></li>
+                        <li><a href="https://www.safjan.com/whats-cooking/">What's Cooking</a></li>
+                        <li><a href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/">Understanding the Differences in Language Models - Transformers vs. Markov Models</a></li>
+                        <li><a href="https://www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/">How to Remove Diacritics and Sanitize Strings in Python</a></li>
+                        <li><a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/">Techniques to Boost RAG Performance in Production</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/bash-parameter-expansion-with-default-value/" title="Bash Parameter Expansion With Default Value">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+    <a class="btn float-right" href="https://www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/" title="How to Remove Diacritics and Sanitize Strings in Python">
+      Next Post <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

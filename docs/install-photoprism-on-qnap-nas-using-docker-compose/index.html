@@ -50,8 +50,8 @@
     <meta name="description" content="Instruction on how to install Photoprism on QNAP NAS using Docker Compose"/>
     <meta name="keywords" content="nas, photoprism, Linux, photo-gallery, docker, docker-compose, qnap">
     <meta expr:content="2022-08-08 00:00:00+02:00" itemprop='datePublished'/>
-    <meta expr:content="2023-07-12 00:00:00+02:00" itemprop='dateModified'/>
-    <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+    <meta expr:content="2024-08-26 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-08-26 00:00:00+02:00"/>
     <meta property="article:published_time" content="2022-08-08 00:00:00+02:00"/>
     <script type="application/ld+json">
 {
@@ -59,7 +59,7 @@
   "@type": "BlogPosting",
   "headline": "Install Photoprism on QNAP NAS Using Docker Compose",
   "datePublished": "2022-08-08 00:00:00+02:00",
-  "dateModified": "2023-07-12 00:00:00+02:00"
+  "dateModified": "2024-08-26 00:00:00+02:00"
 }
 
     </script>
@@ -73,7 +73,7 @@
   <meta property="og:url" content="https://www.safjan.com/install-photoprism-on-qnap-nas-using-docker-compose/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2022-08-08 00:00:00+02:00"/>
-  <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-08-26 00:00:00+02:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="nas"/>
@@ -289,7 +289,7 @@
         <div>
             <p>X:piwigo_photo_gallery</p>
 <p>Photoprism is a modern, searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on QNAP NAS. This article is meant to fill that gap.
-Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other QNAP NAS models.</p>
+Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other QNAP NAS models. There is also possibility to install photoprism using Container Station GUI and modified docker-compose file (see lower in the article).</p>
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 <ul>
@@ -301,13 +301,17 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 <li><a href="#create-photoprism-directory">Create photoprism directory</a></li>
 <li><a href="#create-docker-composeyml-file">Create <code>docker-compose.yml</code> file</a></li>
 <li><a href="#create-directories-in-sharecontainerphotoprism">Create directories in <code>/share/Container/photoprism</code></a></li>
-<li><a href="#run-application-in-the-container">Run application in the container</a></li>
+<li><a href="#run-application-in-the-container">Run application in the container</a><ul>
 <li><a href="#using-web-ui">Using web-UI</a></li>
 <li><a href="#using-cli">Using CLI</a></li>
+</ul>
+</li>
 <li><a href="#manual-upgrading-photoprism-to-the-latests-version">Manual upgrading Photoprism to the latests version</a></li>
 <li><a href="#adding-new-content">Adding new content</a></li>
 <li><a href="#performance-tuning">Performance tuning</a></li>
+<li><a href="#installation-using-container-station-gui">Installation using Container Station GUI</a></li>
 <li><a href="#references">References</a></li>
+<li><a href="#updates">Updates</a></li>
 </ul>
 <!-- /MarkdownTOC -->
 
@@ -360,10 +364,106 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://dl.photoprism.app/docker/docker-compose.yml
 </code></pre></div>
 
-<p>Assuming that you keep your original photos in <code>/share/Multimedia/photos</code> modify volume mount for <code>photoprism/originals</code>. To do that, edit <code>volumes</code> part of the  <code>docker-compose.yml</code> file you just downloaded and provide proper mapping for the <code>/photoprism/originals</code>.</p>
+<p>You can try to use this docker file (compatible with v3 format)</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">photoprism</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">photoprism/photoprism:latest</span>
+<span class="w">    </span><span class="nt">stop_grace_period</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">    </span><span class="c1"># restart: unless-stopped</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
+<span class="w">    </span><span class="nt">security_opt</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seccomp:unconfined</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apparmor:unconfined</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2342:2342&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_ADMIN_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_ADMIN_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;insecure&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_AUTH_MODE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;password&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_SITE_URL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://localhost:2342/&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_TLS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DEFAULT_TLS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_ORIGINALS_LIMIT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_HTTP_COMPRESSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gzip&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_LOG_LEVEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;info&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_READONLY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_EXPERIMENTAL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_CHOWN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_WEBDAV</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_SETTINGS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_TENSORFLOW</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_FACES</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_CLASSIFICATION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_VECTORS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DISABLE_RAW</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_RAW_PRESETS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_SIDECAR_YAML</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_BACKUP_ALBUMS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_BACKUP_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_BACKUP_SCHEDULE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;daily&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_INDEX_SCHEDULE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_AUTO_INDEX</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_AUTO_IMPORT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DETECT_NSFW</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_UPLOAD_NSFW</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DATABASE_DRIVER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mysql&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DATABASE_SERVER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mariadb:3306&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DATABASE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;photoprism&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DATABASE_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;photoprism&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_DATABASE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;insecure&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_SITE_CAPTION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;AI-Powered</span><span class="nv"> </span><span class="s">Photos</span><span class="nv"> </span><span class="s">App&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_SITE_DESCRIPTION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">      </span><span class="nt">PHOTOPRISM_SITE_AUTHOR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">working_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/photoprism&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;~/Pictures:/photoprism/originals&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./storage:/photoprism/storage&quot;</span>
+
+<span class="w">  </span><span class="nt">mariadb</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb:11</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">stop_grace_period</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">    </span><span class="nt">security_opt</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seccomp:unconfined</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apparmor:unconfined</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--innodb-buffer-pool-size=512M</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--transaction-isolation=READ-COMMITTED</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--character-set-server=utf8mb4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--collation-server=utf8mb4_unicode_ci</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--max-connections=512</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--innodb-rollback-on-timeout=OFF</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--innodb-lock-wait-timeout=120</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./database:/var/lib/mysql&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MARIADB_AUTO_UPGRADE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">      </span><span class="nt">MARIADB_INITDB_SKIP_TZINFO</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">      </span><span class="nt">MARIADB_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;photoprism&quot;</span>
+<span class="w">      </span><span class="nt">MARIADB_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;photoprism&quot;</span>
+<span class="w">      </span><span class="nt">MARIADB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;insecure&quot;</span>
+<span class="w">      </span><span class="nt">MARIADB_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;insecure&quot;</span>
+
+<span class="w">  </span><span class="nt">watchtower</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">containrrr/watchtower</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">update</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">WATCHTOWER_CLEANUP</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">WATCHTOWER_POLL_INTERVAL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7200</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/var/run/docker.sock:/var/run/docker.sock&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;~/.docker/config.json:/config.json&quot;</span>
+</code></pre></div>
+
+<p>Assuming that you keep your original photos in <code>/share/Container/photos</code> modify  volume mount for <code>photoprism/originals</code>. To do that, edit <code>volumes</code> part of the photoprism service in <code>docker-compose.yml</code> file you just downloaded and provide proper mapping for the <code>/photoprism/originals</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
 <span class="w">  </span><span class="c1"># &quot;/host/folder:/photoprism/folder&quot;                 # Example</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/share/Multimedia/zdjecia:/photoprism/originals&quot;</span><span class="w"> </span><span class="c1"># Original media files </span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/share/Container/photos:/photoprism/originals&quot;</span><span class="w"> </span><span class="c1"># Original media files</span>
 </code></pre></div>
 
 <blockquote>
@@ -384,7 +484,7 @@ mkdir<span class="w"> </span>/share/Container/photoprism/storage
 </code></pre></div>
 
 <p><a id="run-application-in-the-container"></a></p>
-<h2>Run application in the container</h2>
+<h3>Run application in the container</h3>
 <p>Start the container. Pulling images might take few minutes depending on your Internet connection speed.</p>
 <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
@@ -410,43 +510,51 @@ mkdir<span class="w"> </span>/share/Container/photoprism/storage
 <p><a id="manual-upgrading-photoprism-to-the-latests-version"></a></p>
 <h3>Manual upgrading Photoprism to the latests version</h3>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/share/Container/photoprism/
-docker<span class="w"> </span>pull<span class="w"> </span>photoprism/photoprism:latest
 docker<span class="w"> </span>stop<span class="w"> </span>photoprism
+docker<span class="w"> </span>pull<span class="w"> </span>photoprism/photoprism:latest
 docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 
 <p>For automated updates check <a href="https://containrrr.dev/watchtower/">Watchtower</a></p>
 <p><a id="adding-new-content"></a></p>
-<h2>Adding new content</h2>
+<h3>Adding new content</h3>
 <ul>
 <li>use upload via webDAV</li>
-<li>manually upload new pictures and videos to <code>/share/Multimedia/Import</code> and manually trigger import using CLI:</li>
+<li>manually upload new pictures and videos to <code>/share/Container/photoprism/import</code> and manually trigger import using CLI:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>photoprism<span class="w"> </span>photoprism<span class="w"> </span>import
 </code></pre></div>
 
 <p>You can also consider automating import by adding <code>import</code> do the cron (e.g. every midnight)</p>
 <p><a id="performance-tuning"></a></p>
-<h2>Performance tuning</h2>
+<h3>Performance tuning</h3>
 <p>If you are experiencing performance problems you can reduce number of workers (from documentation):</p>
 <blockquote>
-<p>Try <a href="https://docs.photoprism.app/getting-started/config-options/#index-workers">reducing the number of workers</a> by setting <code>PHOTOPRISM_WORKERS</code> to a reasonably small value in <code>docker-compose.yml</code>, depending on the CPU performance and number of cores</p>
+<p>Try <a href="https://docs.photoprism.app/getting-started/config-options/#index-workers">reducing the number of workers</a> by setting <code>PHOTOPRISM_WORKERS</code> to a reasonably small value in <code>docker-compose.yml</code>, depending on the CPU performance and number of cores</p>
 </blockquote>
 <p>or disable TensorFlow:</p>
 <blockquote>
-<p>As a last measure, you can <a href="https://docs.photoprism.app/getting-started/config-options/#feature-flags">disable the use of TensorFlow</a> for image classification and facial recognition. You ca do it via web-UI settings, cli (<code>--disable-tensorflow</code> option) or set <code>PHOTOPRISM_DISABLE_TENSORFLOW</code> to <code>true</code> in <code>docker-compose.yml</code> and restart container.</p>
+<p>As a last measure, you can <a href="https://docs.photoprism.app/getting-started/config-options/#feature-flags">disable the use of TensorFlow</a> for image classification and facial recognition. You ca do it via web-UI settings, cli (<code>--disable-tensorflow</code> option) or set <code>PHOTOPRISM_DISABLE_TENSORFLOW</code> to <code>true</code> in <code>docker-compose.yml</code> and restart container.</p>
 </blockquote>
 <p><strong>Credits:</strong>
 I was able to launch this service thanks to the instructions found on reddit [1] provided by <a href="https://www.reddit.com/user/schol4stiker/">schol4stiker</a>.</p>
+<p><a id="installation-using-container-station-gui"></a></p>
+<h2>Installation using Container Station GUI</h2>
+<p>I got message from one of the readers, that he realized, it was better to use Container Station to install Photoprism using its GUI. Open <strong>Container Station &gt; Applications &gt; Create</strong></p>
+<p>He named the application 'photoprism' and pasted the docker-compose file (first converted with Claude.ai to Docker Composer v3 format)</p>
 <p><a id="references"></a></p>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.reddit.com/r/photoprism/comments/vph4ct/comment/ieobj8w/?utm_source=share&amp;utm_medium=web2x&amp;context=3">instruction from reddit</a></li>
 <li><a href="https://www.wundertech.net/how-to-setup-photoprism-on-a-synology-nas">How to Setup PhotoPrism on a Synology NAS in 2022 - WunderTech</a></li>
 </ol>
+<p><a id="updates"></a></p>
 <h2>Updates</h2>
 <ul>
 <li>2023-08-11: add note about change in docker compose to v2. Thx Tom Berg.</li>
+<li>2024-08-18: under volumes:    zdjecia was changed to photos, <code>/share/Multimedia/photos</code>  was changed to <code>/share/Container/</code>photos for documentation consistency.</li>
+<li>2024-08-26: fixed process of manual update of docker images (stop should go before pull)</li>
+<li>2024-08-26: fixed path in import section (for consistency)</li>
 </ul>
         </div>
 

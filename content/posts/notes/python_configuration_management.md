@@ -182,3 +182,56 @@ cfg.nested.string_field = u'bob'  # `String` fields can store Unicode strings.
 
 print(cfg)
 ```
+
+## Pydantic
+The core is based on 𝘱𝘺𝘥𝘢𝘯𝘵𝘪𝘤, a data validation library for Python.  
+  
+More precisely, on their 𝘉𝘢𝘴𝘦𝘚𝘦𝘵𝘵𝘪𝘯𝘨𝘴 class.  
+  
+𝗪𝗵𝘆 𝘂𝘀𝗲 𝘁𝗵𝗲 𝗽𝘆𝗱𝗮𝗻𝘁𝗶𝗰 𝗕𝗮𝘀𝗲𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 𝗰𝗹𝗮𝘀𝘀?  
+  
+- you can quickly load values from .𝘦𝘯𝘷 files (or even 𝘑𝘚𝘖𝘕 or 𝘠𝘈𝘔𝘓)  
+- add default values for the configuration of your application  
+- the MOST IMPORTANT one → It validates the type of the loaded variables. Thus, you will always be ensured you use the correct variables to configure your system.  
+  
+𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗶𝗺𝗽𝗹𝗲𝗺𝗲𝗻𝘁 𝗶𝘁?  
+  
+It is pretty straightforward.  
+  
+You subclass the 𝘉𝘢𝘴𝘦𝘚𝘦𝘵𝘵𝘪𝘯𝘨𝘴 class and define all your settings at the class level.  
+  
+It is similar to a Python 𝘥𝘢𝘵𝘢𝘤𝘭𝘢𝘴𝘴 but with an extra layer of data validation and factory methods.  
+  
+If you assign a value to the variable, it makes it optional.  
+  
+If you leave it empty, providing it in your .𝙚𝙣𝙫 file is mandatory.  
+  
+𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗲 𝗶𝘁 𝘄𝗶𝘁𝗵 𝘆𝗼𝘂𝗿 𝗠𝗟 𝗰𝗼𝗱𝗲?  
+  
+You often have a training configuration file (or inference) into a JSON or YAML file (I prefer YAML files as they are easier to read).  
+  
+You shouldn't pollute your 𝘱𝘺𝘥𝘢𝘯𝘵𝘪𝘤 settings class with all the hyperparameters related to the module (as they are a lot, A LOT).  
+  
+Also, to isolate the application & ML settings, the easiest way is to add the 𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨_𝘤𝘰𝘯𝘧𝘪𝘨_𝘱𝘢𝘵𝘩 in your settings and use a 𝘛𝘳𝘢𝘪𝘯𝘪𝘯𝘨𝘊𝘰𝘯𝘧𝘪𝘨 class to load it independently.  
+  
+Doing so lets you leverage your favorite way (probably the one you already have in your ML code) of loading a config file for the ML configuration: plain YAML or JSON files, hydra, or other fancier methods.  
+  
+Another plus is that you can't hardcode the path anywhere on your system. That is a nightmare when you start using git with multiple people.  
+  
+```python
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+class AppSettings(BaseSettings):
+	model_config = SettingsConfigDict(env_file=(".env", ".env.prod"))
+	
+	QDRANT_URL: str = “localhost:6333"
+	QDRANT_API_KEY: Optional[str] = None
+	VECTOR_DB_COLLECTION: str # Mandatory
+	
+	training_config_path: Path # Mandatory
+
+settings = AppSettings( )
+
+training_config = TrainingConfig.from_yaml(settings.training_config_path)
+
+```
