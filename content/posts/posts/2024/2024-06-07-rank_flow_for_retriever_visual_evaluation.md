@@ -49,7 +49,6 @@ This is where tools like rankflow chart (called also bump chart) come into play,
 In this article we focus on two aspects of visual analysis of rank changes: collecting data in retriever and generating graphical visualization like this:
 
 ![RankFlow Plot](/images/rankflow/rankflow_plot_full.jpg)
-Here is the rewritten text with grammar and spelling corrections:
 
 ***Figure 1:** RankFlow chart illustrating rank changes in four steps of re-ranking. You can track the given node's rank history visually. For example, Document 4, after hybrid search, initially had a rank of 4. Then, after the Cross-encoder surfaced, it was re-ranked to 1. The Graph re-ranker subsequently placed it at rank 6, and finally, the Booster changed its rank to 0.*
 
@@ -70,6 +69,8 @@ You can create the Excel table that reflect rank of the documents on each step. 
 | doc_2_2  | 1     | doc_12_3 | 1     | doc_12_3 | 1     | doc_1_1  | 1     |
 | doc_1_3  | 1     | doc_2_2  | 1     | doc_2_2  | 1     | doc_12_3 | 1     |
 | doc_2_1  | 1     | doc_2_1  | 1     | doc_2_1  | 1     | doc_1_3  | 1     |
+
+
 This tool was an appetiser to have something similar implemented in Python. Before going to visualization, let's spent some time on how to collect data required for this visual analysis.
 
 <a id="tracking-the-rank-changes-in-your-rag"></a>
