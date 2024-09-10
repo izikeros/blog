@@ -32,6 +32,8 @@ status: published
 
 <!-- /MarkdownTOC -->
 
+## TLDR
+This article discusses the importance of tracking and visualizing rank changes in Retrieval-Augmented Generation (RAG) systems. It introduces the concept of rank flow visualization, which helps analyze how document rankings evolve through different stages of retrieval and re-ranking. The article outlines methods for collecting rank data using structured logging and callbacks, and presents a Python library called 'rankflow' for creating visual representations of these rank changes. This visualization technique enables AI professionals to quickly identify patterns and optimize their RAG systems, ultimately improving the quality of information retrieval and generation.
 <a id="introduction-and-problem-statement"></a>
 
 ## Introduction and problem statement
@@ -109,7 +111,7 @@ Callbacks in programming are functions passed as arguments to other functions, w
 
 ### How to track retriever data with callbacks?
 
-Here is an example how you can use callbacks to track re-reanking info in dummy implementation of the retriever with some re-ranking steps.
+Here is an example how you can use callbacks to track re-ranking info in dummy implementation of the retriever with some re-ranking steps.
 
 ```python
 import json

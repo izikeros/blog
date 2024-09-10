@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Problem description In Visual Studio Code (VSCode), I&#39;m working with a Jupyter notebook (.ipynb file) and encountering a linter warning related to the pandas library. Specifically, when I try to import pandas, I see the following warning: Import &#34;pandas&#34; could not be …"/>
+    <meta name="keywords" content="vscode, jupyter-notebook, pandas, pylance, python, virtualenv, linter-warning, import-error, troubleshooting, ide-configuration, python-environment, static-analysis, data-science, development-tools, coding-issues">
+    <meta expr:content="2024-09-10 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2024-09-10 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2024-09-10 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2024-09-10 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "VSCode problem - import could not be resolved from the source (Pylance)",
+  "datePublished": "2024-09-10 00:00:00+02:00",
+  "dateModified": "2024-09-10 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="VSCode problem - import could not be resolved from the source (Pylance)"/>
+  <meta property="og:description" content="Problem description In Visual Studio Code (VSCode), I&#39;m working with a Jupyter notebook (.ipynb file) and encountering a linter warning related to the pandas library. Specifically, when I try to import pandas, I see the following warning: Import &#34;pandas&#34; could not be …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/vscode-problem-import-could-not-be-resolved-from-the-source-pylance/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-09-10 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-09-10 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="vscode"/>
+  <meta property="article:tag" content="jupyter-notebook"/>
+  <meta property="article:tag" content="pandas"/>
+  <meta property="article:tag" content="pylance"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="virtualenv"/>
+  <meta property="article:tag" content="linter-warning"/>
+  <meta property="article:tag" content="import-error"/>
+  <meta property="article:tag" content="troubleshooting"/>
+  <meta property="article:tag" content="ide-configuration"/>
+  <meta property="article:tag" content="python-environment"/>
+  <meta property="article:tag" content="static-analysis"/>
+  <meta property="article:tag" content="data-science"/>
+  <meta property="article:tag" content="development-tools"/>
+  <meta property="article:tag" content="coding-issues"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content=""/>
+    <meta name="twitter:title" content="VSCode problem - import could not be resolved from the source (Pylance)"/>
+
+
+    <title>    VSCode problem - import could not be resolved from the source (Pylance)
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2024-09-10 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=VSCode%20problem%20-%20import%20could%20not%20be%20resolved%20from%20the%20source%20%28Pylance%29&url=https%3A//www.safjan.com/vscode-problem-import-could-not-be-resolved-from-the-source-pylance/&hashtags=vscode,jupyter-notebook,pandas,pylance,python,virtualenv,linter-warning,import-error,troubleshooting,ide-configuration,python-environment,static-analysis,data-science,development-tools,coding-issues" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/vscode-problem-import-could-not-be-resolved-from-the-source-pylance/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=VSCode%20problem%20-%20import%20could%20not%20be%20resolved%20from%20the%20source%20%28Pylance%29&u=https%3A//www.safjan.com/vscode-problem-import-could-not-be-resolved-from-the-source-pylance/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/vscode-problem-import-could-not-be-resolved-from-the-source-pylance/&title=VSCode%20problem%20-%20import%20could%20not%20be%20resolved%20from%20the%20source%20%28Pylance%29" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="vscode-problem-import-could-not-be-resolved-from-the-source-pylance">VSCode problem - import could not be resolved from the source (Pylance)</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <h2>Problem description</h2>
+<p>In Visual Studio Code (VSCode), I'm working with a Jupyter notebook (.ipynb file) and encountering a linter warning related to the pandas library. Specifically, when I try to import pandas, I see the following warning:</p>
+<div class="highlight"><pre><span></span><code>Import &quot;pandas&quot; could not be resolved from the source Pylance
+</code></pre></div>
+
+<p>This warning appears as a squiggly underline beneath the import statement, and hovering over it displays the full error message.</p>
+<p>Important context:
+1. I'm using VSCode as my integrated development environment (IDE).
+2. The file I'm working on is a Jupyter notebook, not a regular Python script.
+3. I have pandas installed in a virtual environment (virtualenv) that I've set up for this project.
+4. Pylance, which is Microsoft's static type checking tool for Python, is raising this warning.
+5. Despite the warning, the code runs without errors when I execute the cell.
+6. This issue is specifically occurring within the notebook interface in VSCode, not in a regular Python file.</p>
+<p>The discrepancy between the successful execution and the linter warning suggests a potential misconfiguration in how VSCode or Pylance is interpreting my project setup, particularly in relation to the virtual environment or the notebook context.</p>
+<h2>Potential origins and troubleshooting steps</h2>
+<p>This issue often occurs when VSCode isn't correctly recognizing your virtual environment or the installed packages. </p>
+<h3>1. VSCode not using the correct Python interpreter:</h3>
+<ul>
+<li>Ensure VSCode is using the Python interpreter from your virtualenv.</li>
+<li>Open the Command Palette (Ctrl+Shift+P) and select "Python: Select Interpreter".</li>
+<li>Choose the interpreter from your virtualenv.</li>
+</ul>
+<h3>2. Virtualenv not activated:</h3>
+<ul>
+<li>Make sure your virtualenv is activated in the terminal you're using within VSCode.</li>
+<li>You can activate it manually or set up VSCode to automatically activate it.</li>
+</ul>
+<h3>3. Pandas not installed in the virtualenv:</h3>
+<ul>
+<li>Double-check that pandas is installed in your virtualenv.</li>
+<li>Run <code>pip list</code> in the terminal to verify.</li>
+</ul>
+<h3>4. Pylance configuration:</h3>
+<ul>
+<li>Pylance might not be configured to recognize your virtualenv.</li>
+<li>Check your VSCode settings (settings.json) for Python and Pylance-related configurations.</li>
+</ul>
+<h3>5. Caching issues:</h3>
+<ul>
+<li>Sometimes VSCode or Pylance caches can cause issues.</li>
+<li>Try reloading the VSCode window (Ctrl+Shift+P, then "Developer: Reload Window").</li>
+</ul>
+<h2>Options for fixing the problem:</h2>
+<ol>
+<li>
+<p>Manually select the correct interpreter:
+   Use the "Python: Select Interpreter" command as mentioned above.</p>
+</li>
+<li>
+<p>Configure python.pythonPath:
+   In settings.json, set "python.pythonPath" to the path of your virtualenv's Python executable.</p>
+</li>
+<li>
+<p>Create a .env file:
+   In your project root, create a .env file with <code>PYTHONPATH=/path/to/your/virtualenv/lib/python3.x/site-packages</code>.</p>
+</li>
+<li>
+<p>Update Pylance settings:
+   In settings.json, add or update:
+   <code>json
+   "python.analysis.extraPaths": ["/path/to/your/virtualenv/lib/python3.x/site-packages"]</code></p>
+</li>
+<li>
+<p>Reinstall pandas:
+   Activate your virtualenv and run <code>pip uninstall pandas</code> followed by <code>pip install pandas</code>.</p>
+</li>
+<li>
+<p>Update VSCode and extensions:
+   Ensure VSCode and the Python extension are up to date.</p>
+</li>
+</ol>
+<p>If you've tried these steps and still face issues, you might want to check for any conflicting extensions or consider creating a new virtualenv to rule out environment-specific problems.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/vscode/">vscode</a>
+                        <a href="https://www.safjan.com/tag/jupyter-notebook/">jupyter-notebook</a>
+                        <a href="https://www.safjan.com/tag/pandas/">pandas</a>
+                        <a href="https://www.safjan.com/tag/pylance/">pylance</a>
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/virtualenv/">virtualenv</a>
+                        <a href="https://www.safjan.com/tag/linter-warning/">linter-warning</a>
+                        <a href="https://www.safjan.com/tag/import-error/">import-error</a>
+                        <a href="https://www.safjan.com/tag/troubleshooting/">troubleshooting</a>
+                        <a href="https://www.safjan.com/tag/ide-configuration/">ide-configuration</a>
+                        <a href="https://www.safjan.com/tag/python-environment/">python-environment</a>
+                        <a href="https://www.safjan.com/tag/static-analysis/">static-analysis</a>
+                        <a href="https://www.safjan.com/tag/data-science/">data-science</a>
+                        <a href="https://www.safjan.com/tag/development-tools/">development-tools</a>
+                        <a href="https://www.safjan.com/tag/coding-issues/">coding-issues</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/best-alternatives-to-jupyter-notebooks/">Best Alternatives to Jupyter Notebooks</a></li>
+                        <li><a href="https://www.safjan.com/databricks-key-concepts/">Databricks - key concepts</a></li>
+                        <li><a href="https://www.safjan.com/features-with-strong-correlation/">List of Features With Strongest Correlation</a></li>
+                        <li><a href="https://www.safjan.com/how-to-select-rows-from-DataFrame-based-on-column-values/">How to Select Rows From a DataFrame Based on Column Values</a></li>
+                        <li><a href="https://www.safjan.com/lesser-known-yet-powerful-python-plotting-libraries/">10 Lesser-Known, Yet Powerful Python Plotting Libraries</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/how-to-remove-diacritics-and-sanitize-strings-in-python/" title="How to Remove Diacritics and Sanitize Strings in Python">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2024 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
