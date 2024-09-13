@@ -7,7 +7,7 @@ Status: published
 tags: predibase, evaluation, llm, slm, small-language-models
 Category: note
 ---
-X:[[fine_tune_large_language_models_LLM]]
+X:[[fine_tune_small_language_models_LLM_SLM]]
 X::[[RAG_evaluation]]
 
 ## Best models to fine-tune
