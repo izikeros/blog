@@ -1,5 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-09-13T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Notes on using ripgrep for projects with python, jupyter (ipynb) notebooks and markdown files</title><link href="https://www.safjan.com/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/" rel="alternate"></link><published>2024-09-13T00:00:00+02:00</published><updated>2024-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-09-13:/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/</id><summary type="html">&lt;p&gt;Notes on using ripgrep (rg) mainly for use cases as a Python developer working with .py, .ipynb, and .md files:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2024-09-13T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Audio Notifications in Jupyter Notebooks Across Platforms</title><link href="https://www.safjan.com/audio-notifications-in-jupyter-notebooks-across-platforms/" rel="alternate"></link><published>2024-09-13T00:00:00+02:00</published><updated>2024-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-09-13:/audio-notifications-in-jupyter-notebooks-across-platforms/</id><summary type="html">&lt;p&gt;&lt;strong&gt;Enhancing Your Notebook Experience with Sound Notifications&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When working with long-running operations in Jupyter notebooks or other interactive computing environments, it's often helpful to have audible notifications to alert you when tasks are complete. This is particularly useful when you're multitasking or …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Enhancing Your Notebook Experience with Sound Notifications&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When working with long-running operations in Jupyter notebooks or other interactive computing environments, it's often helpful to have audible notifications to alert you when tasks are complete. This is particularly useful when you're multitasking or working on time-consuming processes. In this post, we'll explore various methods to implement sound notifications across different platforms, with a special focus on macOS.&lt;/p&gt;
+&lt;h2&gt;1. The Beepy Package: Cross-Platform Simplicity&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;beepy&lt;/code&gt; package offers a straightforward, cross-platform solution for playing notification sounds in Python. It's easy to install and use, making it an excellent choice for beginners and experienced users alike.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;beepy&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Play a notification sound&lt;/span&gt;
+&lt;span class="n"&gt;beepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;beep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sound&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;beepy&lt;/code&gt; package comes with several pre-defined sounds, identified by numbers 1-7. Here's a quick reference:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;'coin'&lt;/li&gt;
+&lt;li&gt;'robot_error'&lt;/li&gt;
+&lt;li&gt;'error'&lt;/li&gt;
+&lt;li&gt;'ping'&lt;/li&gt;
+&lt;li&gt;'ready'&lt;/li&gt;
+&lt;li&gt;'success'&lt;/li&gt;
+&lt;li&gt;'wilhelm'&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To use &lt;code&gt;beepy&lt;/code&gt;, first install it via pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install beepy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, you can easily integrate it into your notebook cells:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sleep&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Simulate a long-running operation&lt;/span&gt;
+&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Play a notification sound&lt;/span&gt;
+&lt;span class="n"&gt;beepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;beep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sound&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# &amp;#39;ready&amp;#39; sound&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Operation complete!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;2. MacOS 'say' Command: Text-to-Speech Notifications&lt;/h2&gt;
+&lt;p&gt;For macOS users, the built-in &lt;code&gt;say&lt;/code&gt; command provides a unique way to create custom voice notifications. This method turns text into speech, allowing for more informative alerts.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;say &amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Usage&lt;/span&gt;
+&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;I&amp;#39;m done now with the data processing task.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can customize the voice and speaking rate:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;say -v Samantha -r 200 &amp;quot;Your analysis is complete&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;3. MacOS 'afplay' Command: System Sound Playback&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;afplay&lt;/code&gt; command in macOS allows you to play system sounds or custom audio files. First, you can list available system sounds:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Library&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Sounds&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, play a specific sound:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;play_sound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sound_name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;afplay /System/Library/Sounds/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;sound_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;.aiff&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Usage&lt;/span&gt;
+&lt;span class="n"&gt;play_sound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hero&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;4. Playsound Library: Another Cross-Platform Option&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;playsound&lt;/code&gt; library offers a simple, cross-platform solution for playing sound files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;playsound&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;playsound&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Play an MP3 file&lt;/span&gt;
+&lt;span class="n"&gt;playsound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/to/your/soundfile.mp3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Install it using pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install playsound
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;5. Windows-Specific Solution: Winsound&lt;/h2&gt;
+&lt;p&gt;For Windows users, the built-in &lt;code&gt;winsound&lt;/code&gt; module provides a platform-specific option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;winsound&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Play a system sound&lt;/span&gt;
+&lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PlaySound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SystemExclamation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SND_ALIAS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Play a custom WAV file&lt;/span&gt;
+&lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PlaySound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;path/to/your/sound.wav&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SND_FILENAME&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;6. Web-Based Notebooks: JavaScript Audio&lt;/h2&gt;
+&lt;p&gt;For web-based notebooks like Google Colab, you can use JavaScript to play audio:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.display&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Javascript&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;play_audio&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Javascript&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;        var audio = new Audio(&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;);&lt;/span&gt;
+&lt;span class="s2"&gt;        audio.play();&lt;/span&gt;
+&lt;span class="s2"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Usage&lt;/span&gt;
+&lt;span class="n"&gt;play_audio&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://example.com/notification.mp3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Happy coding, and may your long-running operations always end with a satisfying ding!&lt;/p&gt;</content><category term="note"></category><category term="jupyter-notebooks"></category><category term="audio-notifications"></category><category term="python"></category><category term="macos"></category><category term="windows"></category><category term="cross-platform"></category><category term="beepy"></category><category term="text-to-speech"></category><category term="afplay"></category><category term="playsound"></category><category term="winsound"></category><category term="javascript-audio"></category><category term="productivity"></category><category term="long-running-operations"></category><category term="workflow-enhancement"></category><category term="coding-alerts"></category><category term="custom-notifications"></category><category term="system-sounds"></category><category term="multiplatform-development"></category><category term="interactive-computing"></category></entry><entry><title>Notes on using ripgrep for projects with python, jupyter (ipynb) notebooks and markdown files</title><link href="https://www.safjan.com/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/" rel="alternate"></link><published>2024-09-13T00:00:00+02:00</published><updated>2024-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-09-13:/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/</id><summary type="html">&lt;p&gt;Notes on using ripgrep (rg) mainly for use cases as a Python developer working with .py, .ipynb, and .md files:&lt;/p&gt;
 &lt;h2&gt;Basic search&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;path/to/search
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -8910,134 +9013,4 @@ Second, LIME &lt;strong&gt;can help users identify areas of improvement for mach
 &lt;p&gt;Second, LIME &lt;strong&gt;requires a significant amount of computational resources&lt;/strong&gt; to generate the perturbed instances and train the interpretable model. This can be a limitation when working with large datasets or computationally expensive models.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;LIME is a useful technique for interpreting the predictions of machine learning models. LIME can help increase the trust of users in machine learning models and identify areas of improvement for the models. LIME has been successfully applied in various domains, including healthcare, finance, and image recognition. However, LIME also has some limitations, such as providing local explanations and requiring significant computational resources. Therefore, data scientists and machine learning practitioners should carefully consider the use of LIME and its limitations when interpreting the predictions of their models.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Responsible AI"></category><category term="machine-learning"></category><category term="lime"></category><category term="xai"></category><category term="explainable-ai"></category></entry><entry><title>Intrinsic vs. Extrinsic Evaluation - What's the Best Way to Measure Embedding Quality?</title><link href="https://www.safjan.com/measure-quality-of-embeddings-intrinsic-vs-extrinsic/" rel="alternate"></link><published>2023-04-18T00:00:00+02:00</published><updated>2023-04-18T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-04-18:/measure-quality-of-embeddings-intrinsic-vs-extrinsic/</id><summary type="html">&lt;p&gt;Learn how to measure the quality of word and sentence embeddings in natural language processing (NLP), including intrinsic and extrinsic evaluation, and their strengths and limitations.&lt;/p&gt;</summary><content type="html">&lt;p&gt;X::&lt;a href="https://www.safjan.com/demystifying-perplexity-assessing-dimensionality-reduction-with-pca/"&gt;Demystifying Perplexity - Assessing Dimensionality Reduction With PCA&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Let's start with the concept of embedding vectors. In natural language processing (NLP), an embedding vector is a mathematical representation of words or phrases. It's a way to convert text data into numerical values that can be processed by machine learning algorithms. Word embeddings and sentence embeddings are widely used in natural language processing (NLP) for a variety of tasks, such as text classification, named entity recognition, machine translation, and sentiment analysis. However, it is not always straightforward to evaluate the quality of embeddings, and different evaluation metrics may be appropriate for different use cases. In this blog post, we will explore several ways to measure the quality of embeddings, including intrinsic and extrinsic evaluation, and discuss their strengths and limitations.&lt;/p&gt;
-&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#intrinsic-evaluation"&gt;Intrinsic Evaluation&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#cosine-similarity"&gt;Cosine Similarity&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#spearman-correlation"&gt;Spearman Correlation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#accuracy"&gt;Accuracy&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#extrinsic-evaluation"&gt;Extrinsic Evaluation&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#f1-score"&gt;F1 Score&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#perplexity"&gt;Perplexity&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#limitations"&gt;Limitations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-
-&lt;p&gt;&lt;a id="intrinsic-evaluation"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Intrinsic Evaluation&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Intrinsic evaluation&lt;/strong&gt; - aims to measure the quality of embeddings by assessing their performance on specific NLP tasks that are related to the embedding space itself, such as word similarity, analogy, and classification.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;In this section, we will discuss three commonly used intrinsic evaluation metrics: cosine similarity, Spearman correlation, and accuracy.&lt;/p&gt;
-&lt;p&gt;&lt;a id="cosine-similarity"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Cosine Similarity&lt;/h3&gt;
-&lt;p&gt;Cosine similarity measures the similarity between two vectors by computing the cosine of the angle between them. In the context of embeddings, cosine similarity is often used to measure the similarity between two words, or between a word and its context. The formula for cosine similarity is as follows:&lt;/p&gt;
-&lt;div class="math"&gt;$$
-cosine\_similarity(\textbf{v}_1, \textbf{v}_2) = \frac{\textbf{v}_1 \cdot \textbf{v}_2}{\|\textbf{v}_1\|\|\textbf{v}_2\|}
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(\textbf{v}_1\)&lt;/span&gt; and &lt;span class="math"&gt;\(\textbf{v}_2\)&lt;/span&gt; are the embeddings of two words, and &lt;span class="math"&gt;\(|\cdot|\)&lt;/span&gt; denotes the Euclidean norm.&lt;/p&gt;
-&lt;p&gt;&lt;a id="spearman-correlation"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Spearman Correlation&lt;/h3&gt;
-&lt;p&gt;Spearman correlation measures the monotonic relationship between two variables, which can be the similarity scores of two sets of words or phrases computed by humans and by embeddings. A high Spearman correlation indicates that the embeddings are able to capture the semantic relationships between words that humans perceive. The formula for Spearman correlation is as follows:&lt;/p&gt;
-&lt;p&gt;$$
-\text{Spearman's correlation} = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}&lt;/p&gt;
-&lt;p&gt;$$&lt;/p&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(d_i\)&lt;/span&gt; is the difference between the ranks of the &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th pair of similarity scores, and &lt;span class="math"&gt;\(n\)&lt;/span&gt; is the number of pairs.&lt;/p&gt;
-&lt;p&gt;&lt;a id="accuracy"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Accuracy&lt;/h3&gt;
-&lt;p&gt;Accuracy measures the performance of embeddings on classification tasks, such as sentiment analysis or topic classification. Given a dataset of labeled examples, the embeddings are used to represent each example, and a classifier is trained on these representations. The accuracy of the classifier on a held-out test set is then used as a measure of the quality of the embeddings.&lt;/p&gt;
-&lt;p&gt;&lt;a id="extrinsic-evaluation"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Extrinsic Evaluation&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Extrinsic evaluation&lt;/strong&gt; - aims to measure the quality of embeddings by assessing their performance on downstream NLP tasks, such as machine translation or text classification, that are not directly related to the embedding space itself.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;In this section, we will discuss two commonly used extrinsic evaluation metrics: F1 score and perplexity.
-&lt;a id="f1-score"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;F1 Score&lt;/h3&gt;
-&lt;p&gt;F1 score is a metric commonly used in binary classification problems, such as sentiment analysis or named entity recognition. It combines precision and recall into a single score that ranges from 0 to 1. A high F1 score indicates that the embeddings are able to capture the relevant features of the input data. The formula for F1 score is as follows:&lt;/p&gt;
-&lt;div class="math"&gt;$$
-F1 = \frac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
-$$&lt;/div&gt;
-&lt;p&gt;where precision is the fraction of true positives among the predicted positives, and recall is the fraction of true positives among the actual positives.&lt;/p&gt;
-&lt;p&gt;&lt;a id="perplexity"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Perplexity&lt;/h3&gt;
-&lt;p&gt;Perplexity is a metric commonly used in language modeling tasks, such as machine translation or text generation. It measures how well a language model can predict a held-out test set of text, given the embeddings as input. A low perplexity indicates that the embeddings  are able to capture the semantic and syntactic structures of the language. The formula for perplexity is as follows:&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\text{perplexity} = 2^{-\frac{1}{N}\sum_{i=1}^{N} \log_2 p(w_i | \textbf{e}_i)}
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(N\)&lt;/span&gt; is the number of tokens in the test set, &lt;span class="math"&gt;\(\textbf{e}_i\)&lt;/span&gt; is the embedding of the &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th token, and &lt;span class="math"&gt;\(p(w_i | \textbf{e}_i)\)&lt;/span&gt; is the conditional probability of the &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th token given its embedding.&lt;/p&gt;
-&lt;p&gt;&lt;a id="limitations"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Limitations&lt;/h2&gt;
-&lt;p&gt;While intrinsic and extrinsic evaluation metrics can provide useful insights into the quality of embeddings, they also have some limitations. Intrinsic evaluation may not always reflect the performance of embeddings on downstream tasks, and extrinsic evaluation may not always isolate the contribution of embeddings from other factors, such as the choice of model architecture or the quality of the training data. Moreover, the choice of evaluation metrics may depend on the specific use case and the available resources, and there is no one-size-fits-all solution.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="Generative AI"></category><category term="machine-learning"></category><category term="python"></category><category term="embeddings"></category><category term="cosine-similarity"></category><category term="spearman-correlation"></category><category term="accuracy"></category><category term="f1-score"></category><category term="perplexity"></category></entry></feed>
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Responsible AI"></category><category term="machine-learning"></category><category term="lime"></category><category term="xai"></category><category term="explainable-ai"></category></entry></feed>
