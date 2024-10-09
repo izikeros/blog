@@ -24,11 +24,11 @@ Model stacking is like building a tall Lego tower by stacking one Lego on top of
 
 ### Bagging
 
-Bagging is like building a bunch of different Lego towers at the same time. Instead of just using one set of data to build our model, **we use several different sets of data**, each with their own set of Lego pieces. We build a different Lego tower with each set of data, and then we **combine all the towers together** to create a new, stronger model. This is like building a whole Lego city with lots of different buildings!
+Bagging is like building a bunch of different Lego towers at the same time. Instead of just using one set of data to build our model, **we use several sets of data**, each with their own set of Lego pieces. We build a different Lego tower with each set of data, and then we **combine all the towers together** to create a new, stronger model. This is like building a whole Lego city with lots of different buildings!
 
 ### Ensembling
 
-Ensembling is like building a really big Lego structure by putting lots of different Lego pieces together. Instead of just using one type of model, we use lots of different models, each with its own strengths and weaknesses. We put all these different models together, like putting together lots of different Lego pieces, to create a new, more accurate model.
+Ensembling is like building extreme big Lego structure by putting lots of different Lego pieces together. Instead of just using one type of model, we use lots of different models, each with its own strengths and weaknesses. We put all these different models together, like putting together lots of different Lego pieces, to create a new, more accurate model.
 
 ### Boosting
 
