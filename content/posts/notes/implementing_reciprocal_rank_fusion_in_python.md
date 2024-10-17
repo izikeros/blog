@@ -10,7 +10,7 @@ Category: note
 
 X::[[borda_count_python]]
 
-In the world of Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
+In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.
 
 > NOTE:  If you want to analyse rank changes over time in a visual manner, you might be interested in using [[2024-06-07-rank_flow_for_retriever_visual_evaluation|rankflow]] package.
@@ -119,7 +119,9 @@ The RRF method is a powerful tool in the field of Information Retrieval, providi
 
 ## See also
 - Condorcet Fuse ([pdf](https://www.khoury.northeastern.edu/~jaa/IS4200.10X1/resources/condorcet.pdf)) Montague, M., and Aslam, J. A. Condorcet fusion for improved retrieval. In CIKM (2002).)
-- CombMNZ
+- CombMNZ:
+	- Gopalan, N.P., Batri, K. Adaptive Selection of Top-m Retrieval Strategies for Data Fusion in Information Retrieval. In: International Journal of Soft Computing, 2(1):11-16, 2007.
+	- Hsu, D.F., Taksa, I. Comparing Rank and Score Combination Methods for Data Fusion in Information Retrieval. In: Information Retrieval 8(3):449-480, 2005.
 
 **Edits:**
 
