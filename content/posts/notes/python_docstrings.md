@@ -90,7 +90,7 @@ from: [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html)
 ```
 """Docstring for the example.py module.
 
-Modules names should have short, all-lowercase names.  The module name may
+Modules names should have short, all-lowercase names. The module name may
 have underscores if this improves readability.
 
 Every module should have a docstring at the very top of the file.  The

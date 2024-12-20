@@ -10,7 +10,7 @@ Category: note
 
 X::[[borda_count_python]]
 
-In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
+In the *Information Retrieval*, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.
 
 > NOTE:  If you want to analyse rank changes over time in a visual manner, you might be interested in using [[2024-06-07-rank_flow_for_retriever_visual_evaluation|rankflow]] package.

@@ -4,7 +4,7 @@ Slug: alternatives_for_building_python_cli_apps
 Date: 2023-07-17
 Modified: 2023-07-17
 Status: published
-Tags: python-cli-apps, command-line-interface, click, argparse, typer, fire, cement, docopt, plumbum, code-readability, code-conciseness, command-line-tools, cli-frameworks, command-line-argument-parsing, shell-like-scripts, output-rendering, plugin-support, command-line-completion, python-standard-library, type-hints
+Tags: python, python-cli-apps, command-line-interface, click, argparse, typer, fire, cement, docopt, plumbum, code-readability, code-conciseness, command-line-tools, cli-frameworks, command-line-argument-parsing, shell-like-scripts, output-rendering, plugin-support, command-line-completion, python-standard-library, type-hints
 Category: note
 Summary: Discover the best tools and frameworks for building Python CLI apps. Explore Click, argparse, Typer, and more. Master the art of command-line application development.
 Image: ""

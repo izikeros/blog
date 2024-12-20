@@ -10,12 +10,11 @@ Title: Using Markmap Mindmap Diagrams in Pelican Blog
 ---
 
 
-
 Embedding a markmap mindmap in a Pelican blog post written in Markdown requires a few steps:
 
 1. Install the markmap library by running `npm install -g markmap` in your command line.
 
-2. Create a mindmap file in the `.mm` format using a tool such as [Markmap](https://markmap.js.org/) or [Vim Markmap](https://github.com/dundalek/vim-markmap)
+2. Create a mindmap file in the `.mm` format using a tool such as [Markmap](https://markmap.js.org/) or [Markmap plugin for vscode](https://marketplace.visualstudio.com/items?itemName=gera2ld.markmap-vscode)
 
 3. Add the following code to the head of your Pelican HTML template:
 
@@ -45,4 +44,4 @@ Embedding a markmap mindmap in a Pelican blog post written in Markdown requires 
 
 Note that, you could also use a plugin to add the necessary links and script to your HTML template.
 
-Please keep in mind that, Depending on the theme you are using, you might need to make some adjustments to the HTML and CSS to ensure that the mindmap is properly displayed.
+Please keep in mind that, depending on the theme you are using, you might need to make some adjustments to the HTML and CSS to ensure that the mindmap is properly displayed.

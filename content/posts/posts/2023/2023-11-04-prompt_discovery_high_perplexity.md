@@ -57,4 +57,3 @@ For prompt discovery, a range of tools, both existing and potentially developed 
 
 ***Figure 2:** Mindmap illustrating the key aspects of prompt discovery. It includes formulation, permutations, fine-tuning, benchmarking, generalization, novel prompts, and the different tools involved in the process.
 
-In summary, prompt discovery is a process that involves intricate prompt formulation, thorough benchmarking, fine-tuning, and adaptation. The tools mentioned above, along with future advancements, will play a vital role in shaping the efficiency and effectiveness of prompt discovery efforts.

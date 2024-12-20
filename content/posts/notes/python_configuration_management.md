@@ -9,7 +9,7 @@ tags: python, configuration, hydra, decouple, omegaconf, yaml, config, experimen
 Title: Python - Configuration Management
 citation_needed: true
 ---
-Python is a powerful programming language that is widely used in a variety of applications, from web development and data science to machine learning and AI. One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.
+One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.
 
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
@@ -20,11 +20,11 @@ Python is a powerful programming language that is widely used in a variety of ap
 - [ml_collections](#ml_collections)
   - [Features](#features)
   - [Basic Usage of ml_collections](#basic-usage-of-ml_collections)
+- [Pydantic](#pydantic)
 
 <!-- /MarkdownTOC -->
 
 <a id="hydra"></a>
-
 ## hydra
 
 [Hydra](https://hydra.cc/) is a Python library that allows you to access parameters from a configuration file inside a Python script.
@@ -85,8 +85,8 @@ Hands-on tutorial how to introduce hydra to the exemplary data science project:
 ```vid
 https://www.youtube.com/watch?v=tEsPyYnzt8s
 ```
-<a id="decouple"></a>
 
+<a id="decouple"></a>
 ## decouple
 > Python Decouple: Strict separation of settings from code
 
@@ -118,8 +118,8 @@ Decouple provides a solution that doesn’t look like a workaround: `config('DEB
 From: package description on pypi
 
 > **NOTE:** Since `config` can read parameters from .env (and .ini) - decouple can replace using dotenv.
-<a id="omegaconf"></a>
 
+<a id="omegaconf"></a>
 ## omegaconf
 
 [OmegaConf](https://github.com/omry/omegaconf) is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.
@@ -129,20 +129,19 @@ From: package description on pypi
 Documentation v2.2: [Installation — OmegaConf 2.2.4.dev0 documentation](https://omegaconf.readthedocs.io/en/2.2_branch/usage.html)
 
 <a id="upsilonconf"></a>
-
 ## Upsilonconf
 ![github stars shield](https://img.shields.io/github/stars/hoedt/upsilonconf.svg?logo=github) 
 Concretely, the idea of [upsilonconf](https://github.com/hoedt/upsilonconf) library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the `antlr` dependency). It is also very similar to the (discontinued) [AttrDict](https://github.com/bcj/AttrDict) library. In the meantime, there is also the [ml_collections](https://github.com/google/ml_collections) library, which seems to build on similar ideas as this project.
 
 <a id="ml_collections"></a>
-
 ## ml_collections
 
 [google/ml_collections](https://github.com/google/ml_collections)
 ML Collections is a library of Python Collections designed for ML use cases.
 The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
-<a id="features"></a>
 
+
+<a id="features"></a>
 ### Features
 
 - Dot-based access to fields.
@@ -155,10 +154,10 @@ The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" d
 - Fields can be passed as keyword arguments using the `**` operator.
 - There is one exception to the strong type-safety of the ConfigDict: `int` values can be passed in to fields of type `float`. In such a case, the value is type-converted to a `float` before being stored. (Back in the day of Python 2, there was a similar exception to allow both `str` and `unicode` values in string fields.)
 
+
 <a id="basic-usage-of-ml_collections"></a>
-
-### [Basic Usage of ml_collections](https://github.com/google/ml_collections#basic-usage)
-
+### Basic Usage of ml_collections
+(from  documentation)
 ```python
 from ml_collections import config_dict
 
@@ -183,10 +182,11 @@ cfg.nested.string_field = u'bob'  # `String` fields can store Unicode strings.
 print(cfg)
 ```
 
+<a id="pydantic"></a>
 ## Pydantic
-The core is based on 𝘱𝘺𝘥𝘢𝘯𝘵𝘪𝘤, a data validation library for Python.  
+The core is based on *pydantic*, a data validation library for Python.  
   
-More precisely, on their 𝘉𝘢𝘴𝘦𝘚𝘦𝘵𝘵𝘪𝘯𝘨𝘴 class.  
+More precisely, on their *BaseSettings* class.  
   
 𝗪𝗵𝘆 𝘂𝘀𝗲 𝘁𝗵𝗲 𝗽𝘆𝗱𝗮𝗻𝘁𝗶𝗰 𝗕𝗮𝘀𝗲𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 𝗰𝗹𝗮𝘀𝘀?  
   
@@ -229,9 +229,27 @@ class AppSettings(BaseSettings):
 	VECTOR_DB_COLLECTION: str # Mandatory
 	
 	training_config_path: Path # Mandatory
+	
+	class Config:
+        env_file = ".env"
 
 settings = AppSettings( )
 
 training_config = TrainingConfig.from_yaml(settings.training_config_path)
 
 ```
+
+## Honorable mentions
+Modern Python solutions for managing configurations include:  
+
+### Dynaconf
+Dynaconf is a powerful settings management library that supports multiple file formats (JSON, YAML, TOML, INI) and environment variables.
+It allows hierarchical settings and dynamic loading of configurations.
+
+### ConfigParser  
+Part of the Python standard library, ConfigParser is used for handling configuration files in INI format.
+It is simple and lightweight, suitable for basic configuration needs.
+
+### Cerberus
+Cerberus is a lightweight and extensible data validation library for Python.
+It can be used to validate configuration data against a schema.

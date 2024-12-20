@@ -289,7 +289,7 @@
 
 
         <div>
-            <p>Python is a powerful programming language that is widely used in a variety of applications, from web development and data science to machine learning and AI. One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.</p>
+            <p>One of the key aspects of any Python project is managing configurations, which can become complex and difficult to manage as the project grows. In this blog post, we will take a look at three popular packages for managing configurations in Python: hydra, decouple, omegaconf and others. We will explore the features and capabilities of each package, and provide examples of how to use them in a Python project. By the end of this post, you will have a better understanding of how to manage configurations in Python and be able to choose the package that best fits your needs.</p>
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
 <ul>
@@ -300,6 +300,7 @@
 <li><a href="#ml_collections">ml_collections</a></li>
 <li><a href="#features">Features</a></li>
 <li><a href="#basic-usage-of-ml_collections">Basic Usage of ml_collections</a></li>
+<li><a href="#pydantic">Pydantic</a></li>
 </ul>
 <!-- /MarkdownTOC -->
 
@@ -383,9 +384,9 @@
 <p>Decouple provides a solution that doesn’t look like a workaround: <code>config('DEBUG', cast=bool)</code>.</p>
 <p>From: package description on pypi</p>
 <blockquote>
-<p><strong>NOTE:</strong> Since <code>config</code> can read parameters from .env (and .ini) - decouple can replace using dotenv.
-<a id="omegaconf"></a></p>
+<p><strong>NOTE:</strong> Since <code>config</code> can read parameters from .env (and .ini) - decouple can replace using dotenv.</p>
 </blockquote>
+<p><a id="omegaconf"></a></p>
 <h2>omegaconf</h2>
 <p><a href="https://github.com/omry/omegaconf">OmegaConf</a> is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.</p>
 <blockquote>
@@ -400,8 +401,8 @@ Concretely, the idea of <a href="https://github.com/hoedt/upsilonconf">upsilonco
 <h2>ml_collections</h2>
 <p><a href="https://github.com/google/ml_collections">google/ml_collections</a>
 ML Collections is a library of Python Collections designed for ML use cases.
-The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</code> are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
-<a id="features"></a></p>
+The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</code> are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.</p>
+<p><a id="features"></a></p>
 <h3>Features</h3>
 <ul>
 <li>Dot-based access to fields.</li>
@@ -415,7 +416,8 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
 <li>There is one exception to the strong type-safety of the ConfigDict: <code>int</code> values can be passed in to fields of type <code>float</code>. In such a case, the value is type-converted to a <code>float</code> before being stored. (Back in the day of Python 2, there was a similar exception to allow both <code>str</code> and <code>unicode</code> values in string fields.)</li>
 </ul>
 <p><a id="basic-usage-of-ml_collections"></a></p>
-<h3><a href="https://github.com/google/ml_collections#basic-usage">Basic Usage of ml_collections</a></h3>
+<h3>Basic Usage of ml_collections</h3>
+<p>(from  documentation)</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ml_collections</span> <span class="kn">import</span> <span class="n">config_dict</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="n">config_dict</span><span class="o">.</span><span class="n">ConfigDict</span><span class="p">()</span>
@@ -439,9 +441,10 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
 <span class="nb">print</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
 </code></pre></div>
 
+<p><a id="pydantic"></a></p>
 <h2>Pydantic</h2>
-<p>The core is based on 𝘱𝘺𝘥𝘢𝘯𝘵𝘪𝘤, a data validation library for Python.  </p>
-<p>More precisely, on their 𝘉𝘢𝘴𝘦𝘚𝘦𝘵𝘵𝘪𝘯𝘨𝘴 class.  </p>
+<p>The core is based on <em>pydantic</em>, a data validation library for Python.  </p>
+<p>More precisely, on their <em>BaseSettings</em> class.  </p>
 <p>𝗪𝗵𝘆 𝘂𝘀𝗲 𝘁𝗵𝗲 𝗽𝘆𝗱𝗮𝗻𝘁𝗶𝗰 𝗕𝗮𝘀𝗲𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 𝗰𝗹𝗮𝘀𝘀?  </p>
 <ul>
 <li>you can quickly load values from .𝘦𝘯𝘷 files (or even 𝘑𝘚𝘖𝘕 or 𝘠𝘈𝘔𝘓)  </li>
@@ -471,10 +474,25 @@ The two classes called <code>ConfigDict</code> and <code>FrozenConfigDict</co
 
     <span class="n">training_config_path</span><span class="p">:</span> <span class="n">Path</span> <span class="c1"># Mandatory</span>
 
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">env_file</span> <span class="o">=</span> <span class="s2">&quot;.env&quot;</span>
+
 <span class="n">settings</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="p">(</span> <span class="p">)</span>
 
 <span class="n">training_config</span> <span class="o">=</span> <span class="n">TrainingConfig</span><span class="o">.</span><span class="n">from_yaml</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">training_config_path</span><span class="p">)</span>
 </code></pre></div>
+
+<h2>Honorable mentions</h2>
+<p>Modern Python solutions for managing configurations include:  </p>
+<h3>Dynaconf</h3>
+<p>Dynaconf is a powerful settings management library that supports multiple file formats (JSON, YAML, TOML, INI) and environment variables.
+It allows hierarchical settings and dynamic loading of configurations.</p>
+<h3>ConfigParser</h3>
+<p>Part of the Python standard library, ConfigParser is used for handling configuration files in INI format.
+It is simple and lightweight, suitable for basic configuration needs.</p>
+<h3>Cerberus</h3>
+<p>Cerberus is a lightweight and extensible data validation library for Python.
+It can be used to validate configuration data against a schema.</p>
         </div>
 
 

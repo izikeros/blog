@@ -9,7 +9,7 @@ Status: published
 Summary: Imagine being able to prove something without actually revealing it. That is the power of zero-knowledge proofs, the technology that keeps your crypto safe.
 Tags: crypto, cryptocurrency, zero-knowledge
 Title: Zero-Knowledge Explained Like to 5 Years Old
-banner: /images/head/zero_knowledge.jpg
+banner: "/images/head/zero_knowledge.jpg"
 prompt: give me long, cryptocurrency-related, blog post on entitled zero-knowledge explained like to 5yo.
 prompt-gfx: the two keys made of digits - symbol of a pair of private keys, keys are background of the connected blocks that symbolise blockchain digital art.
 ---
@@ -47,7 +47,7 @@ This is a bit like the guessing game we talked about earlier. The challenge is l
 
 This is important for privacy and security in cryptocurrency, because it means that you can prove ownership of an address without revealing your identity or any other sensitive information. It also makes it much harder for hackers or other bad actors to steal your cryptocurrency, because they would need to know your private key in order to access your funds.
 
-So there you have it, zero-knowledge proofs explained like you're 5 years old! They're a clever way of proving that you know something, without actually revealing what it is. And in the world of cryptocurrency, they're a key technology that helps to ensure the security and privacy of your transactions.
+So there you have it, zero-knowledge proofs explained like you're 5 years old! They're a clever way of proving that you know something, without actually revealing what it is. And for cryptocurrency, they're a key technology that helps to ensure the security and privacy of your transactions.
 
 > **ZKP Origin**
 > Zero-knowledge proofs were first introduced by researchers Shafi Goldwasser, Silvio Micali, and Charles Rackoff in 1985. Their groundbreaking paper, ["The Knowledge Complexity of Interactive Proof-Systems,"](https://dl.acm.org/doi/10.1145/22145.22178) laid the foundation for zero-knowledge proof systems.

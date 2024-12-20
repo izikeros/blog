@@ -105,8 +105,10 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 - [mattcvincent/intro-_llm_-_observability_](https://github.com/mattcvincent/intro-llm-observability) - Intro to LLM Observability
 - [Demystifying Perplexity: An AI Expert‘s Comprehensive Guide - 33rd Square](https://www.33rdsquare.com/what-is-perplexity-ai/)
 - [Perplexity - a Hugging Face Space by evaluate-metric](https://huggingface.co/spaces/evaluate-metric/perplexity)
+- [List of top LLM Observability Tools](https://drdroid.io/engineering-tools/list-of-top-llm-observability-tools) - good intro
 
 
 **Edits:**
 
+- 2024-12-19: Added reference to list of top observability tools
 - 2024-06-26: Added summary
