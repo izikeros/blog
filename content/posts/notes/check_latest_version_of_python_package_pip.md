@@ -21,6 +21,7 @@ pip index versions <package_name>
 This command shows all available versions, with the latest at the top.
 
 ## Use PyPI API and jq
+
 Alternatively you can use PyPI API with curl and [jq](https://github.com/jqlang/jq):
 
 ```sh
@@ -51,8 +52,7 @@ py-all-versions() {
 
 > **NOTE**: using PyPI API + jq is significantly faster than using `pip index versions`. using pypi API took ~0.4 s while pip index version took ~2 s.
 
-
-## Using the `yolk` package:
+## Using the `yolk` package
 
 First, install yolk3k:
 ```sh

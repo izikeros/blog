@@ -10,11 +10,11 @@ Category: note
 
 # HTML5 Interactive Elements: An Overview and Usage Guide
 
-HyperText Markup Language (HTML) is the standard markup language for documents designed to be rendered in a web browser. Over the years, HTML has evolved to keep up with the growing need for better structure and interactivity. 
+HyperText Markup Language (HTML) is the standard markup language for documents designed to be rendered in a web browser. Over the years, HTML has evolved to keep up with the growing need for better structure and interactivity.
 
 HTML5, the latest version, introduces several interactive tags or elements, which makes building interactive, dynamic web content easier without having to resort to JavaScript or CSS. Let's dive into these interactive elements and have a look at some examples to understand their usage better.
 
-## The `<details>` and `<summary>` Elements 
+## The `<details>` and `<summary>` Elements
 
 The `<details>` and `<summary>` tags allow us to create an interactive widget that the user can open or close. The `<summary>` tag is a child of the `<details>` tag, representing the summary or brief description of the content in `<details>`.
 
@@ -94,7 +94,7 @@ Disk usage: <meter value="0.6">60%</meter>
 
 ## The `<output>` Element
 
-The `<output>` tag is a container for calculation results. To link the output element with other elements, you can use the `for` attribute. 
+The `<output>` tag is a container for calculation results. To link the output element with other elements, you can use the `for` attribute.
 
 ```html
 <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
@@ -119,8 +119,6 @@ The `<canvas>` tag allows for dynamic and scriptable rendering of shapes and bit
 </canvas>
 ```
 
-
-
 You can then use JavaScript to interact with this element:
 
 ```javascript
@@ -137,4 +135,3 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "#FF0000";
 ctx.fillRect(0, 0, 80, 80);
 </script>
-

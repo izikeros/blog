@@ -14,8 +14,8 @@ GitHub Actions workflows are powerful automation tools, but sometimes you need t
 2. Use manual triggers: Replace existing triggers with `on: workflow_dispatch`.
 3. Add a false condition: Insert `if: false` under the `jobs` key.
 
-
 ## Example of method 3
+
 ```yaml
 name: My Workflow
 

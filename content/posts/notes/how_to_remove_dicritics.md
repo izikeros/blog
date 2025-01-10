@@ -89,7 +89,6 @@ Original: Россия
 Sanitized: Rossiia
 ```
 
-
 ## Alternative Libraries
-While `unidecode` is comprehensive, you might also explore alternatives like `unicodedata` from the Python standard library for more control over the process.
 
+While `unidecode` is comprehensive, you might also explore alternatives like `unicodedata` from the Python standard library for more control over the process.

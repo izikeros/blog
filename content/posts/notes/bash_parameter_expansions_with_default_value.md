@@ -11,6 +11,7 @@ Category: note
 up::[[MOC_Shell_Bash_Zsh]]
 
 ## Bash parameter expansion with default value
+
 Bash parameter expansion with default value is a useful feature for handling variables that may or may not be set. The syntax is:
 
 ```bash
@@ -64,6 +65,7 @@ echo ${FOO-${BAR-"default"}}
 This uses FOO if set, otherwise BAR if set, otherwise "default".
 
 ## Use cases
+
 Here's a list of situations where bash parameter expansion with default values can be particularly useful:
 
 1. **Script arguments**: Provide default values for optional command-line arguments.

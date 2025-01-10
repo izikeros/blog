@@ -28,7 +28,6 @@ tig HEAD..origin/main
 git pull origin main
 ```
 
-
 ## Introduction
 
 When working with Git, it is essential to have a streamlined workflow that ensures you **review the changes made by others** before pulling them into your local branch. This practice helps **prevent conflicts** and ensures that your local repository remains in sync with the remote branch. In this blog post, we will outline a few simple steps to check the changes introduced by others in the remote branch before performing a `git pull`.
@@ -144,6 +143,7 @@ This visual approach using PyCharm's GUI tools can make the review process more 
 VSCode provides powerful built-in Git functionality that can be further enhanced with extensions. Here's how to effectively review changes using VSCode:
 
 ##### Built-in Git Features
+
 1. Access the Source Control view by:
    - Clicking the Source Control icon in the Activity Bar (branches icon)
    - Using the shortcut `Ctrl+Shift+G` (Windows/Linux) or `⌘+Shift+G` (macOS)
@@ -152,6 +152,7 @@ VSCode provides powerful built-in Git functionality that can be further enhanced
    - The Command Palette (`Ctrl+Shift+P` or `⌘+Shift+P`) and typing "Git: Fetch"
 
 ##### Review Changes Using VSCode's Built-in Diff Viewer
+
 1. In the Source Control view:
    - Click on any modified file to see inline changes
    - Use the "Open Changes" icon (split window) to see side-by-side diff
@@ -159,8 +160,6 @@ VSCode provides powerful built-in Git functionality that can be further enhanced
    - The change markers in the scroll bar
    - The "Next Change" (F7) and "Previous Change" (Shift+F7) commands
    - The arrows in the gutter to move between changes
-
-
 
 <a id="step-4-resolve-conflicts-if-any"></a>
 
@@ -185,6 +184,7 @@ Replace `branch-name` with the name of the remote branch from which you want to 
 ### Extras 1: Enhanced Git Experience with VSCode Extensions
 
 ##### GitLens
+
 GitLens is a powerful extension that supercharges VSCode's Git capabilities:
 
 1. Install [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) from the Extensions Marketplace
@@ -199,6 +199,7 @@ code --install-extension eamodio.gitlens
 ```
 
 ##### Git Graph
+
 [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) provides a visual commit history:
 
 1. Install [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) extension
@@ -292,7 +293,6 @@ git merge --abort
 # Reset to previous state if already pulled
 git reset --hard HEAD@{1}
 ```
-
 
 **Edits:**
 

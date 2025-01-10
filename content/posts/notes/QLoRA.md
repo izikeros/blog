@@ -11,7 +11,7 @@ Category: note
 ## TL;DR
 
 > **QLoRA** (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During fine-tuning, only the adapters are updated, with gradients backpropagated through the quantized weights. Key innovations include 4-bit NormalFloat quantization, paged optimizers, and double quantization, all of which significantly reduce memory usage. This allows fine-tuning of large models on consumer hardware without compromising performance.
-> 
+>
 
 This article outline in brief idea of QLoRA. For the deeper understanding of QLoRA, I highly recommend reading [blog post](https://huggingface.co/blog/4bit-transformers-bitsandbytes) by the QLoRA authors explaining the QLoRA idea in a clear way.
 
@@ -62,4 +62,3 @@ These innovations collectively contribute to QLoRA’s ability to fine-tune larg
 
 - [Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA](https://huggingface.co/blog/4bit-transformers-bitsandbytes) - blog post by the QLoRA authors explaining the QLoRA idea in a clear way.
 - [Original QLoRA paper by Dettmers et al](https://arxiv.org/abs/2305.14314) (2023)
-

@@ -34,7 +34,6 @@ To implement deep learning models in NIM, it’s crucial to be aware of some lib
 2. [_nimblas_](https://github.com/SciNim/nimblas): Basic linear algebra bindings used by other modules.
 3. [_Flambleau_](https://github.com/SciNim/flambeau): Nim bindings to libtorch
 
-
 Although SciNim is still relatively new, it can already perform a lot of scientific computing tasks effectively.
 
 ### Arraymancer
@@ -60,8 +59,9 @@ While being still in development, Flambleau already offers:
 Even though Flambleau's capabilities are currently limited, it presents a significant future contribution to the field of deep learning, particularly for those programming in Nim.
 
 ## Links
+
 -   [SciNim](https://github.com/SciNim)
 -   [Arraymancer](https://mratsim.github.io/Arraymancer/)
--   [Flambleau](https://github.com/SciNim/flambeau) 
+-   [Flambleau](https://github.com/SciNim/flambeau)
 -   [nim vs. Flux.jl : r/nim](https://www.reddit.com/r/nim/comments/vqoa62/deeplearning_in_nim/)
 -   [Introduction - SciNim Getting Started](https://scinim.github.io/getting-started/)

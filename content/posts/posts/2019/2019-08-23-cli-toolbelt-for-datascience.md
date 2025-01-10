@@ -212,6 +212,7 @@ sort -u file.txt
 <a id="wc"></a>
 
 ### wc
+
 * count lines
 
 ```sh

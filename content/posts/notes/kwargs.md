@@ -23,6 +23,7 @@ Python's `**kwargs` is a powerful tool that allows developers to pass a variable
 
 <!-- /MarkdownTOC -->
 <a id="1-loss-of-clarity"></a>
+
 ## 1. Loss of Clarity
 
 The first challenge with `**kwargs` is that it can make your code less clear. When a function accepts `**kwargs`, it's not immediately apparent what arguments it expects.
@@ -54,6 +55,7 @@ def process_data(data, format='csv', **kwargs):
 ```
 
 <a id="2-typos-in-argument-names"></a>
+
 ## 2. Typos in Argument Names
 
 Misspelled keyword argument names will not raise an error, which can lead to hard-to-trace bugs.
@@ -80,6 +82,7 @@ def plot_graph(x, y, **kwargs):
 ```
 
 <a id="3-difficulty-in-refactoring"></a>
+
 ## 3. Difficulty in Refactoring
 
 Refactoring tools may not be able to update keyword arguments automatically, as they are not explicitly defined in the function signature.
@@ -109,6 +112,7 @@ process_data(data=dataset)
 ```
 
 <a id="4-incompatibility-with-static-type-checking"></a>
+
 ## 4. Incompatibility with Static Type Checking
 
 `**kwargs` can make it harder to use static type checking, as the types of the passed arguments are not explicit.
@@ -139,6 +143,7 @@ def process_data(data, **kwargs: ProcessDataKwargs):
 ```
 
 <a id="5-introspection-limitations"></a>
+
 ## 5. Introspection Limitations
 
 Tools and IDEs may not provide accurate autocompletion or parameter hints for functions that use `**kwargs`.
@@ -176,6 +181,7 @@ def process_csv_data(data, **kwargs):
 ```
 
 <a id="6-performance-overhead"></a>
+
 ## 6. Performance Overhead
 
 Functions that use `**kwargs` have a slight performance overhead because of the dictionary packing and unpacking.
@@ -199,6 +205,7 @@ def calculate(a, b, option=None):
 ```
 
 <a id="7-security-risks"></a>
+
 ## 7. Security Risks
 
 If `**kwargs` is used to pass user input to functions or classes (like ORM queries), it can lead to security vulnerabilities if not properly sanitized.
@@ -221,6 +228,7 @@ def create_user(username, password, **kwargs):
 ```
 
 <a id="8-default-values-and-none-checks"></a>
+
 ## 8. Default Values and None Checks
 
 It can be unclear whether a `None` value for a keyword argument was intentional or if the argument was omitted.
@@ -246,5 +254,6 @@ def process_data(**kwargs):
 In conclusion, while `**kwargs` provides flexibility, it should be used judiciously and with consideration of the potential drawbacks. By following the best practices outlined in this article, you can harness the power of `**kwargs` to write cleaner, more maintainable, and idiomatic Python code. Happy coding!
 
 ## Related articles
+
 - [python - How can I resolve this \*\*kwargs antipattern? - Software Engineering Stack Exchange](https://softwareengineering.stackexchange.com/questions/384743/how-can-i-resolve-this-kwargs-antipattern)
 - [Python: Typing a function with \*args and \*\*kwargs - Sling Academy](https://www.slingacademy.com/article/python-typing-a-function-with-args-and-kwargs/)

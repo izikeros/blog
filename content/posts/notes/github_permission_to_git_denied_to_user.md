@@ -38,7 +38,7 @@ The solution is to clear all identities (SSH keys) stored by the ssh-agent:
 ssh-add -D
 ```
 
-The command `ssh-add -D` deletes all identities from the agent. 
+The command `ssh-add -D` deletes all identities from the agent.
 
 However, if you want to be more precise and remove specific keys, you can specify the file path of the key:
 
@@ -47,7 +47,7 @@ ssh-add -d ~/.ssh/id_rsa
 ssh-add -d ~/.ssh/github
 ```
 
-The above commands remove the id_rsa and github keys, respectively. 
+The above commands remove the id_rsa and github keys, respectively.
 
 After cleaning up the stored keys, you can add the required SSH key back to the ssh-agent. This key should correspond to the GitHub account you intend to push to:
 
@@ -55,4 +55,4 @@ After cleaning up the stored keys, you can add the required SSH key back to the 
 ssh-add ~/.ssh/github
 ```
 
-By performing these steps, you can effectively manage your SSH keys and prevent conflicts when working with multiple GitHub accounts on the same machine. 
+By performing these steps, you can effectively manage your SSH keys and prevent conflicts when working with multiple GitHub accounts on the same machine.

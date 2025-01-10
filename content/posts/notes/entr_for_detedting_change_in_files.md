@@ -22,7 +22,7 @@ Some key features of `entr` include:
 
 - It frees up developers to focus on the code by automating rebuild tasks.
 - It doesn't require a configuration file or a list of tasks to run. It just reruns the command you provide it each time a file changes.
-- You can use it with any command that needs to operate on a file. This might be shell commands, like `ls` or `echo`, or any other CLI tool you have in your system. 
+- You can use it with any command that needs to operate on a file. This might be shell commands, like `ls` or `echo`, or any other CLI tool you have in your system.
 
 Additional commands for `entr` include:
 

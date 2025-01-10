@@ -23,7 +23,7 @@ The Reciprocal Rank Fusion (RRF) operates by collecting search outcomes from var
 
 1. **Collect ranked search outcomes** from multiple simultaneous queries. E.g. one query to semantic search and one query to text search.
 
-2. **Assign reciprocal rank scores to each result in the ranked lists.** The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as $1/(rank + k)$, where $rank$ is the document's position in the list, and $k$ is a constant. 
+2. **Assign reciprocal rank scores to each result in the ranked lists.** The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as $1/(rank + k)$, where $rank$ is the document's position in the list, and $k$ is a constant.
 
 > **Choosing the k constant**
 > Empirical observation suggests that $k$ performs best when set to a small value, such as `60`. Note that this $k$ value is a constant in the RRF algorithm and is entirely distinct from the `k` that regulates the number of nearest neighbours.
@@ -118,6 +118,7 @@ While the example provided in this article is simplified, it provides a solid fo
 The RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.
 
 ## See also
+
 - Condorcet Fuse ([pdf](https://www.khoury.northeastern.edu/~jaa/IS4200.10X1/resources/condorcet.pdf)) Montague, M., and Aslam, J. A. Condorcet fusion for improved retrieval. In CIKM (2002).)
 - CombMNZ:
 	- Gopalan, N.P., Batri, K. Adaptive Selection of Top-m Retrieval Strategies for Data Fusion in Information Retrieval. In: International Journal of Soft Computing, 2(1):11-16, 2007.

@@ -9,6 +9,7 @@ Category: note
 ---
 
 ## TL;DR
+
 1. **Memory efficiency**: Uses less memory for data with limited unique values.
 2. **Improved performance**: Faster computations and aggregations, especially for large datasets.
 3. **Meaningful order**: Allows custom ordering of categories for sorting and plotting.
@@ -17,10 +18,10 @@ Category: note
 
 These benefits are most noticeable with large datasets and columns having a limited number of unique values that repeat frequently.
 
-
 Using pandas categorical data type instead of int or string can be beneficial in several scenarios. Here are some reasons and examples where using categorical is better:
 
 ## 1. Memory efficiency
+
 For datasets with a limited number of unique values that repeat frequently, categorical data uses less memory than int or string.
 
 Example:
@@ -43,6 +44,7 @@ Categorical dtype: 1.00 MB
 ```
 
 ## 2. Improved performance
+
 Categorical data can lead to faster computations and aggregations, especially for large datasets.
 
 Example:
@@ -72,6 +74,7 @@ Categorical dtype: 0.0090 seconds
 ```
 
 ## 3. Meaningful order
+
 Categorical data allows you to specify a custom order for the categories, which is useful for sorting and plotting.
 
 Example:
@@ -93,6 +96,7 @@ plt.show()
 ```
 
 ## 4. Type safety
+
 Categorical data ensures that only predefined categories can be assigned, preventing data entry errors.
 
 Example:
@@ -110,6 +114,7 @@ except ValueError as e:
 ```
 
 ## 5. Improved groupby operations
+
 Categorical data can speed up groupby operations, especially when there are many groups.
 
 Example:

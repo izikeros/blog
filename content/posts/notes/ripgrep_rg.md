@@ -10,31 +10,37 @@ Category: note
 Notes on using ripgrep (rg) mainly for use cases as a Python developer working with .py, .ipynb, and .md files:
 
 ## Basic search
+
 ```sh
    rg "pattern" path/to/search
 ```
 
 ## Search only Python files
+
 ```sh
    rg --type py "pattern"
 ```
 
 ## Search Jupyter notebooks
+
 ```sh
    rg --type-add 'ipynb:*.ipynb' --type ipynb "pattern"
 ```
 
 ## Search Markdown files
+
 ```sh
    rg --type md "pattern"
 ```
 
 ## Case-insensitive search
+
 ```sh
    rg -i "pattern"
 ```
 
 ## Search for whole words
+
 ```sh
    rg -w "word"
 ```
@@ -45,6 +51,7 @@ Show context around matches
 ```
 
 ## Search for multiple patterns
+
 ```sh
    rg "pattern1|pattern2|pattern3"
 ```
@@ -55,16 +62,19 @@ Exclude specific directories:
 ```
 
 ## Search for Python functions
+
 ```sh
     rg "def \w+\("
  ```
 
 ## Search for Markdown headers
+
 ```sh
     rg "^#{1,6} .+"
  ```
 
 ## Count matches
+
 ```sh
     rg -c "pattern"
  ```
@@ -81,6 +91,6 @@ rg -l "pattern"
 
 `rg --files -g "*.py"`
 
-## Use AND logic for multiple patterns:
+## Use AND logic for multiple patterns
 
 `rg "pattern1" | rg "pattern2"`

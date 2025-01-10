@@ -22,9 +22,10 @@ up: [[MOC_Pandas]]
 - [References](#references)
 
 <!-- /MarkdownTOC -->
-Generating an ASCII table from a pandas DataFrame can be accomplished in several ways. In this post, we will explore three convenient methods to help you convert pandas DataFrame to a markdown table. 
+Generating an ASCII table from a pandas DataFrame can be accomplished in several ways. In this post, we will explore three convenient methods to help you convert pandas DataFrame to a markdown table.
 
 <a id="method-1-directly-from-pandas"></a>
+
 ## Method 1: Directly from pandas
 
 The Pandas library since version 1.0 supports markdown conversion by relying on `tabulate` package as optional dependency. So, remember to `pip install tabulate` or `conda install tabulate` before using `to_markdown()` method. Here is an example of how it works:
@@ -55,6 +56,7 @@ This produces the following output:
 You can also see similar example in the [Pandas documentation](https://pandas.pydata.org/pandas-docs/version/1.0.0/whatsnew/v1.0.0.html#converting-to-markdown).
 
 <a id="method-2-direct-use-of-tabulate-package"></a>
+
 ## Method 2: Direct use of tabulate package
 
 The `tabulate` Python package is an excellent tool for generating markdown tables from `pandas.DataFrame`.
@@ -78,6 +80,7 @@ The output should looks identical as above:
 ```
 
 <a id="method-3-generate-a-styled-html-table"></a>
+
 ## Method 3: Generate a Styled HTML Table
 
 You can also create a nicely styled table like this:
@@ -143,5 +146,7 @@ This will produce output that you can paste to the markdown file:
 ```
 
 <a id="references"></a>
+
 ## References
+
 [How to programmatically convert pandas dataframe to markdown table](https://stackoverflow.com/questions/33181846/programmatically-convert-pandas-dataframe-to-markdown-table)

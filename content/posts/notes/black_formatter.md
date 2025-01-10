@@ -41,6 +41,7 @@ For info on how to configure black with vscode? See [[change_black_line_length|h
 - as an external tool in PyCharm
 
 ## Similar tools
+
 - [[yapf]]
 - [google/pyink](https://github.com/google/pyink) a Python formatter, forked from Black with a few different formatting behaviors.
 

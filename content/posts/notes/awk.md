@@ -44,6 +44,7 @@ gawk -F',' 'NR<10 {for (i=1;i<=80;i++){printf "%d ", $i}print""}' file.txt
 ```
 
 ## transpose
+
 <https://stackoverflow.com/questions/1729824/an-efficient-way-to-transpose-a-file-in-bash>
 
 ## sum column

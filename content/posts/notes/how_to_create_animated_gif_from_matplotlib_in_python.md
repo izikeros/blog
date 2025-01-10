@@ -11,6 +11,7 @@ Category: note
 Animated visualizations can be a powerful way to showcase data trends over time or illustrate dynamic processes. In this tutorial, we'll learn how to create an animated GIF using Matplotlib in Python. We'll walk through the process step-by-step and provide a working code example that you can adapt for your own projects.
 
 ## Prerequisites
+
 Before we begin, make sure you have the following libraries installed:
 - matplotlib
 - numpy

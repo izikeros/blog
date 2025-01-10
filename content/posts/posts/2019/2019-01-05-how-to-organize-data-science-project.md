@@ -48,11 +48,11 @@ There might be a simple project that fits into one notebook and does not require
 - **End-to-end individual work**
 This is a typical case of my side projects - if it is interesting enough it might evolve into one of the subsequent categories.
 Example: A data scientist working on a personal project to analyze customer data from a retail store. This project would likely be short-term, have low complexity, and could be completed using a single Jupyter notebook.
- 
+
 - **Collaborative project**
 This can be work done for the client and deliverable could be further developed collaboratively to finally land as a product feature in production.
 Example: A team of data scientists working on a project for a client to predict customer churn. This project would likely be of medium complexity, involve multiple Jupyter notebooks, and require collaboration among team members. The project may also require extracting some mature code into a python module that is imported into a notebook.
- 
+
 - **Individual work but final notebook shares as result**
 This can be the analysis on-demand where a notebook report is a deliverable or think of a side-project/tutorial that you would like to publish on the blog.
 Example: A data scientist working on an analysis on demand for a company's management team. The analysis would be done in a Jupyter notebook, and the final report would be shared with the management team.

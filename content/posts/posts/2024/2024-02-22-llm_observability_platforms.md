@@ -25,9 +25,10 @@ prompt:
 <!-- /MarkdownTOC -->
 
 <a id="llm-observability-in-the-context-of-llmops-for-generative-ai"></a>
+
 ## LLM Observability in the Context of LLMOps for Generative AI
 
-AI is transforming the world, and one area where it has made significant strides is in generative models, particularly in the field of Large Language Models (LLMs) like GPT-3 and transformer models. However, as impressive as these models are, managing, monitoring, and understanding their behavior and output remains a challenge. Enter LLMOps, a new field focusing on the management and deployment of LLMs, and a key aspect of this is LLM Observability. 
+AI is transforming the world, and one area where it has made significant strides is in generative models, particularly in the field of Large Language Models (LLMs) like GPT-3 and transformer models. However, as impressive as these models are, managing, monitoring, and understanding their behavior and output remains a challenge. Enter LLMOps, a new field focusing on the management and deployment of LLMs, and a key aspect of this is LLM Observability.
 
 - [LLM Observability in the Context of LLMOps for Generative AI](#llm-observability-in-the-context-of-llmops-for-generative-ai)
 - [What is LLM Observability?](#what-is-llm-observability)
@@ -39,13 +40,15 @@ AI is transforming the world, and one area where it has made significant strides
 <!-- /MarkdownTOC -->
 
 <a id="what-is-llm-observability"></a>
+
 ## What is LLM Observability?
 
-LLM Observability is the ability to understand, monitor, and infer the internal state of an LLM from its external outputs. It encompasses several areas including model health monitoring, performance tracking, debugging, and evaluating model fairness and safety. 
+LLM Observability is the ability to understand, monitor, and infer the internal state of an LLM from its external outputs. It encompasses several areas including model health monitoring, performance tracking, debugging, and evaluating model fairness and safety.
 
 In the context of LLMOps, LLM Observability is critical. LLMs are complex and can be unpredictable, producing outputs that range from harmless to potentially harmful or biased. It's therefore essential to have the right tools and methodologies for observing and understanding these models' behaviors in real-time, during training, testing, and after deployment.
 
 <a id="expected-functionalities-of-an-llm-observability-solution"></a>
+
 ## Expected Functionalities of an LLM Observability Solution
 
 1. **Model Performance Monitoring**: An observability solution should be able to track and monitor the performance of an LLM in real-time. This includes tracking metrics like accuracy, precision, recall, and F1 score, as well as more specific metrics like perplexity or token costs in the case of language models.
@@ -63,12 +66,12 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 > LLM Observability is a crucial aspect of LLMOps for generative AI. It provides the **visibility** and **control** needed **to effectively manage, deploy, and maintain Large Language Models**, ensuring they **perform as expected, are free from bias, and are safe to use**.
 
 <a id="open-source-llm-observability-tools-and-platforms"></a>
+
 ## Open Source LLM Observability Tools and Platforms
 
 1. [Azure OpenAI Logger](https://github.com/aavetis/azure-openai-logger) - ![github stars shield](https://img.shields.io/github/stars/aavetis/azure-openai-logger.svg?logo=github) - "Batteries included" logging solution for your Azure OpenAI instance.
 
 ![Azure OpenAI Logger](https://github.com/aavetis/azure-openai-logger/raw/main/images/demo.gif)
-
 
 2. [Deepchecks](https://github.com/deepchecks/deepchecks) - ![github stars shield](https://img.shields.io/github/stars/deepchecks/deepchecks.svg?logo=github) - Tests for Continuous Validation of ML Models & Data. Deepchecks is a Python package for comprehensively validating your machine learning models and data with minimal effort.
 3. [Evidently](https://github.com/evidentlyai/evidently) - ![github stars shield](https://img.shields.io/github/stars/evidentlyai/evidently.svg?logo=github) - Evaluate and monitor ML models from validation to production.
@@ -85,28 +88,32 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 14. [OmniLog](https://github.com/Theodo-UK/OmniLog) - ![github stars shield](https://img.shields.io/github/stars/Theodo-UK/OmniLog.svg?logo=github) - Observability tool for your LLM prompts.
 
 <a id="non-open-source"></a>
+
 ## Non-open source
+
 - [Generative AI Studio - Galileo](https://docs.rungalileo.io/galileo/galileo-gen-ai-studio/llm-studio)
 
 <a id="other---related"></a>
+
 ## Other - related
+
 - [Great Expectations](https://github.com/great-expectations/great_expectations) - Always know what to expect from your data.
 - [AgentOps-AI/tokencost](https://github.com/AgentOps-AI/tokencost) - Easy token price estimates for LLMs
 - [observability prompts](https://github.com/YANG-DB/observability-prompots) - LLM observability related prompts
-- [LLM Observability](https://github.com/AstronomerAmber/LLM_Observability) 
+- [LLM Observability](https://github.com/AstronomerAmber/LLM_Observability)
 - [baml](https://github.com/BoundaryML/baml)  - A programming language to build strongly-typed LLM functions. Testing and observability included
 - [aperture](https://github.com/fluxninja/aperture) - Rate limiting, caching, and request prioritization for modern workloads
 
-
 <a id="references"></a>
+
 ## References
+
 - [LLM Monitoring and Observability — A Summary of Techniques and Approaches for Responsible AI | by Josh Poduska | Towards Data Science](https://towardsdatascience.com/llm-monitoring-and-observability-c28121e75c2f)
 - [Monitoring LLMs: Metrics, challenges, & hallucinations](https://www.aporia.com/learn/how-to-monitor-large-language-models/)
 - [mattcvincent/intro-_llm_-_observability_](https://github.com/mattcvincent/intro-llm-observability) - Intro to LLM Observability
 - [Demystifying Perplexity: An AI Expert‘s Comprehensive Guide - 33rd Square](https://www.33rdsquare.com/what-is-perplexity-ai/)
 - [Perplexity - a Hugging Face Space by evaluate-metric](https://huggingface.co/spaces/evaluate-metric/perplexity)
 - [List of top LLM Observability Tools](https://drdroid.io/engineering-tools/list-of-top-llm-observability-tools) - good intro
-
 
 **Edits:**
 

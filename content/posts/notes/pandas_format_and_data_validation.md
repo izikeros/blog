@@ -85,6 +85,7 @@ Github Link: [dataenforce](https://github.com/CedricFR/dataenforce)
 <a id="automated-expectations-from-profiling"></a>
 
 ### automated expectations from profiling
+
 <https://greatexpectations.io/blog/pandas-profiling-integration/>
 great expectations + Pandas Profiling
 

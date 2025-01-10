@@ -30,6 +30,7 @@ Rank fusion is a fundamental technique used in various domains, including data s
 ## Algorithms
 
 <a id="borda-algorithm"></a>
+
 ### Borda Algorithm
 
 The Borda algorithm is one of the simplest rank fusion techniques. It assigns scores to items based on their positions in the individual rankings and then combines these scores to obtain a fused ranking. In the context of search engine results, each document receives points based on its position in the ranked lists. The points are then summed up to form the final rank.
@@ -41,10 +42,11 @@ $$
 $$
 Where $\text{rank}_j(i)$ denotes the position of item $i$ in the $j$th ranked list.
 
-The Borda algorithm is easy to implement, but it might lag in performance for large datasets or when the individual rankings are significantly diverse. 
+The Borda algorithm is easy to implement, but it might lag in performance for large datasets or when the individual rankings are significantly diverse.
 > See also: [[difference_between_borda_count_and_reciprocial_rank_fussion]] for algorithm characterization and examples.
 
 <a id="combining-probability-mass-function-cpmf"></a>
+
 ### Combining Probability Mass Function (CPMF)
 
 CPMF is a probabilistic rank fusion method that incorporates the probability of an item being at a certain rank in individual lists. It assumes that the rankings are probabilistic and uses the Probability Mass Function (PMF) to calculate the fused ranking. CPMF outperforms Borda for diverse and noisy datasets.
@@ -120,6 +122,7 @@ The properties of the RRF algorithm include its simplicity, effectiveness, and r
 
 > See also [[difference_between_borda_count_and_reciprocial_rank_fussion]] for algorithm characterization and examples and [[implementing_reciprocal_rank_fusion_in_python]].
 <a id="conclusion"></a>
+
 ## Conclusion
 
 Rank fusion serves as a potent tool in the arsenal of data scientists and search engine experts, enhancing the efficacy of ranking performance. The spectrum of rank fusion algorithms ranges from the **straightforward Borda algorithm** to the more complex Neural Rank Fusion, each tailored to meet specific scenarios and data attributes. While the **Borda** algorithm is **appreciated** for its **simplicity** and **ease of implementation**, more advanced techniques like **LambdaMART** and **Neural Rank Fusion** are capable of delivering **cutting-edge results for large-scale applications**.
@@ -143,8 +146,6 @@ Incorporating the Reciprocal Rank Fusion (RRF) into this discussion, it stands o
 5. [Reciprocal rank fusion (RRF)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
 6. [GitHub - Panjete/rankAggr: Analysis and implementational details of rank aggregation methods for combing results of multiple engines to achieve best mAP and P@5,10 values](https://github.com/Panjete/rankAggr)
 
-
 X::[[posts/notes/implementing_reciprocal_rank_fusion_in_python]]
 X::[[borda_count_python]]
 X::[[difference_between_borda_count_and_reciprocial_rank_fussion]]
-

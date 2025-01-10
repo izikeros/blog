@@ -9,6 +9,7 @@ Category: note
 ---
 
 ## Problem description
+
 In Visual Studio Code (VSCode), I'm working with a Jupyter notebook (.ipynb file) and encountering a linter warning related to the pandas library. Specifically, when I try to import pandas, I see the following warning:
 
 ```
@@ -29,30 +30,35 @@ The discrepancy between the successful execution and the linter warning suggests
 
 ## Potential origins and troubleshooting steps
 
-This issue often occurs when VSCode isn't correctly recognizing your virtual environment or the installed packages. 
+This issue often occurs when VSCode isn't correctly recognizing your virtual environment or the installed packages.
 
-### 1. VSCode not using the correct Python interpreter:
+### 1. VSCode not using the correct Python interpreter
+
    - Ensure VSCode is using the Python interpreter from your virtualenv.
    - Open the Command Palette (Ctrl+Shift+P) and select "Python: Select Interpreter".
    - Choose the interpreter from your virtualenv.
 
-### 2. Virtualenv not activated:
+### 2. Virtualenv not activated
+
    - Make sure your virtualenv is activated in the terminal you're using within VSCode.
    - You can activate it manually or set up VSCode to automatically activate it.
 
-### 3. Pandas not installed in the virtualenv:
+### 3. Pandas not installed in the virtualenv
+
    - Double-check that pandas is installed in your virtualenv.
    - Run `pip list` in the terminal to verify.
 
-### 4. Pylance configuration:
+### 4. Pylance configuration
+
    - Pylance might not be configured to recognize your virtualenv.
    - Check your VSCode settings (settings.json) for Python and Pylance-related configurations.
 
-### 5. Caching issues:
+### 5. Caching issues
+
    - Sometimes VSCode or Pylance caches can cause issues.
    - Try reloading the VSCode window (Ctrl+Shift+P, then "Developer: Reload Window").
 
-## Options for fixing the problem:
+## Options for fixing the problem
 
 1. Manually select the correct interpreter:
    Use the "Python: Select Interpreter" command as mentioned above.

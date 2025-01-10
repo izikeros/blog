@@ -33,6 +33,7 @@ status: published
 <!-- /MarkdownTOC -->
 
 ## TLDR
+
 This article discusses the importance of tracking and visualizing rank changes in Retrieval-Augmented Generation (RAG) systems. It introduces the concept of rank flow visualization, which helps analyze how document rankings evolve through different stages of retrieval and re-ranking. The article outlines methods for collecting rank data using structured logging and callbacks, and presents a Python library called 'rankflow' for creating visual representations of these rank changes. This visualization technique enables AI professionals to quickly identify patterns and optimize their RAG systems, ultimately improving the quality of information retrieval and generation.
 <a id="introduction-and-problem-statement"></a>
 
@@ -71,7 +72,6 @@ You can create the Excel table that reflect rank of the documents on each step. 
 | doc_2_2  | 1     | doc_12_3 | 1     | doc_12_3 | 1     | doc_1_1  | 1     |
 | doc_1_3  | 1     | doc_2_2  | 1     | doc_2_2  | 1     | doc_12_3 | 1     |
 | doc_2_1  | 1     | doc_2_1  | 1     | doc_2_1  | 1     | doc_1_3  | 1     |
-
 
 This tool was an appetiser to have something similar implemented in Python. Before going to visualization, let's spent some time on how to collect data required for this visual analysis.
 

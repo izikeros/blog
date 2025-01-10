@@ -56,4 +56,3 @@ For prompt discovery, a range of tools, both existing and potentially developed 
 ![mindmap](/images/prompt_discovery/prompt_discovery_mindmap.png)
 
 ***Figure 2:** Mindmap illustrating the key aspects of prompt discovery. It includes formulation, permutations, fine-tuning, benchmarking, generalization, novel prompts, and the different tools involved in the process.
-

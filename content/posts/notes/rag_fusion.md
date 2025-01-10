@@ -47,6 +47,7 @@ up::[[MOC_RAG]]
 - 2024-02-01: Add reference to LLamaIndex Query Transform Cookbook
 
 ## References
+
 - [RAG-Fusion: a New Take on Retrieval-Augmented Generation](https://arxiv.org/html/2402.03367v2)
 - [GitHub - Raudaschl/rag-fusion](https://github.com/Raudaschl/rag-fusion/tree/master) - exemplary implementation
 - [Forget RAG, the Future is RAG-Fusion | by Adrian H. Raudaschl | Oct, 2023 | Towards Data Science](https://towardsdatascience.com/forget-rag-the-future-is-rag-fusion-1147298d8ad1)

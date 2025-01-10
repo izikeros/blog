@@ -10,6 +10,7 @@ Category: note
 To remove noise from the speaker audio in your screen capture video, I can recommend a solution using the tools FFmpeg and Audacity as well as some free alternatives. Here's a step-by-step approach.
 
 ## 1. Extract the audio with ffmpeg
+
 Use FFmpeg to extract the audio from your video:
 
 ```sh
@@ -17,6 +18,7 @@ ffmpeg -i input_video.mp4 -vn -acodec pcm_s16le -ar 44100 -ac 2 output_audio.wav
 ```
 
 ## 2. Noise reduction with Audacity (Free, open-source)
+
 - Import the extracted audio into Audacity
 - Select a portion of the audio that contains only background noise
 - Go to `Effect > Noise Reduction`
@@ -28,7 +30,8 @@ ffmpeg -i input_video.mp4 -vn -acodec pcm_s16le -ar 44100 -ac 2 output_audio.wav
 
 Export the cleaned audio: `File > Export > Export as WAV`
 
-## 3. Recombine audio with video:
+## 3. Recombine audio with video
+
 Use FFmpeg to merge the cleaned audio with the original video:
 
 ```sh
@@ -38,16 +41,19 @@ ffmpeg -i input_video.mp4 -i cleaned_audio.wav -c:v copy -c:a aac -map 0:v:0 -ma
 ### Alternative free, video editing tools
 
 #### 1. DaVinci Resolve (Free version)
+
 - Powerful video editor with built-in noise reduction
 - Import video, separate audio, apply `Fairlight FX > Noise Reduction`
 - Export the final video
 
 #### 2. Kdenlive (Free, open-source)
+
 - Video editor with basic noise reduction capabilities
 - Import video, separate audio, apply `Audio Effects > Noise Reduction`
 - Export the final video
 
 #### 3. Olive Video Editor (Free, open-source)
+
 - Another video editor with audio filtering options
 - Import video, separate audio, apply audio effects
 - Export the final video
@@ -55,9 +61,11 @@ ffmpeg -i input_video.mp4 -i cleaned_audio.wav -c:v copy -c:a aac -map 0:v:0 -ma
 For best results, experiment with different tools and settings. The effectiveness of noise reduction depends on the type and amount of noise in your original recording.
 
 ## Noise removal from CLI alternatives
+
 There are CLI (Command Line Interface) tools available for macOS that can help you remove noise from audio. Here are some options:
 
 ### 1. FFmpeg with FFmpeg-normalize
+
 FFmpeg itself doesn't have advanced noise reduction capabilities, but when combined with FFmpeg-normalize, you can apply some basic noise reduction.
 
 First, install FFmpeg and FFmpeg-normalize if you haven't already:
@@ -76,6 +84,7 @@ ffmpeg-normalize input_audio.wav -o output_audio.wav --normalization-type ebu --
 This command normalizes the audio, which can help reduce some background noise.
 
 ### 2. SoX (Sound eXchange)
+
 SoX is a powerful command-line audio processing tool that includes noise reduction capabilities.
 
 Install SoX:
@@ -99,6 +108,7 @@ sox input_audio.wav -n trim 0 0.5 noiseprof noise_profile
 This captures the first 0.5 seconds of the audio as the noise profile.
 
 ### 3. AFNI's 3dTcorrMap
+
 AFNI is a set of C programs for processing, analyzing, and displaying functional MRI (fMRI) data, but it includes some audio processing tools.
 
 Install AFNI:
@@ -114,6 +124,7 @@ Use 3dTcorrMap for noise reduction:
 ```
 
 ### 4. RNNoise
+
 RNNoise is a noise suppression library based on a recurrent neural network. While it's not a standalone CLI tool, you can use it with FFmpeg if you compile FFmpeg with RNNoise support.
 
 Here's a general approach (requires advanced setup):
@@ -123,4 +134,3 @@ ffmpeg -i input_audio.wav -af arnndn=m=./rnnoise-models/sh.rnnn output_audio.wav
 ```
 
 > **Note:** that this requires compiling FFmpeg with RNNoise support, which is a more advanced process.
-

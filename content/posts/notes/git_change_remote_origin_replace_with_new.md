@@ -12,7 +12,6 @@ prompt2: What are the examples of situations when you might want to do such an o
 
 up::[[MOC_Git]]
 
-
 ## Git - Replace remote origin
 
 To change the remote origin in Git and replace it with a new one, you can use the following steps:

@@ -18,9 +18,11 @@ title: "**Contents**"
 ```
 
 ## TL; DR
+
 SPLADE is a neural retrieval model which learns query/document **sparse** expansion via the BERT MLM head and sparse regularization. Sparse representations benefit from several advantages compared to dense approaches: efficient use of inverted index, explicit lexical match, interpretability... They also seem to be better at generalizing on out-of-domain data (BEIR benchmark).
 
 ## Intro
+
 I have learned about SPLADE from the article: [SPLADE for Sparse Vector Search Explained | Pinecone](https://www.pinecone.io/learn/splade/). Here below are the key concepts from the article (LLM summary)
 
 The article discusses the evolution of search and recommendation systems, focusing on the shift from traditional "bag of words" methods to modern vector search. It explains how big tech companies like Google, Netflix, and Amazon use vector search to power their systems.
@@ -32,6 +34,7 @@ The traditional **bag of words** methods transform documents into a set of words
 The article introduces a solution to these problems: **a merger of sparse and dense retrieval through hybrid search and learnable sparse embeddings**. It focuses on **SPLADE** (Sparse Lexical and Expansion model), a **model that uses a pretrained language model like BERT to enhance sparse vector embedding.**
 
 ## how it works
+
 The idea behind the **Sp**arse **L**exical **a**n**d** **E**xpansion models is that a pretrained language model like BERT can identify connections between words/sub-words (called _word-pieces_ or “terms” in this article) and use that knowledge to enhance our sparse vector embedding.
 
 This works in two ways, it allows us to weigh the relevance of different terms (something like the will carry less relevance than a less common word like orangutan). And it enables _term expansion_: the inclusion of alternative but relevant terms beyond those found in the original sequence.

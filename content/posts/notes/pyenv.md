@@ -37,7 +37,9 @@ fi
 This tells your shell to initialize pyenv when you start a new shell session. You can then use pyenv to manage your Python installations.
 
 <a id="usage"></a>
+
 ## Usage
+
 Here are some common pyenv commands:
 
 ```sh
@@ -78,7 +80,9 @@ $ pyenv virtualenv-delete greenhouse
 ```
 
 <a id="using-with-pycharm"></a>
+
 ## Using with PyCharm
+
 You can also use pyenv with PyCharm. To use pyenv with PyCharm, you need to create a virtual environment using pyenv first, and then add it to PyCharm as a local interpreter. Here are the steps:
 
 1.  Create a new virtual environment using pyenv: `pyenv virtualenv <version> <name>`
@@ -90,11 +94,15 @@ You can also use pyenv with PyCharm. To use pyenv with PyCharm, you need to crea
 You can now use the virtual environment with PyCharm, and any packages you install will be installed in the virtual environment rather than globally on your system.
 
 <a id="installing-python-with-tkinter"></a>
+
 ## Installing Python with tkinter
+
 There is stackoverflow question on that: [Unable to install tkinter with pyenv Pythons on MacOS - Stack Overflow](https://stackoverflow.com/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos)
 
 <a id="install-with-optimizations"></a>
+
 ## Install with optimizations
+
 You can optimize Python installation for your specific machine using pyenv with some specific configuration parameters. Here are some recommended options:
 
 ```bash
@@ -102,7 +110,6 @@ PYTHON_CONFIGURE_OPTS="--enable-optimizations --with-lto" \
 PYTHON_CFLAGS="-march=native -mtune=native" \
 pyenv install 3.11.7
 ```
-
 
 1. `--enable-optimizations`: Enables Link Time Optimization (LTO) and profile-guided optimization
 2. `--with-lto`: Adds Link Time Optimization

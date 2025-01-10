@@ -66,7 +66,7 @@ def improved_sentence_detection(text):
     return postprocess_sentences(raw_sentences)
 ```
 
-## Handle common abbreviations - explanation 
+## Handle common abbreviations - explanation
 
 This part of the code is designed to handle common abbreviations in the text to prevent them from being mistakenly identified as sentence boundaries. Let's break it down:
 
@@ -149,7 +149,6 @@ Chunking large amount of text can take significant amount of time. For large-sca
 3. Fine-tune the spaCy model on your specific domain if needed.
 
 > See also: [Sentencizer](https://spacy.io/api/sentencizer/) - Pipeline component for rule-based sentence boundary detection
-
 
 ## 8. Evaluating the System
 
@@ -285,11 +284,11 @@ To ensure your multilingual SBD system performs well across languages:
 2. Implement language-specific evaluation metrics when necessary.
 3. Conduct regular cross-lingual evaluations to maintain quality across all supported languages.
 
-
 ## Conclusion
 
 This guide has provided a comprehensive approach to implementing sentence boundary detection (SBD) in Python, focusing on improving text chunking accuracy. We've covered core SBD techniques, edge case handling, integration with text chunking, performance optimization, and expansion into multilingual support. By combining pre-trained models with custom rules and language-specific adaptations, this system offers a robust solution for diverse NLP applications. As you apply these techniques, remember to continuously evaluate and refine your implementation to meet the specific needs of your projects and to adapt to the evolving landscape of natural language processing.
 
 ## References
+
 - [sentence-boundary-detection · GitHub Topics · GitHub](https://github.com/topics/sentence-boundary-detection)
-- 
+-

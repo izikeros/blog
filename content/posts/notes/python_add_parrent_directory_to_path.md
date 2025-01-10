@@ -75,13 +75,12 @@ echo '..' > /usr/local/lib/python3.8/site-packages/my_project.pth`
 This will add the parent directory as a permanent path to python's sys.path list.
 
 > **from Python documentation:**
-> - a path configuration file is a file whose name has the form `name.pth` 
->  - its contents are additional items (one per line) to be added to `sys.path`. 
->  - blank lines and lines beginning with `#` are skipped.
->  - lines starting with `import` (followed by space or tab) are executed.
+> - a path configuration file is a file whose name has the form `name.pth`
+> - its contents are additional items (one per line) to be added to `sys.path`.
+> - blank lines and lines beginning with `#` are skipped.
+> - lines starting with `import` (followed by space or tab) are executed.
 
 See the official Python documentation:  [site — Site-specific configuration hook — Python 3.12.3 documentation](https://docs.python.org/3/library/site.html)
-
 
 <a id="using-pathlib"></a>
 
