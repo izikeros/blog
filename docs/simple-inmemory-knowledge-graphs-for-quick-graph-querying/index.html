@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="As developers, we often reach for full-scale graph databases when simpler solutions would suffice. When your knowledge graph is modest in size, keeping it in memory can be both efficient and practical. Let&#39;s explore some powerful tools that make this approach work beautifully."/>
+    <meta name="keywords" content="graph, knowledge-graph, query, networkx, neo4j, rdflib, SPARQL">
+    <meta expr:content="2025-01-16 00:00:00+01:00" itemprop='datePublished'/>
+    <meta expr:content="2025-01-16 00:00:00+01:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2025-01-16 00:00:00+01:00"/>
+    <meta property="article:published_time" content="2025-01-16 00:00:00+01:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Simple In-Memory Knowledge Graphs for Quick Graph Querying",
+  "datePublished": "2025-01-16 00:00:00+01:00",
+  "dateModified": "2025-01-16 00:00:00+01:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Simple In-Memory Knowledge Graphs for Quick Graph Querying"/>
+  <meta property="og:description" content="As developers, we often reach for full-scale graph databases when simpler solutions would suffice. When your knowledge graph is modest in size, keeping it in memory can be both efficient and practical. Let&#39;s explore some powerful tools that make this approach work beautifully."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/simple-inmemory-knowledge-graphs-for-quick-graph-querying/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-01-16 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2025-01-16 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="Howto"/>
+  <meta property="article:tag" content="graph"/>
+  <meta property="article:tag" content="knowledge-graph"/>
+  <meta property="article:tag" content="query"/>
+  <meta property="article:tag" content="networkx"/>
+  <meta property="article:tag" content="neo4j"/>
+  <meta property="article:tag" content="rdflib"/>
+  <meta property="article:tag" content="SPARQL"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/knowledge_graph_cr_640px.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:image" content="https://www.safjan.com//images/head/knowledge_graph_cr_640px.jpg">
+
+    <meta name="twitter:label1" content="Est. reading time"/>
+    <meta name="twitter:data1" content="4 min."/>
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:description" content="<p>As developers, we often reach for full-scale graph databases when simpler solutions would suffice. When your knowledge graph is modest in size, keeping it in memory can be both efficient and practical. Let's explore some powerful tools that make this approach work beautifully.</p>"/>
+    <meta name="twitter:title" content="Simple In-Memory Knowledge Graphs for Quick Graph Querying"/>
+
+
+    <title>    Simple In-Memory Knowledge Graphs for Quick Graph Querying
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-01-16 
+
+
+
+                    <span id="post-share-links">
+    &nbsp;&nbsp;&nbsp;Share on:
+    <a href="https://twitter.com/intent/tweet?text=Simple%20In-Memory%20Knowledge%20Graphs%20for%20Quick%20Graph%20Querying&url=https%3A//www.safjan.com/simple-inmemory-knowledge-graphs-for-quick-graph-querying/&hashtags=graph,knowledge-graph,query,networkx,neo4j,rdflib,sparql" target="_blank" title="Share on Twitter">Twitter</a>
+    |
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/simple-inmemory-knowledge-graphs-for-quick-graph-querying/" target="_blank" title="Share on Facebook">Facebook</a>
+    |
+    <a href="https://news.ycombinator.com/submitlink?t=Simple%20In-Memory%20Knowledge%20Graphs%20for%20Quick%20Graph%20Querying&u=https%3A//www.safjan.com/simple-inmemory-knowledge-graphs-for-quick-graph-querying/" target="_blank" title="Share on HackerNews">HackerNews</a>
+    |
+    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/simple-inmemory-knowledge-graphs-for-quick-graph-querying/&title=Simple%20In-Memory%20Knowledge%20Graphs%20for%20Quick%20Graph%20Querying" target="_blank" title="Share via Reddit">Reddit</a>
+  </span>
+                <br/>
+            </p>
+            <h1 id="simple-inmemory-knowledge-graphs-for-quick-graph-querying">Simple In-Memory Knowledge Graphs for Quick Graph Querying</h1>
+            <div class="header-underline"></div>
+                <p class="summary"><p>As developers, we often reach for full-scale graph databases when simpler solutions would suffice. When your knowledge graph is modest in size, keeping it in memory can be both efficient and practical. Let's explore some powerful tools that make this approach work beautifully.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/simple-inmemory-knowledge-graphs-for-quick-graph-querying/">
+                        <img style="width: 100%; "
+                             src="/images/head/knowledge_graph_cr_640px.jpg" alt="">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+        <div>
+            <h1>Simple In-Memory Knowledge Graphs for Quick Graph Querying</h1>
+<p>Working with knowledge graphs doesn't always require <a href="https://neo4j.com/">Neo4j</a> or other heavyweight solutions. Sometimes you need a lightweight way to represent and query graph data right in memory. Let me share some approachable solutions I've found particularly useful.</p>
+<h2>NetworkX - The Python Swiss Army Knife</h2>
+<p><a href="https://github.com/networkx/networkx">NetworkX</a> has been my reliable companion for simple graph operations. It's incredibly intuitive and perfect for smaller knowledge graphs:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="c1"># Create a knowledge graph</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># Add some knowledge</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;knows&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;works_at&quot;</span><span class="p">,</span> <span class="s2">&quot;TechCorp&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simple queries</span>
+<span class="k">def</span> <span class="nf">find_connections</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">person</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="n">n</span><span class="p">,</span> <span class="n">G</span><span class="p">[</span><span class="n">person</span><span class="p">][</span><span class="n">n</span><span class="p">])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="n">person</span><span class="p">]]</span>
+</code></pre></div>
+
+<p>You can test it with this example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Test NetworkX</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">find_connections</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;Alice&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">find_connections</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The output is:</p>
+<div class="highlight"><pre><span></span><code><span class="n">NetworkX</span> <span class="n">Example</span><span class="p">:</span>
+<span class="p">[(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relationship&#39;</span><span class="p">:</span> <span class="s1">&#39;knows&#39;</span><span class="p">})]</span>
+<span class="p">[(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relationship&#39;</span><span class="p">:</span> <span class="s1">&#39;knows&#39;</span><span class="p">}),</span> <span class="p">(</span><span class="s1">&#39;TechCorp&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relationship&#39;</span><span class="p">:</span> <span class="s1">&#39;works_at&#39;</span><span class="p">})]</span>
+</code></pre></div>
+
+<h2>RDFLib - When You Need Semantic Power</h2>
+<p>If you're dealing with semantic data and need <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>-like querying, <a href="https://rdflib.readthedocs.io/en/stable/index.html">RDFLib</a> provides a perfect middle ground:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">URIRef</span>
+
+<span class="c1"># Create an in-memory graph</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># Add triples</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">),</span> <span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;knows&#39;</span><span class="p">),</span> <span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Query using SPARQL</span>
+<span class="n">qres</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SELECT ?s ?o</span>
+<span class="sd">       WHERE {</span>
+<span class="sd">          ?s knows ?o .</span>
+<span class="sd">       }&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">qres</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">s</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">o</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The output is:</p>
+<div class="highlight"><pre><span></span><code><span class="n">RDFLib</span><span class="w"> </span><span class="n">Example</span><span class="o">:</span>
+<span class="n">Bob</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TechCorp</span>
+<span class="n">Alice</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Bob</span>
+</code></pre></div>
+
+<h2>PyGraphviz - Visualization with Query Capabilities</h2>
+<p>When you need both visualization and querying use <a href="https://github.com/pygraphviz/pygraphviz">pygraphviz</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygraphviz</span> <span class="k">as</span> <span class="nn">pgv</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">pgv</span><span class="o">.</span><span class="n">AGraph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="n">relationship</span><span class="o">=</span><span class="s2">&quot;knows&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">find_relationships</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">e</span><span class="p">]</span>
+</code></pre></div>
+
+<p><strong>NOTE</strong>: There might be an problem when installing pygraphviz in Google Colab, you can use matlplotlib + networkx instead</p>
+<h2>DIY Solution - Custom Graph Structure</h2>
+<p>Sometimes, a custom solution fits best:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">class</span> <span class="nc">SimpleKG</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_relation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">predicate</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">predicate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="n">subject</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="n">subject</span><span class="p">][</span><span class="n">predicate</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="n">subject</span><span class="p">][</span><span class="n">predicate</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">query_by_subject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">get_connected_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">connected</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">predicate</span><span class="p">,</span> <span class="n">objects</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">connected</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">connected</span>
+
+    <span class="k">def</span> <span class="nf">find_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">start</span>
+
+        <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="p">[(</span><span class="n">start</span><span class="p">,</span> <span class="p">[</span><span class="n">start</span><span class="p">])]</span>
+        <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">vertex</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">connected_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_connected_nodes</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">next_node</span> <span class="ow">in</span> <span class="n">connected_nodes</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">next_node</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
+                    <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">next_node</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">next_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">max_depth</span><span class="p">:</span>
+                    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
+                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">next_node</span><span class="p">,</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">next_node</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">paths</span>
+
+    <span class="k">def</span> <span class="nf">find_by_predicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predicate</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">subject</span><span class="p">,</span> <span class="n">predicates</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">predicate</span> <span class="ow">in</span> <span class="n">predicates</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">predicates</span><span class="p">[</span><span class="n">predicate</span><span class="p">]:</span>
+                    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">subject</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="nf">find_connected_through_predicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">predicate</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">predicate</span><span class="p">,</span> <span class="p">[])</span>
+</code></pre></div>
+
+<p>Here is simple example how you can test it:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Test the implementation</span>
+<span class="n">kg</span> <span class="o">=</span> <span class="n">SimpleKG</span><span class="p">()</span>
+<span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;knows&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
+<span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;works_at&quot;</span><span class="p">,</span> <span class="s2">&quot;TechCorp&quot;</span><span class="p">)</span>
+<span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="s2">&quot;TechCorp&quot;</span><span class="p">,</span> <span class="s2">&quot;located_in&quot;</span><span class="p">,</span> <span class="s2">&quot;San Francisco&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query by subject &#39;Alice&#39;:&quot;</span><span class="p">,</span> <span class="n">kg</span><span class="o">.</span><span class="n">query_by_subject</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Find paths from Alice to TechCorp:&quot;</span><span class="p">,</span> <span class="n">kg</span><span class="o">.</span><span class="n">find_paths</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;TechCorp&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>The output is:</p>
+<div class="highlight"><pre><span></span><code>Query by subject &#39;Alice&#39;: {&#39;knows&#39;: [&#39;Bob&#39;]}
+Find paths from Alice to TechCorp: &#39;Alice&#39;, &#39;Bob&#39;, &#39;TechCorp&#39;
+</code></pre></div>
+
+<p>More advanced example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create sample data</span>
+<span class="n">kg</span> <span class="o">=</span> <span class="n">SimpleKG</span><span class="p">()</span>
+
+<span class="c1"># Movies data</span>
+<span class="n">movies</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Inception&quot;</span><span class="p">,</span> <span class="s2">&quot;The Dark Knight&quot;</span><span class="p">,</span> <span class="s2">&quot;Interstellar&quot;</span><span class="p">,</span> <span class="s2">&quot;Dunkirk&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Memento&quot;</span><span class="p">,</span> <span class="s2">&quot;The Prestige&quot;</span><span class="p">,</span> <span class="s2">&quot;Tenet&quot;</span><span class="p">,</span> <span class="s2">&quot;Fight Club&quot;</span><span class="p">,</span> <span class="s2">&quot;Se7en&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The Social Network&quot;</span><span class="p">,</span> <span class="s2">&quot;Gone Girl&quot;</span><span class="p">,</span> <span class="s2">&quot;Panic Room&quot;</span>
+<span class="p">]</span>
+
+<span class="n">directors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span> <span class="s2">&quot;David Fincher&quot;</span><span class="p">,</span> <span class="s2">&quot;Martin Scorsese&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Quentin Tarantino&quot;</span><span class="p">,</span> <span class="s2">&quot;Steven Spielberg&quot;</span>
+<span class="p">]</span>
+
+<span class="n">actors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Leonardo DiCaprio&quot;</span><span class="p">,</span> <span class="s2">&quot;Christian Bale&quot;</span><span class="p">,</span> <span class="s2">&quot;Matthew McConaughey&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Brad Pitt&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom Hardy&quot;</span><span class="p">,</span> <span class="s2">&quot;Marion Cotillard&quot;</span><span class="p">,</span> <span class="s2">&quot;Michael Caine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Anne Hathaway&quot;</span><span class="p">,</span> <span class="s2">&quot;Cillian Murphy&quot;</span><span class="p">,</span> <span class="s2">&quot;Joseph Gordon-Levitt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ellen Page&quot;</span><span class="p">,</span> <span class="s2">&quot;Jesse Eisenberg&quot;</span><span class="p">,</span> <span class="s2">&quot;Ben Affleck&quot;</span><span class="p">,</span> <span class="s2">&quot;Rosamund Pike&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Add relationships</span>
+<span class="c1"># Directors directed movies</span>
+<span class="n">movie_director</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Inception&quot;</span><span class="p">:</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The Dark Knight&quot;</span><span class="p">:</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Interstellar&quot;</span><span class="p">:</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Dunkirk&quot;</span><span class="p">:</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Memento&quot;</span><span class="p">:</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The Prestige&quot;</span><span class="p">:</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tenet&quot;</span><span class="p">:</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fight Club&quot;</span><span class="p">:</span> <span class="s2">&quot;David Fincher&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Se7en&quot;</span><span class="p">:</span> <span class="s2">&quot;David Fincher&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The Social Network&quot;</span><span class="p">:</span> <span class="s2">&quot;David Fincher&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Gone Girl&quot;</span><span class="p">:</span> <span class="s2">&quot;David Fincher&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Panic Room&quot;</span><span class="p">:</span> <span class="s2">&quot;David Fincher&quot;</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">movie</span><span class="p">,</span> <span class="n">director</span> <span class="ow">in</span> <span class="n">movie_director</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="s2">&quot;directed_by&quot;</span><span class="p">,</span> <span class="n">director</span><span class="p">)</span>
+    <span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="n">director</span><span class="p">,</span> <span class="s2">&quot;directed&quot;</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
+
+<span class="c1"># Add actors to movies (random assignment for demonstration)</span>
+<span class="n">movie_actors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Inception&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Leonardo DiCaprio&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom Hardy&quot;</span><span class="p">,</span> <span class="s2">&quot;Marion Cotillard&quot;</span><span class="p">,</span> <span class="s2">&quot;Michael Caine&quot;</span><span class="p">,</span> <span class="s2">&quot;Ellen Page&quot;</span><span class="p">,</span> <span class="s2">&quot;Joseph Gordon-Levitt&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;The Dark Knight&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Christian Bale&quot;</span><span class="p">,</span> <span class="s2">&quot;Michael Caine&quot;</span><span class="p">,</span> <span class="s2">&quot;Cillian Murphy&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Interstellar&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Matthew McConaughey&quot;</span><span class="p">,</span> <span class="s2">&quot;Anne Hathaway&quot;</span><span class="p">,</span> <span class="s2">&quot;Michael Caine&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Fight Club&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Brad Pitt&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;The Social Network&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Jesse Eisenberg&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Gone Girl&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ben Affleck&quot;</span><span class="p">,</span> <span class="s2">&quot;Rosamund Pike&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">movie</span><span class="p">,</span> <span class="n">cast</span> <span class="ow">in</span> <span class="n">movie_actors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">:</span>
+        <span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="s2">&quot;stars&quot;</span><span class="p">,</span> <span class="n">actor</span><span class="p">)</span>
+        <span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="s2">&quot;acted_in&quot;</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
+
+<span class="c1"># Add some awards</span>
+<span class="n">awards</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Oscar&quot;</span><span class="p">,</span> <span class="s2">&quot;Golden Globe&quot;</span><span class="p">,</span> <span class="s2">&quot;BAFTA&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">director</span> <span class="ow">in</span> <span class="n">directors</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">award</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">awards</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">awards</span><span class="p">))):</span>
+        <span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="n">director</span><span class="p">,</span> <span class="s2">&quot;won&quot;</span><span class="p">,</span> <span class="n">award</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">actors</span><span class="p">[:</span><span class="mi">6</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">award</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">awards</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">awards</span><span class="p">))):</span>
+        <span class="n">kg</span><span class="o">.</span><span class="n">add_relation</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="s2">&quot;won&quot;</span><span class="p">,</span> <span class="n">award</span><span class="p">)</span>
+
+<span class="c1"># Example queries</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Find all movies directed by Christopher Nolan:&quot;</span><span class="p">)</span>
+<span class="n">nolan_movies</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="n">find_connected_through_predicate</span><span class="p">(</span><span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">,</span> <span class="s2">&quot;directed&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nolan_movies</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Find actors who worked with Christopher Nolan (through any movie):&quot;</span><span class="p">)</span>
+<span class="n">nolan_actors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">nolan_movies</span><span class="p">:</span>
+    <span class="n">actors</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="n">find_connected_through_predicate</span><span class="p">(</span><span class="n">movie</span><span class="p">,</span> <span class="s2">&quot;stars&quot;</span><span class="p">)</span>
+    <span class="n">nolan_actors</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">actors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nolan_actors</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Find path between Leonardo DiCaprio and Christopher Nolan:&quot;</span><span class="p">)</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="n">find_paths</span><span class="p">(</span><span class="s2">&quot;Leonardo DiCaprio&quot;</span><span class="p">,</span> <span class="s2">&quot;Christopher Nolan&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found paths:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; -&gt; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. Find Oscar winners:&quot;</span><span class="p">)</span>
+<span class="n">oscar_winners</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="n">find_by_predicate</span><span class="p">(</span><span class="s2">&quot;won&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">winner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">winner</span> <span class="ow">in</span> <span class="n">oscar_winners</span> <span class="k">if</span> <span class="n">winner</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Oscar&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. Find common movies between Michael Caine and Leonardo DiCaprio:&quot;</span><span class="p">)</span>
+<span class="n">caine_movies</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">kg</span><span class="o">.</span><span class="n">find_connected_through_predicate</span><span class="p">(</span><span class="s2">&quot;Michael Caine&quot;</span><span class="p">,</span> <span class="s2">&quot;acted_in&quot;</span><span class="p">))</span>
+<span class="n">dicaprio_movies</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">kg</span><span class="o">.</span><span class="n">find_connected_through_predicate</span><span class="p">(</span><span class="s2">&quot;Leonardo DiCaprio&quot;</span><span class="p">,</span> <span class="s2">&quot;acted_in&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">caine_movies</span> <span class="o">&amp;</span> <span class="n">dicaprio_movies</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Find</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">movies</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">Christopher</span><span class="w"> </span><span class="n">Nolan</span><span class="p">:</span><span class="w"> </span>
+<span class="err">[&#39;</span><span class="n">Inception</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">The</span><span class="w"> </span><span class="n">Dark</span><span class="w"> </span><span class="n">Knight</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nb">Int</span><span class="n">erstellar</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Dunkirk</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Memento</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">The</span><span class="w"> </span><span class="n">Prestige</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Tenet</span><span class="err">&#39;]</span><span class="w"> </span>
+
+<span class="mf">2.</span><span class="w"> </span><span class="n">Find</span><span class="w"> </span><span class="n">actors</span><span class="w"> </span><span class="n">who</span><span class="w"> </span><span class="n">worked</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">Christopher</span><span class="w"> </span><span class="n">Nolan</span><span class="w"> </span><span class="p">(</span><span class="n">through</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">movie</span><span class="p">):</span>
+<span class="err">[&#39;</span><span class="n">Christian</span><span class="w"> </span><span class="n">Bale</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Michael</span><span class="w"> </span><span class="n">Caine</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Leonardo</span><span class="w"> </span><span class="n">DiCaprio</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Joseph</span><span class="w"> </span><span class="kr">Go</span><span class="n">rdon</span><span class="o">-</span><span class="n">Levitt</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Cillian</span><span class="w"> </span><span class="n">Murphy</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Anne</span><span class="w"> </span><span class="n">Hathaway</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Matthew</span><span class="w"> </span><span class="n">McConaughey</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Marion</span><span class="w"> </span><span class="n">Cotillard</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Ellen</span><span class="w"> </span><span class="n">Page</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kr">To</span><span class="n">m</span><span class="w"> </span><span class="n">Hardy</span><span class="err">&#39;]</span><span class="w"> </span>
+
+<span class="mf">3.</span><span class="w"> </span><span class="n">Find</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="n">Leonardo</span><span class="w"> </span><span class="n">DiCaprio</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Christopher</span><span class="w"> </span><span class="n">Nolan</span><span class="p">:</span><span class="w"> </span>
+<span class="n">Found</span><span class="w"> </span><span class="n">paths</span><span class="p">:</span><span class="w"> </span>
+<span class="n">Leonardo</span><span class="w"> </span><span class="n">DiCaprio</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Inception</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Christopher</span><span class="w"> </span><span class="n">Nolan</span><span class="w"> </span>
+<span class="n">Leonardo</span><span class="w"> </span><span class="n">DiCaprio</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Inception</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Michael</span><span class="w"> </span><span class="n">Caine</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">Dark</span><span class="w"> </span><span class="n">Knight</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Christopher</span><span class="w"> </span><span class="n">Nolan</span><span class="w"> </span>
+<span class="n">Leonardo</span><span class="w"> </span><span class="n">DiCaprio</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Inception</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Michael</span><span class="w"> </span><span class="n">Caine</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb">Int</span><span class="n">erstellar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Christopher</span><span class="w"> </span><span class="n">Nolan</span><span class="w"> </span>
+
+<span class="mf">5.</span><span class="w"> </span><span class="n">Find</span><span class="w"> </span><span class="n">Oscar</span><span class="w"> </span><span class="n">winners</span><span class="p">:</span><span class="w"> </span>
+<span class="err">[&#39;</span><span class="n">Leonardo</span><span class="w"> </span><span class="n">DiCaprio</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kr">To</span><span class="n">m</span><span class="w"> </span><span class="n">Hardy</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Marion</span><span class="w"> </span><span class="n">Cotillard</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Christian</span><span class="w"> </span><span class="n">Bale</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Matthew</span><span class="w"> </span><span class="n">McConaughey</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Brad</span><span class="w"> </span><span class="n">Pitt</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">Martin</span><span class="w"> </span><span class="n">Scorsese</span><span class="err">&#39;]</span><span class="w"> </span>
+
+<span class="mf">5.</span><span class="w"> </span><span class="n">Find</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="n">movies</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="n">Michael</span><span class="w"> </span><span class="n">Caine</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Leonardo</span><span class="w"> </span><span class="n">DiCaprio</span><span class="p">:</span><span class="w"> </span>
+<span class="err">[&#39;</span><span class="n">Inception</span><span class="err">&#39;]</span>
+</code></pre></div>
+
+<h2>Making the Right Choice</h2>
+<p>The best solution depends on your specific needs:
+- Use NetworkX for general graph operations and algorithms
+- Choose RDFLib when working with semantic data and SPARQL
+- Go with PyGraphviz when visualization is important
+- Consider a custom solution for specialized query patterns</p>
+<h2>Performance Considerations</h2>
+<p>These solutions work well for graphs with thousands of nodes and edges. The key is keeping everything in memory and optimizing your query patterns. For NetworkX and RDFLib, using their built-in query methods is usually faster than writing custom traversal code.</p>
+<h2>Beyond Simple Solutions</h2>
+<p>When your knowledge graph grows beyond memory constraints or you need more complex querying capabilities, it might be time to consider solutions like <a href="https://neo4j.com/">Neo4j</a> or <a href="https://aws.amazon.com/neptune/">Amazon Neptune</a>. However, for many use cases, these in-memory solutions provide the perfect balance of simplicity and functionality.</p>
+<h2>A Note on Automated Graph Construction</h2>
+<p>Building knowledge graphs by hand, as shown in our examples, is straightforward. However, automatically constructing them from documents or unstructured data is a complex challenge worthy of its own article. Here are some key challenges you'll face:</p>
+<p><strong>Entity recognition</strong> and <strong>disambiguation</strong> is perhaps the trickiest part - determining whether "Apple" refers to the fruit or the company, or whether two mentions of "John Smith" refer to the same person. You'll need to handle coreference resolution (understanding that "he" refers to "John" mentioned earlier) and deal with variations in how entities are written ("NYC" vs "New York City").</p>
+<p><strong>Relationship extraction</strong> comes with its own set of problems. Natural language is complex and often implicit - extracting clear, structured relationships from sentences like "After years at Microsoft, Sarah brought her expertise to the startup" requires sophisticated NLP techniques.</p>
+<p><strong>Data quality</strong> and <strong>consistency</strong> are also major concerns. Sources might conflict with each other, contain outdated information, or present opinions as facts. You'll need strategies for handling uncertainty and conflicting information in your graph.</p>
+<p>If you're interested in automatic graph construction, I'd recommend starting with established NLP libraries and knowledge graph toolkits rather than building everything from scratch. But that's a topic for another deep dive!</p>
+<h2>Wrapping Up</h2>
+<p>Don't jump to complex graph databases when simpler solutions might suffice. These in-memory approaches can handle surprisingly complex tasks while keeping your codebase clean and maintainable. Plus, they're perfect for prototyping before committing to a full-scale graph database solution.</p>
+        </div>
+
+
+
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>@article{Saf2025Simple,
+    author  = {Krystian Safjan},
+    title   = {Simple In-Memory Knowledge Graphs for Quick Graph Querying},
+    journal = {Krystian's Safjan Blog},
+    year    = {2025},
+}</pre>
+            </div>
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/graph/">graph</a>
+                        <a href="https://www.safjan.com/tag/knowledge-graph/">knowledge-graph</a>
+                        <a href="https://www.safjan.com/tag/query/">query</a>
+                        <a href="https://www.safjan.com/tag/networkx/">networkx</a>
+                        <a href="https://www.safjan.com/tag/neo4j/">neo4j</a>
+                        <a href="https://www.safjan.com/tag/rdflib/">rdflib</a>
+                        <a href="https://www.safjan.com/tag/sparql/">SPARQL</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/choosing-technology-for-the-lmm-knowledge-graph/">Choosing technology for the LLM knowledge graph</a></li>
+                        <li><a href="https://www.safjan.com/mermaid-in-pelican-post/">Using Mermaid Diagrams in Pelican Blog Post</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/quick-ways-to-disable-github-actions-workflows-without-deletion/" title="Quick Ways to Disable GitHub Actions Workflows Without Deletion">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

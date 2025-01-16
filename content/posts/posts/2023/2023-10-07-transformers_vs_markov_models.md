@@ -14,7 +14,7 @@ System-prompt: You are Data Science expert and statistical methods expert. Caref
 tags: machine-learning, transformers, markov-models, attention, self-attention, natural-language-processing, nlp, AI, deep-learning, language-models, GPT
 ---
 
-In the field of machine learning and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT ([Generative Pretrained Transformer](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer)). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to delve into the intricacies of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
+In Machine Learning (ML) and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT ([Generative Pretrained Transformer](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer)). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to delve into the intricacies of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
 
 ## Markov Models: A Brief Overview
 
@@ -22,7 +22,7 @@ In the field of machine learning and natural language processing (NLP), differen
 
 In the context of language modeling, a Markov Model might predict the next word or character in a sentence based on the current word or character. For instance, given the word "The", a Markov Model might predict that the next word is "cat" based on the probability distribution of words that follow "The" in its training data.
 
-The main limitation of Markov Models is their lack of memory. Since they only consider the current state, they are unable to capture long-term dependencies in a sequence. For example, in the sentence "I grew up in France... I speak fluent ___", a Markov Model might struggle to fill in the blank correctly because the relevant context ("France") is several words back.
+The main limitation of Markov Models is their lack of memory. Since they only consider the current state, they are unable to capture long-term dependencies in a sequence. For example, in the sentence "I grew up in France... I speak fluent ...", a Markov Model might struggle to fill in the blank correctly because the relevant context ("France") is several words back.
 
 ![Markov Chain text generation](/images/transformers_vs_markov/markov_model_text_generation.png)
 
