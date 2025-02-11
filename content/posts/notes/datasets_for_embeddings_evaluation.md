@@ -7,6 +7,7 @@ Status: published
 Tags: machine-learning, NLP, embeddings, openai, dataset
 Title: Datasets for Embeddings Performance Evaluation
 ---
+X::[[fine_tune_embeddings_for_better_retrieval]]
 
 ## Text search
 

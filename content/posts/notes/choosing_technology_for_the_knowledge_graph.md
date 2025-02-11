@@ -8,6 +8,10 @@ tags: llm, knowledge-graph, rdf, graph-database, neo4j, apache-jena, virtuoso, s
 Category: note
 ---
 X::[[networkx]]
+X::[[graphrag]]
+X::[[graph_neural_networks]]
+X::[[2025-01-16-simple_inmemory_knowledge_graphs_for_quick_graph_querying]]
+up::[[knowledge_graphs]]
 
 There are several technologies that can be used to implement a knowledge graph, depending on the specific requirements of your project. Here are three commonly used technologies for implementing knowledge graphs:
 

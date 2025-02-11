@@ -12,7 +12,7 @@ Summary: As developers, we often reach for full-scale graph databases when simpl
 Status: published
 prompt:
 ---
-# Simple In-Memory Knowledge Graphs for Quick Graph Querying
+up::[[knowledge_graphs]]
 
 Working with knowledge graphs doesn't always require [Neo4j](https://neo4j.com/) or other heavyweight solutions. Sometimes you need a lightweight way to represent and query graph data right in memory. Let me share some approachable solutions I've found particularly useful.
 
@@ -331,3 +331,11 @@ If you're interested in automatic graph construction, I'd recommend starting wit
 ## Wrapping Up
 
 Don't jump to complex graph databases when simpler solutions might suffice. These in-memory approaches can handle surprisingly complex tasks while keeping your codebase clean and maintainable. Plus, they're perfect for prototyping before committing to a full-scale graph database solution.
+
+## Further Reading, References
+- paper [\[2305.14485\] Knowledge Graphs Querying](https://arxiv.org/abs/2305.14485)
+- similarar attempt as in this article to build and query knowledge graph: [Querying using simple knowledge graphs \| by Vishnu Nandakumar \| Analytics Vidhya \| Medium](https://medium.com/analytics-vidhya/querying-using-simple-knowledge-graphs-abeb13d05e48)
+- [GraphRAG](https://memgraph.com/docs/ai-ecosystem/graph-rag)
+- [CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface — CogniPy 1.0.0 documentation](https://cognipy.org/) - In-memory Graph Database and Knowledge Graph with Natural Language Interface
+- not necessarily small and simple solutions: [Title Unavailable \| Site Unreachable](https://www.puppygraph.com/blog/best-graph-databases)
+

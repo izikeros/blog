@@ -54,6 +54,7 @@ Alternatives from [linuxinsider](https://linuxinsider.com/story/8-great-linux-ti
 1. [Hamster](https://projecthamster.wordpress.com/about/) - standard in this category of software but for some reason I decided to use replacement: GTime.
 2. [Rachota Timetracker](http://rachota.sourceforge.net/en/index.html) - portable, similar to hamster
 3. [ARBTT]() - automated tracking open windows. “Automatic Rule-Based Time-Tracker.” The program recognizes active windows and tracks how long they are open. It calculates that time interval.
+4.  [Flowkeeper](https://flowkeeper.org/) - planning, execution & tracking
 
 Rest:
 

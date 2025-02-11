@@ -4,7 +4,7 @@ Slug: semantic-type-detection
 Date: 2023-12-01
 Modified: 2023-12-01
 Status: published
-tags: llm, generative-ai, table-representation-learning, 
+tags: llm, generative-ai, table-representation-learning, llm-technique 
 Category: note
 ---
 

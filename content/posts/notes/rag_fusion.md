@@ -4,7 +4,7 @@ Slug: rag-fusion-enhancing-information-retrieval-in-large-language-models
 Date: 2023-11-06
 Modified: 2023-11-06
 Status: published
-tags: llm, information-retrieval, rag, re-ranking, semantic-search 
+tags: llm, information-retrieval, rag, re-ranking, semantic-search, llm-technique 
 Category: note
 ---
 

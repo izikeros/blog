@@ -125,5 +125,5 @@ If you want even more control, you can use `ARCHFLAGS` to specify architecture:
 - 2024-12-18: Added note on optimizations
 
 See also:
-X::[[mac_wiki_v2]]
+X::[[macos_wiki_v2]]
 X::[[install_global_packages_with_pipx]]
