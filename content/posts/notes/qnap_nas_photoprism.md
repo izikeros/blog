@@ -8,7 +8,7 @@ Summary: Instruction on how to install Photoprism on QNAP NAS using Docker Compo
 Tags: nas, photoprism, Linux, photo-gallery, docker, docker-compose, qnap
 Title: Install Photoprism on QNAP NAS Using Docker Compose
 ---
-X:[[piwigo_photo_gallery]]
+X::[[piwigo_photo_gallery]]
 
 Photoprism is a modern, searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on QNAP NAS. This article is meant to fill that gap.
 Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other QNAP NAS models. There is also possibility to install photoprism using Container Station GUI and modified docker-compose file (see lower in the article).
@@ -221,14 +221,14 @@ volumes:
 ### Create directories in `/share/Container/photoprism`
 
 ```sh
-mkdir /share/Container/photoprism/database
-mkdir /share/Container/photoprism/import
-mkdir /share/Container/photoprism/originals
-mkdir /share/Container/photoprism/storage
+cd /share/Container/photoprism
+mkdir -p database
+mkdir -p import
+mkdir -p originals
+mkdir -p storage
 ```
 
 <a id="run-application-in-the-container"></a>
-
 ### Run application in the container
 
 Start the container. Pulling images might take few minutes depending on your Internet connection speed.

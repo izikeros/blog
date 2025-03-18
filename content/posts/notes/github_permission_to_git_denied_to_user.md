@@ -7,6 +7,7 @@ Status: published
 tags: git, github, ssh, ssh-key
 Category: note
 ---
+X::[[MOC_Git]]
 
 When working with GitHub, you might encounter an issue that restricts you from executing a 'git push' operation due to permissions. This post will guide you through solving this problem and help you understand its causes.
 
