@@ -24,11 +24,11 @@ Category: note
 
 ## Alternative Tools to Cookiecutter for Scaffolding Projects
 
-Scaffolding tools are essential for accelerating the process of project setup and code generation by providing predefined templates and structures. One of the popular tools for this purpose is Cookiecutter, which allows developers to create projects from project templates. However, the software development ecosystem is diverse, and there are several alternative tools to Cookiecutter, each with unique features and characteristics that differentiate them from one another.
+Scaffolding tools are essential for accelerating the process of project setup and code generation by providing predefined templates and structures. One of the popular tools for this purpose is [Cookiecutter](https://github.com/cookiecutter/cookiecutter), which allows developers to create projects from project templates. However, the software development ecosystem is diverse, and there are several alternative tools to Cookiecutter, each with unique features and characteristics that differentiate them from one another.
 
-In this article, we will explore ten alternative tools to Cookiecutter and highlight their standout features and best-suited use cases.
+In this article, we will explore alternative tools to Cookiecutter and highlight their standout features and best-suited use cases.
 
-### Yeoman
+> If you are working mostly with the **Python** projects your best alternatives to cookiecutter are:  - [org/copier](https://github.com/copier-org/copier) and [pyscaffold](https://github.com/pyscaffold/pyscaffold/) ### Yeoman
 
 [Yeoman](https://github.com/yeoman) is a robust scaffolding tool that offers a vast collection of generators to create projects across various languages and frameworks. It provides a strong community support and an extensive library of community-contributed generators.
 
@@ -84,29 +84,22 @@ The ability to create custom plugins and extend existing templates makes Sao a p
 
 **Best Use Case:** Sao is best suited for developers who need a versatile and extensible scaffolding tool with the option to create and share their custom plugins.
 
-### Jolt
-
-Jolt is a lightweight and straightforward scaffolding tool that allows developers to create templates using a concise YAML syntax. It emphasizes minimal configuration and aims to reduce boilerplate code.
-
-Unlike Cookiecutter, which may require extensive configuration, Jolt's YAML syntax simplifies the template creation process, making it a fast and efficient choice for smaller projects.
-
-Jolt's simplicity and focus on reducing boilerplate code make it stand out for quick prototyping and smaller projects with straightforward requirements.
-
-**Best Use Case:** Jolt is best suited for developers who prefer a lightweight and minimalistic scaffolding tool for rapid project setup.
-
 ### Boilr
 
-Boilr is a command-line scaffolding tool that utilizes a template registry, allowing developers to share and discover templates easily. It provides a curated list of templates for various languages and frameworks.
+> NOTE: at the time of writing, the last commit was on Jul 19, 2017
+
+[Boilr](https://github.com/tmrts/boilr) is a command-line scaffolding tool that utilizes a template registry, allowing developers to share and discover templates easily. It provides a curated list of templates for various languages and frameworks.
 
 Unlike Cookiecutter, Boilr's template registry simplifies the process of finding and using project templates, making it an excellent choice for developers who want a seamless experience with pre-built templates.
 
 Boilr's extensive template registry and its command-line interface make it stand out for its accessibility and ease of use.
 
-Best Use Case  Boilr is best suited for developers who prefer a command-line tool with access to a wide variety of pre-built templates for different project types.
+**Best Use Case**:  Boilr is best suited for developers who prefer a command-line tool with access to a wide variety of pre-built templates for different project types.
+
 
 ## Recommendations for various use-cases
 
-Sure! Here are three distinct use cases with specific requirements, along with recommended tools for each use case:
+Here are three distinct use cases with specific requirements, along with recommended tools for each use case:
 
 ### Use Case 1: Rapid Prototyping and Small Projects - Plop
 
@@ -154,6 +147,7 @@ While Cookiecutter is a popular choice for scaffolding projects, developers have
 
 - [zce/caz](https://github.com/zce/caz) -  A simple yet powerful template-based Scaffolding tools
 - [copier-org/copier](https://github.com/copier-org/copier) -  Library and command-line utility for rendering projects templates
+- [pyscaffold/pyscaffold](https://github.com/pyscaffold/pyscaffold/) - Python project template generator with batteries included
 
 **Edits:**
 
