@@ -63,8 +63,9 @@ e2e:
 	echo "Blog regenerated, and pushed to remote."
 
 venv:
-	echo "Type:"
-	echo ". ~/.virtualenvs/blog/bin/activate"
+	uv lock --upgrade && uv sync
+	uv pip install "git+https://github.com/izikeros/pelican-obsidian"
+	uv pip install "git+https://github.com/lextoumbourou/pelican-jupyter"
 
 serve:
 	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
