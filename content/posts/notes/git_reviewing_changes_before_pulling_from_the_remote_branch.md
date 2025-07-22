@@ -4,9 +4,7 @@ Slug: git-workflow-reviewing-changes-before-pulling-remote-branch
 Date: 2023-06-20
 Modified: 2024-10-31
 Status: published
-tags:
-  - git
-  - workflow
+tags: git, workflow, github, pull-request
 Category: note
 todo: add links
 ---
@@ -15,16 +13,21 @@ todo: add links
 To quickly review changes before pulling, use this sequence of commands:
 
 ```bash
-# 1. Fetch latest changes without merging
+# Fetch latest changes without merging
 git fetch origin
 
-# 2. See what's different
-git log HEAD..origin/main    # Show commits you're missing
-git diff HEAD..origin/main   # Show actual code changes
+# See what's different
+git log HEAD..@{upstream}    # Show commits you're missing
+git diff HEAD..@{upstream}   # Show actual code changes
 # or use Tig
 tig HEAD..origin/main
 
-# 3. If it looks good, pull changes
+# Show which files have been modified between your local branch and remote
+git diff --name-status HEAD..@{upstream}
+# or with the indicators of added/removed lines
+git diff --stat HEAD..@{upstream}
+
+# If it looks good, pull changes
 git pull origin main
 ```
 
@@ -32,8 +35,9 @@ git pull origin main
 
 When working with Git, it is essential to have a streamlined workflow that ensures you **review the changes made by others** before pulling them into your local branch. This practice helps **prevent conflicts** and ensures that your local repository remains in sync with the remote branch. In this blog post, we will outline a few simple steps to check the changes introduced by others in the remote branch before performing a `git pull`.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+<!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
 
+- [TLDR: Quick Git Command Reference](#tldr-quick-git-command-reference)
 - [Introduction](#introduction)
   - [Step 1: Fetch Remote Changes](#step-1-fetch-remote-changes)
   - [Step 2: Inspect Remote Branch](#step-2-inspect-remote-branch)
@@ -46,8 +50,20 @@ When working with Git, it is essential to have a streamlined workflow that ensur
       - [Review Changes Using PyCharm's Diff Viewer](#review-changes-using-pycharms-diff-viewer)
       - [Interactive Review Features](#interactive-review-features)
       - [Resolve Conflicts in PyCharm](#resolve-conflicts-in-pycharm)
-- [Step 4: Resolve Conflicts (if any)](#step-4-resolve-conflicts-if-any)
+    - [Option 4: Using VSCode's Git Integration](#option-4-using-vscodes-git-integration)
+      - [Built-in Git Features](#built-in-git-features)
+      - [Review Changes Using VSCode's Built-in Diff Viewer](#review-changes-using-vscodes-built-in-diff-viewer)
+  - [Step 4: Resolve Conflicts (if any)](#step-4-resolve-conflicts-if-any)
+    - [CLI-based Conflict Resolution](#cli-based-conflict-resolution)
+    - [Using Git's Built-in mergetool](#using-gits-built-in-mergetool)
+    - [Best Practices for Conflict Resolution](#best-practices-for-conflict-resolution)
   - [Step 5: Pull Changes](#step-5-pull-changes)
+  - [Extras 1: Enhanced Git Experience with VSCode Extensions](#extras-1-enhanced-git-experience-with-vscode-extensions)
+    - [GitLens](#gitlens)
+    - [Git Graph](#git-graph)
+    - [Tips for Efficient Review in VSCode](#tips-for-efficient-review-in-vscode)
+- [Extras 2: Common Review Commands](#extras-2-common-review-commands)
+- [Extras 3: Git Aliases for Efficient Review](#extras-3-git-aliases-for-efficient-review)
 
 <!-- /MarkdownTOC -->
 
@@ -90,6 +106,37 @@ git diff commit-hash
 ```
 
 This command displays a detailed diff of the changes made in that specific commit, allowing you to analyze the modifications line by line.
+
+For reviewing changes between your local branch and the remote branch before pulling:
+
+```sh
+# Show code changes between local and remote
+git diff HEAD..@{upstream}
+
+# Show changes with context (more readable)
+git diff --color-words HEAD..@{upstream}
+
+# Show only changes in specific files
+git diff HEAD..@{upstream} -- path/to/file
+
+# Show a histogram of changes per file
+git diff --stat HEAD..@{upstream}
+
+# Show renamed files differently
+git diff -M HEAD..@{upstream}
+```
+
+For enhanced diff experience:
+
+```sh
+# Install and use git-delta for better visual diffs
+# (install via package manager first)
+git config --global core.pager "delta"
+git diff HEAD..@{upstream} | delta
+
+# Show character-by-character changes instead of line changes
+git diff --word-diff=color HEAD..@{upstream}
+```
 
 #### Option 2: Utilizing Visual Git Tools
 
@@ -163,11 +210,41 @@ VSCode provides powerful built-in Git functionality that can be further enhanced
 
 <a id="step-4-resolve-conflicts-if-any"></a>
 
-## Step 4: Resolve Conflicts (if any)
+### Step 4: Resolve Conflicts (if any)
 
 During your review, you may encounter conflicts between the changes made by others and your local modifications. Conflicts arise when Git cannot automatically merge two sets of changes. If conflicts occur, it is crucial to resolve them before pulling the changes into your branch.
 
 To resolve conflicts, you can use Git's built-in merge tools or a visual Git tool like those mentioned earlier. These tools provide a side-by-side view of conflicting changes, enabling you to choose which modifications to keep and how to combine them effectively.
+
+#### CLI-based Conflict Resolution
+
+```bash
+# After a merge conflict occurs
+git status                            # Identify conflicting files
+git diff                              # Review the conflicts (marked with >>>> and <<<<)
+
+# Resolve conflicts in your editor, then
+git add <resolved-file>               # Mark as resolved
+git merge --continue                  # Complete the merge
+```
+
+#### Using Git's Built-in mergetool
+
+```bash
+# Configure your preferred merge tool
+git config --global merge.tool <tool>  # e.g., vimdiff, meld, kdiff3
+git config --global mergetool.prompt false  # Skip prompt for each file
+
+# Use the configured tool to resolve conflicts
+git mergetool
+```
+
+#### Best Practices for Conflict Resolution
+
+1. **Understand both changes** before resolving
+2. **Communicate with the author** of the other changes when necessary
+3. **Test thoroughly** after resolving conflicts
+4. Consider using **feature branches** to minimize conflict scope
 
 <a id="step-5-pull-changes"></a>
 
@@ -183,7 +260,7 @@ Replace `branch-name` with the name of the remote branch from which you want to 
 
 ### Extras 1: Enhanced Git Experience with VSCode Extensions
 
-##### GitLens
+#### GitLens
 
 GitLens is a powerful extension that supercharges VSCode's Git capabilities:
 
@@ -198,7 +275,7 @@ GitLens is a powerful extension that supercharges VSCode's Git capabilities:
 code --install-extension eamodio.gitlens
 ```
 
-##### Git Graph
+#### Git Graph
 
 [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) provides a visual commit history:
 
@@ -213,7 +290,7 @@ code --install-extension eamodio.gitlens
 code --install-extension mhutchie.git-graph
 ```
 
-##### Tips for Efficient Review in VSCode
+#### Tips for Efficient Review in VSCode
 
 1. **Keyboard Shortcuts**:
    - `Alt+←` / `Alt+→`: Navigate through edit history
@@ -221,6 +298,7 @@ code --install-extension mhutchie.git-graph
    - `Ctrl+K Ctrl+Alt+S`: Stage selected ranges
 
 2. **Settings Customization**:
+
    ```json
    {
      "git.enableSmartCommit": true,
@@ -230,34 +308,35 @@ code --install-extension mhutchie.git-graph
    }
    ```
 
-- `"git.enableSmartCommit": true`
-    - Enables "smart commit" functionality
-    - When true, allows you to commit all changes when there are no staged changes
-    - Saves time by skipping the staging step if you want to commit all modified files
-    - Particularly useful for small, focused changes
-- `"git.autofetch": true`
-    - Automatically fetches changes from remote repositories
-    - Runs in the background at regular intervals (default: every 3 minutes)
-    - Keeps you informed about remote changes without manual fetching
-    - Helps prevent merge conflicts by keeping you aware of upstream changes
-- `"gitlens.hovers.currentLine.over": "line"`
-    - Controls when the GitLens hover annotation appears
-    - "line" setting shows git blame information when hovering over the current line
-    - Alternatives include "annotation" (hover over the gutter blame annotation) or "window" (entire viewport)
-    - Provides quick access to commit information without cluttering the interface
-- `"gitlens.codeLens.enabled": true`
-    - Enables GitLens CodeLens feature
-    - Shows authorship information above functions and classes
-    - Displays recent changes and number of authors
-    - Makes it easy to track changes to specific code blocks
+   - `"git.enableSmartCommit": true`
+     - Enables "smart commit" functionality
+     - When true, allows you to commit all changes when there are no staged changes
+     - Saves time by skipping the staging step if you want to commit all modified files
+     - Particularly useful for small, focused changes
+   - `"git.autofetch": true`
+     - Automatically fetches changes from remote repositories
+     - Runs in the background at regular intervals (default: every 3 minutes)
+     - Keeps you informed about remote changes without manual fetching
+     - Helps prevent merge conflicts by keeping you aware of upstream changes
+   - `"gitlens.hovers.currentLine.over": "line"`
+     - Controls when the GitLens hover annotation appears
+     - "line" setting shows git blame information when hovering over the current line
+     - Alternatives include "annotation" (hover over the gutter blame annotation) or "window" (entire viewport)
+     - Provides quick access to commit information without cluttering the interface
+   - `"gitlens.codeLens.enabled": true`
+     - Enables GitLens CodeLens feature
+     - Shows authorship information above functions and classes
+     - Displays recent changes and number of authors
+     - Makes it easy to track changes to specific code blocks
 
->To apply these settings:
->1. Open VSCode Settings (Ctrl+,)
->2. Click on the "Open Settings (JSON)" button in the top right
->3. Add these settings to your user or workspace settings
->4. Save the file to apply changes immediately
+   > To apply these settings:
+   >
+   > 1. Open VSCode Settings (`Ctrl+,`)
+   > 2. Click on the "Open Settings (JSON)" button in the top right
+   > 3. Add these settings to your user or workspace settings
+   > 4. Save the file to apply changes immediately
 
-6. **Workspace Organization**:
+3. **Workspace Organization**:
    - Use the SCM view layout options to customize your review space
    - Toggle between inline and side-by-side diffs based on change complexity
    - Utilize the minimap for quick navigation through large files
@@ -280,12 +359,16 @@ git log -n 5 origin/main
 git whatchanged origin/main -n 5
 
 # Check if pull will cause conflicts
-git diff ...origin/main
+git diff HEAD...origin/main
+
+# For a clearer mental model: show exactly what will change when you pull
+git diff $(git merge-base HEAD origin/main)..origin/main
 ```
 
 Replace `main` with your branch name if different.
 
-⚠️ If you spot problems:
+If you spot problems:
+
 ```bash
 # Abort pull if something looks wrong
 git merge --abort
@@ -294,7 +377,37 @@ git merge --abort
 git reset --hard HEAD@{1}
 ```
 
-**Edits:**
+## Extras 3: Git Aliases for Efficient Review
 
+You can streamline your review workflow by setting up Git aliases in your `.gitconfig` file:
+
+```bash
+[alias]
+    # Show commits that would be pulled
+    incoming = !git fetch && git log --oneline HEAD..@{upstream}
+
+    # Show changes that would be pulled
+    preview-pull = diff --stat HEAD..@{upstream}
+
+    # Show full diff of changes that would be pulled
+    preview-changes = diff HEAD..@{upstream}
+
+    # Check for potential merge conflicts
+    check-conflicts = merge-tree $(git merge-base HEAD @{upstream}) HEAD @{upstream}
+
+    # Prettier log output
+    logp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+```
+
+To use these aliases, add them to your `.gitconfig` file and run commands like:
+
+```bash
+git incoming
+git preview-pull
+git check-conflicts
+```
+
+**Edits:**
+- 2025-06-26: Add more info about conflict resolution, diff inspection from CLI and Git Aliases for Efficient Review
 - 2024-03-06: Added sections on using PyCharm and VSCode features
-- 2024-03-06: Added extras on vscode extensions and git commands for review
+- 2024-03-06: Added extras on VSCode extensions and git commands for review

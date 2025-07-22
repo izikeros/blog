@@ -19,6 +19,8 @@ from traitlets.config import Config
 
 AUTHOR = "Krystian Safjan"
 SITENAME = "Krystian Safjan's Blog"
+TWITTER_USERNAME = "izikeros"
+TWITTER_CREATOR = "izikeros"
 
 MY_THEME = "flex"  # flex | elegant, NOTE: this is nit name of the folder in pelican themes - search below for `THEME =`
 IS_DEVELOPMENT = True
@@ -248,9 +250,7 @@ if MY_THEME == "flex":
         "render_math",
         "neighbors",
         "related_posts",
-        "share_post",
         "sitemap",
-        "obsidian",
     ]
 elif MY_THEME == "elegant":
     PLUGINS = ["pelican-ipynb.markup", "post_stats", "representative_image"]
@@ -267,7 +267,7 @@ c.TagRemovePreprocessor.remove_input_tags = ("remove_input",)
 
 IPYNB_PREPROCESSORS = [
     RegexRemovePreprocessor(
-        patterns=["\s*\Z"]
+        patterns=[r"\s*\Z"]
     ),  # Remove empty cells (or cells with whitespaces only)
     TagRemovePreprocessor(config=c),
 ]  # Remove cells marked as 'remove_cell'

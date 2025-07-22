@@ -18,7 +18,6 @@
               href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
-
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
@@ -47,7 +46,7 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="X::SPLADE sparse vectors - explaination, properties TF-IDF stands for Term Frequency-Inverse Document Frequency. It&#39;s a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It&#39;s often used in information retrieval and text mining …"/>
+    <meta name="description" content="X::[[SPLADE_embeddings]] TF-IDF stands for Term Frequency-Inverse Document Frequency. It&#39;s a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It&#39;s often used in information retrieval and text mining. TF-IDF is composed of …"/>
     <meta name="keywords" content="tfidf, tf-idf, bag-of-words, embeddings, text-vectorization, information-retrieval, text-mining">
     <meta expr:content="2023-11-10 00:00:00+01:00" itemprop='datePublished'/>
     <meta expr:content="2023-11-10 00:00:00+01:00" itemprop='dateModified'/>
@@ -68,7 +67,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="TF-IDF with examples"/>
-  <meta property="og:description" content="X::SPLADE sparse vectors - explaination, properties TF-IDF stands for Term Frequency-Inverse Document Frequency. It&#39;s a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It&#39;s often used in information retrieval and text mining …"/>
+  <meta property="og:description" content="X::[[SPLADE_embeddings]] TF-IDF stands for Term Frequency-Inverse Document Frequency. It&#39;s a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It&#39;s often used in information retrieval and text mining. TF-IDF is composed of …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/tfidf-with-examples/"/>
   <meta property="og:type" content="article"/>
@@ -86,14 +85,14 @@
   <meta property="og:image" content="/images/profile_new.jpg">
 
     <meta name="twitter:card" content="summary"/>
+
     <meta property="twitter:image" content="/images/profile_new.jpg">
 
-    <meta name="twitter:label1" content="Est. reading time"/>
-    <meta name="twitter:data1" content="4 min."/>
-    <meta name="twitter:site" content="@izikeros"/>
-    <meta name="twitter:description" content=""/>
-    <meta name="twitter:title" content="TF-IDF with examples"/>
 
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="X::[[SPLADE_embeddings]] TF-IDF stands for Term Frequency-Inverse Document Frequency. It's a numerical statistic used to reflect how important a word is to a document in a collection or..."/>
+    <meta name="twitter:title" content="TF-IDF with examples"/>
 
     <title>    TF-IDF with examples
 </title>
@@ -119,8 +118,6 @@
         </h1>
 
 <p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
-
-
 
 
         <ul class="social">
@@ -265,17 +262,6 @@
                 2023-11-10 
 
 
-
-                    <span id="post-share-links">
-    &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=TF-IDF%20with%20examples&url=https%3A//www.safjan.com/tfidf-with-examples/&hashtags=tfidf,tf-idf,bag-of-words,embeddings,text-vectorization,information-retrieval,text-mining" target="_blank" title="Share on Twitter">Twitter</a>
-    |
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/tfidf-with-examples/" target="_blank" title="Share on Facebook">Facebook</a>
-    |
-    <a href="https://news.ycombinator.com/submitlink?t=TF-IDF%20with%20examples&u=https%3A//www.safjan.com/tfidf-with-examples/" target="_blank" title="Share on HackerNews">HackerNews</a>
-    |
-    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/tfidf-with-examples/&title=TF-IDF%20with%20examples" target="_blank" title="Share via Reddit">Reddit</a>
-  </span>
                 <br/>
             </p>
             <h1 id="tfidf-with-examples">TF-IDF with examples</h1>
@@ -287,7 +273,7 @@
 
 
         <div>
-            <p>X::<a href="https://www.safjan.com/splade-sparse-vectors/">SPLADE sparse vectors - explaination, properties</a></p>
+            <p>X::[[SPLADE_embeddings]]</p>
 <p><strong>TF-IDF</strong> stands for <strong>Term Frequency-Inverse Document Frequency</strong>. It's a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It's often used in information retrieval and text mining.</p>
 <p>TF-IDF is composed of two parts:</p>
 <ol>
@@ -312,96 +298,34 @@
 <p>Even though 'the' appeared more times than 'cat' in the document, the TF-IDF weight for 'cat' is higher than 'the'. This is because IDF gives a higher weight to words that are less frequent in the corpus, making 'cat' more important than 'the' in the context of our corpus.</p>
 <h2>The formula</h2>
 <p>here is the TF-IDF equation in LaTeX format:</p>
-<p>The term frequency <span class="math">\(TF\)</span> is calculated as:</p>
-<div class="math">$$
+<p>The term frequency $TF$ is calculated as:</p>
+<p>$$
 TF(t, d) = \frac{f_{t, d}}{\sum_{t' \in d} f_{t', d}}
-$$</div>
+$$</p>
 <p>Where:</p>
 <ul>
-<li><span class="math">\(f_{t, d}\)</span> is the frequency of term <span class="math">\(t\)</span> in document <span class="math">\(d\)</span></li>
-<li>The denominator is the sum of frequencies of all terms in document <span class="math">\(d\)</span></li>
+<li>$f_{t, d}$ is the frequency of term $t$ in document $d$</li>
+<li>The denominator is the sum of frequencies of all terms in document $d$</li>
 </ul>
-<p>The inverse document frequency <span class="math">\(IDF\)</span> is calculated as:</p>
-<div class="math">$$
-IDF(t, D) = \log \frac{|D|}{|\{d \in D: t \in d\}|}
-$$</div>
+<p>The inverse document frequency $IDF$ is calculated as:</p>
+<p>$$
+IDF(t, D) = \log \frac{|D|}{|{d \in D: t \in d}|}
+$$</p>
 <p>Where:</p>
 <ul>
-<li><span class="math">\(|D|\)</span> is the total number of documents in the corpus</li>
-<li>The denominator is the number of documents where the term <span class="math">\(t\)</span> appears</li>
+<li>$|D|$ is the total number of documents in the corpus</li>
+<li>The denominator is the number of documents where the term $t$ appears</li>
 </ul>
 <p>Finally, the TF-IDF is calculated as:</p>
-<div class="math">$$
+<p>$$
 TFIDF(t, d, D) = TF(t, d) \cdot IDF(t, D)
-$$</div>
+$$</p>
 <p>Where:</p>
 <ul>
-<li><span class="math">\(t\)</span> is the term</li>
-<li><span class="math">\(d\)</span> is the document</li>
-<li><span class="math">\(D\)</span> is the corpus (set of all documents)</li>
+<li>$t$ is the term</li>
+<li>$d$ is the document</li>
+<li>$D$ is the corpus (set of all documents)</li>
 </ul>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
         </div>
 
 

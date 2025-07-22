@@ -9,7 +9,7 @@ Status: published
 Summary: We often associate eloquent speech with intelligence and knowledge. But what if I told you that this assumption is not always true?
 Tags: machine-learning, python
 Title: Rethinking the Link Between Speech and Expertise
-banner: /images/head/speech_and_expertise.jpg
+banner: "/images/head/speech_and_expertise.jpg"
 prompt: null
 ---
 

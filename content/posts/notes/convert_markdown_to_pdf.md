@@ -24,6 +24,12 @@ pandoc \
 --metadata title="My booklet"
 ```
 
+alternative pdf-engines:
+- typst
+- pdflatex
+- ...
+
+
 ## With ToC
 
 ```sh
@@ -44,6 +50,11 @@ book.html book_html.pdf
 ```
 
 > **NOTE:** Experiment with page size to impact margins and font size
+
+You can install wkhtmltopdf using brew:
+```sh
+brew install wkhtmltopdf
+```
 
 ## See also
 

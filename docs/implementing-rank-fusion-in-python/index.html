@@ -18,7 +18,6 @@
               href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
-
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
@@ -47,7 +46,7 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea …"/>
+    <meta name="description" content="X::[[borda_count_python]] In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where …"/>
     <meta name="keywords" content="rank-fusion, hybrid-search, rank, search, python">
     <meta expr:content="2023-07-28 00:00:00+02:00" itemprop='datePublished'/>
     <meta expr:content="2024-07-14 00:00:00+02:00" itemprop='dateModified'/>
@@ -68,7 +67,7 @@
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Implementing Reciprocal Rank Fusion (RRF) in Python"/>
-  <meta property="og:description" content="In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea …"/>
+  <meta property="og:description" content="X::[[borda_count_python]] In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/implementing-rank-fusion-in-python/"/>
   <meta property="og:type" content="article"/>
@@ -84,14 +83,14 @@
   <meta property="og:image" content="/images/profile_new.jpg">
 
     <meta name="twitter:card" content="summary"/>
+
     <meta property="twitter:image" content="/images/profile_new.jpg">
 
-    <meta name="twitter:label1" content="Est. reading time"/>
-    <meta name="twitter:data1" content="4 min."/>
-    <meta name="twitter:site" content="@izikeros"/>
-    <meta name="twitter:description" content=""/>
-    <meta name="twitter:title" content="Implementing Reciprocal Rank Fusion (RRF) in Python"/>
 
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="X::[[borda_count_python]] In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a..."/>
+    <meta name="twitter:title" content="Implementing Reciprocal Rank Fusion (RRF) in Python"/>
 
     <title>    Implementing Reciprocal Rank Fusion (RRF) in Python
 </title>
@@ -117,8 +116,6 @@
         </h1>
 
 <p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
-
-
 
 
         <ul class="social">
@@ -263,17 +260,6 @@
                 2023-07-28 
 
 
-
-                    <span id="post-share-links">
-    &nbsp;&nbsp;&nbsp;Share on:
-    <a href="https://twitter.com/intent/tweet?text=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&hashtags=rank-fusion,hybrid-search,rank,search,python" target="_blank" title="Share on Twitter">Twitter</a>
-    |
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/" target="_blank" title="Share on Facebook">Facebook</a>
-    |
-    <a href="https://news.ycombinator.com/submitlink?t=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/" target="_blank" title="Share on HackerNews">HackerNews</a>
-    |
-    <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&title=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python" target="_blank" title="Share via Reddit">Reddit</a>
-  </span>
                 <br/>
             </p>
             <h1 id="implementing-rank-fusion-in-python">Implementing Reciprocal Rank Fusion (RRF) in Python</h1>
@@ -285,10 +271,11 @@
 
 
         <div>
-            <p>In the <em>Information Retrieval</em>, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
+            <p>X::[[borda_count_python]]</p>
+<p>In the <em>Information Retrieval</em>, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.</p>
 <blockquote>
-<p>NOTE:  If you want to analyse rank changes over time in a visual manner, you might be interested in using <a href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/">RankFlow plot for retriever visual evaluation</a> package.</p>
+<p>NOTE:  If you want to analyse rank changes over time in a visual manner, you might be interested in using [[2024-06-07-rank_flow_for_retriever_visual_evaluation|rankflow]] package.</p>
 </blockquote>
 <h2>Understanding the RRF Ranking Process</h2>
 <p>The Reciprocal Rank Fusion (RRF) operates by collecting search outcomes from various strategies, assigning each document in the results a reciprocal rank score, and subsequently merging these scores to generate a new ranking. The underlying principle is that documents that consistently appear in top positions across diverse search strategies are likely more pertinent and should thus receive a higher rank in the consolidated result.</p>
@@ -298,12 +285,12 @@ Let's learn how to implement a simple rank fusion approach in Python.</p>
 <p><strong>Collect ranked search outcomes</strong> from multiple simultaneous queries. E.g. one query to semantic search and one query to text search.</p>
 </li>
 <li>
-<p><strong>Assign reciprocal rank scores to each result in the ranked lists.</strong> The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as <span class="math">\(1/(rank + k)\)</span>, where <span class="math">\(rank\)</span> is the document's position in the list, and <span class="math">\(k\)</span> is a constant.</p>
+<p><strong>Assign reciprocal rank scores to each result in the ranked lists.</strong> The RRF process generates a new search score for each match in each result set. For each document in the search results, the algorithm assigns a reciprocal rank score based on its position in the list. This score is computed as $1/(rank + k)$, where $rank$ is the document's position in the list, and $k$ is a constant.</p>
 </li>
 </ol>
 <blockquote>
 <p><strong>Choosing the k constant</strong>
-Empirical observation suggests that <span class="math">\(k\)</span> performs best when set to a small value, such as <code>60</code>. Note that this <span class="math">\(k\)</span> value is a constant in the RRF algorithm and is entirely distinct from the <code>k</code> that regulates the number of nearest neighbours.</p>
+Empirical observation suggests that $k$ performs best when set to a small value, such as <code>60</code>. Note that this $k$ value is a constant in the RRF algorithm and is entirely distinct from the <code>k</code> that regulates the number of nearest neighbours.</p>
 </blockquote>
 <ol>
 <li>
@@ -395,69 +382,7 @@ Empirical observation suggests that <span class="math">\(k\)</span> performs bes
 <li>2023-11-06: Added RRF description</li>
 <li>2023-11-06: Added optimized implementation</li>
 </ul>
-<p>X::<a href="https://www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/">Rank Fusion Algorithms - From Simple to Advanced</a></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+<p>X::[[rank_fusion_algorithms]]</p>
         </div>
 
 

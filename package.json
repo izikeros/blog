@@ -1,5 +1,35 @@
 {
-  "dependencies": {
+  "name": "flex",
+  "version": "2.3.0",
+  "description": "A minimalist Pelican theme",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "source venv/bin/activate && pip install pelican markdown && pelican -s tests/pelicanconf.py && deactivate",
+    "minify-js": "terser static/dark-theme/dark-theme.js -o static/dark-theme/dark-theme.min.js",
+    "copy-fontawesome": "copyfiles -u 1 node_modules/font-awesome/**/* static/font-awesome",
+    "minify-pygments": "cssnano static/pygments/*.css --base static/pygments/ --dir static/pygments/ --ext .min.css",
+    "build": "npm run minify-js && npm run copy-fontawesome && npm run minify-pygments"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izikeros/Flex.git"
+  },
+  "keywords": [
+    "pelican"
+  ],
+  "author": "Alexandre Vicenzi, Krystian Safjan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/izikeros/Flex/issues"
+  },
+  "homepage": "https://github.com/izikeros/Flex#readme",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "cssnano": "^2.1.3",
+    "terser": "^5.16.1",
     "mermaid.cli": "^0.5.1"
   }
 }
