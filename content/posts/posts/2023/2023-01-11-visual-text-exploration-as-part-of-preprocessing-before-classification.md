@@ -44,7 +44,7 @@ There are a variety of libraries and packages available for performing sentiment
 
 For example, using NLTK library, you can perform sentiment analysis using the `VaderSentimentIntensityAnalyzer` by creating an object of it and passing your text to the polarity_scores method, which returns a dictionary containing scores for each sentiment-negative, neutral and positive. With TextBlob, you can directly use the sentiment method, which returns a named tuple of form (polarity, subjectivity ) where polarity is a float within the range \[-1.0, 1.0\] and subjectivity is a float within the range \[0.0, 1.0\].
 
-It is important to note that sentiment analysis is a complex task and the results can be affected by the language and context of the text. However, with the right tools and techniques, sentiment analysis can be a powerful way to gain insights and identify patterns in text data.
+Note that sentiment analysis is a complex task and the results can be affected by the language and context of the text. However, with the right tools and techniques, sentiment analysis can be a powerful way to gain insights and identify patterns in text data.
 
 ## Textual Data Exploration with topic modeling
 
@@ -68,7 +68,7 @@ Visual text exploration is a powerful tool that can be used to gain insights and
 
 Visual text exploration allows us to detect patterns and identify trends that might not be immediately apparent from just reading through the data. Additionally, these techniques can also bring ideas for processing actions that need to be taken on the dataset.
 
-It is important to note that the techniques discussed in this post are just a starting point and there are many other tools and techniques that can be used for visual text exploration. Furthermore, the best approach will depend on the specific dataset and problem you are working on.
+Note that the techniques discussed in this post are just a starting point and there are many other tools and techniques that can be used for visual text exploration. Furthermore, the best approach will depend on the specific dataset and problem you are working on.
 
 I encourage readers to try out the tools and techniques covered in this post and to use them in their own text exploration projects. With the right tools and techniques, you can gain valuable insights and improve the performance of text classification models.
 

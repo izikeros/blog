@@ -36,5 +36,5 @@ In this on-demand webinar, Staff Software Engineer Justin Zhao, and ML Engineer 
 • How we fine-tuned open-source LLMs that rival GPT-4
 • How you can implement Parameter-Efficient Fine-Tuning (PEFT) methods like Low Rank Adaptation (LoRA)
 • Which tasks are best suited for fine-tuning based on our benchmarks
-• Which popular LLMs—namely Phi, Gemma, and Mistral—perform best and worst across tasks
+• Which popular LLMs - namely Phi, Gemma, and Mistral - perform best and worst across tasks
 • How we implemented an evaluation harness for fine-tuning at scale

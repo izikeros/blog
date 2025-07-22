@@ -16,17 +16,18 @@ There are a few widely used plotting libraries used in python projects: [matplot
 
 <!-- MarkdownTOC levels='2,3' autolink=True -->
 
-- [1. HoloViews](#1-holoviews)
-- [2. Bqplot](#2-bqplot)
+- [1. HoloViews ](#1-holoviews-)
+- [2. Bqplot ](#2-bqplot-)
 - [3. Plotnine](#3-plotnine)
-- [4. Geoplotlib](#4-geoplotlib)
-- [5. Pygal](#5-pygal)
-- [6. Vincent](#6-vincent)
+- [4. Geoplotlib ](#4-geoplotlib-)
+- [5. Pygal ](#5-pygal-)
+- [6. Vincent ](#6-vincent-)
 - [7. PyNGL](#7-pyngl)
-- [8. Ggplot](#8-ggplot)
-- [9. PyQtGraph](#9-pyqtgraph)
+- [8. Ggplot ](#8-ggplot-)
+- [9. PyQtGraph ](#9-pyqtgraph-)
 - [10. PyQwt](#10-pyqwt)
-- [Plotly Express](#plotly-express)
+- [11. Lets-plot](#11-lets-plot)
+- [Plotly Express ](#plotly-express-)
 
 <!-- /MarkdownTOC -->
 
@@ -36,8 +37,8 @@ There are a few widely used plotting libraries used in python projects: [matplot
 
 A library that makes it easy to create and interact with data visualizations in Python, using a high-level interface. The high-level interface refers to the library's ease of use and user-friendly design for creating and interacting with data visualizations in Python. This interface is designed to abstract away some of the complexities of the underlying plotting and data manipulation, making it simpler for users to create and customize their visualizations with minimal code.
 By default, HoloViews plots with Bokeh but has extensions for matplotlib and plotly.
-[Gallery — HoloViews v1.15.3](https://holoviews.org/gallery/index.html)
-[Reference Gallery — HoloViews v1.15.3](https://holoviews.org/reference/index.html)
+[Gallery - HoloViews v1.15.3](https://holoviews.org/gallery/index.html)
+[Reference Gallery - HoloViews v1.15.3](https://holoviews.org/reference/index.html)
 
 ### 2. [Bqplot](https://github.com/bqplot/bqplot) ![GitHub stars shield](https://img.shields.io/github/stars/bloomberg/bqplot.svg?logo=github)
 
@@ -57,7 +58,7 @@ It is built on top of other libraries such as pandas and matplotlib, it allow to
 
 In short, plotnine is a great library for creating powerful, flexible, and customizable data visualizations in Python and it is designed for those familiar with R ggplot2 package.
 
-[Gallery — plotnine 0.10.1 documentation](https://plotnine.readthedocs.io/en/stable/gallery.html)
+[Gallery - plotnine 0.10.1 documentation](https://plotnine.readthedocs.io/en/stable/gallery.html)
 
 ### 4. [Geoplotlib](https://github.com/andrea-cuttone/geoplotlib) ![GitHub stars shield](https://img.shields.io/github/stars/andrea-cuttone/geoplotlib.svg?logo=github)
 
@@ -76,7 +77,7 @@ The concept behind this library is:
 Vincent allows you to build Vega specifications in a Pythonic way and performs type-checking to help ensure that your specifications are correct. It also has a number of convenience chart-building methods that quickly turn Python data structures into Vega visualization grammar, enabling graphical exploration. It allows for quick iteration of visualization designs via getters and setters on grammar elements, and outputs the final visualization to JSON.
 
 Perhaps most importantly, Vincent has Pandas-Fu, and is built specifically to allow for quick plotting of DataFrames and Series.
-[Charts Library — Vincent 0.4 documentation](https://vincent.readthedocs.io/en/latest/charts_library.html)
+[Charts Library - Vincent 0.4 documentation](https://vincent.readthedocs.io/en/latest/charts_library.html)
 
 NOTE: The repository for vincent has been archived by the owner. It is now read-only. There is no active development ongoing on original repo.
 

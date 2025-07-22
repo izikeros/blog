@@ -83,7 +83,7 @@ Poetry's features complement the benefits of Cookiecutter, making it an ideal co
 
 ![github stars shield](https://img.shields.io/github/stars/cjolowicz/cookiecutter-hypermodern-python.svg?logo=github)
 
-[User Guide — Hypermodern Python Cookiecutter documentation](https://cookiecutter-hypermodern-python.readthedocs.io/en/2021.3.14/guide.html)
+[User Guide - Hypermodern Python Cookiecutter documentation](https://cookiecutter-hypermodern-python.readthedocs.io/en/2021.3.14/guide.html)
 
 - Packaging and dependency management with [Poetry](https://python-poetry.org/)
 - Test automation with [Nox](https://nox.thea.codes/)

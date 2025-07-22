@@ -11,7 +11,7 @@ banner: "/images/head/rankflow_plot_head.jpg"
 Summary: RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.
 summary2: Retrieval-Augmented Generation systems rely heavily on effective retrieval. Tracking rank changes across multiple re-ranking stages is crucial but challenging. Visual analysis tools like rankflow charts can help AI professionals gain rapid insights into retriever performance.
 summary3: The retriever is a critical component in RAG systems. Monitoring how document ranks shift across re-ranking phases provides valuable performance insights. We'll examine methods for tracking rank data and creating visual representations to streamline retriever analysis.
-summary4: Effective retrieval is the cornerstone of RAG system performance. Tracing document rank changes through multiple re-ranking stages can be daunting. This piece delves into techniques for gathering ranking data and generating visualizations to enhance retriever analysis.
+summary4: Effective retrieval is the cornerstone of RAG system performance. Tracing document rank changes through multiple re-ranking stages can be daunting. This piece look into techniques for gathering ranking data and generating visualizations to enhance retriever analysis.
 summary5: 1. RAG systems live and die by the quality of their retrieval. Understanding rank evolution across re-ranking steps is key but often difficult. We'll explore approaches for capturing rank data and creating visual tools to accelerate retriever optimization.
 prompt:
 status: published
@@ -20,6 +20,7 @@ status: published
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+- [TLDR](#tldr)
 - [Introduction and problem statement](#introduction-and-problem-statement)
 - [Inspiration - Rank flow visualization](#inspiration---rank-flow-visualization)
 - [Tracking the rank changes in your RAG](#tracking-the-rank-changes-in-your-rag)
@@ -260,5 +261,5 @@ With plotting options you have also some alternatives that you can use or take i
 
 - [How To Plot Bump Chart In R Finnstats - vrogue.co](https://www.vrogue.co/post/how-to-plot-bump-chart-in-r-finnstats)
 - [GitHub - kartikay-bagla/bump-plot-python](https://github.com/kartikay-bagla/bump-plot-python)
-- [Bumpy Charts — mplsoccer 1.2.4 documentation](https://mplsoccer.readthedocs.io/en/latest/gallery/bumpy_charts/plot_bumpy.html#sphx-glr-gallery-bumpy-charts-plot-bumpy-py)
+- [Bumpy Charts - mplsoccer 1.2.4 documentation](https://mplsoccer.readthedocs.io/en/latest/gallery/bumpy_charts/plot_bumpy.html#sphx-glr-gallery-bumpy-charts-plot-bumpy-py)
 - [Jupyter Notebook Viewer](https://nbviewer.org/gist/pascal-schetelat/8382651)

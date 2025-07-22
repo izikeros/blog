@@ -46,7 +46,7 @@ Note that the above instructions are a general guide and you should check the sp
 
 **References:**
 
-- [4.2. Permutation feature importance — scikit-learn 1.3.2 documentation](https://scikit-learn.org/stable/modules/permutation_importance.html)
+- [4.2. Permutation feature importance - scikit-learn 1.3.2 documentation](https://scikit-learn.org/stable/modules/permutation_importance.html)
 - [GitHub - shap/shap: A game theoretic approach to explain the output of any machine learning model.](https://github.com/slundberg/shap)
 - [GitHub - SauceCat/PDPbox: python partial dependence plot toolbox](https://github.com/SauceCat/PDPbox)
 - [GitHub - andosa/treeinterpreter](https://github.com/andosa/treeinterpreter)

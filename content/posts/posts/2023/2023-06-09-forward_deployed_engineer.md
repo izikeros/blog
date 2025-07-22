@@ -19,16 +19,17 @@ A Forward Deployed Engineer (FDE) is a versatile software engineer who works clo
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+- [TL;DR](#tldr)
 - [Introduction](#introduction)
 - [Understanding the Role of FDEs](#understanding-the-role-of-fdes)
- 	- [Collaboration with Engineering](#collaboration-with-engineering)
- 	- [Partnership with Product Teams](#partnership-with-product-teams)
- 	- [Support for Revenue Growth](#support-for-revenue-growth)
- 	- [Leadership in Customer Success](#leadership-in-customer-success)
+	- [Collaboration with Engineering](#collaboration-with-engineering)
+	- [Partnership with Product Teams](#partnership-with-product-teams)
+	- [Support for Revenue Growth](#support-for-revenue-growth)
+	- [Leadership in Customer Success](#leadership-in-customer-success)
 - [Why Forward Deployed Engineers are in High Demand?](#why-forward-deployed-engineers-are-in-high-demand)
- 	- [Technical Expertise and Customer Focus](#technical-expertise-and-customer-focus)
- 	- [Agile Problem Solvers](#agile-problem-solvers)
- 	- [Product Intuition](#product-intuition)
+	- [Technical Expertise and Customer Focus](#technical-expertise-and-customer-focus)
+	- [Agile Problem Solvers](#agile-problem-solvers)
+	- [Product Intuition](#product-intuition)
 - [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->
@@ -37,7 +38,7 @@ A Forward Deployed Engineer (FDE) is a versatile software engineer who works clo
 
 ## Introduction
 
-In enterprise software, there is an increasing demand for versatile engineers who can seamlessly integrate complex products into customers' specific implementation needs. This demand has given rise to the role of Forward Deployed Engineer (FDE). FDEs play a crucial role in ensuring successful technical integration and ongoing product deployment, acting as a bridge between the product suite and the unique requirements of each customer. This blog post will delve into the responsibilities of FDEs and shed light on why this role is in high demand.
+In enterprise software, there is an increasing demand for versatile engineers who can seamlessly integrate complex products into customers' specific implementation needs. This demand has given rise to the role of Forward Deployed Engineer (FDE). FDEs play a crucial role in ensuring successful technical integration and ongoing product deployment, acting as a bridge between the product suite and the unique requirements of each customer. This blog post will look into the responsibilities of FDEs and shed light on why this role is in high demand.
 
 <a id="understanding-the-role-of-fdes"></a>
 
@@ -125,7 +126,7 @@ The increasing complexity of enterprise software products and the variability in
 
 ### Technical Expertise and Customer Focus
 
-FDEs possess a unique mix of technical skills and customer-centricity. They understand the intricacies of the product and can effectively communicate its value to both technical and non-technical stakeholders. Their ability to bridge the gap between engineering and customer needs is invaluable in ensuring successful deployments.
+FDEs possess a unique mix of technical skills and customer-centricity. They understand the details of the product and can effectively communicate its value to both technical and non-technical stakeholders. Their ability to bridge the gap between engineering and customer needs is invaluable in ensuring successful deployments.
 
 <a id="agile-problem-solvers"></a>
 

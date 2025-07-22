@@ -16,25 +16,26 @@ prompt: null
 
 ## Introduction
 
-In today's fast-paced and ever-evolving business landscape, organizations are constantly seeking efficient project management methodologies to enhance productivity and streamline workflows. One such approach that has gained significant popularity is the Kanban method. Kanban, originating from the Japanese word for "billboard" or "visual card," is a visual project management system that allows teams to track and manage work effectively. In this comprehensive guide, we will delve into the intricacies of the Kanban method, explore the proper utilization of Kanban boards, and reveal lesser-known tips and tricks to maximize their potential.
+In today's fast-paced and ever-evolving business landscape, organizations are constantly seeking efficient project management methodologies to enhance productivity and streamline workflows. One such approach that has gained significant popularity is the Kanban method. Kanban, originating from the Japanese word for "billboard" or "visual card," is a visual project management system that allows teams to track and manage work effectively. In this comprehensive guide, we will look into the specificity of the Kanban method, explore the proper utilization of Kanban boards, and reveal lesser-known tips and tricks to maximize their potential.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+- [Introduction](#introduction)
 - [Understanding the Kanban Method Principles](#understanding-the-kanban-method-principles)
- 	- [Visualize Your Workflow](#visualize-your-workflow)
- 	- [Limit Work in Progress \(WIP\)](#limit-work-in-progress-wip)
- 	- [Collaborate and Encourage Flow](#collaborate-and-encourage-flow)
- 	- [Continuously Improve](#continuously-improve)
+	- [Visualize Your Workflow](#visualize-your-workflow)
+	- [Limit Work in Progress (WIP)](#limit-work-in-progress-wip)
+	- [Collaborate and Encourage Flow](#collaborate-and-encourage-flow)
+	- [Continuously Improve](#continuously-improve)
 - [Avoiding Common Mistakes](#avoiding-common-mistakes)
- 	- [Neglecting WIP Limits](#neglecting-wip-limits)
- 	- [Lack of Clarity and Standardization](#lack-of-clarity-and-standardization)
- 	- [Failure to Prioritize and Swarm](#failure-to-prioritize-and-swarm)
- 	- [Lack of Continuous Improvement](#lack-of-continuous-improvement)
+	- [Neglecting WIP Limits](#neglecting-wip-limits)
+	- [Lack of Clarity and Standardization](#lack-of-clarity-and-standardization)
+	- [Failure to Prioritize and Swarm](#failure-to-prioritize-and-swarm)
+	- [Lack of Continuous Improvement](#lack-of-continuous-improvement)
 - [Unveiling Lesser-Known Tips and Tricks](#unveiling-lesser-known-tips-and-tricks)
- 	- [Class of Service](#class-of-service)
- 	- [Visualizing Blocked Tasks](#visualizing-blocked-tasks)
- 	- [Kanban Swimlanes](#kanban-swimlanes)
- 	- [Implementing Agile Practices](#implementing-agile-practices)
+	- [Class of Service](#class-of-service)
+	- [Visualizing Blocked Tasks](#visualizing-blocked-tasks)
+	- [Kanban Swimlanes](#kanban-swimlanes)
+	- [Implementing Agile Practices](#implementing-agile-practices)
 - [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->

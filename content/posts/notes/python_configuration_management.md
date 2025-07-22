@@ -17,10 +17,14 @@ One of the key aspects of any Python project is managing configurations, which c
 - [decouple](#decouple)
 - [omegaconf](#omegaconf)
 - [Upsilonconf](#upsilonconf)
-- [ml_collections](#ml_collections)
+- [ml\_collections](#ml_collections)
   - [Features](#features)
-  - [Basic Usage of ml_collections](#basic-usage-of-ml_collections)
+  - [Basic Usage of ml\_collections](#basic-usage-of-ml_collections)
 - [Pydantic](#pydantic)
+- [Honorable mentions](#honorable-mentions)
+  - [Dynaconf](#dynaconf)
+  - [ConfigParser](#configparser)
+  - [Cerberus](#cerberus)
 
 <!-- /MarkdownTOC -->
 
@@ -129,7 +133,7 @@ From: package description on pypi
 
  > OmegaConf is also the backbone for the more advanced [Hydra](https://hydra.cc/) framework.
 
-Documentation v2.2: [Installation — OmegaConf 2.2.4.dev0 documentation](https://omegaconf.readthedocs.io/en/2.2_branch/usage.html)
+Documentation v2.2: [Installation - OmegaConf 2.2.4.dev0 documentation](https://omegaconf.readthedocs.io/en/2.2_branch/usage.html)
 
 <a id="upsilonconf"></a>
 

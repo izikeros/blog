@@ -26,7 +26,7 @@ citation_needed: false
 - [TradzQAI](#tradzqai)
 - [Stock Analysis Engine](#stock-analysis-engine)
 - [BTGym](#btgym)
-- [BakTst_Org](#baktst_org)
+- [BakTst\_Org](#baktst_org)
 - [Stock-Portfolio-Backtester](#stock-portfolio-backtester)
 - [QSTrader](#qstrader)
 - [gemini](#gemini)
@@ -49,7 +49,7 @@ This article describes lesser-known python libraries/scripts that can be used fo
 
 To recognise potential of this tool look at the [quick example](https://pmorissette.github.io/bt/#a-quick-example) provided by authors
 The one of the interesting things that this library offers is [**tree structure of strategies**](https://pmorissette.github.io/bt/tree.html) - support for creative combining strategies.
-The other reading focuses of composing optimal portfolio: [Flexible Backtesting with BT. Introducing bt — the open-sourced… | by Richard L | Medium](https://medium.com/@richardhwlin/flexible-backtesting-with-bt-7295c0dde5dd)
+The other reading focuses of composing optimal portfolio: [Flexible Backtesting with BT. Introducing bt - the open-sourced… | by Richard L | Medium](https://medium.com/@richardhwlin/flexible-backtesting-with-bt-7295c0dde5dd)
 **NOTE**: at the time of writing, Bt is in alpha stage
 <a id="autotrader"></a>
 

@@ -19,10 +19,12 @@ up::[[MOC_Generative_AI]]
 
 ## Contents
 
-- [Speculating on New Cognitive Skills in Humans using Large Language Models and Advanced AI Generative Models](#speculating-on-new-cognitive-skills-in-humans-using-large-language-models-and-advanced-ai-generative-models)
- 	- [Ability to process and understand complex information at an accelerated rate](#ability-to-process-and-understand-complex-information-at-an-accelerated-rate)
- 	- [Enhanced ability to think creatively and solve complex problems](#enhanced-ability-to-think-creatively-and-solve-complex-problems)
- 	- [Ability to multitasking and manage multiple streams of information at once](#ability-to-multitasking-and-manage-multiple-streams-of-information-at-once)
+- [Contents](#contents)
+- [Speculating on New Cognitive Skills in Humans Using Large Language Models and Advanced AI Generative Models](#speculating-on-new-cognitive-skills-in-humans-using-large-language-models-and-advanced-ai-generative-models)
+	- [Ability to process and understand complex information at an accelerated rate](#ability-to-process-and-understand-complex-information-at-an-accelerated-rate)
+	- [Enhanced ability to think creatively and solve complex problems](#enhanced-ability-to-think-creatively-and-solve-complex-problems)
+		- [Recommendation](#recommendation)
+	- [Ability to multitasking and manage multiple streams of information at once](#ability-to-multitasking-and-manage-multiple-streams-of-information-at-once)
 - [Summary](#summary)
 
 <!-- /MarkdownTOC -->
@@ -87,7 +89,7 @@ It is also possible that heavy users of these models may develop an increased ab
 
 ## Summary
 
-However, it is important to note that while these potential cognitive skills are exciting to consider, they are purely speculative at this point. Further research is needed to determine the actual impact of these technologies on human cognitive skills and to understand the full range of new cognitive skills that may emerge as a result of their use. Nevertheless, the possibilities are exciting and highlight the potential for these technologies to greatly enhance our mental and cognitive capabilities in ways that we have yet to fully understand or imagine.
+However, note that while these potential cognitive skills are exciting to consider, they are purely speculative at this point. Further research is needed to determine the actual impact of these technologies on human cognitive skills and to understand the full range of new cognitive skills that may emerge as a result of their use. Nevertheless, the possibilities are exciting and highlight the potential for these technologies to greatly enhance our mental and cognitive capabilities in ways that we have yet to fully understand or imagine.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 

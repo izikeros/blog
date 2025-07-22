@@ -336,6 +336,6 @@ Don't jump to complex graph databases when simpler solutions might suffice. Thes
 - paper [\[2305.14485\] Knowledge Graphs Querying](https://arxiv.org/abs/2305.14485)
 - similarar attempt as in this article to build and query knowledge graph: [Querying using simple knowledge graphs \| by Vishnu Nandakumar \| Analytics Vidhya \| Medium](https://medium.com/analytics-vidhya/querying-using-simple-knowledge-graphs-abeb13d05e48)
 - [GraphRAG](https://memgraph.com/docs/ai-ecosystem/graph-rag)
-- [CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface — CogniPy 1.0.0 documentation](https://cognipy.org/) - In-memory Graph Database and Knowledge Graph with Natural Language Interface
+- [CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface - CogniPy 1.0.0 documentation](https://cognipy.org/) - In-memory Graph Database and Knowledge Graph with Natural Language Interface
 - not necessarily small and simple solutions: [Title Unavailable \| Site Unreachable](https://www.puppygraph.com/blog/best-graph-databases)
 

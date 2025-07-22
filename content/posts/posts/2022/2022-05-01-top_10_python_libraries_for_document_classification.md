@@ -27,6 +27,7 @@ Document classification is the task of assigning a document to one or more prede
 - [8. FastText](#8-fasttext)
 - [9. PyText](#9-pytext)
 - [10. TextBlob](#10-textblob)
+- [Summary](#summary)
 - [Other tools](#other-tools)
 
 <!-- /MarkdownTOC -->
@@ -43,10 +44,10 @@ GitHub: <https://github.com/scikit-learn/scikit-learn>
 
 **References:**
 
-- [Working With Text Data — scikit-learn 1.2.1 documentation](https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html)
+- [Working With Text Data - scikit-learn 1.2.1 documentation](https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html)
 - [Machine Learning, NLP: Text Classification using scikit-learn, python and NLTK. | by Javed Shaikh | Towards Data Science](https://towardsdatascience.com/machine-learning-nlp-text-classification-using-scikit-learn-python-and-nltk-c52b92a7c73a)
 - [Text Classification with Python and Scikit-Learn](https://stackabuse.com/text-classification-with-python-and-scikit-learn/)
-- [Classification of text documents using sparse features — scikit-learn 1.2.1 documentation](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html)
+- [Classification of text documents using sparse features - scikit-learn 1.2.1 documentation](https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html)
 - [Text Classification Using Python and Scikit-learn](https://dylancastillo.co/text-classification-using-python-and-scikit-learn/)
 - [Text Classification with sklearn - Sanjaya’s Blog](https://sanjayasubedi.com.np/machinelearning/nlp/text-classification-with-sklearn/)
 
@@ -115,7 +116,7 @@ GitHub: <https://github.com/pytorch/pytorch>
 
 **References:**
 
-- [Text classification with the torchtext library — PyTorch Tutorials 1.13.1+cu117 documentation](https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html)
+- [Text classification with the torchtext library - PyTorch Tutorials 1.13.1+cu117 documentation](https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html)
 - [Text Classification with LSTMs in PyTorch | by Fernando López | Towards Data Science](https://towardsdatascience.com/text-classification-with-pytorch-7111dae111a6)
 - [Site Unreachable](https://www.analyticsvidhya.com/blog/2020/01/first-text-classification-in-pytorch/)
 - [Text Classification with BERT in PyTorch | by Ruben Winastwan | Towards Data Science](https://towardsdatascience.com/text-classification-with-bert-in-pytorch-887965e5820f)
@@ -190,8 +191,8 @@ GitHub: <https://github.com/facebookresearch/pytext>
 **References:**
 
 - [Text/Document Classification using PyText | by Jay Rodge | Medium](https://medium.com/@jayrodge/text-document-classification-using-pytext-ca7e1c380d5f)
-- [Train your first model — PyText documentation](https://pytext.readthedocs.io/en/master/train_your_first_model.html)
-- [PyText Documentation — PyText documentation](https://pytext.readthedocs.io/en/master/)
+- [Train your first model - PyText documentation](https://pytext.readthedocs.io/en/master/train_your_first_model.html)
+- [PyText Documentation - PyText documentation](https://pytext.readthedocs.io/en/master/)
 
 <a id="10-textblob"></a>
 
@@ -207,7 +208,7 @@ GitHub: <https://github.com/sloria/TextBlob>
 
 **References:**
 
-- [Tutorial: Building a Text Classification System — TextBlob 0.16.0 documentation](https://textblob.readthedocs.io/en/dev/classifiers.html)
+- [Tutorial: Building a Text Classification System - TextBlob 0.16.0 documentation](https://textblob.readthedocs.io/en/dev/classifiers.html)
 - [Site Unreachable](https://www.analyticsvidhya.com/blog/2018/02/natural-language-processing-for-beginners-using-textblob/)
 - [Tutorial: Simple Text Classification with Python and TextBlob | stevenloria.com](https://stevenloria.com/simple-text-classification/)
 - [Naive bayesian text classifier using textblob and python - Learn Steps](https://www.learnsteps.com/naive-bayesian-text-classifier-using-textblob-python/)

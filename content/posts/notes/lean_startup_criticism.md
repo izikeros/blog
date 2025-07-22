@@ -19,7 +19,7 @@ The Lean Startup method, popularized by Eric Ries, emphasizes a systematic and i
 
 However, there are some criticisms and challenges associated with the Lean Startup method, including:
 
-1. **Oversimplification**: Critics argue that the Lean Startup method can sometimes oversimplify the complexity of building a successful business. While it encourages rapid experimentation, it may not address all the intricacies and industry-specific nuances that startups may encounter.
+1. **Oversimplification**: Critics argue that the Lean Startup method can sometimes oversimplify the complexity of building a successful business. While it encourages rapid experimentation, it may not address all the details and industry-specific nuances that startups may encounter.
 
 2. **Overemphasis on MVP (Minimum Viable Product)**: Some argue that an overemphasis on building MVPs can lead to premature scaling or neglecting long-term vision and product quality. In some industries, especially those requiring substantial upfront investment or regulatory compliance, an MVP might not be appropriate.
 

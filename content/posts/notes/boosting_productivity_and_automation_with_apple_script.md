@@ -14,20 +14,22 @@ In today's fast-paced digital world, maximizing productivity and finding ways to
 
 <!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
 
-- [Getting Started with AppleScript](#getting-started-with-applescript)
-- [Increasing Productivity with AppleScript](#increasing-productivity-with-applescript)
- 	- [Customized Workflow](#customized-workflow)
- 	- [Application Control](#application-control)
- 	- [System Automation](#system-automation)
-- [Cool Tricks with AppleScript](#cool-tricks-with-applescript)
- 	- [Displaying Notifications](#displaying-notifications)
- 	- [Text Manipulation](#text-manipulation)
- 	- [GUI Automation](#gui-automation)
-- [Alternatives to AppleScript](#alternatives-to-applescript)
- 	- [Automator](#automator)
- 	- [Hammerspoon](#hammerspoon)
- 	- [Keyboard Maestro](#keyboard-maestro)
+- [Introduction](#introduction)
+  - [Getting Started with AppleScript](#getting-started-with-applescript)
+  - [Increasing Productivity with AppleScript](#increasing-productivity-with-applescript)
+    - [Customized Workflow](#customized-workflow)
+    - [Application Control](#application-control)
+    - [System Automation](#system-automation)
+  - [Cool Tricks with AppleScript](#cool-tricks-with-applescript)
+    - [Displaying Notifications](#displaying-notifications)
+    - [Text Manipulation](#text-manipulation)
+    - [GUI Automation](#gui-automation)
+  - [Alternatives to AppleScript](#alternatives-to-applescript)
+    - [Automator](#automator)
+    - [Hammerspoon](#hammerspoon)
+    - [Keyboard Maestro](#keyboard-maestro)
 - [Conclusion](#conclusion)
+- [References](#references)
 
 <!-- /MarkdownTOC -->
 
@@ -122,7 +124,7 @@ end tell
 
 #### System Automation
 
-AppleScript allows you to control system settings and perform actions like changing the display resolution, adjusting volume, or toggling Wi-Fi—all with a single script.
+AppleScript allows you to control system settings and perform actions like changing the display resolution, adjusting volume, or toggling Wi-Fi - all with a single script.
 
 >Example Script 3: Adjusting Display Brightness
 

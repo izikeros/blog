@@ -6,7 +6,7 @@ Modified: '2023-06-05'
 Slug: the-best-vector-databases-for-storing-embeddings
 Start: '2023-06-05'
 Status: published
-Summary: Delve into the World of Vector Databases Fueling NLP's Transformative Journey.
+Summary: Look into the World of Vector Databases Fueling NLP's Transformative Journey.
 Tags: machine-learning, python, embeddings, vectordb, database, transformers, chroma, langchain, pinecone, haystack, faiss, milvus, pgvector, supabase, qdrant, vespa, weaviate, deeplake, vectorstore
 Title: The Best Vector Databases for Storing Embeddings
 banner: "/images/head/vectordb.jpg"
@@ -25,28 +25,33 @@ This article explores the best vector databases available, their unique features
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+- [Best Vector Databases for Storing Embeddings in NLP](#best-vector-databases-for-storing-embeddings-in-nlp)
 - [TLDR](#tldr)
 - [What vector databases are, and why there is demand for them?](#what-vector-databases-are-and-why-there-is-demand-for-them)
 - [Understanding tradeoffs and identifying the specific requirements to choose the best tool](#understanding-tradeoffs-and-identifying-the-specific-requirements-to-choose-the-best-tool)
 - [Vector databases](#vector-databases)
- 	- [Chroma](#chroma)
- 	- [Haystack by DeepsetAI](#haystack-by-deepsetai)
- 	- [Faiss by Facebook](#faiss-by-facebook)
- 	- [Milvus](#milvus)
- 	- [pgvector](#pgvector)
- 	- [Pinecone](#pinecone)
- 	- [Supabase](#supabase)
- 	- [Qdrant](#qdrant)
- 	- [Vespa](#vespa)
- 	- [Weaviate](#weaviate)
- 	- [DeepLake](#deeplake)
- 	- [VectorStore from LangChain](#vectorstore-from-langchain)
- 	- [Other Relevant Vector Databases](#other-relevant-vector-databases)
+	- [Chroma](#chroma)
+	- [Haystack by DeepsetAI](#haystack-by-deepsetai)
+	- [Faiss by Facebook](#faiss-by-facebook)
+	- [Milvus](#milvus)
+	- [pgvector](#pgvector)
+	- [Pinecone](#pinecone)
+	- [Supabase](#supabase)
+	- [Qdrant](#qdrant)
+	- [Vespa](#vespa)
+	- [Weaviate](#weaviate)
+	- [DeepLake](#deeplake)
+	- [VectorStore from LangChain](#vectorstore-from-langchain)
+	- [Other Relevant Vector Databases](#other-relevant-vector-databases)
+		- [Annoy](#annoy)
+		- [Elasticsearch](#elasticsearch)
+		- [Hnswlib](#hnswlib)
+		- [NMSLIB](#nmslib)
 - [Tabular summary of the features](#tabular-summary-of-the-features)
 - [Recommendations](#recommendations)
- 	- [Easy Start and User-Friendliness - good for PoC](#easy-start-and-user-friendliness---good-for-poc)
- 	- [Advanced Capabilities and Performance](#advanced-capabilities-and-performance)
- 	- [Customization and Advanced Use Cases](#customization-and-advanced-use-cases)
+	- [Easy Start and User-Friendliness - good for PoC](#easy-start-and-user-friendliness---good-for-poc)
+	- [Advanced Capabilities and Performance](#advanced-capabilities-and-performance)
+	- [Customization and Advanced Use Cases](#customization-and-advanced-use-cases)
 - [Related reading](#related-reading)
 
 <!-- /MarkdownTOC -->

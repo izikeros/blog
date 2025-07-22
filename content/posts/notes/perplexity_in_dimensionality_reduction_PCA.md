@@ -13,7 +13,7 @@ X::[[2023-04-18-measure_quality_of_embeddings]]
 
 Perplexity is a measure commonly used in machine learning, particularly in the field of dimensionality reduction techniques such as Principal Component Analysis (PCA). It provides a way to evaluate and compare the quality of dimensionality reduction algorithms by quantifying how well they preserve the structure of the original data.
 
-In this blog post, we will delve into the concept of perplexity, its application in PCA, and its importance in assessing the performance of dimensionality reduction methods. We will also provide code examples in Python to demonstrate its practical implementation.
+In this blog post, we will look into the concept of perplexity, its application in PCA, and its importance in assessing the performance of dimensionality reduction methods. We will also provide code examples in Python to demonstrate its practical implementation.
 
 ## Understanding Perplexity
 

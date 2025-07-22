@@ -8,7 +8,7 @@ tags: llm, information-retrieval, rag, re-ranking, semantic-search, llm-techniqu
 Category: note
 ---
 
-In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique known as Retrieval Augmented Generation (RAG) is gaining prominence. This technique is designed to enhance a user's input by incorporating additional information from an external source. This supplementary data is then leveraged by the LLM to enrich the response it generates. In this blog post, we will delve deeper into the core concept of RAG-fusion, which revolves around multiple query generation and re-ranking of results. For other methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].
+In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique known as Retrieval Augmented Generation (RAG) is gaining prominence. This technique is designed to enhance a user's input by incorporating additional information from an external source. This supplementary data is then leveraged by the LLM to enrich the response it generates. In this blog post, we will look deeper into the core concept of RAG-fusion, which revolves around multiple query generation and re-ranking of results. For other methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].
 
 ## What is RAG-fusion?
 

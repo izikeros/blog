@@ -80,7 +80,7 @@ This will add the parent directory as a permanent path to python's sys.path list
 > - blank lines and lines beginning with `#` are skipped.
 > - lines starting with `import` (followed by space or tab) are executed.
 
-See the official Python documentation:  [site — Site-specific configuration hook — Python 3.12.3 documentation](https://docs.python.org/3/library/site.html)
+See the official Python documentation:  [site - Site-specific configuration hook - Python 3.12.3 documentation](https://docs.python.org/3/library/site.html)
 
 <a id="using-pathlib"></a>
 

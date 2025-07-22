@@ -10,17 +10,17 @@ Title: What Are the Most Popular Private Services That People Decide to Self-Hos
 
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
-- [Popular self-hosted services for private \(or family\) usage](#popular-self-hosted-services-for-private-or-family-usage)
- 	- [File servers](#file-servers)
- 	- [Media servers](#media-servers)
+- [Popular self-hosted services for private (or family) usage](#popular-self-hosted-services-for-private-or-family-usage)
+	- [File servers](#file-servers)
+	- [Media servers](#media-servers)
 - [Home automation](#home-automation)
- 	- [Backup services](#backup-services)
- 	- [VPN servers](#vpn-servers)
+	- [Backup services](#backup-services)
+	- [VPN servers](#vpn-servers)
 - [Services that getting popularity for self-hosting](#services-that-getting-popularity-for-self-hosting)
- 	- [Personal Finance](#personal-finance)
- 	- [Personal CRM](#personal-crm)
- 	- [Personal Knowledge Management](#personal-knowledge-management)
- 	- [Personal Health Management](#personal-health-management)
+	- [Personal Finance](#personal-finance)
+	- [Personal CRM](#personal-crm)
+	- [Personal Knowledge Management](#personal-knowledge-management)
+	- [Personal Health Management](#personal-health-management)
 - [What devices can be used for self-hosting of private services?](#what-devices-can-be-used-for-self-hosting-of-private-services)
 
 <!-- /MarkdownTOC -->
@@ -61,7 +61,7 @@ such as [Bacula](http://www.bacula.org/) or [Duplicati](https://www.duplicati.co
 
 such as [OpenVPN](https://openvpn.net/) or [WireGuard](https://www.wireguard.com/), for creating a virtual private network that can be accessed from anywhere. These services allow users to encrypt their internet connection and access their home network from remote locations.
 
-It is important to note that self-hosting can require a certain level of technical expertise and ongoing maintenance.
+Note that self-hosting can require a certain level of technical expertise and ongoing maintenance.
 
 <a id="services-that-getting-popularity-for-self-hosting"></a>
 

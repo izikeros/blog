@@ -45,7 +45,7 @@ Term expansion allows us to identify relevant but different terms and use them i
 
 The most significant advantage of SPLADE is not necessarily that it can _do_ term expansion but instead that it can _learn_ term expansions. Traditional methods required rule-based term expansion which is time-consuming _and_ fundamentally limited. Whereas SPLADE can use the best language models to learn term expansions and even tweak them based on the sentence context.
 
-The article also discusses the pros and cons of sparse and dense vectors, the concept of two-stage retrieval, and the drawbacks of this approach. It then delves into the workings of SPLADE, explaining how it builds sparse embeddings and how it can be implemented using Hugging Face and PyTorch or the official SPLADE library.
+The article also discusses the pros and cons of sparse and dense vectors, the concept of two-stage retrieval, and the drawbacks of this approach. It then looks into the workings of SPLADE, explaining how it builds sparse embeddings and how it can be implemented using Hugging Face and PyTorch or the official SPLADE library.
 
 The article concludes by acknowledging the **limitations of SPLADE**, such as its **slower retrieval speed compared to other sparse methods**, and suggests solutions to these problems. It also highlights the potential of mixing both dense and sparse representations using hybrid search indexes to make vector search more accurate and accessible.
 

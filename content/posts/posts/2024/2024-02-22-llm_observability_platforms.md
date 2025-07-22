@@ -8,7 +8,7 @@ tags: observability, mlops, llmops, llm, monitoring, model-monitoring, prompt-ma
 Category: Generative AI
 Image: /images/head/observability_998_cr_640px.jpg
 banner: "/images/head/observability_998_cr_640px.jpg"
-Summary: Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article delves into the critical aspects of LLM Observability in the realm of generative AI.
+Summary: Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article looks into the critical aspects of LLM Observability in the realm of generative AI.
 Status: published
 prompt:
 ---
@@ -34,6 +34,7 @@ AI is transforming the world, and one area where it has made significant strides
 - [What is LLM Observability?](#what-is-llm-observability)
 - [Expected Functionalities of an LLM Observability Solution](#expected-functionalities-of-an-llm-observability-solution)
 - [Open Source LLM Observability Tools and Platforms](#open-source-llm-observability-tools-and-platforms)
+- [Non-open source](#non-open-source)
 - [Other - related](#other---related)
 - [References](#references)
 
@@ -108,7 +109,7 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 
 ## References
 
-- [LLM Monitoring and Observability — A Summary of Techniques and Approaches for Responsible AI | by Josh Poduska | Towards Data Science](https://towardsdatascience.com/llm-monitoring-and-observability-c28121e75c2f)
+- [LLM Monitoring and Observability - A Summary of Techniques and Approaches for Responsible AI | by Josh Poduska | Towards Data Science](https://towardsdatascience.com/llm-monitoring-and-observability-c28121e75c2f)
 - [Monitoring LLMs: Metrics, challenges, & hallucinations](https://www.aporia.com/learn/how-to-monitor-large-language-models/)
 - [mattcvincent/intro-_llm_-_observability_](https://github.com/mattcvincent/intro-llm-observability) - Intro to LLM Observability
 - [Demystifying Perplexity: An AI Expert‘s Comprehensive Guide - 33rd Square](https://www.33rdsquare.com/what-is-perplexity-ai/)

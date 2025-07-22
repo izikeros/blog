@@ -15,25 +15,27 @@ prompt: null
 ## TLDR
 
 The **original SHAP does not scale well** with high dimensions data due to its exponential complexity associated with Shapley value calculations. KernelSHAP and TreeSHAP are two specific implementations of the SHAP method, developed to address the shortcomings of the original framework and to optimize it for different types of machine learning models, but they achieve this in different ways.
-**KernelSHAP** uses a model-agnostic method to interpret the impact of features in a model. This means it can provide explanations **for any model** but **at the cost of computational efficiency**, making it **less suitable for complex**, high-dimensional situations or when real-time explanations are needed. In contrast, **TreeSHAP** is designed specifically **for tree-based models** (like decision tree and random forests, or boosting machines). It is **computationally efficient**, exploits the tree structure for **faster calculations**, and thus, can handle **more complex scenarios**. Moreover, TreeSHAP guarantees consistency—a helpful property for feature attribution methods to ensure that if a model relies more on a feature, the attributed importance of that feature should not decrease. However, it can't be used for non-tree models.
+**KernelSHAP** uses a model-agnostic method to interpret the impact of features in a model. This means it can provide explanations **for any model** but **at the cost of computational efficiency**, making it **less suitable for complex**, high-dimensional situations or when real-time explanations are needed. In contrast, **TreeSHAP** is designed specifically **for tree-based models** (like decision tree and random forests, or boosting machines). It is **computationally efficient**, exploits the tree structure for **faster calculations**, and thus, can handle **more complex scenarios**. Moreover, TreeSHAP guarantees consistency - a helpful property for feature attribution methods to ensure that if a model relies more on a feature, the attributed importance of that feature should not decrease. However, it can't be used for non-tree models.
 
 ## Introduction
   
 Responsible AI is an approach to artificial intelligence that ensures fairness, transparency, and accountability in the development, deployment, and management of AI systems. In the era of increasing reliance on AI-driven decision-making, understanding and explaining the predictions made by these models is essential. The interpretability of AI models helps build trust, enables better decision-making, and allows us to mitigate biases.
   
-Two popular methods for explaining AI models are KernelShap and TreeShap. These techniques are part of the SHAP (SHapley Additive exPlanations) family, which is based on cooperative game theory. In this blog post, we will delve into the details of KernelShap and TreeShap, exploring their underlying principles, advantages, and use cases.
+Two popular methods for explaining AI models are KernelShap and TreeShap. These techniques are part of the SHAP (SHapley Additive exPlanations) family, which is based on cooperative game theory. In this blog post, we will look into the details of KernelShap and TreeShap, exploring their underlying principles, advantages, and use cases.
 
 > **SHAP (SHapley Additive exPlanations)** is a game theoretic approach to explain the output of any machine learning model. It connects optimal credit allocation with local explanations using the classic Shapley values from game theory and their related extensions (see [papers](https://github.com/shap/shap#citations) for details and citations).
 > *(from [SHAP documentation](https://shap.readthedocs.io/en/latest/index.html))*
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
+- [TLDR](#tldr)
+- [Introduction](#introduction)
 - [KernelShap](#kernelshap)
- 	- [Steps](#steps)
- 	- [KernelShap advantages and limitations](#kernelshap-advantages-and-limitations)
+	- [Steps](#steps)
+	- [KernelShap advantages and limitations](#kernelshap-advantages-and-limitations)
 - [TreeShap](#treeshap)
- 	- [Steps](#steps-1)
- 	- [TreeShap advantages and limitations](#treeshap-advantages-and-limitations)
+	- [Steps](#steps-1)
+	- [TreeShap advantages and limitations](#treeshap-advantages-and-limitations)
 - [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->

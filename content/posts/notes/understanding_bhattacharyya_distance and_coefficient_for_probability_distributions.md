@@ -10,16 +10,17 @@ Title: Understanding Bhattacharyya Distance and Coefficient for Probability Dist
 
 # Introduction
 
-In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the [Bhattacharyya distance](https://en.wikipedia.org/wiki/Bhattacharyya_distance), which quantifies the dissimilarity between two distributions. The Bhattacharyya coefficient, on the other hand, provides a measure of the overlap between two statistical samples or populations. In this blog post, we will delve into the concepts of Bhattacharyya distance and coefficient, discuss their applications, and provide Python code examples for better understanding.
+In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the [Bhattacharyya distance](https://en.wikipedia.org/wiki/Bhattacharyya_distance), which quantifies the dissimilarity between two distributions. The Bhattacharyya coefficient, on the other hand, provides a measure of the overlap between two statistical samples or populations. In this blog post, we will look into the concepts of Bhattacharyya distance and coefficient, discuss their applications, and provide Python code examples for better understanding.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
-- [Bhattacharyya Distance](#bhattacharyya-distance)
-- [Bhattacharyya Coefficient](#bhattacharyya-coefficient)
-- [Applications of Bhattacharyya Distance and Coefficient](#applications-of-bhattacharyya-distance-and-coefficient)
-- [Python Implementation](#python-implementation)
-- [Other metrics](#other-metrics)
-- [Conclusion](#conclusion)
+- [Introduction](#introduction)
+	- [Bhattacharyya Distance](#bhattacharyya-distance)
+	- [Bhattacharyya Coefficient](#bhattacharyya-coefficient)
+	- [Applications of Bhattacharyya Distance and Coefficient](#applications-of-bhattacharyya-distance-and-coefficient)
+	- [Python Implementation](#python-implementation)
+	- [Other metrics](#other-metrics)
+	- [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->
 
@@ -37,7 +38,7 @@ $$
 
 where \( P \) and \( Q \) are the probability distributions being compared, \( P(i) \) and \( Q(i) \) represent the probabilities of occurrence for the \( i \)th event or sample, and \( BC(P,Q) \) denotes the Bhattacharyya coefficient.
 
-The Bhattacharyya distance ranges from 0 to infinity, where 0 indicates perfect similarity and higher values indicate increasing dissimilarity. It is important to note that the Bhattacharyya distance is a symmetric measure, meaning \( D_B(P,Q) = D_B(Q,P) \).
+The Bhattacharyya distance ranges from 0 to infinity, where 0 indicates perfect similarity and higher values indicate increasing dissimilarity. Note that the Bhattacharyya distance is a symmetric measure, meaning \( D_B(P,Q) = D_B(Q,P) \).
 
 <a id="bhattacharyya-coefficient"></a>
 

@@ -8,7 +8,7 @@ tags: python, kwargs, idiomatic-python, clean-code, refactoring, static-type-che
 Category: note
 ---
 
-Python's `**kwargs` is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of `**kwargs` comes with its own set of challenges. In this article, we'll delve into the potential pitfalls of using `**kwargs` and how to mitigate them, helping you write more idiomatic and robust Python code.
+Python's `**kwargs` is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of `**kwargs` comes with its own set of challenges. In this article, we'll look into the potential pitfalls of using `**kwargs` and how to mitigate them, helping you write more idiomatic and robust Python code.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
@@ -20,6 +20,7 @@ Python's `**kwargs` is a powerful tool that allows developers to pass a variable
 - [6. Performance Overhead](#6-performance-overhead)
 - [7. Security Risks](#7-security-risks)
 - [8. Default Values and None Checks](#8-default-values-and-none-checks)
+- [Related articles](#related-articles)
 
 <!-- /MarkdownTOC -->
 <a id="1-loss-of-clarity"></a>
@@ -251,7 +252,7 @@ def process_data(**kwargs):
     # Now if 'preprocess' is explicitly set to None, None will be used
 ```
 
-In conclusion, while `**kwargs` provides flexibility, it should be used judiciously and with consideration of the potential drawbacks. By following the best practices outlined in this article, you can harness the power of `**kwargs` to write cleaner, more maintainable, and idiomatic Python code. Happy coding!
+While `**kwargs` provides flexibility, it should be used judiciously and with consideration of the potential drawbacks. By following the best practices outlined in this article, you can harness the power of `**kwargs` to write cleaner, more maintainable, and idiomatic Python code. Happy coding!
 
 ## Related articles
 

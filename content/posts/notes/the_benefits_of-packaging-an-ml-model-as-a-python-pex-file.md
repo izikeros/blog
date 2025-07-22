@@ -11,12 +11,13 @@ Title: The Benefits of Packaging an ML Model as a Python PEX File
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 - [The Benefits of Packaging an ML Model as a Python PEX File](#the-benefits-of-packaging-an-ml-model-as-a-python-pex-file)
- 	- [Portability](#portability)
- 	- [Security](#security)
- 	- [Reproducibility](#reproducibility)
- 	- [Speed](#speed)
- 	- [Flexibility](#flexibility)
-- [When the other than pex-based method of model packaging should be used?](#when-the-other-than-pex-based-method-of-model-packaging-should-be-used)
+	- [Portability](#portability)
+	- [Security](#security)
+	- [Reproducibility](#reproducibility)
+	- [Speed](#speed)
+	- [Flexibility](#flexibility)
+- [](#)
+- [References](#references)
 
 <!-- /MarkdownTOC -->
 
@@ -83,9 +84,9 @@ PEX files can be a useful tool for packaging and distributing Python code and de
 
 ## References
 
-- [pex — python executables. PythonEXecutables are awesome, they… | by Alex Leonhardt | { ovni } | Medium](https://medium.com/ovni/pex-python-executables-c0ea39cee7f1)
+- [pex - python executables. PythonEXecutables are awesome, they… | by Alex Leonhardt | { ovni } | Medium](https://medium.com/ovni/pex-python-executables-c0ea39cee7f1)
 - [GitHub - linkedin/shiv: shiv is a command line utility for building fully self contained Python zipapps as outlined in PEP 441, but with all their dependencies included.](https://github.com/linkedin/shiv)
-- [Packaging code with PEX — a PySpark example | by Fabian Höring | Criteo R&D Blog | Medium](https://medium.com/criteo-engineering/packaging-code-with-pex-a-pyspark-example-9057f9f144f3)
+- [Packaging code with PEX - a PySpark example | by Fabian Höring | Criteo R&D Blog | Medium](https://medium.com/criteo-engineering/packaging-code-with-pex-a-pyspark-example-9057f9f144f3)
 - [Packaging a Simple Python Script with PEX](https://idle.run/simple-pex)
 - [A First Attempt at Executable Packaging with pex – from python import logging – Thoughts and notes of a Python hobbyist](https://bskinn.github.io/First-Attempt-pex/)
 -

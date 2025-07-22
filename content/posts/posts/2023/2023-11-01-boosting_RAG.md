@@ -112,7 +112,7 @@ The performance of RAG in production can be significantly improved by applying a
 2. [[2307.03172] Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172)
 3. [10 Ways to Improve the Performance of Retrieval Augmented Generation Systems | by Matt Ambrogi | Sep, 2023 | Towards Data Science](https://towardsdatascience.com/10-ways-to-improve-the-performance-of-retrieval-augmented-generation-systems-5fa2cee7cd5c)
 4. Hypothetical Document Embeddings (HyDE) - [Precise Zero-Shot Dense Retrieval without Relevance Labels](http://boston.lti.cs.cmu.edu/luyug/HyDE/HyDE.pdf)
-5. [Retrieve & Re-Rank — Sentence-Transformers documentation](https://www.sbert.net/examples/applications/retrieve_rerank/README.html)
+5. [Retrieve & Re-Rank - Sentence-Transformers documentation](https://www.sbert.net/examples/applications/retrieve_rerank/README.html)
 6. [Improving RAG effectiveness with Retrieval-Augmented Dual Instruction Tuning (RA-DIT) | by Emanuel Ferreira | Oct, 2023 | LlamaIndex Blog](https://blog.llamaindex.ai/improving-rag-effectiveness-with-retrieval-augmented-dual-instruction-tuning-ra-dit-01e73116655d)
 7. [Improving RAG (Retrieval Augmented Generation) Answer Quality with Re-ranker | by Shivam Solanki | Towards Generative AI | Medium](https://medium.com/towards-generative-ai/improving-rag-retrieval-augmented-generation-answer-quality-with-re-ranker-55a19931325)
 8. SingleStore (db), finetuning embeddings model, CacheGPT, Nemo-Guardrails, [Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium](https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a)

@@ -13,7 +13,7 @@ Title: Chocolatey (Windows)
 
 ## install
 
-### Step 1 — Opening and Configuring PowerShell
+### Step 1  -  Opening and Configuring PowerShell
 
 Open Powershell as admin
 
@@ -49,7 +49,7 @@ MachinePolicy       Undefined
  LocalMachine       Undefined
 ```
 
-### Step 2 — Installing the Package Manager Chocolatey
+### Step 2  -  Installing the Package Manager Chocolatey
 
 ```sh
 $script = New-Object Net.WebClient
