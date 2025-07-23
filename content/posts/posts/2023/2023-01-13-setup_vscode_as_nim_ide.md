@@ -22,12 +22,12 @@ In this tutorial, we will go over how to set up [Visual Studio Code](https://cod
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 - [Installation steps](#installation-steps)
- 	- [1. Download and Install VSCode](#1-download-and-install-vscode)
- 	- [2 Install the Nim Extension](#2-install-the-nim-extension)
- 	- [3. Configure the Settings](#3-configure-the-settings)
- 	- [4. Download Nim](#4-download-nim)
- 	- [5. Create a new Nim file](#5-create-a-new-nim-file)
- 	- [6. Debugging](#6-debugging)
+  - [1. Download and Install VSCode](#1-download-and-install-vscode)
+  - [2 Install the Nim Extension](#2-install-the-nim-extension)
+  - [3. Configure the Settings](#3-configure-the-settings)
+  - [4. Download Nim](#4-download-nim)
+  - [5. Create a new Nim file](#5-create-a-new-nim-file)
+  - [6. Debugging](#6-debugging)
 - [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->

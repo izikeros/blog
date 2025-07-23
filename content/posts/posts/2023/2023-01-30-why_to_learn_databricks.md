@@ -21,10 +21,10 @@ Data is becoming an increasingly important part of our world, and as such, the a
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [The Advantages of Databricks](#the-advantages-of-databricks)
- 	- [Handling Large Amounts of Data](#handling-large-amounts-of-data)
- 	- [Integration with Other Data Tools](#integration-with-other-data-tools)
- 	- [Built-in Libraries for Data Processing and Machine Learning](#built-in-libraries-for-data-processing-and-machine-learning)
- 	- [The Convenience of a Cloud-based Platform](#the-convenience-of-a-cloud-based-platform)
+  - [Handling Large Amounts of Data](#handling-large-amounts-of-data)
+  - [Integration with Other Data Tools](#integration-with-other-data-tools)
+  - [Built-in Libraries for Data Processing and Machine Learning](#built-in-libraries-for-data-processing-and-machine-learning)
+  - [The Convenience of a Cloud-based Platform](#the-convenience-of-a-cloud-based-platform)
 - [The Overall Benefits of Learning Databricks](#the-overall-benefits-of-learning-databricks)
 
 <!-- /MarkdownTOC -->

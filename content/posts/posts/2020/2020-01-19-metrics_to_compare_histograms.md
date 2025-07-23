@@ -18,9 +18,9 @@ Comparing histograms is a crucial step in data analysis, as it allows us to gain
 <!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 - [Most common methods](#most-common-methods)
- 	- [1. Chi-Squared Distance](#1-chi-squared-distance)
- 	- [2. Earth Mover's Distance](#2-earth-movers-distance)
- 	- [3. Kullback-Leibler Divergence](#3-kullback-leibler-divergence)
+  - [1. Chi-Squared Distance](#1-chi-squared-distance)
+  - [2. Earth Mover's Distance](#2-earth-movers-distance)
+  - [3. Kullback-Leibler Divergence](#3-kullback-leibler-divergence)
 - [Other methods for histogram comparison](#other-methods-for-histogram-comparison)
 - [Conclusion](#conclusion)
 

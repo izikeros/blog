@@ -218,6 +218,7 @@ sort -u file.txt
 ```sh
 wc -l data.csv
 ```
+
 * count lines in multiple files at once
 
 ```sh

@@ -18,14 +18,14 @@ Agile methodologies can provide numerous benefits to data science and analytics 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Potential problems](#potential-problems)
- 	- [Tight deadlines and sprints](#tight-deadlines-and-sprints)
- 	- [Focus on deliverables](#focus-on-deliverables)
- 	- [Lack of autonomy](#lack-of-autonomy)
- 	- [Constant and sudden changes](#constant-and-sudden-changes)
- 	- [Overemphasis on standardized processes](#overemphasis-on-standardized-processes)
+  - [Tight deadlines and sprints](#tight-deadlines-and-sprints)
+  - [Focus on deliverables](#focus-on-deliverables)
+  - [Lack of autonomy](#lack-of-autonomy)
+  - [Constant and sudden changes](#constant-and-sudden-changes)
+  - [Overemphasis on standardized processes](#overemphasis-on-standardized-processes)
 - [Mitigation](#mitigation)
- 	- [Complementary practices](#complementary-practices)
- 	- [Frameworks tailored for data science projects](#frameworks-tailored-for-data-science-projects)
+  - [Complementary practices](#complementary-practices)
+  - [Frameworks tailored for data science projects](#frameworks-tailored-for-data-science-projects)
 - [References](#references)
 
 <!-- /MarkdownTOC -->

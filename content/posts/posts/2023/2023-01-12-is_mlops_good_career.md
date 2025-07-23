@@ -25,20 +25,20 @@ Overall, a career in MLOps can be a good choice if you have a strong background 
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
 - [What are the good aspects of MLOps career?](#what-are-the-good-aspects-of-mlops-career)
- 	- [1.  High demand](#1-high-demand)
- 	- [2. High earning potential](#2-high-earning-potential)
- 	- [3. Exciting and dynamic work](#3-exciting-and-dynamic-work)
- 	- [4. Impactful work](#4-impactful-work)
- 	- [5. Variety of roles and industries](#5-variety-of-roles-and-industries)
- 	- [6.  Career growth opportunities](#6-career-growth-opportunities)
- 	- [7.  Continual learning](#7-continual-learning)
+  - [1.  High demand](#1-high-demand)
+  - [2. High earning potential](#2-high-earning-potential)
+  - [3. Exciting and dynamic work](#3-exciting-and-dynamic-work)
+  - [4. Impactful work](#4-impactful-work)
+  - [5. Variety of roles and industries](#5-variety-of-roles-and-industries)
+  - [6.  Career growth opportunities](#6-career-growth-opportunities)
+  - [7.  Continual learning](#7-continual-learning)
 - [What can be the downsides of the MLops career?](#what-can-be-the-downsides-of-the-mlops-career)
- 	- [1.  High level of responsibility](#1-high-level-of-responsibility)
- 	- [2.  Complexity](#2-complexity)
- 	- [3.  High stress](#3-high-stress)
- 	- [4.  Lack of standardization](#4-lack-of-standardization)
- 	- [5.  Difficulty in finding the right team](#5-difficulty-in-finding-the-right-team)
- 	- [6.  Limited career mobility](#6-limited-career-mobility)
+  - [1.  High level of responsibility](#1-high-level-of-responsibility)
+  - [2.  Complexity](#2-complexity)
+  - [3.  High stress](#3-high-stress)
+  - [4.  Lack of standardization](#4-lack-of-standardization)
+  - [5.  Difficulty in finding the right team](#5-difficulty-in-finding-the-right-team)
+  - [6.  Limited career mobility](#6-limited-career-mobility)
 
 <!-- /MarkdownTOC -->
 

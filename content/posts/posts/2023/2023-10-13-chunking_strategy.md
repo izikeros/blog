@@ -22,17 +22,17 @@ An effective chunking strategy ensures that search results accurately capture th
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Factors Influencing Chunking Strategy](#factors-influencing-chunking-strategy)
- 	- [Size of the Texts to be Indexed](#size-of-the-texts-to-be-indexed)
- 	- [Length and Complexity of User Queries](#length-and-complexity-of-user-queries)
- 	- [Utilization of the Retrieved Results in the Application](#utilization-of-the-retrieved-results-in-the-application)
+  - [Size of the Texts to be Indexed](#size-of-the-texts-to-be-indexed)
+  - [Length and Complexity of User Queries](#length-and-complexity-of-user-queries)
+  - [Utilization of the Retrieved Results in the Application](#utilization-of-the-retrieved-results-in-the-application)
 - [Chunking Methods](#chunking-methods)
- 	- [Fixed-size \(in characters\) Overlapping Sliding Window](#fixed-size-in-characters-overlapping-sliding-window)
- 	- [Fixed-size \(in tokens\) Overlapping Sliding Window](#fixed-size-in-tokens-overlapping-sliding-window)
- 	- [Recursive Structure Aware Splitting](#recursive-structure-aware-splitting)
- 	- [Structure Aware Splitting \(by Sentence, Paragraph, Section, Chapter\)](#structure-aware-splitting-by-sentence-paragraph-section-chapter)
- 	- [NLP Chunking: Tracking Topic Changes](#nlp-chunking-tracking-topic-changes)
- 	- [Content-Aware Splitting \(Markdown, LaTeX, HTML\)](#content-aware-splitting-markdown-latex-html)
- 	- [Adding Extra Context to the Chunk \(metadata, summaries\)](#adding-extra-context-to-the-chunk-metadata-summaries)
+  - [Fixed-size \(in characters\) Overlapping Sliding Window](#fixed-size-in-characters-overlapping-sliding-window)
+  - [Fixed-size \(in tokens\) Overlapping Sliding Window](#fixed-size-in-tokens-overlapping-sliding-window)
+  - [Recursive Structure Aware Splitting](#recursive-structure-aware-splitting)
+  - [Structure Aware Splitting \(by Sentence, Paragraph, Section, Chapter\)](#structure-aware-splitting-by-sentence-paragraph-section-chapter)
+  - [NLP Chunking: Tracking Topic Changes](#nlp-chunking-tracking-topic-changes)
+  - [Content-Aware Splitting \(Markdown, LaTeX, HTML\)](#content-aware-splitting-markdown-latex-html)
+  - [Adding Extra Context to the Chunk \(metadata, summaries\)](#adding-extra-context-to-the-chunk-metadata-summaries)
 - [References](#references)
 - [Further Reading](#further-reading)
 
@@ -368,7 +368,7 @@ Moreover, adding extra context to the chunks, such as metadata or summaries, can
 - [The 5 Levels Of Text Splitting For Retrieval - YouTube](https://www.youtube.com/watch?v=8OJC21T2SL4) (Fixed Size Chunking,  Recursive Chunking, Document Based Chunking, **Semantic Chunking**, Agentic Chunking - chunking strategy that explore the possibility to use LLM to determine how much and what text should be included in a chunk based on the context.) + [notebook](https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb)
 - Visualization of chunking - [ChunkViz](https://chunkviz.up.railway.app/)
 - [Breaking up is hard to do: Chunking in RAG applications - Stack Overflow](https://stackoverflow.blog/2024/06/06/breaking-up-is-hard-to-do-chunking-in-rag-applications/)
-	- size matters: “You are going to compare that with an embedding of your content. If the size of the content that you're embedding is wildly different from the size of the user's query, you're going to have a higher chance of getting a lower similarity score.”
+ 	- size matters: “You are going to compare that with an embedding of your content. If the size of the content that you're embedding is wildly different from the size of the user's query, you're going to have a higher chance of getting a lower similarity score.”
 
 **Edits:**
 

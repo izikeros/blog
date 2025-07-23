@@ -18,9 +18,9 @@ Interpretability in machine learning is a complex and multifaceted topic. It ref
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Three levels of evaluating interpretability](#three-levels-of-evaluating-interpretability)
- 	- [Application level](#application-level)
- 	- [Human level](#human-level)
- 	- [Function level](#function-level)
+  - [Application level](#application-level)
+  - [Human level](#human-level)
+  - [Function level](#function-level)
 
 <!-- /MarkdownTOC -->
 

@@ -36,6 +36,7 @@ def find_connections(G, person):
 ```
 
 You can test it with this example:
+
 ```python
 # Test NetworkX
 print(find_connections(G, "Alice"))
@@ -44,6 +45,7 @@ print("\n")
 ```
 
 The output is:
+
 ```python
 NetworkX Example:
 [('Bob', {'relationship': 'knows'})]
@@ -71,17 +73,17 @@ qres = g.query(
        }""")
        
 for row in qres:
-	print(f"{row.s} -> {row.o}")
-	print("\n")
+ print(f"{row.s} -> {row.o}")
+ print("\n")
 ```
 
 The output is:
+
 ```
 RDFLib Example:
 Bob -> TechCorp
 Alice -> Bob
 ```
-
 
 ## PyGraphviz - Visualization with Query Capabilities
 
@@ -159,6 +161,7 @@ class SimpleKG:
 ```
 
 Here is simple example how you can test it:
+
 ```python
 # Test the implementation
 kg = SimpleKG()
@@ -171,12 +174,14 @@ print("Find paths from Alice to TechCorp:", kg.find_paths("Alice", "TechCorp"))
 ```
 
 The output is:
+
 ```
 Query by subject 'Alice': {'knows': ['Bob']}
 Find paths from Alice to TechCorp: [['Alice', 'Bob', 'TechCorp']]
 ```
 
 More advanced example:
+
 ```python
 
 # Create sample data
@@ -280,6 +285,7 @@ print(list(caine_movies & dicaprio_movies))
 ```
 
 Output:
+
 ```
 1. Find all movies directed by Christopher Nolan: 
 ['Inception', 'The Dark Knight', 'Interstellar', 'Dunkirk', 'Memento', 'The Prestige', 'Tenet'] 
@@ -303,6 +309,7 @@ Leonardo DiCaprio -> Inception -> Michael Caine -> Interstellar -> Christopher N
 ## Making the Right Choice
 
 The best solution depends on your specific needs:
+
 - Use NetworkX for general graph operations and algorithms
 - Choose RDFLib when working with semantic data and SPARQL
 - Go with PyGraphviz when visualization is important
@@ -333,9 +340,9 @@ If you're interested in automatic graph construction, I'd recommend starting wit
 Don't jump to complex graph databases when simpler solutions might suffice. These in-memory approaches can handle surprisingly complex tasks while keeping your codebase clean and maintainable. Plus, they're perfect for prototyping before committing to a full-scale graph database solution.
 
 ## Further Reading, References
+
 - paper [\[2305.14485\] Knowledge Graphs Querying](https://arxiv.org/abs/2305.14485)
 - similarar attempt as in this article to build and query knowledge graph: [Querying using simple knowledge graphs \| by Vishnu Nandakumar \| Analytics Vidhya \| Medium](https://medium.com/analytics-vidhya/querying-using-simple-knowledge-graphs-abeb13d05e48)
 - [GraphRAG](https://memgraph.com/docs/ai-ecosystem/graph-rag)
 - [CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface - CogniPy 1.0.0 documentation](https://cognipy.org/) - In-memory Graph Database and Knowledge Graph with Natural Language Interface
 - not necessarily small and simple solutions: [Title Unavailable \| Site Unreachable](https://www.puppygraph.com/blog/best-graph-databases)
-

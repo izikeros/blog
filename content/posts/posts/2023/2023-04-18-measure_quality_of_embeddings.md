@@ -22,12 +22,12 @@ Let's start with the concept of embedding vectors. In natural language processin
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Intrinsic Evaluation](#intrinsic-evaluation)
- 	- [Cosine Similarity](#cosine-similarity)
- 	- [Spearman Correlation](#spearman-correlation)
- 	- [Accuracy](#accuracy)
+  - [Cosine Similarity](#cosine-similarity)
+  - [Spearman Correlation](#spearman-correlation)
+  - [Accuracy](#accuracy)
 - [Extrinsic Evaluation](#extrinsic-evaluation)
- 	- [F1 Score](#f1-score)
- 	- [Perplexity](#perplexity)
+  - [F1 Score](#f1-score)
+  - [Perplexity](#perplexity)
 - [Limitations](#limitations)
 - [Conclusion](#conclusion)
 

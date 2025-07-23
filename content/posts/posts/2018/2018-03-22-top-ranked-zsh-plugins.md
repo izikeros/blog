@@ -117,4 +117,4 @@ Thanks to this mechanism, the users can intuitively and easily change the direct
 
 On the list there are 300+ projects that are falling into the scope of this research, you can get the complete dataset by downloading this CSV file: [CSV](/downloads/180322_results_sorted.csv).
 
-*Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+_Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post)._

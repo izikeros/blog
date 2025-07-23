@@ -31,11 +31,11 @@ Two popular methods for explaining AI models are KernelShap and TreeShap. These 
 - [TLDR](#tldr)
 - [Introduction](#introduction)
 - [KernelShap](#kernelshap)
-	- [Steps](#steps)
-	- [KernelShap advantages and limitations](#kernelshap-advantages-and-limitations)
+ 	- [Steps](#steps)
+ 	- [KernelShap advantages and limitations](#kernelshap-advantages-and-limitations)
 - [TreeShap](#treeshap)
-	- [Steps](#steps-1)
-	- [TreeShap advantages and limitations](#treeshap-advantages-and-limitations)
+ 	- [Steps](#steps-1)
+ 	- [TreeShap advantages and limitations](#treeshap-advantages-and-limitations)
 - [Conclusion](#conclusion)
 
 <!-- /MarkdownTOC -->

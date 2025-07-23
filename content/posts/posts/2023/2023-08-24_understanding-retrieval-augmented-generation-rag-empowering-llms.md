@@ -93,8 +93,8 @@ Retrieval-Augmented Generation offers a promising solution to the limitations of
 
 - Original paper [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) by Patrick Lewis et al. (available as [paper with code](https://paperswithcode.com/method/rag))
 - Exemplary notebooks on amazon Sagemaker:
- 	- [Retrieval-Augmented Generation: Question Answering based on Custom Dataset](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_jumpstart_knn.html)
- 	- [Retrieval-Augmented Generation: Question Answering based on Custom Dataset with Open-sourced LangChain Library](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_langchain_jumpstart.html)
+  - [Retrieval-Augmented Generation: Question Answering based on Custom Dataset](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_jumpstart_knn.html)
+  - [Retrieval-Augmented Generation: Question Answering based on Custom Dataset with Open-sourced LangChain Library](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_langchain_jumpstart.html)
 - Python library with RAG implementation: [GitHub - llmware-ai/llmware: Providing enterprise-grade LLM-based development framework, tools and fine-tuned models.](https://github.com/llmware-ai/llmware)
 - Analytics: [Vectorview](https://www.vectorview.ai/)
 - Deep-dive into specific use-case of RAG with scaling in mind: [Building RAG-based LLM Applications for Production (Part 1)](https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1)
@@ -104,10 +104,10 @@ Retrieval-Augmented Generation offers a promising solution to the limitations of
 - Check the GitHub for the RAG-related projects: [retrieval-augmented-generation · GitHub Topics](https://github.com/topics/retrieval-augmented-generation?l=python)
 - [Yet another RAG system - implementation details and lessons learned : r/LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/comments/16cbimi/yet_another_rag_system_implementation_details_and/)
 - [Building and Evaluating Advanced RAG Applications - DeepLearning.AI](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) - recent course from deeplearning.ai (Andrew Ng). Instructors: Jerry Liu and Anupam Datta.
- 	- In this course, we’ll explore:
-  		- Two advanced retrieval methods: Sentence-window retrieval and auto-merging retrieval that perform better compared to the baseline RAG pipeline.
-  		- Evaluation and experiment tracking: A way evaluate and iteratively improve your RAG pipeline’s performance.
-  		- The RAG triad: Context Relevance, Groundedness, and Answer Relevance, which are methods to evaluate the relevance and truthfulness of your LLM’s response.
+  - In this course, we’ll explore:
+    - Two advanced retrieval methods: Sentence-window retrieval and auto-merging retrieval that perform better compared to the baseline RAG pipeline.
+    - Evaluation and experiment tracking: A way evaluate and iteratively improve your RAG pipeline’s performance.
+    - The RAG triad: Context Relevance, Groundedness, and Answer Relevance, which are methods to evaluate the relevance and truthfulness of your LLM’s response.
 
 X::[[2023-11-01-boosting_RAG]]
 

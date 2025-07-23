@@ -16,18 +16,18 @@ There are a few widely used plotting libraries used in python projects: [matplot
 
 <!-- MarkdownTOC levels='2,3' autolink=True -->
 
-- [1. HoloViews ](#1-holoviews-)
-- [2. Bqplot ](#2-bqplot-)
+- [1. HoloViews](#1-holoviews-)
+- [2. Bqplot](#2-bqplot-)
 - [3. Plotnine](#3-plotnine)
-- [4. Geoplotlib ](#4-geoplotlib-)
-- [5. Pygal ](#5-pygal-)
-- [6. Vincent ](#6-vincent-)
+- [4. Geoplotlib](#4-geoplotlib-)
+- [5. Pygal](#5-pygal-)
+- [6. Vincent](#6-vincent-)
 - [7. PyNGL](#7-pyngl)
-- [8. Ggplot ](#8-ggplot-)
-- [9. PyQtGraph ](#9-pyqtgraph-)
+- [8. Ggplot](#8-ggplot-)
+- [9. PyQtGraph](#9-pyqtgraph-)
 - [10. PyQwt](#10-pyqwt)
 - [11. Lets-plot](#11-lets-plot)
-- [Plotly Express ](#plotly-express-)
+- [Plotly Express](#plotly-express-)
 
 <!-- /MarkdownTOC -->
 

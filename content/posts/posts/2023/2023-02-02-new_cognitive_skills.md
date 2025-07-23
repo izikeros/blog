@@ -21,10 +21,10 @@ up::[[MOC_Generative_AI]]
 
 - [Contents](#contents)
 - [Speculating on New Cognitive Skills in Humans Using Large Language Models and Advanced AI Generative Models](#speculating-on-new-cognitive-skills-in-humans-using-large-language-models-and-advanced-ai-generative-models)
-	- [Ability to process and understand complex information at an accelerated rate](#ability-to-process-and-understand-complex-information-at-an-accelerated-rate)
-	- [Enhanced ability to think creatively and solve complex problems](#enhanced-ability-to-think-creatively-and-solve-complex-problems)
-		- [Recommendation](#recommendation)
-	- [Ability to multitasking and manage multiple streams of information at once](#ability-to-multitasking-and-manage-multiple-streams-of-information-at-once)
+ 	- [Ability to process and understand complex information at an accelerated rate](#ability-to-process-and-understand-complex-information-at-an-accelerated-rate)
+ 	- [Enhanced ability to think creatively and solve complex problems](#enhanced-ability-to-think-creatively-and-solve-complex-problems)
+  		- [Recommendation](#recommendation)
+ 	- [Ability to multitasking and manage multiple streams of information at once](#ability-to-multitasking-and-manage-multiple-streams-of-information-at-once)
 - [Summary](#summary)
 
 <!-- /MarkdownTOC -->

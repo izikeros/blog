@@ -14,17 +14,17 @@ tags: rss, news, feed-reader, self-hosted, atom, news-aggregator
 
 - [What is RSS](#what-is-rss)
 - [Actively developed and popular self-hosted Feed readers](#actively-developed-and-popular-self-hosted-feed-readers)
- 	- [NewsBlur](#newsblur)
- 	- [Tiny Tiny RSS](#tiny-tiny-rss)
- 	- [FreshRSS](#freshrss)
- 	- [miniflux](#miniflux)
- 	- [Stringer](#stringer)
- 	- [selfoss](#selfoss)
- 	- [CommaFeed](#commafeed)
- 	- [yarr](#yarr)
+  - [NewsBlur](#newsblur)
+  - [Tiny Tiny RSS](#tiny-tiny-rss)
+  - [FreshRSS](#freshrss)
+  - [miniflux](#miniflux)
+  - [Stringer](#stringer)
+  - [selfoss](#selfoss)
+  - [CommaFeed](#commafeed)
+  - [yarr](#yarr)
 - [Runners-up](#runners-up)
- 	- [RSSMonster](#rssmonster)
- 	- [Sismics Reader](#sismics-reader)
+  - [RSSMonster](#rssmonster)
+  - [Sismics Reader](#sismics-reader)
 
 <!-- /MarkdownTOC -->
 

@@ -19,8 +19,8 @@ todo: need to verify the offer and the links
 - [Introduction](#introduction)
 - [MLOps Certificates - Are They Worth Your Effort and Money?](#mlops-certificates---are-they-worth-your-effort-and-money)
 - [Certifications](#certifications)
- 	- [AWS Certified Machine Learning - Specialty](#aws-certified-machine-learning---specialty)
- 	- [Google Cloud Professional Machine Learning Engineer](#google-cloud-professional-machine-learning-engineer)
+  - [AWS Certified Machine Learning - Specialty](#aws-certified-machine-learning---specialty)
+  - [Google Cloud Professional Machine Learning Engineer](#google-cloud-professional-machine-learning-engineer)
 - [Free MLOps Certifications](#free-mlops-certifications)
 - [Conclusion](#conclusion)
 <!-- /MarkdownTOC -->

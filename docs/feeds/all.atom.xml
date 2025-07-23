@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2025-06-26T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Downgrade or Upgrade Your Python Version with uv</title><link href="https://www.safjan.com/downgrade-or-upgrade-your-python-version-with-uv/" rel="alternate"></link><published>2025-06-26T00:00:00+02:00</published><updated>2025-06-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-06-26:/downgrade-or-upgrade-your-python-version-with-uv/</id><summary type="html">&lt;p&gt;To downgrade your project’s virtual environment e.g. from Python 3.11 to 3.10 using &lt;strong&gt;uv&lt;/strong&gt;, here’s a step‑by‑step process:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2025-07-23T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Building a Multi-Notebook Report with Quarto</title><link href="https://www.safjan.com/building-a-multinotebook-report-with-quarto/" rel="alternate"></link><published>2025-07-23T00:00:00+02:00</published><updated>2025-07-23T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-07-23:/building-a-multinotebook-report-with-quarto/</id><summary type="html">&lt;h1&gt;Building a Multi-Notebook Report with Quarto&lt;/h1&gt;
+&lt;p&gt;Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Building a Multi-Notebook Report with Quarto&lt;/h1&gt;
+&lt;p&gt;Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so I used quarto to generate report. Over the time analysis notebook has grown to the monster size. I wanted to split it into multiple notebooks, each focusing on a specific aspect of the analysis. But I also wanted to combine them into a single cohesive report.
+Something that reads like a real report. I didn't want to just dump a bunch of disconnected notebooks on someone.&lt;/p&gt;
+&lt;p&gt;That’s where &lt;strong&gt;Quarto&lt;/strong&gt; with book project functionality came in. In this post, I’ll show you two practical ways to combine multiple notebooks into a single, unified report using Quarto:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Option 1:&lt;/strong&gt; Turn your notebooks into a structured book (like GitBook)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Option 2:&lt;/strong&gt; Embed notebooks into a single &lt;code&gt;.qmd&lt;/code&gt; file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both methods let you keep your notebooks clean and modular while generating a polished report that looks great in HTML, PDF, or even EPUB formats.&lt;/p&gt;
+&lt;h2&gt;Option 1: Create a Book-Like Report with Quarto&lt;/h2&gt;
+&lt;p&gt;This is the approach I went with for a larger project. It gives you a navigation sidebar, automatic chapter numbering, and multiple output formats. Think of it as building a small website or PDF book.&lt;/p&gt;
+&lt;h3&gt;Step 1: Install Quarto&lt;/h3&gt;
+&lt;p&gt;If you haven’t installed Quarto yet:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# On macOS/Linux&lt;/span&gt;
+brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;quarto
+
+&lt;span class="c1"&gt;# Or download manually&lt;/span&gt;
+https://quarto.org/docs/get-started/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Make sure Jupyter is also installed and working.&lt;/p&gt;
+&lt;h3&gt;Step 2: Create a New Book Project&lt;/h3&gt;
+&lt;p&gt;Let’s set up the project:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;quarto&lt;span class="w"&gt; &lt;/span&gt;create&lt;span class="w"&gt; &lt;/span&gt;project&lt;span class="w"&gt; &lt;/span&gt;book&lt;span class="w"&gt; &lt;/span&gt;my-report
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;my-report
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll now see a few files and folders:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;my-report/
+├── _quarto.yml
+├── index.qmd
+├── intro.qmd
+└── references.qmd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is your basic structure. You can remove &lt;code&gt;intro.qmd&lt;/code&gt; or rename it. For now, we’ll leave it.&lt;/p&gt;
+&lt;h3&gt;Step 3: Add Your Notebooks&lt;/h3&gt;
+&lt;p&gt;Drop your notebooks into the folder. For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;my-report/
+├── chapter1.ipynb
+├── chapter2.ipynb
+├── conclusion.ipynb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can keep working in Jupyter as usual.&lt;/p&gt;
+&lt;h3&gt;Step 4: Configure &lt;code&gt;_quarto.yml&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;This is where the magic happens. You define the structure of your report here:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;project&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;book&lt;/span&gt;
+
+&lt;span class="nt"&gt;book&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;My&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;Analysis&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;Report&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;author&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Your&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;Name&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;chapters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;index.qmd&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;chapter1.ipynb&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;chapter2.ipynb&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;conclusion.ipynb&lt;/span&gt;
+
+&lt;span class="nt"&gt;format&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;toc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;pdf&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;toc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;documentclass&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;book&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Make sure the filenames match your actual notebooks. You can mix &lt;code&gt;.qmd&lt;/code&gt; and &lt;code&gt;.ipynb&lt;/code&gt; files freely.&lt;/p&gt;
+&lt;p&gt;Each "chapter" notebook can have its own quarto front matter (YAML header) if you want to customize titles, authors, or other metadata.&lt;/p&gt;
+&lt;h3&gt;Step 5: Preview Your Report&lt;/h3&gt;
+&lt;p&gt;To preview as you work:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;quarto&lt;span class="w"&gt; &lt;/span&gt;preview
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This starts a live-reloading web server at &lt;code&gt;http://localhost:4200&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When you’re ready to render:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;quarto&lt;span class="w"&gt; &lt;/span&gt;render
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This generates the output in &lt;code&gt;_book/&lt;/code&gt; (for HTML) and optionally &lt;code&gt;.pdf&lt;/code&gt; or &lt;code&gt;.epub&lt;/code&gt; depending on your formats.&lt;/p&gt;
+&lt;h2&gt;Option 2: One &lt;code&gt;.qmd&lt;/code&gt; File That Embeds Notebooks&lt;/h2&gt;
+&lt;p&gt;Sometimes you want to pick and choose what parts of your notebooks go into a report. Or maybe you want to glue them together with a lot of custom narrative. That’s where embedding comes in.&lt;/p&gt;
+&lt;p&gt;Instead of building a whole book, you write one &lt;code&gt;.qmd&lt;/code&gt; file and embed specific cells or whole notebooks into it.&lt;/p&gt;
+&lt;h3&gt;Step 1: Create a New Quarto Project&lt;/h3&gt;
+&lt;p&gt;This time we’ll use a regular document project:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;quarto&lt;span class="w"&gt; &lt;/span&gt;create&lt;span class="w"&gt; &lt;/span&gt;project&lt;span class="w"&gt; &lt;/span&gt;article&lt;span class="w"&gt; &lt;/span&gt;embedded-report
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;embedded-report
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Your structure will look like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;embedded-report/
+├── _quarto.yml
+└── report.qmd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can drop your notebooks here too:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;embedded-report/
+├── notebook_a.ipynb
+├── notebook_b.ipynb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Step 2: Write the Report with Embeds&lt;/h3&gt;
+&lt;p&gt;Edit &lt;code&gt;report.qmd&lt;/code&gt; like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;---
+title: &amp;quot;Combined Report&amp;quot;
+format: html
+execute:
+&lt;span class="gu"&gt;  enabled: false&lt;/span&gt;
+&lt;span class="gu"&gt;---&lt;/span&gt;
+
+&lt;span class="gh"&gt;# Introduction&lt;/span&gt;
+
+This is a combined report from two notebooks.
+
+&lt;span class="gh"&gt;# Results from Notebook A&lt;/span&gt;
+
+```{=embed}
+notebook_a.ipynb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Specific Figure from Notebook B&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;notebook_b.ipynb#cell-3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Full Notebook B&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;notebook_b.ipynb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can embed the whole notebook or reference individual cells by their labels or indices. If you want to embed only specific cells, give them labels in Jupyter using &lt;code&gt;#| label: my-cell&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 3: Render It&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;quarto&lt;span class="w"&gt; &lt;/span&gt;render
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll get a clean report with selected content pulled from your notebooks. You can even combine this approach with more Markdown narrative, custom styling, and conditional content.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Both methods have their strengths:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;Quarto Book&lt;/strong&gt; approach is great when you want a navigable multi-chapter report or site. It’s structured, scalable, and looks professional out of the box.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;embedding approach&lt;/strong&gt; gives you more flexibility when curating content or writing more detailed commentary around selected outputs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I personally use the book format for larger projects, and embedding for quick curated reports. With both approaches, notebooks stay clean and modular — and reports look great with just a few lines of configuration.&lt;/p&gt;</content><category term="note"></category><category term="quarto"></category><category term="jupyter-notebooks"></category><category term="nbconvert"></category><category term="reporting"></category><category term="experiment-management"></category><category term="research"></category><category term="research-report"></category></entry><entry><title>Downgrade or Upgrade Your Python Version with uv</title><link href="https://www.safjan.com/downgrade-or-upgrade-your-python-version-with-uv/" rel="alternate"></link><published>2025-06-26T00:00:00+02:00</published><updated>2025-06-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-06-26:/downgrade-or-upgrade-your-python-version-with-uv/</id><summary type="html">&lt;p&gt;To downgrade your project’s virtual environment e.g. from Python 3.11 to 3.10 using &lt;strong&gt;uv&lt;/strong&gt;, here’s a step‑by‑step process:&lt;/p&gt;
 &lt;h3&gt;1. Install the desired Python version&lt;/h3&gt;
 &lt;p&gt;Run:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.10
@@ -424,8 +565,8 @@ Deep copy: [1, 2, [3, 4]]
 &lt;span class="sd"&gt;       }&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;qres&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; -&amp;gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; -&amp;gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The output is:&lt;/p&gt;
@@ -640,11 +781,13 @@ Find paths from Alice to TechCorp: [[&amp;#39;Alice&amp;#39;, &amp;#39;Bob&amp;#
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;Making the Right Choice&lt;/h2&gt;
-&lt;p&gt;The best solution depends on your specific needs:
-- Use NetworkX for general graph operations and algorithms
-- Choose RDFLib when working with semantic data and SPARQL
-- Go with PyGraphviz when visualization is important
-- Consider a custom solution for specialized query patterns&lt;/p&gt;
+&lt;p&gt;The best solution depends on your specific needs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use NetworkX for general graph operations and algorithms&lt;/li&gt;
+&lt;li&gt;Choose RDFLib when working with semantic data and SPARQL&lt;/li&gt;
+&lt;li&gt;Go with PyGraphviz when visualization is important&lt;/li&gt;
+&lt;li&gt;Consider a custom solution for specialized query patterns&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;Performance Considerations&lt;/h2&gt;
 &lt;p&gt;These solutions work well for graphs with thousands of nodes and edges. The key is keeping everything in memory and optimizing your query patterns. For NetworkX and RDFLib, using their built-in query methods is usually faster than writing custom traversal code.&lt;/p&gt;
 &lt;h2&gt;Beyond Simple Solutions&lt;/h2&gt;
@@ -662,7 +805,7 @@ Find paths from Alice to TechCorp: [[&amp;#39;Alice&amp;#39;, &amp;#39;Bob&amp;#
 &lt;li&gt;paper &lt;a href="https://arxiv.org/abs/2305.14485"&gt;[2305.14485] Knowledge Graphs Querying&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;similarar attempt as in this article to build and query knowledge graph: &lt;a href="https://medium.com/analytics-vidhya/querying-using-simple-knowledge-graphs-abeb13d05e48"&gt;Querying using simple knowledge graphs | by Vishnu Nandakumar | Analytics Vidhya | Medium&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://memgraph.com/docs/ai-ecosystem/graph-rag"&gt;GraphRAG&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://cognipy.org/"&gt;CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface — CogniPy 1.0.0 documentation&lt;/a&gt; - In-memory Graph Database and Knowledge Graph with Natural Language Interface&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cognipy.org/"&gt;CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface - CogniPy 1.0.0 documentation&lt;/a&gt; - In-memory Graph Database and Knowledge Graph with Natural Language Interface&lt;/li&gt;
 &lt;li&gt;not necessarily small and simple solutions: &lt;a href="https://www.puppygraph.com/blog/best-graph-databases"&gt;Title Unavailable | Site Unreachable&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Howto"></category><category term="graph"></category><category term="knowledge-graph"></category><category term="query"></category><category term="networkx"></category><category term="neo4j"></category><category term="rdflib"></category><category term="SPARQL"></category></entry><entry><title>Quick Ways to Disable GitHub Actions Workflows Without Deletion</title><link href="https://www.safjan.com/quick-ways-to-disable-github-actions-workflows-without-deletion/" rel="alternate"></link><published>2024-10-03T00:00:00+02:00</published><updated>2024-10-03T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-10-03:/quick-ways-to-disable-github-actions-workflows-without-deletion/</id><summary type="html">&lt;p&gt;GitHub Actions workflows are powerful automation tools, but sometimes you need to temporarily disable them. Here are three simple methods to pause a workflow without deleting its YAML file:&lt;/p&gt;
 &lt;ol&gt;
@@ -1818,6 +1961,7 @@ Reciprocal Rank Ranking:
 &lt;/table&gt;</content><category term="note"></category><category term="borda"></category><category term="rank"></category><category term="rank-combining"></category><category term="rank-fussion"></category><category term="reciprocal-rank-fussion"></category><category term="reciprocal-rank-combining"></category></entry><entry><title>RankFlow plot for retriever visual evaluation</title><link href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" rel="alternate"></link><published>2024-07-08T00:00:00+02:00</published><updated>2024-07-08T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-07-08:/rankflow-plot-for-retriever-visual-evaluation/</id><summary type="html">&lt;p&gt;RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="#tldr"&gt;TLDR&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#introduction-and-problem-statement"&gt;Introduction and problem statement&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#inspiration---rank-flow-visualization"&gt;Inspiration - Rank flow visualization&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#tracking-the-rank-changes-in-your-rag"&gt;Tracking the rank changes in your RAG&lt;/a&gt;&lt;/li&gt;
@@ -2076,7 +2220,7 @@ Callbacks in programming are functions passed as arguments to other functions, w
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.vrogue.co/post/how-to-plot-bump-chart-in-r-finnstats"&gt;How To Plot Bump Chart In R Finnstats - vrogue.co&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/kartikay-bagla/bump-plot-python"&gt;GitHub - kartikay-bagla/bump-plot-python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://mplsoccer.readthedocs.io/en/latest/gallery/bumpy_charts/plot_bumpy.html#sphx-glr-gallery-bumpy-charts-plot-bumpy-py"&gt;Bumpy Charts — mplsoccer 1.2.4 documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mplsoccer.readthedocs.io/en/latest/gallery/bumpy_charts/plot_bumpy.html#sphx-glr-gallery-bumpy-charts-plot-bumpy-py"&gt;Bumpy Charts - mplsoccer 1.2.4 documentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://nbviewer.org/gist/pascal-schetelat/8382651"&gt;Jupyter Notebook Viewer&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Machine Learning"></category><category term="retriever"></category><category term="rag"></category><category term="visuallization"></category><category term="rag-evaluation"></category><category term="logging"></category><category term="struct-log"></category><category term="rankflow"></category><category term="observability"></category><category term="callback"></category></entry><entry><title>Best Small Models for Fine Tuning</title><link href="https://www.safjan.com/best-small-models-for-fine-tuning/" rel="alternate"></link><published>2024-07-03T00:00:00+02:00</published><updated>2024-08-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-07-03:/best-small-models-for-fine-tuning/</id><summary type="html">&lt;p&gt;X:[[fine_tune_small_language_models_LLM_SLM__broken]]
 X::[[RAG_evaluation]]&lt;/p&gt;
@@ -2114,7 +2258,7 @@ X::[[RAG_evaluation]]&lt;/p&gt;
 &lt;p&gt;• How we fine-tuned open-source LLMs that rival GPT-4
 • How you can implement Parameter-Efficient Fine-Tuning (PEFT) methods like Low Rank Adaptation (LoRA)
 • Which tasks are best suited for fine-tuning based on our benchmarks
-• Which popular LLMs—namely Phi, Gemma, and Mistral—perform best and worst across tasks
+• Which popular LLMs - namely Phi, Gemma, and Mistral - perform best and worst across tasks
 • How we implemented an evaluation harness for fine-tuning at scale&lt;/p&gt;</content><category term="note"></category><category term="predibase"></category><category term="evaluation"></category><category term="llm"></category><category term="slm"></category><category term="small-language-models"></category></entry><entry><title>How does QLoRA works?</title><link href="https://www.safjan.com/how-does-qlora-works/" rel="alternate"></link><published>2024-07-03T00:00:00+02:00</published><updated>2024-07-03T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-07-03:/how-does-qlora-works/</id><summary type="html">&lt;h2&gt;TL;DR&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;QLoRA&lt;/strong&gt; (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During fine-tuning, only the adapters are updated, with gradients backpropagated through the quantized weights. Key innovations …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h2&gt;TL;DR&lt;/h2&gt;
@@ -2519,7 +2663,7 @@ pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&g
 &lt;li&gt;&lt;strong&gt;It's used as a factory function&lt;/strong&gt;: If a method is used as a factory function to create instances of the class, it's better to keep it as a static method.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Summary&lt;/h2&gt;
-&lt;p&gt;when a method can be implemented and used independently of a class, consider refactoring it to a standalone function. This approach can lead to cleaner, more modular, and more maintainable code.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="function"></category><category term="python-method"></category><category term="idiomatic-python"></category><category term="refactoring"></category><category term="static-method"></category><category term="testability"></category><category term="python-class"></category><category term="flexilility"></category><category term="reusability"></category><category term="code-organization"></category><category term="code-reuse"></category><category term="testing"></category><category term="polymorphysm"></category><category term="docstrings"></category></entry><entry><title>Mastering kwargs in Python - Best Practices for Experienced Developers</title><link href="https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/" rel="alternate"></link><published>2024-06-13T00:00:00+02:00</published><updated>2024-06-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-13:/mastering-kwargs-in-python-best-practices-for-experienced-developers/</id><summary type="html">&lt;p&gt;Python's &lt;code&gt;**kwargs&lt;/code&gt; is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of &lt;code&gt;**kwargs&lt;/code&gt; comes …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;**kwargs&lt;/code&gt; is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of &lt;code&gt;**kwargs&lt;/code&gt; comes with its own set of challenges. In this article, we'll delve into the potential pitfalls of using &lt;code&gt;**kwargs&lt;/code&gt; and how to mitigate them, helping you write more idiomatic and robust Python code.&lt;/p&gt;
+&lt;p&gt;when a method can be implemented and used independently of a class, consider refactoring it to a standalone function. This approach can lead to cleaner, more modular, and more maintainable code.&lt;/p&gt;</content><category term="note"></category><category term="python"></category><category term="function"></category><category term="python-method"></category><category term="idiomatic-python"></category><category term="refactoring"></category><category term="static-method"></category><category term="testability"></category><category term="python-class"></category><category term="flexilility"></category><category term="reusability"></category><category term="code-organization"></category><category term="code-reuse"></category><category term="testing"></category><category term="polymorphysm"></category><category term="docstrings"></category></entry><entry><title>Mastering kwargs in Python - Best Practices for Experienced Developers</title><link href="https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/" rel="alternate"></link><published>2024-06-13T00:00:00+02:00</published><updated>2024-06-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-06-13:/mastering-kwargs-in-python-best-practices-for-experienced-developers/</id><summary type="html">&lt;p&gt;Python's &lt;code&gt;**kwargs&lt;/code&gt; is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of &lt;code&gt;**kwargs&lt;/code&gt; comes …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;code&gt;**kwargs&lt;/code&gt; is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of &lt;code&gt;**kwargs&lt;/code&gt; comes with its own set of challenges. In this article, we'll look into the potential pitfalls of using &lt;code&gt;**kwargs&lt;/code&gt; and how to mitigate them, helping you write more idiomatic and robust Python code.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
@@ -2531,6 +2675,7 @@ pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&g
 &lt;li&gt;&lt;a href="#6-performance-overhead"&gt;6. Performance Overhead&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#7-security-risks"&gt;7. Security Risks&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#8-default-values-and-none-checks"&gt;8. Default Values and None Checks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#related-articles"&gt;Related articles&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- /MarkdownTOC --&gt;
 &lt;p&gt;&lt;a id="1-loss-of-clarity"&gt;&lt;/a&gt;&lt;/p&gt;
@@ -2698,7 +2843,7 @@ pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&g
     &lt;span class="c1"&gt;# Now if &amp;#39;preprocess&amp;#39; is explicitly set to None, None will be used&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;In conclusion, while &lt;code&gt;**kwargs&lt;/code&gt; provides flexibility, it should be used judiciously and with consideration of the potential drawbacks. By following the best practices outlined in this article, you can harness the power of &lt;code&gt;**kwargs&lt;/code&gt; to write cleaner, more maintainable, and idiomatic Python code. Happy coding!&lt;/p&gt;
+&lt;p&gt;While &lt;code&gt;**kwargs&lt;/code&gt; provides flexibility, it should be used judiciously and with consideration of the potential drawbacks. By following the best practices outlined in this article, you can harness the power of &lt;code&gt;**kwargs&lt;/code&gt; to write cleaner, more maintainable, and idiomatic Python code. Happy coding!&lt;/p&gt;
 &lt;h2&gt;Related articles&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://softwareengineering.stackexchange.com/questions/384743/how-can-i-resolve-this-kwargs-antipattern"&gt;python - How can I resolve this **kwargs antipattern? - Software Engineering Stack Exchange&lt;/a&gt;&lt;/li&gt;
@@ -3004,7 +3149,7 @@ ssh-add&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ssh-add&lt;span class="w"&gt; &lt;/span&gt;~/.ssh/github
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;By performing these steps, you can effectively manage your SSH keys and prevent conflicts when working with multiple GitHub accounts on the same machine.&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="github"></category><category term="ssh"></category><category term="ssh-key"></category></entry><entry><title>Open Source LLM Observability Tools and Platforms</title><link href="https://www.safjan.com/open-source-llm-observability-tools-and-platforms/" rel="alternate"></link><published>2024-02-22T00:00:00+01:00</published><updated>2024-06-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-02-22:/open-source-llm-observability-tools-and-platforms/</id><summary type="html">&lt;p&gt;Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article delves into the critical aspects of LLM Observability in the realm of generative AI.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
+&lt;p&gt;By performing these steps, you can effectively manage your SSH keys and prevent conflicts when working with multiple GitHub accounts on the same machine.&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="github"></category><category term="ssh"></category><category term="ssh-key"></category></entry><entry><title>Open Source LLM Observability Tools and Platforms</title><link href="https://www.safjan.com/open-source-llm-observability-tools-and-platforms/" rel="alternate"></link><published>2024-02-22T00:00:00+01:00</published><updated>2024-06-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-02-22:/open-source-llm-observability-tools-and-platforms/</id><summary type="html">&lt;p&gt;Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article looks into the critical aspects of LLM Observability in the realm of generative AI.&lt;/p&gt;</summary><content type="html">&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#llm-observability-in-the-context-of-llmops-for-generative-ai"&gt;LLM Observability in the Context of LLMOps for Generative AI&lt;/a&gt;&lt;/li&gt;
@@ -3025,6 +3170,7 @@ ssh-add&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt
 &lt;li&gt;&lt;a href="#what-is-llm-observability"&gt;What is LLM Observability?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#expected-functionalities-of-an-llm-observability-solution"&gt;Expected Functionalities of an LLM Observability Solution&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#open-source-llm-observability-tools-and-platforms"&gt;Open Source LLM Observability Tools and Platforms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#non-open-source"&gt;Non-open source&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#other---related"&gt;Other - related&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -3098,7 +3244,7 @@ ssh-add&lt;span class="w"&gt; &lt;/span&gt;-d&lt;span class="w"&gt; &lt;/span&gt
 &lt;p&gt;&lt;a id="references"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://towardsdatascience.com/llm-monitoring-and-observability-c28121e75c2f"&gt;LLM Monitoring and Observability — A Summary of Techniques and Approaches for Responsible AI | by Josh Poduska | Towards Data Science&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://towardsdatascience.com/llm-monitoring-and-observability-c28121e75c2f"&gt;LLM Monitoring and Observability - A Summary of Techniques and Approaches for Responsible AI | by Josh Poduska | Towards Data Science&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.aporia.com/learn/how-to-monitor-large-language-models/"&gt;Monitoring LLMs: Metrics, challenges, &amp;amp; hallucinations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/mattcvincent/intro-llm-observability"&gt;mattcvincent/intro-&lt;em&gt;llm&lt;/em&gt;-&lt;em&gt;observability&lt;/em&gt;&lt;/a&gt; - Intro to LLM Observability&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.33rdsquare.com/what-is-perplexity-ai/"&gt;Demystifying Perplexity: An AI Expert‘s Comprehensive Guide - 33rd Square&lt;/a&gt;&lt;/li&gt;
@@ -3800,7 +3946,7 @@ X::[[retrieving_strategies]]&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Term expansion allows us to identify relevant but different terms and use them in the sparse vector retrieval step." src="https://cdn.sanity.io/images/vr8gru94/production/17f0aac1f34b4475121744b672156a611dd8aed6-1029x331.png"&gt;&lt;/p&gt;
 &lt;p&gt;Term expansion allows us to identify relevant but different terms and use them in the sparse vector retrieval step.&lt;/p&gt;
 &lt;p&gt;The most significant advantage of SPLADE is not necessarily that it can &lt;em&gt;do&lt;/em&gt; term expansion but instead that it can &lt;em&gt;learn&lt;/em&gt; term expansions. Traditional methods required rule-based term expansion which is time-consuming &lt;em&gt;and&lt;/em&gt; fundamentally limited. Whereas SPLADE can use the best language models to learn term expansions and even tweak them based on the sentence context.&lt;/p&gt;
-&lt;p&gt;The article also discusses the pros and cons of sparse and dense vectors, the concept of two-stage retrieval, and the drawbacks of this approach. It then delves into the workings of SPLADE, explaining how it builds sparse embeddings and how it can be implemented using Hugging Face and PyTorch or the official SPLADE library.&lt;/p&gt;
+&lt;p&gt;The article also discusses the pros and cons of sparse and dense vectors, the concept of two-stage retrieval, and the drawbacks of this approach. It then looks into the workings of SPLADE, explaining how it builds sparse embeddings and how it can be implemented using Hugging Face and PyTorch or the official SPLADE library.&lt;/p&gt;
 &lt;p&gt;The article concludes by acknowledging the &lt;strong&gt;limitations of SPLADE&lt;/strong&gt;, such as its &lt;strong&gt;slower retrieval speed compared to other sparse methods&lt;/strong&gt;, and suggests solutions to these problems. It also highlights the potential of mixing both dense and sparse representations using hybrid search indexes to make vector search more accurate and accessible.&lt;/p&gt;
 &lt;p&gt;X::[[tf_idf]]&lt;/p&gt;
 &lt;h2&gt;References&lt;/h2&gt;
@@ -3946,7 +4092,7 @@ X::[[product_led_growth]]&lt;/p&gt;</content><category term="note"></category><c
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.productled.org/foundations/what-is-product-led-growth"&gt;What is product-led growth?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.appcues.com/blog/pirate-metric-saas-growth"&gt;Why activation is the most important pirate metric for SaaS growth | Appcues Blog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="startup"></category><category term="methodology"></category><category term="product-led-growth"></category></entry><entry><title>RAG-Fusion - Enhancing Information Retrieval in Large Language Models</title><link href="https://www.safjan.com/rag-fusion-enhancing-information-retrieval-in-large-language-models/" rel="alternate"></link><published>2023-11-06T00:00:00+01:00</published><updated>2023-11-06T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-11-06:/rag-fusion-enhancing-information-retrieval-in-large-language-models/</id><summary type="html">&lt;p&gt;In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique known as Retrieval Augmented Generation (RAG) is gaining prominence. This technique is designed to enhance a user's input by incorporating additional information from an external source. This supplementary …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique known as Retrieval Augmented Generation (RAG) is gaining prominence. This technique is designed to enhance a user's input by incorporating additional information from an external source. This supplementary data is then leveraged by the LLM to enrich the response it generates. In this blog post, we will delve deeper into the core concept of RAG-fusion, which revolves around multiple query generation and re-ranking of results. For other methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].&lt;/p&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="startup"></category><category term="methodology"></category><category term="product-led-growth"></category></entry><entry><title>RAG-Fusion - Enhancing Information Retrieval in Large Language Models</title><link href="https://www.safjan.com/rag-fusion-enhancing-information-retrieval-in-large-language-models/" rel="alternate"></link><published>2023-11-06T00:00:00+01:00</published><updated>2023-11-06T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-11-06:/rag-fusion-enhancing-information-retrieval-in-large-language-models/</id><summary type="html">&lt;p&gt;In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique known as Retrieval Augmented Generation (RAG) is gaining prominence. This technique is designed to enhance a user's input by incorporating additional information from an external source. This supplementary …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique known as Retrieval Augmented Generation (RAG) is gaining prominence. This technique is designed to enhance a user's input by incorporating additional information from an external source. This supplementary data is then leveraged by the LLM to enrich the response it generates. In this blog post, we will look deeper into the core concept of RAG-fusion, which revolves around multiple query generation and re-ranking of results. For other methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].&lt;/p&gt;
 &lt;h2&gt;What is RAG-fusion?&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;The principle behind RAG-fusion is to generate multiple versions of the user's original query using a LLM, and then re-rank the results to select the most relevant retrieved parts.&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4142,7 +4288,7 @@ up::[[knowledge_graphs]]&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://arxiv.org/abs/2307.03172"&gt;[2307.03172] Lost in the Middle: How Language Models Use Long Contexts&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://towardsdatascience.com/10-ways-to-improve-the-performance-of-retrieval-augmented-generation-systems-5fa2cee7cd5c"&gt;10 Ways to Improve the Performance of Retrieval Augmented Generation Systems | by Matt Ambrogi | Sep, 2023 | Towards Data Science&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Hypothetical Document Embeddings (HyDE) - &lt;a href="http://boston.lti.cs.cmu.edu/luyug/HyDE/HyDE.pdf"&gt;Precise Zero-Shot Dense Retrieval without Relevance Labels&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.sbert.net/examples/applications/retrieve_rerank/README.html"&gt;Retrieve &amp;amp; Re-Rank — Sentence-Transformers documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sbert.net/examples/applications/retrieve_rerank/README.html"&gt;Retrieve &amp;amp; Re-Rank - Sentence-Transformers documentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://blog.llamaindex.ai/improving-rag-effectiveness-with-retrieval-augmented-dual-instruction-tuning-ra-dit-01e73116655d"&gt;Improving RAG effectiveness with Retrieval-Augmented Dual Instruction Tuning (RA-DIT) | by Emanuel Ferreira | Oct, 2023 | LlamaIndex Blog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://medium.com/towards-generative-ai/improving-rag-retrieval-augmented-generation-answer-quality-with-re-ranker-55a19931325"&gt;Improving RAG (Retrieval Augmented Generation) Answer Quality with Re-ranker | by Shivam Solanki | Towards Generative AI | Medium&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;SingleStore (db), finetuning embeddings model, CacheGPT, Nemo-Guardrails, &lt;a href="https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a"&gt;Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium&lt;/a&gt;&lt;/li&gt;
@@ -4202,7 +4348,7 @@ up::[[MOC_Python]]&lt;/p&gt;
 &lt;li&gt;2023-10-30: Remove from Experts: 7. Understands and uses Python's garbage collection system.&lt;/li&gt;
 &lt;li&gt;2023-10-30: Remove from Experts: Have a good understanding of Python's internals, such as bytecode, the Python interpreter's execution model, and how Python's data types are implemented at the C level.&lt;/li&gt;
 &lt;li&gt;2023-10-30: Remove from Advanced: Can use advanced Python libraries like &lt;code&gt;numpy&lt;/code&gt;, &lt;code&gt;pandas&lt;/code&gt;, &lt;code&gt;matplotlib&lt;/code&gt; not a python std lib.&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"></category><category term="python"></category><category term="programming"></category><category term="interview"></category><category term="job-interview"></category><category term="skills"></category></entry><entry><title>Understanding the Differences in Language Models - Transformers vs. Markov Models</title><link href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/" rel="alternate"></link><published>2023-10-07T00:00:00+02:00</published><updated>2023-10-07T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-10-07:/understanding-differences-gpt-transformers-markov-models/</id><summary type="html">&lt;p&gt;This article explores distinguishing details of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Machine Learning (ML) and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT (&lt;a href="https://en.wikipedia.org/wiki/Generative_pre-trained_transformer"&gt;Generative Pretrained Transformer&lt;/a&gt;). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to delve into the intricacies of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="python"></category><category term="programming"></category><category term="interview"></category><category term="job-interview"></category><category term="skills"></category></entry><entry><title>Understanding the Differences in Language Models - Transformers vs. Markov Models</title><link href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/" rel="alternate"></link><published>2023-10-07T00:00:00+02:00</published><updated>2023-10-07T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-10-07:/understanding-differences-gpt-transformers-markov-models/</id><summary type="html">&lt;p&gt;This article explores distinguishing details of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In Machine Learning (ML) and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT (&lt;a href="https://en.wikipedia.org/wiki/Generative_pre-trained_transformer"&gt;Generative Pretrained Transformer&lt;/a&gt;). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to look into the details of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.&lt;/p&gt;
 &lt;h2&gt;Markov Models: A Brief Overview&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Markov_model"&gt;Markov Models&lt;/a&gt;, named after the Russian mathematician &lt;a href="https://en.wikipedia.org/wiki/Andrey_Markov"&gt;Andrey Markov&lt;/a&gt;, are a class of models that predict future states based solely on the current state, disregarding all past states. This property is known as the Markov Property, and it is the fundamental assumption that underlies all Markov models.&lt;/p&gt;
 &lt;p&gt;In the context of language modeling, a Markov Model might predict the next word or character in a sentence based on the current word or character. For instance, given the word "The", a Markov Model might predict that the next word is "cat" based on the probability distribution of words that follow "The" in its training data.&lt;/p&gt;
@@ -4251,19 +4397,15 @@ up::[[MOC_Python]]&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#potential-problems"&gt;Potential problems&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#potential-problems"&gt;Potential problems&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#tight-deadlines-and-sprints"&gt;Tight deadlines and sprints&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#focus-on-deliverables"&gt;Focus on deliverables&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#lack-of-autonomy"&gt;Lack of autonomy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#constant-and-sudden-changes"&gt;Constant and sudden changes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#overemphasis-on-standardized-processes"&gt;Overemphasis on standardized processes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#mitigation"&gt;Mitigation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#mitigation"&gt;Mitigation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#complementary-practices"&gt;Complementary practices&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#frameworks-tailored-for-data-science-projects"&gt;Frameworks tailored for data science projects&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- /MarkdownTOC --&gt;
@@ -4475,13 +4617,11 @@ up::[[MOC_Python]]&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#factors-influencing-chunking-strategy"&gt;Factors Influencing Chunking Strategy&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#factors-influencing-chunking-strategy"&gt;Factors Influencing Chunking Strategy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#size-of-the-texts-to-be-indexed"&gt;Size of the Texts to be Indexed&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#length-and-complexity-of-user-queries"&gt;Length and Complexity of User Queries&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#utilization-of-the-retrieved-results-in-the-application"&gt;Utilization of the Retrieved Results in the Application&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#chunking-methods"&gt;Chunking Methods&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#chunking-methods"&gt;Chunking Methods&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#fixed-size-in-characters-overlapping-sliding-window"&gt;Fixed-size (in characters) Overlapping Sliding Window&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#fixed-size-in-tokens-overlapping-sliding-window"&gt;Fixed-size (in tokens) Overlapping Sliding Window&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#recursive-structure-aware-splitting"&gt;Recursive Structure Aware Splitting&lt;/a&gt;&lt;/li&gt;
@@ -4489,8 +4629,6 @@ up::[[MOC_Python]]&lt;/p&gt;
 &lt;li&gt;&lt;a href="#nlp-chunking-tracking-topic-changes"&gt;NLP Chunking: Tracking Topic Changes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#content-aware-splitting-markdown-latex-html"&gt;Content-Aware Splitting (Markdown, LaTeX, HTML)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#adding-extra-context-to-the-chunk-metadata-summaries"&gt;Adding Extra Context to the Chunk (metadata, summaries)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#further-reading"&gt;Further Reading&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -4780,7 +4918,7 @@ X::[[growth_hacking]]&lt;/p&gt;
 &lt;p&gt;However, there are some criticisms and challenges associated with the Lean Startup method, including:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Oversimplification&lt;/strong&gt;: Critics argue that the Lean Startup method can sometimes oversimplify the complexity of building a successful business. While it encourages rapid experimentation, it may not address all the intricacies and industry-specific nuances that startups may encounter.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Oversimplification&lt;/strong&gt;: Critics argue that the Lean Startup method can sometimes oversimplify the complexity of building a successful business. While it encourages rapid experimentation, it may not address all the details and industry-specific nuances that startups may encounter.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Overemphasis on MVP (Minimum Viable Product)&lt;/strong&gt;: Some argue that an overemphasis on building MVPs can lead to premature scaling or neglecting long-term vision and product quality. In some industries, especially those requiring substantial upfront investment or regulatory compliance, an MVP might not be appropriate.&lt;/p&gt;
@@ -4861,7 +4999,7 @@ X::[[product_led_growth]]&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#problems"&gt;Problems&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#problems"&gt;Problems&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#1-overly-complex-and-unnecessary-abstractions"&gt;1. Overly complex and unnecessary abstractions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#2-easy-breakable-and-unreliable"&gt;2. Easy breakable and unreliable&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#3-poor-documentation"&gt;3. Poor documentation&lt;/a&gt;&lt;/li&gt;
@@ -4872,8 +5010,6 @@ X::[[product_led_growth]]&lt;/p&gt;
 &lt;li&gt;&lt;a href="#8-inconsistent-behavior-and-hidden-details"&gt;8. Inconsistent behavior and hidden details&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#9-better-alternatives-available"&gt;9. Better alternatives available&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#10-primarily-optimized-for-demos"&gt;10. Primarily optimized for demos&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;&lt;a href="#takeaways---how-to-use-the-langchain-right-way"&gt;Takeaways - How to Use the LangChain Right Way?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -5285,11 +5421,9 @@ Figure 2. RAG operation. Information preparation and storage. Augmenting prompt 
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Original paper &lt;a href="https://arxiv.org/abs/2005.11401"&gt;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks&lt;/a&gt; by Patrick Lewis et al. (available as &lt;a href="https://paperswithcode.com/method/rag"&gt;paper with code&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Exemplary notebooks on amazon Sagemaker:&lt;ul&gt;
+&lt;li&gt;Exemplary notebooks on amazon Sagemaker:&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_jumpstart_knn.html"&gt;Retrieval-Augmented Generation: Question Answering based on Custom Dataset&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/question_answering_retrieval_augmented_generation/question_answering_langchain_jumpstart.html"&gt;Retrieval-Augmented Generation: Question Answering based on Custom Dataset with Open-sourced LangChain Library&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;Python library with RAG implementation: &lt;a href="https://github.com/llmware-ai/llmware"&gt;GitHub - llmware-ai/llmware: Providing enterprise-grade LLM-based development framework, tools and fine-tuned models.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Analytics: &lt;a href="https://www.vectorview.ai/"&gt;Vectorview&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Deep-dive into specific use-case of RAG with scaling in mind: &lt;a href="https://www.anyscale.com/blog/a-comprehensive-guide-for-building-rag-based-llm-applications-part-1"&gt;Building RAG-based LLM Applications for Production (Part 1)&lt;/a&gt;&lt;/li&gt;
@@ -5298,13 +5432,11 @@ Figure 2. RAG operation. Information preparation and storage. Augmenting prompt 
 &lt;li&gt;Optimization, async, using summaries: &lt;a href="https://madhukarkumar.medium.com/secrets-to-optimizing-rag-llm-apps-for-better-accuracy-performance-and-lower-cost-da1014127c0a"&gt;Secrets to Optimizing RAG LLM Apps for Better Performance, Accuracy and Lower Costs! | by Madhukar Kumar | madhukarkumar | Sep, 2023 | Medium&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Check the GitHub for the RAG-related projects: &lt;a href="https://github.com/topics/retrieval-augmented-generation?l=python"&gt;retrieval-augmented-generation · GitHub Topics&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.reddit.com/r/LocalLLaMA/comments/16cbimi/yet_another_rag_system_implementation_details_and/"&gt;Yet another RAG system - implementation details and lessons learned : r/LocalLLaMA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/"&gt;Building and Evaluating Advanced RAG Applications - DeepLearning.AI&lt;/a&gt; - recent course from deeplearning.ai (Andrew Ng). Instructors: Jerry Liu and Anupam Datta.&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/"&gt;Building and Evaluating Advanced RAG Applications - DeepLearning.AI&lt;/a&gt; - recent course from deeplearning.ai (Andrew Ng). Instructors: Jerry Liu and Anupam Datta.&lt;/li&gt;
 &lt;li&gt;In this course, we’ll explore:&lt;ul&gt;
 &lt;li&gt;Two advanced retrieval methods: Sentence-window retrieval and auto-merging retrieval that perform better compared to the baseline RAG pipeline.&lt;/li&gt;
 &lt;li&gt;Evaluation and experiment tracking: A way evaluate and iteratively improve your RAG pipeline’s performance.&lt;/li&gt;
 &lt;li&gt;The RAG triad: Context Relevance, Groundedness, and Answer Relevance, which are methods to evaluate the relevance and truthfulness of your LLM’s response.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -6251,7 +6383,7 @@ X::[[2023-01-25-how_to_verify_that_each_automated_backup_is_done_correctly]]&lt;
 &lt;h3&gt;cjolowicz/cookiecutter-hypermodern-python&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/cjolowicz/cookiecutter-hypermodern-python"&gt;https://github.com/cjolowicz/cookiecutter-hypermodern-python&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="github stars shield" src="https://img.shields.io/github/stars/cjolowicz/cookiecutter-hypermodern-python.svg?logo=github"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://cookiecutter-hypermodern-python.readthedocs.io/en/2021.3.14/guide.html"&gt;User Guide — Hypermodern Python Cookiecutter documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cookiecutter-hypermodern-python.readthedocs.io/en/2021.3.14/guide.html"&gt;User Guide - Hypermodern Python Cookiecutter documentation&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Packaging and dependency management with &lt;a href="https://python-poetry.org/"&gt;Poetry&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Test automation with &lt;a href="https://nox.thea.codes/"&gt;Nox&lt;/a&gt;&lt;/li&gt;
@@ -7165,6 +7297,7 @@ This is a small package to load and parse files (or just text) with YAML (or JSO
 &lt;!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#getting-started-with-applescript"&gt;Getting Started with AppleScript&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#increasing-productivity-with-applescript"&gt;Increasing Productivity with AppleScript&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#customized-workflow"&gt;Customized Workflow&lt;/a&gt;&lt;/li&gt;
@@ -7185,6 +7318,7 @@ This is a small package to load and parse files (or just text) with YAML (or JSO
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- /MarkdownTOC --&gt;
 
@@ -7265,7 +7399,7 @@ $&lt;span class="w"&gt; &lt;/span&gt;osascript&lt;span class="w"&gt; &lt;/span&g
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a id="system-automation"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;System Automation&lt;/h4&gt;
-&lt;p&gt;AppleScript allows you to control system settings and perform actions like changing the display resolution, adjusting volume, or toggling Wi-Fi—all with a single script.&lt;/p&gt;
+&lt;p&gt;AppleScript allows you to control system settings and perform actions like changing the display resolution, adjusting volume, or toggling Wi-Fi - all with a single script.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Example Script 3: Adjusting Display Brightness&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -7556,7 +7690,7 @@ X::[[2023-04-18-measure_quality_of_embeddings]]&lt;/p&gt;
 X::[[decorelating_features_dimensionality_reduction_PCA]]
 X::[[2023-04-18-measure_quality_of_embeddings]]&lt;/p&gt;
 &lt;p&gt;Perplexity is a measure commonly used in machine learning, particularly in the field of dimensionality reduction techniques such as Principal Component Analysis (PCA). It provides a way to evaluate and compare the quality of dimensionality reduction algorithms by quantifying how well they preserve the structure of the original data.&lt;/p&gt;
-&lt;p&gt;In this blog post, we will delve into the concept of perplexity, its application in PCA, and its importance in assessing the performance of dimensionality reduction methods. We will also provide code examples in Python to demonstrate its practical implementation.&lt;/p&gt;
+&lt;p&gt;In this blog post, we will look into the concept of perplexity, its application in PCA, and its importance in assessing the performance of dimensionality reduction methods. We will also provide code examples in Python to demonstrate its practical implementation.&lt;/p&gt;
 &lt;h2&gt;Understanding Perplexity&lt;/h2&gt;
 &lt;p&gt;Perplexity is a measure originally developed for evaluating probabilistic models, particularly in the field of natural language processing. It represents the level of uncertainty or confusion in predicting the next item in a sequence. In the context of dimensionality reduction, perplexity provides an estimation of the number of nearest neighbors that should be considered when reconstructing a data point in a lower-dimensional space.&lt;/p&gt;
 &lt;p&gt;Given a high-dimensional dataset, PCA aims to find a lower-dimensional representation that captures the most significant features or patterns of the original data. The idea behind perplexity is to preserve the local structure of the data, ensuring that neighboring points in the high-dimensional space remain close to each other in the reduced space.&lt;/p&gt;
@@ -7646,16 +7780,19 @@ $$&lt;/p&gt;
 &lt;p&gt;See also:
 &lt;a href="https://distill.pub/2016/misread-tsne/"&gt;How to Use t-SNE Effectively&lt;/a&gt;&lt;/p&gt;</content><category term="note"></category><category term="pca"></category><category term="perplexity"></category><category term="dimensionality-reduction"></category><category term="probability"></category><category term="TSNE"></category><category term="distance"></category></entry><entry><title>Understanding Bhattacharyya Distance and Coefficient for Probability Distributions</title><link href="https://www.safjan.com/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/" rel="alternate"></link><published>2023-06-30T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-30:/understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions/</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the &lt;a href="https://en.wikipedia.org/wiki/Bhattacharyya_distance"&gt;Bhattacharyya distance&lt;/a&gt;, which quantifies the dissimilarity between two distributions. The Bhattacharyya …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
-&lt;p&gt;In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the &lt;a href="https://en.wikipedia.org/wiki/Bhattacharyya_distance"&gt;Bhattacharyya distance&lt;/a&gt;, which quantifies the dissimilarity between two distributions. The Bhattacharyya coefficient, on the other hand, provides a measure of the overlap between two statistical samples or populations. In this blog post, we will delve into the concepts of Bhattacharyya distance and coefficient, discuss their applications, and provide Python code examples for better understanding.&lt;/p&gt;
+&lt;p&gt;In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the &lt;a href="https://en.wikipedia.org/wiki/Bhattacharyya_distance"&gt;Bhattacharyya distance&lt;/a&gt;, which quantifies the dissimilarity between two distributions. The Bhattacharyya coefficient, on the other hand, provides a measure of the overlap between two statistical samples or populations. In this blog post, we will look into the concepts of Bhattacharyya distance and coefficient, discuss their applications, and provide Python code examples for better understanding.&lt;/p&gt;
 &lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#bhattacharyya-distance"&gt;Bhattacharyya Distance&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#bhattacharyya-coefficient"&gt;Bhattacharyya Coefficient&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#applications-of-bhattacharyya-distance-and-coefficient"&gt;Applications of Bhattacharyya Distance and Coefficient&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#python-implementation"&gt;Python Implementation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#other-metrics"&gt;Other metrics&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- /MarkdownTOC --&gt;
 
@@ -7667,7 +7804,7 @@ $$&lt;/p&gt;
 D_B(P,Q) = -\ln \left( BC(P,Q) \right) = -\ln \left( \sum_{i} \sqrt{P(i)Q(i)} \right)
 $$&lt;/p&gt;
 &lt;p&gt;where ( P ) and ( Q ) are the probability distributions being compared, ( P(i) ) and ( Q(i) ) represent the probabilities of occurrence for the ( i )th event or sample, and ( BC(P,Q) ) denotes the Bhattacharyya coefficient.&lt;/p&gt;
-&lt;p&gt;The Bhattacharyya distance ranges from 0 to infinity, where 0 indicates perfect similarity and higher values indicate increasing dissimilarity. It is important to note that the Bhattacharyya distance is a symmetric measure, meaning ( D_B(P,Q) = D_B(Q,P) ).&lt;/p&gt;
+&lt;p&gt;The Bhattacharyya distance ranges from 0 to infinity, where 0 indicates perfect similarity and higher values indicate increasing dissimilarity. Note that the Bhattacharyya distance is a symmetric measure, meaning ( D_B(P,Q) = D_B(Q,P) ).&lt;/p&gt;
 &lt;p&gt;&lt;a id="bhattacharyya-coefficient"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Bhattacharyya Coefficient&lt;/h2&gt;
 &lt;p&gt;The Bhattacharyya coefficient is a measure of overlap between two statistical samples or populations. It quantifies the similarity between two probability distributions and is often used as a precursor to computing the Bhattacharyya distance.&lt;/p&gt;
@@ -8635,205 +8772,4 @@ git&lt;span class="w"&gt; &lt;/span&gt;check-conflicts
 &lt;p&gt;&lt;strong&gt;Edits:&lt;/strong&gt;
 - 2025-06-26: Add more info about conflict resolution, diff inspection from CLI and Git Aliases for Efficient Review
 - 2024-03-06: Added sections on using PyCharm and VSCode features
-- 2024-03-06: Added extras on VSCode extensions and git commands for review&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="workflow"></category><category term="github"></category><category term="pull-request"></category></entry><entry><title>Extracting Keywords From the User Query</title><link href="https://www.safjan.com/extracting-keywords-from-the-user-query/" rel="alternate"></link><published>2023-06-09T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-09:/extracting-keywords-from-the-user-query/</id><summary type="html">&lt;p&gt;X::[[dups/hybrid_search]]&lt;/p&gt;
-&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#rule-based-approach"&gt;Rule-Based Approach&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#linguistic-analysis"&gt;Linguistic Analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#machine-learning-ml-and-statistical-methods"&gt;Machine Learning (ML) and Statistical Methods&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#hybrid-approaches"&gt;Hybrid Approaches:&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#what-about-using-large-language-models"&gt;What about using (large) language models?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#pros"&gt;Pros:&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#cons"&gt;Cons:&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#more-on-machine-learning-and-statistical-methods-for-keywords-extraction"&gt;More on Machine Learning and statistical Methods for Keywords Extraction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#exemplary-implementation"&gt;Exemplary implementation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-
-&lt;p&gt;When it comes to extracting keywords or …&lt;/p&gt;</summary><content type="html">&lt;p&gt;X::[[dups/hybrid_search]]&lt;/p&gt;
-&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#rule-based-approach"&gt;Rule-Based Approach&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#linguistic-analysis"&gt;Linguistic Analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#machine-learning-ml-and-statistical-methods"&gt;Machine Learning (ML) and Statistical Methods&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#hybrid-approaches"&gt;Hybrid Approaches:&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#what-about-using-large-language-models"&gt;What about using (large) language models?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#pros"&gt;Pros:&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#cons"&gt;Cons:&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#more-on-machine-learning-and-statistical-methods-for-keywords-extraction"&gt;More on Machine Learning and statistical Methods for Keywords Extraction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#exemplary-implementation"&gt;Exemplary implementation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-
-&lt;p&gt;When it comes to extracting keywords or key terms from a user query, there are several approaches that can be used. Each approach has its own set of pros and cons, which I will discuss below:&lt;/p&gt;
-&lt;p&gt;&lt;a id="rule-based-approach"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Rule-Based Approach&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: This approach involves defining a set of rules or patterns to identify keywords based on specific criteria. It can be effective for simple queries and known patterns, allowing for precise keyword extraction.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: Rule-based approaches can be limited in their flexibility and scalability. They require manual effort to create and maintain the rules, making them less suitable for handling complex or evolving queries. Additionally, they may not perform well when faced with ambiguous or unstructured input.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a id="linguistic-analysis"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Linguistic Analysis&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: Linguistic analysis techniques utilize natural language processing (NLP) algorithms to analyze the grammatical structure and semantics of a query. By considering parts of speech, syntactic relationships, and semantic associations, they can extract relevant keywords effectively.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: This approach can be computationally expensive and may require substantial linguistic resources such as parsers, lexicons, and ontologies. Handling languages with complex grammar or processing highly contextual queries can be challenging. It might also struggle with ambiguous phrases or idiomatic expressions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a id="machine-learning-ml-and-statistical-methods"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Machine Learning (ML) and Statistical Methods&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: ML techniques, such as supervised or unsupervised learning, can automatically learn patterns and extract keywords based on training data. They can adapt to different query types and improve over time with more data. Statistical methods, such as term frequency-inverse document frequency (TF-IDF), can also identify important keywords based on their prevalence and relevance within a dataset.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: Building ML models requires labeled training data, which can be time-consuming and expensive to create. Models may struggle with rare or domain-specific queries if not adequately trained. They can also be susceptible to biases present in the training data, and their performance may degrade when faced with queries significantly different from the training distribution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a id="hybrid-approaches"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Hybrid Approaches&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Pros&lt;/strong&gt;: Hybrid approaches combine multiple techniques, leveraging the strengths of each to improve keyword extraction. For example, combining rule-based methods with ML models can enhance accuracy and handle a wider range of queries.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cons&lt;/strong&gt;: Designing and implementing hybrid approaches can be complex and require expertise in multiple areas. Combining different techniques may introduce additional computational overhead, impacting performance and response time.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;It's important to note that the effectiveness of these approaches can vary depending on factors such as the nature of the queries, available resources, and the desired level of accuracy. A well-designed solution often involves a combination of techniques to achieve the best results.&lt;/p&gt;
-&lt;p&gt;&lt;a id="what-about-using-large-language-models"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;What about using (large) language models?&lt;/h2&gt;
-&lt;p&gt;Using language models, such as GPT-3.5, can be a powerful approach for extracting keywords or key terms from a user query. Language models are trained on vast amounts of text data and have the ability to understand and generate human-like language.&lt;/p&gt;
-&lt;p&gt;Here are the pros and cons of using language models for keyword extraction:&lt;/p&gt;
-&lt;p&gt;&lt;a id="pros"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Pros&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Contextual Understanding&lt;/strong&gt;: Language models can capture the contextual meaning of words and phrases in a query. They can consider the surrounding words and sentences to extract keywords that are most relevant to the overall query.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Handling Ambiguity&lt;/strong&gt;: Language models can handle ambiguous queries by considering the broader context. They can interpret the query based on available information and generate keywords that make the most sense in the given context.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Generalization&lt;/strong&gt;: Language models have the ability to generalize from the training data and can extract keywords effectively even for queries that are slightly different from what they have seen before.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Continuous Learning&lt;/strong&gt;: Language models can be fine-tuned on specific domains or datasets to improve their keyword extraction capabilities. This allows them to adapt to specific contexts and improve their accuracy over time.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a id="cons"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Cons&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Lack of Control&lt;/strong&gt;: Language models generate keywords based on their learned patterns and training data, which may not always align with specific user requirements or domain-specific terminology. They may produce keywords that are technically correct but not exactly what the user intended.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Over-reliance on Training Data&lt;/strong&gt;: Language models heavily depend on the data they were trained on. If the training data contains biases or limitations, the model may exhibit the same biases or struggle with specific types of queries that were underrepresented in the training data.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Computational Overhead&lt;/strong&gt;: Language models can be computationally expensive to run, especially for real-time applications. The time required for keyword extraction using a language model might not be suitable for scenarios that demand low latency or high throughput.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Lack of Explanation&lt;/strong&gt;: Language models can provide keyword outputs, but they may not offer clear explanations for why certain words were selected as keywords. This lack of interpretability can make it challenging to understand the reasoning behind the chosen keywords.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;While language models can be effective for keyword extraction, it's important to consider these pros and cons and carefully evaluate the trade-offs before integrating them into a production system. It may be necessary to fine-tune the language model or combine it with other techniques to address specific limitations or requirements.&lt;/p&gt;
-&lt;p&gt;&lt;a id="more-on-machine-learning-and-statistical-methods-for-keywords-extraction"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;More on Machine Learning and statistical Methods for Keywords Extraction&lt;/h2&gt;
-&lt;p&gt;There are several machine learning and statistical methods commonly used for keyword extraction from text. Here are some popular techniques:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Term Frequency-Inverse Document Frequency (TF-IDF)&lt;/strong&gt;: TF-IDF is a statistical method that measures the importance of a term within a document and across a collection of documents. It calculates a weight for each term based on its frequency in the document and inversely proportional to its frequency in the entire document collection. Keywords with higher TF-IDF scores are considered more significant.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;TextRank&lt;/strong&gt;: TextRank is an algorithm inspired by Google's PageRank algorithm for ranking web pages. It applies a graph-based ranking approach to identify important keywords in a text. In this method, the text is represented as a graph, where each word is a node, and edges represent the co-occurrence or semantic similarity between words. TextRank assigns scores to words based on their centrality in the graph, with higher scores indicating more important keywords.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Latent Dirichlet Allocation (LDA)&lt;/strong&gt;: LDA is a generative probabilistic model that represents a collection of documents as a mixture of topics. It assumes that each document contains a distribution of topics, and each topic is characterized by a distribution of words. LDA can be used for keyword extraction by identifying the most probable words associated with each topic. Keywords are then selected based on their relevance to the document's topics.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Support Vector Machines (SVM)&lt;/strong&gt;: SVM is a supervised learning algorithm that can be used for keyword extraction by treating it as a binary classification problem. Training data is labeled with keywords and non-keywords, and SVM learns a decision boundary to separate the two classes. New text can be classified using the trained SVM model, and the words contributing most to the classification decision are considered keywords.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Neural Networks&lt;/strong&gt;: Various neural network architectures can be employed for keyword extraction, such as recurrent neural networks (RNNs), convolutional neural networks (CNNs), and transformers. These models can learn representations of words and capture complex relationships between them. They can be trained using labeled data or trained in an unsupervised manner by formulating the problem as an autoencoder or sequence-to-sequence learning.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Rule-based methods&lt;/strong&gt;: Rule-based approaches define a set of linguistic rules or patterns to identify keywords based on specific criteria such as part-of-speech tags, syntactic structures, or domain-specific rules. These methods can be effective when the domain or language has well-defined patterns for keywords.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a id="exemplary-implementation"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Exemplary implementation&lt;/h2&gt;
-&lt;p&gt;One state-of-the-art solution for keyword extraction from short texts is the TextRank algorithm, which is an unsupervised approach based on the PageRank algorithm. It has been proven to be highly effective in identifying important keywords in a text.&lt;/p&gt;
-&lt;p&gt;Here's a Python implementation using the &lt;code&gt;nltk&lt;/code&gt; library, which provides an implementation of the TextRank algorithm:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;nltk&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.tokenize&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;word_tokenize&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sent_tokenize&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.corpus&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;stopwords&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.stem&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;WordNetLemmatizer&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.tag&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pos_tag&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;nltk.corpus&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;wordnet&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;preprocess_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c1"&gt;# Tokenize the text into sentences&lt;/span&gt;
-    &lt;span class="n"&gt;sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sent_tokenize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Tokenize each sentence into words and perform part-of-speech tagging&lt;/span&gt;
-    &lt;span class="n"&gt;tagged_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sentence&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;word_tokenize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sentence&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="n"&gt;tagged_words&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos_tag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Lemmatize the words and remove stopwords&lt;/span&gt;
-    &lt;span class="n"&gt;lemmatizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;WordNetLemmatizer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="n"&gt;stop_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stopwords&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;english&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;preprocessed_words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tagged_words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="c1"&gt;# Consider only nouns, verbs, adjectives, and adverbs&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;NN&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;VB&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;JJ&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;RB&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="c1"&gt;# Lemmatize the word&lt;/span&gt;
-            &lt;span class="n"&gt;lemma&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lemmatizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lemmatize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;get_wordnet_pos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-            &lt;span class="c1"&gt;# Convert to lowercase and remove stopwords&lt;/span&gt;
-            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;lemma&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;stop_words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="n"&gt;preprocessed_words&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lemma&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;preprocessed_words&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_wordnet_pos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;N&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NOUN&lt;/span&gt;
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;V&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;VERB&lt;/span&gt;
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;J&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ADJ&lt;/span&gt;
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;R&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ADV&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;calculate_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;synsets1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;synsets&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;synsets2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;synsets&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;synsets1&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;synsets2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;max_sim&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;wn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;synsets1&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;synsets2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;max_sim&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;textrank_keywords&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;top_n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c1"&gt;# Preprocess the text&lt;/span&gt;
-    &lt;span class="n"&gt;words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;preprocess_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Build the word co-occurrence graph&lt;/span&gt;
-    &lt;span class="n"&gt;graph&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="n"&gt;similarity&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;calculate_similarity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;similarity&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                    &lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;similarity&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Apply the TextRank algorithm&lt;/span&gt;
-    &lt;span class="n"&gt;scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;damping_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.85&lt;/span&gt;
-    &lt;span class="n"&gt;max_iterations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_iterations&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="n"&gt;prev_scores&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;score&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;damping_factor&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;damping_factor&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prev_scores&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-            &lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;score&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Get the top keywords&lt;/span&gt;
-    &lt;span class="n"&gt;top_keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scores&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)[:&lt;/span&gt;&lt;span class="n"&gt;top_n&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;top_keywords&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Example usage&lt;/span&gt;
-&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;What are the benefits of exercise for mental health?&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;textrank_keywords&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE: before you can start using it you will need to download certain data resources from NLTK (Natural Language Toolkit) in order to use it for keyword extraction. Specifically, you will need to download the stopwords corpus and WordNet data.&lt;/p&gt;
-&lt;p&gt;To download the necessary data, you can use the following code snippet:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;nltk&lt;/span&gt;
-
-&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;stopwords&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;averaged_perceptron_tagger&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;punkt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;nltk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wordnet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"></category><category term="keywords"></category><category term="keyword-extraction"></category><category term="tfidf"></category></entry></feed>
+- 2024-03-06: Added extras on VSCode extensions and git commands for review&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="workflow"></category><category term="github"></category><category term="pull-request"></category></entry></feed>
