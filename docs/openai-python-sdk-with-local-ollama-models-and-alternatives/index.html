@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="I&#39;ve been diving into how to use the official openai Python package to talk to local Ollama models—and when it makes sense to bring in abstraction layers like LiteLLM. Let me walk you through what I learned. 1. Can I use …"/>
+    <meta name="keywords" content="openai, openai-sdk, ollama, litellm, langchain, llama-index, guidance, instructor">
+    <meta expr:content="2025-07-29 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2025-07-29 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2025-07-29 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2025-07-29 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)",
+  "datePublished": "2025-07-29 00:00:00+02:00",
+  "dateModified": "2025-07-29 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)"/>
+  <meta property="og:description" content="I&#39;ve been diving into how to use the official openai Python package to talk to local Ollama models—and when it makes sense to bring in abstraction layers like LiteLLM. Let me walk you through what I learned. 1. Can I use …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/openai-python-sdk-with-local-ollama-models-and-alternatives/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-07-29 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2025-07-29 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="openai"/>
+  <meta property="article:tag" content="openai-sdk"/>
+  <meta property="article:tag" content="ollama"/>
+  <meta property="article:tag" content="litellm"/>
+  <meta property="article:tag" content="langchain"/>
+  <meta property="article:tag" content="llama-index"/>
+  <meta property="article:tag" content="guidance"/>
+  <meta property="article:tag" content="instructor"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="I've been diving into how to use the official openai Python package to talk to local Ollama models—and when it makes sense to bring in abstraction layers like LiteLLM. Let me walk you through..."/>
+    <meta name="twitter:title" content="Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)"/>
+
+    <title>    Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-07-29 
+
+
+                <br/>
+            </p>
+            <h1 id="openai-python-sdk-with-local-ollama-models-and-alternatives">Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>I've been diving into how to use the official <code>openai</code> Python package to <strong>talk to local Ollama models</strong>—and when it makes sense to bring in abstraction layers like <strong>LiteLLM</strong>. Let me walk you through what I learned.</p>
+<h3>1. Can I use the OpenAI Python package for local Ollama models?</h3>
+<p><strong>Yes!</strong> Since early February 2024, Ollama supports the <strong>OpenAI Chat Completions API</strong>, exposing compatible endpoints locally. You can simply point the OpenAI client at <code>"http://localhost:11434/v1"</code>, pass a dummy API key, and call completions just like you would to OpenAI’s hosted API (see <a href="https://ollama.com/blog/openai-compatibility?utm_source=chatgpt.com" title="OpenAI compatibility · Ollama Blog">Ollama blog</a>).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:11434/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;unused-key&quot;</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+  <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama2&quot;</span><span class="p">,</span>
+  <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;What’s the capital of France?&quot;</span><span class="p">}</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+
+<p>You can also do embeddings similarly:</p>
+<div class="highlight"><pre><span></span><code><span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama2&quot;</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">embedding</span><span class="p">)</span>
+</code></pre></div>
+
+<p>So for fairly simple local projects, the OpenAI SDK works perfectly with Ollama.</p>
+<h3>2. When should I use LiteLLM instead?</h3>
+<p><strong>LiteLLM</strong> is a lightweight Python SDK (and optional proxy server) that provides a <strong>unified API</strong> for over 100 LLM providers—including OpenAI, Anthropic, HuggingFace—and crucially, <strong>Ollama/local models</strong> ( nice example with minimal Flask app - poem generator <a href="https://notes.kodekloud.com/docs/Running-Local-LLMs-With-Ollama/Building-AI-Applications/Demo-Creating-an-App-Using-Ollama-OpenAI-Python-Client?utm_source=chatgpt.com" title="Demo Creating an App Using Ollama OpenAI Python Client">KodeKloud Notes</a>).</p>
+<p>Here are some benefits of using LiteLLM:
+- It standardizes completions, embeddings, streaming, retries, and fallback logic<br>
+- You can swap providers (e.g. <code>openai/gpt‑4</code>, <code>anthropic/claude</code>, <code>ollama/llama2</code>) with no code changes<br>
+- Proxy server mode offers observability, logging, rate limiting, and cost tracking across providers (see LiteLLM documentation: <a href="https://docs.litellm.ai/?utm_source=chatgpt.com" title="LiteLLM - Getting Started | liteLLM">LiteLLM</a>)</p>
+<h3>3. Example: using LiteLLM Python SDK</h3>
+<p>First install:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>litellm
+</code></pre></div>
+
+<p>Then in Python:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">litellm</span> <span class="kn">import</span> <span class="n">completion</span><span class="p">,</span> <span class="n">embeddings</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;dummy&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LITELLM_OLLAMA_BASE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:11434/v1&quot;</span>
+
+<span class="c1"># Completion via Ollama</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="n">completion</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;ollama/llama2&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="s2">&quot;content&quot;</span><span class="p">:</span><span class="s2">&quot;Hello!&quot;</span><span class="p">}])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">])</span>
+
+<span class="c1"># Embeddings via Ollama</span>
+<span class="n">emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;ollama/llama2&quot;</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">emb</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;embedding&quot;</span><span class="p">])</span>
+</code></pre></div>
+
+<p>Later you can just switch to <code>openai/gpt-4o</code> or another provider. You keep the same <code>completion(...)</code> call. No branching logic in your app (<a href="https://langfuse.com/integrations/frameworks/litellm-sdk?utm_source=chatgpt.com" title="Open Source Observability for LiteLLM SDK - Langfuse">Langfuse</a>, <a href="https://docs.litellm.ai/?utm_source=chatgpt.com" title="LiteLLM - Getting Started | liteLLM">LiteLLM</a>, <a href="https://docs.litellm.ai/docs/?utm_source=chatgpt.com" title="LiteLLM - Getting Started">LiteLLM</a>).</p>
+<h3>5. Alternatives to LiteLLM</h3>
+<p>There are several other frameworks you may consider:</p>
+<ul>
+<li>
+<p><strong>Langchain</strong>, <strong>Llama‑Index</strong>, <strong>Guidance</strong>, <strong>instructor</strong> – great for structured output, chaining, tool-use, agents, prompt templating. Read more in these sources:</p>
+<ul>
+<li><a href="https://medium.com/towardsdev/4-proven-ways-to-use-ollama-locally-openai-apis-in-python-fast-flexible-and-scalable-216dca893b1c">4 Proven Ways to Use Ollama Locally &amp; OpenAI APIs in Python: Fast, Flexible, and Scalable | by Brain Glitch | Jun, 2025 | Towards Dev</a></li>
+<li><a href="https://medium.com/%40hajraali730/unlocking-the-power-of-litellm-a-lightweight-unified-interface-for-llms-5dc09cece265">Unlocking the Power of LiteLLM: A Lightweight, Unified Interface for LLMs</a></li>
+<li><a href="https://www.truefoundry.com/blog/litellm-alternatives">Top 5 LiteLLM alternatives of 2025</a></li>
+<li><a href="https://simmering.dev/blog/structured_output/">The best library for structured LLM output – Paul Simmering</a> - gives different recommendations for four use cases.</li>
+</ul>
+</li>
+<li>
+<p><strong>TrueFoundry</strong> – a more enterprise‑ready orchestration layer with observability, scaling, and deployment support, but heavier than LiteLLM (<a href="https://www.truefoundry.com/blog/litellm-alternatives?utm_source=chatgpt.com" title="Top 5 LiteLLM alternatives of 2025 - TrueFoundry">truefoundry.com</a>)</p>
+</li>
+</ul>
+<h3>Summary</h3>
+<p>I like using the <strong>OpenAI Python SDK</strong> with Ollama—it’s quick, reliable, and simple for local use cases. But as soon as I need to add other providers, handle retries/fallbacks, use embeddings, or manage observability and switching logic, <strong>LiteLLM</strong> becomes more convenient. And if I’m building complex agent pipelines or need structure, then libraries like <strong>Langchain</strong> or <strong>TrueFoundry</strong> fit right in.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/openai/">openai</a>
+                        <a href="https://www.safjan.com/tag/openai-sdk/">openai-sdk</a>
+                        <a href="https://www.safjan.com/tag/ollama/">ollama</a>
+                        <a href="https://www.safjan.com/tag/litellm/">litellm</a>
+                        <a href="https://www.safjan.com/tag/langchain/">langchain</a>
+                        <a href="https://www.safjan.com/tag/llama-index/">llama-index</a>
+                        <a href="https://www.safjan.com/tag/guidance/">guidance</a>
+                        <a href="https://www.safjan.com/tag/instructor/">instructor</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/">Problems with Langchain and how to minimize their impact</a></li>
+                        <li><a href="https://www.safjan.com/azure-openai-langchain-configuration/">Azure OpenAI Langchain configuration</a></li>
+                        <li><a href="https://www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/">Creating a PowerPoint Presentation with a Language Model</a></li>
+                        <li><a href="https://www.safjan.com/token-split-text/">Introducing a Python Module for Splitting Text Into Parts Based on Token Limit</a></li>
+                        <li><a href="https://www.safjan.com/how-to-count-tokens/">How to Count Tokens - Tokenization With Tiktoken.</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/building-a-multinotebook-report-with-quarto/" title="Building a Multi-Notebook Report with Quarto">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

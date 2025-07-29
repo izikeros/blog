@@ -99,7 +99,7 @@ def find_relationships(G, node):
     return [e for e in G.edges() if node in e]
 ```
 
-**NOTE**: There might be an problem when installing pygraphviz in Google Colab, you can use matlplotlib + networkx instead
+> **NOTE**: There might be an problem when installing pygraphviz in Google Colab, you can use matlplotlib + networkx instead
 
 ## DIY Solution - Custom Graph Structure
 

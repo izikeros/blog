@@ -1,7 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2025-07-23T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Building a Multi-Notebook Report with Quarto</title><link href="https://www.safjan.com/building-a-multinotebook-report-with-quarto/" rel="alternate"></link><published>2025-07-23T00:00:00+02:00</published><updated>2025-07-23T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-07-23:/building-a-multinotebook-report-with-quarto/</id><summary type="html">&lt;h1&gt;Building a Multi-Notebook Report with Quarto&lt;/h1&gt;
-&lt;p&gt;Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Building a Multi-Notebook Report with Quarto&lt;/h1&gt;
-&lt;p&gt;Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so I used quarto to generate report. Over the time analysis notebook has grown to the monster size. I wanted to split it into multiple notebooks, each focusing on a specific aspect of the analysis. But I also wanted to combine them into a single cohesive report.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog - Krystian Safjan</title><link href="https://www.safjan.com/" rel="alternate"></link><link href="https://www.safjan.com/feeds/krystian-safjan.atom.xml" rel="self"></link><id>https://www.safjan.com/</id><updated>2025-07-29T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some  &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)</title><link href="https://www.safjan.com/openai-python-sdk-with-local-ollama-models-and-alternatives/" rel="alternate"></link><published>2025-07-29T00:00:00+02:00</published><updated>2025-07-29T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-07-29:/openai-python-sdk-with-local-ollama-models-and-alternatives/</id><summary type="html">&lt;p&gt;I've been diving into how to use the official &lt;code&gt;openai&lt;/code&gt; Python package to &lt;strong&gt;talk to local Ollama models&lt;/strong&gt;—and when it makes sense to bring in abstraction layers like &lt;strong&gt;LiteLLM&lt;/strong&gt;. Let me walk you through what I learned.&lt;/p&gt;
+&lt;h3&gt;1. Can I use …&lt;/h3&gt;</summary><content type="html">&lt;p&gt;I've been diving into how to use the official &lt;code&gt;openai&lt;/code&gt; Python package to &lt;strong&gt;talk to local Ollama models&lt;/strong&gt;—and when it makes sense to bring in abstraction layers like &lt;strong&gt;LiteLLM&lt;/strong&gt;. Let me walk you through what I learned.&lt;/p&gt;
+&lt;h3&gt;1. Can I use the OpenAI Python package for local Ollama models?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Yes!&lt;/strong&gt; Since early February 2024, Ollama supports the &lt;strong&gt;OpenAI Chat Completions API&lt;/strong&gt;, exposing compatible endpoints locally. You can simply point the OpenAI client at &lt;code&gt;"http://localhost:11434/v1"&lt;/code&gt;, pass a dummy API key, and call completions just like you would to OpenAI’s hosted API (see &lt;a href="https://ollama.com/blog/openai-compatibility?utm_source=chatgpt.com" title="OpenAI compatibility · Ollama Blog"&gt;Ollama blog&lt;/a&gt;).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;openai&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OpenAI&lt;/span&gt;
+&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;OpenAI&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base_url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://localhost:11434/v1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;api_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;unused-key&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;completions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;llama2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;messages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;role&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;system&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;You are a helpful assistant.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;role&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;What’s the capital of France?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;choices&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also do embeddings similarly:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;resp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;llama2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello world!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;embedding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So for fairly simple local projects, the OpenAI SDK works perfectly with Ollama.&lt;/p&gt;
+&lt;h3&gt;2. When should I use LiteLLM instead?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; is a lightweight Python SDK (and optional proxy server) that provides a &lt;strong&gt;unified API&lt;/strong&gt; for over 100 LLM providers—including OpenAI, Anthropic, HuggingFace—and crucially, &lt;strong&gt;Ollama/local models&lt;/strong&gt; ( nice example with minimal Flask app - poem generator &lt;a href="https://notes.kodekloud.com/docs/Running-Local-LLMs-With-Ollama/Building-AI-Applications/Demo-Creating-an-App-Using-Ollama-OpenAI-Python-Client?utm_source=chatgpt.com" title="Demo Creating an App Using Ollama OpenAI Python Client"&gt;KodeKloud Notes&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Here are some benefits of using LiteLLM:
+- It standardizes completions, embeddings, streaming, retries, and fallback logic&lt;br&gt;
+- You can swap providers (e.g. &lt;code&gt;openai/gpt‑4&lt;/code&gt;, &lt;code&gt;anthropic/claude&lt;/code&gt;, &lt;code&gt;ollama/llama2&lt;/code&gt;) with no code changes&lt;br&gt;
+- Proxy server mode offers observability, logging, rate limiting, and cost tracking across providers (see LiteLLM documentation: &lt;a href="https://docs.litellm.ai/?utm_source=chatgpt.com" title="LiteLLM - Getting Started | liteLLM"&gt;LiteLLM&lt;/a&gt;)&lt;/p&gt;
+&lt;h3&gt;3. Example: using LiteLLM Python SDK&lt;/h3&gt;
+&lt;p&gt;First install:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;litellm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then in Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;litellm&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;completion&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;embeddings&lt;/span&gt;
+
+&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;OPENAI_API_KEY&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;dummy&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;LITELLM_OLLAMA_BASE&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://localhost:11434/v1&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Completion via Ollama&lt;/span&gt;
+&lt;span class="n"&gt;resp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;completion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ollama/llama2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;messages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;role&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}])&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;choices&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Embeddings via Ollama&lt;/span&gt;
+&lt;span class="n"&gt;emb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ollama/llama2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello world&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;emb&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;embedding&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Later you can just switch to &lt;code&gt;openai/gpt-4o&lt;/code&gt; or another provider. You keep the same &lt;code&gt;completion(...)&lt;/code&gt; call. No branching logic in your app (&lt;a href="https://langfuse.com/integrations/frameworks/litellm-sdk?utm_source=chatgpt.com" title="Open Source Observability for LiteLLM SDK - Langfuse"&gt;Langfuse&lt;/a&gt;, &lt;a href="https://docs.litellm.ai/?utm_source=chatgpt.com" title="LiteLLM - Getting Started | liteLLM"&gt;LiteLLM&lt;/a&gt;, &lt;a href="https://docs.litellm.ai/docs/?utm_source=chatgpt.com" title="LiteLLM - Getting Started"&gt;LiteLLM&lt;/a&gt;).&lt;/p&gt;
+&lt;h3&gt;5. Alternatives to LiteLLM&lt;/h3&gt;
+&lt;p&gt;There are several other frameworks you may consider:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Langchain&lt;/strong&gt;, &lt;strong&gt;Llama‑Index&lt;/strong&gt;, &lt;strong&gt;Guidance&lt;/strong&gt;, &lt;strong&gt;instructor&lt;/strong&gt; – great for structured output, chaining, tool-use, agents, prompt templating. Read more in these sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://medium.com/towardsdev/4-proven-ways-to-use-ollama-locally-openai-apis-in-python-fast-flexible-and-scalable-216dca893b1c"&gt;4 Proven Ways to Use Ollama Locally &amp;amp; OpenAI APIs in Python: Fast, Flexible, and Scalable | by Brain Glitch | Jun, 2025 | Towards Dev&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/%40hajraali730/unlocking-the-power-of-litellm-a-lightweight-unified-interface-for-llms-5dc09cece265"&gt;Unlocking the Power of LiteLLM: A Lightweight, Unified Interface for LLMs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.truefoundry.com/blog/litellm-alternatives"&gt;Top 5 LiteLLM alternatives of 2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://simmering.dev/blog/structured_output/"&gt;The best library for structured LLM output – Paul Simmering&lt;/a&gt; - gives different recommendations for four use cases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TrueFoundry&lt;/strong&gt; – a more enterprise‑ready orchestration layer with observability, scaling, and deployment support, but heavier than LiteLLM (&lt;a href="https://www.truefoundry.com/blog/litellm-alternatives?utm_source=chatgpt.com" title="Top 5 LiteLLM alternatives of 2025 - TrueFoundry"&gt;truefoundry.com&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;I like using the &lt;strong&gt;OpenAI Python SDK&lt;/strong&gt; with Ollama—it’s quick, reliable, and simple for local use cases. But as soon as I need to add other providers, handle retries/fallbacks, use embeddings, or manage observability and switching logic, &lt;strong&gt;LiteLLM&lt;/strong&gt; becomes more convenient. And if I’m building complex agent pipelines or need structure, then libraries like &lt;strong&gt;Langchain&lt;/strong&gt; or &lt;strong&gt;TrueFoundry&lt;/strong&gt; fit right in.&lt;/p&gt;</content><category term="note"></category><category term="openai"></category><category term="openai-sdk"></category><category term="ollama"></category><category term="litellm"></category><category term="langchain"></category><category term="llama-index"></category><category term="guidance"></category><category term="instructor"></category></entry><entry><title>Building a Multi-Notebook Report with Quarto</title><link href="https://www.safjan.com/building-a-multinotebook-report-with-quarto/" rel="alternate"></link><published>2025-07-23T00:00:00+02:00</published><updated>2025-07-23T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-07-23:/building-a-multinotebook-report-with-quarto/</id><summary type="html">&lt;p&gt;Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so I used quarto to generate report …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so I used quarto to generate report. Over the time analysis notebook has grown to the monster size. I wanted to split it into multiple notebooks, each focusing on a specific aspect of the analysis. But I also wanted to combine them into a single cohesive report.
 Something that reads like a real report. I didn't want to just dump a bunch of disconnected notebooks on someone.&lt;/p&gt;
 &lt;p&gt;That’s where &lt;strong&gt;Quarto&lt;/strong&gt; with book project functionality came in. In this post, I’ll show you two practical ways to combine multiple notebooks into a single, unified report using Quarto:&lt;/p&gt;
 &lt;ul&gt;
@@ -36,6 +102,9 @@ https://quarto.org/docs/get-started/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This is your basic structure. You can remove &lt;code&gt;intro.qmd&lt;/code&gt; or rename it. For now, we’ll leave it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: you can use vscode quarto extensions and start project from vscode as described in Quick Start in &lt;a href="https://quarto.org/docs/books/"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3&gt;Step 3: Add Your Notebooks&lt;/h3&gt;
 &lt;p&gt;Drop your notebooks into the folder. For example:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;my-report/
@@ -45,6 +114,9 @@ https://quarto.org/docs/get-started/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You can keep working in Jupyter as usual.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: I encourage you to read about structuring your "book" in the official docs &lt;a href="https://quarto.org/docs/books/book-structure.html"&gt;here&lt;/a&gt;. There are many other options than chapter: book parts, appendices &lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3&gt;Step 4: Configure &lt;code&gt;_quarto.yml&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;This is where the magic happens. You define the structure of your report here:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;project&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -69,6 +141,9 @@ https://quarto.org/docs/get-started/
 
 &lt;p&gt;Make sure the filenames match your actual notebooks. You can mix &lt;code&gt;.qmd&lt;/code&gt; and &lt;code&gt;.ipynb&lt;/code&gt; files freely.&lt;/p&gt;
 &lt;p&gt;Each "chapter" notebook can have its own quarto front matter (YAML header) if you want to customize titles, authors, or other metadata.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: The official documentation describes many options for customizing style, layout, controls, social media sharing options. Check it out &lt;a href="https://quarto.org/docs/books/book-output.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3&gt;Step 5: Preview Your Report&lt;/h3&gt;
 &lt;p&gt;To preview as you work:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;quarto&lt;span class="w"&gt; &lt;/span&gt;preview
@@ -140,7 +215,18 @@ notebook_a.ipynb
 &lt;li&gt;The &lt;strong&gt;Quarto Book&lt;/strong&gt; approach is great when you want a navigable multi-chapter report or site. It’s structured, scalable, and looks professional out of the box.&lt;/li&gt;
 &lt;li&gt;The &lt;strong&gt;embedding approach&lt;/strong&gt; gives you more flexibility when curating content or writing more detailed commentary around selected outputs.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I personally use the book format for larger projects, and embedding for quick curated reports. With both approaches, notebooks stay clean and modular — and reports look great with just a few lines of configuration.&lt;/p&gt;</content><category term="note"></category><category term="quarto"></category><category term="jupyter-notebooks"></category><category term="nbconvert"></category><category term="reporting"></category><category term="experiment-management"></category><category term="research"></category><category term="research-report"></category></entry><entry><title>Downgrade or Upgrade Your Python Version with uv</title><link href="https://www.safjan.com/downgrade-or-upgrade-your-python-version-with-uv/" rel="alternate"></link><published>2025-06-26T00:00:00+02:00</published><updated>2025-06-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-06-26:/downgrade-or-upgrade-your-python-version-with-uv/</id><summary type="html">&lt;p&gt;To downgrade your project’s virtual environment e.g. from Python 3.11 to 3.10 using &lt;strong&gt;uv&lt;/strong&gt;, here’s a step‑by‑step process:&lt;/p&gt;
+&lt;p&gt;I personally use the book format for larger projects, and embedding for quick curated reports. With both approaches, notebooks stay clean and modular — and reports look great with just a few lines of configuration.&lt;/p&gt;
+&lt;h2&gt;Alternative tools&lt;/h2&gt;
+&lt;h2&gt;Additional tools (optional)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mercury&lt;/strong&gt;: converts notebooks into interactive web apps, with widgets, hideable code, etc. More suited for dashboards rather than structured multi-notebook books. &lt;a href="https://quarto.org/docs/books/?utm_source=chatgpt.com"&gt;Quarto+1Reddit+1&lt;/a&gt;&lt;a href="https://www.reddit.com/r/Python/comments/s7ngj0?utm_source=chatgpt.com"&gt;Reddit+15Reddit+15Quarto+15&lt;/a&gt;&lt;a href="https://csoneson.github.io/ReproduciblePublishing2024/IntroToQuarto/quarto.html?utm_source=chatgpt.com"&gt;Quarto+6csoneson.github.io+6jumpingrivers.com+6&lt;/a&gt;&lt;a href="https://blog.adyog.com/2025/02/15/quarto-convert-jupyter-notebooks-into-professional-reports-websites-and-dashboards/?utm_source=chatgpt.com"&gt;blog.adyog.com&lt;/a&gt;&lt;a href="https://www.jumpingrivers.com/blog/reproducible-reports-jupyter-quarto-python/?utm_source=chatgpt.com"&gt;Reddit+2jumpingrivers.com+2Medium+2&lt;/a&gt;&lt;a href="https://github.com/RobertsLab/resources/discussions/1719?utm_source=chatgpt.com"&gt;GitHub+1Quarto+1&lt;/a&gt;&lt;a href="https://www.reddit.com/r/Python/comments/11tp5fa?utm_source=chatgpt.com"&gt;Reddit+4Reddit+4Reddit+4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;- &lt;strong&gt;Pretty Jupyter&lt;/strong&gt;: a tool for styling notebook outputs into elegant self‑contained HTML—less structured than Quarto “books”, but quick and visually appealing. &lt;a href="https://www.reddit.com/r/MachineLearning/comments/w9ec2e?utm_source=chatgpt.com"&gt;Reddit+2Reddit+2Reddit+2&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://quarto.org/docs/books/"&gt;Creating a Book – Quarto&lt;/a&gt; - official documentation for quarto books&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wesmckinney.com/book/"&gt;Python for Data Analysis, 3E&lt;/a&gt; - exemplary book created with Quarto&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"></category><category term="quarto"></category><category term="jupyter-notebooks"></category><category term="nbconvert"></category><category term="reporting"></category><category term="experiment-management"></category><category term="research"></category><category term="research-report"></category></entry><entry><title>Downgrade or Upgrade Your Python Version with uv</title><link href="https://www.safjan.com/downgrade-or-upgrade-your-python-version-with-uv/" rel="alternate"></link><published>2025-06-26T00:00:00+02:00</published><updated>2025-06-26T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-06-26:/downgrade-or-upgrade-your-python-version-with-uv/</id><summary type="html">&lt;p&gt;To downgrade your project’s virtual environment e.g. from Python 3.11 to 3.10 using &lt;strong&gt;uv&lt;/strong&gt;, here’s a step‑by‑step process:&lt;/p&gt;
 &lt;h3&gt;1. Install the desired Python version&lt;/h3&gt;
 &lt;p&gt;Run:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;uv&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.10
@@ -212,7 +298,6 @@ python&lt;span class="w"&gt; &lt;/span&gt;--version&lt;span class="w"&gt;  &lt;/
 &lt;p&gt;Fleaky tests - the tests that pass sometimes and fail other times are the bane of every CI pipeline. They waste developer time, obscure real issues, and erode trust in your test suite.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;No discussion of comprehensive testing is complete without addressing the elephant in the room: flaky tests. There are two main types of flaky tests: those that are flaky due to some external conditions, such as network issues, machine crashes, power outages, and those that are flaky due to test design issues.&lt;/p&gt;
-&lt;p&gt;Traditional approaches to flaky tests tend to be reactive - you notice a test failing intermittently and then spend hours debugging it. But I've found that Copilot can help identify patterns in flaky behavior before they become major problems. By analyzing historical CI logs and computing failure rates, it can flag tests that fail intermittently and help classify the root causes.&lt;/p&gt;
 &lt;p&gt;To spot flaky tests, you need to compare test results from multiple test runs. This analysis would be a time consuming process to perform manually, but fortunately, many CI servers detect flaky tests automatically. The key insight is that Copilot can go beyond just detection to root cause analysis and remediation.&lt;/p&gt;
 &lt;p&gt;For timing related flakiness, it suggests explicit waits or better synchronization. For external dependency issues, it recommends proper mocking. For shared state problems, it proposes better isolation techniques. The goal isn't to eliminate all flakiness - that's impossible, but to make your test suite reliable enough that failures actually mean something.&lt;/p&gt;
 &lt;h2&gt;Test Quality as a First-Class Concern&lt;/h2&gt;
@@ -223,10 +308,6 @@ python&lt;span class="w"&gt; &lt;/span&gt;--version&lt;span class="w"&gt;  &lt;/
 &lt;p&gt;Unit tests form the foundation, but they can't catch the subtle ways that components interact in production. This is where integration and end-to-end testing become crucial, and where Copilot's ability to understand entire workflows becomes invaluable.&lt;/p&gt;
 &lt;p&gt;I've had great success asking Copilot to generate integration tests that exercise entire user journeys - from account creation through data processing to final output. These tests use in-memory databases for speed but validate the complete data flow including serialization, authentication, and error handling.&lt;/p&gt;
 &lt;p&gt;The key is to focus on critical user paths rather than trying to test every possible integration. A single end-to-end test that uploads a CSV file, triggers data ingestion, and verifies the resulting database entries can catch a surprising number of issues that unit tests miss entirely.&lt;/p&gt;
-&lt;h2&gt;Building Sustainable Quality Practices&lt;/h2&gt;
-&lt;p&gt;The final piece of the puzzle was making these practices sustainable. It's one thing to do a comprehensive audit and cleanup of your test suite; it's another to maintain that quality as your codebase evolves. This is where CI integration becomes essential.&lt;/p&gt;
-&lt;p&gt;I've set up automated checks that run on every pull request. When developers add new functions, Copilot identifies them and generates basic test skeletons. When coverage drops in critical modules, it flags the issue and suggests specific tests to add. When new flaky tests emerge, it analyzes them and proposes fixes.&lt;/p&gt;
-&lt;p&gt;The goal isn't to automate away human judgment - it's to create a system that makes it easy to do the right thing and hard to accidentally introduce quality debt. CI/CD bridges the gaps between development and operations by automating the building, testing and deployment of applications, and test quality monitoring should be part of that automation.&lt;/p&gt;
 &lt;h2&gt;Looking Forward&lt;/h2&gt;
 &lt;p&gt;After a year of experimenting with this approach, I've come to believe that comprehensive testing isn't about reaching some magical coverage percentage - it's about building systems that give you confidence in your code's behavior. Copilot has been instrumental in making this transition from coverage-focused to behavior-focused testing.&lt;/p&gt;
 &lt;p&gt;The techniques I've described here - behavioral auditing, API surface validation, automated test generation, flaky test management, and continuous quality monitoring - work together to create a testing strategy that's both comprehensive and maintainable. Each element addresses a different aspect of the testing challenge, from initial coverage gaps to long-term sustainability.&lt;/p&gt;
@@ -586,7 +667,9 @@ Deep copy: [1, 2, [3, 4]]
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;edges&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: There might be an problem when installing pygraphviz in Google Colab, you can use matlplotlib + networkx instead&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2&gt;DIY Solution - Custom Graph Structure&lt;/h2&gt;
 &lt;p&gt;Sometimes, a custom solution fits best:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;
@@ -8408,368 +8491,4 @@ img_004.heic
 &lt;p&gt;&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Dependency injection is a powerful technique for improving testability, code modularity, and reusability in Python. By applying various injection techniques and exploring different use cases, you can design more robust and maintainable code. Additionally, the lesser-known tricks and techniques covered in this blog post can further enhance your understanding and application of dependency injection in various scenarios.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category><category term="testing"></category><category term="dependency-injection"></category><category term="software-development"></category></entry><entry><title>Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch</title><link href="https://www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/" rel="alternate"></link><published>2023-06-20T00:00:00+02:00</published><updated>2024-10-31T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-06-20:/git-workflow-reviewing-changes-before-pulling-remote-branch/</id><summary type="html">&lt;h2&gt;TLDR: Quick Git Command Reference&lt;/h2&gt;
-&lt;p&gt;To quickly review changes before pulling, use this sequence of commands:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Fetch latest changes without merging&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;fetch&lt;span class="w"&gt; &lt;/span&gt;origin
-
-&lt;span class="c1"&gt;# See what&amp;#39;s different&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Show commits you&amp;#39;re missing&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Show …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;TLDR: Quick Git Command Reference&lt;/h2&gt;
-&lt;p&gt;To quickly review changes before pulling, use this sequence of commands:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Fetch latest changes without merging&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;fetch&lt;span class="w"&gt; &lt;/span&gt;origin
-
-&lt;span class="c1"&gt;# See what&amp;#39;s different&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Show commits you&amp;#39;re missing&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Show actual code changes&lt;/span&gt;
-&lt;span class="c1"&gt;# or use Tig&lt;/span&gt;
-tig&lt;span class="w"&gt; &lt;/span&gt;HEAD..origin/main
-
-&lt;span class="c1"&gt;# Show which files have been modified between your local branch and remote&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--name-status&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;span class="c1"&gt;# or with the indicators of added/removed lines&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--stat&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="c1"&gt;# If it looks good, pull changes&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;pull&lt;span class="w"&gt; &lt;/span&gt;origin&lt;span class="w"&gt; &lt;/span&gt;main
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;When working with Git, it is essential to have a streamlined workflow that ensures you &lt;strong&gt;review the changes made by others&lt;/strong&gt; before pulling them into your local branch. This practice helps &lt;strong&gt;prevent conflicts&lt;/strong&gt; and ensures that your local repository remains in sync with the remote branch. In this blog post, we will outline a few simple steps to check the changes introduced by others in the remote branch before performing a &lt;code&gt;git pull&lt;/code&gt;.&lt;/p&gt;
-&lt;!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#tldr-quick-git-command-reference"&gt;TLDR: Quick Git Command Reference&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#step-1-fetch-remote-changes"&gt;Step 1: Fetch Remote Changes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#step-2-inspect-remote-branch"&gt;Step 2: Inspect Remote Branch&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#step-3-review-changes"&gt;Step 3: Review Changes&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#option-1-using-git-diff"&gt;Option 1: Using Git Diff&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#option-2-utilizing-visual-git-tools"&gt;Option 2: Utilizing Visual Git Tools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#tig"&gt;tig&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#option-3-using-pycharms-version-control-features"&gt;Option 3: Using PyCharm's Version Control Features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#view-remote-changes"&gt;View Remote Changes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#review-changes-using-pycharms-diff-viewer"&gt;Review Changes Using PyCharm's Diff Viewer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#interactive-review-features"&gt;Interactive Review Features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#resolve-conflicts-in-pycharm"&gt;Resolve Conflicts in PyCharm&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#option-4-using-vscodes-git-integration"&gt;Option 4: Using VSCode's Git Integration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#built-in-git-features"&gt;Built-in Git Features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#review-changes-using-vscodes-built-in-diff-viewer"&gt;Review Changes Using VSCode's Built-in Diff Viewer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#step-4-resolve-conflicts-if-any"&gt;Step 4: Resolve Conflicts (if any)&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#cli-based-conflict-resolution"&gt;CLI-based Conflict Resolution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#using-gits-built-in-mergetool"&gt;Using Git's Built-in mergetool&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#best-practices-for-conflict-resolution"&gt;Best Practices for Conflict Resolution&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#step-5-pull-changes"&gt;Step 5: Pull Changes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#extras-1-enhanced-git-experience-with-vscode-extensions"&gt;Extras 1: Enhanced Git Experience with VSCode Extensions&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#gitlens"&gt;GitLens&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#git-graph"&gt;Git Graph&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#tips-for-efficient-review-in-vscode"&gt;Tips for Efficient Review in VSCode&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#extras-2-common-review-commands"&gt;Extras 2: Common Review Commands&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#extras-3-git-aliases-for-efficient-review"&gt;Extras 3: Git Aliases for Efficient Review&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-
-&lt;p&gt;&lt;a id="step-1-fetch-remote-changes"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Step 1: Fetch Remote Changes&lt;/h3&gt;
-&lt;p&gt;Before reviewing any changes, it is crucial to fetch the latest updates from the remote repository. This step ensures that your local repository has the most up-to-date information. To fetch changes, run the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;fetch
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This command retrieves all the latest changes from the remote repository without automatically merging them into your local branch.&lt;/p&gt;
-&lt;p&gt;&lt;a id="step-2-inspect-remote-branch"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Step 2: Inspect Remote Branch&lt;/h3&gt;
-&lt;p&gt;After fetching the remote changes, you can inspect the remote branch to see the modifications made by others. This step helps you understand the nature and scope of the changes before merging them into your branch. To view the remote branch, use the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;origin/branch-name
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace &lt;code&gt;branch-name&lt;/code&gt; with the name of the remote branch you want to review. This command displays a list of commits made to the remote branch, showing the commit hash, author, timestamp, and commit message.&lt;/p&gt;
-&lt;p&gt;&lt;a id="step-3-review-changes"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Step 3: Review Changes&lt;/h3&gt;
-&lt;p&gt;Now that you have a clear view of the commits in the remote branch, it's time to review the changes introduced. There are several ways to inspect the individual commits, depending on your preferred Git tooling. Here are a few common options:&lt;/p&gt;
-&lt;h4&gt;Option 1: Using Git Diff&lt;/h4&gt;
-&lt;p&gt;To review the changes introduced by a specific commit, you can use the &lt;code&gt;git diff&lt;/code&gt; command. Run the following command, replacing &lt;code&gt;commit-hash&lt;/code&gt; with the actual commit hash you want to inspect:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;commit-hash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This command displays a detailed diff of the changes made in that specific commit, allowing you to analyze the modifications line by line.&lt;/p&gt;
-&lt;p&gt;For reviewing changes between your local branch and the remote branch before pulling:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Show code changes between local and remote&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Show changes with context (more readable)&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--color-words&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Show only changes in specific files&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;path/to/file
-
-&lt;span class="c1"&gt;# Show a histogram of changes per file&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--stat&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Show renamed files differently&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;-M&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;For enhanced diff experience:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Install and use git-delta for better visual diffs&lt;/span&gt;
-&lt;span class="c1"&gt;# (install via package manager first)&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;--global&lt;span class="w"&gt; &lt;/span&gt;core.pager&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;delta&amp;quot;&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;delta
-
-&lt;span class="c1"&gt;# Show character-by-character changes instead of line changes&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--word-diff&lt;span class="o"&gt;=&lt;/span&gt;color&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h4&gt;Option 2: Utilizing Visual Git Tools&lt;/h4&gt;
-&lt;p&gt;If you prefer a more visual representation of changes, you can leverage Git GUI tools like &lt;a href="https://www.gitkraken.com/"&gt;GitKraken&lt;/a&gt; (paid), &lt;a href="https://www.sourcetreeapp.com/"&gt;Sourcetree&lt;/a&gt; (free, Atlassian Software License), &lt;a href="https://git-cola.github.io/"&gt;Git Cola&lt;/a&gt; or &lt;a href="https://jonas.github.io/tig/"&gt;tig&lt;/a&gt;. These tools provide an intuitive interface that allows you to navigate through commits, inspect changes, and even visualize branching patterns.&lt;/p&gt;
-&lt;h5&gt;tig&lt;/h5&gt;
-&lt;p&gt;&lt;code&gt;tig test..master&lt;/code&gt; - Show difference between two branches &lt;code&gt;test&lt;/code&gt; and &lt;code&gt;master&lt;/code&gt;&lt;/p&gt;
-&lt;h4&gt;Option 3: Using PyCharm's Version Control Features&lt;/h4&gt;
-&lt;p&gt;PyCharm provides robust Git integration that makes reviewing changes before pulling remarkably straightforward. Here's how to leverage PyCharm's GUI for this workflow:&lt;/p&gt;
-&lt;h5&gt;View Remote Changes&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;Open the Git tool window by clicking &lt;code&gt;View → Tool Windows → Git&lt;/code&gt; or pressing &lt;code&gt;Alt+9&lt;/code&gt; (Windows/Linux) or &lt;code&gt;⌘9&lt;/code&gt; (macOS)&lt;/li&gt;
-&lt;li&gt;Click the "Fetch" button in the Git tool window or press &lt;code&gt;Ctrl+T&lt;/code&gt; (Windows/Linux) or &lt;code&gt;⌘T&lt;/code&gt; (macOS) to fetch remote changes&lt;/li&gt;
-&lt;li&gt;In the Git tool window, expand the "Remote Branches" section to see incoming changes&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Review Changes Using PyCharm's Diff Viewer&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;Right-click on the remote branch you want to review&lt;/li&gt;
-&lt;li&gt;Select &lt;code&gt;Compare with Current&lt;/code&gt; to open PyCharm's diff viewer&lt;/li&gt;
-&lt;li&gt;The diff viewer will show:&lt;/li&gt;
-&lt;li&gt;Changed files in the left panel&lt;/li&gt;
-&lt;li&gt;Line-by-line differences in the main window&lt;/li&gt;
-&lt;li&gt;Color-coded modifications (green for additions, red for deletions)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Interactive Review Features&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Use the arrow keys or mouse wheel to scroll through changes&lt;/li&gt;
-&lt;li&gt;Click the "Next Change" (↓) and "Previous Change" (↑) buttons to navigate between modifications&lt;/li&gt;
-&lt;li&gt;Use the "Accept" (←) or "Reject" (→) arrows to selectively apply or discard changes&lt;/li&gt;
-&lt;li&gt;Toggle between "Side-by-Side" and "Unified" diff views using the gear icon&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5&gt;Resolve Conflicts in PyCharm&lt;/h5&gt;
-&lt;p&gt;If conflicts arise during the pull operation:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;PyCharm will automatically detect conflicts and mark the files with a red exclamation mark&lt;/li&gt;
-&lt;li&gt;Double-click the conflicted file to open the merge tool&lt;/li&gt;
-&lt;li&gt;Use PyCharm's three-panel merge window to:&lt;/li&gt;
-&lt;li&gt;Accept changes from either side using the arrows&lt;/li&gt;
-&lt;li&gt;Manually edit the center panel for custom resolutions&lt;/li&gt;
-&lt;li&gt;Use the "Apply Non-Conflicting Changes" button for automatic resolution of non-conflicting parts&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This visual approach using PyCharm's GUI tools can make the review process more intuitive, especially for developers who prefer IDE-integrated version control over command-line operations.&lt;/p&gt;
-&lt;h4&gt;Option 4: Using VSCode's Git Integration&lt;/h4&gt;
-&lt;p&gt;VSCode provides powerful built-in Git functionality that can be further enhanced with extensions. Here's how to effectively review changes using VSCode:&lt;/p&gt;
-&lt;h5&gt;Built-in Git Features&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;Access the Source Control view by:&lt;/li&gt;
-&lt;li&gt;Clicking the Source Control icon in the Activity Bar (branches icon)&lt;/li&gt;
-&lt;li&gt;Using the shortcut &lt;code&gt;Ctrl+Shift+G&lt;/code&gt; (Windows/Linux) or &lt;code&gt;⌘+Shift+G&lt;/code&gt; (macOS)&lt;/li&gt;
-&lt;li&gt;Fetch changes using:&lt;/li&gt;
-&lt;li&gt;The refresh icon in the Source Control view&lt;/li&gt;
-&lt;li&gt;The Command Palette (&lt;code&gt;Ctrl+Shift+P&lt;/code&gt; or &lt;code&gt;⌘+Shift+P&lt;/code&gt;) and typing "Git: Fetch"&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Review Changes Using VSCode's Built-in Diff Viewer&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;In the Source Control view:&lt;/li&gt;
-&lt;li&gt;Click on any modified file to see inline changes&lt;/li&gt;
-&lt;li&gt;Use the "Open Changes" icon (split window) to see side-by-side diff&lt;/li&gt;
-&lt;li&gt;Navigate changes using:&lt;/li&gt;
-&lt;li&gt;The change markers in the scroll bar&lt;/li&gt;
-&lt;li&gt;The "Next Change" (F7) and "Previous Change" (Shift+F7) commands&lt;/li&gt;
-&lt;li&gt;The arrows in the gutter to move between changes&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a id="step-4-resolve-conflicts-if-any"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Step 4: Resolve Conflicts (if any)&lt;/h3&gt;
-&lt;p&gt;During your review, you may encounter conflicts between the changes made by others and your local modifications. Conflicts arise when Git cannot automatically merge two sets of changes. If conflicts occur, it is crucial to resolve them before pulling the changes into your branch.&lt;/p&gt;
-&lt;p&gt;To resolve conflicts, you can use Git's built-in merge tools or a visual Git tool like those mentioned earlier. These tools provide a side-by-side view of conflicting changes, enabling you to choose which modifications to keep and how to combine them effectively.&lt;/p&gt;
-&lt;h4&gt;CLI-based Conflict Resolution&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# After a merge conflict occurs&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;status&lt;span class="w"&gt;                            &lt;/span&gt;&lt;span class="c1"&gt;# Identify conflicting files&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt;                              &lt;/span&gt;&lt;span class="c1"&gt;# Review the conflicts (marked with &amp;gt;&amp;gt;&amp;gt;&amp;gt; and &amp;lt;&amp;lt;&amp;lt;&amp;lt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Resolve conflicts in your editor, then&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;resolved-file&amp;gt;&lt;span class="w"&gt;               &lt;/span&gt;&lt;span class="c1"&gt;# Mark as resolved&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;merge&lt;span class="w"&gt; &lt;/span&gt;--continue&lt;span class="w"&gt;                  &lt;/span&gt;&lt;span class="c1"&gt;# Complete the merge&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h4&gt;Using Git's Built-in mergetool&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Configure your preferred merge tool&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;--global&lt;span class="w"&gt; &lt;/span&gt;merge.tool&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;tool&amp;gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# e.g., vimdiff, meld, kdiff3&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;--global&lt;span class="w"&gt; &lt;/span&gt;mergetool.prompt&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Skip prompt for each file&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Use the configured tool to resolve conflicts&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;mergetool
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h4&gt;Best Practices for Conflict Resolution&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Understand both changes&lt;/strong&gt; before resolving&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Communicate with the author&lt;/strong&gt; of the other changes when necessary&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Test thoroughly&lt;/strong&gt; after resolving conflicts&lt;/li&gt;
-&lt;li&gt;Consider using &lt;strong&gt;feature branches&lt;/strong&gt; to minimize conflict scope&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a id="step-5-pull-changes"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Step 5: Pull Changes&lt;/h3&gt;
-&lt;p&gt;After reviewing the changes, ensuring there are no conflicts or addressing any conflicts that arise, you can proceed with pulling the changes from the remote branch into your local branch. To pull the changes, use the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;pull&lt;span class="w"&gt; &lt;/span&gt;origin&lt;span class="w"&gt; &lt;/span&gt;branch-name
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace &lt;code&gt;branch-name&lt;/code&gt; with the name of the remote branch from which you want to pull the changes. This command automatically merges the changes into your branch, keeping your local repository up to date.&lt;/p&gt;
-&lt;h3&gt;Extras 1: Enhanced Git Experience with VSCode Extensions&lt;/h3&gt;
-&lt;h4&gt;GitLens&lt;/h4&gt;
-&lt;p&gt;GitLens is a powerful extension that supercharges VSCode's Git capabilities:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Install &lt;a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens"&gt;GitLens&lt;/a&gt; from the Extensions Marketplace&lt;/li&gt;
-&lt;li&gt;Use key features:&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Current Line Blame&lt;/strong&gt;: See commit information inline&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;File History&lt;/strong&gt;: Right-click a file and select "GitLens: View File History"&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Repository View&lt;/strong&gt;: Explore branches, tags, and commits in detail&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Revision Navigation&lt;/strong&gt;: Step through file history using the GitLens sidebar&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;code&lt;span class="w"&gt; &lt;/span&gt;--install-extension&lt;span class="w"&gt; &lt;/span&gt;eamodio.gitlens
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h4&gt;Git Graph&lt;/h4&gt;
-&lt;p&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph"&gt;Git Graph&lt;/a&gt; provides a visual commit history:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Install &lt;a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph"&gt;Git Graph&lt;/a&gt; extension&lt;/li&gt;
-&lt;li&gt;Access features:&lt;/li&gt;
-&lt;li&gt;View the commit graph by clicking the "Git Graph" button in the Source Control view&lt;/li&gt;
-&lt;li&gt;Compare branches visually&lt;/li&gt;
-&lt;li&gt;Right-click commits for additional options&lt;/li&gt;
-&lt;li&gt;View detailed commit information&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;code&lt;span class="w"&gt; &lt;/span&gt;--install-extension&lt;span class="w"&gt; &lt;/span&gt;mhutchie.git-graph
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h4&gt;Tips for Efficient Review in VSCode&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Keyboard Shortcuts&lt;/strong&gt;:&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Alt+←&lt;/code&gt; / &lt;code&gt;Alt+→&lt;/code&gt;: Navigate through edit history&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ctrl+Shift+P&lt;/code&gt;: Open Command Palette for Git commands&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;Ctrl+K Ctrl+Alt+S&lt;/code&gt;: Stage selected ranges&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Settings Customization&lt;/strong&gt;:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;json
-   {
-     "git.enableSmartCommit": true,
-     "git.autofetch": true,
-     "gitlens.hovers.currentLine.over": "line",
-     "gitlens.codeLens.enabled": true
-   }&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;"git.enableSmartCommit": true&lt;/code&gt;&lt;ul&gt;
-&lt;li&gt;Enables "smart commit" functionality&lt;/li&gt;
-&lt;li&gt;When true, allows you to commit all changes when there are no staged changes&lt;/li&gt;
-&lt;li&gt;Saves time by skipping the staging step if you want to commit all modified files&lt;/li&gt;
-&lt;li&gt;Particularly useful for small, focused changes&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;"git.autofetch": true&lt;/code&gt;&lt;ul&gt;
-&lt;li&gt;Automatically fetches changes from remote repositories&lt;/li&gt;
-&lt;li&gt;Runs in the background at regular intervals (default: every 3 minutes)&lt;/li&gt;
-&lt;li&gt;Keeps you informed about remote changes without manual fetching&lt;/li&gt;
-&lt;li&gt;Helps prevent merge conflicts by keeping you aware of upstream changes&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;"gitlens.hovers.currentLine.over": "line"&lt;/code&gt;&lt;ul&gt;
-&lt;li&gt;Controls when the GitLens hover annotation appears&lt;/li&gt;
-&lt;li&gt;"line" setting shows git blame information when hovering over the current line&lt;/li&gt;
-&lt;li&gt;Alternatives include "annotation" (hover over the gutter blame annotation) or "window" (entire viewport)&lt;/li&gt;
-&lt;li&gt;Provides quick access to commit information without cluttering the interface&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;"gitlens.codeLens.enabled": true&lt;/code&gt;&lt;ul&gt;
-&lt;li&gt;Enables GitLens CodeLens feature&lt;/li&gt;
-&lt;li&gt;Shows authorship information above functions and classes&lt;/li&gt;
-&lt;li&gt;Displays recent changes and number of authors&lt;/li&gt;
-&lt;li&gt;Makes it easy to track changes to specific code blocks&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;To apply these settings:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Open VSCode Settings (&lt;code&gt;Ctrl+,&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Click on the "Open Settings (JSON)" button in the top right&lt;/li&gt;
-&lt;li&gt;Add these settings to your user or workspace settings&lt;/li&gt;
-&lt;li&gt;Save the file to apply changes immediately&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Workspace Organization&lt;/strong&gt;:&lt;/li&gt;
-&lt;li&gt;Use the SCM view layout options to customize your review space&lt;/li&gt;
-&lt;li&gt;Toggle between inline and side-by-side diffs based on change complexity&lt;/li&gt;
-&lt;li&gt;Utilize the minimap for quick navigation through large files&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This integrated approach using VSCode and its extensions provides a powerful environment for reviewing changes, with features that cater to both basic and advanced Git workflows. The visual tools and keyboard shortcuts make the review process more efficient and intuitive.&lt;/p&gt;
-&lt;h2&gt;Extras 2: Common Review Commands&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# View specific file changes&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;origin/main&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;path/to/file
-
-&lt;span class="c1"&gt;# See changed files list&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--stat&lt;span class="w"&gt; &lt;/span&gt;origin/main
-
-&lt;span class="c1"&gt;# Show last N commits&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;origin/main
-
-&lt;span class="c1"&gt;# See compact change summary&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;whatchanged&lt;span class="w"&gt; &lt;/span&gt;origin/main&lt;span class="w"&gt; &lt;/span&gt;-n&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Check if pull will cause conflicts&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;HEAD...origin/main
-
-&lt;span class="c1"&gt;# For a clearer mental model: show exactly what will change when you pull&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;merge-base&lt;span class="w"&gt; &lt;/span&gt;HEAD&lt;span class="w"&gt; &lt;/span&gt;origin/main&lt;span class="k"&gt;)&lt;/span&gt;..origin/main
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace &lt;code&gt;main&lt;/code&gt; with your branch name if different.&lt;/p&gt;
-&lt;p&gt;If you spot problems:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Abort pull if something looks wrong&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;merge&lt;span class="w"&gt; &lt;/span&gt;--abort
-
-&lt;span class="c1"&gt;# Reset to previous state if already pulled&lt;/span&gt;
-git&lt;span class="w"&gt; &lt;/span&gt;reset&lt;span class="w"&gt; &lt;/span&gt;--hard&lt;span class="w"&gt; &lt;/span&gt;HEAD@&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Extras 3: Git Aliases for Efficient Review&lt;/h2&gt;
-&lt;p&gt;You can streamline your review workflow by setting up Git aliases in your &lt;code&gt;.gitconfig&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt;alias&lt;span class="o"&gt;]&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Show commits that would be pulled&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;incoming&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;!git&lt;span class="w"&gt; &lt;/span&gt;fetch&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;--oneline&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Show changes that would be pulled&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;preview-pull&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--stat&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Show full diff of changes that would be pulled&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;preview-changes&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;HEAD..@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Check for potential merge conflicts&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;check-conflicts&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;merge-tree&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;merge-base&lt;span class="w"&gt; &lt;/span&gt;HEAD&lt;span class="w"&gt; &lt;/span&gt;@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;HEAD&lt;span class="w"&gt; &lt;/span&gt;@&lt;span class="o"&gt;{&lt;/span&gt;upstream&lt;span class="o"&gt;}&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Prettier log output&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;logp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;log&lt;span class="w"&gt; &lt;/span&gt;--graph&lt;span class="w"&gt; &lt;/span&gt;--pretty&lt;span class="o"&gt;=&lt;/span&gt;format:&lt;span class="s1"&gt;&amp;#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--abbrev-commit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;To use these aliases, add them to your &lt;code&gt;.gitconfig&lt;/code&gt; file and run commands like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;incoming
-git&lt;span class="w"&gt; &lt;/span&gt;preview-pull
-git&lt;span class="w"&gt; &lt;/span&gt;check-conflicts
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Edits:&lt;/strong&gt;
-- 2025-06-26: Add more info about conflict resolution, diff inspection from CLI and Git Aliases for Efficient Review
-- 2024-03-06: Added sections on using PyCharm and VSCode features
-- 2024-03-06: Added extras on VSCode extensions and git commands for review&lt;/p&gt;</content><category term="note"></category><category term="git"></category><category term="workflow"></category><category term="github"></category><category term="pull-request"></category></entry></feed>
+&lt;p&gt;&lt;em&gt;Any comments or suggestions? &lt;a href="mailto:ksafjan@gmail.com?subject=Blog+post"&gt;Let me know&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><category term="Machine Learning"></category><category term="machine-learning"></category><category term="python"></category><category term="testing"></category><category term="dependency-injection"></category><category term="software-development"></category></entry></feed>

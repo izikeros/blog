@@ -8,8 +8,6 @@ Tags: quarto, jupyter-notebooks, nbconvert, reporting, experiment-management, re
 Category: note
 ---
 
-# Building a Multi-Notebook Report with Quarto
-
 Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so I used quarto to generate report. Over the time analysis notebook has grown to the monster size. I wanted to split it into multiple notebooks, each focusing on a specific aspect of the analysis. But I also wanted to combine them into a single cohesive report.
 Something that reads like a real report. I didn't want to just dump a bunch of disconnected notebooks on someone.
 
@@ -59,6 +57,9 @@ my-report/
 
 This is your basic structure. You can remove `intro.qmd` or rename it. For now, we’ll leave it.
 
+> **NOTE**: you can use vscode quarto extensions and start project from vscode as described in Quick Start in [documentation](https://quarto.org/docs/books/).
+
+
 ### Step 3: Add Your Notebooks
 
 Drop your notebooks into the folder. For example:
@@ -71,6 +72,8 @@ my-report/
 ```
 
 You can keep working in Jupyter as usual.
+
+> **NOTE**: I encourage you to read about structuring your "book" in the official docs [here](https://quarto.org/docs/books/book-structure.html). There are many other options than chapter: book parts, appendices 
 
 ### Step 4: Configure `_quarto.yml`
 
@@ -100,6 +103,8 @@ format:
 Make sure the filenames match your actual notebooks. You can mix `.qmd` and `.ipynb` files freely.
 
 Each "chapter" notebook can have its own quarto front matter (YAML header) if you want to customize titles, authors, or other metadata.
+
+> **NOTE**: The official documentation describes many options for customizing style, layout, controls, social media sharing options. Check it out [here](https://quarto.org/docs/books/book-output.html).
 
 ### Step 5: Preview Your Report
 
@@ -202,3 +207,14 @@ Both methods have their strengths:
 - The **embedding approach** gives you more flexibility when curating content or writing more detailed commentary around selected outputs.
 
 I personally use the book format for larger projects, and embedding for quick curated reports. With both approaches, notebooks stay clean and modular — and reports look great with just a few lines of configuration.
+
+## Alternative tools
+## Additional tools (optional)
+
+- **Mercury**: converts notebooks into interactive web apps, with widgets, hideable code, etc. More suited for dashboards rather than structured multi-notebook books. [Quarto+1Reddit+1](https://quarto.org/docs/books/?utm_source=chatgpt.com)[Reddit+15Reddit+15Quarto+15](https://www.reddit.com/r/Python/comments/s7ngj0?utm_source=chatgpt.com)[Quarto+6csoneson.github.io+6jumpingrivers.com+6](https://csoneson.github.io/ReproduciblePublishing2024/IntroToQuarto/quarto.html?utm_source=chatgpt.com)[blog.adyog.com](https://blog.adyog.com/2025/02/15/quarto-convert-jupyter-notebooks-into-professional-reports-websites-and-dashboards/?utm_source=chatgpt.com)[Reddit+2jumpingrivers.com+2Medium+2](https://www.jumpingrivers.com/blog/reproducible-reports-jupyter-quarto-python/?utm_source=chatgpt.com)[GitHub+1Quarto+1](https://github.com/RobertsLab/resources/discussions/1719?utm_source=chatgpt.com)[Reddit+4Reddit+4Reddit+4](https://www.reddit.com/r/Python/comments/11tp5fa?utm_source=chatgpt.com)
+    
+- **Pretty Jupyter**: a tool for styling notebook outputs into elegant self‑contained HTML—less structured than Quarto “books”, but quick and visually appealing. [Reddit+2Reddit+2Reddit+2](https://www.reddit.com/r/MachineLearning/comments/w9ec2e?utm_source=chatgpt.com)
+- 
+## References
+- [Creating a Book – Quarto](https://quarto.org/docs/books/) - official documentation for quarto books
+- [Python for Data Analysis, 3E](https://wesmckinney.com/book/) - exemplary book created with Quarto
