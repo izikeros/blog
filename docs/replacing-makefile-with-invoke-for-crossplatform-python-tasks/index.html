@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="I’ve always liked Make. It’s quick to type, powerful, and honestly kind of fun once you know the quirks. On macOS and Linux, it just works. Then my teammate on Windows ran make test-unit. Boom. Red text. Paths broke. Shell …"/>
+    <meta name="keywords" content="makefile, cross-platform-build, python, invoke, task-automation, developer-experience, windows, macos, linux, team-collaboration, build-tools, portable-scripts">
+    <meta expr:content="2025-08-14 00:00:00+02:00" itemprop='datePublished'/>
+    <meta expr:content="2025-08-14 00:00:00+02:00" itemprop='dateModified'/>
+    <meta property="article:modified_time" content="2025-08-14 00:00:00+02:00"/>
+    <meta property="article:published_time" content="2025-08-14 00:00:00+02:00"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Replacing Makefile with Invoke for Cross-Platform Python Tasks",
+  "datePublished": "2025-08-14 00:00:00+02:00",
+  "dateModified": "2025-08-14 00:00:00+02:00"
+}
+
+    </script>
+
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Replacing Makefile with Invoke for Cross-Platform Python Tasks"/>
+  <meta property="og:description" content="I’ve always liked Make. It’s quick to type, powerful, and honestly kind of fun once you know the quirks. On macOS and Linux, it just works. Then my teammate on Windows ran make test-unit. Boom. Red text. Paths broke. Shell …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/replacing-makefile-with-invoke-for-crossplatform-python-tasks/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-08-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2025-08-14 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="makefile"/>
+  <meta property="article:tag" content="cross-platform-build"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="invoke"/>
+  <meta property="article:tag" content="task-automation"/>
+  <meta property="article:tag" content="developer-experience"/>
+  <meta property="article:tag" content="windows"/>
+  <meta property="article:tag" content="macos"/>
+  <meta property="article:tag" content="linux"/>
+  <meta property="article:tag" content="team-collaboration"/>
+  <meta property="article:tag" content="build-tools"/>
+  <meta property="article:tag" content="portable-scripts"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="I’ve always liked Make. It’s quick to type, powerful, and honestly kind of fun once you know the quirks. On macOS and Linux, it just works. Then my teammate on Windows ran make test-unit...."/>
+    <meta name="twitter:title" content="Replacing Makefile with Invoke for Cross-Platform Python Tasks"/>
+
+    <title>    Replacing Makefile with Invoke for Cross-Platform Python Tasks
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-08-14 
+
+
+                <br/>
+            </p>
+            <h1 id="replacing-makefile-with-invoke-for-crossplatform-python-tasks">Replacing Makefile with Invoke for Cross-Platform Python Tasks</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+        <div>
+            <p>I’ve always liked Make. It’s quick to type, powerful, and honestly kind of fun once you know the quirks. On macOS and Linux, it just works.</p>
+<p>Then my teammate on Windows ran <code>make test-unit</code>. Boom. Red text. Paths broke. Shell flags disappeared. Instead of testing code, we were testing our patience.</p>
+<p>After a couple of these moments, I realized I had two choices:</p>
+<ol>
+<li>Keep duct-taping Windows support into the Makefile.</li>
+<li>Switch to a tool that doesn’t care which OS you’re on.</li>
+</ol>
+<p>I chose option 2.</p>
+<h2>From my old Makefile</h2>
+<p>It looked like this — perfectly fine for macOS/Linux, but brittle on Windows:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SRC_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>src
+<span class="nv">SRC_AND_TEST_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>src<span class="w"> </span>tests
+<span class="nv">R_PYPROJECT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>requirements-pyproject.txt
+
+<span class="nf">test-unit</span><span class="o">:</span><span class="w"> </span><span class="c">## Run the unit tests with pytest.</span>
+<span class="w">    </span>@echo<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>COLOR_CYAN<span class="k">)</span><span class="s2">Running unit tests...</span><span class="k">$(</span>COLOR_RESET<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>pytest<span class="w"> </span>--log-cli-level<span class="o">=</span>INFO<span class="w"> </span>-rA<span class="w"> </span>tests/unit/
+
+<span class="nf">format</span><span class="o">:</span><span class="w"> </span><span class="c">## Running code formatter: black and isort</span>
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;(isort) Ordering imports...&quot;</span>
+<span class="w">    </span>@isort<span class="w"> </span><span class="k">$(</span>SRC_AND_TEST_FILES<span class="k">)</span>
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;(black) Formatting codebase...&quot;</span>
+<span class="w">    </span>@black<span class="w"> </span>--config<span class="w"> </span>pyproject.toml<span class="w"> </span><span class="k">$(</span>SRC_AND_TEST_FILES<span class="k">)</span>
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;(ruff) Running fix only...&quot;</span>
+<span class="w">    </span>@ruff<span class="w"> </span>check<span class="w"> </span><span class="k">$(</span>SRC_AND_TEST_FILES<span class="k">)</span><span class="w"> </span>--fix-only
+
+<span class="nf">lint</span><span class="o">:</span><span class="w"> </span><span class="c">## Run the linter (ruff) to check the code style.</span>
+<span class="w">    </span>@echo<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>COLOR_CYAN<span class="k">)</span><span class="s2">Checking code style with ruff...</span><span class="k">$(</span>COLOR_RESET<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">    </span>ruff<span class="w"> </span>check<span class="w"> </span><span class="k">$(</span>SRC_AND_TEST_FILES<span class="k">)</span>
+
+<span class="nf">changelog</span><span class="o">:</span><span class="w"> </span><span class="c">## Generate a changelog using git-cliff</span>
+<span class="w">    </span>git-cliff<span class="w"> </span>-o<span class="w"> </span>CHANGELOG.md
+</code></pre></div>
+
+<p>It’s not bad code. It’s just not friendly to every shell.<br>
+<code>echo -e</code> works in Bash, not in cmd.exe. Color codes are ignored in PowerShell. Paths and quoting rules differ. Small stuff, but it adds up.</p>
+<h2>How I rewrote it to work everywhere</h2>
+<p>I moved the build logic into Python with <a href="https://www.pyinvoke.org/">Invoke</a>. The syntax is simple, it runs anywhere Python runs, and I can call the exact same commands on macOS, Linux, and Windows.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># tasks.py — Invoke version</span>
+<span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+
+<span class="n">SRC_FILES</span> <span class="o">=</span> <span class="s2">&quot;src&quot;</span>
+<span class="n">SRC_AND_TEST_FILES</span> <span class="o">=</span> <span class="s2">&quot;src tests&quot;</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">test_unit</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running unit tests...&quot;</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;python -m pytest --log-cli-level=INFO -rA tests/unit/&quot;</span><span class="p">)</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(isort) Ordering imports...&quot;</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;python -m isort </span><span class="si">{</span><span class="n">SRC_AND_TEST_FILES</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(black) Formatting codebase...&quot;</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;python -m black --config pyproject.toml </span><span class="si">{</span><span class="n">SRC_AND_TEST_FILES</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(ruff) Running fix only...&quot;</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;python -m ruff check </span><span class="si">{</span><span class="n">SRC_AND_TEST_FILES</span><span class="si">}</span><span class="s2"> --fix-only&quot;</span><span class="p">)</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">lint</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking code style with ruff...&quot;</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;python -m ruff check </span><span class="si">{</span><span class="n">SRC_AND_TEST_FILES</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">changelog</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;git-cliff -o CHANGELOG.md&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Now my teammate runs:</p>
+<div class="highlight"><pre><span></span><code>invoke<span class="w"> </span>test-unit
+invoke<span class="w"> </span>format
+invoke<span class="w"> </span>lint
+invoke<span class="w"> </span>changelog
+</code></pre></div>
+
+<p>No “works on my machine” syndrome. No branching logic for OS detection. It just works.</p>
+<h2>Why this change paid off</h2>
+<ul>
+<li>I write a command once — it runs everywhere.</li>
+<li>No one needs to know shell quirks to contribute.</li>
+<li>Commands are short and consistent across the team.</li>
+</ul>
+<p>Make is still a great tool. But for a Python project with a mixed-OS team, moving the build brain into Python was a quiet productivity win.</p>
+        </div>
+
+
+        <div class="tag-cloud">
+            <p>
+                    <br/><br/>Tags:&nbsp;
+                        <a href="https://www.safjan.com/tag/makefile/">makefile</a>
+                        <a href="https://www.safjan.com/tag/cross-platform-build/">cross-platform-build</a>
+                        <a href="https://www.safjan.com/tag/python/">python</a>
+                        <a href="https://www.safjan.com/tag/invoke/">invoke</a>
+                        <a href="https://www.safjan.com/tag/task-automation/">task-automation</a>
+                        <a href="https://www.safjan.com/tag/developer-experience/">developer-experience</a>
+                        <a href="https://www.safjan.com/tag/windows/">windows</a>
+                        <a href="https://www.safjan.com/tag/macos/">macos</a>
+                        <a href="https://www.safjan.com/tag/linux/">linux</a>
+                        <a href="https://www.safjan.com/tag/team-collaboration/">team-collaboration</a>
+                        <a href="https://www.safjan.com/tag/build-tools/">build-tools</a>
+                        <a href="https://www.safjan.com/tag/portable-scripts/">portable-scripts</a>
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li><a href="https://www.safjan.com/audio-notifications-in-jupyter-notebooks-across-platforms/">Audio Notifications in Jupyter Notebooks Across Platforms</a></li>
+                        <li><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2023/">Top Popular ZSH Plugins on GitHub (2023)</a></li>
+                        <li><a href="https://www.safjan.com/using-pyenv/">Using Pyenv</a></li>
+                        <li><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/">Top Popular ZSH Plugins on GitHub (2021)</a></li>
+                        <li><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2019/">Top Popular ZSH Plugins on GitHub (2019)</a></li>
+                </ul>
+            </div>
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://www.safjan.com/openai-python-sdk-with-local-ollama-models-and-alternatives/" title="Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
