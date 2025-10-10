@@ -4,7 +4,13 @@ Slug: the-right-way-to-job-hop
 Date: 2023-09-29
 Modified: 2023-09-29
 Status: published
-tags: job, job-search, career, job-hop, personal-development, self-growth
+tags:
+  - job
+  - job-search
+  - career
+  - job-hop
+  - personal-development
+  - self-growth
 Category: note
 ---
 NOTE: The text below are the advices extracted from the podcast transcript using LLM.

@@ -1,15 +1,20 @@
 ---
 Category: Responsible AI
-Date: '2023-04-19'
+Date: 2023-04-19
 Image: /images/head/attacking_differential_privacy.jpg
-Modified: '2023-04-19'
+Modified: 2023-04-19
 Slug: attacking-differential-privacy-using-the-correlation-between-the-features
-Start: '2023-04-19'
+Start: 2023-04-19
 Status: published
 Summary: Learn how the differential privacy works by simulating attack on data protected with that technique.
-Tags: machine-learning, python, privacy, xai, responsible-ai
+Tags:
+  - machine-learning
+  - python
+  - privacy
+  - xai
+  - responsible-ai
 Title: Attacking Differential Privacy Using the Correlation Between the Features
-banner: "/images/head/attacking_differential_privacy.jpg"
+banner: /images/head/attacking_differential_privacy.jpg
 prompt: Give me long texts for the data security experts on How to use correlation between features to attack differential privacy? Use latex equations in code fences (for ease copy-paste them) where needed. Use research paper style.
 ---
 

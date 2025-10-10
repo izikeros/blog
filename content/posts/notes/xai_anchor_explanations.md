@@ -1,10 +1,26 @@
 ---
 Category: note
-Date: '2023-02-20'
-Modified: '2023-07-12'
+Date: 2023-02-20
+Modified: 2023-07-12
 Slug: anchor-explanations
 Status: published
-Tags: explainable-ai, anchor-explanations, machine-learning, credit-risk, transparency, interpretability, model-agnostic, healthcare, finance, natural-language-processing, predictions, end-users, rule-based, xai, rai, responsible-ai 
+Tags:
+  - explainable-ai
+  - anchor-explanations
+  - machine-learning
+  - credit-risk
+  - transparency
+  - interpretability
+  - model-agnostic
+  - healthcare
+  - finance
+  - natural-language-processing
+  - predictions
+  - end-users
+  - rule-based
+  - xai
+  - rai
+  - responsible-ai
 Title: Explainable AI - Anchor Explanations
 ---
 

@@ -4,7 +4,14 @@ Slug: tfidf-with-examples
 Date: 2023-11-10
 Modified: 2023-11-10
 Status: published
-tags: tfidf, tf-idf, bag-of-words, embeddings, text-vectorization, information-retrieval, text-mining
+tags:
+  - tfidf
+  - tf-idf
+  - bag-of-words
+  - embeddings
+  - text-vectorization
+  - information-retrieval
+  - text-mining
 Category: note
 prompt: Explain me how the TF-IDF works. Give me a minimal example that showcase calculation of high and low TF-IDF
 prompt2: give me TF-IDF inline latex equation

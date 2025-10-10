@@ -4,10 +4,15 @@ Slug: python-dependency-injection-for-the-testability
 Date: 2023-06-21
 Modified: 2023-06-21
 Start: 2023-06-21
-Tags: machine-learning, python, testing, dependency-injection, software-development 
+Tags:
+  - machine-learning
+  - python
+  - testing
+  - dependency-injection
+  - software-development
 Category: Machine Learning
 Image: /images/head/dependency_injection_2_cr_640px.jpg
-banner: "/images/head/dependency_injection_2_cr_640px.jpg"
+banner: /images/head/dependency_injection_2_cr_640px.jpg
 Summary: Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code.
 Status: published
 prompt:

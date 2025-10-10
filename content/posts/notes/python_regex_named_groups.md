@@ -1,10 +1,12 @@
 ---
 Category: note
-Date: '2023-04-19'
-Modified: '2023-07-12'
+Date: 2023-04-19
+Modified: 2023-07-12
 Slug: python-regex-named-groups
 Status: published
-Tags: python, regex
+Tags:
+  - python
+  - regex
 Title: Python Regex Named Groups
 ---
 up::[[MOC_Python]]

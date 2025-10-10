@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" Blog configuration file
+"""Blog configuration file
 
 Pelican documentation (latest)
 https://docs.getpelican.com/en/latest/settings.html#basic-settings
@@ -10,7 +10,7 @@ https://jackdewinter.github.io/
 """
 
 from datetime import datetime
-from pelican_jupyter import markup as nb_markup
+# from pelican_jupyter import markup as nb_markup
 from nbconvert.preprocessors import (
     RegexRemovePreprocessor,
     TagRemovePreprocessor,
@@ -34,7 +34,7 @@ else:
     # TODO: keep only development config here, use publishconf.py to produce publication content
     SITEURL = "https://safjan.com"
     RELATIVE_URLS = False
-    CACHE_CONTENT = True
+    CACHE_CONTENT = False
     # -------------- Third party ------
     # DISQUS_SITENAME = 'krystian-safjan'
     GOOGLE_ANALYTICS = "G-RM2PKDCCYM"  # v3:"UA-117080232-1"   v4:"G-RM2PKDCCYM"
@@ -108,7 +108,7 @@ SOCIAL = (
         "graduation-cap",  #'mortar-board | newspaper' or 'graduation-cap'
         "https://scholar.google.pl/citations?user=UlNJgMoAAAAJ",
     ),
-    ("rss", "/feeds/all.rss.xml")
+    ("rss", "/feeds/all.rss.xml"),
     # add Kaggle
 )
 # https://fontawesome.com/v5.15/icons/graduation-cap?style=solid
@@ -230,30 +230,39 @@ MARKUP = ("md", "ipynb")
 
 
 # to use mermaid install:
-# pip install git+https://github.com/Lee-W/md_mermaid#egg=md_mermaid
+# pip install markdown_mermaidjs
 # pip install Markdown==3.1.1 (<3.2)
-# MARKDOWN = {
-#     "extension_configs": {
-#         "md_mermaid": {},
-#     },
-# }
+MARKDOWN = {
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"css_class": "highlight"},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.meta": {},
+        "markdown_mermaidjs": {},
+    },
+    "output_format": "html5",
+}
+
 USE_MERMAID = False  # Adds javascript to base.html template
 ADD_BIBTEX_NOTE = True
 BIBTEX_JOURNAL = "Krystian's Safjan Blog"
 
-if MY_THEME == "flex":
-    PLUGINS = [
-        # "pelican-ipynb.markup",
-        nb_markup,
-        # 'post_stats',
-        "representative_image",
-        "render_math",
-        "neighbors",
-        "related_posts",
-        "sitemap",
-    ]
-elif MY_THEME == "elegant":
-    PLUGINS = ["pelican-ipynb.markup", "post_stats", "representative_image"]
+# if MY_THEME == "flex":
+#     PLUGINS = [
+#         # "pelican-ipynb.markup",
+#         nb_markup,
+#         # 'post_stats',
+#         "featured_image",
+#         "render_math",
+#         "neighbors",
+#         "related_posts",
+#         "sitemap",
+#         "yaml_metadata",
+#         # "pelican.plugins.obsidian",
+#         "pelican_obsidian",
+#         "pelican_jupyter",
+#     ]
+# elif MY_THEME == "elegant":
+#     PLUGINS = ["pelican-ipynb.markup", "post_stats", "representative_image"]
 
 # Preprocessing - remove empty cells and cells tagged with "remove_cell"
 #  NOTE: Tag cells to remove with "remove_cell" (View -> Cell Toolbar -> Tags)
@@ -297,4 +306,4 @@ ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-prev
 
 # The code for google ads is in templates/partials/google_automatic_ads.html
 USE_GOOGLE_AUTO_ADS = True
-CACHE_CONTENT = True
+# CACHE_CONTENT = True

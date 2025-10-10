@@ -4,7 +4,24 @@ Slug: creating-a-powerpoint-presentation-with-a-language-model
 Date: 2023-07-17
 Modified: 2023-07-17
 Status: published
-Tags: powerpoint-presentation, language-model, OpenAI-API, automation, artificial-intelligence, python-script, ChatGPT, presentation-outline, content-generation, python-pptx, openai, authentication, slide-customization, image-integration, interactive-presentations, natural-language-processing, advanced-features
+Tags:
+  - powerpoint-presentation
+  - language-model
+  - OpenAI-API
+  - automation
+  - artificial-intelligence
+  - python-script
+  - ChatGPT
+  - presentation-outline
+  - content-generation
+  - python-pptx
+  - openai
+  - authentication
+  - slide-customization
+  - image-integration
+  - interactive-presentations
+  - natural-language-processing
+  - advanced-features
 Category: note
 ---
 up::[[MOC_Generative_AI]]

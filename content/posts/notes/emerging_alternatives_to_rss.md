@@ -1,11 +1,17 @@
 ---
 Category: note
-Date: '2023-03-05'
-Modified: '2023-07-12'
+Date: 2023-03-05
+Modified: 2023-07-12
 Prompt: give me long, blog-post text on What are the newest, modern, emerging web standards that can replace RSS?
 Slug: emerging-alternatives-to-rss
 Status: published
-Tags: rss, json-feed, websub, activitypub, graphql, amp
+Tags:
+  - rss
+  - json-feed
+  - websub
+  - activitypub
+  - graphql
+  - amp
 Title: RSS vs. The Emerging Web Standards - Which Will Reign Supreme?
 ---
 

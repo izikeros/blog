@@ -1,11 +1,16 @@
 ---
 Category: note
-Date: '2023-01-23'
-Modified: '2023-07-12'
+Date: 2023-01-23
+Modified: 2023-07-12
 Prompt: How the evolutionary algorithms can be used together with neural networks. Mention NN weights optimization and other types of applications of these two methods used jointly
 Slug: combining-neural-networks-and-evolutionary-algorithms
 Status: published
-Tags: neural-networks, machine-learning, evolutionary, genetic-algorithms, udemy
+Tags:
+  - neural-networks
+  - machine-learning
+  - evolutionary
+  - genetic-algorithms
+  - udemy
 Title: Combining Neural Networks and Evolutionary Algorithms
 ---
 

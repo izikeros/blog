@@ -1,11 +1,20 @@
 ---
 Category: note
-Date: '2023-02-02'
-Modified: '2023-07-12'
+Date: 2023-02-02
+Modified: 2023-07-12
 Slug: writing-a-book-or-ebook-in-markdown
 Status: published
 Summary: Write, format, and style your ebook with ease using Markdown, Pandoc, CSS, Calibre, and Git.
-Tags: markdown, content-creation, pandoc, calibre, git, epub, mobi, Asciidoctor, weasyprint
+Tags:
+  - markdown
+  - content-creation
+  - pandoc
+  - calibre
+  - git
+  - epub
+  - mobi
+  - Asciidoctor
+  - weasyprint
 Title: Writing a Book or Ebook in Markdown
 prompt1: What is the best setup for writing book in markdown. Book has multiple chapters. It should be possible to style the rendered ebook. Which tools to use?
 prompt2: What is the best setup for writing book in markdown. Book has multiple chapters, each chapter in separate file. It should be possible to control style of the rendered ebook using templates or style sheets. Which tools can be used to do that?

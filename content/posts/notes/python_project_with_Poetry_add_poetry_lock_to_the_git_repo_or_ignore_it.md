@@ -4,7 +4,13 @@ Slug: python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it
 Date: 2023-11-12
 Modified: 2023-11-12
 Status: published
-tags: python, python-project, poetry, gitignore, git, repo
+tags:
+  - python
+  - python-project
+  - poetry
+  - gitignore
+  - git
+  - repo
 Category: note
 ---
 up:[[MOC_Python_Project]]

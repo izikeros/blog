@@ -4,7 +4,13 @@ Slug: borda-count-vs-reciprocal-rank
 Date: 2024-07-15
 Modified: 2024-07-15
 Status: published
-tags: borda, rank, rank-combining, rank-fussion, reciprocal-rank-fussion, reciprocal-rank-combining
+tags:
+  - borda
+  - rank
+  - rank-combining
+  - rank-fussion
+  - reciprocal-rank-fussion
+  - reciprocal-rank-combining
 Category: note
 ---
 

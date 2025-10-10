@@ -1,11 +1,19 @@
 ---
 Category: note
-Date: '2023-02-21'
-Modified: '2023-07-12'
+Date: 2023-02-21
+Modified: 2023-07-12
 Prompt: I have dataframe with features in columns. The number of features is large - more than 1000. How to get list of the features that has the stongest correlation? Give me python code for that.
 Slug: features-with-strong-correlation
 Status: published
-Tags: pandas, dataframe, correlation, python, data-analysis, machine-learning, AI, decorrelation
+Tags:
+  - pandas
+  - dataframe
+  - correlation
+  - python
+  - data-analysis
+  - machine-learning
+  - AI
+  - decorrelation
 Title: List of Features With Strongest Correlation
 ---
 

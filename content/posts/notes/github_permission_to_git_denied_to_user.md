@@ -4,7 +4,11 @@ Slug: github-permission-to-repogit-denied-to-user
 Date: 2024-03-21
 Modified: 2024-03-21
 Status: published
-tags: git, github, ssh, ssh-key
+tags:
+  - git
+  - github
+  - ssh
+  - ssh-key
 Category: note
 ---
 X::[[MOC_Git]]

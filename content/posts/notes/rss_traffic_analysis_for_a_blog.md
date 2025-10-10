@@ -4,7 +4,13 @@ Slug: rss-traffic-analysis-for-a-blog
 Date: 2024-08-01
 Modified: 2024-08-01
 Status: published
-tags: rss, atom, analytics, traffic, traffic-sources, google-analytics
+tags:
+  - rss
+  - atom
+  - analytics
+  - traffic
+  - traffic-sources
+  - google-analytics
 Category: note
 ---
 

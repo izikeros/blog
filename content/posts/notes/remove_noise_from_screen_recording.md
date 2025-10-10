@@ -4,7 +4,15 @@ Slug: remove-noise-from-screen-recording
 Date: 2024-06-27
 Modified: 2024-06-27
 Status: published
-tags: noise, denoising, video, video-editing, video-processing, audio-processing, video,postprocessing
+tags:
+  - noise
+  - denoising
+  - video
+  - video-editing
+  - video-processing
+  - audio-processing
+  - video
+  - postprocessing
 Category: note
 ---
 To remove noise from the speaker audio in your screen capture video, I can recommend a solution using the tools FFmpeg and Audacity as well as some free alternatives. Here's a step-by-step approach.

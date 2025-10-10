@@ -4,7 +4,12 @@ Date: 2022-10-12
 Modified: 2023-07-12
 Slug: install-calibre-web-qnap-nas-tutorial
 Status: published
-Tags: calibre, calibre-web, docker, qnap, nas
+Tags:
+  - calibre
+  - calibre-web
+  - docker
+  - qnap
+  - nas
 Title: Tutorial - Install Calibre Web on QNAP NAS
 citation_needed: false
 ---

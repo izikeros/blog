@@ -1,18 +1,23 @@
 ---
 Category: Linux
-Date: '2023-01-30'
+Date: 2023-01-30
 Image: /images/head/inside-work-tree.jpg
-Start: '2023-01-30'
+Start: 2023-01-30
 Status: published
 Summary: Explore the most popular Zsh plugins from the 2000+ options on the Awesome Zsh plugins GitHub project. See which ones have the highest number of stars from the Zsh community.
-Tags: zsh, scrapping, python, Linux
+Tags:
+  - zsh
+  - scrapping
+  - python
+  - Linux
 Title: Top Popular ZSH Plugins on GitHub (2023)
 banner: /images/head/inside-work-tree.jpg
-modified: '2023-01-30'
+modified: 2023-01-30
 slug: top-popular-zsh-plugins-on-github-2023
+Series: Zsh plugins
 ---
 
-> There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/index.html), [2019](../top-popular-zsh-plugins-on-github-2019/index.html), [2021](../top-popular-zsh-plugins-on-github-2021/index.html), [2023](../top-popular-zsh-plugins-on-github-2023/index.html). The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
+> NOTE: The older articles in the serie have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
 The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 2100+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users and console users in general. As in previous year, I have divided them into four categories:
 
@@ -30,11 +35,14 @@ Shortcuts to categories:
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Tools](#tools)
+  - [navi](#navi)
+  - [shellfirm](#shellfirm)
 - [Frameworks](#frameworks)
 - [Prompts](#prompts)
 - [Python tools](#python-tools)
 - [Fuzzy finders](#fuzzy-finders)
 - [Docker/Containers](#dockercontainers)
+  - [K9s](#k9s)
 
 <!-- /MarkdownTOC -->
 

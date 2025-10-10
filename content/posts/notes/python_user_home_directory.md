@@ -1,10 +1,14 @@
 ---
 Category: note
-Date: '2023-04-20'
-Modified: '2023-07-12'
+Date: 2023-04-20
+Modified: 2023-07-12
 Slug: python-user-home-directory
 Status: published
-Tags: python, home, home-dir, pathlib
+Tags:
+  - python
+  - home
+  - home-dir
+  - pathlib
 Title: Getting the User's Home Directory Path in Python - A Cross-Platform Guide
 ---
 up::[[MOC_Python]]

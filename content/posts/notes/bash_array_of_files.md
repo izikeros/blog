@@ -4,7 +4,11 @@ Slug: store-output-of-the-command-into-array-in-bash
 Date: 2023-11-13
 Modified: 2023-11-13
 Status: published
-tags: bash, array, cli, script
+tags:
+  - bash
+  - array
+  - cli
+  - script
 Category: note
 ---
 up::[[MOC_Shell_Bash_Zsh]]

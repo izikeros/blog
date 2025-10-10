@@ -4,7 +4,16 @@ Slug: open-source-llm-observability-tools-and-platforms
 Date: 2024-02-22
 Modified: 2024-06-26
 Start: 2024-02-22
-tags: observability, mlops, llmops, llm, monitoring, model-monitoring, prompt-management, data-logging, model-logging
+tags:
+  - observability
+  - mlops
+  - llmops
+  - llm
+  - monitoring
+  - model-monitoring
+  - prompt-management
+  - data-logging
+  - model-logging
 Category: Generative AI
 Image: /images/head/observability_998_cr_640px.jpg
 banner: "/images/head/observability_998_cr_640px.jpg"

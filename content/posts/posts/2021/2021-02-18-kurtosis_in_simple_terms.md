@@ -1,13 +1,15 @@
 ---
 Category: Machine Learning
-Date: '2021-02-18'
+Date: 2021-02-18
 Image: /images/head/kurtosis.jpg
-Modified: '2021-02-18'
+Modified: 2021-02-18
 Slug: kurtosis-in-simple-terms
-Start: '2021-02-18'
+Start: 2021-02-18
 Status: published
 Summary: Statistics can be tricky, but understanding kurtosis is a must for anyone who wants to avoid making common mistakes in statistical analyses. Learn how to interpret it in this comprehensive guide.
-Tags: statistics, python
+Tags:
+  - statistics
+  - python
 Title: Kurtosis in Simple Terms, Interpretation and Gotchas
 prompt: Explain me kurtosis (term from statistics) in simple terms. Give me long blog post on that with links and suggestions for illustrations or plots. Use Latex equations id needed.
 ---

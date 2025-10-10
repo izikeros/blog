@@ -4,7 +4,13 @@ Slug: the-most-powerful-mac-productivity-and-automation-apps
 Date: 2024-01-24
 Modified: 2024-01-24
 Status: published
-tags: macos, alfred, gestures, hazel, automator, keyboard-maestro
+tags:
+  - macos
+  - alfred
+  - gestures
+  - hazel
+  - automator
+  - keyboard-maestro
 Category: note
 ---
 

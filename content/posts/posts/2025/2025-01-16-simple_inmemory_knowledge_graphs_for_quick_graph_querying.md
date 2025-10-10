@@ -4,7 +4,14 @@ Slug: simple-inmemory-knowledge-graphs-for-quick-graph-querying
 Date: 2025-01-16
 Modified: 2025-01-16
 Start: 2025-01-16
-tags: graph, knowledge-graph, query, networkx, neo4j, rdflib, SPARQL
+tags:
+  - graph
+  - knowledge-graph
+  - query
+  - networkx
+  - neo4j
+  - rdflib
+  - SPARQL
 Category: Howto
 Image: /images/head/knowledge_graph_cr_640px.jpg
 banner: "/images/head/knowledge_graph_cr_640px.jpg"

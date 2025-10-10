@@ -1,10 +1,18 @@
 ---
 Category: note
-Date: '2023-03-06'
-Modified: '2023-07-12'
+Date: 2023-03-06
+Modified: 2023-07-12
 Slug: what-is-the-difference-between-mlops-and-modelops
 Status: published
-Tags: mlops, modelops, containerization, production, ci-cd, reliability, scalability, automation
+Tags:
+  - mlops
+  - modelops
+  - containerization
+  - production
+  - ci-cd
+  - reliability
+  - scalability
+  - automation
 Title: What Is the Difference Between MLOps and ModelOps?
 prompt:Give me long, markdown blog post on: What is the difference between MLOps and ModelOps?. Use emphasis (bold) and hyperlinks where appropriate.
 ---

@@ -4,7 +4,9 @@ Slug: bash-parameter-expansion-with-default-value
 Date: 2024-08-01
 Modified: 2024-08-01
 Status: published
-tags: bash, parameter-expansion
+tags:
+  - bash
+  - parameter-expansion
 Category: note
 ---
 

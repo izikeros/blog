@@ -1,10 +1,17 @@
 ---
 Category: note
-Date: '2022-04-27'
-Modified: '2023-07-12'
+Date: 2022-04-27
+Modified: 2023-07-12
 Slug: pandas-dataframe-validation
 Status: published
-Tags: pandas, pandas/schema, pandas/validation, pandera, dataenforce, software/alternatives, great-expectations,
+Tags:
+  - pandas
+  - pandas/schema
+  - pandas/validation
+  - pandera
+  - dataenforce
+  - software/alternatives
+  - great-expectations
 Title: Pandas Dataframe Schema and Data Types Validation
 citation_needed: false
 ---

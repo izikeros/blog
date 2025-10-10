@@ -4,7 +4,10 @@ Slug: chunking-libraries
 Date: 2025-08-04
 Modified: 2025-08-04
 Status: Draft
-tags: chunking, rag, hierarchical-chunking
+tags:
+  - chunking
+  - rag
+  - hierarchical-chunking
 Category: note
 ---
 ## Docling

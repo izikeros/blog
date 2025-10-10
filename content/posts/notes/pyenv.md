@@ -5,7 +5,15 @@ category: note
 date: 2022-05-12
 modified: 2024-12-18
 status: published
-tags: macos, pyenv, python, pipx, pycharm, tkinter, optimizations, archflag
+tags:
+  - macos
+  - pyenv
+  - python
+  - pipx
+  - pycharm
+  - tkinter
+  - optimizations
+  - archflag
 ---
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->

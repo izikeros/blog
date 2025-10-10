@@ -1,16 +1,22 @@
 ---
 Category: Generative AI
-Date: '2023-02-01'
+Date: 2023-02-01
 Image: /images/head/language_models_for_corporate_knowledge.jpg
-Modified: '2023-02-01'
+Modified: 2023-02-01
 Slug: language-models-for-knowledge-management-in-corporate
-Start: '2023-02-01'
+Start: 2023-02-01
 Status: published
 Summary: Explore the benefits and challenges of using Large Language Models (LLMs) in corporate environments for improved knowledge management. Learn how to implement LLMs and overcome potential obstacles.
-Tags: AI, NLP, LLM, language-models, knowledge-management, corporate
+Tags:
+  - AI
+  - NLP
+  - LLM
+  - language-models
+  - knowledge-management
+  - corporate
 Title: Leveraging Language Models in Corporate Environments - The Future of Knowledge Management
-banner: "/images/head/language_models_for_corporate_knowledge.jpg"
-prompt: null
+banner: /images/head/language_models_for_corporate_knowledge.jpg
+prompt:
 ---
 ## Contents
 

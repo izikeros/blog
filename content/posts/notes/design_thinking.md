@@ -4,7 +4,10 @@ Slug: design-thinking
 Date: 2023-09-04
 Modified: 2023-11-07
 Status: published
-tags: startup, design-thinking, methodology
+tags:
+  - startup
+  - design-thinking
+  - methodology
 Category: note
 ---
 

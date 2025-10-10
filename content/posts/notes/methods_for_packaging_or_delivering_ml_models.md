@@ -1,10 +1,11 @@
 ---
 Category: note
-Date: '2023-01-27'
-Modified: '2023-07-12'
+Date: 2023-01-27
+Modified: 2023-07-12
 Slug: methods-for-python-ml-models-packaging-and-deployment
 Status: published
-Tags: machine-learning
+Tags:
+  - machine-learning
 Title: Which Method of Model Packaging Should I Used?
 todo: add diagram, promote to post
 ---

@@ -1,11 +1,14 @@
 ---
 Category: note
-Date: '2021-09-29'
-Modified: '2023-07-12'
+Date: 2021-09-29
+Modified: 2023-07-12
 Slug: python-docstrings-styles
 Status: published
 Summary: Most popular conventions used in python docstrings and format support in various tools.
-Tags: docstrings, python, style
+Tags:
+  - docstrings
+  - python
+  - style
 Title: Python - Docstrings Styles
 suggested_tags: docstring, python, style
 ---

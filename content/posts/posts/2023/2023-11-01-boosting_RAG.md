@@ -4,10 +4,17 @@ Slug: techniques-to-boost-rag-performance-in-production
 Date: 2023-11-01
 Modified: 2023-11-04
 Start: 2023-10-27
-tags: machine-learning, python, rag, llm, retrieval-augmented-generation, re-ranking, lost-in-the-middle 
+tags:
+  - machine-learning
+  - python
+  - rag
+  - llm
+  - retrieval-augmented-generation
+  - re-ranking
+  - lost-in-the-middle
 Category: Generative AI
 Image: /images/head/boosting_RAG.jpg
-banner: "/images/head/boosting_RAG.jpg"
+banner: /images/head/boosting_RAG.jpg
 Summary: This article discusses several advanced techniques that can be applied at different stages of the RAG pipeline to enhance its performance in a production setting.
 Status: published
 prompt:

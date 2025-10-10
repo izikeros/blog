@@ -4,7 +4,13 @@ Slug: how-to-add-huggingface-model-to-ollama
 Date: 2024-06-12
 Modified: 2024-06-12
 Status: published
-tags: ollama, huggingface, llm, oss-llm, os-llm, open-source 
+tags:
+  - ollama
+  - huggingface
+  - llm
+  - oss-llm
+  - os-llm
+  - open-source
 Category: note
 ---
 Create directory where you will be storying your HuggingFace LLMs. Ollama keeps their models in `~/ollama`. I have created `~/.ollama_hf_llms` to store my downloaded models.

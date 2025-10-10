@@ -1,10 +1,14 @@
 ---
 Category: note
-Date: '2023-02-12'
-Modified: '2023-07-12'
+Date: 2023-02-12
+Modified: 2023-07-12
 Slug: how-to-select-rows-from-DataFrame-based-on-column-values
 Status: published
-Tags: python, pandas, pandas/indexing, dataframe
+Tags:
+  - python
+  - pandas
+  - pandas/indexing
+  - dataframe
 Title: How to Select Rows From a DataFrame Based on Column Values
 prompt: Give me long, stacoverflow-style text with snippets of code, analyse various use cases and various methods how to achieve this. Give me response as pre-formatted text (do not render tables and code fences)
 ---

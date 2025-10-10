@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2023-01-13'
-Modified: '2023-07-12'
+Date: 2023-01-13
+Modified: 2023-07-12
 Status: published
 Summary: summary
-Tags: machine-learning, bayesian, learning
+Tags:
+  - machine-learning
+  - bayesian
+  - learning
 Title: Learning Bayesian Methods as Data Scientist
 citation_needed: false
 ---

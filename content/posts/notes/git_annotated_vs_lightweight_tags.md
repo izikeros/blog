@@ -1,11 +1,13 @@
 ---
 Category: note
-Date: '2023-03-31'
-Modified: '2023-07-12'
+Date: 2023-03-31
+Modified: 2023-07-12
 Prompt: Explain me, in git, what is the difference between annotated and lightweight tags. When to use each type? Give me long text.
 Slug: git-annotated-vs-lightweight-tags
 Status: published
-Tags: git, tag
+Tags:
+  - git
+  - tag
 Title: Git - Annotated vs. Lightweight Tags
 ---
 

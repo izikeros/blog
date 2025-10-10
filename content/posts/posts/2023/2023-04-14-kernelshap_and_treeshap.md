@@ -1,16 +1,19 @@
 ---
 Category: Responsible AI
-Date: '2023-04-14'
+Date: 2023-04-14
 Image: /images/head/treeshap_kernelshap.jpg
 Modified: 2023-11-05
 Slug: kernelshap-treeshap-two-most-popular-variations-of-the-shap-method
-Start: '2023-04-14'
+Start: 2023-04-14
 Status: published
 Summary: Making sense of AI's inner workings with KernelShap and TreeShap the powerfull tools for responsible AI.
-Tags: shap, xai, explainable-ai
+Tags:
+  - shap
+  - xai
+  - explainable-ai
 Title: KernelShap and TreeShap - Two Most Popular Variations of the SHAP Method
-banner: "/images/head/treeshap_kernelshap.jpg"
-prompt: null
+banner: /images/head/treeshap_kernelshap.jpg
+prompt:
 ---
 ## TLDR
 

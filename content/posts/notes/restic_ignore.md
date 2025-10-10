@@ -4,7 +4,10 @@ Slug: gitignore-style-exclusion-for-restic
 Date: 2023-07-27
 Modified: 2023-07-27
 Status: published
-Tags: restic, ignore, gitignore 
+Tags:
+  - restic
+  - ignore
+  - gitignore
 Category: note
 ---
 X::[[my_system_for_backups]]

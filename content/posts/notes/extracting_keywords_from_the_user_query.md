@@ -1,11 +1,14 @@
 ---
 Category: note
-Date: '2023-06-09'
-Modified: '2023-07-12'
+Date: 2023-06-09
+Modified: 2023-07-12
 Prompt: Give me text about possible approaches for extracting keywords or key terms from the user query. discuss pros and cons of each approach
 Slug: extracting-keywords-from-the-user-query
 Status: published
-Tags: keywords, keyword-extraction, tfidf
+Tags:
+  - keywords
+  - keyword-extraction
+  - tfidf
 Title: Extracting Keywords From the User Query
 ---
 X::[[dups/hybrid_search]]

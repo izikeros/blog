@@ -1,11 +1,13 @@
 ---
 Category: note
-Date: '2023-01-05'
-Modified: '2023-07-12'
+Date: 2023-01-05
+Modified: 2023-07-12
 Slug: difference-between-numba-jit-and-njit-decorators
 Status: published
 Summary: Description of the difference between jit and njit numba decorators
-Tags: python, numba
+Tags:
+  - python
+  - numba
 Title: Difference Between Numba Jit and Njit Decorators
 citation_needed: false
 ---

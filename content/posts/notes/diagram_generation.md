@@ -1,11 +1,17 @@
 ---
 Category: note
-Date: '2023-01-25'
-Modified: '2023-07-12'
+Date: 2023-01-25
+Modified: 2023-07-12
 Prompt: What are indirect ways that you can provide me diagrams that can be represented (described) in text format? There are several formats either to describe graphics or the code that is used by some engines to render graphs. I would like that some of your answers would contain diagrams as well.
 Slug: diagram-generation
 Status: published
-Tags: diagram, visualization, graphviz, uml, mermaid, latex
+Tags:
+  - diagram
+  - visualization
+  - graphviz
+  - uml
+  - mermaid
+  - latex
 Title: Programatic Diagram Generation
 prompt_2: Give me exemplary diagrams in ASCII art and LaTeX Tikz
 ---

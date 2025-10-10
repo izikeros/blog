@@ -1,10 +1,17 @@
 ---
 Category: note
-Date: '2022-06-03'
-Modified: '2023-07-12'
+Date: 2022-06-03
+Modified: 2023-07-12
 Slug: append-json-data-to-file-save-traces
 Status: published
-Tags: append-json, data, json, trace, jsonlines, python, dataset
+Tags:
+  - append-json
+  - data
+  - json
+  - trace
+  - jsonlines
+  - python
+  - dataset
 Title: Append JSON Data to File, Save the Traces
 ---
 

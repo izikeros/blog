@@ -4,7 +4,11 @@ Slug: managing-vs-code-keyboard-shortcuts-a-complete-guide
 Date: 2025-02-11
 Modified: 2025-02-11
 Status: published
-Tags: vscode, keybindings, personalization, customization
+Tags:
+  - vscode
+  - keybindings
+  - personalization
+  - customization
 Category: note
 ---
 

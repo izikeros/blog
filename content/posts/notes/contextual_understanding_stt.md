@@ -1,10 +1,19 @@
 ---
 Category: note
-Date: '2023-03-30'
-Modified: '2023-07-12'
+Date: 2023-03-30
+Modified: 2023-07-12
 Slug: contextual_understanding-speech-to-text
 Status: published
-Tags: speech-to-text, ai, machine-learning, deep-learning, pos, ner, cnn, rnn, asr
+Tags:
+  - speech-to-text
+  - ai
+  - machine-learning
+  - deep-learning
+  - pos
+  - ner
+  - cnn
+  - rnn
+  - asr
 Title: Contextual Understanding in Automated Speech-to-Text Transcription - Machine Learning Techniques and Challenges
 prompt1: What are the biggest unsolved problems for automated speech to text transcription. Give me long blog post on that.
 prompt2: Give me long blog post on machine learning techniques used for contextual understanding for speech-to-text. Use latex equations where needed. Add hyperlinks to the key terms.

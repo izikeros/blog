@@ -4,7 +4,12 @@ Slug: python-expertise-level-self-assessment
 Date: 2023-10-17
 Modified: 2023-10-17
 Status: published
-tags: python, programming, interview, job-interview, skills 
+tags:
+  - python
+  - programming
+  - interview
+  - job-interview
+  - skills
 Category: note
 todo: add links that one can learn the techniques
 prompt: I would like to create a simple classification of Python programmers into 3 categories beginners, advanced, and experts. Use simple claims to describe programmers in each category and that makes this category distinct from other categories. Exemplary statements uses generators, knows how to use decorators, etc. Give me at least 10 statements for each level of advancement.

@@ -4,7 +4,22 @@ Slug: vscode-problem-import-could-not-be-resolved-from-the-source-pylance
 Date: 2024-09-10
 Modified: 2024-09-10
 Status: published
-tags: vscode, jupyter-notebook, pandas, pylance, python, virtualenv, linter-warning, import-error, troubleshooting, ide-configuration, python-environment, static-analysis, data-science, development-tools, coding-issues
+tags:
+  - vscode
+  - jupyter-notebook
+  - pandas
+  - pylance
+  - python
+  - virtualenv
+  - linter-warning
+  - import-error
+  - troubleshooting
+  - ide-configuration
+  - python-environment
+  - static-analysis
+  - data-science
+  - development-tools
+  - coding-issues
 Category: note
 ---
 

@@ -1,11 +1,19 @@
 ---
 Category: note
-Date: '2023-03-09'
-Modified: '2023-07-12'
+Date: 2023-03-09
+Modified: 2023-07-12
 Prompt: How to store data in python class. Discuss property/attribute and class variable. Explain the difference
 Slug: the-difference-between-class-attribute-or-property-and-the-class-variable
 Status: published
-Tags: python, class, class-variable, object-oriented-programming, class-property, property, attribute, class-attribute
+Tags:
+  - python
+  - class
+  - class-variable
+  - object-oriented-programming
+  - class-property
+  - property
+  - attribute
+  - class-attribute
 Title: The Difference Between Class Attribute or Property and the Class Variable
 todo: verify the code
 ---

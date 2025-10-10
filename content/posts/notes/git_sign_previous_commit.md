@@ -1,10 +1,16 @@
 ---
 Category: note
-Date: '2023-02-28'
-Modified: '2023-07-12'
+Date: 2023-02-28
+Modified: 2023-07-12
 Slug: git-sign-previous-commit
 Status: published
-Tags: git, commit, commit-signing, gpg-key, ssh-key, gpg
+Tags:
+  - git
+  - commit
+  - commit-signing
+  - gpg-key
+  - ssh-key
+  - gpg
 Title: Git - Sign Previous Commit
 ---
 

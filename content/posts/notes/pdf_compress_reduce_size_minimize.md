@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2023-01-27'
-Modified: '2023-07-12'
+Date: 2023-01-27
+Modified: 2023-07-12
 Slug: pdf-compress-reduce-size-minimize
 Status: published
-Tags: pdf, ghostscript, pdfminify, compress, publishing
+Tags:
+  - pdf
+  - ghostscript
+  - pdfminify
+  - compress
+  - publishing
 Title: Compress, Reduce or Minimize Size of PDF Document
 ---
 X::[[convert_pdf_to_image]]

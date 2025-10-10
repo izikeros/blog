@@ -6,12 +6,23 @@ Modified: 2023-10-07
 Start: 2023-10-07
 Category: Generative AI
 Image: /images/head/markov_vs_transformers.jpg
-banner: "/images/head/markov_vs_transformers.jpg"
+banner: /images/head/markov_vs_transformers.jpg
 Summary: This article explores distinguishing details of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a sequence. It explores the fundamental differences between these models, with a particular emphasis on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.
 Status: published
 prompt: Give me a long article that points How LLMs like GPT, transformers differ from Markov Models? Both predict next character. The target audience is professionals so do a deep dive, and look into the details of both types of models. Use proper introduction. Focus on explaining how the self attention makes difference to a fixed context length for markov models.
 System-prompt: You are Data Science expert and statistical methods expert. Carefully heed the user's instructions. Respond using Markdown. GPT-4, temp 0.7, top-p:0.4
-tags: machine-learning, transformers, markov-models, attention, self-attention, natural-language-processing, nlp, AI, deep-learning, language-models, GPT
+tags:
+  - machine-learning
+  - transformers
+  - markov-models
+  - attention
+  - self-attention
+  - natural-language-processing
+  - nlp
+  - AI
+  - deep-learning
+  - language-models
+  - GPT
 ---
 
 In Machine Learning (ML) and natural language processing (NLP), different models have been developed to understand and generate human language. Two such models that have gained significant attention are the Markov Models and the Transformer-based models like GPT ([Generative Pretrained Transformer](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer)). While both types of models can predict the next character in a sequence, they differ significantly in their underlying mechanisms and capabilities. This article aims to look into the details of these models, with a particular focus on how the self-attention mechanism in Transformer models makes a difference compared to the fixed context length in Markov models.

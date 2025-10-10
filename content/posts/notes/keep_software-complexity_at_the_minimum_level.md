@@ -1,11 +1,17 @@
 ---
 Category: note
-Date: '2023-02-09'
-Modified: '2023-07-12'
+Date: 2023-02-09
+Modified: 2023-07-12
 Prompt: In the python software project how to keep system complexity at the minimum level. Give me long answer
 Slug: software-complexity-at-the-minimum-level
 Status: published
-Tags: software-development, software-maintenence, best-practices, python/project, software-project, software/project
+Tags:
+  - software-development
+  - software-maintenence
+  - best-practices
+  - python/project
+  - software-project
+  - software/project
 Title: Simplifying Software Complexity - 10 Tips
 ---
 

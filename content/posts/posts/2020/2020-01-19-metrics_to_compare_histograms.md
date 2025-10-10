@@ -1,13 +1,19 @@
 ---
 Category: Machine Learning
-Date: '2020-01-19'
+Date: 2020-01-19
 Image: /images/head/compare_histograms.jpg
-Modified: '2023-07-12'
+Modified: 2023-07-12
 Slug: metrics-to-compare-histograms
-Start: '2023-01-19'
+Start: 2023-01-19
 Status: published
 Summary: Learn about metrics used to compare histograms with examples of how to calculate them in python. From Chi-Squared distance to Kullback-Leibler divergence and Earth Mover's distance. A comprehensive guide.
-Tags: histogram, statistics, machine-learning, statistical-tests, metrics, distance-metrics
+Tags:
+  - histogram
+  - statistics
+  - machine-learning
+  - statistical-tests
+  - metrics
+  - distance-metrics
 Title: Metrics Used to Compare Histograms
 ---
 

@@ -4,7 +4,10 @@ Slug: what-is-the-key-difference-between-pca-and-svd
 Date: 2023-11-06
 Modified: 2023-11-06
 Status: published
-tags: PCA, SVD, dimensionality-reduction 
+tags:
+  - PCA
+  - SVD
+  - dimensionality-reduction
 Category: note
 prompt: What is the key difference between PCA and SVD?
 ---

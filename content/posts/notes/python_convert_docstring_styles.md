@@ -1,11 +1,15 @@
 ---
 Category: note
-Date: '2021-09-29'
-Modified: '2023-07-12'
+Date: 2021-09-29
+Modified: 2023-07-12
 Slug: python-convert-docstring-styles
 Status: published
 Summary: Description of tools for converting docstring style in python code
-Tags: convert, docstring, python, style
+Tags:
+  - convert
+  - docstring
+  - python
+  - style
 Title: Python - Convert Docstring Styles
 suggested_tags: convert, docstring, python, style
 ---

@@ -5,7 +5,16 @@ Modified: 2023-07-12
 Slug: python-configuration-management
 Status: published
 Summary: None
-tags: python, configuration, hydra, decouple, omegaconf, yaml, config, experiment, experiment-management
+tags:
+  - python
+  - configuration
+  - hydra
+  - decouple
+  - omegaconf
+  - yaml
+  - config
+  - experiment
+  - experiment-management
 Title: Python - Configuration Management
 citation_needed: true
 ---

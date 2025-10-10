@@ -1,15 +1,21 @@
 ---
 Category: Howto
-Date: '2021-12-02'
+Date: 2021-12-02
 Image: /images/head/vscode-as-nim-ide.jpg
 Slug: vscode-as-nim-ide
-Start: '2023-01-13'
+Start: 2023-01-13
 Status: published
 Summary: Learn how to set up VSCode as a Nim IDE from scratch. Includes instructions for downloading VSCode, installing the Nim extension, configuring settings, and debugging Nim code.
-Tags: nim, ide, programming, vscode, debugging, nimrod
+Tags:
+  - nim
+  - ide
+  - programming
+  - vscode
+  - debugging
+  - nimrod
 Title: Setup VS Code as NIM IDE
-banner: "/images/head/vscode-as-nim-ide.jpg"
-modified: '2023-01-13'
+banner: /images/head/vscode-as-nim-ide.jpg
+modified: 2023-01-13
 prompt: Give me detailed instructions how to prepare vscode as NIM IDE starting from scratch (downloading vscode). Provide blog-post style answer with introduction and in the closing reference to related topics such as debugging in vscode and other. In the introduction - provide short info about the nim language.
 ---
 

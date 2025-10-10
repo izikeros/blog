@@ -8,7 +8,13 @@ Status: published
 Summary: Best self-hosted RSS Feed Readers selected by popularity and project activity.
 Title: The Best Self-Hosted, Open Source RSS Feed Readers in 2022
 citation_needed: false
-tags: rss, news, feed-reader, self-hosted, atom, news-aggregator
+tags:
+  - rss
+  - news
+  - feed-reader
+  - self-hosted
+  - atom
+  - news-aggregator
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 

@@ -4,7 +4,13 @@ Slug: github-search-techniques
 Date: 2023-12-07
 Modified: 2023-12-07
 Status: published
-tags: github, search, productivity, code-search, project-search, project-discovery
+tags:
+  - github
+  - search
+  - productivity
+  - code-search
+  - project-search
+  - project-discovery
 Category: note
 ---
 

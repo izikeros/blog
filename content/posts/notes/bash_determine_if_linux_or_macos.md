@@ -1,10 +1,14 @@
 ---
 Category: note
-Date: '2022-06-03'
-Modified: '2023-07-12'
+Date: 2022-06-03
+Modified: 2023-07-12
 Slug: bash-determine-if-linux-or-macos
 Status: published
-Tags: bash, determine, Linux, macos
+Tags:
+  - bash
+  - determine
+  - Linux
+  - macos
 Title: Bash - Determine if Script Runs on Linux, macOS or Other System
 ---
 

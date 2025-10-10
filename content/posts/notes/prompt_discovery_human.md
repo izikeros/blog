@@ -4,7 +4,11 @@ Slug: prompt_discivery-large-language-models-llms-prompt-engineering
 Date: 2023-08-08
 Modified: 2023-08-08
 Status: published
-Tags: prompt-engineering, prompting, large-language-models, llm
+Tags:
+  - prompt-engineering
+  - prompting
+  - large-language-models
+  - llm
 Category: note
 ---
 

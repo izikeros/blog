@@ -5,7 +5,13 @@ Date: 2023-06-08
 Modified: 2023-07-12
 Slug: how-to-count-tokens
 Status: published
-tags: tokenizers, token, tokenization, tiktoken, openai, NLP
+tags:
+  - tokenizers
+  - token
+  - tokenization
+  - tiktoken
+  - openai
+  - NLP
 up: "[[MOC_Generative_AI]]"
 ---
 

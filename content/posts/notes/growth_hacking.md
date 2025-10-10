@@ -4,7 +4,11 @@ Slug: growth-hacking-methodology
 Date: 2023-11-07
 Modified: 2023-11-07
 Status: published
-tags: growth-hacking, startup, methodology, business 
+tags:
+  - growth-hacking
+  - startup
+  - methodology
+  - business
 Category: note
 ---
 

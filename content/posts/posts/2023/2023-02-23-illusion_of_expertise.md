@@ -1,16 +1,18 @@
 ---
 Category: Machine Learning
-Date: '2023-02-23'
+Date: 2023-02-23
 Image: /images/head/speech_and_expertise.jpg
-Modified: '2023-02-23'
+Modified: 2023-02-23
 Slug: illusion-of-expertise
-Start: '2023-02-23'
+Start: 2023-02-23
 Status: published
 Summary: We often associate eloquent speech with intelligence and knowledge. But what if I told you that this assumption is not always true?
-Tags: machine-learning, python
+Tags:
+  - machine-learning
+  - python
 Title: Rethinking the Link Between Speech and Expertise
-banner: "/images/head/speech_and_expertise.jpg"
-prompt: null
+banner: /images/head/speech_and_expertise.jpg
+prompt:
 ---
 
 Communication is an essential aspect of our lives. It is how we express ourselves, connect with others, and convey our thoughts and ideas. However, not all communication is created equal. We often associate weak speech with low knowledge, lack of experience, and a lack of education, while on the other hand, **flowery and eloquent speech is perceived as a guarantee of education and expertise**.

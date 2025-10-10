@@ -4,7 +4,12 @@ Slug: implementing-rank-fusion-in-python
 Date: 2023-07-28
 Modified: 2024-07-14
 Status: published
-tags: rank-fusion, hybrid-search, rank, search, python
+tags:
+  - rank-fusion
+  - hybrid-search
+  - rank
+  - search
+  - python
 Category: note
 ---
 

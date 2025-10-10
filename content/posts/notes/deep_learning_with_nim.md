@@ -4,7 +4,12 @@ Slug: deep-learning-in-nim
 Date: 2023-02-26
 Modified: 2023-02-26
 Status: published
-tags: nim, deep-learning, scinim, arraymancer, flambleau
+tags:
+  - nim
+  - deep-learning
+  - scinim
+  - arraymancer
+  - flambleau
 Category: note
 prompt: Give me long, markdown blog-post text on how to do deep learning in NIM language. Discuss existing libraries that can help with experimenting with deep learning. Describe SciNim, arraymancer and flambleau. Give me links in the end.
 ---

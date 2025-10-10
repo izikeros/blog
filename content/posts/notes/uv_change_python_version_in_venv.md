@@ -4,7 +4,13 @@ Slug: downgrade-or-upgrade-your-python-version-with-uv
 Date: 2025-06-26
 Modified: 2025-06-26
 Status: published
-Tags: uv, python-version, python-dependencies, python-upgrade, python-downgrade, python-version
+Tags:
+  - uv
+  - python-version
+  - python-dependencies
+  - python-upgrade
+  - python-downgrade
+  - python-version
 Category: note
 ---
 

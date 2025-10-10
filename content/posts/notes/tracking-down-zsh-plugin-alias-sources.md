@@ -4,7 +4,11 @@ Slug: tracking-down-zsh-alias-plugin-sources
 Date: 2025-02-28
 Modified: 2025-02-28
 Status: published
-Tags: til, zsh, zsh-alias, alias
+Tags:
+  - til
+  - zsh
+  - zsh-alias
+  - alias
 Category: note
 ---
 

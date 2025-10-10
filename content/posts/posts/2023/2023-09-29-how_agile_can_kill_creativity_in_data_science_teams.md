@@ -4,10 +4,23 @@ Slug: how-agile-can-kill-creativity-in-data-science-team
 Date: 2023-09-29
 Modified: 2023-09-29
 Start: 2023-09-29
-tags: data-science, agile, scrum, SAFe, sprint, deliverables, process, exploration, collaboration, creativity, creative-thinking, agile-data-science-process, team-data-science-process
+tags:
+  - data-science
+  - agile
+  - scrum
+  - SAFe
+  - sprint
+  - deliverables
+  - process
+  - exploration
+  - collaboration
+  - creativity
+  - creative-thinking
+  - agile-data-science-process
+  - team-data-science-process
 Category: Machine Learning
 Image: /images/head/agile_data_science_640px.jpg
-banner: "/images/head/agile_data_science_640px.jpg"
+banner: /images/head/agile_data_science_640px.jpg
 Summary: Discover the delicate balance between Agile methodologies and imagination in the domain of data science and analytics. Uncover the impact of Agile approaches on creativity within data science teams. Explore how these practices shape the innovative landscape of data science and analytics.
 Status: published
 prompt: How Agile can kill creativity in Data Science / Analytics teams?

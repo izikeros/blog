@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2023-03-05'
-Modified: '2023-07-12'
+Date: 2023-03-05
+Modified: 2023-07-12
 Slug: bash-script-with-arguments-implemented-as-functions
 Status: published
-Tags: bash, eval, args
+Tags:
+  - bash
+  - eval
+  - args
 Title: Eval in Bash Script With Arguments Implemented as Functions
 ---
 up::[[MOC_Shell_Bash_Zsh]]

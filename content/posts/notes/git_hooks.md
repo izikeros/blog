@@ -1,11 +1,16 @@
 ---
 Category: note
-Date: '2021-10-20'
-Modified: '2023-07-12'
+Date: 2021-10-20
+Modified: 2023-07-12
 Slug: git-hooks
 Status: published
 Summary: Example of how to set up git hooks manually or with pre-commit tool
-Tags: git, hooks, pre-commit_hooks, software/project, project
+Tags:
+  - git
+  - hooks
+  - pre-commit_hooks
+  - software/project
+  - project
 Title: Git Hooks
 citation_needed: false
 ---

@@ -1,10 +1,22 @@
 ---
-Title: Choosing technology for the LLM knowledge graph 
+Title: Choosing technology for the LLM knowledge graph
 Slug: choosing-technology-for-the-lmm-knowledge-graph
 Date: 2023-11-05
 Modified: 2023-11-05
 Status: published
-tags: llm, knowledge-graph, rdf, graph-database, neo4j, apache-jena, virtuoso, stardog, amazon-neptune, janusgraph, triplestore, allegrograph
+tags:
+  - llm
+  - knowledge-graph
+  - rdf
+  - graph-database
+  - neo4j
+  - apache-jena
+  - virtuoso
+  - stardog
+  - amazon-neptune
+  - janusgraph
+  - triplestore
+  - allegrograph
 Category: note
 ---
 X::[[networkx]]

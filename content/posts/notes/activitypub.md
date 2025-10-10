@@ -1,11 +1,17 @@
 ---
 Category: note
-Date: '2023-03-06'
-Modified: '2023-07-12'
+Date: 2023-03-06
+Modified: 2023-07-12
 Prompt: Give me long blog post on ActivityPub with examples how you can use it in your apps.
 Slug: activitypub-how-it-works-how-to-use-it
 Status: published
-Tags: activitypub, social-networking, federated-social-web, rss, gitea, xmpp
+Tags:
+  - activitypub
+  - social-networking
+  - federated-social-web
+  - rss
+  - gitea
+  - xmpp
 Title: ActivityPub - How It Works and How to Use It?
 ---
 

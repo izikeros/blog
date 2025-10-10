@@ -1,16 +1,21 @@
 ---
 Category: Machine Learning
-Date: '2023-02-01'
+Date: 2023-02-01
 Image: /images/head/search_engines_impact_on_cognitive_skills.jpg
-Modified: '2023-02-01'
+Modified: 2023-02-01
 Slug: impact_of_google_search_and_llms_on_methal_capabilities
-Start: '2023-02-01'
+Start: 2023-02-01
 Status: published
 Summary: Understand the effects of search engines and AI on our mental and cognitive capabilities. Equip yourself with the knowledge you need to make informed decisions about your own usage of these technologies.
-Tags: machine-learning, AI, cognitive-skills, memory, creativity
+Tags:
+  - machine-learning
+  - AI
+  - cognitive-skills
+  - memory
+  - creativity
 Title: The Impact of Search Engines and AI Generative Models on Mental and Cognitive Capabilities
-banner: "/images/head/search_engines_impact_on_cognitive_skills.jpg"
-prompt: null
+banner: /images/head/search_engines_impact_on_cognitive_skills.jpg
+prompt:
 ---
 ## Contents
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->

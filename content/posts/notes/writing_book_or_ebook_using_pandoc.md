@@ -1,11 +1,15 @@
 ---
 Category: note
-Date: '2023-01-31'
-Modified: '2023-07-12'
+Date: 2023-01-31
+Modified: 2023-07-12
 Prompt: Give me long markdown article on writing a book in markdown using pandoc. The book consits of multiple chapters - each in separate file. The article is tutorial style with proper introduction and detailed guidance. Can be based on creation of exemplary book with some minimal, multi-chapter content.
 Slug: writing-book-or-ebook-using-pandoc
 Status: published
-Tags: markdown, content-creation, publishing, pandoc
+Tags:
+  - markdown
+  - content-creation
+  - publishing
+  - pandoc
 Title: Writing a Book or Ebook Using Pandoc
 ---
 up::[[writing_a_book_or_ebook_in_markdown]]

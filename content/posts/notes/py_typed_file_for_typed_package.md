@@ -4,7 +4,14 @@ Slug: the-importance-of-adding-py-typed-file-to-your-typed-package
 Date: 2023-11-13
 Modified: 2023-11-13
 Status: published
-tags: python, package, mypy, poetry, typink, type-hints, pep
+tags:
+  - python
+  - package
+  - mypy
+  - poetry
+  - typink
+  - type-hints
+  - pep
 Category: note
 ---
 

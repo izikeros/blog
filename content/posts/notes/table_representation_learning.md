@@ -4,7 +4,12 @@ Slug: table-representation-learning
 Date: 2023-12-01
 Modified: 2023-12-01
 Status: published
-tags: llm, generative-ai, database, table, table-representation-learning 
+tags:
+  - llm
+  - generative-ai
+  - database
+  - table
+  - table-representation-learning
 Category: note
 ---
 

@@ -1,10 +1,17 @@
 ---
 Category: note
-Date: '2023-07-08'
-Modified: '2023-07-12'
+Date: 2023-07-08
+Modified: 2023-07-12
 Slug: software-versioning-schemes
 Status: published
-Tags: versioning, semantic-versioning, semver, calver, calendar-versioning, zerover, 0ver
+Tags:
+  - versioning
+  - semantic-versioning
+  - semver
+  - calver
+  - calendar-versioning
+  - zerover
+  - 0ver
 Title: Software Versioning Schemes
 todo: recommendations
 ---

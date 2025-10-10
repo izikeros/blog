@@ -1,15 +1,17 @@
 ---
 Category: Machine Learning
-Date: '2023-02-09'
+Date: 2023-02-09
 Image: /images/head/game_theory_battlefield_640px.jpg
-Modified: '2023-02-09'
+Modified: 2023-02-09
 Slug: is-game-theory-any-usefull-for-datascience
-Start: '2023-02-09'
+Start: 2023-02-09
 Status: published
 Summary: Exploring the intersection of game theory and data science - insights into decision-making, network behavior, and optimization algorithms.
-Tags: machine-learning, game-theory
+Tags:
+  - machine-learning
+  - game-theory
 Title: Is the the Game Theory Any Useful for Data Science?
-banner: "/images/head/game_theory_battlefield_640px.jpg"
+banner: /images/head/game_theory_battlefield_640px.jpg
 prompt: give me long answer, blog-post style on Is the the game theory (or other derivative method) any useful for data science? If so give practical examples of the use cases.
 ---
 Game theory, as a field of mathematics, is concerned with the study of mathematical models of conflict and cooperation between intelligent, rational decision-makers. Although the origins of the field can be traced back to the work of mathematicians like von Neumann and Morgenstern in the 1940s, the mathematical models developed in game theory have found applications in a wide range of fields, including economics, political science, psychology, and even biology.

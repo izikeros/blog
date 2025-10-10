@@ -1,11 +1,13 @@
 ---
 Category: Linux
-Date: '2019-08-23'
+Date: 2019-08-23
 Image: /images/head/cli_tools.jpg
-Modified: '2023-07-12'
+Modified: 2023-07-12
 Status: published
 Summary: Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.
-Tags: machine-learning, Linux
+Tags:
+  - machine-learning
+  - Linux
 Title: Data Science Command-Line Tools
 started: 2019-07-04
 ---

@@ -1,11 +1,14 @@
 ---
 Category: note
-Date: '2023-01-18'
-Modified: '2023-07-12'
+Date: 2023-01-18
+Modified: 2023-07-12
 Prompt: Give me long markdown article with hyperlinks. Article on lesser known but useful Tools helping understand and tweak random forest classifier.
 Slug: random-forest-understand-and-tweak
 Status: published
-Tags: machine-learning, random-forest, xai
+Tags:
+  - machine-learning
+  - random-forest
+  - xai
 Title: Tools That Helps to Understand and Tweak Random Forest Classifier
 ---
 X::[[random_forest_explainer]]

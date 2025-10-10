@@ -4,7 +4,27 @@ Slug: audio-notifications-in-jupyter-notebooks-across-platforms
 Date: 2024-09-13
 Modified: 2024-09-13
 Status: published
-tags: jupyter-notebooks, audio-notifications, python, macos, windows, cross-platform, beepy, text-to-speech, afplay, playsound, winsound, javascript-audio, productivity, long-running-operations, workflow-enhancement, coding-alerts, custom-notifications, system-sounds, multiplatform-development, interactive-computing
+tags:
+  - jupyter-notebooks
+  - audio-notifications
+  - python
+  - macos
+  - windows
+  - cross-platform
+  - beepy
+  - text-to-speech
+  - afplay
+  - playsound
+  - winsound
+  - javascript-audio
+  - productivity
+  - long-running-operations
+  - workflow-enhancement
+  - coding-alerts
+  - custom-notifications
+  - system-sounds
+  - multiplatform-development
+  - interactive-computing
 Category: note
 ---
 **Enhancing Your Notebook Experience with Sound Notifications**

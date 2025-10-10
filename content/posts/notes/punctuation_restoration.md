@@ -1,10 +1,19 @@
 ---
 Category: note
-Date: '2023-03-15'
-Modified: '2023-07-12'
+Date: 2023-03-15
+Modified: 2023-07-12
 Slug: punctuation-restoration
 Status: published
-Tags: nlp, punctuation, punctuation-restoration, pos, part-of-speech-tagging, tokenization, stemming, random-forest, decision-trees
+Tags:
+  - nlp
+  - punctuation
+  - punctuation-restoration
+  - pos
+  - part-of-speech-tagging
+  - tokenization
+  - stemming
+  - random-forest
+  - decision-trees
 Title: Punctuation Restoration
 ---
 

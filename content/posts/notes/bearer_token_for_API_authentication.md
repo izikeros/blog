@@ -4,7 +4,12 @@ Slug: bearer-token-authentication-for-api
 Date: 2023-08-24
 Modified: 2023-08-24
 Status: published
-Tags: bearer, bearer-token, authentication, json, api 
+Tags:
+  - bearer
+  - bearer-token
+  - authentication
+  - json
+  - api
 Category: note
 ---
 

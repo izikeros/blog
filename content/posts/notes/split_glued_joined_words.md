@@ -4,7 +4,10 @@ Slug: split-glued-or-joined-words
 Date: 2023-08-12
 Modified: 2023-08-12
 Status: published
-Tags: nlp, text-preprocessing, split-text 
+Tags:
+  - nlp
+  - text-preprocessing
+  - split-text
 Category: note
 ---
 

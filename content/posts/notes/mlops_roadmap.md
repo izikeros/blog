@@ -5,7 +5,17 @@ Date: 2023-01-14
 Modified: 2023-07-12
 Slug: mlops-roadmap
 Status: published
-tags: mlops, learning, data-management, reproducibility, pipeline, model-life-cycle, model-tuning, canary-release, jenkins, ansible
+tags:
+  - mlops
+  - learning
+  - data-management
+  - reproducibility
+  - pipeline
+  - model-life-cycle
+  - model-tuning
+  - canary-release
+  - jenkins
+  - ansible
 ---
 Roadmap to become MLOps. The 6 points, ordered plan on things to learn.
 

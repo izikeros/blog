@@ -1,11 +1,15 @@
 ---
 Category: note
-Date: '2023-02-28'
-Modified: '2023-07-12'
+Date: 2023-02-28
+Modified: 2023-07-12
 Prompt: how to git create patch for changes between current head and given commit
 Slug: git-create-path
 Status: published
-Tags: git, patch, commit, diff
+Tags:
+  - git
+  - patch
+  - commit
+  - diff
 Title: In Git, How Create Patch for Changes Between Current Head and Given Commit?
 ---
 To create a patch in Git for the changes between the current HEAD and a given commit, you can use the `git diff` command with the `--patch` option. Here are the steps:

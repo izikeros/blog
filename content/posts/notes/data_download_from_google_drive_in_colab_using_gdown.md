@@ -4,7 +4,13 @@ Slug: download-data-google-drive-colab-gdown
 Date: 2023-07-24
 Modified: 2023-07-24
 Status: Published
-Tags: gdown, colab, google-colab, data-download, google-drive, gdrive
+Tags:
+  - gdown
+  - colab
+  - google-colab
+  - data-download
+  - google-drive
+  - gdrive
 Category: note
 ---
 X::[[google_colab_cookbook]]

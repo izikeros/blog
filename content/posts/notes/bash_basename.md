@@ -1,10 +1,16 @@
 ---
 Category: note
-Date: '2022-05-12'
-Modified: '2023-07-12'
+Date: 2022-05-12
+Modified: 2023-07-12
 Slug: bash-base-name-without-extension
 Status: published
-Tags: base, basename, bash, extension, name, bash/basename
+Tags:
+  - base
+  - basename
+  - bash
+  - extension
+  - name
+  - bash/basename
 Title: Bash - File Base Name (Without Extension)
 ---
 

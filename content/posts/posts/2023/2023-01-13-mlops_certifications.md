@@ -1,16 +1,21 @@
 ---
 Category: MLOps
-Date: '2022-11-27'
+Date: 2022-11-27
 Image: /images/head/mlops_certificates.jpg
 Slug: mlops-certifications-a-comprehensive-guide
-Start: '2023-01-13'
+Start: 2023-01-13
 Status: published
 Summary: Learn about popular MLOps certifications offered by Amazon, Google, and Microsoft. Understand if they are worth the effort and money and discover free MLOps certifications available to gain knowledge and understanding of the field.
-Tags: mlops, certificates, job-search, interview, machine-learning
+Tags:
+  - mlops
+  - certificates
+  - job-search
+  - interview
+  - machine-learning
 Title: MLOps Certifications - A Comprehensive Guide
-banner: "/images/head/mlops_certificates.jpg"
-modified: '2023-01-13'
-prompt: null
+banner: /images/head/mlops_certificates.jpg
+modified: 2023-01-13
+prompt:
 todo: need to verify the offer and the links
 ---
 

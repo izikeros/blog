@@ -1,15 +1,19 @@
 ---
 Category: Responsible AI
-Date: '2023-04-18'
+Date: 2023-04-18
 Image: /images/head/lime_black_box_640px.jpg
-Modified: '2023-04-18'
+Modified: 2023-04-18
 Slug: are-lime-explanations-any-useful
-Start: '2023-04-18'
+Start: 2023-04-18
 Status: published
 Summary: Don't let black box models hold you back. With LIME, you can interpret the predictions of even the most complex machine learning models.
-Tags: machine-learning, lime, xai, explainable-ai
+Tags:
+  - machine-learning
+  - lime
+  - xai
+  - explainable-ai
 Title: Are LIME Explanations Any Useful?
-banner: "/images/head/lime_black_box_640px.jpg"
+banner: /images/head/lime_black_box_640px.jpg
 prompt: Are the local explanations obtained with LIME method any useful? What are the practical use cases when using LIME gave tangible results? Give me long, blog post style article for data science expert audience.
 ---
 X::[[MOC_RAI]]

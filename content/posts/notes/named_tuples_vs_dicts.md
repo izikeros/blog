@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2023-04-03'
-Modified: '2023-07-12'
+Date: 2023-04-03
+Modified: 2023-07-12
 Slug: named-tuples-vs-dictionaries
 Status: published
-Tags: python, named-tuple, dict, dictionary, data-structure
+Tags:
+  - python
+  - named-tuple
+  - dict
+  - dictionary
+  - data-structure
 Title: Python - Named Tuples or Dictionaries to Store Structured Data?
 ---
 up::[[MOC_Python]]

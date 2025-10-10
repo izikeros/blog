@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2022-04-22'
-Modified: '2023-07-12'
+Date: 2022-04-22
+Modified: 2023-07-12
 Slug: change-extension-for-multiple-files-in-zsh
 Status: published
-Tags: zsh, shell, zmv
+Tags:
+  - zsh
+  - shell
+  - zmv
 Title: Change Extension for Multiple Files in ZSH
 citation_needed: false
 ---

@@ -1,11 +1,17 @@
 ---
 Category: note
-Date: '2023-02-02'
-Modified: '2023-07-12'
+Date: 2023-02-02
+Modified: 2023-07-12
 Prompt: How to embed markmap mindmap (javascript library) in pelican blog post written in markdown?
 Slug: markmap-mindmap-in-pelican-blog
 Status: published
-Tags: mindmap, mindmapping, diagram, visualization, markmap, pelican
+Tags:
+  - mindmap
+  - mindmapping
+  - diagram
+  - visualization
+  - markmap
+  - pelican
 Title: Using Markmap Mindmap Diagrams in Pelican Blog
 ---
 

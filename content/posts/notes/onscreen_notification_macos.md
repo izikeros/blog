@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2023-07-10'
-Modified: '2023-07-12'
+Date: 2023-07-10
+Modified: 2023-07-12
 Slug: display-a-notification-on-the-screen-in-macos
 Status: published
-Tags: macos, notification, pop-up-window
+Tags:
+  - macos
+  - notification
+  - pop-up-window
 Title: Display a Notification on the Screen in macOS
 ---
 up::[[MOC_macOS]]

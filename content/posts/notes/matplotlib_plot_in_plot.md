@@ -1,10 +1,12 @@
 ---
 Category: note
-Date: '2023-02-24'
-Modified: '2023-07-12'
+Date: 2023-02-24
+Modified: 2023-07-12
 Slug: plot-in-plot-matplot-lib
 Status: published
-Tags: matplotlib, visualization
+Tags:
+  - matplotlib
+  - visualization
 Title: Plot Inside Plot With Matplotlib
 ---
 

@@ -4,7 +4,10 @@ Slug: Git-change-remote-origin-replace-with-new
 Date: 2023-11-11
 Modified: 2023-11-11
 Status: published
-tags: git, origin, remote-origin
+tags:
+  - git
+  - origin
+  - remote-origin
 Category: note
 prompt: in git how to change remote origin (replace with new)?
 prompt2: What are the examples of situations when you might want to do such an operation

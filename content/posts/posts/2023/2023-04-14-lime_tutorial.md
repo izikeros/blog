@@ -1,16 +1,20 @@
 ---
 Category: Responsible AI
-Date: '2023-04-14'
+Date: 2023-04-14
 Image: /images/head/lime_tutorial.jpg
-Modified: '2023-04-14'
+Modified: 2023-04-14
 Slug: lime-tutorial
-Start: '2023-04-14'
+Start: 2023-04-14
 Status: published
 Summary: Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box.
-Tags: machine-learning, python, explainable-ai, lime
+Tags:
+  - machine-learning
+  - python
+  - explainable-ai
+  - lime
 Title: LIME Tutorial
-banner: "/images/head/lime_tutorial.jpg"
-prompt: null
+banner: /images/head/lime_tutorial.jpg
+prompt:
 ---
 
 In this tutorial, we'll be exploring how to use the LIME (Local Interpretable Model-Agnostic Explanations) library for explainable AI. We'll start by discussing what LIME is and why it's useful for explainable AI, and then we'll dive into the code.

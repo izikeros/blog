@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2022-01-25'
-Modified: '2023-07-12'
+Date: 2022-01-25
+Modified: 2023-07-12
 Slug: datasets-for-sentiment-analysis
 Status: published
-Tags: sentiment-analysis, machine-learning, AI, NLP, dataset
+Tags:
+  - sentiment-analysis
+  - machine-learning
+  - AI
+  - NLP
+  - dataset
 Title: Datasets for Sentiment Analysis
 citation_needed: true
 todo: add citiation from huginface Roberta model

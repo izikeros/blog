@@ -1,10 +1,20 @@
 ---
 Category: note
-Date: '2023-02-18'
-Modified: '2023-07-12'
+Date: 2023-02-18
+Modified: 2023-07-12
 Slug: black-change-max-line-length
 Status: published
-Tags: black-formatter, code-formatting, maximum-line-length, code-quality, software-development, python, configuration-file, pyproject-toml, code-consistency, readability
+Tags:
+  - black-formatter
+  - code-formatting
+  - maximum-line-length
+  - code-quality
+  - software-development
+  - python
+  - configuration-file
+  - pyproject-toml
+  - code-consistency
+  - readability
 Title: Black - Change Max Line Length
 ---
 X::[[change_black_line_length]]

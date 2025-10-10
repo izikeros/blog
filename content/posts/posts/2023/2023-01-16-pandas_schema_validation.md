@@ -1,16 +1,32 @@
 ---
 Category: Machine Learning
-Date: '2021-01-16'
+Date: 2021-01-16
 Image: /images/head/elegant_panda.jpg
 Slug: pandas-schema-validation
-Start: '2023-01-16'
+Start: 2023-01-16
 Status: published
 Summary: Overview of the available tools and methods for schema validation in pandas, examplary code snippets and recommendation for when to use given tool.
-Tags: pandas, python, schema-validation, pandas-schema, great_expectations, pandera, data-enforce, data-manipulation, data-analysis, tools-for-schema-validation, methods-for-schema-validation, dataframe-validation, dtype-validation, leading-whitespace-validation, trailing-whitespace-validation, in-list-validation
+Tags:
+  - pandas
+  - python
+  - schema-validation
+  - pandas-schema
+  - great_expectations
+  - pandera
+  - data-enforce
+  - data-manipulation
+  - data-analysis
+  - tools-for-schema-validation
+  - methods-for-schema-validation
+  - dataframe-validation
+  - dtype-validation
+  - leading-whitespace-validation
+  - trailing-whitespace-validation
+  - in-list-validation
 Title: Pandas Schema Validation
 banner: /images/head/elegant_panda.jpg
-modified: '2023-01-16'
-prompt: null
+modified: 2023-01-16
+prompt:
 todo: validate the text for libraries, validate code snippets, consider adding errors, mention decorators
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->

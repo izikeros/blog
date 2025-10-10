@@ -1,10 +1,16 @@
 ---
 Category: note
-Date: '2023-01-17'
-Modified: '2023-07-12'
+Date: 2023-01-17
+Modified: 2023-07-12
 Slug: creating-command-line-tools-from-machine-learning-models
 Status: published
-Tags: machine-learning, packaging, deployment, model-delivery, cli, commandline
+Tags:
+  - machine-learning
+  - packaging
+  - deployment
+  - model-delivery
+  - cli
+  - commandline
 Title: Creating Command Line Tools From Machine Learning Models
 ---
 

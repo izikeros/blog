@@ -4,7 +4,12 @@ Slug: quick-ways-to-disable-github-actions-workflows-without-deletion
 Date: 2024-10-03
 Modified: 2024-10-03
 Status: published
-tags: github, github-actions, workflow, ci, yaml
+tags:
+  - github
+  - github-actions
+  - workflow
+  - ci
+  - yaml
 Category: note
 ---
 

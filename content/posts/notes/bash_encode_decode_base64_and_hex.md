@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2022-05-20'
-Modified: '2023-07-12'
+Date: 2022-05-20
+Modified: 2023-07-12
 Slug: bash-encode-decode-base64-and-hex
 Status: published
-Tags: base64, bash, decode, encode, hex
+Tags:
+  - base64
+  - bash
+  - decode
+  - encode
+  - hex
 Title: Bash - Encode, Decode Base64 and Hex
 ---
 

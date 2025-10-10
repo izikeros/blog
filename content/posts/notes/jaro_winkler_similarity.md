@@ -4,7 +4,16 @@ Slug: jaro-winkler-similarity
 Date: 2023-08-29
 Modified: 2023-08-29
 Status: published
-Tags: nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex
+Tags:
+  - nlp
+  - text-similarity
+  - string-similarity
+  - similarity-metrics
+  - jaccard
+  - cosine-similarity
+  - levenshtein
+  - word-embeddings
+  - soundex
 Category: note
 ---
 

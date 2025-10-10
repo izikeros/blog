@@ -1,15 +1,20 @@
 ---
 Category: Generative AI
-Date: '2023-07-04'
+Date: 2023-07-04
 Image: /images/head/text_vectorization.jpg
-Modified: '2023-07-04'
+Modified: 2023-07-04
 Slug: text-vectorization-with-vectorhub-and-sentence-transformers
 Status: published
 Summary: Learn how to use Sentence Transformers for text vectorization with different models using consistent API.
-Tags: embeddings, nlp, vectorhub, bert, sentence-transformers
+Tags:
+  - embeddings
+  - nlp
+  - vectorhub
+  - bert
+  - sentence-transformers
 Title: Easy Text Vectorization With VectorHub and Sentence Transformers
-banner: "/images/head/text_vectorization.jpg"
-prompt: null
+banner: /images/head/text_vectorization.jpg
+prompt:
 ---
 up::[[embeddings]]
 X::[[vector_embeddings_search]]

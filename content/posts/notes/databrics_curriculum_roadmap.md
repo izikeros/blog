@@ -4,7 +4,12 @@ Slug: databricks-curriculum-from-zero-to-hero
 Date: 2023-12-04
 Modified: 2023-12-04
 Status: published
-tags: databricks, learning, learn-databricks, databricks-roadmap, databricks-learning-plan
+tags:
+  - databricks
+  - learning
+  - learn-databricks
+  - databricks-roadmap
+  - databricks-learning-plan
 Category: note
 ---
 up::[[MOC_Databricks]]

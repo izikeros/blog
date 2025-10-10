@@ -1,10 +1,12 @@
 ---
 Category: note
-Date: '2023-02-12'
-Modified: '2023-07-12'
+Date: 2023-02-12
+Modified: 2023-07-12
 Slug: how-to-rename-one-or-more-columns-in-pandas-dataframe
 Status: published
-Tags: pandas, rename-column
+Tags:
+  - pandas
+  - rename-column
 Title: How to Rename One or More Columns in Pandas Dataframe?
 ---
 

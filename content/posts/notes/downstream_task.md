@@ -4,7 +4,15 @@ Slug: what-is-downstream-task
 Date: 2023-07-21
 Modified: 2023-07-21
 Status: published
-Tags: data-science, business, data-preprocessing, data-collection, feature-engineering, model-training, model-evaluation, decision-making
+Tags:
+  - data-science
+  - business
+  - data-preprocessing
+  - data-collection
+  - feature-engineering
+  - model-training
+  - model-evaluation
+  - decision-making
 Category: note
 ---
 up::[[MOC_AI]]

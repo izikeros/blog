@@ -4,7 +4,10 @@ Slug: entr-run-arbitrary-command-when-files-change
 Date: 2024-01-01
 Modified: 2024-01-01
 Status: published
-tags: change, watch, watch-files
+tags:
+  - change
+  - watch
+  - watch-files
 Category: note
 ---
 

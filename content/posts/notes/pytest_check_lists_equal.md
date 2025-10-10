@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2022-05-12'
-Modified: '2023-07-12'
+Date: 2022-05-12
+Modified: 2023-07-12
 Slug: pytest-check-lists-equal
 Status: published
-Tags: pytest, python, assert
+Tags:
+  - pytest
+  - python
+  - assert
 Title: Pytest Check if Lists Are Equal
 ---
 In the assertions this can be useful to check if two lists are equal:

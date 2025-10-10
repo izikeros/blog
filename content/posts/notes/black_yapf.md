@@ -1,11 +1,26 @@
 ---
 Category: note
-Date: '2023-02-23'
-Modified: '2023-07-12'
+Date: 2023-02-23
+Modified: 2023-07-12
 Slug: black-vs-yapf
 Status: published
 Summary: The debate over the best Python code formatter continues. In this article, we dive deep into Black and yapf - their strong and weak points, and which one is right for you.
-Tags: python, code-formatter, black, yapf, comparison, strong-points, weak-points, differences, usability, CICD, pipelines, automation, pre-commit-hooks, controversies, code-quality
+Tags:
+  - python
+  - code-formatter
+  - black
+  - yapf
+  - comparison
+  - strong-points
+  - weak-points
+  - differences
+  - usability
+  - CICD
+  - pipelines
+  - automation
+  - pre-commit-hooks
+  - controversies
+  - code-quality
 Title: Which Python Code Formatter Is Better - Black or Yapf?
 ---
 X::[[black_formatter]]

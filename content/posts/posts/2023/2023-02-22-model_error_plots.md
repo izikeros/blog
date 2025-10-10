@@ -1,13 +1,15 @@
 ---
 Category: Machine Learning
-Date: '2022-02-22'
+Date: 2022-02-22
 Image: /images/head/diagnosing_errors_in_regression_models.jpg
-Modified: '2023-02-22'
+Modified: 2023-02-22
 Slug: regression-model-errors-plot
-Start: '2023-02-22'
+Start: 2023-02-22
 Status: published
 Summary: Improve your regression model's accuracy and predictability by uncovering hidden errors with these essential plots.
-Tags: machine-learning, python
+Tags:
+  - machine-learning
+  - python
 Title: Pro Tips for Diagnosing Regression Model Errors
 banner: /images/head/diagnosing_errors_in_regression_models.jpg
 prompt: Give me long, blog post text for the machine learning experts on the most insightful plots to visualize regression model prediction errors. Give me types of plots and put a special emphasis (elaborate more) on what can we learn from each plot. for each type of the plot give me python code snipped to generate that kind of the plot. Use boston housing dataset and the same type of regression model for all examples. The blog post text should be long, in-depth and can span over multiple answers.

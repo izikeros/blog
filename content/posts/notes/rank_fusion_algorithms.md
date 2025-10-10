@@ -4,7 +4,16 @@ Slug: Rank-fusion-algorithms-from-simple-to-advanced
 Date: 2023-07-28
 Modified: 2024-07-14
 Status: published
-tags: rank-fusion, rank, search, hybrid-search, borda, combining-probability-mass-function, rank-biased-precision, neural-rank-fusion, reciprocal-rank-fusion
+tags:
+  - rank-fusion
+  - rank
+  - search
+  - hybrid-search
+  - borda
+  - combining-probability-mass-function
+  - rank-biased-precision
+  - neural-rank-fusion
+  - reciprocal-rank-fusion
 Category: note
 ---
 ## Introduction

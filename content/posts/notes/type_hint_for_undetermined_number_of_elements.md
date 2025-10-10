@@ -1,11 +1,18 @@
 ---
 Category: note
-Date: '2023-04-03'
-Modified: '2023-07-12'
+Date: 2023-04-03
+Modified: 2023-07-12
 Prompt: in python how to make type hint for the tuple with undetermined number of strings
 Slug: type-hint-for-undetermined-number-of-elements
 Status: published
-Tags: python, type-hints, mypy, elypsis, tuple, union, python/typing
+Tags:
+  - python
+  - type-hints
+  - mypy
+  - elypsis
+  - tuple
+  - union
+  - python/typing
 Title: Python - How to Make Type Hint for the Tuple With Undetermined Number of Strings?
 ---
 

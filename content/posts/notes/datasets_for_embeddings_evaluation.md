@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2023-02-09'
-Modified: '2023-07-12'
+Date: 2023-02-09
+Modified: 2023-07-12
 Slug: datasets-for-embeddings-evaluation
 Status: published
-Tags: machine-learning, NLP, embeddings, openai, dataset
+Tags:
+  - machine-learning
+  - NLP
+  - embeddings
+  - openai
+  - dataset
 Title: Datasets for Embeddings Performance Evaluation
 ---
 X::[[fine_tune_embeddings_for_better_retrieval]]

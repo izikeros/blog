@@ -1,10 +1,12 @@
 ---
 Category: note
-Date: '2022-05-12'
-Modified: '2023-07-12'
+Date: 2022-05-12
+Modified: 2023-07-12
 Slug: bash-default-argument
 Status: published
-Tags: default-argument, bash
+Tags:
+  - default-argument
+  - bash
 Title: Bash - Default Argument for the Script
 ---
 

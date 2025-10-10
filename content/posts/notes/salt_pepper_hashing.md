@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2023-03-14'
-Modified: '2023-07-12'
+Date: 2023-03-14
+Modified: 2023-07-12
 Slug: salt-and-pepper-for-hashing
 Status: published
-Tags: hashing, salt, pepper, anonymisation, obfuscation
+Tags:
+  - hashing
+  - salt
+  - pepper
+  - anonymisation
+  - obfuscation
 Title: Salt and Pepper in the Context of Hashing/Obfuscation
 ---
 

@@ -4,7 +4,22 @@ Slug: improving-code-maintainability-when-to-use-standalone-functions-over-stati
 Date: 2024-06-22
 Modified: 2024-06-22
 Status: published
-tags: python, function, python-method, idiomatic-python, refactoring, static-method, testability, python-class, flexilility, reusability, code-organization, code-reuse, testing, polymorphysm, docstrings
+tags:
+  - python
+  - function
+  - python-method
+  - idiomatic-python
+  - refactoring
+  - static-method
+  - testability
+  - python-class
+  - flexilility
+  - reusability
+  - code-organization
+  - code-reuse
+  - testing
+  - polymorphysm
+  - docstrings
 Category: note
 ---
 When designing and organizing code, developers often face the dilemma of whether to keep a method as part of a class or refactor it into a standalone function. This decision can significantly impact the maintainability, readability, and reusability of the codebase. In particular, the choice between converting a method into a static method or a standalone function can have far-reaching consequences. While static methods can help encapsulate utility functions within a class, they still maintain a degree of coupling with the class. On the other hand, standalone functions offer greater flexibility, reusability, and testability, making them an attractive alternative for many scenarios. I will explore the factors that influence this decision and provide guidelines for determining when to refactor a method into a standalone function or mark it as a static method.

@@ -4,7 +4,17 @@ Slug: how-does-qlora-works
 Date: 2024-07-03
 Modified: 2024-07-03
 Status: published
-tags: qlora, lora, low-rank-adaptation, quantisation, weights, adapters,4-bit-normal-float, double-quantisation, training, fine-tuning 
+tags:
+  - qlora
+  - lora
+  - low-rank-adaptation
+  - quantisation
+  - weights
+  - adapters
+  - 4-bit-normal-float
+  - double-quantisation
+  - training
+  - fine-tuning
 Category: note
 ---
 

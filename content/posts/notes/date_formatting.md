@@ -4,7 +4,8 @@ category: note
 date: 2022-05-12
 status: published
 slug: date-formatting
-tags: date-formatting
+tags:
+  - date-formatting
 ---
 up::[[MOC_Python]]
 

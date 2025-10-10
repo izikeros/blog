@@ -1,10 +1,18 @@
 ---
 Category: note
-Date: '2022-05-12'
-Modified: '2023-07-12'
+Date: 2022-05-12
+Modified: 2023-07-12
 Slug: change-character-encoding
 Status: published
-Tags: change, convert, text, character, encoding, iconv, utf-8, Linux
+Tags:
+  - change
+  - convert
+  - text
+  - character
+  - encoding
+  - iconv
+  - utf-8
+  - Linux
 Title: Change the Character Encoding
 ---
 

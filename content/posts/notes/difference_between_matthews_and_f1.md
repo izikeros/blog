@@ -1,11 +1,14 @@
 ---
 Category: note
-Date: '2023-01-05'
-Modified: '2023-07-12'
+Date: 2023-01-05
+Modified: 2023-07-12
 Slug: difference-between-matthews-and-f1
 Status: published
 Summary: Description of the difference between Matthews correlation coefficient and F1
-Tags: machine-learning, classification, metrics
+Tags:
+  - machine-learning
+  - classification
+  - metrics
 Title: What Is the Difference Between Matthews Correlation Coefficient and F1 Metrics
 citation_needed: false
 ---

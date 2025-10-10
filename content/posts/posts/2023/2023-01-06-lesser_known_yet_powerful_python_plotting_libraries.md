@@ -1,14 +1,48 @@
 ---
 Category: Howto
-Date: '2022-09-30'
+Date: 2022-09-30
 Image: /images/head/lesser_known_plotting_libraries.jpg
-Modified: '2023-07-12'
+Modified: 2023-07-12
 Slug: lesser-known-yet-powerful-python-plotting-libraries
 Status: published
 Summary: The most widely used libraries for plotting in python are matplotlib, Plotly, seaborn, and bokeh. This article describes 10 other powerful plotting libraries available in Python that can be used to create high-quality plots and visualizations.
-Tags: holoviews, bokeh, matplotlib, plotly, bqplot, data-visualization, jupyter, pandas, ggplot2, grammar-of-graphics, plotnine, bar-plots, line-plots, scatter-plots, box-plots, heat-maps, geoplotlib, geospatial-visualization, choropleths, pygal, SVG charts, graphs, vega, python-data-structures, pandas-fu, pynl, scientific data, multidimensional data, ggplot2, tidyverse, python
+Tags:
+  - holoviews
+  - bokeh
+  - matplotlib
+  - plotly
+  - bqplot
+  - data-visualization
+  - jupyter
+  - pandas
+  - ggplot2
+  - grammar-of-graphics
+  - plotnine
+  - bar-plots
+  - line-plots
+  - scatter-plots
+  - box-plots
+  - heat-maps
+  - geoplotlib
+  - geospatial-visualization
+  - choropleths
+  - pygal
+  - SVG
+  - charts
+  - graphs
+  - vega
+  - python-data-structures
+  - pandas-fu
+  - pynl
+  - scientific
+  - data
+  - multidimensional
+  - data
+  - ggplot2
+  - tidyverse
+  - python
 Title: 10 Lesser-Known, Yet Powerful Python Plotting Libraries
-banner: "/images/head/lesser_known_plotting_libraries.jpg"
+banner: /images/head/lesser_known_plotting_libraries.jpg
 citation_needed: false
 todo: get rid of hotlinking
 ---

@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2023-04-11'
-Modified: '2023-07-12'
+Date: 2023-04-11
+Modified: 2023-07-12
 Slug: how-to-deploy-freshrss-in-the-cloud-for-free-on-azure
 Status: published
-Tags: rss, freshrss, cloud-deploy, free-deploy, azure
+Tags:
+  - rss
+  - freshrss
+  - cloud-deploy
+  - free-deploy
+  - azure
 Title: How to Deploy FreshRSS in the Cloud for Free on Azure?
 todo: verify the steps
 ---

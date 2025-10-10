@@ -1,10 +1,25 @@
 ---
 Category: note
-Date: '2023-02-14'
-Modified: '2023-07-12'
+Date: 2023-02-14
+Modified: 2023-07-12
 Slug: jupyter-duplicated-nbextensions-locations
 Status: published
-Tags: jupyter, jupyter-notebook, data-analysis, scientific-computing, nbextensions, customization, duplicates, diagnose, paths, per-user-directory, per-environment-directory, system-wide-directories, Anaconda, conda-package, jupyter_contrib_nbextensions
+Tags:
+  - jupyter
+  - jupyter-notebook
+  - data-analysis
+  - scientific-computing
+  - nbextensions
+  - customization
+  - duplicates
+  - diagnose
+  - paths
+  - per-user-directory
+  - per-environment-directory
+  - system-wide-directories
+  - Anaconda
+  - conda-package
+  - jupyter_contrib_nbextensions
 Title: Jupyte Notebook Duplicated Locations for Nbextensions
 ---
 

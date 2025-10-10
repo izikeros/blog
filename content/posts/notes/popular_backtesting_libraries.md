@@ -1,12 +1,22 @@
 ---
 Category: note
-Date: '2022-02-11'
+Date: 2022-02-11
 Image: /images/head/backtesting.jpg
-Modified: '2023-07-12'
+Modified: 2023-07-12
 Slug: popular-backtesting-libraries
 Status: Published
 Summary: Popular backtesting libraries with stars as popularity indicators.
-Tags: trading, crypto, backtesting, finance/crypto, finance/algotrading, algorithmic-trading, finance, popularity, zipline, quant
+Tags:
+  - trading
+  - crypto
+  - backtesting
+  - finance/crypto
+  - finance/algotrading
+  - algorithmic-trading
+  - finance
+  - popularity
+  - zipline
+  - quant
 Title: Most Popular Python Backtesting Libraries
 citation_needed: false
 todo: Add a logarithmic scale git activity graph for all the projects

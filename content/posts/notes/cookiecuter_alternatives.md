@@ -4,7 +4,11 @@ Slug: cookiecutter-alternatives
 Date: 2023-08-12
 Modified: 2025-03-18
 Status: published
-tags: cookiecutter, scaffolding, templates, python-project
+tags:
+  - cookiecutter
+  - scaffolding
+  - templates
+  - python-project
 Category: note
 ---
 - [Alternative Tools to Cookiecutter for Scaffolding Projects](#alternative-tools-to-cookiecutter-for-scaffolding-projects)

@@ -4,7 +4,16 @@ Slug: cookiecutter-for-the-python-package-with-poetry
 Date: 2023-07-26
 Modified: 2023-07-26
 Status: published
-Tags: cookiecutter, poetry, python-project, hypermodern, nox, shpinx, pypi, python-package, python/package 
+Tags:
+  - cookiecutter
+  - poetry
+  - python-project
+  - hypermodern
+  - nox
+  - shpinx
+  - pypi
+  - python-package
+  - python/package
 Category: note
 ---
 X::[[python_package]]

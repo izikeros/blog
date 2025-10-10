@@ -4,7 +4,17 @@ Slug: use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-
 Date: 2024-04-19
 Modified: 2024-04-19
 Status: published
-tags: python, config, configuration, pydantic, decouple, python-app-config, immutable, casting, env-vars, environmental-variables
+tags:
+  - python
+  - config
+  - configuration
+  - pydantic
+  - decouple
+  - python-app-config
+  - immutable
+  - casting
+  - env-vars
+  - environmental-variables
 Category: note
 ---
 X::[[python_configuration_management]]

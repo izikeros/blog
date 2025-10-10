@@ -1,11 +1,18 @@
 ---
 Category: note
-Date: '2022-08-08'
-Modified: '2024-08-26'
+Date: 2022-08-08
+Modified: 2024-08-26
 Slug: install-photoprism-on-qnap-nas-using-docker-compose
 Status: published
 Summary: Instruction on how to install Photoprism on QNAP NAS using Docker Compose
-Tags: nas, photoprism, Linux, photo-gallery, docker, docker-compose, qnap
+Tags:
+  - nas
+  - photoprism
+  - Linux
+  - photo-gallery
+  - docker
+  - docker-compose
+  - qnap
 Title: Install Photoprism on QNAP NAS Using Docker Compose
 ---
 X::[[piwigo_photo_gallery]]

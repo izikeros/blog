@@ -4,7 +4,8 @@ Slug: html5-interactive-elements
 Date: 2024-01-04
 Modified: 2024-01-04
 Status: published
-tags: html5
+tags:
+  - html5
 Category: note
 ---
 

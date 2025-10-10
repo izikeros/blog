@@ -4,7 +4,8 @@ Slug: pandas-categorical-benefits-and-use-cases
 Date: 2024-10-01
 Modified: 2024-10-01
 Status: published
-tags: pandas
+tags:
+  - pandas
 Category: note
 ---
 

@@ -4,7 +4,14 @@ Slug: splade-sparse-vectors
 Date: 2023-11-10
 Modified: 2023-12-08
 Status: published
-tags: splade, tf-idf, bag-of-words, bert, beir, sparse, text-vectorization
+tags:
+  - splade
+  - tf-idf
+  - bag-of-words
+  - bert
+  - beir
+  - sparse
+  - text-vectorization
 Category: note
 ---
 X::[[retrieve_and_re_rank]]

@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan" />
+    <meta name="description" content="Core Principle Python has two built-in ways to run code concurrently: threading and multiprocessing. The critical difference comes down to the Global Interpreter Lock (GIL) - a mutex that protects access to Python objects, preventing multiple threads from executing Python bytecode at once …" />
+    <meta name="keywords" content="python, threading, multiprocessing, gil, concurrency, parallelism, performance">
+    <meta expr:content="2025-09-10 00:00:00+02:00" itemprop='datePublished' />
+    <meta expr:content="2025-09-10 00:00:00+02:00" itemprop='dateModified' />
+    <meta property="article:modified_time" content="2025-09-10 00:00:00+02:00" />
+    <meta property="article:published_time" content="2025-09-10 00:00:00+02:00" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Threading vs Multiprocessing in Python - GIL Implications and Choosing the Right Tool",
+  "datePublished": "2025-09-10 00:00:00+02:00",
+  "dateModified": "2025-09-10 00:00:00+02:00"
+}
+    </script>
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Threading vs Multiprocessing in Python - GIL Implications and Choosing the Right Tool"/>
+  <meta property="og:description" content="Core Principle Python has two built-in ways to run code concurrently: threading and multiprocessing. The critical difference comes down to the Global Interpreter Lock (GIL) - a mutex that protects access to Python objects, preventing multiple threads from executing Python bytecode at once …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/threading-vs-multiprocessing-gil-implications/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-09-10 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2025-09-10 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="threading"/>
+  <meta property="article:tag" content="multiprocessing"/>
+  <meta property="article:tag" content="gil"/>
+  <meta property="article:tag" content="concurrency"/>
+  <meta property="article:tag" content="parallelism"/>
+  <meta property="article:tag" content="performance"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="Core Principle Python has two built-in ways to run code concurrently: threading and multiprocessing. The critical difference comes down to the Global Interpreter Lock (GIL) - a mutex that..."/>
+    <meta name="twitter:title" content="Threading vs Multiprocessing in Python - GIL Implications and Choosing the Right Tool"/>
+
+    <title>Threading vs Multiprocessing in Python - GIL Implications and Choosing the Right Tool</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some  <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-09-10 
+                    <span id="post-share-links">
+                        &nbsp;&nbsp;&nbsp;Share on:
+                        <a href="https://twitter.com/intent/tweet?text=Threading%20vs%20Multiprocessing%20in%20Python%20-%20GIL%20Implications%20and%20Choosing%20the%20Right%20Tool&url=https%3A//www.safjan.com/threading-vs-multiprocessing-gil-implications/&via=izikeros&hashtags=python,threading,multiprocessing,gil,concurrency,parallelism,performance"
+                           target="_blank"
+                           title="Share on Twitter">Twitter</a>
+                        |
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/threading-vs-multiprocessing-gil-implications/"
+                           target="_blank"
+                           title="Share on Facebook">Facebook</a>
+                        |
+                        <a href="https://news.ycombinator.com/submitlink?t=Threading%20vs%20Multiprocessing%20in%20Python%20-%20GIL%20Implications%20and%20Choosing%20the%20Right%20Tool&u=https%3A//www.safjan.com/threading-vs-multiprocessing-gil-implications/"
+                           target="_blank"
+                           title="Share on HackerNews">HackerNews</a>
+                        |
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/threading-vs-multiprocessing-gil-implications/&title=Threading%20vs%20Multiprocessing%20in%20Python%20-%20GIL%20Implications%20and%20Choosing%20the%20Right%20Tool"
+                           target="_blank"
+                           title="Share via Reddit">Reddit</a>
+                    </span>
+                <br />
+            </p>
+            <h1 id="threading-vs-multiprocessing-gil-implications">Threading vs Multiprocessing in Python - GIL Implications and Choosing the Right Tool</h1>
+            <div class="header-underline"></div>
+                <p>This post is part 2 of the "Python async" series:</p>
+                <ol class="parts">
+                        <li >
+                            <a href='https://www.safjan.com/asyncio-basics-async-await-when-to-use/'>asyncio Basics - async/await and When to Actually Use Them</a>
+                        </li>
+                        <li class="active">
+                            <a href='https://www.safjan.com/threading-vs-multiprocessing-gil-implications/'>Threading vs Multiprocessing in Python - GIL Implications and Choosing the Right Tool</a>
+                        </li>
+                        <li >
+                            <a href='https://www.safjan.com/concurrent-futures-simpler-parallelism/'>Simpler Parallelism with concurrent.futures</a>
+                        </li>
+                </ol>
+        </header>
+        <div><h2>Core Principle</h2>
+<p>Python has two built-in ways to run code concurrently: <strong>threading</strong> and <strong>multiprocessing</strong>. The critical difference comes down to the <strong>Global Interpreter Lock (GIL)</strong> - a mutex that protects access to Python objects, preventing multiple threads from executing Python bytecode at once. This means:</p>
+<ul>
+<li><strong>Threading</strong> - multiple threads in one process, but only one thread executes Python code at a time due to the GIL. Good for I/O-bound tasks.</li>
+<li><strong>Multiprocessing</strong> - separate processes with separate Python interpreters, each with its own GIL. True parallelism for CPU-bound tasks.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">cpu_bound_task</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Heavy computation</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="c1"># Threading - doesn&#39;t help with CPU work</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">cpu_bound_task</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">,))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Threading: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>  <span class="c1"># ~4 seconds on 4-core machine</span>
+
+<span class="c1"># Multiprocessing - achieves true parallelism</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">cpu_bound_task</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">10_000_000</span><span class="p">,))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Multiprocessing: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>  <span class="c1"># ~1 second on 4-core machine</span>
+</code></pre></div>
+
+<p><strong>History:</strong> The GIL has been in CPython since the beginning. PEP 703 (approved in 2023) outlines a path to making the GIL optional in Python 3.13+, but it's still fundamental to understand for current Python versions.</p>
+<h2>Useful Extensions</h2>
+<p><strong>Threading with ThreadPoolExecutor (simpler interface):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;http://example.com&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="c1"># Old way - manual thread management</span>
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">fetch_url</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">url</span><span class="p">,))</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="c1"># Better way - thread pool handles everything</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fetch_url</span><span class="p">,</span> <span class="n">urls</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Multiprocessing with ProcessPoolExecutor:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="k">def</span> <span class="nf">expensive_calculation</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10_000_000</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">expensive_calculation</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Sharing data between processes:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Array</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+
+<span class="c1"># Queue - safe inter-process communication</span>
+<span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;Result from worker&quot;</span><span class="p">)</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">q</span><span class="p">,))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+<span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="c1"># Shared memory with Value and Array</span>
+<span class="k">def</span> <span class="nf">increment_counter</span><span class="p">(</span><span class="n">counter</span><span class="p">,</span> <span class="n">arr</span><span class="p">):</span>
+    <span class="n">counter</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">10</span>
+
+<span class="n">counter</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># shared integer</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  <span class="c1"># shared array</span>
+
+<span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">increment_counter</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">counter</span><span class="p">,</span> <span class="n">arr</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Counter: </span><span class="si">{</span><span class="n">counter</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Array: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># [50, 1, 2]</span>
+</code></pre></div>
+
+<p><strong>Thread-safe operations with Lock:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">increment</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>  <span class="c1"># Only one thread can execute this block at a time</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">increment</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>  <span class="c1"># 1,000,000 (correct with lock, random without)</span>
+</code></pre></div>
+
+<h2>Specific Use Cases</h2>
+<p><strong>Use threading for I/O-bound tasks:</strong></p>
+<ul>
+<li>Making multiple HTTP requests (web scraping, API calls)</li>
+<li>Reading/writing multiple files</li>
+<li>Database queries where you're waiting for responses</li>
+<li>Network operations (socket communication)</li>
+<li>Any operation where you spend time waiting for external resources</li>
+</ul>
+<p>The GIL doesn't matter here because threads release it during I/O operations. While one thread waits for network/disk, others can run.</p>
+<p><strong>Use multiprocessing for CPU-bound tasks:</strong></p>
+<ul>
+<li>Image/video processing</li>
+<li>Data analysis and numerical computations</li>
+<li>Encryption/decryption</li>
+<li>Machine learning model training</li>
+<li>Parsing large files</li>
+<li>Any computation-heavy work where the CPU is the bottleneck</li>
+</ul>
+<p>You need separate processes to get around the GIL and use multiple CPU cores effectively.</p>
+<p><strong>Real-world example - web scraper:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">scrape_page</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="c1"># Process the page</span>
+    <span class="k">return</span> <span class="n">extract_data</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;http://example.com/page1&quot;</span><span class="p">,</span> <span class="s2">&quot;http://example.com/page2&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="c1"># Threading is perfect here - lots of waiting for network responses</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">scrape_page</span><span class="p">,</span> <span class="n">urls</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Real-world example - image processing:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="k">def</span> <span class="nf">process_image</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="c1"># CPU-intensive operations</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">SHARPEN</span><span class="p">)</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;processed_</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filename</span>
+
+<span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;img1.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;img2.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;img3.jpg&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="c1"># Multiprocessing is needed - CPU-intensive work</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_image</span><span class="p">,</span> <span class="n">images</span><span class="p">))</span>
+</code></pre></div>
+
+<h2>Nuances</h2>
+<p><strong>The GIL releases during I/O operations</strong> - this is why threading works for I/O-bound tasks. When a thread calls a blocking I/O function (like <code>requests.get()</code> or <code>file.read()</code>), it releases the GIL so other threads can run. The GIL only prevents multiple threads from executing Python bytecode simultaneously.</p>
+<p><strong>Multiprocessing has overhead</strong> - creating processes is expensive (memory and startup time). Each process needs its own Python interpreter and memory space. For small tasks, this overhead can outweigh the benefits of parallelism:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Bad - overhead dominates</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># Good - task is substantial enough to justify processes</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">expensive_function</span><span class="p">,</span> <span class="n">large_dataset</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Data serialization between processes</strong> - when you pass data to a process or get results back, Python uses <code>pickle</code> to serialize it. Large objects or objects that can't be pickled cause problems:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># This won&#39;t work - lambda functions can&#39;t be pickled</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>  <span class="c1"># Error</span>
+
+<span class="c1"># This works - regular functions can be pickled</span>
+<span class="k">def</span> <span class="nf">multiply_by_two</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">multiply_by_two</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>  <span class="c1"># Works</span>
+</code></pre></div>
+
+<p><strong>Threading has less isolation</strong> - all threads share the same memory space, which means bugs in one thread (like accessing shared data without locks) can corrupt data across the entire program. Processes are isolated - a crash in one process doesn't affect others.</p>
+<p><strong>When neither helps</strong> - if your program is both CPU and I/O bound, you might need a hybrid approach: processes for CPU work, each using threads for I/O. Or consider <code>asyncio</code> for I/O operations instead of threads if you're doing lots of concurrent I/O.</p>
+<p><strong>Process pool size guidelines</strong> - for CPU-bound work, use <code>os.cpu_count()</code> workers (one per CPU core). For I/O-bound work with threads, you can use many more (tens or hundreds) since threads spend most time waiting. Experiment to find the sweet spot.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="c1"># CPU-bound - match core count</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">cpu_intensive_func</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># I/O-bound - can use many more</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">io_intensive_func</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>The simple decision tree:</strong></p>
+<ul>
+<li>Waiting for network/disk/external services? Use <strong>threading</strong> (or <code>asyncio</code>)</li>
+<li>Doing heavy calculations/data processing? Use <strong>multiprocessing</strong></li>
+<li>Doing simple sequential work? Use <strong>neither</strong> - regular code is simpler</li>
+</ul></div>
+        <div class="tag-cloud">
+            <p>
+                    <br />
+                    <br />
+                    Tags:&nbsp;
+<a href="https://www.safjan.com/tag/python/">python</a><a href="https://www.safjan.com/tag/threading/">threading</a><a href="https://www.safjan.com/tag/multiprocessing/">multiprocessing</a><a href="https://www.safjan.com/tag/gil/">gil</a><a href="https://www.safjan.com/tag/concurrency/">concurrency</a><a href="https://www.safjan.com/tag/parallelism/">parallelism</a><a href="https://www.safjan.com/tag/performance/">performance</a>            </p>
+        </div>
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li>
+                            <a href="https://www.safjan.com/concurrent-futures-simpler-parallelism/">Simpler Parallelism with concurrent.futures</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/asyncio-basics-async-await-when-to-use/">asyncio Basics - async/await and When to Actually Use Them</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/rustification-of-python/">Rustification of Python</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/bare-asterisk-in-python-function-signatures/">Bare Asterisk in Python Function Signatures - Keyword Only Arguments</a>
+                        </li>
+                </ul>
+            </div>
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

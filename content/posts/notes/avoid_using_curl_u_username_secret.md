@@ -4,7 +4,11 @@ Slug: avoid-using-curl-u-usernamesecret
 Date: 2024-01-20
 Modified: 2024-01-20
 Status: published
-tags: curl, security, shell-history, netrc
+tags:
+  - curl
+  - security
+  - shell-history
+  - netrc
 Category: note
 ---
 

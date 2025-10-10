@@ -4,7 +4,13 @@ Slug: add-vscode-to-path
 Date: 2023-07-21
 Modified: 2023-07-21
 Status: published
-Tags: vscode, path, terminal, cli, bash, zsh
+Tags:
+  - vscode
+  - path
+  - terminal
+  - cli
+  - bash
+  - zsh
 Category: note
 ---
 If you get code command not found error but vscode  is installed:

@@ -4,9 +4,13 @@ Slug: mastering-temporary-files-and-directories-with-python-tempfile-module
 Date: 2023-07-13
 Modified: 2023-07-13
 Status: published
-Tags: python, temporary-file, temp, tempfile,
+Tags:
+  - python
+  - temporary-file
+  - temp
+  - tempfile
 Category: note
-Summary: "Explore Python's tempfile module and learn how to create, manage, and customize temporary files and directories with ease. Master common use-cases and uncover lesser-known features of this powerful tool."
+Summary: Explore Python's tempfile module and learn how to create, manage, and customize temporary files and directories with ease. Master common use-cases and uncover lesser-known features of this powerful tool.
 ---
 
 up::[[MOC_Python]]

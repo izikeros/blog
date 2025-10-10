@@ -3,7 +3,11 @@ category: note
 date: 2022-06-03
 status: published
 slug: reinstall-os-frequently
-tags: reinstall, automation, scripts, backup
+tags:
+  - reinstall
+  - automation
+  - scripts
+  - backup
 title: Reinstall frequently
 prompt: Write a blog post on the benefits of the habit of reinstalling the system frequently. Take into account that this habit enforces creating good backups and automating backup creation, giving an opportunity to clean up the system from the stuff that is not needed (programs, data, documents). Encourages automation of system restore - e.g. creating dedicated scripts or playbooks.
 ---

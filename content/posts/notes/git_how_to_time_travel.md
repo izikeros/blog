@@ -4,7 +4,13 @@ Slug: time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new futu
 Date: 2023-07-14
 Modified: 2023-07-14
 Status: published
-Tags: git, branching, git-history, software-development, howto, git-rebase
+Tags:
+  - git
+  - branching
+  - git-history
+  - software-development
+  - howto
+  - git-rebase
 Category: note
 ---
 up::[[MOC_Software_Development]]

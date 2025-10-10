@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2023-01-17'
-Modified: '2023-07-12'
+Date: 2023-01-17
+Modified: 2023-07-12
 Slug: How-to-use-Polish-wordnet-in-python
 Status: published
-Tags: machine-learning, NLP, wordnet
+Tags:
+  - machine-learning
+  - NLP
+  - wordnet
 Title: How to Use the Polish WordNet in Python?
 ---
 Related articles:

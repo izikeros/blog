@@ -1,16 +1,39 @@
 ---
 Category: Howto
-Date: '2023-05-26'
+Date: 2023-05-26
 Image: /images/head/kanban.jpg
-Modified: '2023-05-26'
+Modified: 2023-05-26
 Slug: mastering-kanban-method
-Start: '2023-05-26'
+Start: 2023-05-26
 Status: published
 Summary: Ever wondered how to supercharge your team's productivity? Say hello to Kanban, the dynamic method that brings clarity and efficiency to your projects.
-Tags: kanban-method, kanban-board, project-management, workflow-management, productivity, visual-management, work-in-progress, collaboration, continuous-improvement, task-management, agile-methodology, prioritization, team-efficiency, transparency, WIP-limits, cross-functional-teamwork, cycle-times, retrospectives, swarming, class-of-service, blocked-tasks, swimlanes, agile-practices
+Tags:
+  - kanban-method
+  - kanban-board
+  - project-management
+  - workflow-management
+  - productivity
+  - visual-management
+  - work-in-progress
+  - collaboration
+  - continuous-improvement
+  - task-management
+  - agile-methodology
+  - prioritization
+  - team-efficiency
+  - transparency
+  - WIP-limits
+  - cross-functional-teamwork
+  - cycle-times
+  - retrospectives
+  - swarming
+  - class-of-service
+  - blocked-tasks
+  - swimlanes
+  - agile-practices
 Title: Mastering the Kanban Method - Unveiling the Hidden Gems of Effective Kanban Board Usage
-banner: "/images/head/kanban.jpg"
-prompt: null
+banner: /images/head/kanban.jpg
+prompt:
 ---
 
 

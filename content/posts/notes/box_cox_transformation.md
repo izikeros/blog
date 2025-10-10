@@ -1,11 +1,19 @@
 ---
 Category: note
-Date: '2021-02-20'
-Modified: '2023-07-12'
+Date: 2021-02-20
+Modified: 2023-07-12
 Prompt: Give me long blog post text on the Box-Cox transformation of 1 + x for data processing. Give me examples. Discuss exemplary use cases with synthetic, generated datasets. Give me python code snippets.
 Slug: box-cox-transformation
 Status: published
-Tags: box-cox transformation, data-processing, data-normalization, count-data, outliers, machine-learning, statistical-analysis
+Tags:
+  - box-cox
+  - transformation
+  - data-processing
+  - data-normalization
+  - count-data
+  - outliers
+  - machine-learning
+  - statistical-analysis
 Title: Box-Cox Transform - Normalizing Non-Normal Data
 ---
 

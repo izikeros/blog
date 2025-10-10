@@ -4,7 +4,12 @@ Slug: best-small-models-for-fine-tuning
 Date: 2024-07-03
 Modified: 2024-08-01
 Status: published
-tags: predibase, evaluation, llm, slm, small-language-models
+tags:
+  - predibase
+  - evaluation
+  - llm
+  - slm
+  - small-language-models
 Category: note
 ---
 X:[[fine_tune_small_language_models_LLM_SLM__broken]]

@@ -1,10 +1,12 @@
 ---
 Category: note
-Date: '2023-01-16'
-Modified: '2023-07-12'
+Date: 2023-01-16
+Modified: 2023-07-12
 Slug: when-the-bayesian-methods-are-not-the-best-option
 Status: published
-Tags: bayesian, machine-learning
+Tags:
+  - bayesian
+  - machine-learning
 Title: When Bayesian Methods Are Not the Best Option?
 ---
 

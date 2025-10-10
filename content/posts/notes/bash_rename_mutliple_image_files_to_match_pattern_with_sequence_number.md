@@ -1,10 +1,18 @@
 ---
 Category: note
-Date: '2023-06-27'
-Modified: '2023-07-12'
+Date: 2023-06-27
+Modified: 2023-07-12
 Slug: bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number
 Status: published
-Tags: bash, python, bash-script, python-script, alias, image-rename, utility script
+Tags:
+  - bash
+  - python
+  - bash-script
+  - python-script
+  - alias
+  - image-rename
+  - utility
+  - script
 Title: Bash - Rename Multiple Image Files to Match Pattern With Sequence Number
 ---
 

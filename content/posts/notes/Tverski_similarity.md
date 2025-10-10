@@ -4,7 +4,16 @@ Slug: tverski-similarity-metrics
 Date: 2023-12-10
 Modified: 2023-12-10
 Status: published
-Tags: nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex
+Tags:
+  - nlp
+  - text-similarity
+  - string-similarity
+  - similarity-metrics
+  - jaccard
+  - cosine-similarity
+  - levenshtein
+  - word-embeddings
+  - soundex
 Category: note
 ---
 

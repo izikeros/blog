@@ -1,10 +1,15 @@
 ---
 Category: note
-Date: '2023-07-10'
-Modified: '2023-07-12'
+Date: 2023-07-10
+Modified: 2023-07-12
 Slug: Boosting Productivity and Automation with AppleScript on macOS
 Status: published
-Tags: macos, automation, script, osascropt, applescript
+Tags:
+  - macos
+  - automation
+  - script
+  - osascropt
+  - applescript
 Title: Boosting Productivity and Automation With AppleScript on macOS
 ---
 

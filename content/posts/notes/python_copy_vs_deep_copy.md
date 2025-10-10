@@ -4,7 +4,13 @@ Slug: understanding-pythons-copy-vs-deepcopy-when-to-use-each
 Date: 2025-03-20
 Modified: 2025-03-20
 Status: published
-Tags: python, python-copy, deepcopy, mutable, immutable, nested-objects
+Tags:
+  - python
+  - python-copy
+  - deepcopy
+  - mutable
+  - immutable
+  - nested-objects
 Category: note
 ---
 

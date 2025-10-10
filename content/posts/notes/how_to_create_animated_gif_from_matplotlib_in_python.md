@@ -4,7 +4,11 @@ Slug: how-to-create-animated-gif-from-matplotlib-plot-in-python
 Date: 2024-07-03
 Modified: 2024-07-03
 Status: published
-tags: visualization, animation, matplotlib, python
+tags:
+  - visualization
+  - animation
+  - matplotlib
+  - python
 Category: note
 ---
 

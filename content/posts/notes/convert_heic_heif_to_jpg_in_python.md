@@ -1,11 +1,20 @@
 ---
 Category: note
-Date: '2023-04-14'
-Modified: '2023-07-12'
+Date: 2023-04-14
+Modified: 2023-07-12
 Prompt: give me long blog post on in python how to convert heic and heif to jpeg and other popular formats. in the post give me full working code
 Slug: convert-heic-and-heif-to-jpg-png-bmp-with-python
 Status: published
-Tags: python, heic, heif, pillow, pil, pyheic, convert, image-conversion, compression
+Tags:
+  - python
+  - heic
+  - heif
+  - pillow
+  - pil
+  - pyheic
+  - convert
+  - image-conversion
+  - compression
 Title: Convert HEIC and HEIF to Jpg, Png, BMP With Python
 ---
 HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog post, we will explore how to convert HEIF and HEIC files to JPEG and other popular image formats using Python.

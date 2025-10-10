@@ -4,7 +4,14 @@ Slug: mastering-kwargs-in-python-best-practices-for-experienced-developers
 Date: 2024-06-13
 Modified: 2024-06-13
 Status: published
-tags: python, kwargs, idiomatic-python, clean-code, refactoring, static-type-checking, security-risk
+tags:
+  - python
+  - kwargs
+  - idiomatic-python
+  - clean-code
+  - refactoring
+  - static-type-checking
+  - security-risk
 Category: note
 ---
 

@@ -3,7 +3,22 @@ category: note
 date: 2022-05-12
 status: published
 slug: python-create-virtualenv-methods
-tags: python, virtual-environment, venv, virtualenv, pyenv, conda, pipenv, poetry, docker, pdm, hatch, pipx, python-environment-setup, python-dependency-management, python-packaging
+tags:
+  - python
+  - virtual-environment
+  - venv
+  - virtualenv
+  - pyenv
+  - conda
+  - pipenv
+  - poetry
+  - docker
+  - pdm
+  - hatch
+  - pipx
+  - python-environment-setup
+  - python-dependency-management
+  - python-packaging
 title: Creating Virtual Environments in Python
 ---
 

@@ -1,10 +1,12 @@
 ---
 Category: note
-Date: '2023-02-28'
-Modified: '2023-07-12'
+Date: 2023-02-28
+Modified: 2023-07-12
 Slug: git-sign-commit-n-commits-back
 Status: published
-Tags: git, commit
+Tags:
+  - git
+  - commit
 Title: Git - Sign Commit That Is N Commits Back (Earlier)
 ---
 

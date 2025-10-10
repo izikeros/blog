@@ -4,7 +4,10 @@ Slug: measuring-quality-and-quantity-of-unit-tests-in-python-projects-advanced-s
 Date: 2024-06-25
 Modified: 2024-06-25
 Status: published
-tags: code-coverage, test, testing
+tags:
+  - code-coverage
+  - test
+  - testing
 Category: note
 ---
 

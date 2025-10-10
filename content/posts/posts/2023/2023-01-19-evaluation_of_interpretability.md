@@ -1,16 +1,24 @@
 ---
 Category: Responsible AI
-Date: '2020-11-05'
+Date: 2020-11-05
 Image: /images/head/AI_gray-haired_1_640.jpg
-Modified: '2023-01-19'
+Modified: 2023-01-19
 Slug: evaluation-of-interpretability-for-explainable-ai
-Start: '2023-01-19'
+Start: 2023-01-19
 Status: published
 Summary: Learn about the evaluation of interpretability in machine learning with this guide. Discover different levels and methods for assessing the explainability of models.
-Tags: rai, interpretability, xai, explainability, ai, machine-learning, model, responsible-ai
+Tags:
+  - rai
+  - interpretability
+  - xai
+  - explainability
+  - ai
+  - machine-learning
+  - model
+  - responsible-ai
 Title: Evaluation of Interpretability for Explainable AI
-banner: "/images/head/AI_gray-haired_1_640.jpg"
-prompt: null
+banner: /images/head/AI_gray-haired_1_640.jpg
+prompt:
 ---
 
 Interpretability in machine learning is a complex and multifaceted topic. It refers to the ability of a model to explain its decisions and predictions to humans in a way that is understandable and meaningful. However, there is currently no agreed-upon definition or method for measuring interpretability.

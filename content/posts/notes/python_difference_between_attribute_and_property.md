@@ -1,10 +1,11 @@
 ---
 Category: note
-Date: '2023-03-09'
-Modified: '2023-07-12'
+Date: 2023-03-09
+Modified: 2023-07-12
 Slug: python-difference-betwee-attribute-and-property
 Status: published
-Tags: python,
+Tags:
+  - python
 Title: Python - Is There Any Difference Between Attribute and Property?
 ---
 up::[[MOC_Python]]

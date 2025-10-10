@@ -1,15 +1,20 @@
 ---
 Category: MLOps
-Date: '2022-11-02'
+Date: 2022-11-02
 Image: /images/head/mlops_interview_questions.jpg
 Slug: 50-questions-for-MLOps-engineer-job-interview
-Start: '2023-01-12'
+Start: 2023-01-12
 Status: published
 Summary: Get ready for your next MLOps Engineer interview with our comprehensive list of 50+ questions. Covering topics like deployment, management, data pipeline, monitoring, and more.
-Tags: mlops, job, job-search, machine-learning, interview
+Tags:
+  - mlops
+  - job
+  - job-search
+  - machine-learning
+  - interview
 Title: 50 Questions for MLOps Engineer Job Interview
-banner: "/images/head/mlops_interview_questions.jpg"
-modified: '2023-01-12'
+banner: /images/head/mlops_interview_questions.jpg
+modified: 2023-01-12
 ---
 [![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
 

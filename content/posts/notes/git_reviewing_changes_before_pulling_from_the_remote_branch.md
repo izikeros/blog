@@ -4,7 +4,11 @@ Slug: git-workflow-reviewing-changes-before-pulling-remote-branch
 Date: 2023-06-20
 Modified: 2024-10-31
 Status: published
-tags: git, workflow, github, pull-request
+tags:
+  - git
+  - workflow
+  - github
+  - pull-request
 Category: note
 todo: add links
 ---

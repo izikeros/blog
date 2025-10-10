@@ -4,7 +4,36 @@ Slug: implementing-sentence-boundary-detection-in-python-for-improved-text-chunk
 Date: 2024-08-30
 Modified: 2024-08-30
 Status: published
-tags: Python, NLP, sentence-boundary-detection, text-chunking, spaCy, preprocessing, edge-cases, abbreviations, ellipsis, performance-optimization, multiprocessing, evaluation, multilingual-support, language-models, script-detection, non-English-texts, bidirectional-text, fine-tuning, CJK-languages, Arabic, Unicode, regular-expressions, machine-learning, text-analysis, data-preprocessing, NLP-pipeline, language-detection, model-training, cross-lingual-evaluation
+tags:
+  - Python
+  - NLP
+  - sentence-boundary-detection
+  - text-chunking
+  - spaCy
+  - preprocessing
+  - edge-cases
+  - abbreviations
+  - ellipsis
+  - performance-optimization
+  - multiprocessing
+  - evaluation
+  - multilingual-support
+  - language-models
+  - script-detection
+  - non-English-texts
+  - bidirectional-text
+  - fine-tuning
+  - CJK-languages
+  - Arabic
+  - Unicode
+  - regular-expressions
+  - machine-learning
+  - text-analysis
+  - data-preprocessing
+  - NLP-pipeline
+  - language-detection
+  - model-training
+  - cross-lingual-evaluation
 Category: note
 ---
 
@@ -291,4 +320,3 @@ This guide has provided a comprehensive approach to implementing sentence bounda
 ## References
 
 - [sentence-boundary-detection · GitHub Topics · GitHub](https://github.com/topics/sentence-boundary-detection)
--

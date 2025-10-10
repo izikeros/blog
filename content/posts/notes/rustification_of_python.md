@@ -1,11 +1,29 @@
 ---
 Category: note
-Date: '2023-03-06'
-Modified: '2023-07-12'
+Date: 2023-03-06
+Modified: 2023-07-12
 Prompt: Give me long blog article on Rustification of python that highlight the trend that more and more python infrastucture and tools are based on Rust. Give me concrete examples. Finish with discusson of the future role of the Rust for the Python
 Slug: rustification-of-python
 Status: published
-Tags: rustification-of-python, python, rust, pyo3, maturin, tokenizers, performance, memory-safety, concurrent-programming, full-text-search, user-interface, standalone-applications, community, fragmentation, complexity, bugs, backlash, controversy
+Tags:
+  - rustification-of-python
+  - python
+  - rust
+  - pyo3
+  - maturin
+  - tokenizers
+  - performance
+  - memory-safety
+  - concurrent-programming
+  - full-text-search
+  - user-interface
+  - standalone-applications
+  - community
+  - fragmentation
+  - complexity
+  - bugs
+  - backlash
+  - controversy
 Title: Rustification of Python
 ---
 

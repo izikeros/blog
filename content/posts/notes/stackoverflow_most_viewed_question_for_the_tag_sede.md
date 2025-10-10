@@ -1,11 +1,18 @@
 ---
 Category: note
-Date: '2023-02-13'
-Modified: '2023-07-12'
+Date: 2023-02-13
+Modified: 2023-07-12
 Prompt: Give me few method on how to find most viewed questions with given tag on stackoverflow
 Slug: stackoverflow-most-viewed-question-for-the-tag
 Status: published
-Tags: most-viewed-questions, stack-overflow, specific-tag, tag-search, search-tips, stackoverflow, sede
+Tags:
+  - most-viewed-questions
+  - stack-overflow
+  - specific-tag
+  - tag-search
+  - search-tips
+  - stackoverflow
+  - sede
 Title: How to Find Most Viewed Questions With Given Tag on Stackoverflow?
 ---
 

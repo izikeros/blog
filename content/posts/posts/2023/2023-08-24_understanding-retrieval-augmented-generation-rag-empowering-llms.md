@@ -4,10 +4,20 @@ Slug: understanding-retrieval-augmented-generation-rag-empowering-llms
 Date: 2023-08-24
 Modified: 2023-10-23
 Start: 2023-08-24
-tags: llm, nlp, question-answering, rag, re-ranking, embeddings, Transformers, seq2seq, prompt, pretrained-dense-retrieval
+tags:
+  - llm
+  - nlp
+  - question-answering
+  - rag
+  - re-ranking
+  - embeddings
+  - Transformers
+  - seq2seq
+  - prompt
+  - pretrained-dense-retrieval
 Category: Generative AI
 Image: /images/head/rag_futuristic_library_640px.jpg
-banner: "/images/head/rag_futuristic_library_640px.jpg"
+banner: /images/head/rag_futuristic_library_640px.jpg
 Summary: Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.
 Status: published
 note: see RAG.excalidraw

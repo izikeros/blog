@@ -5,7 +5,19 @@ Date: 2023-12-04
 Modified: 2023-12-04
 Status: published
 Category: note
-tags: databricks, data-science, notebook, jupyter-notebook, dbfs, databricks-workspace, databricks-runtime, databricks-file-system, databricks-clusters, databricks-notebooks, databricks-jobs, databricks-tables
+tags:
+  - databricks
+  - data-science
+  - notebook
+  - jupyter-notebook
+  - dbfs
+  - databricks-workspace
+  - databricks-runtime
+  - databricks-file-system
+  - databricks-clusters
+  - databricks-notebooks
+  - databricks-jobs
+  - databricks-tables
 ---
 up::[[MOC_Databricks]]
 

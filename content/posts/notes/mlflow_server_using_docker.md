@@ -1,11 +1,15 @@
 ---
 Category: note
-Date: '2023-01-16'
-Modified: '2023-07-12'
+Date: 2023-01-16
+Modified: 2023-07-12
 Prompt: How to deploy mlflow server on local machine using Docker. Give me text in markdown format including links, hotlinked images or other means to make article more appealing.
 Slug: deploying-mlflow-on-local-machine-using-docker
 Status: published
-Tags: mlflow, machine-learning, mlops, docker
+Tags:
+  - mlflow
+  - machine-learning
+  - mlops
+  - docker
 Title: Deploying MLFlow on Local Machine Using Docker
 ---
 

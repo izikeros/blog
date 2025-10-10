@@ -4,7 +4,17 @@ Slug: understanding-the-differences-between-git-push-force-and-git-push-force-wi
 Date: 2022-11-22
 Modified: 2023-07-14
 Status: published
-Tags: git, git-push, git-push-force, git-push-force-with-lease, version-control, collaboration, commit-history, rebasing, squashing, git-commands
+Tags:
+  - git
+  - git-push
+  - git-push-force
+  - git-push-force-with-lease
+  - version-control
+  - collaboration
+  - commit-history
+  - rebasing
+  - squashing
+  - git-commands
 Category: note
 Summary: Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your codebase effectively and safely.
 ---

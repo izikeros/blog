@@ -1,16 +1,19 @@
 ---
 Category: Machine Learning
-Date: '2023-01-30'
+Date: 2023-01-30
 Image: /images/head/databricks_logo.jpg
-Modified: '2023-01-30'
+Modified: 2023-01-30
 Slug: why-to-learn-databricks
-Start: '2023-01-30'
+Start: 2023-01-30
 Status: published
 Summary: Learn how Databricks can help you master big data, improve data processing and machine learning skills and excel in your career. Boost your career with this powerful platform.
-Tags: machine-learning, databricks, data-engineering
+Tags:
+  - machine-learning
+  - databricks
+  - data-engineering
 Title: Becoming a Data Wizard - The Benefits of Learning Databricks
-banner: "/images/head/databricks_logo.jpg"
-prompt: null
+banner: /images/head/databricks_logo.jpg
+prompt:
 ---
 up::[[MOC_Databricks]]
 

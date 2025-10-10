@@ -3,7 +3,11 @@ title: Change black line length
 date: 2021-11-29
 modified: 2022-09-01
 status: published
-tags: black, python, pyqa, quality
+tags:
+  - black
+  - python
+  - pyqa
+  - quality
 summary: notes on using black formatter
 slug: change-black-line-length
 category: note

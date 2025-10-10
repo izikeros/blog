@@ -4,10 +4,15 @@ Slug: prompt-discovery
 Date: 2023-11-04
 Modified: 2023-11-04
 Start: 2023-08-08
-tags: machine-learning, generative-ai, prompt, prompt-engineering, prompt-discovery
+tags:
+  - machine-learning
+  - generative-ai
+  - prompt
+  - prompt-engineering
+  - prompt-discovery
 Category: Generative AI
 Image: /images/head/prompt_discovery.jpg
-banner: "/images/head/prompt_discovery.jpg"
+banner: /images/head/prompt_discovery.jpg
 Summary: Learn prompt discovery to uncover the most effective prompts and combinations thereof to achieve specific tasks, while also considering factors like response quality, model performance, and computational efficiency
 Status: published
 prompt:

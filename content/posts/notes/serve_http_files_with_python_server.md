@@ -1,10 +1,14 @@
 ---
 Category: note
-Date: '2022-04-27'
-Modified: '2023-07-12'
+Date: 2022-04-27
+Modified: 2023-07-12
 Slug: serve-http-files-with-python-server
 Status: published
-Tags: python, htttp, server, javascript
+Tags:
+  - python
+  - htttp
+  - server
+  - javascript
 Title: Serve HTTP Files With Python Server
 citation_needed: false
 ---

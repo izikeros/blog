@@ -1,11 +1,15 @@
 ---
 Category: note
-Date: '2023-03-26'
-Modified: '2023-07-12'
+Date: 2023-03-26
+Modified: 2023-07-12
 Prompt: give me long blog post on variants of the DCA (averaging) strategy for investing.
 Slug: dca_investing_strategy_variants
 Status: published
-Tags: finance, strategy, dca, variants
+Tags:
+  - finance
+  - strategy
+  - dca
+  - variants
 Title: DCA Investing Strategy Variants
 ---
 

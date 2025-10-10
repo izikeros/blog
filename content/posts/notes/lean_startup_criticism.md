@@ -4,7 +4,11 @@ Slug: criticism-of-the-lean-startup
 Date: 2023-09-04
 Modified: 2023-11-07
 Status: published
-tags: lean, lean-startup, methodology, startup 
+tags:
+  - lean
+  - lean-startup
+  - methodology
+  - startup
 Category: note
 prompt: Is the Lean Startup method still valid today? What is the main criticism of this method regarding the current situation?
 ---

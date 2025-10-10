@@ -1,10 +1,16 @@
 ---
 Category: note
-Date: '2022-05-12'
-Modified: '2023-07-12'
+Date: 2022-05-12
+Modified: 2023-07-12
 Slug: black-keep-single-quotes-strings
 Status: published
-Tags: black, single-string, quotation-mark, code-quality, code-formatting , code-formatter
+Tags:
+  - black
+  - single-string
+  - quotation-mark
+  - code-quality
+  - code-formatting
+  - code-formatter
 Title: Black - Keep Single Quotes for Strings
 ---
 

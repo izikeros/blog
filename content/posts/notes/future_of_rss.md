@@ -1,10 +1,14 @@
 ---
 Category: note
-Date: '2023-03-05'
-Modified: '2023-07-12'
+Date: 2023-03-05
+Modified: 2023-07-12
 Slug: future-of-rss
 Status: published
-Tags: rss, fake-news, social-media, twitter
+Tags:
+  - rss
+  - fake-news
+  - social-media
+  - twitter
 Title: Future of RSS
 ---
 

@@ -1,18 +1,23 @@
 ---
 Category: Linux
-Date: '2021-11-29'
+Date: 2021-11-29
 Image: /images/head/inside-work-tree.jpg
-Start: '2021-11-25'
+Start: 2021-11-25
 Status: published
 Summary: Explore the most popular Zsh plugins from the 1800+ options on the Awesome Zsh plugins GitHub project. See which ones have the highest number of stars from the Zsh community.
-Tags: zsh, scrapping, python, Linux
+Tags:
+  - zsh
+  - scrapping
+  - python
+  - Linux
 Title: Top Popular ZSH Plugins on GitHub (2021)
-modified: '2021-11-29'
+modified: 2021-11-29
 slug: top-popular-zsh-plugins-on-github-2021
+Series: Zsh plugins
 ---
 
 > **NOTE:** This article was written in 2021, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/).
-> There is a series of articles dedicated to Zsh plugins: [2018](../top-popular-zsh-plugins-on-github/index.html), [2019](../top-popular-zsh-plugins-on-github-2019/index.html), [2021](../top-popular-zsh-plugins-on-github-2021/index.html), [2023](../top-popular-zsh-plugins-on-github-2023/index.html). The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
+> The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
 The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users or in most cases console users. I have divided them into four categories:
 

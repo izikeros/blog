@@ -4,7 +4,10 @@ Slug: product-led-growth
 Date: 2023-11-07
 Modified: 2023-11-07
 Status: published
-tags: startup, methodology, product-led-growth
+tags:
+  - startup
+  - methodology
+  - product-led-growth
 Category: note
 ---
 

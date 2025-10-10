@@ -1,11 +1,18 @@
 ---
 Category: note
-Date: '2021-11-29'
+Date: 2021-11-29
 Modified: 2023-08-12
 Slug: black-code-formatter
 Status: published
 Summary: notes on using black formatter
-Tags: black, python, pyqa, quality, code-quality, code-formatting , code-formatter
+Tags:
+  - black
+  - python
+  - pyqa
+  - quality
+  - code-quality
+  - code-formatting
+  - code-formatter
 Title: Black - The Code Formatter
 citation_needed: false
 ---

@@ -4,7 +4,20 @@ date: 2022-05-12
 modified: 2024-07-17
 status: published
 slug: disable-checks-for-flake8-mypy-bandit-and-black
-tags: bandit, black, check, disable, flake8, mypy, linting, code-formatting , formatting, black-formatter, static-type-checking, typing, type-hints
+tags:
+  - bandit
+  - black
+  - check
+  - disable
+  - flake8
+  - mypy
+  - linting
+  - code-formatting
+  - formatting
+  - black-formatter
+  - static-type-checking
+  - typing
+  - type-hints
 title: Disable checks for flake8, mypy, bandit and black
 ---
 

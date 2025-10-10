@@ -4,7 +4,12 @@ Slug: storing-private-python-packages-with-local-nas-and-lightweight-servers
 Date: 2023-08-12
 Modified: 2023-08-12
 Status: published
-Tags: pypi, python, python-package, package-repository, nas 
+Tags:
+  - pypi
+  - python
+  - python-package
+  - package-repository
+  - nas
 Category: note
 ---
 X::[[self_hosted_python_package_repository]]

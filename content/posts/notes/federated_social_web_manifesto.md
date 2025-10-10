@@ -1,12 +1,21 @@
 ---
 Category: note
-Date: '2023-03-06'
+Date: 2023-03-06
 Image: /images/misc/protester.png
-Modified: '2023-07-12'
+Modified: 2023-07-12
 Prompt: Give me long text for the Federated Social Web manifesto (like Hacker manifesto)
 Slug: federated-social-web-manifesto
 Status: published
-Tags: federated-social-web, manifesto, decentralization, openness, interoperability, user-control, privacy, accessibility, innovation
+Tags:
+  - federated-social-web
+  - manifesto
+  - decentralization
+  - openness
+  - interoperability
+  - user-control
+  - privacy
+  - accessibility
+  - innovation
 Title: Federated Social Web Manifesto
 ---
 X::[[mastodon]]

@@ -1,10 +1,17 @@
 ---
 Category: note
-Date: '2023-06-28'
-Modified: '2023-07-12'
+Date: 2023-06-28
+Modified: 2023-07-12
 Slug: script-to-python-package-using-poetry-and-pycharm
 Status: published
-Tags: python, poetry, package, package-publish, pypi, git, tiktoken
+Tags:
+  - python
+  - poetry
+  - package
+  - package-publish
+  - pypi
+  - git
+  - tiktoken
 Title: Script to Python Package Using Poetry (And PyCharm)
 ---
 X::[[badges_for_readme]]

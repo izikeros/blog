@@ -1,11 +1,16 @@
 ---
 Category: note
-Date: '2021-09-28'
-Modified: '2023-07-12'
+Date: 2021-09-28
+Modified: 2023-07-12
 Slug: python-documentation-with-pdoc3
 Status: published
 Summary: summary
-Tags: documentation, pdoc3, python, documentation-generator, sphinx
+Tags:
+  - documentation
+  - pdoc3
+  - python
+  - documentation-generator
+  - sphinx
 Title: Python - Project Documentation From the Code With Pdoc3
 suggested_tags: documentation, pdoc3, python
 ---

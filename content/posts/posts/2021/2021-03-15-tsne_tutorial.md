@@ -1,13 +1,23 @@
 ---
 Category: Machine Learning
-Date: '2021-03-15'
+Date: 2021-03-15
 Image: /images/head/tsne_head.jpg
-Modified: '2021-03-15'
+Modified: 2021-03-15
 Slug: tsne-tutorial
-Start: '2021-03-15'
+Start: 2021-03-15
 Status: published
 Summary: Want to create beautiful visualizations from complex data? Discover the power of T-SNE for dimensionality reduction in Python.
-Tags: data-visualization, machine-learning, python, t-sne, dimensionality-reduction, scatter-plot, bokeh, seaborn, numpy, pandas
+Tags:
+  - data-visualization
+  - machine-learning
+  - python
+  - t-sne
+  - dimensionality-reduction
+  - scatter-plot
+  - bokeh
+  - seaborn
+  - numpy
+  - pandas
 Title: Unleashing the Power of T-Sne for Dimensionality Reduction in Python
 prompt: Give me long blog post tutorial on using T-SNE for dimensionality reduction. Add code in python and visualizations. Start with dataset with 10, concrete, named, correlated features. Perform in-depth analysis. Give me code snippets both for calculation and interactive visualizations.
 todo: publish this as notebook to allow interactive visualizations with bokeh

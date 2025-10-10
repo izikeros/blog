@@ -4,7 +4,15 @@ Slug: openai-python-sdk-with-local-ollama-models-and-alternatives
 Date: 2025-07-29
 Modified: 2025-07-29
 Status: published
-Tags: openai, openai-sdk, ollama, litellm, langchain, llama-index, guidance, instructor
+Tags:
+  - openai
+  - openai-sdk
+  - ollama
+  - litellm
+  - langchain
+  - llama-index
+  - guidance
+  - instructor
 Category: note
 ---
 

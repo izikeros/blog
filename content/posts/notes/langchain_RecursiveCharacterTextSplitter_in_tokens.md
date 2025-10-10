@@ -4,7 +4,16 @@ Slug: langchain-recursivecharactertextsplitter-split-by-tokens-instead-of-charac
 Date: 2023-09-27
 Modified: 2023-09-27
 Status: published
-Tags: text-splitting, text-chunking, langchain, RecursiveCharacterTextSplitter, Tokens, Characters, natural-language-processing, language-modeling, chunk-size 
+Tags:
+  - text-splitting
+  - text-chunking
+  - langchain
+  - RecursiveCharacterTextSplitter
+  - Tokens
+  - Characters
+  - natural-language-processing
+  - language-modeling
+  - chunk-size
 Category: note
 ---
 up::[[MOC_LangChain]]

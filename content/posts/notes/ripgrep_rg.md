@@ -4,7 +4,13 @@ Slug: notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-an
 Date: 2024-09-13
 Modified: 2024-09-13
 Status: published
-tags: ripgrep, grep, search, code-search, python-project, developer-tools
+tags:
+  - ripgrep
+  - grep
+  - search
+  - code-search
+  - python-project
+  - developer-tools
 Category: note
 ---
 Notes on using ripgrep (rg) mainly for use cases as a Python developer working with .py, .ipynb, and .md files:

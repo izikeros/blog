@@ -1,10 +1,22 @@
 ---
 Category: note
-Date: '2021-10-20'
-Modified: '2023-07-12'
+Date: 2021-10-20
+Modified: 2023-07-12
 Slug: time-tracking-apps
 Status: published
-Tags: time tracking, time management, billing, tracing, monitoring time, monitoring productivity, monitoring, productivity
+Tags:
+  - time
+  - tracking
+  - time
+  - management
+  - billing
+  - tracing
+  - monitoring
+  - time
+  - monitoring
+  - productivity
+  - monitoring
+  - productivity
 Title: Time Tracking Apps
 citation_needed: false
 todo: None

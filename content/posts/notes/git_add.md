@@ -1,11 +1,12 @@
 ---
 Category: note
-Date: '2021-10-12'
-Modified: '2023-07-12'
+Date: 2021-10-12
+Modified: 2023-07-12
 Slug: git-add
 Status: published
 Summary: various options to stage git files with `git add` command
-Tags: git
+Tags:
+  - git
 Title: Git Add - Stage Changes in Various Ways
 citation_needed: false
 ---

@@ -4,7 +4,12 @@ Slug: how-to-install-faiss-on-google-colab
 Date: 2023-07-04
 Modified: 2023-07-04
 Status: published
-tags: faiss, colab, pip-install, vectordb, IVFPQ
+tags:
+  - faiss
+  - colab
+  - pip-install
+  - vectordb
+  - IVFPQ
 Category: note
 "X:": "[[2023-06-08-Similarity_search_using_IVFPQ]]"
 ---

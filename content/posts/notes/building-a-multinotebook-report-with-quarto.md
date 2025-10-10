@@ -4,7 +4,14 @@ Slug: building-a-multinotebook-report-with-quarto
 Date: 2025-07-23
 Modified: 2025-07-23
 Status: published
-Tags: quarto, jupyter-notebooks, nbconvert, reporting, experiment-management, research, research-report 
+Tags:
+  - quarto
+  - jupyter-notebooks
+  - nbconvert
+  - reporting
+  - experiment-management
+  - research
+  - research-report
 Category: note
 ---
 

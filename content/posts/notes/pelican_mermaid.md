@@ -4,7 +4,12 @@ Slug: mermaid-in-pelican-post
 Date: 2023-11-28
 Modified: 2023-11-28
 Status: published
-tags: mermaid, pelican, diagram, graph, plot
+tags:
+  - mermaid
+  - pelican
+  - diagram
+  - graph
+  - plot
 Category: note
 ---
 

@@ -4,7 +4,15 @@ Slug: how-to-remove-diacritics-and-sanitize-strings-in-python
 Date: 2024-08-30
 Modified: 2024-08-30
 Status: published
-tags: python, nlp, sanitize, sanitization, diacritics, accent, umlaut, unidecode, 
+tags:
+  - python
+  - nlp
+  - sanitize
+  - sanitization
+  - diacritics
+  - accent
+  - umlaut
+  - unidecode
 Category: note
 ---
 

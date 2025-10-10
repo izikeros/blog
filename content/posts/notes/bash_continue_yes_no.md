@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2022-05-12'
-Modified: '2023-07-12'
+Date: 2022-05-12
+Modified: 2023-07-12
 Slug: bash-continue-yes-no
 Status: published
-Tags: bash, bash-continue-yes-no, continue
+Tags:
+  - bash
+  - bash-continue-yes-no
+  - continue
 Title: Bash - Continue, Yes or No
 ---
 

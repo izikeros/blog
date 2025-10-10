@@ -1,10 +1,13 @@
 ---
 Category: note
-Date: '2023-02-12'
-Modified: '2023-07-12'
+Date: 2023-02-12
+Modified: 2023-07-12
 Slug: how-to-change-the-size-of-matplotlib-figure
 Status: published
-Tags: matplotlib, python/visualization, styling
+Tags:
+  - matplotlib
+  - python/visualization
+  - styling
 Title: How to Change the Size of Matplotlib Figure?
 ---
 
