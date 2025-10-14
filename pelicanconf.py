@@ -1,164 +1,175 @@
 #!/usr/bin/env python
-"""Blog configuration file
+"""Pelican blog configuration file
 
-Pelican documentation (latest)
-https://docs.getpelican.com/en/latest/settings.html#basic-settings
-
-Trying to apply literate configurations (https://leanpub.com/lit-config/read)
---Elegant theme
-https://jackdewinter.github.io/
+Documentation: https://docs.getpelican.com/en/latest/settings.html
 """
 
 from datetime import datetime
-# from pelican_jupyter import markup as nb_markup
-from nbconvert.preprocessors import (
-    RegexRemovePreprocessor,
-    TagRemovePreprocessor,
-)
+from nbconvert.preprocessors import RegexRemovePreprocessor, TagRemovePreprocessor
 from traitlets.config import Config
+
+# =============================================================================
+# BASIC SETTINGS
+# =============================================================================
 
 AUTHOR = "Krystian Safjan"
 SITENAME = "Krystian Safjan's Blog"
-TWITTER_USERNAME = "izikeros"
-TWITTER_CREATOR = "izikeros"
+SITETITLE = SITENAME
+TIMEZONE = "Europe/Warsaw"
+DEFAULT_LANG = "en"
 
-MY_THEME = "flex"  # flex | elegant, NOTE: this is nit name of the folder in pelican themes - search below for `THEME =`
+PATH = "content"
+OUTPUT_PATH = "docs"
+
+# =============================================================================
+# ENVIRONMENT CONFIGURATION
+# =============================================================================
+
 IS_DEVELOPMENT = True
-USE_APPLAUSE = False
-# ---- Development settings
+
 if IS_DEVELOPMENT:
-    SITEURL = "http://127.0.0.1:8000"  # was: ""
-    RELATIVE_URLS = False  # was: True
+    SITEURL = "http://127.0.0.1:8000"
+    RELATIVE_URLS = False
     CACHE_CONTENT = False
+    FEED_ALL_ATOM = None
+    FEED_ALL_RSS = None
+    CATEGORY_FEED_ATOM = None
 else:
-    # TODO: keep only development config here, use publishconf.py to produce publication content
     SITEURL = "https://safjan.com"
     RELATIVE_URLS = False
     CACHE_CONTENT = False
-    # -------------- Third party ------
-    # DISQUS_SITENAME = 'krystian-safjan'
-    GOOGLE_ANALYTICS = "G-RM2PKDCCYM"  # v3:"UA-117080232-1"   v4:"G-RM2PKDCCYM"
+    FEED_DOMAIN = "https://safjan.com"
+    FEED_ALL_ATOM = "feeds/all.atom.xml"
+    FEED_ALL_RSS = "feeds/all.rss.xml"
+    GOOGLE_ANALYTICS = "G-RM2PKDCCYM"
 
-PATH = "content"
+# =============================================================================
+# THEME CONFIGURATION
+# =============================================================================
 
-TIMEZONE = "Europe/Warsaw"
+MY_THEME = "flex"  # Options: flex | safi
 
-DEFAULT_LANG = "en"
-DATE_FORMATS = {
-    "en": "%Y-%m-%d",
+THEME_CONFIG = {
+    "flex": {
+        "path": "pelican-themes/Flex",
+        "theme_color_enable_user_override": False,
+        "use_less": False,
+        "custom_css": "styles/custom.css",
+    },
+    "safi": {
+        "path": "pelican-themes/safi_theme",
+        "search_enabled": True,
+        "dark_mode": True,
+    },
 }
 
-GITHUB_URL = "https://github.com/izikeros"
-# ---- Side ----
-if MY_THEME == "flex":
-    # Note under profile image
-    # SITESUBTITLE = '<p>Data Scientist | Researcher | Team Leader</p><br/><br/>I\'m working at Ernst ;amp& Young and writing about <a href="/category/data-science.html">Data Science and Visualization</a>, on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</li></ul><hr>'
-    SITETITLE = SITENAME  # Used in Flex theme
-    # Search for SITESUBTITLE usage in Flex/templates/base.html
-    # SITESUBTITLE = 'Data Scientist | Researcher | Team Leader<br><br> working at ' \
-    #                'Ernst &amp; Young and writing about <a ' \
-    #                'href="/category/data-science.html">Data Science and Visualization</a>, ' \
-    #                'on <a href="/category/data-science.html">Machine Learning, Deep Learning</a> ' \
-    #                'and <a href="/tag/nlp/">NLP</a>. There are also some  ' \
-    #                '<a href="/category/howto.html">howto</a> posts on tools and workflows.<hr>'
+THEME = THEME_CONFIG[MY_THEME]["path"]
 
+# Theme-specific settings for Flex
+if MY_THEME == "flex":
+    SITELOGO = "/images/profile_new.jpg"
     SITESUBTITLE = (
         "Data Scientist | Researcher | Team Leader<br><br> working at "
         "Ernst &amp; Young and writing about <a "
         'href="/category/machine-learning.html">Data Science and Visualization</a>, '
         'on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> '
-        'and <a href="/tag/nlp/">NLP</a>. There are also some  '
+        'and <a href="/tag/nlp/">NLP</a>. There are also some '
         '<a href="/category/howto.html">howto</a> posts on tools and workflows.'
     )
-    SITELOGO = "/images/profile_new.jpg"
-    DISPLAY_DATE_AFTER_TITLE = (
-        False  # display date in the list of articles (tags, categories)
-    )
-    DISPLAY_DATE_BEFORE_TITLE = (
-        True  # display date in the list of articles (tags, categories)
-    )
-
+    DISPLAY_DATE_AFTER_TITLE = False
+    DISPLAY_DATE_BEFORE_TITLE = True
     PROMO_BOX = True
+    CUSTOM_CSS = THEME_CONFIG["flex"]["custom_css"]
+    THEME_COLOR_ENABLE_USER_OVERRIDE = THEME_CONFIG["flex"]["theme_color_enable_user_override"]
+    USE_LESS = THEME_CONFIG["flex"]["use_less"]
 
-# define landing page for elegant style
-if MY_THEME == "elegant":
-    LANDING_PAGE_TITLE = "Krystian Safjan"
-    RECENT_ARTICLE_SUMMARY = True  # Elegant
-    FEATURED_IMAGE = True
+# Theme-specific settings for Safi
+elif MY_THEME == "safi":
+    SAFI_SEARCH_ENABLED = THEME_CONFIG["safi"]["search_enabled"]
+    SAFI_DARK_MODE = THEME_CONFIG["safi"]["dark_mode"]
 
-# --------------- RSS and Social Media ------------
-# Feed generation is usually not desired when developing
-if IS_DEVELOPMENT:
-    FEED_ALL_ATOM = None
-    FEED_ALL_RSS = None
-    CATEGORY_FEED_ATOM = None
-else:
-    FEED_DOMAIN = "https://safjan.com"
-    FEED_ALL_ATOM = "feeds/all.atom.xml"
-    FEED_ALL_RSS = "feeds/all.rss.xml"
-# Social widget
-# https://github.com/alexandrevicenzi/Flex/wiki/Flex-Menus
+# =============================================================================
+# CONTENT AND LAYOUT
+# =============================================================================
 
+# Date formatting
+DATE_FORMATS = {"en": "%Y-%m-%d"}
+DEFAULT_DATE_FORMAT = "%B %d, %Y"
+
+# Article display
+SHOW_ARTICLE_AUTHOR = False
+SHOW_ARTICLE_CATEGORY = False
+SHOW_DATE_MODIFIED = False
+DATE_FOR_ARTICLE_GROUPS = False
+
+# Pagination and summaries
+DEFAULT_PAGINATION = 200
+SUMMARY_MAX_LENGTH = 42
+HOME_HIDE_TAGS = True
+
+# Menu configuration
+USE_FOLDER_AS_CATEGORY = False
+MAIN_MENU = True
+DISPLAY_PAGES_ON_MENU = False
+
+MENUITEMS = (
+    ("Articles", "/archives.html"),
+    ("Notes", "/til.html"),
+    ("Categories", "/categories.html"),
+    ("Resume", "/pdfs/Krystian_Safjan_resume_priv.pdf"),
+)
+
+DIRECT_TEMPLATES = ["index", "categories", "tags", "archives", "til"]
+
+# =============================================================================
+# URL AND SLUG CONFIGURATION
+# =============================================================================
+
+# Article URLs
+ARTICLE_URL = "{slug}/"
+ARTICLE_SAVE_AS = "{slug}/index.html"
+
+# Page URLs
+PAGE_URL = "{slug}/"
+PAGE_SAVE_AS = "{slug}/index.html"
+
+# Author URLs (disabled)
+AUTHOR_URL = "author/{slug}/"
+AUTHOR_SAVE_AS = ""
+AUTHORS_URL = "authors/"
+AUTHORS_SAVE_AS = ""
+
+# Category URLs
+CATEGORY_URL = "category/{slug}.html"
+CATEGORY_SAVE_AS = "category/{slug}.html"
+
+# Tag URLs
+TAG_URL = "tag/{slug}/"
+TAG_SAVE_AS = "tag/{slug}/index.html"
+
+# Default metadata
+DEFAULT_METADATA = {"status": "draft"}
+
+# =============================================================================
+# SOCIAL MEDIA AND EXTERNAL LINKS
+# =============================================================================
+
+GITHUB_URL = "https://github.com/izikeros"
+TWITTER_USERNAME = "izikeros"
+TWITTER_CREATOR = "izikeros"
 
 SOCIAL = (
     ("linkedin", "https://pl.linkedin.com/in/krystiansafjan"),
     ("github", "https://github.com/izikeros"),
     ("envelope", "mailto:ksafjan@gmail.com"),
-    (
-        "graduation-cap",  #'mortar-board | newspaper' or 'graduation-cap'
-        "https://scholar.google.pl/citations?user=UlNJgMoAAAAJ",
-    ),
+    ("graduation-cap", "https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"),
     ("rss", "/feeds/all.rss.xml"),
-    # add Kaggle
-)
-# https://fontawesome.com/v5.15/icons/graduation-cap?style=solid
-
-# --------------- Layout ---------------------
-# How main menu works: https://github.com/alexandrevicenzi/Flex/wiki/Flex-Menus
-USE_FOLDER_AS_CATEGORY = False
-MAIN_MENU = True
-MENUITEMS = (
-    ("Articles", "/archives.html"),
-    ("Notes", "/til.html"),
-    ("Categories", "/categories.html"),
-    # ("Tags", "/tags.html"),
-    ("Resume", "/pdfs/Krystian_Safjan_resume_priv.pdf"),
 )
 
+# =============================================================================
+# STATIC FILES AND RESOURCES
+# =============================================================================
 
-HOME_HIDE_TAGS = (
-    True  # Shall the tags be hidden when displaying list of articles on home page?
-)
-DEFAULT_PAGINATION = 200
-SUMMARY_MAX_LENGTH = 42
-DISPLAY_PAGES_ON_MENU = False  # Display in sidebar links to articles located in 'pages'
-DEFAULT_DATE_FORMAT = (
-    "%B %d, %Y"  # '%B %d, %Y' -> December 29, 2021, '%Y-%m-%d' -> 2021-12-29
-)
-
-
-# Article heading
-SHOW_ARTICLE_AUTHOR = False
-SHOW_ARTICLE_CATEGORY = False
-SHOW_DATE_MODIFIED = False
-
-DATE_FOR_ARTICLE_GROUPS = False
-
-
-DIRECT_TEMPLATES = ["index", "categories", "tags", "archives", "til"]
-
-# ------- Footer ---------------------------
-
-COPYRIGHT_YEAR = datetime.now().year
-COPYRIGHT_NAME = AUTHOR
-CC_LICENSE = {
-    "name": "Creative Commons Attribution-ShareAlike",
-    "version": "4.0",
-    "slug": "by-sa",
-}
-
-
-# ----------------- Resources ------------------
 STATIC_PATHS = [
     "styles",
     "images",
@@ -171,67 +182,33 @@ STATIC_PATHS = [
     "ads.txt",
 ]
 
-# ----------- Theme, CSS and other styling
-PYGMENTS_STYLE = "github"  # github | monokai # FLEX
-if MY_THEME == "elegant":
-    THEME = "pelican-themes/elegant"  # flex | elegant
-    # NOTE: style customization for elegant:
-    # elegant/static/css/custom.css
-elif MY_THEME == "flex":
-    THEME = "pelican-themes/Flex"  # flex | elegant
-    # THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
-    THEME_COLOR_ENABLE_USER_OVERRIDE = False
-    USE_LESS = False
-    CUSTOM_CSS = "styles/custom.css"
+# =============================================================================
+# STYLING AND APPEARANCE
+# =============================================================================
 
+PYGMENTS_STYLE = "github"
 TYPOGRIFY = False
 TYPOGRIFY_IGNORE_TAGS = ["style", "script", "title", "code", "pre"]
 
-# Where to output the generated files
-OUTPUT_PATH = "docs"
+# =============================================================================
+# FOOTER AND COPYRIGHT
+# =============================================================================
 
-# -------------- Slugs and URLs --------------
+COPYRIGHT_YEAR = datetime.now().year
+COPYRIGHT_NAME = AUTHOR
 
-# article
-ARTICLE_URL = "{slug}/"
-ARTICLE_SAVE_AS = "{slug}/index.html"
-
-# page
-PAGE_URL = "{slug}/"
-PAGE_SAVE_AS = "{slug}/index.html"
-
-# author
-AUTHOR_URL = "author/{slug}/"
-# AUTHOR_SAVE_AS = 'author/{slug}/index.html'
-AUTHOR_SAVE_AS = ""
-
-# authors
-AUTHORS_URL = "authors/"
-# AUTHORS_SAVE_AS = "authors/index.html"
-AUTHORS_SAVE_AS = ""
-
-# category
-CATEGORY_URL = "category/{slug}.html"
-CATEGORY_SAVE_AS = "category/{slug}.html"
-
-# tag
-TAG_URL = "tag/{slug}/"
-TAG_SAVE_AS = "tag/{slug}/index.html"
-
-DEFAULT_METADATA = {
-    "status": "draft",
+CC_LICENSE = {
+    "name": "Creative Commons Attribution-ShareAlike",
+    "version": "4.0",
+    "slug": "by-sa",
 }
 
-# -------------- Plugins
-IGNORE_FILES = [".ipynb_checkpoints"]
-PLUGIN_PATHS = ["./pelican-plugins"]
+# =============================================================================
+# MARKDOWN AND MARKUP CONFIGURATION
+# =============================================================================
 
 MARKUP = ("md", "ipynb")
 
-
-# to use mermaid install:
-# pip install markdown_mermaidjs
-# pip install Markdown==3.1.1 (<3.2)
 MARKDOWN = {
     "extension_configs": {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
@@ -242,32 +219,17 @@ MARKDOWN = {
     "output_format": "html5",
 }
 
-USE_MERMAID = False  # Adds javascript to base.html template
+USE_MERMAID = False
 ADD_BIBTEX_NOTE = True
 BIBTEX_JOURNAL = "Krystian's Safjan Blog"
 
-# if MY_THEME == "flex":
-#     PLUGINS = [
-#         # "pelican-ipynb.markup",
-#         nb_markup,
-#         # 'post_stats',
-#         "featured_image",
-#         "render_math",
-#         "neighbors",
-#         "related_posts",
-#         "sitemap",
-#         "yaml_metadata",
-#         # "pelican.plugins.obsidian",
-#         "pelican_obsidian",
-#         "pelican_jupyter",
-#     ]
-# elif MY_THEME == "elegant":
-#     PLUGINS = ["pelican-ipynb.markup", "post_stats", "representative_image"]
+# =============================================================================
+# JUPYTER NOTEBOOK CONFIGURATION
+# =============================================================================
 
-# Preprocessing - remove empty cells and cells tagged with "remove_cell"
-#  NOTE: Tag cells to remove with "remove_cell" (View -> Cell Toolbar -> Tags)
+IGNORE_FILES = [".ipynb_checkpoints"]
 
-
+# Jupyter preprocessing configuration
 c = Config()
 c.TagRemovePreprocessor.enabled = True
 c.TagRemovePreprocessor.remove_cell_tags = ("remove_cell",)
@@ -275,17 +237,36 @@ c.TagRemovePreprocessor.remove_all_outputs_tags = ("remove_output",)
 c.TagRemovePreprocessor.remove_input_tags = ("remove_input",)
 
 IPYNB_PREPROCESSORS = [
-    RegexRemovePreprocessor(
-        patterns=[r"\s*\Z"]
-    ),  # Remove empty cells (or cells with whitespaces only)
-    TagRemovePreprocessor(config=c),
-]  # Remove cells marked as 'remove_cell'
+    RegexRemovePreprocessor(patterns=[r"\s*\Z"]),  # Remove empty cells
+    TagRemovePreprocessor(config=c),  # Remove tagged cells
+]
 
-# ----- SEO -----------
+# =============================================================================
+# PLUGINS CONFIGURATION
+# =============================================================================
+
+PLUGIN_PATHS = ["./pelican-plugins"]
+
+# Uncomment and configure plugins as needed
+# PLUGINS = [
+#     "featured_image",
+#     "render_math",
+#     "neighbors",
+#     "related_posts",
+#     "sitemap",
+#     "yaml_metadata",
+#     "pelican_obsidian",
+#     "pelican_jupyter",
+# ]
+
+# =============================================================================
+# SEO CONFIGURATION
+# =============================================================================
+
 SEO_REPORT = False
 SEO_ENHANCER = True
 SEO_ENHANCER_OPEN_GRAPH = True
-SEO_ENHANCER_TWITTER_CARDS = False  # Subfeature of SEO enhancer
+SEO_ENHANCER_TWITTER_CARDS = False
 SEO_ARTICLES_LIMIT = 10
 SEO_PAGES_LIMIT = 10
 
@@ -302,8 +283,15 @@ SITEMAP = {
         "pages": "monthly",
     },
 }
+
 ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 
-# The code for google ads is in templates/partials/google_automatic_ads.html
+# =============================================================================
+# THIRD-PARTY INTEGRATIONS
+# =============================================================================
+
 USE_GOOGLE_AUTO_ADS = True
-# CACHE_CONTENT = True
+USE_APPLAUSE = False
+
+# Uncomment for production
+# DISQUS_SITENAME = 'krystian-safjan'

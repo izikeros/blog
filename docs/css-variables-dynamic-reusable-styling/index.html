@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan" />
+    <meta name="description" content="The Core Idea CSS variables (custom properties) let you store reusable values directly in CSS and update them at runtime. They use the --name syntax and are accessed with var(): :root { --bg: #222; --text: #eee; } body { background: var(--bg); color: var(--text …" />
+    <meta name="keywords" content="css, web-development, front-end">
+    <meta expr:content="2025-10-14 00:00:00+02:00" itemprop='datePublished' />
+    <meta expr:content="2025-10-14 00:00:00+02:00" itemprop='dateModified' />
+    <meta property="article:modified_time" content="2025-10-14 00:00:00+02:00" />
+    <meta property="article:published_time" content="2025-10-14 00:00:00+02:00" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Using CSS Variables for Dynamic and Reusable Styling",
+  "datePublished": "2025-10-14 00:00:00+02:00",
+  "dateModified": "2025-10-14 00:00:00+02:00"
+}
+    </script>
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Using CSS Variables for Dynamic and Reusable Styling"/>
+  <meta property="og:description" content="The Core Idea CSS variables (custom properties) let you store reusable values directly in CSS and update them at runtime. They use the --name syntax and are accessed with var(): :root { --bg: #222; --text: #eee; } body { background: var(--bg); color: var(--text …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/css-variables-dynamic-reusable-styling/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-10-14 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2025-10-14 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="css"/>
+  <meta property="article:tag" content="web-development"/>
+  <meta property="article:tag" content="front-end"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="The Core Idea CSS variables (custom properties) let you store reusable values directly in CSS and update them at runtime. They use the --name syntax and are accessed with var(): :root { --bg:..."/>
+    <meta name="twitter:title" content="Using CSS Variables for Dynamic and Reusable Styling"/>
+
+    <title>Using CSS Variables for Dynamic and Reusable Styling</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-10-14 
+                    <span id="post-share-links">
+                        &nbsp;&nbsp;&nbsp;Share on:
+                        <a href="https://twitter.com/intent/tweet?text=Using%20CSS%20Variables%20for%20Dynamic%20and%20Reusable%20Styling&url=https%3A//www.safjan.com/css-variables-dynamic-reusable-styling/&via=izikeros&hashtags=css,web-development,front-end"
+                           target="_blank"
+                           title="Share on Twitter">Twitter</a>
+                        |
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/css-variables-dynamic-reusable-styling/"
+                           target="_blank"
+                           title="Share on Facebook">Facebook</a>
+                        |
+                        <a href="https://news.ycombinator.com/submitlink?t=Using%20CSS%20Variables%20for%20Dynamic%20and%20Reusable%20Styling&u=https%3A//www.safjan.com/css-variables-dynamic-reusable-styling/"
+                           target="_blank"
+                           title="Share on HackerNews">HackerNews</a>
+                        |
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/css-variables-dynamic-reusable-styling/&title=Using%20CSS%20Variables%20for%20Dynamic%20and%20Reusable%20Styling"
+                           target="_blank"
+                           title="Share via Reddit">Reddit</a>
+                    </span>
+                <br />
+            </p>
+            <h1 id="css-variables-dynamic-reusable-styling">Using CSS Variables for Dynamic and Reusable Styling</h1>
+            <div class="header-underline"></div>
+        </header>
+        <div><h2>The Core Idea</h2>
+<p>CSS variables (custom properties) let you store reusable values directly in CSS and update them at runtime.<br>
+They use the <code>--name</code> syntax and are accessed with <code>var()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--bg</span><span class="p">:</span><span class="w"> </span><span class="mh">#222</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text</span><span class="p">:</span><span class="w"> </span><span class="mh">#eee</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--bg</span><span class="p">);</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--text</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="err">````</span>
+
+<span class="nt">Variables</span><span class="w"> </span><span class="nt">defined</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="err">`</span><span class="p">:</span><span class="nd">root</span><span class="err">`</span><span class="w"> </span><span class="nt">are</span><span class="w"> </span><span class="nt">global</span><span class="w"> </span><span class="nt">but</span><span class="w"> </span><span class="nt">can</span><span class="w"> </span><span class="nt">be</span><span class="w"> </span><span class="nt">overridden</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">specific</span><span class="w"> </span><span class="nt">scopes</span><span class="w"> </span><span class="nt">or</span><span class="w"> </span><span class="nt">components</span><span class="o">.</span>
+
+<span class="err">##</span><span class="w"> </span><span class="nt">Practical</span><span class="w"> </span><span class="nt">Usage</span>
+
+<span class="err">###</span><span class="w"> </span><span class="nt">Where</span><span class="w"> </span><span class="nt">It</span><span class="w"> </span><span class="nt">Shines</span>
+
+<span class="nt">-</span><span class="w"> </span><span class="o">**</span><span class="nt">Dynamic</span><span class="w"> </span><span class="nt">theming</span><span class="o">:**</span><span class="w"> </span><span class="nt">dark</span><span class="o">/</span><span class="nt">light</span><span class="w"> </span><span class="nt">mode</span><span class="o">,</span><span class="w"> </span><span class="nt">high-contrast</span><span class="w"> </span><span class="nt">themes</span><span class="o">,</span><span class="w"> </span><span class="nt">seasonal</span><span class="w"> </span><span class="nt">designs</span><span class="o">.</span><span class="w">   </span>
+<span class="nt">-</span><span class="w"> </span><span class="o">**</span><span class="nt">Design</span><span class="w"> </span><span class="nt">consistency</span><span class="o">:**</span><span class="w"> </span><span class="nt">same</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="nt">or</span><span class="w"> </span><span class="nt">spacing</span><span class="w"> </span><span class="nt">reused</span><span class="w"> </span><span class="nt">across</span><span class="w"> </span><span class="nt">multiple</span><span class="w"> </span><span class="nt">components</span><span class="o">.</span>
+<span class="nt">-</span><span class="w"> </span><span class="o">**</span><span class="nt">Runtime</span><span class="w"> </span><span class="nt">manipulation</span><span class="o">:**</span><span class="w"> </span><span class="nt">interactive</span><span class="w"> </span><span class="nt">UIs</span><span class="w"> </span><span class="nt">where</span><span class="w"> </span><span class="nt">JS</span><span class="w"> </span><span class="nt">can</span><span class="w"> </span><span class="nt">tweak</span><span class="w"> </span><span class="nt">design</span><span class="w"> </span><span class="nt">parameters</span><span class="w"> </span><span class="nt">instantly</span><span class="o">.</span>
+<span class="nt">-</span><span class="w"> </span><span class="o">**</span><span class="nt">Design</span><span class="w"> </span><span class="nt">systems</span><span class="o">:**</span><span class="w"> </span><span class="nt">variables</span><span class="w"> </span><span class="nt">act</span><span class="w"> </span><span class="nt">as</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">shared</span><span class="w"> </span><span class="nt">language</span><span class="w"> </span><span class="nt">between</span><span class="w"> </span><span class="nt">designers</span><span class="w"> </span><span class="nt">and</span><span class="w"> </span><span class="nt">developers</span><span class="o">.</span>
+
+<span class="err">###</span><span class="w"> </span><span class="nt">When</span><span class="w"> </span><span class="nt">Not</span><span class="w"> </span><span class="nt">to</span><span class="w"> </span><span class="nt">Use</span><span class="w"> </span><span class="nt">It</span>
+
+<span class="nt">-</span><span class="w"> </span><span class="o">**</span><span class="nt">Heavy</span><span class="w"> </span><span class="nt">preprocessing</span><span class="w"> </span><span class="nt">needs</span><span class="o">:**</span><span class="w"> </span><span class="nt">if</span><span class="w"> </span><span class="nt">you</span><span class="w"> </span><span class="nt">rely</span><span class="w"> </span><span class="nt">on</span><span class="w"> </span><span class="nt">loops</span><span class="o">,</span><span class="w"> </span><span class="nt">conditionals</span><span class="o">,</span><span class="w"> </span><span class="nt">or</span><span class="w"> </span><span class="nt">functions</span><span class="w"> </span><span class="nt">like</span><span class="w"> </span><span class="err">`</span><span class="nt">darken</span><span class="o">()</span><span class="err">`—</span><span class="nt">Sass</span><span class="w"> </span><span class="nt">still</span><span class="w"> </span><span class="nt">wins</span><span class="w"> </span><span class="nt">there</span><span class="o">.</span>
+
+<span class="nt">-</span><span class="w"> </span><span class="o">**</span><span class="nt">Older</span><span class="w"> </span><span class="nt">browser</span><span class="w"> </span><span class="nt">support</span><span class="o">:**</span><span class="w"> </span><span class="nt">IE11</span><span class="w"> </span><span class="nt">doesn</span><span class="err">’</span><span class="nt">t</span><span class="w"> </span><span class="nt">support</span><span class="w"> </span><span class="nt">CSS</span><span class="w"> </span><span class="nt">variables</span><span class="w"> </span><span class="o">(</span><span class="nt">and</span><span class="w"> </span><span class="nt">never</span><span class="w"> </span><span class="nt">will</span><span class="o">).</span>
+
+<span class="err">###</span><span class="w"> </span><span class="nt">Example</span><span class="o">:</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="nt">picker</span><span class="w"> </span><span class="nt">that</span><span class="w"> </span><span class="nt">changes</span><span class="w"> </span><span class="nt">page</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="nt">live</span>
+
+<span class="nt">An</span><span class="w"> </span><span class="nt">example</span><span class="w"> </span><span class="nt">of</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">simple</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="nt">picker</span><span class="w"> </span><span class="nt">that</span><span class="w"> </span><span class="nt">changes</span><span class="w"> </span><span class="nt">page</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="nt">live</span><span class="o">:</span>
+<span class="err">```</span><span class="nt">js</span>
+<span class="o">&lt;</span><span class="nt">input</span><span class="w"> </span><span class="nt">type</span><span class="o">=</span><span class="s2">&quot;color&quot;</span><span class="w"> </span><span class="nt">id</span><span class="o">=</span><span class="s2">&quot;picker&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">script</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="nt">const</span><span class="w"> </span><span class="nt">picker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">document</span><span class="p">.</span><span class="nc">getElementById</span><span class="o">(</span><span class="s1">&#39;picker&#39;</span><span class="o">);</span>
+<span class="w">  </span><span class="nt">picker</span><span class="p">.</span><span class="nc">addEventListener</span><span class="o">(</span><span class="s1">&#39;input&#39;</span><span class="o">,</span><span class="w"> </span><span class="nt">e</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">document.documentElement.style.setProperty(&#39;--main-bg&#39;,</span><span class="w"> </span><span class="err">e.target.value)</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="o">);</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+</code></pre></div>
+
+<h3>Example: Theming</h3>
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--bg</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text</span><span class="p">:</span><span class="w"> </span><span class="mh">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">dark</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--bg</span><span class="p">:</span><span class="w"> </span><span class="mh">#121212</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Switch themes easily:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">&#39;dark&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<h3>Fallbacks and Responsiveness</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--title-color</span><span class="p">,</span><span class="w"> </span><span class="mh">#444</span><span class="p">);</span><span class="w"> </span><span class="c">/* fallback if missing */</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">800px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">--gap</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Things to Watch Out For</h2>
+<ul>
+<li><strong>Scoped variables</strong> don’t leak outside their selector</li>
+<li><strong>IE11</strong> doesn’t support them</li>
+<li>Changing variables with JS triggers <strong>repaints</strong>, so avoid in animations</li>
+</ul>
+<p>CSS variables behave like live, inheritable properties—perfect for theming and dynamic UI tweaks without recompiling styles.</p></div>
+        <div class="tag-cloud">
+            <p>
+                    <br />
+                    <br />
+                    Tags:&nbsp;
+<a href="https://www.safjan.com/tag/css/">css</a><a href="https://www.safjan.com/tag/web-development/">web-development</a><a href="https://www.safjan.com/tag/front-end/">front-end</a>            </p>
+        </div>
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li>
+                            <a href="https://www.safjan.com/create-theme-for-pelican-blog-tutorial/">Tutorial on How to Create New Theme for Pelican Static Site Generator</a>
+                        </li>
+                </ul>
+            </div>
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
