@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan" />
+    <meta name="description" content="The Mental Model: What Is the Language Server Protocol The Language Server Protocol (LSP) is one of those invisible technologies that quietly revolutionized the developer experience. It defines a standard way for code editors (clients) to communicate with language-specific analysis engines (servers …" />
+    <meta name="keywords" content="language-server-protocol, vscode, lsp, developer-tools, editors, programming">
+    <meta expr:content="2025-10-16 00:00:00+02:00" itemprop='datePublished' />
+    <meta expr:content="2025-10-16 00:00:00+02:00" itemprop='dateModified' />
+    <meta property="article:modified_time" content="2025-10-16 00:00:00+02:00" />
+    <meta property="article:published_time" content="2025-10-16 00:00:00+02:00" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding the Language Server Protocol through a Minimal Working Example",
+  "datePublished": "2025-10-16 00:00:00+02:00",
+  "dateModified": "2025-10-16 00:00:00+02:00"
+}
+    </script>
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Understanding the Language Server Protocol through a Minimal Working Example"/>
+  <meta property="og:description" content="The Mental Model: What Is the Language Server Protocol The Language Server Protocol (LSP) is one of those invisible technologies that quietly revolutionized the developer experience. It defines a standard way for code editors (clients) to communicate with language-specific analysis engines (servers …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/language-server-protocol-minimal-example/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-10-16 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2025-10-16 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="language-server-protocol"/>
+  <meta property="article:tag" content="vscode"/>
+  <meta property="article:tag" content="lsp"/>
+  <meta property="article:tag" content="developer-tools"/>
+  <meta property="article:tag" content="editors"/>
+  <meta property="article:tag" content="programming"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="The Mental Model: What Is the Language Server Protocol The Language Server Protocol (LSP) is one of those invisible technologies that quietly revolutionized the developer experience. It..."/>
+    <meta name="twitter:title" content="Understanding the Language Server Protocol through a Minimal Working Example"/>
+
+    <title>Understanding the Language Server Protocol through a Minimal Working Example</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-10-16 
+                    <span id="post-share-links">
+                        &nbsp;&nbsp;&nbsp;Share on:
+                        <a href="https://twitter.com/intent/tweet?text=Understanding%20the%20Language%20Server%20Protocol%20through%20a%20Minimal%20Working%20Example&url=https%3A//www.safjan.com/language-server-protocol-minimal-example/&via=izikeros&hashtags=language-server-protocol,vscode,lsp,developer-tools,editors,programming"
+                           target="_blank"
+                           title="Share on Twitter">Twitter</a>
+                        |
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/language-server-protocol-minimal-example/"
+                           target="_blank"
+                           title="Share on Facebook">Facebook</a>
+                        |
+                        <a href="https://news.ycombinator.com/submitlink?t=Understanding%20the%20Language%20Server%20Protocol%20through%20a%20Minimal%20Working%20Example&u=https%3A//www.safjan.com/language-server-protocol-minimal-example/"
+                           target="_blank"
+                           title="Share on HackerNews">HackerNews</a>
+                        |
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/language-server-protocol-minimal-example/&title=Understanding%20the%20Language%20Server%20Protocol%20through%20a%20Minimal%20Working%20Example"
+                           target="_blank"
+                           title="Share via Reddit">Reddit</a>
+                    </span>
+                <br />
+            </p>
+            <h1 id="language-server-protocol-minimal-example">Understanding the Language Server Protocol through a Minimal Working Example</h1>
+            <div class="header-underline"></div>
+        </header>
+        <div><h2>The Mental Model: What Is the Language Server Protocol</h2>
+<p>The <strong>Language Server Protocol (LSP)</strong> is one of those invisible technologies that quietly revolutionized the developer experience. It defines a <strong>standard way for code editors (clients)</strong> to communicate with <strong>language-specific analysis engines (servers)</strong>.  </p>
+<p>Before LSP, every editor (VS Code, Vim, Sublime, Atom, etc.) had to build their own support for each programming language. That meant dozens of editors and dozens of languages — an explosion of duplicated work.  </p>
+<p>LSP fixed that by saying: “Let’s agree on how editors talk to language tools.”  </p>
+<p>Now, editors can speak a <strong>common protocol</strong> over JSON-RPC (a lightweight request-response format over stdin/stdout). A single server can work with many editors.</p>
+<p>You can think of it like this:</p>
+<pre class="mermaid">
+graph TD
+    A[VS Code Editor] -->|JSON-RPC: initialize, textDocument/didOpen| B[Language Server]
+    B -->|diagnostics, hover info, completions| A
+</pre>
+
+<p>In short:</p>
+<ul>
+<li>
+<p>The <strong>editor</strong> (client) sends notifications and requests: <em>“File opened”, “User typed this”, “What symbols are here?”</em></p>
+</li>
+<li>
+<p>The <strong>server</strong> responds with diagnostics, completions, definitions, etc.</p>
+</li>
+</ul>
+<p>Once you get this model, the magic of modern editor intelligence starts to feel less mysterious.</p>
+<h2>How It Works: Building a Minimal Language Server</h2>
+<p>Let’s make a minimal working example. You’ll build a simple server in Python that recognizes <code>.foo</code> files and warns you if they contain the word “bad”.</p>
+<h3>1. Project structure</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">minimal</span><span class="o">-</span><span class="nx">lsp</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">server</span><span class="p">.</span><span class="nx">py</span>
+<span class="err">├──</span><span class="w"> </span><span class="kn">package</span><span class="p">.</span><span class="nx">json</span>
+<span class="err">├──</span><span class="w"> </span><span class="nx">client</span><span class="o">/</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="nx">extension</span><span class="p">.</span><span class="nx">js</span>
+</code></pre></div>
+
+<p>We’ll create a <strong>Python LSP server</strong> and a <strong>VS Code extension</strong> to connect to it.</p>
+<h3>2. Install required tools</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pygls
+</code></pre></div>
+
+<p><a href="https://github.com/openlawlibrary/pygls"><code>pygls</code></a> is a Python library that helps you implement language servers that follow the protocol.</p>
+<h3>3. Write the server</h3>
+<p><code>server.py</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pygls.server</span> <span class="kn">import</span> <span class="n">LanguageServer</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Diagnostic</span><span class="p">,</span> <span class="n">DiagnosticSeverity</span><span class="p">,</span> <span class="n">Position</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">PublishDiagnosticsParams</span><span class="p">)</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">LanguageServer</span><span class="p">(</span><span class="s2">&quot;minimal-server&quot;</span><span class="p">,</span> <span class="s2">&quot;v0.1&quot;</span><span class="p">)</span>
+
+<span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;textDocument/didOpen&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">did_open</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">LanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check file content when it&#39;s opened.&quot;&quot;&quot;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span><span class="o">.</span><span class="n">source</span>
+    <span class="n">diagnostics</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Very simple rule: warn if file contains &#39;bad&#39;</span>
+    <span class="k">if</span> <span class="s2">&quot;bad&quot;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;bad&quot;</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">3</span>
+        <span class="n">diagnostics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Diagnostic</span><span class="p">(</span>
+                <span class="nb">range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">start</span><span class="p">),</span>
+                    <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">end</span><span class="p">),</span>
+                <span class="p">),</span>
+                <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Found forbidden word &#39;bad&#39;&quot;</span><span class="p">,</span>
+                <span class="n">severity</span><span class="o">=</span><span class="n">DiagnosticSeverity</span><span class="o">.</span><span class="n">Warning</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">ls</span><span class="o">.</span><span class="n">publish_diagnostics</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">,</span> <span class="n">diagnostics</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">start_io</span><span class="p">()</span>  <span class="c1"># communicate via stdin/stdout</span>
+</code></pre></div>
+
+<p>This is a <strong>complete LSP server</strong> that listens to file open events and sends warnings back to the editor.</p>
+<h2>Integrating It with VS Code</h2>
+<p>To connect VS Code with the Python server, we’ll write a minimal client extension.</p>
+<p><code>client/extension.js</code></p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">workspace</span><span class="p">,</span><span class="w"> </span><span class="nb">window</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;vscode&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">LanguageClient</span><span class="p">,</span><span class="w"> </span><span class="nx">TransportKind</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;vscode-languageclient/node&quot;</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">client</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">activate</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">serverModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">asAbsolutePath</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;server.py&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">serverOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">command</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">serverModule</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">cwd</span><span class="o">:</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">extensionPath</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">clientOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">documentSelector</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">scheme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">language</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">LanguageClient</span><span class="p">(</span>
+<span class="w">    </span><span class="s2">&quot;minimalServer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Minimal Python LSP Server&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">serverOptions</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">clientOptions</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">client</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">deactivate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">client</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">activate</span><span class="p">,</span><span class="w"> </span><span class="nx">deactivate</span><span class="w"> </span><span class="p">};</span>
+</code></pre></div>
+
+<p><code>package.json</code></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;foo-lsp-client&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Foo Language Support&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;activationEvents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;onLanguage:foo&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./client/extension.js&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;contributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;.foo&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;aliases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Foo&quot;</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;vscode-languageclient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^8.0.0&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Run the extension using <strong>VS Code’s “Run Extension”</strong> command (F5 in a development window).<br>
+Open a <code>.foo</code> file and type:</p>
+<div class="highlight"><pre><span></span><code>this is bad
+</code></pre></div>
+
+<p>You’ll immediately see a yellow squiggly warning appear. That’s your LSP server talking!</p>
+<h2>Practical Scenarios: When and Why to Build Your Own LSP</h2>
+<p>You’d build or extend your own LSP when:</p>
+<ul>
+<li>You’re developing a <strong>new language</strong>, DSL, or config format.</li>
+<li>You want <strong>custom analysis or linting</strong> in VS Code or other editors.</li>
+<li>You need <strong>language intelligence in a company-specific language</strong> (for example, internal workflow scripts or YAML schemas).</li>
+<li>You want to unify features across editors (VS Code, Neovim, JetBrains) using the same logic.</li>
+</ul>
+<p>But you <strong>shouldn’t</strong> build an LSP server when your needs are simple syntax highlighting — use a TextMate grammar or tree-sitter grammar instead.<br>
+LSP is powerful but introduces complexity, especially around synchronization and state handling.</p>
+<h2>Final Thoughts</h2>
+<p>LSP sits at the intersection of editor UX and language tooling. It’s not glamorous, but it’s foundational.</p>
+<p>If you’re building developer tools, understanding how to speak this protocol is worth the effort. You can start small — like we did here — and gradually add capabilities such as completions, hover info, or go-to-definition.</p>
+<p>At its best, an LSP server is an invisible companion: it listens quietly, responds precisely, and makes the editor feel alive.</p>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+</script></div>
+        <div class="tag-cloud">
+            <p>
+                    <br />
+                    <br />
+                    Tags:&nbsp;
+<a href="https://www.safjan.com/tag/language-server-protocol/">language-server-protocol</a><a href="https://www.safjan.com/tag/vscode/">vscode</a><a href="https://www.safjan.com/tag/lsp/">lsp</a><a href="https://www.safjan.com/tag/developer-tools/">developer-tools</a><a href="https://www.safjan.com/tag/editors/">editors</a><a href="https://www.safjan.com/tag/programming/">programming</a>            </p>
+        </div>
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li>
+                            <a href="https://www.safjan.com/vscode-as-nim-ide/">Setup VS Code as NIM IDE</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/managing-vs-code-keyboard-shortcuts-a-complete-guide/">Guide to Managing VS Code Keyboard Shortcuts</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/vscode-problem-import-could-not-be-resolved-from-the-source-pylance/">VSCode problem - import could not be resolved from the source (Pylance)</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/add-vscode-to-path/">Add VSCode to PATH</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/best-alternatives-to-jupyter-notebooks/">Best Alternatives to Jupyter Notebooks</a>
+                        </li>
+                </ul>
+            </div>
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>

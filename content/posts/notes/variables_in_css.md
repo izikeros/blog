@@ -4,7 +4,10 @@ Slug: css-variables-dynamic-reusable-styling
 Date: 2025-10-14  
 Modified: 2025-10-14  
 Status: published  
-Tags: css, web-development, front-end  
+tags: 
+ - css
+ - web-development
+ - front-end
 Category: note  
 ---
 

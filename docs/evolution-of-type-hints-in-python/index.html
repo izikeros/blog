@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan" />
+    <meta name="description" content="The Mental Model Python typing wasn’t born overnight. It crept into the language slowly, first as a loose suggestion and later as a core part of modern codebases. Originally, you could only hint types using comments (# type: int), but as Python …" />
+    <meta name="keywords" content="python, typing, pep484, static-typing, mypy">
+    <meta expr:content="2025-10-24 00:00:00+02:00" itemprop='datePublished' />
+    <meta expr:content="2025-10-24 00:00:00+02:00" itemprop='dateModified' />
+    <meta property="article:modified_time" content="2025-10-24 00:00:00+02:00" />
+    <meta property="article:published_time" content="2025-10-24 00:00:00+02:00" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond",
+  "datePublished": "2025-10-24 00:00:00+02:00",
+  "dateModified": "2025-10-24 00:00:00+02:00"
+}
+    </script>
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond"/>
+  <meta property="og:description" content="The Mental Model Python typing wasn’t born overnight. It crept into the language slowly, first as a loose suggestion and later as a core part of modern codebases. Originally, you could only hint types using comments (# type: int), but as Python …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/evolution-of-type-hints-in-python/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-10-24 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2025-10-24 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="typing"/>
+  <meta property="article:tag" content="pep484"/>
+  <meta property="article:tag" content="static-typing"/>
+  <meta property="article:tag" content="mypy"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="The Mental Model Python typing wasn’t born overnight. It crept into the language slowly, first as a loose suggestion and later as a core part of modern codebases. Originally, you could only..."/>
+    <meta name="twitter:title" content="Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond"/>
+
+    <title>Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-10-24 
+                    <span id="post-share-links">
+                        &nbsp;&nbsp;&nbsp;Share on:
+                        <a href="https://twitter.com/intent/tweet?text=Evolution%20of%20Type%20Hints%20in%20Python%20%E2%80%94%20From%20Comments%20to%20Inline%20Typing%20and%20Beyond&url=https%3A//www.safjan.com/evolution-of-type-hints-in-python/&via=izikeros&hashtags=python,typing,pep484,static-typing,mypy"
+                           target="_blank"
+                           title="Share on Twitter">Twitter</a>
+                        |
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/evolution-of-type-hints-in-python/"
+                           target="_blank"
+                           title="Share on Facebook">Facebook</a>
+                        |
+                        <a href="https://news.ycombinator.com/submitlink?t=Evolution%20of%20Type%20Hints%20in%20Python%20%E2%80%94%20From%20Comments%20to%20Inline%20Typing%20and%20Beyond&u=https%3A//www.safjan.com/evolution-of-type-hints-in-python/"
+                           target="_blank"
+                           title="Share on HackerNews">HackerNews</a>
+                        |
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/evolution-of-type-hints-in-python/&title=Evolution%20of%20Type%20Hints%20in%20Python%20%E2%80%94%20From%20Comments%20to%20Inline%20Typing%20and%20Beyond"
+                           target="_blank"
+                           title="Share via Reddit">Reddit</a>
+                    </span>
+                <br />
+            </p>
+            <h1 id="evolution-of-type-hints-in-python">Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond</h1>
+            <div class="header-underline"></div>
+        </header>
+        <div><h2>The Mental Model</h2>
+<p>Python typing wasn’t born overnight. It crept into the language slowly, first as a loose suggestion and later as a core part of modern codebases.<br>
+Originally, you could only hint types using comments (<code># type: int</code>), but as Python matured, its typing syntax grew more expressive, more compact, and more powerful.</p>
+<p>The journey started with <strong>PEP 484</strong> in <strong>Python 3.5</strong>, introducing the <code>typing</code> module and annotations as first-class citizens. Since then, nearly every minor version brought a refinement or simplification, allowing developers to express richer constraints without resorting to verbose generics.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Python 3.5 (PEP 484)</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">def</span> <span class="nf">greet_all</span><span class="p">(</span><span class="n">names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+<span class="err">````</span>
+
+<span class="n">This</span> <span class="n">basic</span> <span class="n">form</span> <span class="n">of</span> <span class="n">static</span> <span class="n">typing</span> <span class="n">opened</span> <span class="n">the</span> <span class="n">door</span> <span class="k">for</span> <span class="n">tools</span> <span class="n">like</span> <span class="o">**</span><span class="n">mypy</span><span class="o">**</span><span class="p">,</span> <span class="o">**</span><span class="n">pyright</span><span class="o">**</span><span class="p">,</span> <span class="o">**</span><span class="n">pylance</span><span class="o">**</span> <span class="ow">and</span> <span class="n">most</span> <span class="n">recently</span> <span class="o">**</span><span class="n">ty</span><span class="o">**</span><span class="p">,</span> <span class="o">**</span><span class="n">pyrefly</span><span class="o">**</span> <span class="n">to</span> <span class="n">provide</span> <span class="n">editor</span><span class="o">-</span><span class="n">level</span> <span class="n">correctness</span> <span class="n">checks</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="n">basic</span> <span class="n">form</span> <span class="n">of</span> <span class="n">static</span> <span class="n">typing</span> <span class="n">opened</span> <span class="n">the</span> <span class="n">door</span> <span class="k">for</span> <span class="n">tools</span> <span class="n">like</span> <span class="p">[</span><span class="o">**</span><span class="n">mypy</span><span class="o">**</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mypy</span><span class="o">-</span><span class="n">lang</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="p">),</span> <span class="p">[</span><span class="o">**</span><span class="n">pyright</span><span class="o">**</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">microsoft</span><span class="o">/</span><span class="n">pyright</span><span class="p">),</span> <span class="p">[</span><span class="o">**</span><span class="n">pylance</span><span class="o">**</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">marketplace</span><span class="o">.</span><span class="n">visualstudio</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">items</span><span class="err">?</span><span class="n">itemName</span><span class="o">=</span><span class="n">ms</span><span class="o">-</span><span class="n">python</span><span class="o">.</span><span class="n">vscode</span><span class="o">-</span><span class="n">pylance</span><span class="p">),</span> <span class="ow">and</span> <span class="n">most</span> <span class="n">recently</span> <span class="p">[</span><span class="o">**</span><span class="n">ty</span><span class="o">**</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span><span class="n">astral</span><span class="o">.</span><span class="n">sh</span><span class="o">/</span><span class="n">ty</span><span class="o">/</span><span class="p">),</span> <span class="p">[</span><span class="o">**</span><span class="n">pyrefly</span><span class="o">**</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pyrefly</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="p">)</span> <span class="n">to</span> <span class="n">provide</span> <span class="n">editor</span><span class="o">-</span><span class="n">level</span> <span class="n">correctness</span> <span class="n">checks</span><span class="o">.</span>
+
+<span class="c1">## Key Features Through Versions</span>
+
+<span class="c1">### Python 3.5 (PEP 484) — The Birth of Typing</span>
+
+<span class="n">Introduced</span> <span class="n">the</span> <span class="err">`</span><span class="n">typing</span><span class="err">`</span> <span class="n">module</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="err">`</span><span class="n">List</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="n">Dict</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="n">Tuple</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="n">Optional</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="n">Union</span><span class="err">`</span>
+<span class="o">-</span> <span class="err">`</span><span class="n">Callable</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="n">Any</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="n">TypeVar</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="n">Generic</span><span class="err">`</span>
+<span class="o">-</span> <span class="n">Function</span> <span class="n">annotations</span> <span class="n">became</span> <span class="n">official</span><span class="o">.</span>
+
+<span class="c1">### Python 3.6 — Variable Annotations</span>
+
+<span class="n">You</span> <span class="n">could</span> <span class="k">finally</span> <span class="nb">type</span> <span class="n">variables</span> <span class="n">directly</span> <span class="n">without</span> <span class="n">using</span> <span class="n">comments</span><span class="p">:</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">scores</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>  <span class="c1"># still needed `List[int]` before 3.9</span>
+</code></pre></div>
+
+<p>Also introduced <code>typing.NamedTuple</code> and <code>typing.NewType</code>.</p>
+<h3>Python 3.7 — Postponed Evaluation (PEP 563)</h3>
+<p>Type hints were treated as <strong>strings</strong> by default (via <code>from __future__ import annotations</code>), delaying their evaluation until runtime.<br>
+This solved circular import issues and reduced overhead in function definitions.</p>
+<h3>Python 3.8 — TypedDict and Literal Types</h3>
+<p>Added:</p>
+<ul>
+<li><code>TypedDict</code> for describing dicts with specific key/value types.</li>
+<li><code>Final</code> and <code>Literal</code> for immutability and constant values.</li>
+<li><code>Protocol</code> (PEP 544) for structural subtyping.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Literal</span>
+
+<span class="k">class</span> <span class="nc">Movie</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">year</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="k">def</span> <span class="nf">rate_movie</span><span class="p">(</span><span class="n">rating</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;good&quot;</span><span class="p">,</span> <span class="s2">&quot;bad&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<h3>Python 3.9 — Built-in Generics (PEP 585)</h3>
+<p>This was a huge quality-of-life upgrade:<br>
+<code>list[int]</code> replaced <code>List[int]</code>, <code>dict[str, int]</code> replaced <code>Dict[str, int]</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Before</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="n">users</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+
+<span class="c1"># After</span>
+<span class="n">users</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+</code></pre></div>
+
+<h3>Python 3.10 — Union Operator (PEP 604)</h3>
+<p>Simplified <code>Union</code> syntax using the <code>|</code> operator.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Before</span>
+<span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="c1"># After</span>
+<span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</code></pre></div>
+
+<p>Also improved type narrowing in <code>match</code> statements (structural pattern matching).</p>
+<h3>Python 3.11 — Self Type, Variadic Generics, TypedDict Enhancements</h3>
+<ul>
+<li><code>Self</code> for methods returning their own type (PEP 673).</li>
+<li><code>TypeVarTuple</code> and <code>Unpack</code> for variadic generics (PEP 646).</li>
+<li><code>NotRequired</code> and <code>Required</code> for <code>TypedDict</code> fields.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Self</span>
+
+<span class="k">class</span> <span class="nc">Shape</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">set_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</code></pre></div>
+
+<h3>Python 3.12 — The <code>typing</code> Cleanup</h3>
+<p>Deprecated old-style generics (<code>List</code>, <code>Dict</code>, etc.).<br>
+Introduced <code>TypeAliasType</code> (PEP 695) and made <code>type</code> annotations simpler:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">type</span> <span class="n">Vector</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>  <span class="c1"># clean, explicit alias</span>
+</code></pre></div>
+
+<h3>Python 3.13 — No More <code>from __future__ import annotations</code></h3>
+<p>Postponed evaluation of annotations is now <strong>default</strong>, removing one of the last confusing steps in typing setup.</p>
+<h2>Useful Patterns</h2>
+<h3>Simplified Union Types</h3>
+<p>Readable and concise unions are now idiomatic:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
+</code></pre></div>
+
+<h3>Structural Subtyping with Protocols</h3>
+<p>Protocol-based typing (instead of inheritance) allows flexible contracts:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="k">class</span> <span class="nc">SupportsClose</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">SupportsClose</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<h3>TypedDict for JSON-like Data</h3>
+<p>Great for static checking of structured but dict-based data:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">host</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">port</span><span class="p">:</span> <span class="nb">int</span>
+</code></pre></div>
+
+<h3>Self Type for Fluent Interfaces</h3>
+<p>Commonly used in builder-style classes:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Query</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">where</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="o">...</span>
+</code></pre></div>
+
+<h3>A Quick Summary of Typing Evolution</h3>
+<pre class="mermaid">
+graph LR
+A[3.5: typing module (PEP 484)] --> B[3.6: variable annotations]
+B --> C[3.7: postponed evaluation]
+C --> D[3.8: TypedDict, Literal, Protocol]
+D --> E[3.9: built-in generics]
+E --> F[3.10: union | operator]
+F --> G[3.11: Self, variadic generics]
+G --> H[3.12: TypeAliasType, PEP 695]
+H --> I[3.13: annotations postponed by default]
+</pre>
+
+<p>Typing has moved from verbose and experimental to elegant and essential.<br>
+Modern Python encourages typing as part of its design philosophy — readable, predictable, and expressive.</p>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+</script></div>
+        <div class="tag-cloud">
+            <p>
+                    <br />
+                    <br />
+                    Tags:&nbsp;
+<a href="https://www.safjan.com/tag/python/">python</a><a href="https://www.safjan.com/tag/typing/">typing</a><a href="https://www.safjan.com/tag/pep484/">pep484</a><a href="https://www.safjan.com/tag/static-typing/">static-typing</a><a href="https://www.safjan.com/tag/mypy/">mypy</a>            </p>
+        </div>
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li>
+                            <a href="https://www.safjan.com/the-importance-of-adding-py-typed-file-to-your-typed-package/">The Importance of Adding a `py.typed` File to Your Typed Package</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/type-hint-for-undetermined-number-of-elements/">Python - How to Make Type Hint for the Tuple With Undetermined Number of Strings?</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/type-hints-elypsis-for-arbitrary-number-of-elements/">How to Use Elypsis in Type Hints to Indicate Arbitrary Number of Elements</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/use-python-typeddict-to-type-hint-dictionaries/">Use Python TypedDict to Type Hint Dictionaries</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/disable-checks-for-flake8-mypy-bandit-and-black/">Disable checks for flake8, mypy, bandit and black</a>
+                        </li>
+                </ul>
+            </div>
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
