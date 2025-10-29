@@ -1,5 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2025-10-24T00:00:00+02:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond</title><link href="https://www.safjan.com/evolution-of-type-hints-in-python/" rel="alternate"/><published>2025-10-24T00:00:00+02:00</published><updated>2025-10-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-24:/evolution-of-type-hints-in-python/</id><summary type="html">&lt;h2&gt;The Mental Model&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2025-10-29T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Understanding Python Protocols - Structural Subtyping in Practice</title><link href="https://www.safjan.com/python-protocols-structural-subtyping/" rel="alternate"/><published>2025-10-29T00:00:00+01:00</published><updated>2025-10-29T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-29:/python-protocols-structural-subtyping/</id><summary type="html">&lt;h2&gt;The Basic Idea&lt;/h2&gt;
+&lt;p&gt;Introduced in &lt;strong&gt;Python 3.8&lt;/strong&gt; via &lt;strong&gt;&lt;a href="https://peps.python.org/pep-0544/"&gt;PEP 544&lt;/a&gt;&lt;/strong&gt;, &lt;em&gt;Protocols&lt;/em&gt; extend Python’s static typing system by allowing &lt;strong&gt;structural subtyping&lt;/strong&gt; — also called &lt;em&gt;static duck typing&lt;/em&gt;.&lt;br&gt;
+It means that instead of checking &lt;em&gt;what a class inherits from&lt;/em&gt;, Python type checkers can …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;The Basic Idea&lt;/h2&gt;
+&lt;p&gt;Introduced in &lt;strong&gt;Python 3.8&lt;/strong&gt; via &lt;strong&gt;&lt;a href="https://peps.python.org/pep-0544/"&gt;PEP 544&lt;/a&gt;&lt;/strong&gt;, &lt;em&gt;Protocols&lt;/em&gt; extend Python’s static typing system by allowing &lt;strong&gt;structural subtyping&lt;/strong&gt; — also called &lt;em&gt;static duck typing&lt;/em&gt;.&lt;br&gt;
+It means that instead of checking &lt;em&gt;what a class inherits from&lt;/em&gt;, Python type checkers can verify &lt;em&gt;what methods and attributes&lt;/em&gt; it provides.&lt;/p&gt;
+&lt;p&gt;Let’s unpack this idea with a simple example.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Protocol&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define a protocol describing the &amp;quot;shape&amp;quot; of a writer&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Writer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Protocol&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Any class implementing &amp;#39;write&amp;#39; will satisfy this protocol&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FileWriter&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Writing to file: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ConsoleLogger&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;LOG: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;log_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Writer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;log_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ConsoleLogger&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# OK&lt;/span&gt;
+&lt;span class="n"&gt;log_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FileWriter&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;     &lt;span class="c1"&gt;# OK&lt;/span&gt;
+&lt;span class="err"&gt;````&lt;/span&gt;
+
+&lt;span class="n"&gt;Neither&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;FileWriter&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="n"&gt;nor&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ConsoleLogger&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="n"&gt;inherit&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;Writer&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="n"&gt;But&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt; &lt;span class="n"&gt;_structurally&lt;/span&gt; &lt;span class="n"&gt;match_&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="err"&gt;—&lt;/span&gt; &lt;span class="n"&gt;they&lt;/span&gt; &lt;span class="n"&gt;have&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;same&lt;/span&gt; &lt;span class="n"&gt;signature&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;essence&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;protocols&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;quacks&lt;/span&gt; &lt;span class="n"&gt;like&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;duck&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt; &lt;span class="n"&gt;checkers&lt;/span&gt; &lt;span class="n"&gt;treat&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;duck&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;
+
+&lt;span class="c1"&gt;## Useful Patterns&lt;/span&gt;
+
+&lt;span class="n"&gt;Protocols&lt;/span&gt; &lt;span class="n"&gt;aren&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;just&lt;/span&gt; &lt;span class="n"&gt;about&lt;/span&gt; &lt;span class="n"&gt;pretending&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;interface&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;They&lt;/span&gt; &lt;span class="n"&gt;unlock&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;expressive&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;static&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt; &lt;span class="n"&gt;hints&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="n"&gt;keep&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="n"&gt;decoupled&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Let&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;explore&lt;/span&gt; &lt;span class="n"&gt;some&lt;/span&gt; &lt;span class="n"&gt;common&lt;/span&gt; &lt;span class="n"&gt;variations&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="c1"&gt;### Read-only Attributes&lt;/span&gt;
+
+&lt;span class="n"&gt;You&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;describe&lt;/span&gt; &lt;span class="n"&gt;expected&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt; &lt;span class="n"&gt;directly&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;protocol&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;HasName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Protocol&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;greet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entity&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;HasName&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello, &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;entity&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;User&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+
+&lt;span class="n"&gt;greet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c1"&gt;# OK&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here, any object with a &lt;code&gt;name&lt;/code&gt; attribute of type &lt;code&gt;str&lt;/code&gt; will pass the type check.&lt;/p&gt;
+&lt;h3&gt;Optional and Partial Protocols&lt;/h3&gt;
+&lt;p&gt;Sometimes you don’t need to specify all possible methods — only those relevant to your function.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SupportsClose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Protocol&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;safe_close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resource&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SupportsClose&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;resource&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This works beautifully with many built-in classes (&lt;code&gt;io.TextIOWrapper&lt;/code&gt;, sockets, etc.).&lt;/p&gt;
+&lt;h3&gt;Runtime Checkable Protocols&lt;/h3&gt;
+&lt;p&gt;By default, &lt;code&gt;isinstance()&lt;/code&gt; and &lt;code&gt;issubclass()&lt;/code&gt; don’t work with protocols.&lt;br&gt;
+You can enable that explicitly using &lt;code&gt;@runtime_checkable&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;runtime_checkable&lt;/span&gt;
+
+&lt;span class="nd"&gt;@runtime_checkable&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Runnable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Protocol&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Worker&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Working...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Worker&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;Runnable&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c1"&gt;# True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Be cautious, though — runtime checking only verifies that a class &lt;em&gt;explicitly&lt;/em&gt; implements the methods (not dynamically added ones).&lt;/p&gt;
+&lt;h2&gt;Where It Shines&lt;/h2&gt;
+&lt;p&gt;Protocols shine in situations where &lt;strong&gt;you want flexibility without inheritance&lt;/strong&gt; — particularly in large systems or when using third-party libraries.&lt;/p&gt;
+&lt;h3&gt;When to Use&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;When you want to specify &lt;em&gt;expected behavior&lt;/em&gt; without forcing inheritance.&lt;/li&gt;
+&lt;li&gt;When integrating code from multiple libraries that weren’t designed to work together.&lt;/li&gt;
+&lt;li&gt;When designing APIs that rely on capabilities (“things that can write”, “things that can close”, etc.) rather than hierarchies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;When Not to Use&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;When you actually need &lt;strong&gt;shared implementation&lt;/strong&gt; (then a base class is better).&lt;/li&gt;
+&lt;li&gt;When your codebase doesn’t use static type checking tools like &lt;strong&gt;mypy&lt;/strong&gt;, &lt;strong&gt;pyright&lt;/strong&gt;, or &lt;strong&gt;pylance&lt;/strong&gt; — the benefits won’t materialize at runtime.&lt;/li&gt;
+&lt;li&gt;When the protocol would describe a highly dynamic or runtime-altered interface.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Example: Logging Abstraction&lt;/h3&gt;
+&lt;p&gt;Let’s look at a practical scenario. Suppose you have a service that writes logs, but you want to support multiple backends.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;LogHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Protocol&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;flush&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;LogHandler&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;handler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Start processing...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# do work&lt;/span&gt;
+    &lt;span class="n"&gt;handler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flush&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Works with both&lt;/span&gt;
+&lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ConsoleLogger&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;process_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FileWriter&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ve decoupled your code from concrete classes — that’s clean design.&lt;/p&gt;
+&lt;h2&gt;The Fine Print&lt;/h2&gt;
+&lt;p&gt;Protocols are deceptively simple but have a few subtleties worth knowing.&lt;/p&gt;
+&lt;h3&gt;Structural vs Nominal Subtyping&lt;/h3&gt;
+&lt;p&gt;Traditional inheritance in Python is &lt;strong&gt;nominal&lt;/strong&gt;: types are related by declared lineage.&lt;br&gt;
+Protocols enable &lt;strong&gt;structural subtyping&lt;/strong&gt;: types are compatible based on structure.&lt;/p&gt;
+&lt;p&gt;The diagram below shows the conceptual difference.&lt;/p&gt;
+&lt;pre class="mermaid"&gt;
+graph TD
+    A[Nominal typing] --&gt;|Explicit inheritance| B(BaseClass)
+    A2[Structural typing] --&gt;|Matching attributes/methods| B2[Protocol]
+&lt;/pre&gt;
+
+&lt;h3&gt;Generic Protocols&lt;/h3&gt;
+&lt;p&gt;You can make protocols generic to express relationships between types.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TypeVar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Protocol&lt;/span&gt;
+
+&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TypeVar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;T&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SupportsLessThan&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Protocol&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__lt__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;bool&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Common Mistakes&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;BadLogger&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;  &lt;span class="c1"&gt;# Wrong - missing type annotation&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;log_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Writer&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# mypy will complain: BadLogger.write() type doesn&amp;#39;t match Writer.write()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Always match both &lt;strong&gt;method name&lt;/strong&gt; and &lt;strong&gt;signature&lt;/strong&gt; exactly — including annotations.&lt;br&gt;
+Otherwise, the type checker will reject the class.&lt;/p&gt;
+&lt;h3&gt;Performance and Design Notes&lt;/h3&gt;
+&lt;p&gt;Protocols exist only for &lt;em&gt;type checking&lt;/em&gt;; at runtime, they add virtually no overhead.&lt;br&gt;
+They don’t enforce behavior — they just describe it.&lt;br&gt;
+That’s a strength, but also a risk: they can give a false sense of safety if your codebase doesn’t use static analysis.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;HINT&lt;/strong&gt;: In real projects, protocols often replace ad-hoc duck typing checks like &lt;code&gt;hasattr(obj, "write")&lt;/code&gt; with explicit, type-checked contracts — a major readability and safety win. You can check your code base whether you have intensive usage of &lt;code&gt;hasattr&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Closing Thought&lt;/h2&gt;
+&lt;p&gt;Protocols bring static typing and duck typing together in a surprisingly elegant way.&lt;br&gt;
+They don’t replace inheritance or abstract base classes — they &lt;strong&gt;complement&lt;/strong&gt; them.&lt;br&gt;
+Where ABCs define &lt;em&gt;what must be implemented&lt;/em&gt;, protocols describe &lt;em&gt;what is already provided&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;h2&gt;- longer, bottom-up introduction to Protocols: &lt;a href="https://realpython.com/python-protocol/"&gt;Python Protocols: Leveraging Structural Subtyping – Real Python&lt;/a&gt;&lt;/h2&gt;
+&lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+&lt;/script&gt;</content><category term="note"/><category term="python"/><category term="typing"/><category term="protocols"/><category term="static-typing"/><category term="pep544"/></entry><entry><title>Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond</title><link href="https://www.safjan.com/evolution-of-type-hints-in-python/" rel="alternate"/><published>2025-10-24T00:00:00+02:00</published><updated>2025-10-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-24:/evolution-of-type-hints-in-python/</id><summary type="html">&lt;h2&gt;The Mental Model&lt;/h2&gt;
 &lt;p&gt;Python typing wasn’t born overnight. It crept into the language slowly, first as a loose suggestion and later as a core part of modern codebases.&lt;br&gt;
 Originally, you could only hint types using comments (&lt;code&gt;# type: int&lt;/code&gt;), but as Python …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;The Mental Model&lt;/h2&gt;
 &lt;p&gt;Python typing wasn’t born overnight. It crept into the language slowly, first as a loose suggestion and later as a core part of modern codebases.&lt;br&gt;
@@ -151,7 +324,143 @@ Modern Python encourages typing as part of its design philosophy — readable, p
 &lt;script type="module"&gt;
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true });
-&lt;/script&gt;</content><category term="note"/><category term="python"/><category term="typing"/><category term="pep484"/><category term="static-typing"/><category term="mypy"/></entry><entry><title>Understanding the Language Server Protocol through a Minimal Working Example</title><link href="https://www.safjan.com/language-server-protocol-minimal-example/" rel="alternate"/><published>2025-10-16T00:00:00+02:00</published><updated>2025-10-16T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-16:/language-server-protocol-minimal-example/</id><summary type="html">&lt;h2&gt;The Mental Model: What Is the Language Server Protocol&lt;/h2&gt;
+&lt;/script&gt;</content><category term="note"/><category term="python"/><category term="typing"/><category term="pep484"/><category term="static-typing"/><category term="mypy"/></entry><entry><title>Keeping performance results in a separate Git branch using `git checkout --orphan`</title><link href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/" rel="alternate"/><published>2025-10-24T00:00:00+02:00</published><updated>2025-10-24T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-24:/git-checkout-orphan-gh-pages-performance-results/</id><summary type="html">&lt;h2&gt;Understanding orphan branches in Git&lt;/h2&gt;
+&lt;p&gt;There’s a lesser-known Git feature that allows you to start a branch with no history at all:&lt;br&gt;
+&lt;code&gt;git checkout --orphan &amp;lt;branch&amp;gt;&lt;/code&gt;.&lt;br&gt;
+It creates a new branch &lt;strong&gt;disconnected&lt;/strong&gt; from any commits or files that exist in the …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Understanding orphan branches in Git&lt;/h2&gt;
+&lt;p&gt;There’s a lesser-known Git feature that allows you to start a branch with no history at all:&lt;br&gt;
+&lt;code&gt;git checkout --orphan &amp;lt;branch&amp;gt;&lt;/code&gt;.&lt;br&gt;
+It creates a new branch &lt;strong&gt;disconnected&lt;/strong&gt; from any commits or files that exist in the current branch.&lt;/p&gt;
+&lt;p&gt;Think of it as a fresh repository living inside your repo — same &lt;code&gt;.git&lt;/code&gt; database, different history.&lt;br&gt;
+Everything from your current branch remains in your working directory, but the new branch starts with no commits.&lt;br&gt;
+You can then decide which files to keep, stage them, and make an initial commit that becomes the root of this branch.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Create a new orphan branch named &amp;#39;gh-pages&amp;#39;&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;--orphan&lt;span class="w"&gt; &lt;/span&gt;gh-pages
+
+&lt;span class="c1"&gt;# Clean out files from the working directory&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;.
+
+&lt;span class="c1"&gt;# Add whatever you want to keep in this branch (e.g. built docs, reports)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Performance results&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;index.html
+git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;index.html
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Initial gh-pages commit&amp;quot;&lt;/span&gt;
+&lt;span class="sb"&gt;````&lt;/span&gt;
+
+At&lt;span class="w"&gt; &lt;/span&gt;this&lt;span class="w"&gt; &lt;/span&gt;point,&lt;span class="w"&gt; &lt;/span&gt;you’ve&lt;span class="w"&gt; &lt;/span&gt;got&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;brand&lt;span class="w"&gt; &lt;/span&gt;new&lt;span class="w"&gt; &lt;/span&gt;branch&lt;span class="w"&gt; &lt;/span&gt;—&lt;span class="w"&gt; &lt;/span&gt;no&lt;span class="w"&gt; &lt;/span&gt;link&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;your&lt;span class="w"&gt; &lt;/span&gt;project’s&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="w"&gt; &lt;/span&gt;history.&lt;span class="w"&gt;  &lt;/span&gt;
+It’s&lt;span class="w"&gt; &lt;/span&gt;perfect&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;things&lt;span class="w"&gt; &lt;/span&gt;you&lt;span class="w"&gt; &lt;/span&gt;don’t&lt;span class="w"&gt; &lt;/span&gt;want&lt;span class="w"&gt; &lt;/span&gt;tangled&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;your&lt;span class="w"&gt; &lt;/span&gt;codebase:&lt;span class="w"&gt; &lt;/span&gt;generated&lt;span class="w"&gt; &lt;/span&gt;reports,&lt;span class="w"&gt; &lt;/span&gt;documentation,&lt;span class="w"&gt; &lt;/span&gt;benchmarks,&lt;span class="w"&gt; &lt;/span&gt;or&lt;span class="w"&gt; &lt;/span&gt;built&lt;span class="w"&gt; &lt;/span&gt;assets.
+
+&amp;lt;pre&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mermaid&amp;quot;&lt;/span&gt;&amp;gt;
+graph&lt;span class="w"&gt; &lt;/span&gt;TD&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;A&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;main branch&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--&amp;gt;&lt;span class="p"&gt;|&lt;/span&gt;shared&lt;span class="w"&gt; &lt;/span&gt;repo&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;R&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(.git)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;B&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gh-pages (orphan)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--&amp;gt;&lt;span class="p"&gt;|&lt;/span&gt;no&lt;span class="w"&gt; &lt;/span&gt;shared&lt;span class="w"&gt; &lt;/span&gt;history&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;R
+&amp;lt;/pre&amp;gt;
+
+Unlike&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;normal&lt;span class="w"&gt; &lt;/span&gt;branch,&lt;span class="w"&gt; &lt;/span&gt;an&lt;span class="w"&gt; &lt;/span&gt;orphan&lt;span class="w"&gt; &lt;/span&gt;branch&lt;span class="w"&gt; &lt;/span&gt;doesn’t&lt;span class="w"&gt; &lt;/span&gt;have&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;parent&lt;span class="w"&gt; &lt;/span&gt;commit,&lt;span class="w"&gt; &lt;/span&gt;so&lt;span class="w"&gt; &lt;/span&gt;merges&lt;span class="w"&gt; &lt;/span&gt;or&lt;span class="w"&gt; &lt;/span&gt;rebases&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;it&lt;span class="w"&gt; &lt;/span&gt;don’t&lt;span class="w"&gt; &lt;/span&gt;make&lt;span class="w"&gt; &lt;/span&gt;sense&lt;span class="w"&gt; &lt;/span&gt;—&lt;span class="w"&gt; &lt;/span&gt;it’s&lt;span class="w"&gt; &lt;/span&gt;meant&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;live&lt;span class="w"&gt; &lt;/span&gt;independently.
+
+&lt;span class="c1"&gt;## Using it with GitHub Actions&lt;/span&gt;
+
+Let’s&lt;span class="w"&gt; &lt;/span&gt;say&lt;span class="w"&gt; &lt;/span&gt;you&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;automated&lt;span class="w"&gt; &lt;/span&gt;performance&lt;span class="w"&gt; &lt;/span&gt;tests&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;your&lt;span class="w"&gt; &lt;/span&gt;CI&lt;span class="w"&gt; &lt;/span&gt;pipeline&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;want&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;**publish&lt;span class="w"&gt; &lt;/span&gt;their&lt;span class="w"&gt; &lt;/span&gt;results**&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;separate&lt;span class="w"&gt; &lt;/span&gt;branch&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;gh-pages&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;—&lt;span class="w"&gt; &lt;/span&gt;so&lt;span class="w"&gt; &lt;/span&gt;you&lt;span class="w"&gt; &lt;/span&gt;can&lt;span class="w"&gt; &lt;/span&gt;host&lt;span class="w"&gt; &lt;/span&gt;them&lt;span class="w"&gt; &lt;/span&gt;via&lt;span class="w"&gt; &lt;/span&gt;GitHub&lt;span class="w"&gt; &lt;/span&gt;Pages&lt;span class="w"&gt; &lt;/span&gt;or&lt;span class="w"&gt; &lt;/span&gt;just&lt;span class="w"&gt; &lt;/span&gt;keep&lt;span class="w"&gt; &lt;/span&gt;them&lt;span class="w"&gt; &lt;/span&gt;visible.
+
+Here’s&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;minimal&lt;span class="w"&gt; &lt;/span&gt;GitHub&lt;span class="w"&gt; &lt;/span&gt;Actions&lt;span class="w"&gt; &lt;/span&gt;workflow&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;make&lt;span class="w"&gt; &lt;/span&gt;that&lt;span class="w"&gt; &lt;/span&gt;happen:
+
+&lt;span class="sb"&gt;```&lt;/span&gt;yaml
+name:&lt;span class="w"&gt; &lt;/span&gt;Publish&lt;span class="w"&gt; &lt;/span&gt;performance&lt;span class="w"&gt; &lt;/span&gt;results
+
+on:
+&lt;span class="w"&gt;  &lt;/span&gt;workflow_run:
+&lt;span class="w"&gt;    &lt;/span&gt;workflows:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Run Performance Tests&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;types:
+&lt;span class="w"&gt;      &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;completed
+
+jobs:
+&lt;span class="w"&gt;  &lt;/span&gt;publish:
+&lt;span class="w"&gt;    &lt;/span&gt;runs-on:&lt;span class="w"&gt; &lt;/span&gt;ubuntu-latest
+&lt;span class="w"&gt;    &lt;/span&gt;steps:
+&lt;span class="w"&gt;      &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;name:&lt;span class="w"&gt; &lt;/span&gt;Checkout&lt;span class="w"&gt; &lt;/span&gt;main&lt;span class="w"&gt; &lt;/span&gt;branch
+&lt;span class="w"&gt;        &lt;/span&gt;uses:&lt;span class="w"&gt; &lt;/span&gt;actions/checkout@v4
+&lt;span class="w"&gt;        &lt;/span&gt;with:
+&lt;span class="w"&gt;          &lt;/span&gt;fetch-depth:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# we’ll need the full history to create new branch&lt;/span&gt;
+
+&lt;span class="w"&gt;      &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;name:&lt;span class="w"&gt; &lt;/span&gt;Generate&lt;span class="w"&gt; &lt;/span&gt;performance&lt;span class="w"&gt; &lt;/span&gt;report
+&lt;span class="w"&gt;        &lt;/span&gt;run:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;reports
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Lighthouse results here...&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;reports/index.html
+
+&lt;span class="w"&gt;      &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;name:&lt;span class="w"&gt; &lt;/span&gt;Commit&lt;span class="w"&gt; &lt;/span&gt;results&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;gh-pages
+&lt;span class="w"&gt;        &lt;/span&gt;run:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;--orphan&lt;span class="w"&gt; &lt;/span&gt;gh-pages
+&lt;span class="w"&gt;          &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;.
+&lt;span class="w"&gt;          &lt;/span&gt;cp&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;reports/*&lt;span class="w"&gt; &lt;/span&gt;.
+&lt;span class="w"&gt;          &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;.
+&lt;span class="w"&gt;          &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;user.name&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;github-actions&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;user.email&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;actions@github.com&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Update performance results&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;git&lt;span class="w"&gt; &lt;/span&gt;push&lt;span class="w"&gt; &lt;/span&gt;--force&lt;span class="w"&gt; &lt;/span&gt;origin&lt;span class="w"&gt; &lt;/span&gt;gh-pages
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The important detail:&lt;br&gt;
+&lt;code&gt;git checkout --orphan gh-pages&lt;/code&gt; creates a clean branch inside the same repo,&lt;br&gt;
+and &lt;code&gt;git push --force origin gh-pages&lt;/code&gt; overwrites the branch each time, keeping only the latest reports.&lt;/p&gt;
+&lt;p&gt;You could later enable &lt;strong&gt;GitHub Pages&lt;/strong&gt; to serve that branch, and your performance dashboard would live at&lt;br&gt;
+&lt;code&gt;https://&amp;lt;username&amp;gt;.github.io/&amp;lt;repo&amp;gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;When this pattern makes sense&lt;/h2&gt;
+&lt;p&gt;This approach shines when you want to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Publish generated files (reports, docs, dashboards) without polluting your main branch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Keep automation output under version control but separated from your code.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Host static files directly from the repository with GitHub Pages.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It’s less suited when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;You need historical diffs between runs — the &lt;code&gt;--force&lt;/code&gt; push wipes history.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reports are huge — pushing megabytes of HTML or JSON repeatedly is slow.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The repo is private and GitHub Pages isn’t enabled — you might prefer an artifact store or S3.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For long-term tracking, you might instead append results to a dedicated folder in the main branch or store them in a database.&lt;/p&gt;
+&lt;h2&gt;Subtle details and common pitfalls&lt;/h2&gt;
+&lt;p&gt;A few things can bite you when using orphan branches from automation:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Forgetting to clean up.&lt;/strong&gt;&lt;br&gt;
+    After &lt;code&gt;git checkout --orphan&lt;/code&gt;, your working directory still has files from the previous branch.&lt;br&gt;
+    If you forget &lt;code&gt;git rm -rf .&lt;/code&gt;, those files will get re-committed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Forcing overwrites.&lt;/strong&gt;&lt;br&gt;
+    Each run should do a clean commit and a &lt;code&gt;--force&lt;/code&gt; push. Without that, you may get “non-fast-forward” errors because the branch histories are unrelated.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Detached history.&lt;/strong&gt;&lt;br&gt;
+    You can’t merge or diff easily between &lt;code&gt;gh-pages&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt;. This is by design, but it means you can’t &lt;code&gt;git diff main...gh-pages&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Keeping GitHub Pages clean.&lt;/strong&gt;&lt;br&gt;
+    If you only need artifacts for internal review, consider naming the branch &lt;code&gt;reports&lt;/code&gt; or &lt;code&gt;artifacts&lt;/code&gt; instead of using &lt;code&gt;gh-pages&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here’s what &lt;em&gt;not&lt;/em&gt; to do:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Wrong: this will mix commits from main&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;-b&lt;span class="w"&gt; &lt;/span&gt;gh-pages&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Bad, keeps full history&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Correct&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;--orphan&lt;span class="w"&gt; &lt;/span&gt;gh-pages
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Orphan branches are like disposable notebooks: use them for output, not for code - and they’ll serve you well.&lt;/p&gt;
+&lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+&lt;/script&gt;</content><category term="note"/><category term="git"/><category term="github-actions"/><category term="ci"/><category term="deployment"/><category term="performance"/></entry><entry><title>Understanding the Language Server Protocol through a Minimal Working Example</title><link href="https://www.safjan.com/language-server-protocol-minimal-example/" rel="alternate"/><published>2025-10-16T00:00:00+02:00</published><updated>2025-10-16T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-16:/language-server-protocol-minimal-example/</id><summary type="html">&lt;h2&gt;The Mental Model: What Is the Language Server Protocol&lt;/h2&gt;
 &lt;p&gt;The &lt;strong&gt;Language Server Protocol (LSP)&lt;/strong&gt; is one of those invisible technologies that quietly revolutionized the developer experience. It defines a &lt;strong&gt;standard way for code editors (clients)&lt;/strong&gt; to communicate with &lt;strong&gt;language-specific analysis engines (servers …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h2&gt;The Mental Model: What Is the Language Server Protocol&lt;/h2&gt;
 &lt;p&gt;The &lt;strong&gt;Language Server Protocol (LSP)&lt;/strong&gt; is one of those invisible technologies that quietly revolutionized the developer experience. It defines a &lt;strong&gt;standard way for code editors (clients)&lt;/strong&gt; to communicate with &lt;strong&gt;language-specific analysis engines (servers)&lt;/strong&gt;.  &lt;/p&gt;
 &lt;p&gt;Before LSP, every editor (VS Code, Vim, Sublime, Atom, etc.) had to build their own support for each programming language. That meant dozens of editors and dozens of languages — an explosion of duplicated work.  &lt;/p&gt;
@@ -8753,71 +9062,4 @@ $&lt;span class="w"&gt; &lt;/span&gt;osascript&lt;span class="w"&gt; &lt;/span&g
 &lt;li&gt;&lt;a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html"&gt;Introduction to AppleScript Language Guide&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://ss64.com/osx/osascript.html"&gt;osascript Man Page - macOS - SS64.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://ss64.com/osx/osacompile.html"&gt;osacompile&lt;/a&gt; - Compile AppleScripts and other OSA language scripts.&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"/><category term="macos"/><category term="automation"/><category term="script"/><category term="osascropt"/><category term="applescript"/></entry><entry><title>Display a Notification on the Screen in macOS</title><link href="https://www.safjan.com/display-a-notification-on-the-screen-in-macos/" rel="alternate"/><published>2023-07-10T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-10:/display-a-notification-on-the-screen-in-macos/</id><summary type="html">&lt;p&gt;To display a notification on the screen near the menu bar in macOS using the terminal, you can make use of the &lt;code&gt;osascript&lt;/code&gt; command to execute AppleScript code. Here's an example command you can run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;osascript&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;display notification &amp;quot;Hello, World!&amp;quot; with …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;To display a notification on the screen near the menu bar in macOS using the terminal, you can make use of the &lt;code&gt;osascript&lt;/code&gt; command to execute AppleScript code. Here's an example command you can run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;osascript&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;display notification &amp;quot;Hello, World!&amp;quot; with title &amp;quot;Notification&amp;quot;&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This command will display a notification with the message "Hello, World!" and the title "Notification" near the menu bar on macOS.&lt;/p&gt;
-&lt;p&gt;You can customize the message and title by modifying the strings inside the double quotes in the &lt;code&gt;osascript&lt;/code&gt; command.&lt;/p&gt;
-&lt;p&gt;Note that starting from macOS Big Sur (11.0), AppleScript-based notifications require user authorization. The first time you run this command, you will be prompted to grant permission to Terminal (or whichever application you are using) to send notifications.&lt;/p&gt;
-&lt;h2&gt;reading&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://victorscholz.medium.com/what-is-osascript-e48f11b8dec6"&gt;What is Osascript?. Learning about Osascript started with… | by Victor Scholz | Medium&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://ss64.com/osx/osascript.html"&gt;osascript Man Page - macOS - SS64.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"/><category term="macos"/><category term="notification"/><category term="pop-up-window"/></entry><entry><title>Software Versioning Schemes</title><link href="https://www.safjan.com/software-versioning-schemes/" rel="alternate"/><published>2023-07-08T00:00:00+02:00</published><updated>2023-07-12T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-08:/software-versioning-schemes/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Software versioning schemes are essential in the world of programming, as they help developers, users, and collaborators keep track of various versions of a software product. A proper versioning scheme enables easy identification of the current release, the changes made in …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Software versioning schemes are essential in the world of programming, as they help developers, users, and collaborators keep track of various versions of a software product. A proper versioning scheme enables easy identification of the current release, the changes made in each version, and the compatibility of a version with previous ones. In this blog post, we will discuss some of the most popular versioning schemes used in the software industry, along with a few lesser-known but useful alternatives.  &lt;/p&gt;
-&lt;!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" --&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#semantic-versioning"&gt;Semantic Versioning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#calendar-versioning-calver"&gt;Calendar Versioning (CalVer)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#zerover-0-based-versioning"&gt;ZeroVer: 0-based Versioning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#lesser-known-versioning-schemes"&gt;Lesser-known Versioning Schemes&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#romantic-versioning"&gt;Romantic Versioning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#hash-based-versioning"&gt;Hash-based Versioning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#custom-versioning-schemes"&gt;Custom Versioning Schemes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-
-&lt;p&gt;&lt;a id="semantic-versioning"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Semantic Versioning (SemVer)&lt;/h2&gt;
-&lt;p&gt;Semantic versioning, also known as &lt;a href="https://semver.org/"&gt;SemVer&lt;/a&gt;, is a widely adopted versioning scheme that emphasizes the importance of clear and meaningful version numbers. In SemVer, a version number consists of three parts: MAJOR.MINOR.PATCH. Each part represents the following:  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;MAJOR version: incremented when you make incompatible API changes,  &lt;/li&gt;
-&lt;li&gt;MINOR version: incremented when you add functionality in a backwards-compatible manner, and  &lt;/li&gt;
-&lt;li&gt;PATCH version: incremented when you make backwards-compatible bug fixes.  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In addition to these three parts, SemVer allows for additional labels for pre-release and build metadata as extensions to the MAJOR.MINOR.PATCH format. This makes it easier for developers to communicate the scope of changes in each release and helps users understand if an update will break their existing setup or not.  &lt;/p&gt;
-&lt;p&gt;&lt;a id="calendar-versioning-calver"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Calendar Versioning (CalVer)&lt;/h2&gt;
-&lt;p&gt;Another popular versioning scheme is Calendar Versioning or &lt;a href="https://calver.org/"&gt;CalVer&lt;/a&gt;. CalVer uses a combination of the release date and a project-specific version number to create a unique identifier for each release. The format typically looks like this: YYYY.MM.DD.MICRO.  &lt;/p&gt;
-&lt;p&gt;The advantages of CalVer include its simplicity and the ability to quickly determine the age of a release. However, unlike SemVer, CalVer does not provide explicit information about API changes or compatibility between versions.  &lt;/p&gt;
-&lt;p&gt;&lt;a id="zerover-0-based-versioning"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;ZeroVer: 0-based Versioning (0ver)&lt;/h2&gt;
-&lt;p&gt;ZeroVer, also known as &lt;a href="https://0ver.org/"&gt;0ver&lt;/a&gt; is a unique and simple versioning scheme that asserts that your software's major version should never exceed the first and most important number in computing: zero.  This is in contrast to other versioning schemes like Semantic Versioning and Calendar Versioning.  &lt;/p&gt;
-&lt;p&gt;The rationale behind ZeroVer is that software is never truly "finished" and will always be subject to improvements, bug fixes, and new features. By keeping the major version at zero, developers acknowledge the ever-evolving nature of their software and avoid the pressures associated with "final" releases.  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Note: in the &lt;code&gt;0ver&lt;/code&gt; there is a zero in front of the name, do not confuse with capital letter O&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;a id="lesser-known-versioning-schemes"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Lesser-known Versioning Schemes&lt;/h2&gt;
-&lt;p&gt;In addition to the popular versioning schemes mentioned above, there are other lesser-known but equally useful alternatives. Some of these include:  &lt;/p&gt;
-&lt;p&gt;&lt;a id="romantic-versioning"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Romantic Versioning&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://github.com/romversioning/romver"&gt;Romantic Versioning&lt;/a&gt; is a light-hearted, informal versioning scheme that uses popular culture references or personal milestones as version numbers. While not suitable for all projects, Romantic Versioning can be a fun way to engage users and make software updates more memorable.  &lt;/p&gt;
-&lt;p&gt;The Romantic Versioning specification was authored by &lt;a href="http://blog.legacyteam.info/2015/12/romver-romantic-versioning/"&gt;Daniel V from the Legacy Blog crew&lt;/a&gt; in 2015. This open and public repository has the task of maintenance and visibility, cooperation with others.&lt;/p&gt;
-&lt;p&gt;See also: &lt;a href="http://sentimentalversioning.org/"&gt;sentimentalversioning.org&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a id="hash-based-versioning"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Hash-based Versioning&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://miniscruff.github.io/hashver/"&gt;Hash-based Versioning&lt;/a&gt;is a versioning scheme that uses the unique hash of a particular commit in a version control system (such as Git) as the version number. This approach ensures that each release is directly tied to a specific point in the development history, making it easy to track and revert changes if needed.  &lt;/p&gt;
-&lt;p&gt;&lt;a id="custom-versioning-schemes"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Custom Versioning Schemes&lt;/h3&gt;
-&lt;p&gt;Some projects may benefit from a custom versioning scheme tailored to their specific needs. This could involve combining elements from various existing schemes or developing an entirely new approach. When creating a custom versioning scheme, it's essential to ensure that it is clear, consistent, and easy to understand for all stakeholders.  &lt;/p&gt;
-&lt;p&gt;&lt;a id="conclusion"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Choosing the right versioning scheme for your software project is crucial for effective communication and collaboration among developers, users, and other stakeholders. While Semantic Versioning and Calendar Versioning are popular choices, alternative schemes like ZeroVer, Romantic Versioning, Hash-based Versioning, or even custom schemes can also be appropriate depending on your project's unique requirements. Ultimately, the ideal versioning scheme should be easy to understand, provide meaningful information about each release, and facilitate the management of software updates.&lt;/p&gt;</content><category term="note"/><category term="versioning"/><category term="semantic-versioning"/><category term="semver"/><category term="calver"/><category term="calendar-versioning"/><category term="zerover"/><category term="0ver"/></entry></feed>
+&lt;/ul&gt;</content><category term="note"/><category term="macos"/><category term="automation"/><category term="script"/><category term="osascropt"/><category term="applescript"/></entry></feed>

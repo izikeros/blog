@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan" />
+    <meta name="description" content="Understanding orphan branches in Git There’s a lesser-known Git feature that allows you to start a branch with no history at all: git checkout --orphan &lt;branch&gt;. It creates a new branch disconnected from any commits or files that exist in the …" />
+    <meta name="keywords" content="git, github-actions, ci, deployment, performance">
+    <meta expr:content="2025-10-24 00:00:00+02:00" itemprop='datePublished' />
+    <meta expr:content="2025-10-24 00:00:00+02:00" itemprop='dateModified' />
+    <meta property="article:modified_time" content="2025-10-24 00:00:00+02:00" />
+    <meta property="article:published_time" content="2025-10-24 00:00:00+02:00" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Keeping performance results in a separate Git branch using `git checkout --orphan`",
+  "datePublished": "2025-10-24 00:00:00+02:00",
+  "dateModified": "2025-10-24 00:00:00+02:00"
+}
+    </script>
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Keeping performance results in a separate Git branch using `git checkout --orphan`"/>
+  <meta property="og:description" content="Understanding orphan branches in Git There’s a lesser-known Git feature that allows you to start a branch with no history at all: git checkout --orphan &lt;branch&gt;. It creates a new branch disconnected from any commits or files that exist in the …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-10-24 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2025-10-24 00:00:00+02:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="article:tag" content="github-actions"/>
+  <meta property="article:tag" content="ci"/>
+  <meta property="article:tag" content="deployment"/>
+  <meta property="article:tag" content="performance"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="Understanding orphan branches in Git There’s a lesser-known Git feature that allows you to start a branch with no history at all: git checkout --orphan <branch>. It creates a new branch..."/>
+    <meta name="twitter:title" content="Keeping performance results in a separate Git branch using `git checkout --orphan`"/>
+
+    <title>Keeping performance results in a separate Git branch using `git checkout --orphan`</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-10-24 
+                    <span id="post-share-links">
+                        &nbsp;&nbsp;&nbsp;Share on:
+                        <a href="https://twitter.com/intent/tweet?text=Keeping%20performance%20results%20in%20a%20separate%20Git%20branch%20using%20%60git%20checkout%20--orphan%60&url=https%3A//www.safjan.com/git-checkout-orphan-gh-pages-performance-results/&via=izikeros&hashtags=git,github-actions,ci,deployment,performance"
+                           target="_blank"
+                           title="Share on Twitter">Twitter</a>
+                        |
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-checkout-orphan-gh-pages-performance-results/"
+                           target="_blank"
+                           title="Share on Facebook">Facebook</a>
+                        |
+                        <a href="https://news.ycombinator.com/submitlink?t=Keeping%20performance%20results%20in%20a%20separate%20Git%20branch%20using%20%60git%20checkout%20--orphan%60&u=https%3A//www.safjan.com/git-checkout-orphan-gh-pages-performance-results/"
+                           target="_blank"
+                           title="Share on HackerNews">HackerNews</a>
+                        |
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-checkout-orphan-gh-pages-performance-results/&title=Keeping%20performance%20results%20in%20a%20separate%20Git%20branch%20using%20%60git%20checkout%20--orphan%60"
+                           target="_blank"
+                           title="Share via Reddit">Reddit</a>
+                    </span>
+                <br />
+            </p>
+            <h1 id="git-checkout-orphan-gh-pages-performance-results">Keeping performance results in a separate Git branch using `git checkout --orphan`</h1>
+            <div class="header-underline"></div>
+        </header>
+        <div><h2>Understanding orphan branches in Git</h2>
+<p>There’s a lesser-known Git feature that allows you to start a branch with no history at all:<br>
+<code>git checkout --orphan &lt;branch&gt;</code>.<br>
+It creates a new branch <strong>disconnected</strong> from any commits or files that exist in the current branch.</p>
+<p>Think of it as a fresh repository living inside your repo — same <code>.git</code> database, different history.<br>
+Everything from your current branch remains in your working directory, but the new branch starts with no commits.<br>
+You can then decide which files to keep, stage them, and make an initial commit that becomes the root of this branch.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a new orphan branch named &#39;gh-pages&#39;</span>
+git<span class="w"> </span>checkout<span class="w"> </span>--orphan<span class="w"> </span>gh-pages
+
+<span class="c1"># Clean out files from the working directory</span>
+git<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>.
+
+<span class="c1"># Add whatever you want to keep in this branch (e.g. built docs, reports)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Performance results&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>index.html
+git<span class="w"> </span>add<span class="w"> </span>index.html
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial gh-pages commit&quot;</span>
+<span class="sb">````</span>
+
+At<span class="w"> </span>this<span class="w"> </span>point,<span class="w"> </span>you’ve<span class="w"> </span>got<span class="w"> </span>a<span class="w"> </span>brand<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span>—<span class="w"> </span>no<span class="w"> </span>link<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>project’s<span class="w"> </span>main<span class="w"> </span>history.<span class="w">  </span>
+It’s<span class="w"> </span>perfect<span class="w"> </span><span class="k">for</span><span class="w"> </span>things<span class="w"> </span>you<span class="w"> </span>don’t<span class="w"> </span>want<span class="w"> </span>tangled<span class="w"> </span>with<span class="w"> </span>your<span class="w"> </span>codebase:<span class="w"> </span>generated<span class="w"> </span>reports,<span class="w"> </span>documentation,<span class="w"> </span>benchmarks,<span class="w"> </span>or<span class="w"> </span>built<span class="w"> </span>assets.
+
+&lt;pre<span class="w"> </span><span class="nv">class</span><span class="o">=</span><span class="s2">&quot;mermaid&quot;</span>&gt;
+graph<span class="w"> </span>TD<span class="w"> </span>
+<span class="w">  </span>A<span class="o">[</span><span class="s2">&quot;main branch&quot;</span><span class="o">]</span><span class="w"> </span>--&gt;<span class="p">|</span>shared<span class="w"> </span>repo<span class="p">|</span><span class="w"> </span>R<span class="o">[</span><span class="s2">&quot;(.git)&quot;</span><span class="o">]</span><span class="w"> </span>
+<span class="w">  </span>B<span class="o">[</span><span class="s2">&quot;gh-pages (orphan)&quot;</span><span class="o">]</span><span class="w"> </span>--&gt;<span class="p">|</span>no<span class="w"> </span>shared<span class="w"> </span>history<span class="p">|</span><span class="w"> </span>R
+&lt;/pre&gt;
+
+Unlike<span class="w"> </span>a<span class="w"> </span>normal<span class="w"> </span>branch,<span class="w"> </span>an<span class="w"> </span>orphan<span class="w"> </span>branch<span class="w"> </span>doesn’t<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>parent<span class="w"> </span>commit,<span class="w"> </span>so<span class="w"> </span>merges<span class="w"> </span>or<span class="w"> </span>rebases<span class="w"> </span>to<span class="w"> </span>it<span class="w"> </span>don’t<span class="w"> </span>make<span class="w"> </span>sense<span class="w"> </span>—<span class="w"> </span>it’s<span class="w"> </span>meant<span class="w"> </span>to<span class="w"> </span>live<span class="w"> </span>independently.
+
+<span class="c1">## Using it with GitHub Actions</span>
+
+Let’s<span class="w"> </span>say<span class="w"> </span>you<span class="w"> </span>run<span class="w"> </span>automated<span class="w"> </span>performance<span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>CI<span class="w"> </span>pipeline<span class="w"> </span>and<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>**publish<span class="w"> </span>their<span class="w"> </span>results**<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>separate<span class="w"> </span>branch<span class="w"> </span><span class="o">(</span><span class="sb">`</span>gh-pages<span class="sb">`</span><span class="o">)</span><span class="w"> </span>—<span class="w"> </span>so<span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>host<span class="w"> </span>them<span class="w"> </span>via<span class="w"> </span>GitHub<span class="w"> </span>Pages<span class="w"> </span>or<span class="w"> </span>just<span class="w"> </span>keep<span class="w"> </span>them<span class="w"> </span>visible.
+
+Here’s<span class="w"> </span>the<span class="w"> </span>minimal<span class="w"> </span>GitHub<span class="w"> </span>Actions<span class="w"> </span>workflow<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>that<span class="w"> </span>happen:
+
+<span class="sb">```</span>yaml
+name:<span class="w"> </span>Publish<span class="w"> </span>performance<span class="w"> </span>results
+
+on:
+<span class="w">  </span>workflow_run:
+<span class="w">    </span>workflows:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;Run Performance Tests&quot;</span><span class="o">]</span>
+<span class="w">    </span>types:
+<span class="w">      </span>-<span class="w"> </span>completed
+
+jobs:
+<span class="w">  </span>publish:
+<span class="w">    </span>runs-on:<span class="w"> </span>ubuntu-latest
+<span class="w">    </span>steps:
+<span class="w">      </span>-<span class="w"> </span>name:<span class="w"> </span>Checkout<span class="w"> </span>main<span class="w"> </span>branch
+<span class="w">        </span>uses:<span class="w"> </span>actions/checkout@v4
+<span class="w">        </span>with:
+<span class="w">          </span>fetch-depth:<span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1"># we’ll need the full history to create new branch</span>
+
+<span class="w">      </span>-<span class="w"> </span>name:<span class="w"> </span>Generate<span class="w"> </span>performance<span class="w"> </span>report
+<span class="w">        </span>run:<span class="w"> </span><span class="p">|</span>
+<span class="w">          </span>mkdir<span class="w"> </span>-p<span class="w"> </span>reports
+<span class="w">          </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Lighthouse results here...&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>reports/index.html
+
+<span class="w">      </span>-<span class="w"> </span>name:<span class="w"> </span>Commit<span class="w"> </span>results<span class="w"> </span>to<span class="w"> </span>gh-pages
+<span class="w">        </span>run:<span class="w"> </span><span class="p">|</span>
+<span class="w">          </span>git<span class="w"> </span>checkout<span class="w"> </span>--orphan<span class="w"> </span>gh-pages
+<span class="w">          </span>git<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>.
+<span class="w">          </span>cp<span class="w"> </span>-r<span class="w"> </span>reports/*<span class="w"> </span>.
+<span class="w">          </span>git<span class="w"> </span>add<span class="w"> </span>.
+<span class="w">          </span>git<span class="w"> </span>-c<span class="w"> </span>user.name<span class="o">=</span><span class="s1">&#39;github-actions&#39;</span><span class="w"> </span>-c<span class="w"> </span>user.email<span class="o">=</span><span class="s1">&#39;actions@github.com&#39;</span><span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update performance results&quot;</span>
+<span class="w">          </span>git<span class="w"> </span>push<span class="w"> </span>--force<span class="w"> </span>origin<span class="w"> </span>gh-pages
+</code></pre></div>
+
+<p>The important detail:<br>
+<code>git checkout --orphan gh-pages</code> creates a clean branch inside the same repo,<br>
+and <code>git push --force origin gh-pages</code> overwrites the branch each time, keeping only the latest reports.</p>
+<p>You could later enable <strong>GitHub Pages</strong> to serve that branch, and your performance dashboard would live at<br>
+<code>https://&lt;username&gt;.github.io/&lt;repo&gt;/</code>.</p>
+<h2>When this pattern makes sense</h2>
+<p>This approach shines when you want to:</p>
+<ul>
+<li>
+<p>Publish generated files (reports, docs, dashboards) without polluting your main branch.</p>
+</li>
+<li>
+<p>Keep automation output under version control but separated from your code.</p>
+</li>
+<li>
+<p>Host static files directly from the repository with GitHub Pages.</p>
+</li>
+</ul>
+<p>It’s less suited when:</p>
+<ul>
+<li>
+<p>You need historical diffs between runs — the <code>--force</code> push wipes history.</p>
+</li>
+<li>
+<p>Reports are huge — pushing megabytes of HTML or JSON repeatedly is slow.</p>
+</li>
+<li>
+<p>The repo is private and GitHub Pages isn’t enabled — you might prefer an artifact store or S3.</p>
+</li>
+</ul>
+<p>For long-term tracking, you might instead append results to a dedicated folder in the main branch or store them in a database.</p>
+<h2>Subtle details and common pitfalls</h2>
+<p>A few things can bite you when using orphan branches from automation:</p>
+<ol>
+<li>
+<p><strong>Forgetting to clean up.</strong><br>
+    After <code>git checkout --orphan</code>, your working directory still has files from the previous branch.<br>
+    If you forget <code>git rm -rf .</code>, those files will get re-committed.</p>
+</li>
+<li>
+<p><strong>Forcing overwrites.</strong><br>
+    Each run should do a clean commit and a <code>--force</code> push. Without that, you may get “non-fast-forward” errors because the branch histories are unrelated.</p>
+</li>
+<li>
+<p><strong>Detached history.</strong><br>
+    You can’t merge or diff easily between <code>gh-pages</code> and <code>main</code>. This is by design, but it means you can’t <code>git diff main...gh-pages</code>.</p>
+</li>
+<li>
+<p><strong>Keeping GitHub Pages clean.</strong><br>
+    If you only need artifacts for internal review, consider naming the branch <code>reports</code> or <code>artifacts</code> instead of using <code>gh-pages</code>.</p>
+</li>
+</ol>
+<p>Here’s what <em>not</em> to do:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong: this will mix commits from main</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>gh-pages<span class="w">  </span><span class="c1"># Bad, keeps full history</span>
+
+<span class="c1"># Correct</span>
+git<span class="w"> </span>checkout<span class="w"> </span>--orphan<span class="w"> </span>gh-pages
+</code></pre></div>
+
+<p>Orphan branches are like disposable notebooks: use them for output, not for code - and they’ll serve you well.</p>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+</script></div>
+        <div class="tag-cloud">
+            <p>
+                    <br />
+                    <br />
+                    Tags:&nbsp;
+<a href="https://www.safjan.com/tag/git/">git</a><a href="https://www.safjan.com/tag/github-actions/">github-actions</a><a href="https://www.safjan.com/tag/ci/">ci</a><a href="https://www.safjan.com/tag/deployment/">deployment</a><a href="https://www.safjan.com/tag/performance/">performance</a>            </p>
+        </div>
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li>
+                            <a href="https://www.safjan.com/quick-ways-to-disable-github-actions-workflows-without-deletion/">Quick Ways to Disable GitHub Actions Workflows Without Deletion</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/Git-change-remote-origin-replace-with-new/">Git change remote origin (replace with new)</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new future/">Time Travel in Git - Creating a Branch from the Past and Crafting a New Future</a>
+                        </li>
+                </ul>
+            </div>
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
