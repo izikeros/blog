@@ -9,7 +9,7 @@ Category: Software Development
 Image: /images/head/peaks_vivid_320x640px.jpg
 banner: "/images/head/peaks_vivid_320x640px.jpg"
 Summary: Shape Up offers a focused alternative to sprint-driven development, trading constant ceremonies and tight iterations for clear boundaries and six-week cycles. This article explores when it works well, when it doesn’t, and why it may help teams overwhelmed by process overhead.
-Status: draft
+Status: published
 prompt:
 ---
 
