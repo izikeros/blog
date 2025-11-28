@@ -1,5 +1,422 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2025-11-22T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Avoiding Homebrew Upgrades That Require Sudo on macOS</title><link href="https://www.safjan.com/avoid-homebrew-sudo-upgrades/" rel="alternate"/><published>2025-10-31T00:00:00+01:00</published><updated>2025-10-31T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-31:/avoid-homebrew-sudo-upgrades/</id><summary type="html">&lt;h2&gt;Understanding the Problem&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2025-11-28T00:00:00+01:00</updated><subtitle>Data Scientist | Researcher | Team Leader&lt;br&gt;&lt;br&gt; working at Ernst &amp;amp; Young and writing about &lt;a href="/category/machine-learning.html"&gt;Data Science and Visualization&lt;/a&gt;, on &lt;a href="/category/machine-learning.html"&gt;Machine Learning, Deep Learning&lt;/a&gt; and &lt;a href="/tag/nlp/"&gt;NLP&lt;/a&gt;. There are also some &lt;a href="/category/howto.html"&gt;howto&lt;/a&gt; posts on tools and workflows.</subtitle><entry><title>Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</title><link href="https://www.safjan.com/git-worktrees-ai-multi-workflows/" rel="alternate"/><published>2025-11-28T00:00:00+01:00</published><updated>2025-11-28T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-11-28:/git-worktrees-ai-multi-workflows/</id><summary type="html">&lt;p&gt;A practical, hands-on guide to turning a single codebase into a multi-workflow environment using Git worktrees, VS Code, and AI coding assistants. The tutorial shows how to isolate experiments, compare results, and speed up refactoring work with agents and Copilot.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;A practical step-by-step tutorial using Git worktrees, small and large refactorings, and GitHub Copilot.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;There is a moment when a project grows from a single-track workflow into something more complex. The codebase stays small, but you want to try a few big ideas at once. Or you want GitHub Copilot (or any AI coding agent) to attempt two different solutions while you continue working normally. One branch is not enough. Stashes are too messy. Full clones eat time and attention.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://git-scm.com/docs/git-worktree"&gt;Git worktrees&lt;/a&gt; solve this elegantly. They let one repository produce several working directories, each on its own branch, all sharing the same underlying store. One directory becomes the human-edited version. Another becomes the AI sandbox. A third holds an alternative AI proposal. You compare the results side by side without the mental reset of switching branches.&lt;/p&gt;
+&lt;p&gt;This tutorial shows you how to build a multi-workflow setup using a simple Python mini-project. You will run two AI-assisted refactoring tasks: one small and one heavy. You will then evaluate them, compare results, validate correctness, and merge only the parts worth keeping.&lt;/p&gt;
+&lt;h2&gt;Starting Point: A Tiny Codebase&lt;/h2&gt;
+&lt;p&gt;Assume we begin with a very small project containing one module called &lt;code&gt;stats.py&lt;/code&gt;. It calculates a few simple statistics.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# stats.py&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;average&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;median&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;sorted_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;variance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Wrong: variance uses mean, not sum of squared values directly&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There is an obvious bug in &lt;code&gt;variance&lt;/code&gt;. The right definition uses squared deviations from the mean.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Correct version of variance&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;variance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is our baseline. A candidate for small refactoring is the variance fix. A candidate for heavy refactoring is reorganising everything into a class-based structure or splitting the module into multiple files.&lt;/p&gt;
+&lt;h2&gt;Step 1: Create a Clean Main Worktree&lt;/h2&gt;
+&lt;p&gt;You start in the main repository folder, checked out on &lt;code&gt;develop&lt;/code&gt;. This is your everyday environment.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;project
+git&lt;span class="w"&gt; &lt;/span&gt;status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Everything looks normal.&lt;/p&gt;
+&lt;h2&gt;Step 2: Prepare Worktrees for AI Workflows&lt;/h2&gt;
+&lt;p&gt;Now create a branch exclusively for the small refactoring, and another branch to explore a heavy rewrite.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;../refactor-small&lt;span class="w"&gt; &lt;/span&gt;ai/refactor-small
+git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;../refactor-heavy&lt;span class="w"&gt; &lt;/span&gt;ai/refactor-heavy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You now have three directories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;project/&lt;/code&gt; for your normal coding&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;refactor-small/&lt;/code&gt; for the AI to attempt precise, localised edits&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;refactor-heavy/&lt;/code&gt; for a broad exploration of reorganising the project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each is a full working directory with its own branch and commit history, but the &lt;code&gt;.git&lt;/code&gt; data is shared. Switching happens simply by changing directories, not by resetting state.&lt;/p&gt;
+&lt;h2&gt;Step 3: Run the First Workflow – A Small AI Refactor&lt;/h2&gt;
+&lt;p&gt;Go into the &lt;code&gt;refactor-small&lt;/code&gt; directory and open your IDE.&lt;/p&gt;
+&lt;p&gt;Ask Copilot (or another model) to fix the variance implementation and streamline the small functions. Something like:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Clean up this file. Fix the variance bug, add type hints, and make error handling more robust. Keep changes minimal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Copilot should produce something along these lines:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# stats.py after small refactor&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Iterable&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;average&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Iterable&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cannot compute average of empty list&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;median&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Iterable&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cannot compute median of empty list&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;variance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Iterable&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cannot compute variance of empty list&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Commit the result.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;stats.py
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Small refactor: fix variance, add type hints, add basic validation&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Nothing touches the &lt;code&gt;project/&lt;/code&gt; folder. No stashes. No switching.&lt;/p&gt;
+&lt;h2&gt;Step 4: Run the Heavy Workflow – A Large-Scale AI Refactor&lt;/h2&gt;
+&lt;p&gt;Open the second worktree.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;../refactor-heavy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This time, ask your AI assistant:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Rewrite this module using an object-oriented structure. Split statistics operations into separate classes if needed. Add validation. Keep the public API clear and ergonomic.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Expect a much bigger rewrite. Copilot might produce something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# stats/metrics.py after heavy refactor&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Stats&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Values cannot be empty&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;average&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;median&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;sorted_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sorted_values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;variance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This version creates a directory layout like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;stats/
+    __init__.py
+    metrics.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Commit again:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;.
+git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Major rewrite: object-oriented Stats class with reorganized structure&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you have two valid, complete refactor attempts captured in versioned form, side by side, without any switching friction.&lt;/p&gt;
+&lt;h2&gt;Step 5: Validate and Compare the Results&lt;/h2&gt;
+&lt;p&gt;Here is where multi-workflows shine. You can run tests, linters, or performance checks in each directory independently and in parallel.&lt;/p&gt;
+&lt;p&gt;Back in the main project, create a quick test script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# test_stats.py&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;stats&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;variance&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_all&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;variance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For the heavy version, you might need a different import:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# test_stats_heavy.py&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;stats.metrics&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Stats&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_stats_class&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Stats&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;variance&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Run tests separately in each worktree:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;project
+pytest&lt;span class="w"&gt; &lt;/span&gt;-q
+
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;../refactor-small
+pytest&lt;span class="w"&gt; &lt;/span&gt;-q
+
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;../refactor-heavy
+pytest&lt;span class="w"&gt; &lt;/span&gt;-q
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You get independent validation. If the heavy refactor has bugs, you know immediately without polluting the main line of work.&lt;/p&gt;
+&lt;h2&gt;Step 6: Decide What to Merge&lt;/h2&gt;
+&lt;p&gt;You now have three evolving branches:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;develop&lt;/code&gt; with your original code&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ai/refactor-small&lt;/code&gt; with a careful, stable refactor&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ai/refactor-heavy&lt;/code&gt; with a more ambitious rewrite&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Decision time usually involves:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Code clarity&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Compatibility with existing imports&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Test coverage&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Future extensibility&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Performance&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For many teams, the small refactor becomes a straightforward merge:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;switch&lt;span class="w"&gt; &lt;/span&gt;develop
+git&lt;span class="w"&gt; &lt;/span&gt;merge&lt;span class="w"&gt; &lt;/span&gt;ai/refactor-small
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The heavy refactor might need additional time, iteration, or might stay as a long-running branch until more confidence is built.&lt;/p&gt;
+&lt;h2&gt;Step 7: Cleaning Up&lt;/h2&gt;
+&lt;p&gt;After merging what you want, remove worktrees you no longer need.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;../refactor-small
+git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;../refactor-heavy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If Git complains the directory still exists, delete it manually and run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;prune
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Why This Workflow Works So Well&lt;/h2&gt;
+&lt;p&gt;This approach removes the friction of experimental coding. AI tools prefer entire files or folders as context, and they sometimes rewrite aggressively rather than patch small areas. Worktrees give them dedicated sandboxes, and they give you mental clarity: each branch corresponds to a purpose. You can compare outputs by simply opening two folders side by side instead of juggling switching commands that reset your IDE state.&lt;/p&gt;
+&lt;p&gt;Worktrees also encourage discipline. You evaluate AI-generated changes deliberately, not impulsively. You treat each branch as a self-contained proposal. This makes working with powerful automated tools safer, faster, and easier to reason about.&lt;/p&gt;
+&lt;p&gt;The biggest advantage is velocity without chaos: several workflows move forward independently, but none interfere with your main development branch. You keep the codebase clean, and you can run experiments all day without ever fearing that an agent will overwrite something you care about.&lt;/p&gt;
+&lt;p&gt;If you use AI in your everyday coding, this structure should become second nature. It transforms the way you evaluate ideas, especially when dealing with both small fixes and large rewrites.&lt;/p&gt;
+&lt;h2&gt;Extras&lt;/h2&gt;
+&lt;h3&gt;Comparing Workflows with &lt;code&gt;git diff --no-index&lt;/code&gt; and Practical Multi-Workflow Tips&lt;/h3&gt;
+&lt;p&gt;At some point you want to know which variant actually performed better. Maybe the baseline is cleaner. Maybe the Copilot heavy-refactor got overly creative. A simple trick is to compare two worktrees without committing anything. This is where &lt;code&gt;git diff --no-index&lt;/code&gt; feels almost unfair because it ignores Git’s object database and simply diffs two directories. Perfect for AI-driven experimentation.&lt;/p&gt;
+&lt;p&gt;You run this from anywhere, and Git treats both directories like normal folders.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--no-index&lt;span class="w"&gt; &lt;/span&gt;../baseline&lt;span class="w"&gt; &lt;/span&gt;../agent-refactor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are inside &lt;code&gt;agent-refactor&lt;/code&gt;, the paths look like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--no-index&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;../baseline
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This gives you a raw diff across files regardless of whether they’re tracked in the same repo. The output is blunt, noisy, and brutally honest, which is exactly what you want when checking what an AI agent really did. When the diff is unreadable, that’s often a hint that the refactor mutated too much at once. In those cases, I sometimes do a narrower diff:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--no-index&lt;span class="w"&gt; &lt;/span&gt;../baseline/path/to/module.py&lt;span class="w"&gt; &lt;/span&gt;path/to/module.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or even a directory-level diff to check how wide the blast radius went:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--no-index&lt;span class="w"&gt; &lt;/span&gt;../baseline/src&lt;span class="w"&gt; &lt;/span&gt;../agent-refactor/src
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Using VS Code with Multiple Worktrees Without Losing Your Mind&lt;/h3&gt;
+&lt;p&gt;Now comes the tricky part. Developers get confused in multi-worktree setups not because Git is hard, but because the editor happily opens whatever folder you point at and then people forget which workflow they’re editing. One tiny commit into the wrong branch and your careful separation collapses.&lt;/p&gt;
+&lt;p&gt;The easiest way to stay sane is to open each worktree as a separate VS Code window.&lt;/p&gt;
+&lt;p&gt;If you open the root project folder and start navigating into &lt;code&gt;.worktrees/...&lt;/code&gt;, you’re setting yourself up for mistakes. Instead, open the worktree directory itself:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;code&lt;span class="w"&gt; &lt;/span&gt;../baseline
+code&lt;span class="w"&gt; &lt;/span&gt;../agent-refactor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This gives each workflow its own VS Code instance, with its own branch badge in the bottom-left status bar. You never want both instances to point at the same folder tree.&lt;/p&gt;
+&lt;p&gt;The moment you enter a file in the wrong window, you’ll see the branch indicator complaining. Git worktree integration in VS Code is surprisingly stable as long as each window corresponds to just one worktree.&lt;/p&gt;
+&lt;h3&gt;Committing From the VS Code UI to the Correct Branch&lt;/h3&gt;
+&lt;p&gt;Another easy place to make mistakes is committing. VS Code’s SCM panel will happily stage and commit changes, but only if the workspace folder is the actual worktree root.&lt;/p&gt;
+&lt;p&gt;If the root folder in your VS Code window is &lt;code&gt;../agent-refactor&lt;/code&gt;, then the SCM panel will commit to the branch connected to that worktree. This is the safe path.&lt;/p&gt;
+&lt;p&gt;If, however, you open a parent directory and the worktree folder is nested inside, VS Code gets confused because it sees multiple &lt;code&gt;.git&lt;/code&gt; locations. In that setup committing is dangerous. That’s the exact scenario where you accidentally commit to the wrong branch.&lt;/p&gt;
+&lt;p&gt;So the rule of thumb is very blunt: always open the worktree root as your workspace root, never a parent folder.&lt;/p&gt;
+&lt;p&gt;One more subtle point. When you use the VS Code "Source Control" view, it shows untracked files, staged files, everything. But the "branch" name in the status bar is the ultimate truth. If your window says "main" and you think you're inside an experimental worktree, stop immediately and re-open the correct folder.&lt;/p&gt;
+&lt;h3&gt;How to Inspect Which Workflow You Are In&lt;/h3&gt;
+&lt;p&gt;There are several quick signals you can build into your workflow.&lt;/p&gt;
+&lt;p&gt;You can add a small file at the root of each worktree:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WORKFLOW=baseline&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;workflow.tag
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WORKFLOW=agent-refactor&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;workflow.tag
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is not tracked by Git if you put it in &lt;code&gt;.git/info/exclude&lt;/code&gt;. When this file is present, VS Code’s quick search reveals it instantly. The visible presence of the tag helps when you jump between windows.&lt;/p&gt;
+&lt;p&gt;You can also put a different color theme per workflow window. For example, baseline = light theme, refactor = dark theme. It sounds silly, but it prevents accidental edits.&lt;/p&gt;
+&lt;p&gt;Another simple method is to customize the terminal prompt inside each window:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# In baseline worktree&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[baseline] &lt;/span&gt;&lt;span class="nv"&gt;$PS1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# In agent-refactor&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;PS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[refactor] &lt;/span&gt;&lt;span class="nv"&gt;$PS1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now your integrated terminal reminds you where you are every time you run a command.&lt;/p&gt;
+&lt;h3&gt;A Section for Power Users&lt;/h3&gt;
+&lt;p&gt;AI-assisted multi-workflows shine even more when you enable some advanced tricks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run benchmark scripts separately in each worktree. A fast benchmark runner in &lt;code&gt;baseline&lt;/code&gt; and then the same in &lt;code&gt;agent-refactor&lt;/code&gt; will give you meaningful signals about performance regressions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Automate comparison with a one-liner script:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;diff&lt;span class="w"&gt; &lt;/span&gt;--no-index&lt;span class="w"&gt; &lt;/span&gt;../baseline&lt;span class="w"&gt; &lt;/span&gt;../agent-refactor&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;code&lt;span class="w"&gt; &lt;/span&gt;-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This opens a diff buffer in VS Code directly. It feels like magic.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;You can use the GitLens extension. It understands worktrees and shows you exactly which branch belongs to which folder.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Test AI agents in parallel by launching each agent process pointing at a different worktree. This isolates their writes and makes their behaviors easier to compare. When the AI agent misbehaves, simply drop that worktree.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"/><category term="git"/><category term="worktrees"/><category term="ai-coding"/><category term="refactoring"/><category term="workflows"/><category term="vscode"/><category term="productivity"/></entry><entry><title>Using Git Worktrees as Clean Rooms for AI-Assisted Coding</title><link href="https://www.safjan.com/git-worktrees-for-ai-coding/" rel="alternate"/><published>2025-11-28T00:00:00+01:00</published><updated>2025-11-28T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-11-28:/git-worktrees-for-ai-coding/</id><summary type="html">&lt;h2&gt;The Mental Model&lt;/h2&gt;
+&lt;p&gt;Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on &lt;code&gt;develop&lt;/code&gt;, another on a feature branch, yet …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;The Mental Model&lt;/h2&gt;
+&lt;p&gt;Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on &lt;code&gt;develop&lt;/code&gt;, another on a feature branch, yet another on a temporary test branch, all living side by side without fighting for checkout state. There is no deep magic behind this; Git simply keeps the &lt;code&gt;.git&lt;/code&gt; metadata in one place and mounts lightweight directory views that track their own branch heads.&lt;/p&gt;
+&lt;p&gt;A tiny example explains the idea better than abstraction ever could:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Add a new worktree checked out to branch feature/refactor&lt;/span&gt;
+git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;../refactor-sandbox&lt;span class="w"&gt; &lt;/span&gt;feature/refactor
+&lt;span class="sb"&gt;````&lt;/span&gt;
+
+Your&lt;span class="w"&gt; &lt;/span&gt;filesystem&lt;span class="w"&gt; &lt;/span&gt;now&lt;span class="w"&gt; &lt;/span&gt;holds&lt;span class="w"&gt; &lt;/span&gt;two&lt;span class="w"&gt; &lt;/span&gt;siblings:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;project/
+refactor-sandbox/&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stays&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;isolated&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;AI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;agent&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;can&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rewrite&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;destructively&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;refactor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;without&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;trampling&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;over&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ongoing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tasks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Here&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;simplified&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;illustration&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;how&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;worktrees&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;relate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;underlying&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;store&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;pre&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mermaid&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;flowchart&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LR&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;Object&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Store&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Main&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Worktree&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Worktree&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;pre&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;arrangement&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;many&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;worktrees&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;one&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;brain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="cp"&gt;## What You Can Do&lt;/span&gt;
+
+&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;real&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;advantage&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;worktrees&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;basic&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;but&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;freedom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;running&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;multiple&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;contexts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;same&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;becomes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;especially&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;useful&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;when&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;coding&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;agents&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;expect&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;You&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;can&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;place&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;AI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;agent&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dedicated&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;worktree&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;operate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;were&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;only&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;thing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;happening&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Meanwhile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;development&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;somewhere&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;without&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stashing&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;switching&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cleaning&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="err"&gt;```&lt;/span&gt;&lt;span class="n"&gt;bash&lt;/span&gt;
+&lt;span class="cp"&gt;# One worktree with your manual changes&lt;/span&gt;
+&lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+
+&lt;span class="cp"&gt;# Another dedicated to agent actions&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;worktree&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;agent&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ai&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;experiment&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The agent gets its own branch and folder, untouched by half-written ideas or files you forgot to commit. When it produces large structural changes, you can evaluate them in isolation and merge only when convinced the proposal makes sense.&lt;/p&gt;
+&lt;p&gt;You can go further and set up multiple competing proposals:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;../proposal-A&lt;span class="w"&gt; &lt;/span&gt;ai/proposal-A
+git&lt;span class="w"&gt; &lt;/span&gt;worktree&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;../proposal-B&lt;span class="w"&gt; &lt;/span&gt;ai/proposal-B
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Agents operate freely. You compare their results with human eyes.&lt;/p&gt;
+&lt;h2&gt;Practical Scenarios&lt;/h2&gt;
+&lt;p&gt;This workflow shines when you are working with tools that tend to rewrite code rather than patch it. Many agents do this. A worktree acts like a disposable environment.&lt;/p&gt;
+&lt;p&gt;You might use them when engaging in heavy refactors, upgrades across the whole codebase, or exploratory changes generated by an agent, where the risk of polluting your current branch is high. You can let the agent run tests or static checks inside that environment as well, because nothing touches your main working directory.&lt;/p&gt;
+&lt;p&gt;There are situations where a worktree is not a good fit. If you are working in a simple repository with a single branch and you rely heavily on ephemeral changes, then switching branches or using commit-based snapshots might be simpler. Also, if an agent expects to operate on a fully isolated clone rather than a shared store, then a real clone is safer. Some poorly implemented tools still assume that &lt;code&gt;.git&lt;/code&gt; lives inside the working directory; those break in a worktree layout.&lt;/p&gt;
+&lt;p&gt;A real-world example: you have a large Python codebase. You want an agent to attempt a dependency upgrade across many modules. You create a fresh worktree and branch called &lt;code&gt;upgrade/fastapi-0.115&lt;/code&gt;. The agent runs its rewrite steps there. You stay focused on a bug fix on &lt;code&gt;develop&lt;/code&gt;, undisturbed. Later, you review the agent’s output, run tests, and only then merge. The separation reduces mistakes.&lt;/p&gt;
+&lt;h2&gt;The Fine Print&lt;/h2&gt;
+&lt;p&gt;There are a few subtle behaviors worth knowing before using worktrees as part of your AI-assisted coding workflow. The first is that each worktree tracks its own branch head. If you forget which directory you are in, it is easy to commit to the wrong branch. The fix is simple: always inspect &lt;code&gt;git status&lt;/code&gt; before committing, especially when moving between folders.&lt;/p&gt;
+&lt;p&gt;Another nuance is the deletion cycle. Removing a worktree requires both removing the folder and cleaning up Git’s internal registry. If an AI tool aggressively deletes directories, Git can get confused until you run &lt;code&gt;git worktree prune&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Performance is usually excellent, since objects are shared, but some agent tools expect the &lt;code&gt;.git&lt;/code&gt; directory to be physically inside the folder. Worktrees create a &lt;code&gt;.git&lt;/code&gt; file that points elsewhere. When such tools fail, the workaround is to copy the &lt;code&gt;.git&lt;/code&gt; directory from the main repo into the worktree. This is safe only for debugging; the correct fix is to use tools that support worktrees properly.&lt;/p&gt;
+&lt;p&gt;Here is an example of what not to do:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Wrong: manually replacing the pointer file&lt;/span&gt;
+rm&lt;span class="w"&gt; &lt;/span&gt;agent-run/.git
+cp&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;project/.git&lt;span class="w"&gt; &lt;/span&gt;agent-run/.git&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="c1"&gt;# Bad&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This produces a corrupted setup. The correct approach is to use tools that understand Git’s layout or run them in the primary worktree.&lt;/p&gt;
+&lt;p&gt;Another detail: worktrees are lightweight but they do not isolate installed dependencies, temporary files, or build artefacts. If your agent modifies environment-level resources, you still need separate virtual environments. Using per-worktree environments avoids cross-contamination:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;venv
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;venv/bin/activate
+pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, merging large agent-generated changes becomes easier because diffs are clean and self-contained. The trade-off is that you must resist the temptation to accept everything wholesale. A worktree encourages discipline: treat the agent’s output as a draft, not a command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Bad: blindly accepting generated rewrite&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;load_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Lost validation&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Good: incorporate intention, keep safeguards&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;load_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;User not found&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here is the decision flow in a format Mermaid will accept:&lt;/p&gt;
+&lt;pre class="mermaid"&gt;
+flowchart TD
+    A[Start AI task]
+    B{Create worktree?}
+    C[Isolated branch and folder]
+    D[Agent operates safely]
+    E[Human review]
+    F{Accept changes?}
+    G[Merge into main]
+    H[Delete worktree]
+    I[Risk mixing changes]
+
+    A --&gt; B
+    B --&gt; C
+    B --&gt; I
+    C --&gt; D
+    D --&gt; E
+    E --&gt; F
+    F --&gt; G
+    F --&gt; H
+&lt;/pre&gt;
+
+&lt;h2&gt;See also:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://git-scm.com/docs/git-worktree"&gt;Git - git-worktree Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Step-by-step tutorial to practice working with multiple worktrees &lt;a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/"&gt;Working Faster with Git Worktrees and AI-Based Multi-Workflow Development&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+&lt;/script&gt;</content><category term="note"/><category term="git"/><category term="workflows"/><category term="agents"/><category term="ai"/><category term="refactoring"/></entry><entry><title>Avoiding Homebrew Upgrades That Require Sudo on macOS</title><link href="https://www.safjan.com/avoid-homebrew-sudo-upgrades/" rel="alternate"/><published>2025-10-31T00:00:00+01:00</published><updated>2025-10-31T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-31:/avoid-homebrew-sudo-upgrades/</id><summary type="html">&lt;h2&gt;Understanding the Problem&lt;/h2&gt;
 &lt;p&gt;Homebrew is designed to install software without root privileges. Most formulae live peacefully under &lt;code&gt;/usr/local&lt;/code&gt; or &lt;code&gt;/opt/homebrew&lt;/code&gt;, updating silently. Yet sometimes you hit an upgrade that stops mid-flow asking for your password. This happens when the formula …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Understanding the Problem&lt;/h2&gt;
 &lt;p&gt;Homebrew is designed to install software without root privileges. Most formulae live peacefully under &lt;code&gt;/usr/local&lt;/code&gt; or &lt;code&gt;/opt/homebrew&lt;/code&gt;, updating silently. Yet sometimes you hit an upgrade that stops mid-flow asking for your password. This happens when the formula is actually a &lt;strong&gt;cask&lt;/strong&gt; that installs via a macOS &lt;code&gt;.pkg&lt;/code&gt; file. Those installers, like &lt;code&gt;dotnet-sdk&lt;/code&gt;, Java, or Docker, need admin rights to write under &lt;code&gt;/Library&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Running &lt;code&gt;brew update &amp;amp;&amp;amp; brew upgrade&lt;/code&gt; in automation, or even during a morning maintenance routine, becomes painful if one package demands manual confirmation.&lt;/p&gt;
@@ -8571,182 +8988,4 @@ Plumbum is suitable for developers who want to leverage the power of shell comma
 &lt;p&gt;In this article we use python to generate the slides. You can also ask model (ChatGPT) for a VisualBasic script that will generate presentation for you. You can learn this approach from the video: &lt;a href="https://www.youtube.com/watch?v=JoedhPPi3O0"&gt;Create Beautiful PowerPoint Slides with ChatGPT + VBA: Quick Tip! - YouTube&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;In this article, we've explored how to create a PowerPoint presentation using a language model, specifically OpenAI's GPT model through the Azure API. We've covered the steps from setting up the OpenAI API to generating an outline and filling the slides with content. Additionally, we discussed possible next features to enhance the script, such as slide customization, image integration, interactive presentations, and natural language processing. By expanding upon these features, you can create powerful presentation automation tools tailored to your specific needs.&lt;/p&gt;
-&lt;p&gt;Automating presentation generation not only saves time and effort but also opens up new possibilities for creating engaging and informative presentations. With the help of AI and language models, we can revolutionize the way presentations are created, allowing presenters to focus more on refining their ideas and delivering impactful content.&lt;/p&gt;</content><category term="note"/><category term="powerpoint-presentation"/><category term="language-model"/><category term="OpenAI-API"/><category term="automation"/><category term="artificial-intelligence"/><category term="python-script"/><category term="ChatGPT"/><category term="presentation-outline"/><category term="content-generation"/><category term="python-pptx"/><category term="openai"/><category term="authentication"/><category term="slide-customization"/><category term="image-integration"/><category term="interactive-presentations"/><category term="natural-language-processing"/><category term="advanced-features"/></entry><entry><title>Time Travel in Git - Creating a Branch from the Past and Crafting a New Future</title><link href="https://www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/" rel="alternate"/><published>2023-07-14T00:00:00+02:00</published><updated>2023-07-14T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-14:/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new future/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below.
-&lt;img alt="before" src="images/git_time_travel/git-time-travel-1.png"&gt;&lt;/p&gt;
-&lt;!--
-&lt;pre class="mermaid"&gt;
-gitGraph
-    commit id: "A"
-    commit id: "B"
-    commit id: "C"
-    commit id: "D"
-    commit id: "E"
-&lt;/pre&gt;
---&gt;
-&lt;p&gt;We are not happy with the changes C, D and E. We would like …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below.
-&lt;img alt="before" src="images/git_time_travel/git-time-travel-1.png"&gt;&lt;/p&gt;
-&lt;!--
-&lt;pre class="mermaid"&gt;
-gitGraph
-    commit id: "A"
-    commit id: "B"
-    commit id: "C"
-    commit id: "D"
-    commit id: "E"
-&lt;/pre&gt;
---&gt;
-&lt;p&gt;We are not happy with the changes C, D and E. We would like to start again from B, but we want to keep changes C, D and E in a new branch. Specifically, we will create a new branch starting from commit B in the main branch. We'll move the subsequent commits C, D, and E to the new branch and continue working on the main branch from the state of commit B - new commits F and G.
-&lt;img alt="after" src="images/git_time_travel/git-time-travel-2.png"&gt;&lt;/p&gt;
-&lt;!--
-&lt;pre class="mermaid"&gt;
-gitGraph
-    commit id: "A"
-    commit id: "B"
-    branch feature-1
-    commit id: "C"
-    commit id: "D"
-    commit id: "E"
-    checkout main
-    commit id: "F"
-    commit id: "G"
-&lt;/pre&gt;
---&gt;
-
-&lt;p&gt;This guide assumes you have a basic understanding of Git commands and are familiar with the command line interface.&lt;/p&gt;
-&lt;h2&gt;Step-by-Step Guide&lt;/h2&gt;
-&lt;h3&gt;Determine the current branch and commit&lt;/h3&gt;
-&lt;p&gt;Open the terminal and navigate to the Git repository where you want to perform this operation. Use the following command to display the current branch and commit:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;status
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;Create a new branch from commit B&lt;/h3&gt;
-&lt;p&gt;To create a new branch at commit B, use the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;branch&lt;span class="w"&gt; &lt;/span&gt;new-branch-name&lt;span class="w"&gt; &lt;/span&gt;commit-B-hash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace &lt;code&gt;new-branch-name&lt;/code&gt; with the desired name for your new branch and &lt;code&gt;commit-B-hash&lt;/code&gt; with the hash or unique identifier of commit B. This command creates a new branch without switching to it.&lt;/p&gt;
-&lt;h3&gt;Move commits C, D, and E to the new branch&lt;/h3&gt;
-&lt;p&gt;Switch to the new branch using the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;new-branch-name
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This command switches your working directory to the new branch. Commits C, D, and E will be moved to this branch while leaving the main branch unaffected.&lt;/p&gt;
-&lt;p&gt;To move commits C, D, and E to the new branch, use the interactive rebase command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;rebase&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;commit-B-hash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace &lt;code&gt;commit-B-hash&lt;/code&gt; with the hash or unique identifier of commit B. An interactive rebase will open, displaying a list of commits.&lt;/p&gt;
-&lt;h3&gt;Rearrange the commits in the interactive rebase&lt;/h3&gt;
-&lt;p&gt;In the interactive rebase interface, locate the lines representing commits C, D, and E. Rearrange their order by moving them above commit B. Save and close the file to continue.&lt;/p&gt;
-&lt;h3&gt;Update the main branch&lt;/h3&gt;
-&lt;p&gt;Switch back to the main branch using the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;checkout&lt;span class="w"&gt; &lt;/span&gt;main
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Your working directory will now be on the main branch.&lt;/p&gt;
-&lt;h3&gt;Make changes to the main branch based on commit B&lt;/h3&gt;
-&lt;p&gt;You are now on the main branch, as it was at commit B. Make the necessary changes or improvements.&lt;/p&gt;
-&lt;h3&gt;Commit the changes on the main branch&lt;/h3&gt;
-&lt;p&gt;Stage your changes using the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Commit the changes with a descriptive message using the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git&lt;span class="w"&gt; &lt;/span&gt;commit&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Describe your changes or improvements&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;Continue development on the main branch&lt;/h3&gt;
-&lt;p&gt;At this point, you can continue making new commits on the main branch, just as you would in any normal development workflow.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: perhaps it is not a best practice to run development on the main branch - you can learn more about it from various branching strategies. We use such a schema here for sake of simplicity.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Congratulations! You have successfully created a new branch starting from commit B and moved the subsequent commits C, D, and E to the new branch. The develop branch has been reverted to its state at commit B, allowing you to continue development from that point. Remember to use Git commands with caution and make sure to create backups or push your changes to a remote repository for safety.&lt;/p&gt;
-&lt;script type="module"&gt;
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-&lt;/script&gt;</content><category term="note"/><category term="git"/><category term="branching"/><category term="git-history"/><category term="software-development"/><category term="howto"/><category term="git-rebase"/></entry><entry><title>Mastering Temporary Files and Directories with Python's tempfile Module</title><link href="https://www.safjan.com/mastering-temporary-files-and-directories-with-python-tempfile-module/" rel="alternate"/><published>2023-07-13T00:00:00+02:00</published><updated>2023-07-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2023-07-13:/mastering-temporary-files-and-directories-with-python-tempfile-module/</id><summary type="html">&lt;p&gt;Explore Python's tempfile module and learn how to create, manage, and customize temporary files and directories with ease. Master common use-cases and uncover lesser-known features of this powerful tool.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python's &lt;a href="https://docs.python.org/3/library/tempfile.html"&gt;tempfile&lt;/a&gt; module is an incredibly powerful tool that allows you to create and manage temporary files and directories with ease. In this article, we'll dive deep into the most common use-cases and explore some lesser-known, but highly useful features of this versatile module.&lt;/p&gt;
-&lt;h2&gt;Why Use Temporary Files and Directories?&lt;/h2&gt;
-&lt;p&gt;Temporary files and directories are essential when you need to store intermediate results, cache data, or hold information during the execution of a program. They can help you minimize memory usage and improve performance by reducing the need to recompute expensive operations. Moreover, temporary files can be useful in scenarios like &lt;a href="https://en.wikipedia.org/wiki/Unit_testing"&gt;unit testing&lt;/a&gt;, where you need to create mock files and directories for testing purposes.&lt;/p&gt;
-&lt;h2&gt;Creating Temporary Files&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;tempfile&lt;/code&gt; module provides several functions to create temporary files, including &lt;code&gt;TemporaryFile&lt;/code&gt;, &lt;code&gt;NamedTemporaryFile&lt;/code&gt;, and &lt;code&gt;SpooledTemporaryFile&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;TemporaryFile&lt;/h3&gt;
-&lt;p&gt;The &lt;a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryFile"&gt;&lt;code&gt;TemporaryFile&lt;/code&gt;&lt;/a&gt; function creates an anonymous temporary file that is deleted when it is closed. This function returns a file-like object that can be used with Python's standard I/O operations:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TemporaryFile&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a temporary file.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seek&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;NamedTemporaryFile&lt;/h3&gt;
-&lt;p&gt;The &lt;a href="https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile"&gt;&lt;code&gt;NamedTemporaryFile&lt;/code&gt;&lt;/a&gt; function is similar to &lt;code&gt;TemporaryFile&lt;/code&gt;, but the file has a visible name in the file system. The file is deleted when it is closed:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NamedTemporaryFile&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a named temporary file.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seek&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;SpooledTemporaryFile&lt;/h3&gt;
-&lt;p&gt;The &lt;a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile"&gt;&lt;code&gt;SpooledTemporaryFile&lt;/code&gt;&lt;/a&gt; function creates a temporary file that is stored in memory (using &lt;code&gt;io.BytesIO&lt;/code&gt; or &lt;code&gt;io.StringIO&lt;/code&gt;) until it reaches a specified size. Once the size is exceeded, the data is automatically written to disk:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SpooledTemporaryFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This is a spooled temporary file.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seek&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Creating Temporary Directories&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;tempfile&lt;/code&gt; module provides the &lt;a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory"&gt;&lt;code&gt;TemporaryDirectory&lt;/code&gt;&lt;/a&gt; function to create temporary directories. These directories, along with their contents, are automatically deleted when the context manager exits:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TemporaryDirectory&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_dir&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Temporary directory: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;temp_dir&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;temp_file.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This file is inside the temporary directory.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Temporary directory and file have been deleted.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Customizing Temporary File and Directory Names&lt;/h2&gt;
-&lt;p&gt;You can customize the names of temporary files and directories using the &lt;code&gt;prefix&lt;/code&gt;, &lt;code&gt;suffix&lt;/code&gt;, and &lt;code&gt;dir&lt;/code&gt; arguments. For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NamedTemporaryFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;my_temp_&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;suffix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/tmp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Temporary file path: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Managing File and Directory Lifetimes&lt;/h2&gt;
-&lt;p&gt;By default, temporary files and directories are deleted when their corresponding file-like objects are closed. However, you can use the &lt;code&gt;delete&lt;/code&gt; argument to control this behavior:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NamedTemporaryFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;delete&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;This temporary file will not be deleted.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;temp_file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file_path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Securely Generating Random Strings&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;tempfile&lt;/code&gt; module also provides the &lt;a href="https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp"&gt;&lt;code&gt;mkstemp&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://docs.python.org/3/library/tempfile.html#tempfile.mkdtemp"&gt;&lt;code&gt;mkdtemp&lt;/code&gt;&lt;/a&gt; functions, which generate random strings for file and directory names, respectively. These functions can be useful when you need to generate unique names for your application:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tempfile&lt;/span&gt;
-
-&lt;span class="n"&gt;temp_file&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;temp_file_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mkstemp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Temporary file path: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;temp_file_path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;temp_dir_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tempfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mkdtemp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Temporary directory path: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;temp_dir_path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;In this article, we've explored the powerful features of Python's &lt;code&gt;tempfile&lt;/code&gt; module, covering common use-cases and some lesser-known features. With these tools at your disposal, you can easily create and manage temporary files and directories in your Python applications.&lt;/p&gt;</content><category term="note"/><category term="python"/><category term="temporary-file"/><category term="temp"/><category term="tempfile"/></entry></feed>
+&lt;p&gt;Automating presentation generation not only saves time and effort but also opens up new possibilities for creating engaging and informative presentations. With the help of AI and language models, we can revolutionize the way presentations are created, allowing presenters to focus more on refining their ideas and delivering impactful content.&lt;/p&gt;</content><category term="note"/><category term="powerpoint-presentation"/><category term="language-model"/><category term="OpenAI-API"/><category term="automation"/><category term="artificial-intelligence"/><category term="python-script"/><category term="ChatGPT"/><category term="presentation-outline"/><category term="content-generation"/><category term="python-pptx"/><category term="openai"/><category term="authentication"/><category term="slide-customization"/><category term="image-integration"/><category term="interactive-presentations"/><category term="natural-language-processing"/><category term="advanced-features"/></entry></feed>

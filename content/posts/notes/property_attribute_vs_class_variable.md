@@ -64,8 +64,14 @@ print(Person.count)  # Output: 2
 
 ```
 
+
+### Anti-patterns to watch out for
+
+- **Mutable class variables that should be per-instance** (classic pitfall).
+- **Class variables used as “hidden globals”** (hard to test).
+- **Implicit shared state with no clear protocol**.
+
 ### Difference
->
 > The main difference between attributes/properties and class variables is that **attributes are specific to each instance** of a class, while **class variables are shared among all instances**.
 
 Attributes are defined within the `__init__` method and can be different for each instance. Class variables are defined outside of any methods and are shared by all instances.
@@ -77,3 +83,4 @@ In general, if you need to store data that is specific to each instance of a cla
 ## References
 
 [python - difference between class variable and class attribute - Stack Overflow](https://stackoverflow.com/questions/22822710/difference-between-class-variable-and-class-attribute)
+

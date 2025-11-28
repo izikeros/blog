@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+
+
+
+        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan" />
+    <meta name="description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on develop, another on a feature branch, yet …" />
+    <meta name="keywords" content="git, workflows, agents, ai, refactoring">
+    <meta expr:content="2025-11-28 00:00:00+01:00" itemprop='datePublished' />
+    <meta expr:content="2025-11-28 00:00:00+01:00" itemprop='dateModified' />
+    <meta property="article:modified_time" content="2025-11-28 00:00:00+01:00" />
+    <meta property="article:published_time" content="2025-11-28 00:00:00+01:00" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Using Git Worktrees as Clean Rooms for AI-Assisted Coding",
+  "datePublished": "2025-11-28 00:00:00+01:00",
+  "dateModified": "2025-11-28 00:00:00+01:00"
+}
+    </script>
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Using Git Worktrees as Clean Rooms for AI-Assisted Coding"/>
+  <meta property="og:description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on develop, another on a feature branch, yet …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/git-worktrees-for-ai-coding/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-11-28 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2025-11-28 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="git"/>
+  <meta property="article:tag" content="workflows"/>
+  <meta property="article:tag" content="agents"/>
+  <meta property="article:tag" content="ai"/>
+  <meta property="article:tag" content="refactoring"/>
+  <meta property="og:image" content="/images/profile_new.jpg">
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta property="twitter:image" content="/images/profile_new.jpg">
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having..."/>
+    <meta name="twitter:title" content="Using Git Worktrees as Clean Rooms for AI-Assisted Coding"/>
+
+    <title>Using Git Worktrees as Clean Rooms for AI-Assisted Coding</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body class="light-theme">
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<style>
+    .button {
+        background-color: yellow;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .left-col {
+    }
+
+    .right-col {
+    }
+
+    .image {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .book-list {
+        padding-top:0;
+        padding-bottom: 0;
+        text-align:left;
+        box-sizing: border-box;
+        display: block;
+        list-style-image: url(/images/shortcode-tick.webp);
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start:0;
+        margin-inline-end:0;
+        padding-inline-start:40px;
+    }
+
+    .book-list li {
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="left-col">
+        <a href="https://ksafjanuser.gumroad.com/l/mlops">
+            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
+        </a>
+
+        <div class="center">
+            <a href="https://ksafjanuser.gumroad.com/l/mlops">
+                <button class="button">Get for $2.99</button>
+            </a>
+        </div>
+    </div>
+    <div class="right-col">
+        <div>
+            <ul class="book-list">
+                <li>PDF, ePUB, mobi format ebook, no DRM</li>
+                <li>50 questions and answers</li>
+                <li>Stories from real projects</li>
+                <li>92 multiple choice quiz questions</li>
+                <li>80 pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</aside>
+<main>
+
+        <nav>
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2025-11-28 
+                    <span id="post-share-links">
+                        &nbsp;&nbsp;&nbsp;Share on:
+                        <a href="https://twitter.com/intent/tweet?text=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding&url=https%3A//www.safjan.com/git-worktrees-for-ai-coding/&via=izikeros&hashtags=git,workflows,agents,ai,refactoring"
+                           target="_blank"
+                           title="Share on Twitter">Twitter</a>
+                        |
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-worktrees-for-ai-coding/"
+                           target="_blank"
+                           title="Share on Facebook">Facebook</a>
+                        |
+                        <a href="https://news.ycombinator.com/submitlink?t=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding&u=https%3A//www.safjan.com/git-worktrees-for-ai-coding/"
+                           target="_blank"
+                           title="Share on HackerNews">HackerNews</a>
+                        |
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-worktrees-for-ai-coding/&title=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding"
+                           target="_blank"
+                           title="Share via Reddit">Reddit</a>
+                    </span>
+                <br />
+            </p>
+            <h1 id="git-worktrees-for-ai-coding">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</h1>
+            <div class="header-underline"></div>
+        </header>
+        <div><h2>The Mental Model</h2>
+<p>Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on <code>develop</code>, another on a feature branch, yet another on a temporary test branch, all living side by side without fighting for checkout state. There is no deep magic behind this; Git simply keeps the <code>.git</code> metadata in one place and mounts lightweight directory views that track their own branch heads.</p>
+<p>A tiny example explains the idea better than abstraction ever could:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add a new worktree checked out to branch feature/refactor</span>
+git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>../refactor-sandbox<span class="w"> </span>feature/refactor
+<span class="sb">````</span>
+
+Your<span class="w"> </span>filesystem<span class="w"> </span>now<span class="w"> </span>holds<span class="w"> </span>two<span class="w"> </span>siblings:
+</code></pre></div>
+
+<p>project/
+refactor-sandbox/</p>
+<div class="highlight"><pre><span></span><code><span class="n">The</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">stays</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">work</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">clean</span><span class="p">,</span><span class="w"> </span><span class="n">isolated</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">AI</span><span class="w"> </span><span class="n">agent</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">generate</span><span class="p">,</span><span class="w"> </span><span class="n">rewrite</span><span class="p">,</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">destructively</span><span class="w"> </span><span class="n">refactor</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">without</span><span class="w"> </span><span class="n">trampling</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">ongoing</span><span class="w"> </span><span class="n">tasks</span><span class="p">.</span>
+
+<span class="n">Here</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">simplified</span><span class="w"> </span><span class="n">illustration</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">how</span><span class="w"> </span><span class="n">worktrees</span><span class="w"> </span><span class="n">relate</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">underlying</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">store</span><span class="o">:</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="w"> </span><span class="k">class</span><span class="o">=</span><span class="s">&quot;mermaid&quot;</span><span class="o">&gt;</span>
+<span class="n">flowchart</span><span class="w"> </span><span class="n">LR</span>
+<span class="w">    </span><span class="n">O</span><span class="p">[(</span><span class="n">Object</span><span class="w"> </span><span class="n">Store</span><span class="p">)]</span>
+<span class="w">    </span><span class="n">M</span><span class="p">[</span><span class="n">Main</span><span class="w"> </span><span class="n">Worktree</span><span class="p">]</span>
+<span class="w">    </span><span class="n">F</span><span class="p">[</span><span class="n">Feature</span><span class="w"> </span><span class="n">Worktree</span><span class="p">]</span>
+
+<span class="w">    </span><span class="n">M</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">O</span>
+<span class="w">    </span><span class="n">F</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">O</span>
+<span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+
+<span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">core</span><span class="w"> </span><span class="n">arrangement</span><span class="o">:</span><span class="w"> </span><span class="n">many</span><span class="w"> </span><span class="n">worktrees</span><span class="p">,</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">shared</span><span class="w"> </span><span class="n">repository</span><span class="w"> </span><span class="n">brain</span><span class="p">.</span>
+
+<span class="cp">## What You Can Do</span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">real</span><span class="w"> </span><span class="n">advantage</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">worktrees</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">basic</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">freedom</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">contexts</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">becomes</span><span class="w"> </span><span class="n">especially</span><span class="w"> </span><span class="n">useful</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">coding</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">agents</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">expect</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">stable</span><span class="w"> </span><span class="n">branch</span><span class="w"> </span><span class="n">state</span><span class="p">.</span>
+
+<span class="n">You</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">place</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">AI</span><span class="w"> </span><span class="n">agent</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">dedicated</span><span class="w"> </span><span class="n">worktree</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">let</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">operate</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">were</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="n">thing</span><span class="w"> </span><span class="n">happening</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">project</span><span class="p">.</span><span class="w"> </span><span class="n">Meanwhile</span><span class="p">,</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="k">continue</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="n">somewhere</span><span class="w"> </span><span class="k">else</span><span class="p">,</span><span class="w"> </span><span class="n">without</span><span class="w"> </span><span class="n">stashing</span><span class="p">,</span><span class="w"> </span><span class="n">switching</span><span class="p">,</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">cleaning</span><span class="w"> </span><span class="n">up</span><span class="p">.</span>
+
+<span class="err">```</span><span class="n">bash</span>
+<span class="cp"># One worktree with your manual changes</span>
+<span class="n">project</span><span class="o">/</span>
+
+<span class="cp"># Another dedicated to agent actions</span>
+<span class="n">git</span><span class="w"> </span><span class="n">worktree</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">agent</span><span class="o">-</span><span class="n">run</span><span class="w"> </span><span class="n">ai</span><span class="o">/</span><span class="n">experiment</span>
+</code></pre></div>
+
+<p>The agent gets its own branch and folder, untouched by half-written ideas or files you forgot to commit. When it produces large structural changes, you can evaluate them in isolation and merge only when convinced the proposal makes sense.</p>
+<p>You can go further and set up multiple competing proposals:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>../proposal-A<span class="w"> </span>ai/proposal-A
+git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>../proposal-B<span class="w"> </span>ai/proposal-B
+</code></pre></div>
+
+<p>Agents operate freely. You compare their results with human eyes.</p>
+<h2>Practical Scenarios</h2>
+<p>This workflow shines when you are working with tools that tend to rewrite code rather than patch it. Many agents do this. A worktree acts like a disposable environment.</p>
+<p>You might use them when engaging in heavy refactors, upgrades across the whole codebase, or exploratory changes generated by an agent, where the risk of polluting your current branch is high. You can let the agent run tests or static checks inside that environment as well, because nothing touches your main working directory.</p>
+<p>There are situations where a worktree is not a good fit. If you are working in a simple repository with a single branch and you rely heavily on ephemeral changes, then switching branches or using commit-based snapshots might be simpler. Also, if an agent expects to operate on a fully isolated clone rather than a shared store, then a real clone is safer. Some poorly implemented tools still assume that <code>.git</code> lives inside the working directory; those break in a worktree layout.</p>
+<p>A real-world example: you have a large Python codebase. You want an agent to attempt a dependency upgrade across many modules. You create a fresh worktree and branch called <code>upgrade/fastapi-0.115</code>. The agent runs its rewrite steps there. You stay focused on a bug fix on <code>develop</code>, undisturbed. Later, you review the agent’s output, run tests, and only then merge. The separation reduces mistakes.</p>
+<h2>The Fine Print</h2>
+<p>There are a few subtle behaviors worth knowing before using worktrees as part of your AI-assisted coding workflow. The first is that each worktree tracks its own branch head. If you forget which directory you are in, it is easy to commit to the wrong branch. The fix is simple: always inspect <code>git status</code> before committing, especially when moving between folders.</p>
+<p>Another nuance is the deletion cycle. Removing a worktree requires both removing the folder and cleaning up Git’s internal registry. If an AI tool aggressively deletes directories, Git can get confused until you run <code>git worktree prune</code>.</p>
+<p>Performance is usually excellent, since objects are shared, but some agent tools expect the <code>.git</code> directory to be physically inside the folder. Worktrees create a <code>.git</code> file that points elsewhere. When such tools fail, the workaround is to copy the <code>.git</code> directory from the main repo into the worktree. This is safe only for debugging; the correct fix is to use tools that support worktrees properly.</p>
+<p>Here is an example of what not to do:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wrong: manually replacing the pointer file</span>
+rm<span class="w"> </span>agent-run/.git
+cp<span class="w"> </span>-r<span class="w"> </span>project/.git<span class="w"> </span>agent-run/.git<span class="w">   </span><span class="c1"># Bad</span>
+</code></pre></div>
+
+<p>This produces a corrupted setup. The correct approach is to use tools that understand Git’s layout or run them in the primary worktree.</p>
+<p>Another detail: worktrees are lightweight but they do not isolate installed dependencies, temporary files, or build artefacts. If your agent modifies environment-level resources, you still need separate virtual environments. Using per-worktree environments avoids cross-contamination:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+
+<p>Finally, merging large agent-generated changes becomes easier because diffs are clean and self-contained. The trade-off is that you must resist the temptation to accept everything wholesale. A worktree encourages discipline: treat the agent’s output as a draft, not a command.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Bad: blindly accepting generated rewrite</span>
+<span class="k">def</span> <span class="nf">load_user</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>  <span class="c1"># Lost validation</span>
+
+<span class="c1"># Good: incorporate intention, keep safeguards</span>
+<span class="k">def</span> <span class="nf">load_user</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user</span>
+</code></pre></div>
+
+<p>Here is the decision flow in a format Mermaid will accept:</p>
+<pre class="mermaid">
+flowchart TD
+    A[Start AI task]
+    B{Create worktree?}
+    C[Isolated branch and folder]
+    D[Agent operates safely]
+    E[Human review]
+    F{Accept changes?}
+    G[Merge into main]
+    H[Delete worktree]
+    I[Risk mixing changes]
+
+    A --> B
+    B --> C
+    B --> I
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    F --> H
+</pre>
+
+<h2>See also:</h2>
+<ul>
+<li><a href="https://git-scm.com/docs/git-worktree">Git - git-worktree Documentation</a></li>
+<li>Step-by-step tutorial to practice working with multiple worktrees <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a></li>
+</ul>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+</script></div>
+        <div class="tag-cloud">
+            <p>
+                    <br />
+                    <br />
+                    Tags:&nbsp;
+<a href="https://www.safjan.com/tag/git/">git</a><a href="https://www.safjan.com/tag/workflows/">workflows</a><a href="https://www.safjan.com/tag/agents/">agents</a><a href="https://www.safjan.com/tag/ai/">ai</a><a href="https://www.safjan.com/tag/refactoring/">refactoring</a>            </p>
+        </div>
+            <div class="related-posts">
+                <h4>You might enjoy</h4>
+                <ul class="related-posts">
+                        <li>
+                            <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/">Keeping performance results in a separate Git branch using `git checkout --orphan`</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a>
+                        </li>
+                        <li>
+                            <a href="https://www.safjan.com/Git-change-remote-origin-replace-with-new/">Git change remote origin (replace with new)</a>
+                        </li>
+                </ul>
+            </div>
+    </article>
+
+    <footer>
+<p>
+  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+</main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Krystian Safjan's Blog ",
+  "url" : "https://www.safjan.com",
+  "image": "/images/profile_new.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
