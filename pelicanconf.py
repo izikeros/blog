@@ -52,8 +52,7 @@ MY_THEME = "flex"  # Options: flex | safi
 THEME_CONFIG = {
     "flex": {
         "path": "pelican-themes/Flex",
-        "theme_color_enable_user_override": False,
-        "use_less": False,
+        "theme_color_enable_user_override": True,
         "custom_css": "styles/custom.css",
     },
     "safi": {
@@ -81,7 +80,6 @@ if MY_THEME == "flex":
     PROMO_BOX = True
     CUSTOM_CSS = THEME_CONFIG["flex"]["custom_css"]
     THEME_COLOR_ENABLE_USER_OVERRIDE = THEME_CONFIG["flex"]["theme_color_enable_user_override"]
-    USE_LESS = THEME_CONFIG["flex"]["use_less"]
 
 # Theme-specific settings for Safi
 elif MY_THEME == "safi":
@@ -103,7 +101,9 @@ SHOW_DATE_MODIFIED = False
 DATE_FOR_ARTICLE_GROUPS = False
 
 # Pagination and summaries
-DEFAULT_PAGINATION = 200
+# Note: Set higher because index.html filters out 'note' category articles
+# With ~73% notes, 50 total gives ~10-15 visible articles per page
+DEFAULT_PAGINATION = 50
 SUMMARY_MAX_LENGTH = 42
 HOME_HIDE_TAGS = True
 
