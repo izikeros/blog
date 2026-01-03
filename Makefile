@@ -58,6 +58,7 @@ regenerate:
 e2e:
 	echo "Building blog for publish"
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
+	npx pagefind --site "$(OUTPUTDIR)"
 	echo "Updating repo (git add, commit, push)"
 	git add "$(OUTPUTDIR)" && git commit -m "Blog content update" && git push
 	echo "Blog regenerated, and pushed to remote."
@@ -81,6 +82,7 @@ devserver-global:
 
 publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
+	npx pagefind --site "$(OUTPUTDIR)"
 
 push:
 	git add . && git commit -m "Blog content update" && git push
