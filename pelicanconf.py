@@ -102,11 +102,17 @@ DATE_FOR_ARTICLE_GROUPS = False
 ENABLE_TOC = True  # Enable/disable Table of Contents generation
 
 # Pagination and summaries
-# Note: Set higher because index.html filters out 'note' category articles
-# With ~73% notes, 50 total gives ~10-15 visible articles per page
-DEFAULT_PAGINATION = 50
+# DEFAULT_PAGINATION controls Pelican's internal pagination (set to match filtered page count)
+# INDEX_ARTICLES_PER_PAGE controls visible articles per page (via exclude_category plugin)
+# Formula: DEFAULT_PAGINATION = total_articles / (filtered_articles / INDEX_ARTICLES_PER_PAGE)
+# With ~317 total, ~79 filtered, 10 per page = 8 pages needed, so 317/8 ≈ 40
+DEFAULT_PAGINATION = 40
 SUMMARY_MAX_LENGTH = 42
 HOME_HIDE_TAGS = True
+
+# Exclude categories from index (handled by exclude_category plugin)
+INDEX_EXCLUDE_CATEGORIES = ['note']
+INDEX_ARTICLES_PER_PAGE = 10
 
 # Menu configuration
 USE_FOLDER_AS_CATEGORY = False
@@ -253,17 +259,14 @@ IPYNB_PREPROCESSORS = [
 
 PLUGIN_PATHS = ["./pelican-plugins"]
 
-# Uncomment and configure plugins as needed
-# PLUGINS = [
-#     "featured_image",
-#     "render_math",
-#     "neighbors",
-#     "related_posts",
-#     "sitemap",
-#     "yaml_metadata",
-#     "pelican_obsidian",
-#     "pelican_jupyter",
-# ]
+PLUGINS = [
+    "exclude_category",
+    "yaml_metadata",
+]
+
+# Other plugins (uncomment as needed):
+# "featured_image", "render_math", "neighbors", "related_posts",
+# "sitemap", "pelican_obsidian", "pelican_jupyter"
 
 # =============================================================================
 # SEO CONFIGURATION
