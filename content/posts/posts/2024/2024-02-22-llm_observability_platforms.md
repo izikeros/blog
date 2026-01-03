@@ -21,20 +21,7 @@ Summary: Managing and monitoring the complex behavior of Large Language Models (
 Status: published
 prompt:
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
-
-- [LLM Observability in the Context of LLMOps for Generative AI](#llm-observability-in-the-context-of-llmops-for-generative-ai)
-- [What is LLM Observability?](#what-is-llm-observability)
-- [Expected Functionalities of an LLM Observability Solution](#expected-functionalities-of-an-llm-observability-solution)
-- [Open Source LLM Observability Tools and Platforms](#open-source-llm-observability-tools-and-platforms)
-- [Non-open source](#non-open-source)
-- [Other - related](#other---related)
-- [References](#references)
-
-<!-- /MarkdownTOC -->
-
 <a id="llm-observability-in-the-context-of-llmops-for-generative-ai"></a>
-
 ## LLM Observability in the Context of LLMOps for Generative AI
 
 AI is transforming the world, and one area where it has made significant strides is in generative models, particularly in the field of Large Language Models (LLMs) like GPT-3 and transformer models. However, as impressive as these models are, managing, monitoring, and understanding their behavior and output remains a challenge. Enter LLMOps, a new field focusing on the management and deployment of LLMs, and a key aspect of this is LLM Observability.
