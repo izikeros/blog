@@ -20,6 +20,15 @@ RELATIVE_URLS = False
 FEED_DOMAIN = SITEURL
 FEED_ALL_ATOM = "feeds/all.atom.xml"
 FEED_ALL_RSS = "feeds/all.rss.xml"
+FEED_MAX_ITEMS = 30
+
+# Disable unused feeds
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+
+# Clean subtitle for feeds (no HTML) - overrides pelicanconf.py version
+SITESUBTITLE = "Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python"
 
 DELETE_OUTPUT_DIRECTORY = True
 
