@@ -13,6 +13,7 @@ Tags:
   - docker
   - docker-compose
   - qnap
+  - nas-app
 Title: Install Photoprism on QNAP NAS Using Docker Compose
 ---
 X::[[piwigo_photo_gallery]]

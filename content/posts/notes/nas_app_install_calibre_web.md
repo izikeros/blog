@@ -10,6 +10,7 @@ Tags:
   - docker
   - qnap
   - nas
+  - nas-app
 Title: Tutorial - Install Calibre Web on QNAP NAS
 citation_needed: false
 ---
@@ -223,6 +224,6 @@ To change the admin user's password after logging in, click the lowercase userna
 
 Article [Run Calibre-web on QNAP NAS](https://kunsen.net/2019/10/26/post-2468/) (in Japanese) helped me with my first setup of calibre web. This tutorial is heavily based on that article.
 
-X::[[qnap_nas_photoprism]]
+X::[[nas_app_photoprism]]
 up:[[MOC_Domowe_it]]
 X::[[photo_image_gallery_alternatives]]

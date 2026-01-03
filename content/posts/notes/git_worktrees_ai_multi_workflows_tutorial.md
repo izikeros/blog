@@ -11,6 +11,17 @@ summary: A practical, hands-on guide to turning a single codebase into a multi-w
 
 _A practical step-by-step tutorial using Git worktrees, small and large refactorings, and GitHub Copilot._
 
+## Prerequisites
+
+Before starting, ensure you have:
+
+- **Git 2.5+** (check with `git --version`)
+- **Python 3.8+** and pip
+- **VS Code** (optional but recommended)
+- **pytest** (`pip install pytest`)
+- **GitHub Copilot** or another AI coding assistant
+- Basic familiarity with Git branching and command-line operations
+
 ## Introduction
 
 There is a moment when a project grows from a single-track workflow into something more complex. The codebase stays small, but you want to try a few big ideas at once. Or you want GitHub Copilot (or any AI coding agent) to attempt two different solutions while you continue working normally. One branch is not enough. Stashes are too messy. Full clones eat time and attention.
@@ -21,7 +32,18 @@ This tutorial shows you how to build a multi-workflow setup using a simple Pytho
 
 ## Starting Point: A Tiny Codebase
 
-Assume we begin with a very small project containing one module called `stats.py`. It calculates a few simple statistics.
+### Initial Project Setup
+
+First, create a fresh repository:
+
+```bash
+mkdir project
+cd project
+git init
+git checkout -b develop
+```
+
+Create a file called `stats.py` with some simple statistics functions:
 
 ```python
 # stats.py
@@ -41,14 +63,23 @@ def variance(values):
     return sum(v * v for v in values) / len(values)
 ```
 
+Commit this baseline:
+
+```bash
+git add stats.py
+git commit -m "Initial commit with stats module"
+```
+
 There is an obvious bug in `variance`. The right definition uses squared deviations from the mean.
 
 ```python
-# Correct version of variance
+# Correct version of variance (population variance)
 def variance(values):
     m = average(values)
     return sum((v - m) ** 2 for v in values) / len(values)
 ```
+
+Note: This calculates population variance (dividing by N). Sample variance would use N-1.
 
 This is our baseline. A candidate for small refactoring is the variance fix. A candidate for heavy refactoring is reorganising everything into a class-based structure or splitting the module into multiple files.
 
@@ -65,11 +96,23 @@ Everything looks normal.
 
 ## Step 2: Prepare Worktrees for AI Workflows
 
-Now create a branch exclusively for the small refactoring, and another branch to explore a heavy rewrite.
+Now create worktrees with new branches for experimentation. The `git worktree add` command creates both the branch and the working directory in one step:
 
 ```bash
-git worktree add ../refactor-small ai/refactor-small
-git worktree add ../refactor-heavy ai/refactor-heavy
+git worktree add -b ai/refactor-small ../refactor-small
+git worktree add -b ai/refactor-heavy ../refactor-heavy
+```
+
+Your directory structure now looks like:
+
+```
+parent-directory/
+├── project/           # main worktree (develop branch)
+│   └── stats.py
+├── refactor-small/    # worktree (ai/refactor-small branch)
+│   └── stats.py
+└── refactor-heavy/    # worktree (ai/refactor-heavy branch)
+    └── stats.py
 ```
 
 You now have three directories:
@@ -78,17 +121,28 @@ You now have three directories:
 - `refactor-small/` for the AI to attempt precise, localised edits
 - `refactor-heavy/` for a broad exploration of reorganising the project
 
+You can verify existing workflows with:
+
+```bash
+git worktree list
+```
+
 Each is a full working directory with its own branch and commit history, but the `.git` data is shared. Switching happens simply by changing directories, not by resetting state.
 
 ## Step 3: Run the First Workflow – A Small AI Refactor
 
 Go into the `refactor-small` directory and open your IDE.
 
-Ask Copilot (or another model) to fix the variance implementation and streamline the small functions. Something like:
+```bash
+cd ../refactor-small
+code .
+```
+
+Open `stats.py` and use **GitHub Copilot Chat** to fix the variance implementation. Exemplary prompt:
 
 > Clean up this file. Fix the variance bug, add type hints, and make error handling more robust. Keep changes minimal.
 
-Copilot should produce something along these lines:
+Review the AI's suggestions carefully. Accept changes that look correct. The result should be something like:
 
 ```python
 # stats.py after small refactor
@@ -129,54 +183,21 @@ Nothing touches the `project/` folder. No stashes. No switching.
 
 ## Step 4: Run the Heavy Workflow – A Large-Scale AI Refactor
 
-Open the second worktree.
+Open the second worktree in a **separate VS Code window**.
 
 ```bash
 cd ../refactor-heavy
+code .
 ```
 
 This time, ask your AI assistant:
 
-> Rewrite this module using an object-oriented structure. Split statistics operations into separate classes if needed. Add validation. Keep the public API clear and ergonomic.
+> Rewrite this module using an object-oriented structure. Split statistics operations into separate classes if needed. Add validation. Keep the public API clear and ergonomic. Keep the code in the same file do not split into multiple files.
 
-Expect a much bigger rewrite. Copilot might produce something like this:
-
-```python
-# stats/metrics.py after heavy refactor
-
-class Stats:
-    def __init__(self, values):
-        if not values:
-            raise ValueError("Values cannot be empty")
-        self.values = list(values)
-
-    def average(self):
-        return sum(self.values) / len(self.values)
-
-    def median(self):
-        sorted_values = sorted(self.values)
-        mid = len(sorted_values) // 2
-        if len(sorted_values) % 2 == 0:
-            return (sorted_values[mid - 1] + sorted_values[mid]) / 2
-        return sorted_values[mid]
-
-    def variance(self):
-        m = self.average()
-        return sum((v - m) ** 2 for v in self.values) / len(self.values)
-```
-
-This version creates a directory layout like:
-
-```
-stats/
-    __init__.py
-    metrics.py
-```
-
-Commit again:
+Expect a much bigger rewrite. Verify changes and commit again:
 
 ```bash
-git add .
+git add stats.py
 git commit -m "Major rewrite: object-oriented Stats class with reorganized structure"
 ```
 
@@ -186,10 +207,10 @@ Now you have two valid, complete refactor attempts captured in versioned form, s
 
 Here is where multi-workflows shine. You can run tests, linters, or performance checks in each directory independently and in parallel.
 
-Back in the main project, create a quick test script:
+Back in the main project directory, create a test script:
 
 ```python
-# test_stats.py
+# test_stats.py (in project/ and refactor-small/)
 
 from stats import average, median, variance
 
@@ -198,33 +219,44 @@ def test_all():
     assert average(values) == 3
     assert median(values) == 3
     assert round(variance(values), 5) == 2.0
+
+if __name__ == "__main__":
+    test_all()
+    print("✓ All tests passed")
 ```
 
-For the heavy version, you might need a different import:
+Copy this file to both worktrees. For the heavy version, create a different test:
 
 ```python
-# test_stats_heavy.py
+# test_stats.py (in refactor-heavy/)
 
-from stats.metrics import Stats
+from stats import Stats
 
 def test_stats_class():
     s = Stats([1, 2, 3, 4, 5])
     assert s.average() == 3
     assert s.median() == 3
     assert round(s.variance(), 5) == 2.0
+
+if __name__ == "__main__":
+    test_stats_class()
+    print("All tests passed")
 ```
 
 Run tests separately in each worktree:
 
 ```bash
 cd project
-pytest -q
+python test_stats.py
+# Output: All tests passed
 
 cd ../refactor-small
-pytest -q
+python test_stats.py
+# Output: All tests passed
 
 cd ../refactor-heavy
-pytest -q
+python test_stats.py
+# Output: All tests passed
 ```
 
 You get independent validation. If the heavy refactor has bugs, you know immediately without polluting the main line of work.
@@ -234,33 +266,34 @@ You get independent validation. If the heavy refactor has bugs, you know immedia
 You now have three evolving branches:
 
 - `develop` with your original code
-    
 - `ai/refactor-small` with a careful, stable refactor
-    
 - `ai/refactor-heavy` with a more ambitious rewrite
-    
 
 Decision time usually involves:
 
 - Code clarity
-    
 - Compatibility with existing imports
-    
 - Test coverage
-    
 - Future extensibility
-    
 - Performance
-    
 
 For many teams, the small refactor becomes a straightforward merge:
 
 ```bash
+cd ../project  # Return to main worktree
 git switch develop
 git merge ai/refactor-small
+# Output: Fast-forward or Merge made by the 'recursive' strategy.
 ```
 
-The heavy refactor might need additional time, iteration, or might stay as a long-running branch until more confidence is built.
+
+After merging, run tests again to ensure everything works:
+
+```bash
+python test_stats.py
+```
+
+The heavy refactor might need additional time, iteration, or might stay as a long-running branch until more confidence is built. You can keep that worktree around for continued experimentation.
 
 ## Step 7: Cleaning Up
 
@@ -268,13 +301,34 @@ After merging what you want, remove worktrees you no longer need.
 
 ```bash
 git worktree remove ../refactor-small
+```
+
+For branches you want to keep but not actively work on:
+
+```bash
+# Archive the heavy refactor branch for future reference
+git branch --move ai/refactor-heavy archive/refactor-heavy-2025-12
 git worktree remove ../refactor-heavy
+```
+
+Or delete the branch entirely if you don't need it:
+
+```bash
+git worktree remove ../refactor-heavy
+git branch -D ai/refactor-heavy
 ```
 
 If Git complains the directory still exists, delete it manually and run:
 
 ```bash
+rm -rf ../refactor-heavy
 git worktree prune
+```
+
+List remaining worktrees:
+
+```bash
+git worktree list
 ```
 
 ## Why This Workflow Works So Well
@@ -287,35 +341,25 @@ The biggest advantage is velocity without chaos: several workflows move forward 
 
 If you use AI in your everyday coding, this structure should become second nature. It transforms the way you evaluate ideas, especially when dealing with both small fixes and large rewrites.
 
+## Troubleshooting Common Issues
+
+**Problem**: "fatal: 'ai/refactor-small' is already checked out at..."  
+**Solution**: You can't check out the same branch in multiple worktrees. Use different branch names.
+
+**Problem**: Changes appear in the wrong worktree  
+**Solution**: Check which directory you're in with `pwd`. Verify the branch with `git branch --show-current`.
+
+**Problem**: VS Code commits to wrong branch  
+**Solution**: Always open the worktree directory as the workspace root, not a parent folder. Check the branch indicator in the bottom-left corner.
+
+**Problem**: Tests fail after AI refactor  
+**Solution**: Review AI changes line-by-line. AI tools sometimes introduce subtle bugs. Use `git diff` to see exactly what changed.
+
+**Problem**: Can't delete worktree  
+**Solution**: Close all editors and terminals in that worktree, then use `git worktree remove --force` if needed.
+
 ## Extras
 
-
-### Comparing Workflows with `git diff --no-index` and Practical Multi-Workflow Tips
-
-At some point you want to know which variant actually performed better. Maybe the baseline is cleaner. Maybe the Copilot heavy-refactor got overly creative. A simple trick is to compare two worktrees without committing anything. This is where `git diff --no-index` feels almost unfair because it ignores Git’s object database and simply diffs two directories. Perfect for AI-driven experimentation.
-
-You run this from anywhere, and Git treats both directories like normal folders.
-
-```bash
-git diff --no-index ../baseline ../agent-refactor
-```
-
-If you are inside `agent-refactor`, the paths look like this:
-
-```bash
-git diff --no-index . ../baseline
-```
-
-This gives you a raw diff across files regardless of whether they’re tracked in the same repo. The output is blunt, noisy, and brutally honest, which is exactly what you want when checking what an AI agent really did. When the diff is unreadable, that’s often a hint that the refactor mutated too much at once. In those cases, I sometimes do a narrower diff:
-
-```bash
-git diff --no-index ../baseline/path/to/module.py path/to/module.py
-```
-
-or even a directory-level diff to check how wide the blast radius went:
-
-```bash
-git diff --no-index ../baseline/src ../agent-refactor/src
 ```
 
 ### Using VS Code with Multiple Worktrees Without Losing Your Mind
@@ -327,68 +371,10 @@ The easiest way to stay sane is to open each worktree as a separate VS Code wind
 If you open the root project folder and start navigating into `.worktrees/...`, you’re setting yourself up for mistakes. Instead, open the worktree directory itself:
 
 ```bash
-code ../baseline
-code ../agent-refactor
+code ../project
+code ../refactor-small
 ```
 
 This gives each workflow its own VS Code instance, with its own branch badge in the bottom-left status bar. You never want both instances to point at the same folder tree.
 
 The moment you enter a file in the wrong window, you’ll see the branch indicator complaining. Git worktree integration in VS Code is surprisingly stable as long as each window corresponds to just one worktree.
-
-### Committing From the VS Code UI to the Correct Branch
-
-Another easy place to make mistakes is committing. VS Code’s SCM panel will happily stage and commit changes, but only if the workspace folder is the actual worktree root.
-
-If the root folder in your VS Code window is `../agent-refactor`, then the SCM panel will commit to the branch connected to that worktree. This is the safe path.
-
-If, however, you open a parent directory and the worktree folder is nested inside, VS Code gets confused because it sees multiple `.git` locations. In that setup committing is dangerous. That’s the exact scenario where you accidentally commit to the wrong branch.
-
-So the rule of thumb is very blunt: always open the worktree root as your workspace root, never a parent folder.
-
-One more subtle point. When you use the VS Code "Source Control" view, it shows untracked files, staged files, everything. But the "branch" name in the status bar is the ultimate truth. If your window says "main" and you think you're inside an experimental worktree, stop immediately and re-open the correct folder.
-
-### How to Inspect Which Workflow You Are In
-
-There are several quick signals you can build into your workflow.
-
-You can add a small file at the root of each worktree:
-
-```bash
-echo "WORKFLOW=baseline" > workflow.tag
-echo "WORKFLOW=agent-refactor" > workflow.tag
-```
-
-This is not tracked by Git if you put it in `.git/info/exclude`. When this file is present, VS Code’s quick search reveals it instantly. The visible presence of the tag helps when you jump between windows.
-
-You can also put a different color theme per workflow window. For example, baseline = light theme, refactor = dark theme. It sounds silly, but it prevents accidental edits.
-
-Another simple method is to customize the terminal prompt inside each window:
-
-```bash
-# In baseline worktree
-export PS1="[baseline] $PS1"
-# In agent-refactor
-export PS1="[refactor] $PS1"
-```
-
-Now your integrated terminal reminds you where you are every time you run a command.
-
-### A Section for Power Users
-
-AI-assisted multi-workflows shine even more when you enable some advanced tricks.
-
-- Run benchmark scripts separately in each worktree. A fast benchmark runner in `baseline` and then the same in `agent-refactor` will give you meaningful signals about performance regressions.
-    
-- Automate comparison with a one-liner script:
-    
-
-```bash
-#!/bin/bash
-git diff --no-index ../baseline ../agent-refactor | code -
-```
-
-This opens a diff buffer in VS Code directly. It feels like magic.
-
-- You can use the GitLens extension. It understands worktrees and shows you exactly which branch belongs to which folder.
-    
-- Test AI agents in parallel by launching each agent process pointing at a different worktree. This isolates their writes and makes their behaviors easier to compare. When the AI agent misbehaves, simply drop that worktree.
