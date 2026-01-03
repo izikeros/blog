@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects: copy and deepcopy. Let&#39;s explore the differences, use cases, and potential pitfalls of each …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects: copy and deepcopy. Let&#39;s explore the differences, use cases, and potential pitfalls of each …"/>
     <meta name="keywords" content="python, python-copy, deepcopy, mutable, immutable, nested-objects">
-    <meta expr:content="2025-03-20 00:00:00+01:00" itemprop='datePublished' />
-    <meta expr:content="2025-03-20 00:00:00+01:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2025-03-20 00:00:00+01:00" />
-    <meta property="article:published_time" content="2025-03-20 00:00:00+01:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Understanding Python's `copy` vs `deepcopy` - When to Use Each",
-  "datePublished": "2025-03-20 00:00:00+01:00",
-  "dateModified": "2025-03-20 00:00:00+01:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Understanding Python&#39;s `copy` vs `deepcopy` - When to Use Each"/>
   <meta property="og:description" content="When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects: copy and deepcopy. Let&#39;s explore the differences, use cases, and potential pitfalls of each …"/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2025-03-20 00:00:00+01:00"/>
   <meta property="article:modified_time" content="2025-03-20 00:00:00+01:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="python"/>
   <meta property="article:tag" content="python-copy"/>
@@ -77,19 +75,46 @@
   <meta property="article:tag" content="mutable"/>
   <meta property="article:tag" content="immutable"/>
   <meta property="article:tag" content="nested-objects"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects:..."/>
     <meta name="twitter:title" content="Understanding Python's `copy` vs `deepcopy` - When to Use Each"/>
+    <meta name="twitter:description" content="When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects:..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/"
+  },
+  "headline": "Understanding Python's `copy` vs `deepcopy` - When to Use Each",
+  "datePublished": "2025-03-20T00:00:00+01:00",
+  "dateModified": "2025-03-20T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/",
+  "description": "When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two..."
+}
+</script>
 
-    <title>Understanding Python&#39;s `copy` vs `deepcopy` - When to Use Each</title>
+    <title>    Understanding Python&#39;s `copy` vs `deepcopy` - When to Use Each
+</title>
 
 
 
@@ -100,7 +125,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -111,7 +137,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -148,89 +174,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -246,6 +201,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -254,42 +215,46 @@
             <p>
                 <!-- Posted on: -->
                 2025-03-20 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Understanding%20Python%27s%20%60copy%60%20vs%20%60deepcopy%60%20-%20When%20to%20Use%20Each&url=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/&via=izikeros&hashtags=python,python-copy,deepcopy,mutable,immutable,nested-objects"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Understanding%20Python%27s%20%60copy%60%20vs%20%60deepcopy%60%20-%20When%20to%20Use%20Each&u=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/&title=Understanding%20Python%27s%20%60copy%60%20vs%20%60deepcopy%60%20-%20When%20to%20Use%20Each"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Understanding%20Python%27s%20%60copy%60%20vs%20%60deepcopy%60%20-%20When%20to%20Use%20Each&url=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/&via=izikeros&hashtags=python,python-copy,deepcopy,mutable,immutable,nested-objects" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Understanding%20Python%27s%20%60copy%60%20vs%20%60deepcopy%60%20-%20When%20to%20Use%20Each&u=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/understanding-pythons-copy-vs-deepcopy-when-to-use-each/&title=Understanding%20Python%27s%20%60copy%60%20vs%20%60deepcopy%60%20-%20When%20to%20Use%20Each" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="understanding-pythons-copy-vs-deepcopy-when-to-use-each">Understanding Python's `copy` vs `deepcopy` - When to Use Each</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><p>When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects: <code>copy</code> and <code>deepcopy</code>. Let's explore the differences, use cases, and potential pitfalls of each.</p>
-<h2>The Basics: Shallow vs. Deep Copying</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <p>When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects: <code>copy</code> and <code>deepcopy</code>. Let's explore the differences, use cases, and potential pitfalls of each.</p>
+<h2 id="the-basics-shallow-vs-deep-copying">The Basics: Shallow vs. Deep Copying</h2>
 <p>Python's <code>copy</code> module provides two primary functions:</p>
 <ol>
 <li><code>copy.copy()</code> - Creates a shallow copy</li>
 <li><code>copy.deepcopy()</code> - Creates a deep copy</li>
 </ol>
 <p>The difference lies in how they handle nested objects.</p>
-<h3>Shallow Copy (<code>copy.copy()</code>)</h3>
+<h3 id="shallow-copy-copycopy">Shallow Copy (<code>copy.copy()</code>)</h3>
 <p>A shallow copy creates a new object, but doesn't create copies of nested objects - it just copies references to them. This means changes to nested objects in the copy will affect the original, and vice versa.</p>
-<h3>Deep Copy (<code>copy.deepcopy()</code>)</h3>
+<h3 id="deep-copy-copydeepcopy">Deep Copy (<code>copy.deepcopy()</code>)</h3>
 <p>A deep copy creates a completely independent clone - it recursively copies all nested objects, creating a fully separate hierarchy of objects.</p>
-<h2>Let's See It In Action</h2>
+<h2 id="lets-see-it-in-action">Let's See It In Action</h2>
 <p>Here's a practical example showing the difference:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
 
@@ -317,8 +282,8 @@ Deep copy: [1, 2, [3, 4]]
 </code></pre></div>
 
 <p>Notice how changing the nested list in the original affected the shallow copy but not the deep copy!</p>
-<h2>Typical Use Cases</h2>
-<h3>When to Use Shallow Copy (<code>copy</code>)</h3>
+<h2 id="typical-use-cases">Typical Use Cases</h2>
+<h3 id="when-to-use-shallow-copy-copy">When to Use Shallow Copy (<code>copy</code>)</h3>
 <ol>
 <li>
 <p><strong>Performance Matters</strong>: When dealing with large objects where a deep copy would be expensive, and you're confident you won't modify nested objects.</p>
@@ -340,7 +305,7 @@ Deep copy: [1, 2, [3, 4]]
 <span class="n">backup_settings</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">user_settings</span><span class="p">)</span>
 </code></pre></div>
 
-<h3>When to Use Deep Copy (<code>deepcopy</code>)</h3>
+<h3 id="when-to-use-deep-copy-deepcopy">When to Use Deep Copy (<code>deepcopy</code>)</h3>
 <ol>
 <li>
 <p><strong>Complex Nested Objects</strong>: When working with objects that contain mutable objects like lists, dictionaries, or custom classes.</p>
@@ -374,15 +339,15 @@ Deep copy: [1, 2, [3, 4]]
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Copy friend status:&quot;</span><span class="p">,</span> <span class="n">new_profile</span><span class="p">[</span><span class="s2">&quot;friends&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">])</span>  <span class="c1"># &quot;away&quot;</span>
 </code></pre></div>
 
-<h2>Common Gotchas and Pitfalls</h2>
-<h3>1. Forgetting the import</h3>
+<h2 id="common-gotchas-and-pitfalls">Common Gotchas and Pitfalls</h2>
+<h3 id="1-forgetting-the-import">1. Forgetting the import</h3>
 <p>Remember to <code>import copy</code> before using these functions!</p>
-<h3>2. Assignment Is Not Copying</h3>
+<h3 id="2-assignment-is-not-copying">2. Assignment Is Not Copying</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># This is NOT a copy - it&#39;s just another reference to the same object</span>
 <span class="n">list2</span> <span class="o">=</span> <span class="n">list1</span>
 </code></pre></div>
 
-<h3>3. List Slicing Creates Shallow Copies</h3>
+<h3 id="3-list-slicing-creates-shallow-copies">3. List Slicing Creates Shallow Copies</h3>
 <div class="highlight"><pre><span></span><code><span class="n">original</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
 <span class="n">sliced_copy</span> <span class="o">=</span> <span class="n">original</span><span class="p">[:]</span>  <span class="c1"># Equivalent to copy.copy()</span>
 
@@ -390,7 +355,7 @@ Deep copy: [1, 2, [3, 4]]
 <span class="nb">print</span><span class="p">(</span><span class="n">sliced_copy</span><span class="p">)</span>  <span class="c1"># Will show [1, 2, [&#39;changed!&#39;, 4]]</span>
 </code></pre></div>
 
-<h3>4. Performance Considerations</h3>
+<h3 id="4-performance-considerations">4. Performance Considerations</h3>
 <p>Deep copying can be resource-intensive for large nested structures:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -409,7 +374,7 @@ Deep copy: [1, 2, [3, 4]]
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deep copy took: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-<h3>5. Circular References</h3>
+<h3 id="5-circular-references">5. Circular References</h3>
 <p>Be careful with circular references when using <code>deepcopy</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
 
@@ -421,7 +386,7 @@ Deep copy: [1, 2, [3, 4]]
 <span class="n">deep_circular</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">circular</span><span class="p">)</span>
 </code></pre></div>
 
-<h2>Custom Copying Behavior</h2>
+<h2 id="custom-copying-behavior">Custom Copying Behavior</h2>
 <p>You can customize how your objects are copied by implementing <code>__copy__</code> and <code>__deepcopy__</code> methods:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
 
@@ -454,7 +419,7 @@ Deep copy: [1, 2, [3, 4]]
 <span class="nb">print</span><span class="p">(</span><span class="n">person_deepcopy</span><span class="p">)</span>  <span class="c1"># Still shows &quot;New York&quot; (deep copy)</span>
 </code></pre></div>
 
-<h2>Related Topics to Explore</h2>
+<h2 id="related-topics-to-explore">Related Topics to Explore</h2>
 <ol>
 <li>
 <p><strong>Immutable vs. Mutable Objects</strong>: Understanding this fundamental Python concept helps clarify when copying is necessary.</p>
@@ -472,77 +437,87 @@ Deep copy: [1, 2, [3, 4]]
 <p><strong>Performance Optimization</strong>: Strategies for efficient copying when working with large data structures.</p>
 </li>
 </ol>
-<h2>References</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/copy.html">Python's Official Documentation on the copy module</a></li>
 <li><a href="https://docs.python.org/3/reference/datamodel.html#object.__copy__">Python Data Model - Object Customization</a></li>
 <li><a href="https://realpython.com/copying-python-objects/">Real Python's Guide to Shallow vs Deep Copying</a></li>
 </ul>
 <hr>
-<h2>Key takeaways</h2>
-<p>Understanding the distinction between shallow and deep copying is essential for writing robust Python code that behaves as expected. Choose <code>copy()</code> when you need a quick, lightweight duplication of simple structures, and <code>deepcopy()</code> when you need complete independence between the original and copied objects.</p></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/python/">python</a><a href="https://www.safjan.com/tag/python-copy/">python-copy</a><a href="https://www.safjan.com/tag/deepcopy/">deepcopy</a><a href="https://www.safjan.com/tag/mutable/">mutable</a><a href="https://www.safjan.com/tag/immutable/">immutable</a><a href="https://www.safjan.com/tag/nested-objects/">nested-objects</a>            </p>
+<h2 id="key-takeaways">Key takeaways</h2>
+<p>Understanding the distinction between shallow and deep copying is essential for writing robust Python code that behaves as expected. Choose <code>copy()</code> when you need a quick, lightweight duplication of simple structures, and <code>deepcopy()</code> when you need complete independence between the original and copied objects.</p>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/python/" class="article-tag">python</a>
+                <a href="https://www.safjan.com/tag/python-copy/" class="article-tag">python-copy</a>
+                <a href="https://www.safjan.com/tag/deepcopy/" class="article-tag">deepcopy</a>
+                <a href="https://www.safjan.com/tag/mutable/" class="article-tag">mutable</a>
+                <a href="https://www.safjan.com/tag/immutable/" class="article-tag">immutable</a>
+                <a href="https://www.safjan.com/tag/nested-objects/" class="article-tag">nested-objects</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/">Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/python-protocols-structural-subtyping/">Understanding Python Protocols - Structural Subtyping in Practice</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/evolution-of-type-hints-in-python/">Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/bare-asterisk-in-python-function-signatures/">Bare Asterisk in Python Function Signatures - Keyword Only Arguments</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/concurrent-futures-simpler-parallelism/">Simpler Parallelism with concurrent.futures</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/" class="related-post-card">
+                            <span class="related-post-title">Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App</span>
+                            <span class="related-post-date">Apr 19, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/python-protocols-structural-subtyping/" class="related-post-card">
+                            <span class="related-post-title">Understanding Python Protocols - Structural Subtyping in Practice</span>
+                            <span class="related-post-date">Oct 29, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/evolution-of-type-hints-in-python/" class="related-post-card">
+                            <span class="related-post-title">Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond</span>
+                            <span class="related-post-date">Oct 24, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/bare-asterisk-in-python-function-signatures/" class="related-post-card">
+                            <span class="related-post-title">Bare Asterisk in Python Function Signatures - Keyword Only Arguments</span>
+                            <span class="related-post-date">Oct 10, 2025</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

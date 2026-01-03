@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="Validate CSV number of fields awk &#39;BEGIN{FS=&#34;,&#34;;x=1}{x++}NF!=3{print &#34;wrong number of fields:&#34; NF &#34; in line:&#34; x; exit}&#39; valid.csv test data: echo &#34;a,b,c\n1,2,3\n11,12,13,14\n21,22,23&#34; &gt; invalid …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Validate CSV number of fields awk &#39;BEGIN{FS=&#34;,&#34;;x=1}{x++}NF!=3{print &#34;wrong number of fields:&#34; NF &#34; in line:&#34; x; exit}&#39; valid.csv test data: echo &#34;a,b,c\n1,2,3\n11,12,13,14\n21,22,23&#34; &gt; invalid …"/>
     <meta name="keywords" content="awk, gawk, mawk, snippet, software/alternatives, Linux">
-    <meta expr:content="2022-05-12 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2023-07-12 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00" />
-    <meta property="article:published_time" content="2022-05-12 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Awk",
-  "datePublished": "2022-05-12 00:00:00+02:00",
-  "dateModified": "2023-07-12 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Awk"/>
   <meta property="og:description" content="Validate CSV number of fields awk &#39;BEGIN{FS=&#34;,&#34;;x=1}{x++}NF!=3{print &#34;wrong number of fields:&#34; NF &#34; in line:&#34; x; exit}&#39; valid.csv test data: echo &#34;a,b,c\n1,2,3\n11,12,13,14\n21,22,23&#34; &gt; invalid …"/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2022-05-12 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="awk"/>
   <meta property="article:tag" content="gawk"/>
@@ -77,19 +75,46 @@
   <meta property="article:tag" content="snippet"/>
   <meta property="article:tag" content="software/alternatives"/>
   <meta property="article:tag" content="Linux"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="Validate CSV number of fields awk 'BEGIN{FS=",";x=1}{x++}NF!=3{print "wrong number of fields:" NF " in line:" x; exit}' valid.csv test data: echo "a,b,c\n1,2,3\n11,12,13,14\n21,22,23" > invalid …"/>
     <meta name="twitter:title" content="Awk"/>
+    <meta name="twitter:description" content="Validate CSV number of fields awk 'BEGIN{FS=",";x=1}{x++}NF!=3{print "wrong number of fields:" NF " in line:" x; exit}' valid.csv test data: echo "a,b,c\n1,2,3\n11,12,13,14\n21,22,23" > invalid …"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/awk/"
+  },
+  "headline": "Awk",
+  "datePublished": "2022-05-12T00:00:00+02:00",
+  "dateModified": "2023-07-12T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/awk/",
+  "description": "Validate CSV number of fields awk 'BEGIN{FS=",";x=1}{x++}NF!=3{print "wrong number of fields:" NF " in line:" x; exit}' valid.csv test data: echo..."
+}
+</script>
 
-    <title>Awk</title>
+    <title>    Awk
+</title>
 
 
 
@@ -100,7 +125,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -111,7 +137,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -148,89 +174,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -246,6 +201,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -254,30 +215,34 @@
             <p>
                 <!-- Posted on: -->
                 2022-05-12 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Awk&url=https%3A//www.safjan.com/awk/&via=izikeros&hashtags=awk,gawk,mawk,snippet,softwarealternatives,linux"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/awk/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Awk&u=https%3A//www.safjan.com/awk/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/awk/&title=Awk"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Awk&url=https%3A//www.safjan.com/awk/&via=izikeros&hashtags=awk,gawk,mawk,snippet,softwarealternatives,linux" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/awk/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Awk&u=https%3A//www.safjan.com/awk/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/awk/&title=Awk" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="awk">Awk</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><h2>Validate CSV number of fields</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <h2 id="validate-csv-number-of-fields">Validate CSV number of fields</h2>
 <div class="highlight"><pre><span></span><code>awk<span class="w"> </span><span class="s1">&#39;BEGIN{FS=&quot;,&quot;;x=1}{x++}NF!=3{print &quot;wrong number of fields:&quot; NF &quot; in line:&quot; x; exit}&#39;</span><span class="w"> </span>valid.csv
 </code></pre></div>
 
@@ -297,18 +262,18 @@
 <div class="highlight"><pre><span></span><code>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;^&quot;</span><span class="w"> </span><span class="s1">&#39;NR&gt;1 {print $1&quot;, &quot;$2}&#39;</span><span class="w"> </span>xaa
 </code></pre></div>
 
-<h2>display 80 columns from the first two rows</h2>
+<h2 id="display-80-columns-from-the-first-two-rows">display 80 columns from the first two rows</h2>
 <div class="highlight"><pre><span></span><code>gawk<span class="w"> </span>-F<span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="s1">&#39;NR&lt;10 {for (i=1;i&lt;=80;i++){printf &quot;%d &quot;, $i}print&quot;&quot;}&#39;</span><span class="w"> </span>file.txt
 </code></pre></div>
 
-<h2>transpose</h2>
+<h2 id="transpose">transpose</h2>
 <p><a href="https://stackoverflow.com/questions/1729824/an-efficient-way-to-transpose-a-file-in-bash">https://stackoverflow.com/questions/1729824/an-efficient-way-to-transpose-a-file-in-bash</a></p>
-<h2>sum column</h2>
+<h2 id="sum-column">sum column</h2>
 <p>assuming column delimiter comma (<code>,</code>) and summing values in column #57</p>
 <div class="highlight"><pre><span></span><code>awk<span class="w"> </span>-F<span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="s1">&#39;{sum+=$57;} END{print sum;}&#39;</span><span class="w"> </span>file.txt
 </code></pre></div>
 
-<h2>sum along rows</h2>
+<h2 id="sum-along-rows">sum along rows</h2>
 <div class="highlight"><pre><span></span><code>awk<span class="w"> </span>-F<span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="s1">&#39;{sum=0; for (i=1; i&lt;=NF; i++) { sum+= $i } print sum}&#39;</span><span class="w"> </span>file.txt
 </code></pre></div>
 
@@ -316,75 +281,85 @@
 <p><strong>NOTE:</strong>
 When the processing speed is critical, in many cases it is possible to replace AWK with a faster alternative MAWK - as in the famous example: <a href="https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html">Command-line Tools can be 235x Faster than your Hadoop Cluster - Adam Drake</a> However, there is a warning that MAWK contains some bugs (not sure if fixed at the moment of writing).</p>
 </blockquote>
-<h2>References</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://blog.jpalardy.com/posts/why-learn-awk/">Why Learn AWK?</a> – great article by Jonathan Palardy conveying similar ideas</li>
 <li><a href="https://pmitev.github.io/to-awk-or-not/Python_vs_awk/">Python vs. awk</a> – a remarkable case of replacing a 50 line Python script with 5 lines of AWK</li>
 <li><a href="https://archive.org/download/pdfy-MgN0H1joIoDVoIC7/The_AWK_Programming_Language.pdf">The AWK Programming Language</a> – the book by the AWK creators, a must-read!</li>
 <li><a href="https://learnbyexample.github.io/learn_gnuawk/cover.html">CLI text processing with GNU awk (learning by example)</a></li>
-</ul></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/awk/">awk</a><a href="https://www.safjan.com/tag/gawk/">gawk</a><a href="https://www.safjan.com/tag/mawk/">mawk</a><a href="https://www.safjan.com/tag/snippet/">snippet</a><a href="https://www.safjan.com/tag/softwarealternatives/">software/alternatives</a><a href="https://www.safjan.com/tag/linux/">Linux</a>            </p>
+</ul>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/awk/" class="article-tag">awk</a>
+                <a href="https://www.safjan.com/tag/gawk/" class="article-tag">gawk</a>
+                <a href="https://www.safjan.com/tag/mawk/" class="article-tag">mawk</a>
+                <a href="https://www.safjan.com/tag/snippet/" class="article-tag">snippet</a>
+                <a href="https://www.safjan.com/tag/softwarealternatives/" class="article-tag">software/alternatives</a>
+                <a href="https://www.safjan.com/tag/linux/" class="article-tag">Linux</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/python-add-parent-directory-to-path/">Adding Parent Directory to Python Path</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/man-alternatives-usage-explanations-and-cheatsheets/">Man Alternatives, CLI Command Usage Explanations, and Cheatsheets</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/pandas-dataframe-validation/">Pandas Dataframe Schema and Data Types Validation</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/replacing-makefile-with-invoke-for-crossplatform-python-tasks/">Replacing Makefile with Invoke for Cross-Platform Python Tasks</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/linux-for-old-x86-laptop-windows-like/">The Best Linux Distributions for Old X86 Laptop to Have Windows-Like Look and Feel.</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/python-add-parent-directory-to-path/" class="related-post-card">
+                            <span class="related-post-title">Adding Parent Directory to Python Path</span>
+                            <span class="related-post-date">Feb 22, 2022</span>
+                        </a>
+                        <a href="https://www.safjan.com/man-alternatives-usage-explanations-and-cheatsheets/" class="related-post-card">
+                            <span class="related-post-title">Man Alternatives, CLI Command Usage Explanations, and Cheatsheets</span>
+                            <span class="related-post-date">May 12, 2022</span>
+                        </a>
+                        <a href="https://www.safjan.com/pandas-dataframe-validation/" class="related-post-card">
+                            <span class="related-post-title">Pandas Dataframe Schema and Data Types Validation</span>
+                            <span class="related-post-date">Apr 27, 2022</span>
+                        </a>
+                        <a href="https://www.safjan.com/replacing-makefile-with-invoke-for-crossplatform-python-tasks/" class="related-post-card">
+                            <span class="related-post-title">Replacing Makefile with Invoke for Cross-Platform Python Tasks</span>
+                            <span class="related-post-date">Aug 14, 2025</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

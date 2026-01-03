@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness." />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness."/>
     <meta name="keywords" content="retriever, rag, visuallization, rag-evaluation, logging, struct-log, rankflow, observability, callback">
-    <meta expr:content="2024-07-08 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2024-07-08 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2024-07-08 00:00:00+02:00" />
-    <meta property="article:published_time" content="2024-07-08 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "RankFlow plot for retriever visual evaluation",
-  "datePublished": "2024-07-08 00:00:00+02:00",
-  "dateModified": "2024-07-08 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="RankFlow plot for retriever visual evaluation"/>
   <meta property="og:description" content="RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness."/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2024-07-08 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2024-07-08 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Machine Learning"/>
   <meta property="article:tag" content="retriever"/>
   <meta property="article:tag" content="rag"/>
@@ -80,19 +78,48 @@
   <meta property="article:tag" content="rankflow"/>
   <meta property="article:tag" content="observability"/>
   <meta property="article:tag" content="callback"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/rankflow_plot_head.jpg">
-
-    <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="https://www.safjan.com//images/head/rankflow_plot_head.jpg">
+  <meta property="og:image" content="https://www.safjan.com//images/head/rankflow_plot_head.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/rankflow_plot_head.jpg"/>
+    <meta name="twitter:image:alt" content="RankFlow plot for retriever visual evaluation"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to..."/>
     <meta name="twitter:title" content="RankFlow plot for retriever visual evaluation"/>
+    <meta name="twitter:description" content="RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/"
+  },
+  "headline": "RankFlow plot for retriever visual evaluation",
+  "datePublished": "2024-07-08T00:00:00+02:00",
+  "dateModified": "2024-07-08T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/rankflow_plot_head.jpg",  "url": "https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/",
+  "description": "RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is..."
+}
+</script>
 
-    <title>RankFlow plot for retriever visual evaluation</title>
+    <title>    RankFlow plot for retriever visual evaluation
+</title>
 
 
 
@@ -103,7 +130,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -114,7 +142,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -151,89 +179,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -249,6 +206,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -257,37 +220,41 @@
             <p>
                 <!-- Posted on: -->
                 2024-07-08 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=RankFlow%20plot%20for%20retriever%20visual%20evaluation&url=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/&via=izikeros&hashtags=retriever,rag,visuallization,rag-evaluation,logging,struct-log,rankflow,observability,callback"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=RankFlow%20plot%20for%20retriever%20visual%20evaluation&u=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/&title=RankFlow%20plot%20for%20retriever%20visual%20evaluation"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=RankFlow%20plot%20for%20retriever%20visual%20evaluation&url=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/&via=izikeros&hashtags=retriever,rag,visuallization,rag-evaluation,logging,struct-log,rankflow,observability,callback" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=RankFlow%20plot%20for%20retriever%20visual%20evaluation&u=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/&title=RankFlow%20plot%20for%20retriever%20visual%20evaluation" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="rankflow-plot-for-retriever-visual-evaluation">RankFlow plot for retriever visual evaluation</h1>
             <div class="header-underline"></div>
-<p class="summary"><p>RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.</p></p>                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                <p class="summary"><p>RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/">
-                        <img style="width: 100%"
-                             src="/images/head/rankflow_plot_head.jpg"
-                             alt="">
+                        <img style="width: 100%; "
+                             src="/images/head/rankflow_plot_head.jpg" alt="">
                     </a>
                 </div>
+
+
         </header>
-        <div><!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 <ul>
 <li><a href="#tldr">TLDR</a></li>
@@ -303,10 +270,10 @@
 </ul>
 <!-- /MarkdownTOC -->
 
-<h2>TLDR</h2>
+<h2 id="tldr">TLDR</h2>
 <p>This article discusses the importance of tracking and visualizing rank changes in Retrieval-Augmented Generation (RAG) systems. It introduces the concept of rank flow visualization, which helps analyze how document rankings evolve through different stages of retrieval and re-ranking. The article outlines methods for collecting rank data using structured logging and callbacks, and presents a Python library called 'rankflow' for creating visual representations of these rank changes. This visualization technique enables AI professionals to quickly identify patterns and optimize their RAG systems, ultimately improving the quality of information retrieval and generation.
 <a id="introduction-and-problem-statement"></a></p>
-<h2>Introduction and problem statement</h2>
+<h2 id="introduction-and-problem-statement">Introduction and problem statement</h2>
 <p>Retrieval-Augmented Generation (RAG) systems are composed of two primary components: the <strong>retriever</strong> and the <strong>answer generator</strong>. The overall efficacy of RAG is largely contingent on the quality of the retriever, making it a critical area for optimization and analysis.</p>
 <p>Advanced retrieval mechanisms often process numerous document fragments or nodes, which are initially ranked based on relevance. To enhance result quality, these nodes undergo <strong>multiple re-ranking phases</strong>, each aimed at surfacing the most pertinent information.</p>
 <p>The re-ranking process can involve a variety of sophisticated techniques, including cross-encoders, bespoke re-ranking algorithms, and boosting systems. These methods serve to refine the rank of search results originating from diverse sources, such as traditional text search algorithms (e.g., BM25) and semantic search based on textual embeddings.</p>
@@ -316,7 +283,7 @@
 <p><img alt="RankFlow Plot" src="/images/rankflow/rankflow_plot_full.jpg"></p>
 <p><em><strong>Figure 1:</strong> RankFlow chart illustrating rank changes in four steps of re-ranking. You can track the given node's rank history visually. For example, Document 4, after hybrid search, initially had a rank of 4. Then, after the Cross-encoder surfaced, it was re-ranked to 1. The Graph re-ranker subsequently placed it at rank 6, and finally, the Booster changed its rank to 0.</em></p>
 <p><a id="inspiration---rank-flow-visualization"></a></p>
-<h2>Inspiration - Rank flow visualization</h2>
+<h2 id="inspiration-rank-flow-visualization">Inspiration - Rank flow visualization</h2>
 <p>When we started searching information about the tool that could help us to visualize how the ranks are changing, we found <a href="https://labs.polsys.net/tools/rankflow/">RankFlow</a> that can do, more or less, the visualization type we were looking for.</p>
 <p><svg height="300" version="1.1" width="630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: -0.0546875px;"><path fill="url('#4130-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M433.5,122Q401.5,122,369.74,206T305.5,290L305.5,239Q337.5,239,369.26,155T433.5,71L433.5,122" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4120-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M293.5,290Q261.5,290,229.5,290T165.5,290L165.5,239Q197.5,239,229.5,239T293.5,239L293.5,290" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4110-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M153.5,290Q121.5,290,89.5,290T25.5,290L25.5,239Q57.5,239,89.5,239T153.5,239L153.5,290" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4100-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M433.5,290Q401.5,290,369.18,178T305.5,66L305.5,15Q337.5,15,369.82,127T433.5,239L433.5,290" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4090-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M293.5,66Q261.5,66,229.5,66T165.5,66L165.5,15Q197.5,15,229.5,15T293.5,15L293.5,66" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4080-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M153.5,66Q121.5,66,89.74,150T25.5,234L25.5,183Q57.5,183,89.26,99T153.5,15L153.5,66" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4070-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M433.5,66Q401.5,66,369.74,150T305.5,234L305.5,183Q337.5,183,369.26,99T433.5,15L433.5,66" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4060-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M293.5,234Q261.5,234,229.5,234T165.5,234L165.5,183Q197.5,183,229.5,183T293.5,183L293.5,234" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4050-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M153.5,234Q121.5,234,89.42,206T25.5,178L25.5,127Q57.5,127,89.58,155T153.5,183L153.5,234" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4040-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M433.5,234Q401.5,234,369.42,206T305.5,178L305.5,127Q337.5,127,369.58,155T433.5,183L433.5,234" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4030-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M293.5,178Q261.5,178,229.5,178T165.5,178L165.5,127Q197.5,127,229.5,127T293.5,127L293.5,178" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4020-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M153.5,178Q121.5,178,89.42,150T25.5,122L25.5,71Q57.5,71,89.58,99T153.5,127L153.5,178" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4010-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M433.5,178Q401.5,178,369.42,150T305.5,122L305.5,71Q337.5,71,369.58,99T433.5,127L433.5,178" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#4000-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M293.5,122Q261.5,122,229.5,122T165.5,122L165.5,71Q197.5,71,229.5,71T293.5,71L293.5,122" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><path fill="url('#3990-rgb_200_0_55_-rgb_200_0_55_')" stroke="#ffffff" d="M153.5,122Q121.5,122,89.42,94T25.5,66L25.5,15Q57.5,15,89.58,43T153.5,71L153.5,122" stroke-width="1px" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.35; fill-opacity: 1;"></path><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><linearGradient id="3990-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4000-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4010-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4020-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4030-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4040-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4050-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4060-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4070-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4080-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4090-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4100-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4110-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4120-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient><linearGradient id="4130-rgb_200_0_55_-rgb_200_0_55_" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><stop offset="0%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop><stop offset="100%" stop-color="#c80037" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop></linearGradient></defs><path fill="none" stroke="#000000" d="M8.5,300.5L8.5,0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="3" y="291" text-anchor="end" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: Arial; font-size: 10px;"><tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><text x="3" y="20" text-anchor="end" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: Arial; font-size: 10px;"><tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">5</tspan></text><text x="13" y="5" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Step_1</tspan></text><rect x="13.5" y="15.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="13.5" y="71.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="13.5" y="127.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="13.5" y="183.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="13.5" y="239.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="153" y="5" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Step_2</tspan></text><rect x="153.5" y="15.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="153.5" y="71.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="153.5" y="127.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="153.5" y="183.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="153.5" y="239.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="293" y="5" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Step_3</tspan></text><rect x="293.5" y="15.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="293.5" y="71.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="293.5" y="127.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="293.5" y="183.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="293.5" y="239.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="433" y="5" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Step_4</tspan></text><rect x="433.5" y="15.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="433.5" y="71.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="433.5" y="127.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="433.5" y="183.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="433.5" y="239.5" width="12" height="51" rx="0" ry="0" fill="#c80037" stroke="#000000" stroke-width="1px" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="27.5" y="41" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_1 (1)</tspan></text><text x="167.5" y="97" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_1 (1)</tspan></text><text x="307.5" y="97" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_1 (1)</tspan></text><text x="447.5" y="153" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_1 (1)</tspan></text><text x="27.5" y="97" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_12_3 (1)</tspan></text><text x="167.5" y="153" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_12_3 (1)</tspan></text><text x="307.5" y="153" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_12_3 (1)</tspan></text><text x="447.5" y="209" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_12_3 (1)</tspan></text><text x="27.5" y="153" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_2 (1)</tspan></text><text x="167.5" y="209" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_2 (1)</tspan></text><text x="307.5" y="209" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_2 (1)</tspan></text><text x="447.5" y="41" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_2 (1)</tspan></text><text x="27.5" y="209" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_3 (1)</tspan></text><text x="167.5" y="41" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_3 (1)</tspan></text><text x="307.5" y="41" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_3 (1)</tspan></text><text x="447.5" y="265" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_1_3 (1)</tspan></text><text x="27.5" y="265" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_1 (1)</tspan></text><text x="167.5" y="265" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_1 (1)</tspan></text><text x="307.5" y="265" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_1 (1)</tspan></text><text x="447.5" y="97" text-anchor="start" font-family="&quot;Arial&quot;" font-size="10px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 10px;"><tspan dy="3.44775390625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">doc_2_1 (1)</tspan></text></svg> |</p>
 <p>You can create the Excel table that reflect rank of the documents on each step. Note that the RankFlow tool supports also column with values that is responsible for the width of the "ribbon". You can use it to e.g. visualize importance of given node, or how many information from this node was finally used in the generated answer (if you have this type of information at hand).</p>
@@ -388,7 +355,7 @@
 </table>
 <p>This tool was an appetiser to have something similar implemented in Python. Before going to visualization, let's spent some time on how to collect data required for this visual analysis.</p>
 <p><a id="tracking-the-rank-changes-in-your-rag"></a></p>
-<h2>Tracking the rank changes in your RAG</h2>
+<h2 id="tracking-the-rank-changes-in-your-rag">Tracking the rank changes in your RAG</h2>
 <p>This is a separate topic - depending on the architecture of your retriever. I envision two main approaches:</p>
 <ul>
 <li>using structured logging</li>
@@ -397,22 +364,22 @@
 </ul>
 <p>Here, we will discuss only first two since they are pretty while skipping the specific observability tools.</p>
 <p><a id="rank-tracking-using-the-structured-logs"></a></p>
-<h3>Rank tracking using the structured logs</h3>
+<h3 id="rank-tracking-using-the-structured-logs">Rank tracking using the structured logs</h3>
 <blockquote>
 <p><strong>What are the struct logs?</strong>
 Structured logs are a standardized format for logging data where information is organized into consistent, machine-readable fields rather than free-form text. <strong>They typically use formats like JSON or key-value pairs</strong>, making it easier to parse, search, and analyze log data programmatically. The benefits of using structured logs include improved log consistency, easier data extraction and analysis, better integration with log management tools, and enhanced ability to generate insights and troubleshoot issues in complex systems.</p>
 </blockquote>
 <p><a id="how-to-track-with-struct-logs"></a></p>
-<h3>How to track with struct logs?</h3>
+<h3 id="how-to-track-with-struct-logs">How to track with struct logs?</h3>
 <p><a href="">Struct log</a> have the advantage over non-structured log that you can easily, and with more confidentiality, extract data from it without using sophisticated log parsers. In Python, you can use loguru to drop the rank information to the separate log sink after each step that involves some form of reranking and trace e.g. node (chunk) id, new rank, and "label" for the reranking step. In this way you will get a jsonlines log file with all the data you need to create visualization. You can read more about how to use struct logs with loguru in <a href="">loguru docs</a> and <a href="">this</a> article.</p>
 <p><a id="rank-tracking-using-callbacks"></a></p>
-<h3>Rank tracking using callbacks</h3>
+<h3 id="rank-tracking-using-callbacks">Rank tracking using callbacks</h3>
 <blockquote>
 <p><strong>What are the callbacks?</strong>
 Callbacks in programming are functions passed as arguments to other functions, which are then executed at specific points during the execution of the containing function. In the context of machine learning and deep learning frameworks, callbacks are often used to track and log various metrics, execute custom actions, or modify behavior during training or inference.</p>
 </blockquote>
 <p><a id="how-to-track-retriever-data-with-callbacks"></a></p>
-<h3>How to track retriever data with callbacks?</h3>
+<h3 id="how-to-track-retriever-data-with-callbacks">How to track retriever data with callbacks?</h3>
 <p>Here is an example how you can use callbacks to track re-ranking info in dummy implementation of the retriever with some re-ranking steps.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span>
@@ -516,7 +483,7 @@ Callbacks in programming are functions passed as arguments to other functions, w
 </code></pre></div>
 
 <p><a id="visualization"></a></p>
-<h2>Visualization</h2>
+<h2 id="visualization">Visualization</h2>
 <p>For the visualization part you can use small Python library <a href="https://pypi.org/project/rankflow/">rankflow</a> (disclaimer: I'm the author) that is able to produce this type of visualization:
 <img alt="RankFlow Plot" src="/images/rankflow/rankflow_plot_full.jpg"></p>
 <p>First, install it with pip:</p>
@@ -545,17 +512,20 @@ Callbacks in programming are functions passed as arguments to other functions, w
 <p>If you found this library useful, please star the <a href="https://github.com/izikeros/rankflow">repo</a>.</p>
 <p>With plotting options you have also some alternatives that you can use or take inspiration to create you own, customized rankflow plot/bump chart. See the references for alternatives.</p>
 <p><a id="references"></a></p>
-<h2>References</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://www.vrogue.co/post/how-to-plot-bump-chart-in-r-finnstats">How To Plot Bump Chart In R Finnstats - vrogue.co</a></li>
 <li><a href="https://github.com/kartikay-bagla/bump-plot-python">GitHub - kartikay-bagla/bump-plot-python</a></li>
 <li><a href="https://mplsoccer.readthedocs.io/en/latest/gallery/bumpy_charts/plot_bumpy.html#sphx-glr-gallery-bumpy-charts-plot-bumpy-py">Bumpy Charts - mplsoccer 1.2.4 documentation</a></li>
 <li><a href="https://nbviewer.org/gist/pascal-schetelat/8382651">Jupyter Notebook Viewer</a></li>
-</ul></div>
+</ul>
+        </div>
+
+
+
+
             <div class="bibtex-note">
-                <p>
-                    <b>To cite this article:</b>
-                </p>
+                <p><b>To cite this article:</b></p>
                 <pre>@article{Saf2024RankFlow,
     author  = {Krystian Safjan},
     title   = {RankFlow plot for retriever visual evaluation},
@@ -563,68 +533,78 @@ Callbacks in programming are functions passed as arguments to other functions, w
     year    = {2024},
 }</pre>
             </div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/retriever/">retriever</a><a href="https://www.safjan.com/tag/rag/">rag</a><a href="https://www.safjan.com/tag/visuallization/">visuallization</a><a href="https://www.safjan.com/tag/rag-evaluation/">rag-evaluation</a><a href="https://www.safjan.com/tag/logging/">logging</a><a href="https://www.safjan.com/tag/struct-log/">struct-log</a><a href="https://www.safjan.com/tag/rankflow/">rankflow</a><a href="https://www.safjan.com/tag/observability/">observability</a><a href="https://www.safjan.com/tag/callback/">callback</a>            </p>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/retriever/" class="article-tag">retriever</a>
+                <a href="https://www.safjan.com/tag/rag/" class="article-tag">rag</a>
+                <a href="https://www.safjan.com/tag/visuallization/" class="article-tag">visuallization</a>
+                <a href="https://www.safjan.com/tag/rag-evaluation/" class="article-tag">rag-evaluation</a>
+                <a href="https://www.safjan.com/tag/logging/" class="article-tag">logging</a>
+                <a href="https://www.safjan.com/tag/struct-log/" class="article-tag">struct-log</a>
+                <a href="https://www.safjan.com/tag/rankflow/" class="article-tag">rankflow</a>
+                <a href="https://www.safjan.com/tag/observability/" class="article-tag">observability</a>
+                <a href="https://www.safjan.com/tag/callback/" class="article-tag">callback</a>
         </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/rag-fusion-enhancing-information-retrieval-in-large-language-models/">RAG-Fusion - Enhancing Information Retrieval in Large Language Models</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/">Techniques to Boost RAG Performance in Production</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/">From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/">Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/ragas-metrics-cheat-sheet/">RAGAS metrics cheat sheet</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/rag-fusion-enhancing-information-retrieval-in-large-language-models/" class="related-post-card">
+                            <span class="related-post-title">RAG-Fusion - Enhancing Information Retrieval in Large Language Models</span>
+                            <span class="related-post-date">Nov 06, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/" class="related-post-card">
+                            <span class="related-post-title">Techniques to Boost RAG Performance in Production</span>
+                            <span class="related-post-date">Nov 01, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/" class="related-post-card">
+                            <span class="related-post-title">From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques</span>
+                            <span class="related-post-date">Sep 11, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/" class="related-post-card">
+                            <span class="related-post-title">Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</span>
+                            <span class="related-post-date">Aug 24, 2023</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

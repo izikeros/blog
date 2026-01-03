@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="This post describes techniques that help to get most accurate suggestions from the GitHub Copilot &#34;Your AI pair programmer&#34;. For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - &#34;How to get most of GitHub Copilot&#34;." />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="This post describes techniques that help to get most accurate suggestions from the GitHub Copilot &#34;Your AI pair programmer&#34;. For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - &#34;How to get most of GitHub Copilot&#34;."/>
     <meta name="keywords" content="github, coding, ai">
-    <meta expr:content="2022-01-25 00:00:00+01:00" itemprop='datePublished' />
-    <meta expr:content="2023-08-24 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-08-24 00:00:00+02:00" />
-    <meta property="article:published_time" content="2022-01-25 00:00:00+01:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How to Get Most of GitHub Copilot",
-  "datePublished": "2022-01-25 00:00:00+01:00",
-  "dateModified": "2023-08-24 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="How to Get Most of GitHub Copilot"/>
   <meta property="og:description" content="This post describes techniques that help to get most accurate suggestions from the GitHub Copilot &#34;Your AI pair programmer&#34;. For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - &#34;How to get most of GitHub Copilot&#34;."/>
@@ -69,24 +67,53 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2022-01-25 00:00:00+01:00"/>
   <meta property="article:modified_time" content="2023-08-24 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Howto"/>
   <meta property="article:tag" content="github"/>
   <meta property="article:tag" content="coding"/>
   <meta property="article:tag" content="ai"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/copilot-warp-speed-head.jpg">
-
-    <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="https://www.safjan.com//images/head/copilot-warp-speed-head.jpg">
+  <meta property="og:image" content="https://www.safjan.com//images/head/copilot-warp-speed-head.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/copilot-warp-speed-head.jpg"/>
+    <meta name="twitter:image:alt" content="How to Get Most of GitHub Copilot"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction,..."/>
     <meta name="twitter:title" content="How to Get Most of GitHub Copilot"/>
+    <meta name="twitter:description" content="This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction,..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/how-to-get-most-of-github-copilot/"
+  },
+  "headline": "How to Get Most of GitHub Copilot",
+  "datePublished": "2022-01-25T00:00:00+01:00",
+  "dateModified": "2023-08-24T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/copilot-warp-speed-head.jpg",  "url": "https://www.safjan.com/how-to-get-most-of-github-copilot/",
+  "description": "This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of..."
+}
+</script>
 
-    <title>How to Get Most of GitHub Copilot</title>
+    <title>    How to Get Most of GitHub Copilot
+</title>
 
 
 
@@ -97,7 +124,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -108,7 +136,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -145,89 +173,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -243,6 +200,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -251,64 +214,68 @@
             <p>
                 <!-- Posted on: -->
                 2022-01-25 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=How%20to%20Get%20Most%20of%20GitHub%20Copilot&url=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/&via=izikeros&hashtags=github,coding,ai"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=How%20to%20Get%20Most%20of%20GitHub%20Copilot&u=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/&title=How%20to%20Get%20Most%20of%20GitHub%20Copilot"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=How%20to%20Get%20Most%20of%20GitHub%20Copilot&url=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/&via=izikeros&hashtags=github,coding,ai" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=How%20to%20Get%20Most%20of%20GitHub%20Copilot&u=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-to-get-most-of-github-copilot/&title=How%20to%20Get%20Most%20of%20GitHub%20Copilot" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="how-to-get-most-of-github-copilot">How to Get Most of GitHub Copilot</h1>
             <div class="header-underline"></div>
-<p class="summary"><p>This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - "How to get most of GitHub Copilot".</p></p>                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                <p class="summary"><p>This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - "How to get most of GitHub Copilot".</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/how-to-get-most-of-github-copilot/">
-                        <img style="width: 100%"
-                             src="/images/head/copilot-warp-speed-head.jpg"
-                             alt="">
+                        <img style="width: 100%; "
+                             src="/images/head/copilot-warp-speed-head.jpg" alt="">
                     </a>
                 </div>
+
+
         </header>
-        <div><h2>TLDR</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <h2 id="tldr">TLDR</h2>
 <p>To get accurate autosuggestion from Copilot you can:</p>
 <ol>
 <li><strong>Modify signature</strong> of received suggestion to one that capture all relevant inputs and wait for new suggestion.</li>
 <li><strong>Write pseudocode</strong>: describe steps for the function with complex business logic.</li>
 <li>For functions with complex business logic <strong>divide them into multiple smaller functions</strong>. Purpose of smaller function is easier to describe with just function name or the comment/docstring.</li>
 </ol>
-<h2>Outline</h2>
+<h2 id="outline">Outline</h2>
 <ol>
 <li>What is GitHub Copilot?</li>
 <li>How to get it?</li>
 <li>How to use it?</li>
 <li>How to get most of GitHub Copilot?</li>
 </ol>
-<h2>1. What is GitHub Copilot?</h2>
+<h2 id="1-what-is-github-copilot">1. What is GitHub Copilot?</h2>
 <p>In brief: <a href="https://copilot.github.com/">GitHub Copilot</a>, gives suggestions for whole lines or entire functions right inside your editor as you type. Currently, there is support for Visual Studio Code, Neovim, and JetBrains IDEs like PyCharm and IntelliJ IDEA.
 GitHub Copilot is powered by the OpenAI Codex AI system, and, as authors claimed, trained on public internet text and billions of lines of code.</p>
 <p>The way how it is used is that human programmer provides comment with intention what code he/she would like to get, and as autocomplete suggestion gets whole functions of classes. GitHub Copilot uses not only exact comment test but also context of the code that is expected to be auto-generated.</p>
 <p><img alt="diagram GitHub Copilot" src="/images/copilot/diagram-github-copilot-739x355-3516979431.png">
 Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and Private Code and IDE. Image from: copilot.github.com</p>
-<h2>2. How to get it?</h2>
+<h2 id="2-how-to-get-it">2. How to get it?</h2>
 <p>Access to GitHub Copilot is limited to a small group of testers during the technical preview. You can sign up and join the wait-list to try it out <a href="https://github.com/features/copilot/signup">here</a>.</p>
-<h2>3. How to use it?</h2>
+<h2 id="3-how-to-use-it">3. How to use it?</h2>
 <p>Provide a docstring, comment, function name, or the piece of code itself, GitHub Copilot will use the context you’ve provided and generate code as suggestion.</p>
-<h2>4. How to get most of GitHub Copilot?</h2>
+<h2 id="4-how-to-get-most-of-github-copilot">4. How to get most of GitHub Copilot?</h2>
 <p>After using the GitHub Copilot service for almost three months, I was amazed how useful suggestions from Copilot can be. Of course, it is not ideal - suggestions are not always meeting my expectations. Sometimes it took few attempts to formulate my expectations to get the code that was looking good to me.
 What I learned by the time of writing this post, are the few simple rules that can increase accuracy of the suggestions. I will outline them below. I'm using three main strategies to communicate my expectations with the GitHub Copilot service:</p>
-<h3>Simple case - write short comment</h3>
+<h3 id="simple-case-write-short-comment">Simple case - write short comment</h3>
 <p>For the simple cases: just write  comment that describe behavior for the code that you want to get as suggestion.
 As example - we want to get a function that will return paths to all images in given directory and sub-directories. We are interested only in images of given type (specified file extensions).</p>
 <p>Here is first attempt to get code auto completion from GitHub copilot.</p>
@@ -349,10 +316,10 @@ old signature was:</p>
 # get information using public API from stocktwits
 </code></pre></div>
 
-<h2>Simple case - write function name</h2>
+<h2 id="simple-case-write-function-name">Simple case - write function name</h2>
 <p>Starting with descriptive function name can work as well:
  <img alt="img" src="/images/copilot/copilot_2.gif"></p>
-<h3>More complex cases - write pseudocode</h3>
+<h3 id="more-complex-cases-write-pseudocode">More complex cases - write pseudocode</h3>
 <p>For the complex cases: write line of comment that describe behavior for the code that you want to get as suggestion.
 Example:</p>
 <p>Comment with purpose of the function and pseudocode describing elements of solution</p>
@@ -390,23 +357,26 @@ Example:</p>
 </code></pre></div>
 
 <p><img alt="img" src="/images/copilot/copilot_1.gif"></p>
-<h2>More complex cases - write pseudocode</h2>
+<h2 id="more-complex-cases-write-pseudocode_1">More complex cases - write pseudocode</h2>
 <p>For functions with complex business logic <strong>divide them into multiple smaller functions</strong>. Purpose of smaller function is easier to describe with just function name or the comment/docstring. This is well known rule (at least from ancient Greeks) allowing to break big problem into smaller that are much easier to address.</p>
 <blockquote>
 <p><strong>Divide et Impera!</strong></p>
 <p><em>Divide and conquer!</em> : in politics and sociology, it is <em>a strategy of gaining and maintaining power by breaking up larger concentrations of power into pieces that individually have less power than the one implementing the strategy.</em> <a href="https://en.wikipedia.org/wiki/Divide_and_rule">wikipedia</a></p>
 </blockquote>
 <p>This rule also works when applied to using GitHub Copilot, I will not go into details since the method is pretty obvious and if not one can easily find multiple texts on applying "Divide and conquer" applications to software engineering.</p>
-<h3>My impressions after using Copilot</h3>
+<h3 id="my-impressions-after-using-copilot">My impressions after using Copilot</h3>
 <p>I have started using Copilot in November 2021. When I had copilot plugin enabled I put more attention to use meaningful function names expecting the reward in form of auto-suggested code that will fit my needs.</p>
 <p>I found Copilot great for using python for automation tasks - many simple functions that somebody else for sure has written someday, but it is too expensive to search e.g. GitHub snippet or code. Copilot comes in handy as replacement of gists of basic functions for manipulating text, files, etc.</p>
 <p><strong>Credits:</strong></p>
 <p>warp speed image comes from <a href="https://videohive.net/item/warp-speed-effect-v10/47100">here</a></p>
-<p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p></div>
+<p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
+        </div>
+
+
+
+
             <div class="bibtex-note">
-                <p>
-                    <b>To cite this article:</b>
-                </p>
+                <p><b>To cite this article:</b></p>
                 <pre>@article{Saf2022How,
     author  = {Krystian Safjan},
     title   = {How to Get Most of GitHub Copilot},
@@ -414,68 +384,72 @@ Example:</p>
     year    = {2022},
 }</pre>
             </div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/github/">github</a><a href="https://www.safjan.com/tag/coding/">coding</a><a href="https://www.safjan.com/tag/ai/">ai</a>            </p>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/github/" class="article-tag">github</a>
+                <a href="https://www.safjan.com/tag/coding/" class="article-tag">coding</a>
+                <a href="https://www.safjan.com/tag/ai/" class="article-tag">ai</a>
         </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/quick-ways-to-disable-github-actions-workflows-without-deletion/">Quick Ways to Disable GitHub Actions Workflows Without Deletion</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/github-search-techniques/">GitHub Search Techniques</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/">Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/bash-download-gist-from-github/">Bash - Download Gist From GitHub</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/quick-ways-to-disable-github-actions-workflows-without-deletion/" class="related-post-card">
+                            <span class="related-post-title">Quick Ways to Disable GitHub Actions Workflows Without Deletion</span>
+                            <span class="related-post-date">Oct 03, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/" class="related-post-card">
+                            <span class="related-post-title">GitHub - Troubleshooting 'Permission to repo.git denied to user'</span>
+                            <span class="related-post-date">Mar 21, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/github-search-techniques/" class="related-post-card">
+                            <span class="related-post-title">GitHub Search Techniques</span>
+                            <span class="related-post-date">Dec 07, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/" class="related-post-card">
+                            <span class="related-post-title">Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch</span>
+                            <span class="related-post-date">Jun 20, 2023</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

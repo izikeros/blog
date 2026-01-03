@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -66,7 +75,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -77,7 +87,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -114,89 +124,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -212,32 +151,31 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
 
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/mastering-kanban-method/#mastering-kanban-method">Mastering the Kanban Method - Unveiling the Hidden Gems of Effective Kanban Board Usage</a>
+    <div class="article-list">
+            <article class="article-card">
+                    <a href="https://www.safjan.com/mastering-kanban-method/" class="article-card-image">
+                        <img src="/images/head/kanban.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-05-26</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/mastering-kanban-method/#mastering-kanban-method">Mastering the Kanban Method - Unveiling the Hidden Gems of Effective Kanban Board Usage</a>
                     </h2>
-                    <p>
-                        2023-05-26 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/mastering-kanban-method/">
-                                <img src="/images/head/kanban.jpg" alt="">
-                            </a>
-                        <div><p>Ever wondered how to supercharge your team's productivity? Say hello to Kanban, the dynamic method that brings clarity and efficiency to your projects.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/mastering-kanban-method/#mastering-kanban-method">
-                                Continue reading
-                            </a>
+                        <p class="article-card-summary">Ever wondered how to supercharge your team's productivity? Say hello to Kanban, the dynamic method that brings clarity and efficiency to your projects.</p>
                 </div>
-                    <hr/>
             </article>
+    </div>
 
   <div class="pagination">
   </div>
@@ -246,37 +184,32 @@
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

@@ -99,6 +99,7 @@ SHOW_ARTICLE_AUTHOR = False
 SHOW_ARTICLE_CATEGORY = False
 SHOW_DATE_MODIFIED = False
 DATE_FOR_ARTICLE_GROUPS = False
+ENABLE_TOC = True  # Enable/disable Table of Contents generation
 
 # Pagination and summaries
 # Note: Set higher because index.html filters out 'note' category articles
@@ -214,6 +215,11 @@ MARKDOWN = {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
         "markdown.extensions.extra": {},
         "markdown.extensions.meta": {},
+        "markdown.extensions.toc": {
+            "title": "",
+            "toc_depth": "2-3",
+            "permalink": False,
+        },
         "markdown_mermaidjs": {},
     },
     "output_format": "html5",

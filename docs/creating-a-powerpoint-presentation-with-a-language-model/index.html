@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="In this article, we&#39;ll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process. Prerequisites Before we begin, make sure you have the following prerequisites set up: Python 3.x installed …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="In this article, we&#39;ll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process. Prerequisites Before we begin, make sure you have the following prerequisites set up: Python 3.x installed …"/>
     <meta name="keywords" content="powerpoint-presentation, language-model, OpenAI-API, automation, artificial-intelligence, python-script, ChatGPT, presentation-outline, content-generation, python-pptx, openai, authentication, slide-customization, image-integration, interactive-presentations, natural-language-processing, advanced-features">
-    <meta expr:content="2023-07-17 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2023-07-17 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-07-17 00:00:00+02:00" />
-    <meta property="article:published_time" content="2023-07-17 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Creating a PowerPoint Presentation with a Language Model",
-  "datePublished": "2023-07-17 00:00:00+02:00",
-  "dateModified": "2023-07-17 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Creating a PowerPoint Presentation with a Language Model"/>
   <meta property="og:description" content="In this article, we&#39;ll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process. Prerequisites Before we begin, make sure you have the following prerequisites set up: Python 3.x installed …"/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-07-17 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2023-07-17 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="powerpoint-presentation"/>
   <meta property="article:tag" content="language-model"/>
@@ -88,19 +86,46 @@
   <meta property="article:tag" content="interactive-presentations"/>
   <meta property="article:tag" content="natural-language-processing"/>
   <meta property="article:tag" content="advanced-features"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="In this article, we'll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process. Prerequisites Before we..."/>
     <meta name="twitter:title" content="Creating a PowerPoint Presentation with a Language Model"/>
+    <meta name="twitter:description" content="In this article, we'll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process. Prerequisites Before we..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/"
+  },
+  "headline": "Creating a PowerPoint Presentation with a Language Model",
+  "datePublished": "2023-07-17T00:00:00+02:00",
+  "dateModified": "2023-07-17T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/",
+  "description": "In this article, we'll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the..."
+}
+</script>
 
-    <title>Creating a PowerPoint Presentation with a Language Model</title>
+    <title>    Creating a PowerPoint Presentation with a Language Model
+</title>
 
 
 
@@ -111,7 +136,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -122,7 +148,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -159,89 +185,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -257,6 +212,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -265,31 +226,35 @@
             <p>
                 <!-- Posted on: -->
                 2023-07-17 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Creating%20a%20PowerPoint%20Presentation%20with%20a%20Language%20Model&url=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/&via=izikeros&hashtags=powerpoint-presentation,language-model,openai-api,automation,artificial-intelligence,python-script,chatgpt,presentation-outline,content-generation,python-pptx,openai,authentication,slide-customization,image-integration,interactive-presentations,natural-language-processing,advanced-features"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Creating%20a%20PowerPoint%20Presentation%20with%20a%20Language%20Model&u=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/&title=Creating%20a%20PowerPoint%20Presentation%20with%20a%20Language%20Model"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Creating%20a%20PowerPoint%20Presentation%20with%20a%20Language%20Model&url=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/&via=izikeros&hashtags=powerpoint-presentation,language-model,openai-api,automation,artificial-intelligence,python-script,chatgpt,presentation-outline,content-generation,python-pptx,openai,authentication,slide-customization,image-integration,interactive-presentations,natural-language-processing,advanced-features" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Creating%20a%20PowerPoint%20Presentation%20with%20a%20Language%20Model&u=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/creating-a-powerpoint-presentation-with-a-language-model/&title=Creating%20a%20PowerPoint%20Presentation%20with%20a%20Language%20Model" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="creating-a-powerpoint-presentation-with-a-language-model">Creating a PowerPoint Presentation with a Language Model</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><p>In this article, we'll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process.</p>
-<h2>Prerequisites</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <p>In this article, we'll explore how to generate a PowerPoint presentation using the OpenAI Azure API and provide additional advanced features to enhance the process.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <p>Before we begin, make sure you have the following prerequisites set up:</p>
 <ul>
 <li>Python 3.x installed on your machine</li>
@@ -300,21 +265,21 @@
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>python-pptx<span class="w"> </span>openai
 </code></pre></div>
 
-<h2>Step 1: Setting up the OpenAI API</h2>
+<h2 id="step-1-setting-up-the-openai-api">Step 1: Setting up the OpenAI API</h2>
 <p>To get started, you'll need to sign up for the OpenAI API and obtain an API key. The API key allows you to interact with the GPT model. Follow the instructions in the OpenAI documentation to sign up and retrieve your API key.</p>
-<h2>Step 2: Importing the Required Modules</h2>
+<h2 id="step-2-importing-the-required-modules">Step 2: Importing the Required Modules</h2>
 <p>To work with PowerPoint and the OpenAI API, we need to import the necessary modules in our Python script. Specifically, we'll import the <code>Presentation</code> class from the <code>python-pptx</code> library and the <code>openai</code> module.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pptx</span> <span class="kn">import</span> <span class="n">Presentation</span>
 <span class="kn">import</span> <span class="nn">openai</span>
 </code></pre></div>
 
-<h2>Step 3: Authenticating with the OpenAI API</h2>
+<h2 id="step-3-authenticating-with-the-openai-api">Step 3: Authenticating with the OpenAI API</h2>
 <p>Next, we need to authenticate with the OpenAI API by providing our API key. This step ensures that we have the necessary permissions to access and utilize the GPT model.</p>
 <div class="highlight"><pre><span></span><code><span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
 </code></pre></div>
 
 <p>Replace <code>'YOUR_API_KEY'</code> with the API key you obtained in Step 1.</p>
-<h2>Step 4: Generating the Presentation Outline with ChatGPT</h2>
+<h2 id="step-4-generating-the-presentation-outline-with-chatgpt">Step 4: Generating the Presentation Outline with ChatGPT</h2>
 <p>With the necessary setup complete, we can now use the ChatGPT model to generate an outline for our PowerPoint presentation. We'll provide a description of the presentation as input and receive a list of slides as output. The slides will form the basis of our presentation structure.</p>
 <div class="highlight"><pre><span></span><code><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;This presentation is about the benefits of exercise.&quot;</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -329,7 +294,7 @@
 </code></pre></div>
 
 <p>In this example, the <code>description</code> variable contains the input description for the presentation. The <code>max_tokens</code> parameter limits the response length, and the <code>n</code> parameter determines the number of slides in the outline. Feel free to adjust these parameters based on your specific needs.</p>
-<h2>Step 5: Generating Content for Each Slide</h2>
+<h2 id="step-5-generating-content-for-each-slide">Step 5: Generating Content for Each Slide</h2>
 <p>To make our presentation informative, we'll use the ChatGPT model to generate content for each slide in the outline. For each slide, we'll iterate through the <code>slides</code> list and generate the content using the ChatGPT model.</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">slide</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">slides</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -346,7 +311,7 @@
 </code></pre></div>
 
 <p>Here, we iterate through each slide in the <code>slides</code> list, generate the content using the ChatGPT model, and store the title and content in a dictionary. Adjust the <code>max_tokens</code> parameter based on the desired length of each slide's content.</p>
-<h2>Step 6: Creating the PowerPoint Presentation</h2>
+<h2 id="step-6-creating-the-powerpoint-presentation">Step 6: Creating the PowerPoint Presentation</h2>
 <p>With the slide titles and content generated, it's time to create the PowerPoint presentation using the <code>python-pptx</code> library. We'll iterate through the slides and add them to the presentation with the appropriate titles and content.</p>
 <div class="highlight"><pre><span></span><code><span class="n">presentation</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">()</span>
 
@@ -366,7 +331,7 @@
 </code></pre></div>
 
 <p>In this example, we create a new slide for each item in the <code>slides</code> list. We set the title and content for each slide and save the presentation as a PowerPoint file named "generated_presentation.pptx". You can adjust the slide layout by choosing a different index from the <code>slide_layouts</code> list.</p>
-<h2>Possible Next Features for the Presentation Generation Script</h2>
+<h2 id="possible-next-features-for-the-presentation-generation-script">Possible Next Features for the Presentation Generation Script</h2>
 <p>While the script we've created is already capable of generating PowerPoint presentations, we can enhance it further with additional features. Here are a few possible next steps to consider:</p>
 <ol>
 <li>
@@ -383,73 +348,94 @@
 </li>
 </ol>
 <p>By implementing these features, the presentation generation script can become more versatile and provide a richer experience for users.</p>
-<h2>Alternative approach - let LLM generate VisualBasic script</h2>
+<h2 id="alternative-approach-let-llm-generate-visualbasic-script">Alternative approach - let LLM generate VisualBasic script</h2>
 <p>In this article we use python to generate the slides. You can also ask model (ChatGPT) for a VisualBasic script that will generate presentation for you. You can learn this approach from the video: <a href="https://www.youtube.com/watch?v=JoedhPPi3O0">Create Beautiful PowerPoint Slides with ChatGPT + VBA: Quick Tip! - YouTube</a></p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>In this article, we've explored how to create a PowerPoint presentation using a language model, specifically OpenAI's GPT model through the Azure API. We've covered the steps from setting up the OpenAI API to generating an outline and filling the slides with content. Additionally, we discussed possible next features to enhance the script, such as slide customization, image integration, interactive presentations, and natural language processing. By expanding upon these features, you can create powerful presentation automation tools tailored to your specific needs.</p>
-<p>Automating presentation generation not only saves time and effort but also opens up new possibilities for creating engaging and informative presentations. With the help of AI and language models, we can revolutionize the way presentations are created, allowing presenters to focus more on refining their ideas and delivering impactful content.</p></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/powerpoint-presentation/">powerpoint-presentation</a><a href="https://www.safjan.com/tag/language-model/">language-model</a><a href="https://www.safjan.com/tag/openai-api/">OpenAI-API</a><a href="https://www.safjan.com/tag/automation/">automation</a><a href="https://www.safjan.com/tag/artificial-intelligence/">artificial-intelligence</a><a href="https://www.safjan.com/tag/python-script/">python-script</a><a href="https://www.safjan.com/tag/chatgpt/">ChatGPT</a><a href="https://www.safjan.com/tag/presentation-outline/">presentation-outline</a><a href="https://www.safjan.com/tag/content-generation/">content-generation</a><a href="https://www.safjan.com/tag/python-pptx/">python-pptx</a><a href="https://www.safjan.com/tag/openai/">openai</a><a href="https://www.safjan.com/tag/authentication/">authentication</a><a href="https://www.safjan.com/tag/slide-customization/">slide-customization</a><a href="https://www.safjan.com/tag/image-integration/">image-integration</a><a href="https://www.safjan.com/tag/interactive-presentations/">interactive-presentations</a><a href="https://www.safjan.com/tag/natural-language-processing/">natural-language-processing</a><a href="https://www.safjan.com/tag/advanced-features/">advanced-features</a>            </p>
+<p>Automating presentation generation not only saves time and effort but also opens up new possibilities for creating engaging and informative presentations. With the help of AI and language models, we can revolutionize the way presentations are created, allowing presenters to focus more on refining their ideas and delivering impactful content.</p>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/powerpoint-presentation/" class="article-tag">powerpoint-presentation</a>
+                <a href="https://www.safjan.com/tag/language-model/" class="article-tag">language-model</a>
+                <a href="https://www.safjan.com/tag/openai-api/" class="article-tag">OpenAI-API</a>
+                <a href="https://www.safjan.com/tag/automation/" class="article-tag">automation</a>
+                <a href="https://www.safjan.com/tag/artificial-intelligence/" class="article-tag">artificial-intelligence</a>
+                <a href="https://www.safjan.com/tag/python-script/" class="article-tag">python-script</a>
+                <a href="https://www.safjan.com/tag/chatgpt/" class="article-tag">ChatGPT</a>
+                <a href="https://www.safjan.com/tag/presentation-outline/" class="article-tag">presentation-outline</a>
+                <a href="https://www.safjan.com/tag/content-generation/" class="article-tag">content-generation</a>
+                <a href="https://www.safjan.com/tag/python-pptx/" class="article-tag">python-pptx</a>
+                <a href="https://www.safjan.com/tag/openai/" class="article-tag">openai</a>
+                <a href="https://www.safjan.com/tag/authentication/" class="article-tag">authentication</a>
+                <a href="https://www.safjan.com/tag/slide-customization/" class="article-tag">slide-customization</a>
+                <a href="https://www.safjan.com/tag/image-integration/" class="article-tag">image-integration</a>
+                <a href="https://www.safjan.com/tag/interactive-presentations/" class="article-tag">interactive-presentations</a>
+                <a href="https://www.safjan.com/tag/natural-language-processing/" class="article-tag">natural-language-processing</a>
+                <a href="https://www.safjan.com/tag/advanced-features/" class="article-tag">advanced-features</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/avoid-homebrew-sudo-upgrades/">Avoiding Homebrew Upgrades That Require Sudo on macOS</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/Boosting Productivity and Automation with AppleScript on macOS/">Boosting Productivity and Automation With AppleScript on macOS</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/what-is-the-difference-between-mlops-and-modelops/">What Is the Difference Between MLOps and ModelOps?</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/black-vs-yapf/">Which Python Code Formatter Is Better - Black or Yapf?</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/reinstall-os-frequently/">Reinstall frequently</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/avoid-homebrew-sudo-upgrades/" class="related-post-card">
+                            <span class="related-post-title">Avoiding Homebrew Upgrades That Require Sudo on macOS</span>
+                            <span class="related-post-date">Oct 31, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/Boosting Productivity and Automation with AppleScript on macOS/" class="related-post-card">
+                            <span class="related-post-title">Boosting Productivity and Automation With AppleScript on macOS</span>
+                            <span class="related-post-date">Jul 10, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/what-is-the-difference-between-mlops-and-modelops/" class="related-post-card">
+                            <span class="related-post-title">What Is the Difference Between MLOps and ModelOps?</span>
+                            <span class="related-post-date">Mar 06, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/black-vs-yapf/" class="related-post-card">
+                            <span class="related-post-title">Which Python Code Formatter Is Better - Black or Yapf?</span>
+                            <span class="related-post-date">Feb 23, 2023</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

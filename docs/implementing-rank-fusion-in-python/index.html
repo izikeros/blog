@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea …"/>
     <meta name="keywords" content="rank-fusion, hybrid-search, rank, search, python">
-    <meta expr:content="2023-07-28 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2024-07-14 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2024-07-14 00:00:00+02:00" />
-    <meta property="article:published_time" content="2023-07-28 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Implementing Reciprocal Rank Fusion (RRF) in Python",
-  "datePublished": "2023-07-28 00:00:00+02:00",
-  "dateModified": "2024-07-14 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Implementing Reciprocal Rank Fusion (RRF) in Python"/>
   <meta property="og:description" content="In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea …"/>
@@ -69,26 +67,53 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-07-28 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2024-07-14 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="rank-fusion"/>
   <meta property="article:tag" content="hybrid-search"/>
   <meta property="article:tag" content="rank"/>
   <meta property="article:tag" content="search"/>
   <meta property="article:tag" content="python"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may..."/>
     <meta name="twitter:title" content="Implementing Reciprocal Rank Fusion (RRF) in Python"/>
+    <meta name="twitter:description" content="In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/implementing-rank-fusion-in-python/"
+  },
+  "headline": "Implementing Reciprocal Rank Fusion (RRF) in Python",
+  "datePublished": "2023-07-28T00:00:00+02:00",
+  "dateModified": "2024-07-14T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/implementing-rank-fusion-in-python/",
+  "description": "In the Information Retrieval, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases,..."
+}
+</script>
 
-    <title>Implementing Reciprocal Rank Fusion (RRF) in Python</title>
+    <title>    Implementing Reciprocal Rank Fusion (RRF) in Python
+</title>
 
 
 
@@ -99,7 +124,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -110,7 +136,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -147,89 +173,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -245,6 +200,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -253,37 +214,41 @@
             <p>
                 <!-- Posted on: -->
                 2023-07-28 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&via=izikeros&hashtags=rank-fusion,hybrid-search,rank,search,python"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&title=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&via=izikeros&hashtags=rank-fusion,hybrid-search,rank,search,python" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python&u=https%3A//www.safjan.com/implementing-rank-fusion-in-python/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/implementing-rank-fusion-in-python/&title=Implementing%20Reciprocal%20Rank%20Fusion%20%28RRF%29%20in%20Python" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="implementing-rank-fusion-in-python">Implementing Reciprocal Rank Fusion (RRF) in Python</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><p>In the <em>Information Retrieval</em>, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <p>In the <em>Information Retrieval</em>, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.
 Let's learn how to implement a simple rank fusion approach in Python.</p>
 <blockquote>
 <p>NOTE:  If you want to analyse rank changes over time in a visual manner, you might be interested in using <a href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/">RankFlow plot for retriever visual evaluation</a> package.</p>
 </blockquote>
-<h2>Understanding the RRF Ranking Process</h2>
+<h2 id="understanding-the-rrf-ranking-process">Understanding the RRF Ranking Process</h2>
 <p>The Reciprocal Rank Fusion (RRF) operates by collecting search outcomes from various strategies, assigning each document in the results a reciprocal rank score, and subsequently merging these scores to generate a new ranking. The underlying principle is that documents that consistently appear in top positions across diverse search strategies are likely more pertinent and should thus receive a higher rank in the consolidated result.</p>
-<h3>A simplified breakdown of the RRF process</h3>
+<h3 id="a-simplified-breakdown-of-the-rrf-process">A simplified breakdown of the RRF process</h3>
 <ol>
 <li>
 <p><strong>Collect ranked search outcomes</strong> from multiple simultaneous queries. E.g. one query to semantic search and one query to text search.</p>
@@ -307,7 +272,7 @@ Empirical observation suggests that <span class="math">\(k\)</span> performs bes
 <p>To depict the Reciprocal Rank Fusion (RRF) process, we can use a flowchart.
 <img alt="Reciprocal Rank Fusion (RRF) process flow chart" src="/images/Reciprocal_Rank_Fusion/Reciprocal_Rank_Fusion.png"></p>
 <p><strong>*Figure 1:</strong> Reciprocal Rank Fusion (RRF) Process Flowchart. The diagram illustrates the steps involved in the RRF ranking process.</p>
-<h2>Implementing Reciprocal Rank Fusion</h2>
+<h2 id="implementing-reciprocal-rank-fusion">Implementing Reciprocal Rank Fusion</h2>
 <p>The <a href="https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf">Reciprocal Rank Fusion (RRF)</a> is an advanced algorithmic technique designed to amalgamate multiple result sets, each having distinct relevance indicators, into a unified result set. One of the key advantages of RRF is its ability to deliver high-quality results without the necessity for any tuning. Moreover, it does not mandate the relevance indicators to be interconnected or similar in nature.</p>
 <p>RRF uses the following formula to determine the score for ranking each document:</p>
 <div class="highlight"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -366,11 +331,11 @@ Empirical observation suggests that <span class="math">\(k\)</span> performs bes
 
 <p>This assumes that queries and their corresponding results are uniquely stored in a dictionary, and that your document ranks are determined by their order in the list of results.</p>
 <p>Please modify the functions <code>result_func</code>, <code>rank_func</code>, and <code>database</code> to fit your specific application details and data.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>The concept of Rank Fusion, particularly the Reciprocal Rank Fusion (RRF) method, offers a promising approach to amalgamate multiple result sets into a unified one. This article has demonstrated how to implement a simple RRF in Python.</p>
 <p>While the example provided in this article is simplified, it provides a solid foundation for understanding the RRF process and how to implement it in Python. Depending on the specific application and data, the functions and database structure may need to be modified. However, the core concept and approach remain the same.</p>
 <p>The RRF method is a powerful tool in the field of Information Retrieval, providing a robust and efficient way to combine multiple ranking models to enhance retrieval performance. By understanding and implementing this method, one can significantly improve the quality and relevance of search results, thereby enhancing user satisfaction and system effectiveness.</p>
-<h2>See also</h2>
+<h2 id="see-also">See also</h2>
 <ul>
 <li>Condorcet Fuse (<a href="https://www.khoury.northeastern.edu/~jaa/IS4200.10X1/resources/condorcet.pdf">pdf</a>) Montague, M., and Aslam, J. A. Condorcet fusion for improved retrieval. In CIKM (2002).)</li>
 <li>CombMNZ:<ul>
@@ -448,69 +413,78 @@ Empirical observation suggests that <span class="math">\(k\)</span> performs bes
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-</script></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/rank-fusion/">rank-fusion</a><a href="https://www.safjan.com/tag/hybrid-search/">hybrid-search</a><a href="https://www.safjan.com/tag/rank/">rank</a><a href="https://www.safjan.com/tag/search/">search</a><a href="https://www.safjan.com/tag/python/">python</a>            </p>
+</script>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/rank-fusion/" class="article-tag">rank-fusion</a>
+                <a href="https://www.safjan.com/tag/hybrid-search/" class="article-tag">hybrid-search</a>
+                <a href="https://www.safjan.com/tag/rank/" class="article-tag">rank</a>
+                <a href="https://www.safjan.com/tag/search/" class="article-tag">search</a>
+                <a href="https://www.safjan.com/tag/python/" class="article-tag">python</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/">Rank Fusion Algorithms - From Simple to Advanced</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/borda-count-vs-reciprocal-rank/">Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/">Notes on using ripgrep for projects with python, jupyter (ipynb) notebooks and markdown files</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/github-search-techniques/">GitHub Search Techniques</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/python-protocols-structural-subtyping/">Understanding Python Protocols - Structural Subtyping in Practice</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/Rank-fusion-algorithms-from-simple-to-advanced/" class="related-post-card">
+                            <span class="related-post-title">Rank Fusion Algorithms - From Simple to Advanced</span>
+                            <span class="related-post-date">Jul 28, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/borda-count-vs-reciprocal-rank/" class="related-post-card">
+                            <span class="related-post-title">Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data</span>
+                            <span class="related-post-date">Jul 15, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/" class="related-post-card">
+                            <span class="related-post-title">Notes on using ripgrep for projects with python, jupyter (ipynb) notebooks and markdown files</span>
+                            <span class="related-post-date">Sep 13, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/github-search-techniques/" class="related-post-card">
+                            <span class="related-post-title">GitHub Search Techniques</span>
+                            <span class="related-post-date">Dec 07, 2023</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

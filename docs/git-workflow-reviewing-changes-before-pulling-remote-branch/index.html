@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="TLDR: Quick Git Command Reference To quickly review changes before pulling, use this sequence of commands: # Fetch latest changes without merging git fetch origin # See what&#39;s different git log HEAD..@{upstream} # Show commits you&#39;re missing git diff HEAD..@{upstream} # Show …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="TLDR: Quick Git Command Reference To quickly review changes before pulling, use this sequence of commands: # Fetch latest changes without merging git fetch origin # See what&#39;s different git log HEAD..@{upstream} # Show commits you&#39;re missing git diff HEAD..@{upstream} # Show …"/>
     <meta name="keywords" content="git, workflow, github, pull-request">
-    <meta expr:content="2023-06-20 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2024-10-31 00:00:00+01:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2024-10-31 00:00:00+01:00" />
-    <meta property="article:published_time" content="2023-06-20 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch",
-  "datePublished": "2023-06-20 00:00:00+02:00",
-  "dateModified": "2024-10-31 00:00:00+01:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch"/>
   <meta property="og:description" content="TLDR: Quick Git Command Reference To quickly review changes before pulling, use this sequence of commands: # Fetch latest changes without merging git fetch origin # See what&#39;s different git log HEAD..@{upstream} # Show commits you&#39;re missing git diff HEAD..@{upstream} # Show …"/>
@@ -69,25 +67,52 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-06-20 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2024-10-31 00:00:00+01:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="git"/>
   <meta property="article:tag" content="workflow"/>
   <meta property="article:tag" content="github"/>
   <meta property="article:tag" content="pull-request"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="TLDR: Quick Git Command Reference To quickly review changes before pulling, use this sequence of commands: # Fetch latest changes without merging git fetch origin # See what's different git..."/>
     <meta name="twitter:title" content="Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch"/>
+    <meta name="twitter:description" content="TLDR: Quick Git Command Reference To quickly review changes before pulling, use this sequence of commands: # Fetch latest changes without merging git fetch origin # See what's different git..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/"
+  },
+  "headline": "Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch",
+  "datePublished": "2023-06-20T00:00:00+02:00",
+  "dateModified": "2024-10-31T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/",
+  "description": "TLDR: Quick Git Command Reference To quickly review changes before pulling, use this sequence of commands: # Fetch latest changes without merging git fetch..."
+}
+</script>
 
-    <title>Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch</title>
+    <title>    Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch
+</title>
 
 
 
@@ -98,7 +123,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -109,7 +135,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -146,89 +172,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -244,6 +199,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -252,30 +213,34 @@
             <p>
                 <!-- Posted on: -->
                 2023-06-20 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Efficient%20Workflow%20for%20Reviewing%20Changes%20in%20Git%20before%20Pulling%20from%20Remote%20Branch&url=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/&via=izikeros&hashtags=git,workflow,github,pull-request"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Efficient%20Workflow%20for%20Reviewing%20Changes%20in%20Git%20before%20Pulling%20from%20Remote%20Branch&u=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/&title=Efficient%20Workflow%20for%20Reviewing%20Changes%20in%20Git%20before%20Pulling%20from%20Remote%20Branch"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Efficient%20Workflow%20for%20Reviewing%20Changes%20in%20Git%20before%20Pulling%20from%20Remote%20Branch&url=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/&via=izikeros&hashtags=git,workflow,github,pull-request" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Efficient%20Workflow%20for%20Reviewing%20Changes%20in%20Git%20before%20Pulling%20from%20Remote%20Branch&u=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-workflow-reviewing-changes-before-pulling-remote-branch/&title=Efficient%20Workflow%20for%20Reviewing%20Changes%20in%20Git%20before%20Pulling%20from%20Remote%20Branch" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="git-workflow-reviewing-changes-before-pulling-remote-branch">Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><h2>TLDR: Quick Git Command Reference</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <h2 id="tldr-quick-git-command-reference">TLDR: Quick Git Command Reference</h2>
 <p>To quickly review changes before pulling, use this sequence of commands:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Fetch latest changes without merging</span>
 git<span class="w"> </span>fetch<span class="w"> </span>origin
@@ -295,7 +260,7 @@ git<span class="w"> </span>diff<span class="w"> </span>--stat<span class="w"> </
 git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
 </code></pre></div>
 
-<h2>Introduction</h2>
+<h2 id="introduction">Introduction</h2>
 <p>When working with Git, it is essential to have a streamlined workflow that ensures you <strong>review the changes made by others</strong> before pulling them into your local branch. This practice helps <strong>prevent conflicts</strong> and ensures that your local repository remains in sync with the remote branch. In this blog post, we will outline a few simple steps to check the changes introduced by others in the remote branch before performing a <code>git pull</code>.</p>
 <!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
 
@@ -337,23 +302,23 @@ git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </
 <!-- /MarkdownTOC -->
 
 <p><a id="step-1-fetch-remote-changes"></a></p>
-<h3>Step 1: Fetch Remote Changes</h3>
+<h3 id="step-1-fetch-remote-changes">Step 1: Fetch Remote Changes</h3>
 <p>Before reviewing any changes, it is crucial to fetch the latest updates from the remote repository. This step ensures that your local repository has the most up-to-date information. To fetch changes, run the following command:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>fetch
 </code></pre></div>
 
 <p>This command retrieves all the latest changes from the remote repository without automatically merging them into your local branch.</p>
 <p><a id="step-2-inspect-remote-branch"></a></p>
-<h3>Step 2: Inspect Remote Branch</h3>
+<h3 id="step-2-inspect-remote-branch">Step 2: Inspect Remote Branch</h3>
 <p>After fetching the remote changes, you can inspect the remote branch to see the modifications made by others. This step helps you understand the nature and scope of the changes before merging them into your branch. To view the remote branch, use the following command:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>origin/branch-name
 </code></pre></div>
 
 <p>Replace <code>branch-name</code> with the name of the remote branch you want to review. This command displays a list of commits made to the remote branch, showing the commit hash, author, timestamp, and commit message.</p>
 <p><a id="step-3-review-changes"></a></p>
-<h3>Step 3: Review Changes</h3>
+<h3 id="step-3-review-changes">Step 3: Review Changes</h3>
 <p>Now that you have a clear view of the commits in the remote branch, it's time to review the changes introduced. There are several ways to inspect the individual commits, depending on your preferred Git tooling. Here are a few common options:</p>
-<h4>Option 1: Using Git Diff</h4>
+<h4 id="option-1-using-git-diff">Option 1: Using Git Diff</h4>
 <p>To review the changes introduced by a specific commit, you can use the <code>git diff</code> command. Run the following command, replacing <code>commit-hash</code> with the actual commit hash you want to inspect:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>diff<span class="w"> </span>commit-hash
 </code></pre></div>
@@ -386,19 +351,19 @@ git<span class="w"> </span>diff<span class="w"> </span>HEAD..@<span class="o">{<
 git<span class="w"> </span>diff<span class="w"> </span>--word-diff<span class="o">=</span>color<span class="w"> </span>HEAD..@<span class="o">{</span>upstream<span class="o">}</span>
 </code></pre></div>
 
-<h4>Option 2: Utilizing Visual Git Tools</h4>
+<h4 id="option-2-utilizing-visual-git-tools">Option 2: Utilizing Visual Git Tools</h4>
 <p>If you prefer a more visual representation of changes, you can leverage Git GUI tools like <a href="https://www.gitkraken.com/">GitKraken</a> (paid), <a href="https://www.sourcetreeapp.com/">Sourcetree</a> (free, Atlassian Software License), <a href="https://git-cola.github.io/">Git Cola</a> or <a href="https://jonas.github.io/tig/">tig</a>. These tools provide an intuitive interface that allows you to navigate through commits, inspect changes, and even visualize branching patterns.</p>
-<h5>tig</h5>
+<h5 id="tig">tig</h5>
 <p><code>tig test..master</code> - Show difference between two branches <code>test</code> and <code>master</code></p>
-<h4>Option 3: Using PyCharm's Version Control Features</h4>
+<h4 id="option-3-using-pycharms-version-control-features">Option 3: Using PyCharm's Version Control Features</h4>
 <p>PyCharm provides robust Git integration that makes reviewing changes before pulling remarkably straightforward. Here's how to leverage PyCharm's GUI for this workflow:</p>
-<h5>View Remote Changes</h5>
+<h5 id="view-remote-changes">View Remote Changes</h5>
 <ol>
 <li>Open the Git tool window by clicking <code>View → Tool Windows → Git</code> or pressing <code>Alt+9</code> (Windows/Linux) or <code>⌘9</code> (macOS)</li>
 <li>Click the "Fetch" button in the Git tool window or press <code>Ctrl+T</code> (Windows/Linux) or <code>⌘T</code> (macOS) to fetch remote changes</li>
 <li>In the Git tool window, expand the "Remote Branches" section to see incoming changes</li>
 </ol>
-<h5>Review Changes Using PyCharm's Diff Viewer</h5>
+<h5 id="review-changes-using-pycharms-diff-viewer">Review Changes Using PyCharm's Diff Viewer</h5>
 <ol>
 <li>Right-click on the remote branch you want to review</li>
 <li>Select <code>Compare with Current</code> to open PyCharm's diff viewer</li>
@@ -407,14 +372,14 @@ git<span class="w"> </span>diff<span class="w"> </span>--word-diff<span class="o
 <li>Line-by-line differences in the main window</li>
 <li>Color-coded modifications (green for additions, red for deletions)</li>
 </ol>
-<h5>Interactive Review Features</h5>
+<h5 id="interactive-review-features">Interactive Review Features</h5>
 <ul>
 <li>Use the arrow keys or mouse wheel to scroll through changes</li>
 <li>Click the "Next Change" (↓) and "Previous Change" (↑) buttons to navigate between modifications</li>
 <li>Use the "Accept" (←) or "Reject" (→) arrows to selectively apply or discard changes</li>
 <li>Toggle between "Side-by-Side" and "Unified" diff views using the gear icon</li>
 </ul>
-<h5>Resolve Conflicts in PyCharm</h5>
+<h5 id="resolve-conflicts-in-pycharm">Resolve Conflicts in PyCharm</h5>
 <p>If conflicts arise during the pull operation:</p>
 <ol>
 <li>PyCharm will automatically detect conflicts and mark the files with a red exclamation mark</li>
@@ -425,9 +390,9 @@ git<span class="w"> </span>diff<span class="w"> </span>--word-diff<span class="o
 <li>Use the "Apply Non-Conflicting Changes" button for automatic resolution of non-conflicting parts</li>
 </ol>
 <p>This visual approach using PyCharm's GUI tools can make the review process more intuitive, especially for developers who prefer IDE-integrated version control over command-line operations.</p>
-<h4>Option 4: Using VSCode's Git Integration</h4>
+<h4 id="option-4-using-vscodes-git-integration">Option 4: Using VSCode's Git Integration</h4>
 <p>VSCode provides powerful built-in Git functionality that can be further enhanced with extensions. Here's how to effectively review changes using VSCode:</p>
-<h5>Built-in Git Features</h5>
+<h5 id="built-in-git-features">Built-in Git Features</h5>
 <ol>
 <li>Access the Source Control view by:</li>
 <li>Clicking the Source Control icon in the Activity Bar (branches icon)</li>
@@ -436,7 +401,7 @@ git<span class="w"> </span>diff<span class="w"> </span>--word-diff<span class="o
 <li>The refresh icon in the Source Control view</li>
 <li>The Command Palette (<code>Ctrl+Shift+P</code> or <code>⌘+Shift+P</code>) and typing "Git: Fetch"</li>
 </ol>
-<h5>Review Changes Using VSCode's Built-in Diff Viewer</h5>
+<h5 id="review-changes-using-vscodes-built-in-diff-viewer">Review Changes Using VSCode's Built-in Diff Viewer</h5>
 <ol>
 <li>In the Source Control view:</li>
 <li>Click on any modified file to see inline changes</li>
@@ -447,10 +412,10 @@ git<span class="w"> </span>diff<span class="w"> </span>--word-diff<span class="o
 <li>The arrows in the gutter to move between changes</li>
 </ol>
 <p><a id="step-4-resolve-conflicts-if-any"></a></p>
-<h3>Step 4: Resolve Conflicts (if any)</h3>
+<h3 id="step-4-resolve-conflicts-if-any">Step 4: Resolve Conflicts (if any)</h3>
 <p>During your review, you may encounter conflicts between the changes made by others and your local modifications. Conflicts arise when Git cannot automatically merge two sets of changes. If conflicts occur, it is crucial to resolve them before pulling the changes into your branch.</p>
 <p>To resolve conflicts, you can use Git's built-in merge tools or a visual Git tool like those mentioned earlier. These tools provide a side-by-side view of conflicting changes, enabling you to choose which modifications to keep and how to combine them effectively.</p>
-<h4>CLI-based Conflict Resolution</h4>
+<h4 id="cli-based-conflict-resolution">CLI-based Conflict Resolution</h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># After a merge conflict occurs</span>
 git<span class="w"> </span>status<span class="w">                            </span><span class="c1"># Identify conflicting files</span>
 git<span class="w"> </span>diff<span class="w">                              </span><span class="c1"># Review the conflicts (marked with &gt;&gt;&gt;&gt; and &lt;&lt;&lt;&lt;)</span>
@@ -460,7 +425,7 @@ git<span class="w"> </span>add<span class="w"> </span>&lt;resolved-file&gt;<span
 git<span class="w"> </span>merge<span class="w"> </span>--continue<span class="w">                  </span><span class="c1"># Complete the merge</span>
 </code></pre></div>
 
-<h4>Using Git's Built-in mergetool</h4>
+<h4 id="using-gits-built-in-mergetool">Using Git's Built-in mergetool</h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># Configure your preferred merge tool</span>
 git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>merge.tool<span class="w"> </span>&lt;tool&gt;<span class="w">  </span><span class="c1"># e.g., vimdiff, meld, kdiff3</span>
 git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>mergetool.prompt<span class="w"> </span><span class="nb">false</span><span class="w">  </span><span class="c1"># Skip prompt for each file</span>
@@ -469,7 +434,7 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 git<span class="w"> </span>mergetool
 </code></pre></div>
 
-<h4>Best Practices for Conflict Resolution</h4>
+<h4 id="best-practices-for-conflict-resolution">Best Practices for Conflict Resolution</h4>
 <ol>
 <li><strong>Understand both changes</strong> before resolving</li>
 <li><strong>Communicate with the author</strong> of the other changes when necessary</li>
@@ -477,14 +442,14 @@ git<span class="w"> </span>mergetool
 <li>Consider using <strong>feature branches</strong> to minimize conflict scope</li>
 </ol>
 <p><a id="step-5-pull-changes"></a></p>
-<h3>Step 5: Pull Changes</h3>
+<h3 id="step-5-pull-changes">Step 5: Pull Changes</h3>
 <p>After reviewing the changes, ensuring there are no conflicts or addressing any conflicts that arise, you can proceed with pulling the changes from the remote branch into your local branch. To pull the changes, use the following command:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>branch-name
 </code></pre></div>
 
 <p>Replace <code>branch-name</code> with the name of the remote branch from which you want to pull the changes. This command automatically merges the changes into your branch, keeping your local repository up to date.</p>
-<h3>Extras 1: Enhanced Git Experience with VSCode Extensions</h3>
-<h4>GitLens</h4>
+<h3 id="extras-1-enhanced-git-experience-with-vscode-extensions">Extras 1: Enhanced Git Experience with VSCode Extensions</h3>
+<h4 id="gitlens">GitLens</h4>
 <p>GitLens is a powerful extension that supercharges VSCode's Git capabilities:</p>
 <ol>
 <li>Install <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> from the Extensions Marketplace</li>
@@ -497,7 +462,7 @@ git<span class="w"> </span>mergetool
 <div class="highlight"><pre><span></span><code>code<span class="w"> </span>--install-extension<span class="w"> </span>eamodio.gitlens
 </code></pre></div>
 
-<h4>Git Graph</h4>
+<h4 id="git-graph">Git Graph</h4>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a> provides a visual commit history:</p>
 <ol>
 <li>Install <a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a> extension</li>
@@ -510,7 +475,7 @@ git<span class="w"> </span>mergetool
 <div class="highlight"><pre><span></span><code>code<span class="w"> </span>--install-extension<span class="w"> </span>mhutchie.git-graph
 </code></pre></div>
 
-<h4>Tips for Efficient Review in VSCode</h4>
+<h4 id="tips-for-efficient-review-in-vscode">Tips for Efficient Review in VSCode</h4>
 <ol>
 <li><strong>Keyboard Shortcuts</strong>:</li>
 <li><code>Alt+←</code> / <code>Alt+→</code>: Navigate through edit history</li>
@@ -575,7 +540,7 @@ git<span class="w"> </span>mergetool
 <li>Utilize the minimap for quick navigation through large files</li>
 </ol>
 <p>This integrated approach using VSCode and its extensions provides a powerful environment for reviewing changes, with features that cater to both basic and advanced Git workflows. The visual tools and keyboard shortcuts make the review process more efficient and intuitive.</p>
-<h2>Extras 2: Common Review Commands</h2>
+<h2 id="extras-2-common-review-commands">Extras 2: Common Review Commands</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># View specific file changes</span>
 git<span class="w"> </span>diff<span class="w"> </span>origin/main<span class="w"> </span>--<span class="w"> </span>path/to/file
 
@@ -604,7 +569,7 @@ git<span class="w"> </span>merge<span class="w"> </span>--abort
 git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD@<span class="o">{</span><span class="m">1</span><span class="o">}</span>
 </code></pre></div>
 
-<h2>Extras 3: Git Aliases for Efficient Review</h2>
+<h2 id="extras-3-git-aliases-for-efficient-review">Extras 3: Git Aliases for Efficient Review</h2>
 <p>You can streamline your review workflow by setting up Git aliases in your <code>.gitconfig</code> file:</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>alias<span class="o">]</span>
 <span class="w">    </span><span class="c1"># Show commits that would be pulled</span>
@@ -632,69 +597,77 @@ git<span class="w"> </span>check-conflicts
 <p><strong>Edits:</strong>
 - 2025-06-26: Add more info about conflict resolution, diff inspection from CLI and Git Aliases for Efficient Review
 - 2024-03-06: Added sections on using PyCharm and VSCode features
-- 2024-03-06: Added extras on VSCode extensions and git commands for review</p></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/git/">git</a><a href="https://www.safjan.com/tag/workflow/">workflow</a><a href="https://www.safjan.com/tag/github/">github</a><a href="https://www.safjan.com/tag/pull-request/">pull-request</a>            </p>
+- 2024-03-06: Added extras on VSCode extensions and git commands for review</p>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/git/" class="article-tag">git</a>
+                <a href="https://www.safjan.com/tag/workflow/" class="article-tag">workflow</a>
+                <a href="https://www.safjan.com/tag/github/" class="article-tag">github</a>
+                <a href="https://www.safjan.com/tag/pull-request/" class="article-tag">pull-request</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-pre-commit-hooks/">Pre-Commit Hooks</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/quick-ways-to-disable-github-actions-workflows-without-deletion/">Quick Ways to Disable GitHub Actions Workflows Without Deletion</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-for-ai-coding/">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/" class="related-post-card">
+                            <span class="related-post-title">GitHub - Troubleshooting 'Permission to repo.git denied to user'</span>
+                            <span class="related-post-date">Mar 21, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-pre-commit-hooks/" class="related-post-card">
+                            <span class="related-post-title">Pre-Commit Hooks</span>
+                            <span class="related-post-date">Oct 08, 2021</span>
+                        </a>
+                        <a href="https://www.safjan.com/quick-ways-to-disable-github-actions-workflows-without-deletion/" class="related-post-card">
+                            <span class="related-post-title">Quick Ways to Disable GitHub Actions Workflows Without Deletion</span>
+                            <span class="related-post-date">Oct 03, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/" class="related-post-card">
+                            <span class="related-post-title">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

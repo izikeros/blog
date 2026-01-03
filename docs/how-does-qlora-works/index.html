@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="TL;DR QLoRA (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During fine-tuning, only the adapters are updated, with gradients backpropagated through the quantized weights. Key innovations …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="TL;DR QLoRA (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During fine-tuning, only the adapters are updated, with gradients backpropagated through the quantized weights. Key innovations …"/>
     <meta name="keywords" content="qlora, lora, low-rank-adaptation, quantisation, weights, adapters, 4-bit-normal-float, double-quantisation, training, fine-tuning">
-    <meta expr:content="2024-07-03 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2024-07-03 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2024-07-03 00:00:00+02:00" />
-    <meta property="article:published_time" content="2024-07-03 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How does QLoRA works?",
-  "datePublished": "2024-07-03 00:00:00+02:00",
-  "dateModified": "2024-07-03 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="How does QLoRA works?"/>
   <meta property="og:description" content="TL;DR QLoRA (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During fine-tuning, only the adapters are updated, with gradients backpropagated through the quantized weights. Key innovations …"/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2024-07-03 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2024-07-03 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="qlora"/>
   <meta property="article:tag" content="lora"/>
@@ -81,19 +79,46 @@
   <meta property="article:tag" content="double-quantisation"/>
   <meta property="article:tag" content="training"/>
   <meta property="article:tag" content="fine-tuning"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="TL;DR QLoRA (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During..."/>
     <meta name="twitter:title" content="How does QLoRA works?"/>
+    <meta name="twitter:description" content="TL;DR QLoRA (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/how-does-qlora-works/"
+  },
+  "headline": "How does QLoRA works?",
+  "datePublished": "2024-07-03T00:00:00+02:00",
+  "dateModified": "2024-07-03T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/how-does-qlora-works/",
+  "description": "TL;DR QLoRA (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model..."
+}
+</script>
 
-    <title>How does QLoRA works?</title>
+    <title>    How does QLoRA works?
+</title>
 
 
 
@@ -104,7 +129,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -115,7 +141,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -152,89 +178,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -250,6 +205,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -258,38 +219,42 @@
             <p>
                 <!-- Posted on: -->
                 2024-07-03 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=How%20does%20QLoRA%20works%3F&url=https%3A//www.safjan.com/how-does-qlora-works/&via=izikeros&hashtags=qlora,lora,low-rank-adaptation,quantisation,weights,adapters,4-bit-normal-float,double-quantisation,training,fine-tuning"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-does-qlora-works/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=How%20does%20QLoRA%20works%3F&u=https%3A//www.safjan.com/how-does-qlora-works/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-does-qlora-works/&title=How%20does%20QLoRA%20works%3F"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=How%20does%20QLoRA%20works%3F&url=https%3A//www.safjan.com/how-does-qlora-works/&via=izikeros&hashtags=qlora,lora,low-rank-adaptation,quantisation,weights,adapters,4-bit-normal-float,double-quantisation,training,fine-tuning" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/how-does-qlora-works/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=How%20does%20QLoRA%20works%3F&u=https%3A//www.safjan.com/how-does-qlora-works/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/how-does-qlora-works/&title=How%20does%20QLoRA%20works%3F" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="how-does-qlora-works">How does QLoRA works?</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><h2>TL;DR</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <h2 id="tldr">TL;DR</h2>
 <blockquote>
 <p><strong>QLoRA</strong> (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During fine-tuning, only the adapters are updated, with gradients backpropagated through the quantized weights. Key innovations include 4-bit NormalFloat quantization, paged optimizers, and double quantization, all of which significantly reduce memory usage. This allows fine-tuning of large models on consumer hardware without compromising performance.
 </p>
 </blockquote>
 <p>This article outline in brief idea of QLoRA. For the deeper understanding of QLoRA, I highly recommend reading <a href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">blog post</a> by the QLoRA authors explaining the QLoRA idea in a clear way.</p>
-<h2>Understanding QLoRA: Efficient Fine-tuning for Large Language Models</h2>
+<h2 id="understanding-qlora-efficient-fine-tuning-for-large-language-models">Understanding QLoRA: Efficient Fine-tuning for Large Language Models</h2>
 <p>QLoRA (Quantized Low-Rank Adaptation) is an innovative technique that enables efficient fine-tuning of large language models. It combines several key components to reduce memory usage and computational costs without sacrificing performance. Let's break down how QLoRA works:</p>
-<h3>Core Components</h3>
+<h3 id="core-components">Core Components</h3>
 <ol>
 <li><strong>4-bit Quantized Base Model</strong>: QLoRA starts with a pre-trained language model quantized to 4-bit precision. This dramatically reduces memory requirements compared to full-precision models.</li>
 <li><strong>Low-Rank Adapters</strong>: Small, trainable modules are added on top of the frozen base model. These adapters capture task-specific information during fine-tuning.</li>
@@ -297,7 +262,7 @@
 <li><strong>Paged Optimizers</strong>: A memory management technique that efficiently swaps optimizer states between CPU and GPU memory.</li>
 <li><strong>Double Quantization</strong>: Further compresses the quantization constants, reducing memory usage even more.</li>
 </ol>
-<h3>How It Works?</h3>
+<h3 id="how-it-works">How It Works?</h3>
 <ol>
 <li>The base model is quantized to 4-bit precision and frozen.</li>
 <li>Low-rank adapters are added to each layer of the model.</li>
@@ -309,70 +274,84 @@
 <p>This approach allows for fine-tuning of very large models on consumer-grade hardware, opening up new possibilities for researchers and developers working with state-of-the-art language models.</p>
 <p><img alt="Full Fine Tuning, LoRA and QLoRA fine tuning compared" src="/images/qlora/qlora_fine_tuning.png">
 <em>Figure from: <a href="https://arxiv.org/abs/2305.14314">QLoRA paper by Dettmers et al</a></em></p>
-<h2>Three Innovative Techniques for Memory Efficiency</h2>
-<h3>4-bit NormalFloat (NF4)</h3>
+<h2 id="three-innovative-techniques-for-memory-efficiency">Three Innovative Techniques for Memory Efficiency</h2>
+<h3 id="4-bit-normalfloat-nf4">4-bit NormalFloat (NF4)</h3>
 <p>The QLoRA paper introduces the concept of 4-bit NormalFloat (NF4), a novel <strong>data type</strong> that is information theoretically <strong>optimal for normally distributed weights</strong>.
 NF4 is used for quantization in QLoRA, which aims to make large language models more accessible by reducing memory usage during fine-tuning. Unlike traditional 4-bit integer or 4-bit floating-point representations, NF4 is specifically designed for normally distributed weights, making it more efficient for certain tasks.</p>
-<h3>Paged Optimizers</h3>
+<h3 id="paged-optimizers">Paged Optimizers</h3>
 <p>In the context of QLoRA, paged optimizers are introduced to manage memory spikes during fine-tuning. These optimizers help mitigate memory usage by <strong>efficiently handling memory transfers between the GPU and CPU</strong>. While the specifics of paged optimizers are not covered extensively in the QLoRA paper, they play a crucial role in achieving memory efficiency.</p>
-<h3>Double Quantization</h3>
+<h3 id="double-quantization">Double Quantization</h3>
 <p>Double quantization is a technique used to reduce the average memory footprint in QLoRA. It involves <strong>quantizing</strong> not only the <strong>model parameters</strong> but also the <strong>quantization constants themselves</strong>. By applying double quantization, QLoRA achieves memory savings without compromising performance.</p>
 <p>These innovations collectively contribute to QLoRA’s ability to fine-tune large language models efficiently while maintaining performance.</p>
-<h1>Further Reading</h1>
+<h1 id="further-reading">Further Reading</h1>
 <ul>
 <li><a href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA</a> - blog post by the QLoRA authors explaining the QLoRA idea in a clear way.</li>
 <li><a href="https://arxiv.org/abs/2305.14314">Original QLoRA paper by Dettmers et al</a> (2023)</li>
-</ul></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/qlora/">qlora</a><a href="https://www.safjan.com/tag/lora/">lora</a><a href="https://www.safjan.com/tag/low-rank-adaptation/">low-rank-adaptation</a><a href="https://www.safjan.com/tag/quantisation/">quantisation</a><a href="https://www.safjan.com/tag/weights/">weights</a><a href="https://www.safjan.com/tag/adapters/">adapters</a><a href="https://www.safjan.com/tag/4-bit-normal-float/">4-bit-normal-float</a><a href="https://www.safjan.com/tag/double-quantisation/">double-quantisation</a><a href="https://www.safjan.com/tag/training/">training</a><a href="https://www.safjan.com/tag/fine-tuning/">fine-tuning</a>            </p>
+</ul>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/qlora/" class="article-tag">qlora</a>
+                <a href="https://www.safjan.com/tag/lora/" class="article-tag">lora</a>
+                <a href="https://www.safjan.com/tag/low-rank-adaptation/" class="article-tag">low-rank-adaptation</a>
+                <a href="https://www.safjan.com/tag/quantisation/" class="article-tag">quantisation</a>
+                <a href="https://www.safjan.com/tag/weights/" class="article-tag">weights</a>
+                <a href="https://www.safjan.com/tag/adapters/" class="article-tag">adapters</a>
+                <a href="https://www.safjan.com/tag/4-bit-normal-float/" class="article-tag">4-bit-normal-float</a>
+                <a href="https://www.safjan.com/tag/double-quantisation/" class="article-tag">double-quantisation</a>
+                <a href="https://www.safjan.com/tag/training/" class="article-tag">training</a>
+                <a href="https://www.safjan.com/tag/fine-tuning/" class="article-tag">fine-tuning</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" class="related-post-card">
+                            <span class="related-post-title">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</span>
+                            <span class="related-post-date">Aug 30, 2024</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

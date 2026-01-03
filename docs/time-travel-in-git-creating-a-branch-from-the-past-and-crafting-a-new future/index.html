@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="Introduction In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below. We are not happy with the changes C, D and E. We would like …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Introduction In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below. We are not happy with the changes C, D and E. We would like …"/>
     <meta name="keywords" content="git, branching, git-history, software-development, howto, git-rebase">
-    <meta expr:content="2023-07-14 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2023-07-14 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-07-14 00:00:00+02:00" />
-    <meta property="article:published_time" content="2023-07-14 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Time Travel in Git - Creating a Branch from the Past and Crafting a New Future",
-  "datePublished": "2023-07-14 00:00:00+02:00",
-  "dateModified": "2023-07-14 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Time Travel in Git - Creating a Branch from the Past and Crafting a New Future"/>
   <meta property="og:description" content="Introduction In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below. We are not happy with the changes C, D and E. We would like …"/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-07-14 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2023-07-14 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="git"/>
   <meta property="article:tag" content="branching"/>
@@ -77,19 +75,46 @@
   <meta property="article:tag" content="software-development"/>
   <meta property="article:tag" content="howto"/>
   <meta property="article:tag" content="git-rebase"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="Introduction In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below. We are not happy with the changes C, D and..."/>
     <meta name="twitter:title" content="Time Travel in Git - Creating a Branch from the Past and Crafting a New Future"/>
+    <meta name="twitter:description" content="Introduction In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below. We are not happy with the changes C, D and..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new future/"
+  },
+  "headline": "Time Travel in Git - Creating a Branch from the Past and Crafting a New Future",
+  "datePublished": "2023-07-14T00:00:00+02:00",
+  "dateModified": "2023-07-14T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new future/",
+  "description": "Introduction In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below. We are..."
+}
+</script>
 
-    <title>Time Travel in Git - Creating a Branch from the Past and Crafting a New Future</title>
+    <title>    Time Travel in Git - Creating a Branch from the Past and Crafting a New Future
+</title>
 
 
 
@@ -100,7 +125,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -111,7 +137,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -148,89 +174,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -246,6 +201,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -254,30 +215,34 @@
             <p>
                 <!-- Posted on: -->
                 2023-07-14 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Time%20Travel%20in%20Git%20-%20Creating%20a%20Branch%20from%20the%20Past%20and%20Crafting%20a%20New%20Future&url=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/&via=izikeros&hashtags=git,branching,git-history,software-development,howto,git-rebase"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Time%20Travel%20in%20Git%20-%20Creating%20a%20Branch%20from%20the%20Past%20and%20Crafting%20a%20New%20Future&u=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/&title=Time%20Travel%20in%20Git%20-%20Creating%20a%20Branch%20from%20the%20Past%20and%20Crafting%20a%20New%20Future"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Time%20Travel%20in%20Git%20-%20Creating%20a%20Branch%20from%20the%20Past%20and%20Crafting%20a%20New%20Future&url=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/&via=izikeros&hashtags=git,branching,git-history,software-development,howto,git-rebase" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Time%20Travel%20in%20Git%20-%20Creating%20a%20Branch%20from%20the%20Past%20and%20Crafting%20a%20New%20Future&u=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new%20future/&title=Time%20Travel%20in%20Git%20-%20Creating%20a%20Branch%20from%20the%20Past%20and%20Crafting%20a%20New%20Future" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new future">Time Travel in Git - Creating a Branch from the Past and Crafting a New Future</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><h2>Introduction</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <h2 id="introduction">Introduction</h2>
 <p>In this guide, we will learn how to create a new branch in a Git repository based on a previous commit. We have commit history as below.
 <img alt="before" src="images/git_time_travel/git-time-travel-1.png"></p>
 <!--
@@ -308,19 +273,19 @@ gitGraph
 -->
 
 <p>This guide assumes you have a basic understanding of Git commands and are familiar with the command line interface.</p>
-<h2>Step-by-Step Guide</h2>
-<h3>Determine the current branch and commit</h3>
+<h2 id="step-by-step-guide">Step-by-Step Guide</h2>
+<h3 id="determine-the-current-branch-and-commit">Determine the current branch and commit</h3>
 <p>Open the terminal and navigate to the Git repository where you want to perform this operation. Use the following command to display the current branch and commit:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>status
 </code></pre></div>
 
-<h3>Create a new branch from commit B</h3>
+<h3 id="create-a-new-branch-from-commit-b">Create a new branch from commit B</h3>
 <p>To create a new branch at commit B, use the following command:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>branch<span class="w"> </span>new-branch-name<span class="w"> </span>commit-B-hash
 </code></pre></div>
 
 <p>Replace <code>new-branch-name</code> with the desired name for your new branch and <code>commit-B-hash</code> with the hash or unique identifier of commit B. This command creates a new branch without switching to it.</p>
-<h3>Move commits C, D, and E to the new branch</h3>
+<h3 id="move-commits-c-d-and-e-to-the-new-branch">Move commits C, D, and E to the new branch</h3>
 <p>Switch to the new branch using the following command:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>new-branch-name
 </code></pre></div>
@@ -331,17 +296,17 @@ gitGraph
 </code></pre></div>
 
 <p>Replace <code>commit-B-hash</code> with the hash or unique identifier of commit B. An interactive rebase will open, displaying a list of commits.</p>
-<h3>Rearrange the commits in the interactive rebase</h3>
+<h3 id="rearrange-the-commits-in-the-interactive-rebase">Rearrange the commits in the interactive rebase</h3>
 <p>In the interactive rebase interface, locate the lines representing commits C, D, and E. Rearrange their order by moving them above commit B. Save and close the file to continue.</p>
-<h3>Update the main branch</h3>
+<h3 id="update-the-main-branch">Update the main branch</h3>
 <p>Switch back to the main branch using the following command:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>main
 </code></pre></div>
 
 <p>Your working directory will now be on the main branch.</p>
-<h3>Make changes to the main branch based on commit B</h3>
+<h3 id="make-changes-to-the-main-branch-based-on-commit-b">Make changes to the main branch based on commit B</h3>
 <p>You are now on the main branch, as it was at commit B. Make the necessary changes or improvements.</p>
-<h3>Commit the changes on the main branch</h3>
+<h3 id="commit-the-changes-on-the-main-branch">Commit the changes on the main branch</h3>
 <p>Stage your changes using the following command:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
 </code></pre></div>
@@ -350,79 +315,89 @@ gitGraph
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Describe your changes or improvements&quot;</span>
 </code></pre></div>
 
-<h3>Continue development on the main branch</h3>
+<h3 id="continue-development-on-the-main-branch">Continue development on the main branch</h3>
 <p>At this point, you can continue making new commits on the main branch, just as you would in any normal development workflow.</p>
 <blockquote>
 <p><strong>NOTE</strong>: perhaps it is not a best practice to run development on the main branch - you can learn more about it from various branching strategies. We use such a schema here for sake of simplicity.</p>
 </blockquote>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>Congratulations! You have successfully created a new branch starting from commit B and moved the subsequent commits C, D, and E to the new branch. The develop branch has been reverted to its state at commit B, allowing you to continue development from that point. Remember to use Git commands with caution and make sure to create backups or push your changes to a remote repository for safety.</p>
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true });
-</script></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/git/">git</a><a href="https://www.safjan.com/tag/branching/">branching</a><a href="https://www.safjan.com/tag/git-history/">git-history</a><a href="https://www.safjan.com/tag/software-development/">software-development</a><a href="https://www.safjan.com/tag/howto/">howto</a><a href="https://www.safjan.com/tag/git-rebase/">git-rebase</a>            </p>
+</script>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/git/" class="article-tag">git</a>
+                <a href="https://www.safjan.com/tag/branching/" class="article-tag">branching</a>
+                <a href="https://www.safjan.com/tag/git-history/" class="article-tag">git-history</a>
+                <a href="https://www.safjan.com/tag/software-development/" class="article-tag">software-development</a>
+                <a href="https://www.safjan.com/tag/howto/" class="article-tag">howto</a>
+                <a href="https://www.safjan.com/tag/git-rebase/" class="article-tag">git-rebase</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-for-ai-coding/">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/">Keeping performance results in a separate Git branch using `git checkout --orphan`</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/" class="related-post-card">
+                            <span class="related-post-title">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-worktrees-for-ai-coding/" class="related-post-card">
+                            <span class="related-post-title">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/" class="related-post-card">
+                            <span class="related-post-title">Keeping performance results in a separate Git branch using `git checkout --orphan`</span>
+                            <span class="related-post-date">Oct 24, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/" class="related-post-card">
+                            <span class="related-post-title">GitHub - Troubleshooting 'Permission to repo.git denied to user'</span>
+                            <span class="related-post-date">Mar 21, 2024</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

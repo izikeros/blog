@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide concrete examples, prompts, and workflows that transform test coverage from a metrics exercise into a robust quality assurance system. Learn how to implement behavioral auditing, generate sophisticated test suites, detect flaky tests, and integrate advanced testing practices into your CI/CD pipeline - all using the power of AI-assisted development." />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide concrete examples, prompts, and workflows that transform test coverage from a metrics exercise into a robust quality assurance system. Learn how to implement behavioral auditing, generate sophisticated test suites, detect flaky tests, and integrate advanced testing practices into your CI/CD pipeline - all using the power of AI-assisted development."/>
     <meta name="keywords" content="github-copilot, agent-mode, test-automation, testing-best-practices, test-coverage, behavioral-auditing, pytest, property-based-testing, mutation-testing, integration-testing, end-to-end-testing, flaky-tests, ci-cd, mcp-server, test-quality, code-quality, developer-productivity">
-    <meta expr:content="2025-07-15 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2025-07-15 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2025-07-15 00:00:00+02:00" />
-    <meta property="article:published_time" content="2025-07-15 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "The Practitioner's Guide to Test Suite Automation with GitHub Copilot Agent Mode",
-  "datePublished": "2025-07-15 00:00:00+02:00",
-  "dateModified": "2025-07-15 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="The Practitioner&#39;s Guide to Test Suite Automation with GitHub Copilot Agent Mode"/>
   <meta property="og:description" content="Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide concrete examples, prompts, and workflows that transform test coverage from a metrics exercise into a robust quality assurance system. Learn how to implement behavioral auditing, generate sophisticated test suites, detect flaky tests, and integrate advanced testing practices into your CI/CD pipeline - all using the power of AI-assisted development."/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2025-07-15 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2025-07-15 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Software Development"/>
   <meta property="article:tag" content="github-copilot"/>
   <meta property="article:tag" content="agent-mode"/>
@@ -88,19 +86,48 @@
   <meta property="article:tag" content="test-quality"/>
   <meta property="article:tag" content="code-quality"/>
   <meta property="article:tag" content="developer-productivity"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
-
-    <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="https://www.safjan.com//images/head/abstract_1.jpg">
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_1.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/abstract_1.jpg"/>
+    <meta name="twitter:image:alt" content="The Practitioner's Guide to Test Suite Automation with GitHub Copilot Agent Mode"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide..."/>
     <meta name="twitter:title" content="The Practitioner's Guide to Test Suite Automation with GitHub Copilot Agent Mode"/>
+    <meta name="twitter:description" content="Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/drafts/practitioners-guide-to-test-suite-automation-with-github-copilot-agent.html"
+  },
+  "headline": "The Practitioner's Guide to Test Suite Automation with GitHub Copilot Agent Mode",
+  "datePublished": "2025-07-15T00:00:00+02:00",
+  "dateModified": "2025-07-15T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/abstract_1.jpg",  "url": "https://www.safjan.com/drafts/practitioners-guide-to-test-suite-automation-with-github-copilot-agent.html",
+  "description": "Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond..."
+}
+</script>
 
-    <title>The Practitioner&#39;s Guide to Test Suite Automation with GitHub Copilot Agent Mode</title>
+    <title>    The Practitioner&#39;s Guide to Test Suite Automation with GitHub Copilot Agent Mode
+</title>
 
 
 
@@ -111,7 +138,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -122,7 +150,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -159,89 +187,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -257,6 +214,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -265,19 +228,35 @@
             <p>
                 <!-- Posted on: -->
                 2025-07-15 
-                <br />
+
+
+                <br/>
             </p>
             <h1 id="practitioners-guide-to-test-suite-automation-with-github-copilot-agent">The Practitioner's Guide to Test Suite Automation with GitHub Copilot Agent Mode</h1>
             <div class="header-underline"></div>
-<p class="summary"><p>Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide concrete examples, prompts, and workflows that transform test coverage from a metrics exercise into a robust quality assurance system. Learn how to implement behavioral auditing, generate sophisticated test suites, detect flaky tests, and integrate advanced testing practices into your CI/CD pipeline - all using the power of AI-assisted development.</p></p>                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                <p class="summary"><p>Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide concrete examples, prompts, and workflows that transform test coverage from a metrics exercise into a robust quality assurance system. Learn how to implement behavioral auditing, generate sophisticated test suites, detect flaky tests, and integrate advanced testing practices into your CI/CD pipeline - all using the power of AI-assisted development.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/drafts/practitioners-guide-to-test-suite-automation-with-github-copilot-agent.html">
-                        <img style="width: 100%"
-                             src="/images/head/abstract_1.jpg"
-                             alt="">
+                        <img style="width: 100%; "
+                             src="/images/head/abstract_1.jpg" alt="">
                     </a>
                 </div>
+
+
         </header>
-        <div><ul>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#setting-up-your-environment">Setting Up Your Environment</a></li>
 <li><a href="#part-1-behavioral-auditing---the-foundation">Part 1: Behavioral Auditing - The Foundation</a></li>
@@ -313,10 +292,10 @@
 <li><a href="#conclusion-building-a-sustainable-testing-culture">Conclusion: Building a Sustainable Testing Culture</a></li>
 </ul>
 <p>X::[[2025-06-15_beyond-coverage-building-truly-complete-test-suites-with-github-copilot]]</p>
-<h2>Introduction</h2>
+<h2 id="introduction">Introduction</h2>
 <p>After publishing my article on <a href="https://claude.ai/chat/link-to-previous-article">building truly complete test suites</a>, I received dozens of questions about the practical implementation details. "How exactly do you craft those prompts?" "What's the specific workflow for behavioral auditing?" "Can you show me the actual commands you use?"</p>
 <p>This follow-up article is my attempt to answer those questions with concrete, battle-tested examples. I'll walk you through the exact techniques I use daily, complete with prompts, workflows, and real-world examples from my own codebases. This isn't theoretical - these are the precise methods that helped me transform our test suite from a coverage-chasing exercise into a robust quality assurance system.</p>
-<h2>Setting Up Your Environment</h2>
+<h2 id="setting-up-your-environment">Setting Up Your Environment</h2>
 <p>Before diving into the techniques, let's establish the foundation. GitHub Copilot's agent mode in VS Code allows you to start agentic code editing sessions that autonomously make edits and invoke tools. You'll need:</p>
 <ol>
 <li><strong>GitHub Copilot Pro</strong> with agent mode enabled</li>
@@ -324,8 +303,8 @@
 <li><strong>MCP (Model Context Protocol) tools</strong> configured for your project structure</li>
 </ol>
 <p>To enable agent mode, open VS Code settings and ensure "GitHub Copilot: Agent Mode" is enabled. I also recommend setting up the pytest MCP server for seamless test execution-this allows Copilot to run tests and analyze results automatically.</p>
-<h2>Part 1: Behavioral Auditing - The Foundation</h2>
-<h3>The Discovery Phase</h3>
+<h2 id="part-1-behavioral-auditing-the-foundation">Part 1: Behavioral Auditing - The Foundation</h2>
+<h3 id="the-discovery-phase">The Discovery Phase</h3>
 <p>This is where most teams get stuck. Traditional coverage reports tell you what lines were executed, but they don't reveal which behaviors remain untested. Here's my systematic approach:</p>
 <p><strong>Step 1: Public API Discovery</strong></p>
 <p>Open Copilot Chat, switch to agent mode, and use this exact prompt:</p>
@@ -354,7 +333,7 @@
 </code></pre></div>
 
 <p>This approach surfaces the functions that pose the greatest risk if they fail in production. I've found that fixing the top 10 critical gaps often improves overall system reliability more than achieving 100% coverage on utility functions.</p>
-<h3>Real-World Example: Payment Processor Audit</h3>
+<h3 id="real-world-example-payment-processor-audit">Real-World Example: Payment Processor Audit</h3>
 <p>Let me show you how this works in practice. Here's a simplified version of our payment processor and the audit results:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># payment_processor.py</span>
 <span class="k">class</span> <span class="nc">PaymentProcessor</span><span class="p">:</span>
@@ -378,8 +357,8 @@
 <li><code>_encrypt_card_data</code>: Internal function, appropriately untested</li>
 </ul>
 <p>This analysis revealed that our integration tests were giving us false confidence - we were testing the happy path but missing critical validation logic.</p>
-<h2>Part 2: Automated Test Generation</h2>
-<h3>The Scaffolding Strategy</h3>
+<h2 id="part-2-automated-test-generation">Part 2: Automated Test Generation</h2>
+<h3 id="the-scaffolding-strategy">The Scaffolding Strategy</h3>
 <p>You can select code you want to test, right-click and select Copilot &gt; Generate Tests, where Copilot generates test code in an existing test file or creates a new test file if one doesn't exist. But agent mode takes this further by allowing iterative refinement.</p>
 <p><strong>Step 1: Basic Test Scaffolding</strong></p>
 <p>For the payment processor example, I use this prompt:</p>
@@ -407,7 +386,7 @@
 </code></pre></div>
 
 <p>Copilot's suggestions are quite accurate and understand the domain area, even suggesting realistic test data. This approach reduces test maintenance while improving coverage of edge cases.</p>
-<h3>Advanced Test Patterns</h3>
+<h3 id="advanced-test-patterns">Advanced Test Patterns</h3>
 <p><strong>Property-Based Testing Integration</strong></p>
 <p>For complex functions, I often combine Copilot's generation with property-based testing:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Enhance</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">payment</span><span class="w"> </span><span class="n">validation</span><span class="w"> </span><span class="n">tests</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">hypothesis</span><span class="w"> </span><span class="n">property</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="n">tests</span><span class="p">.</span><span class="w"> </span><span class="n">Generate</span><span class="w"> </span><span class="n">tests</span><span class="w"> </span><span class="nl">that</span><span class="p">:</span>
@@ -428,8 +407,8 @@
 <span class="nv">Run</span><span class="w"> </span><span class="nv">mutation</span><span class="w"> </span><span class="nv">testing</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">suggest</span><span class="w"> </span><span class="nv">improvements</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">kill</span><span class="w"> </span><span class="nv">surviving</span><span class="w"> </span><span class="nv">mutants</span>.
 </code></pre></div>
 
-<h2>Part 3: Integration and End-to-End Testing</h2>
-<h3>API Contract Testing</h3>
+<h2 id="part-3-integration-and-end-to-end-testing">Part 3: Integration and End-to-End Testing</h2>
+<h3 id="api-contract-testing">API Contract Testing</h3>
 <p>This is where agent mode really shines. Instead of manually crafting integration tests, I can describe the entire user journey:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Create</span><span class="w"> </span><span class="n">comprehensive</span><span class="w"> </span><span class="n">integration</span><span class="w"> </span><span class="n">tests</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">payment</span><span class="w"> </span><span class="n">flow</span><span class="o">:</span>
 
@@ -443,7 +422,7 @@
 </code></pre></div>
 
 <p>Agent mode handles the complexity of setting up test databases, configuring mocks, and ensuring proper isolation between tests. The resulting tests catch integration issues that unit tests miss entirely.</p>
-<h3>End-to-End Workflow Testing</h3>
+<h3 id="end-to-end-workflow-testing">End-to-End Workflow Testing</h3>
 <p>For data processing pipelines, I use this approach:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Design</span><span class="w"> </span><span class="n">end</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">end</span><span class="w"> </span><span class="n">tests</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">CSV</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">ingestion</span><span class="w"> </span><span class="n">workflow</span><span class="p">:</span>
 
@@ -456,7 +435,7 @@
 <span class="n">Use</span><span class="w"> </span><span class="n">temporary</span><span class="w"> </span><span class="n">directories</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">operations</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">include</span><span class="w"> </span><span class="n">comprehensive</span><span class="w"> </span><span class="n">logging</span><span class="o">.</span>
 </code></pre></div>
 
-<h3>Real-World Integration Example</h3>
+<h3 id="real-world-integration-example">Real-World Integration Example</h3>
 <p>Here's how I tested our user onboarding flow:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Generated by Copilot agent mode</span>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">integration</span>
@@ -483,8 +462,8 @@
 </code></pre></div>
 
 <p>This test caught several issues our unit tests missed, including serialization problems and race conditions in the verification process.</p>
-<h2>Part 4: Flaky Test Detection and Remediation</h2>
-<h3>Statistical Analysis of Test Failures</h3>
+<h2 id="part-4-flaky-test-detection-and-remediation">Part 4: Flaky Test Detection and Remediation</h2>
+<h3 id="statistical-analysis-of-test-failures">Statistical Analysis of Test Failures</h3>
 <p>In agent mode, Copilot will iterate on not just its own output, but the result of that output, continuing until it has completed all subtasks required. This is perfect for flaky test analysis:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">Analyze</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">last</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="nx">CI</span><span class="w"> </span><span class="nx">builds</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">identify</span><span class="w"> </span><span class="nx">flaky</span><span class="w"> </span><span class="nx">tests</span><span class="p">.</span><span class="w"> </span><span class="nx">For</span><span class="w"> </span><span class="nx">each</span><span class="w"> </span><span class="nx">test</span><span class="p">:</span>
 
@@ -496,7 +475,7 @@
 <span class="nx">Create</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">prioritized</span><span class="w"> </span><span class="nx">remediation</span><span class="w"> </span><span class="nx">plan</span><span class="w"> </span><span class="nx">starting</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">highest</span><span class="o">-</span><span class="nx">impact</span><span class="w"> </span><span class="nx">flaky</span><span class="w"> </span><span class="nx">tests</span><span class="p">.</span>
 </code></pre></div>
 
-<h3>Systematic Stabilization</h3>
+<h3 id="systematic-stabilization">Systematic Stabilization</h3>
 <p>Once flaky tests are identified, I use targeted fixing strategies:</p>
 <div class="highlight"><pre><span></span><code><span class="k">For</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">identified</span><span class="w"> </span><span class="nv">flaky</span><span class="w"> </span><span class="nv">tests</span>,<span class="w"> </span><span class="nv">apply</span><span class="w"> </span><span class="nv">systematic</span><span class="w"> </span><span class="nv">stabilization</span>:
 
@@ -508,7 +487,7 @@
 <span class="nv">After</span><span class="w"> </span><span class="nv">each</span><span class="w"> </span><span class="nv">fix</span>,<span class="w"> </span><span class="nv">run</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">affected</span><span class="w"> </span><span class="nv">tests</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="nv">times</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">verify</span><span class="w"> </span><span class="nv">stability</span>.
 </code></pre></div>
 
-<h3>Flaky Test Prevention</h3>
+<h3 id="flaky-test-prevention">Flaky Test Prevention</h3>
 <p>Prevention is better than cure. I set up automated detection:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">CI</span><span class="w"> </span><span class="nv">job</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">runs</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="nv">modified</span><span class="w"> </span><span class="nv">tests</span><span class="w"> </span><span class="nv">multiple</span><span class="w"> </span><span class="nv">times</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">flags</span><span class="w"> </span><span class="nv">potential</span><span class="w"> </span><span class="nv">flakiness</span>:
 
@@ -520,8 +499,8 @@
 <span class="k">Include</span><span class="w"> </span><span class="nv">detailed</span><span class="w"> </span><span class="nv">reporting</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">remediation</span><span class="w"> </span><span class="nv">suggestions</span>.
 </code></pre></div>
 
-<h2>Part 5: Test Quality Auditing</h2>
-<h3>Automated Code Review for Tests</h3>
+<h2 id="part-5-test-quality-auditing">Part 5: Test Quality Auditing</h2>
+<h3 id="automated-code-review-for-tests">Automated Code Review for Tests</h3>
 <p>Test code deserves the same scrutiny as production code:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">Audit</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">tests</span><span class="o">/</span><span class="w"> </span><span class="nx">directory</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">common</span><span class="w"> </span><span class="nx">anti</span><span class="o">-</span><span class="nx">patterns</span><span class="p">:</span>
 
@@ -533,7 +512,7 @@
 <span class="nx">Provide</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">refactoring</span><span class="w"> </span><span class="nx">suggestions</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">implementation</span><span class="w"> </span><span class="nx">examples</span><span class="p">.</span>
 </code></pre></div>
 
-<h3>Coverage Quality Analysis</h3>
+<h3 id="coverage-quality-analysis">Coverage Quality Analysis</h3>
 <p>Moving beyond simple coverage percentages:</p>
 <div class="highlight"><pre><span></span><code>Analyze test coverage quality by examining:
 
@@ -545,8 +524,8 @@
 Identify modules where coverage quantity doesn&#39;t match quality requirements.
 </code></pre></div>
 
-<h2>Part 6: MCP Integration and Advanced Tooling</h2>
-<h3>Custom MCP Servers for Testing</h3>
+<h2 id="part-6-mcp-integration-and-advanced-tooling">Part 6: MCP Integration and Advanced Tooling</h2>
+<h3 id="custom-mcp-servers-for-testing">Custom MCP Servers for Testing</h3>
 <p>MCP servers can provide tools for reading, writing, or searching files and directories, and can run locally or be hosted remotely. I've created custom MCP servers for:</p>
 <ol>
 <li><strong>Test Coverage Analysis</strong>: Integrates with coverage.py to provide detailed reports</li>
@@ -554,7 +533,7 @@ Identify modules where coverage quantity doesn&#39;t match quality requirements.
 <li><strong>Database State Management</strong>: Sets up and tears down test databases</li>
 <li><strong>Mock Configuration</strong>: Manages mock services for integration testing</li>
 </ol>
-<h3>Setting Up the Coverage MCP Server</h3>
+<h3 id="setting-up-the-coverage-mcp-server">Setting Up the Coverage MCP Server</h3>
 <p>Here's how I configure the coverage analysis MCP server:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># coverage_mcp_server.py</span>
 <span class="kn">from</span> <span class="nn">mcp</span> <span class="kn">import</span> <span class="n">MCPServer</span>
@@ -582,8 +561,8 @@ Identify modules where coverage quantity doesn&#39;t match quality requirements.
 </code></pre></div>
 
 <p>This allows Copilot to directly analyze coverage data and suggest improvements.</p>
-<h2>Part 7: CI/CD Integration and Monitoring</h2>
-<h3>Automated Quality Gates</h3>
+<h2 id="part-7-cicd-integration-and-monitoring">Part 7: CI/CD Integration and Monitoring</h2>
+<h3 id="automated-quality-gates">Automated Quality Gates</h3>
 <p>I implement quality gates that block problematic changes:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Create</span><span class="w"> </span><span class="nv">GitHub</span><span class="w"> </span><span class="nv">Actions</span><span class="w"> </span><span class="nv">workflow</span><span class="w"> </span><span class="nv">that</span>:
 
@@ -596,7 +575,7 @@ Identify modules where coverage quantity doesn&#39;t match quality requirements.
 <span class="k">Include</span><span class="w"> </span><span class="nv">automatic</span><span class="w"> </span><span class="nv">test</span><span class="w"> </span><span class="nv">generation</span><span class="w"> </span><span class="nv">suggestions</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">missing</span><span class="w"> </span><span class="nv">coverage</span>.
 </code></pre></div>
 
-<h3>Continuous Monitoring Dashboard</h3>
+<h3 id="continuous-monitoring-dashboard">Continuous Monitoring Dashboard</h3>
 <div class="highlight"><pre><span></span><code>Build a test quality dashboard that tracks:
 
 1. Coverage trends over time (line, branch, behavioral)
@@ -608,8 +587,8 @@ Identify modules where coverage quantity doesn&#39;t match quality requirements.
 Update dashboard automatically with each CI run.
 </code></pre></div>
 
-<h2>Part 8: Advanced Techniques and Troubleshooting</h2>
-<h3>Dealing with Legacy Code</h3>
+<h2 id="part-8-advanced-techniques-and-troubleshooting">Part 8: Advanced Techniques and Troubleshooting</h2>
+<h3 id="dealing-with-legacy-code">Dealing with Legacy Code</h3>
 <p>For codebases with minimal existing tests:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Analyze</span><span class="w"> </span><span class="n">legacy</span><span class="w"> </span><span class="k">module</span><span class="w"> </span><span class="no">`legacy_processor</span><span class="p">.</span><span class="n">py</span><span class="err">`</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">testing</span><span class="w"> </span><span class="nl">strategy:</span>
 
@@ -622,7 +601,7 @@ Update dashboard automatically with each CI run.
 <span class="n">Prioritize</span><span class="w"> </span><span class="n">tests</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">future</span><span class="w"> </span><span class="n">refactoring</span><span class="w"> </span><span class="n">work</span><span class="p">.</span>
 </code></pre></div>
 
-<h3>Performance Testing Integration</h3>
+<h3 id="performance-testing-integration">Performance Testing Integration</h3>
 <div class="highlight"><pre><span></span><code><span class="n">Enhance</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">suite</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">performance</span><span class="w"> </span><span class="n">testing</span><span class="p">:</span>
 
 <span class="mf">1.</span><span class="w"> </span><span class="n">Identify</span><span class="w"> </span><span class="n">performance</span><span class="o">-</span><span class="n">critical</span><span class="w"> </span><span class="n">functions</span>
@@ -634,7 +613,7 @@ Update dashboard automatically with each CI run.
 <span class="n">Include</span><span class="w"> </span><span class="n">performance</span><span class="w"> </span><span class="n">budgets</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">alerting</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">regressions</span><span class="o">.</span>
 </code></pre></div>
 
-<h3>Debugging Test Generation Issues</h3>
+<h3 id="debugging-test-generation-issues">Debugging Test Generation Issues</h3>
 <p>When Copilot-generated tests fail, I use systematic debugging:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Debug</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">failing</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n n-Quoted">`test_payment_validation`</span><span class="w"> </span><span class="k">by</span><span class="o">:</span>
 
@@ -647,8 +626,8 @@ Update dashboard automatically with each CI run.
 <span class="n">Provide</span><span class="w"> </span><span class="n">step</span><span class="o">-</span><span class="k">by</span><span class="o">-</span><span class="n">step</span><span class="w"> </span><span class="n">debugging</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">fix</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">issues</span><span class="p">.</span>
 </code></pre></div>
 
-<h2>Part 9: Team Adoption and Best Practices</h2>
-<h3>Onboarding Team Members</h3>
+<h2 id="part-9-team-adoption-and-best-practices">Part 9: Team Adoption and Best Practices</h2>
+<h3 id="onboarding-team-members">Onboarding Team Members</h3>
 <p>Getting your team to adopt these practices requires structured onboarding:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Create</span><span class="w"> </span><span class="nv">team</span><span class="w"> </span><span class="nv">training</span><span class="w"> </span><span class="nv">materials</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">Copilot</span><span class="w"> </span><span class="nv">testing</span><span class="w"> </span><span class="nv">workflows</span>:
 
@@ -661,7 +640,7 @@ Update dashboard automatically with each CI run.
 <span class="k">Include</span><span class="w"> </span><span class="nv">hands</span><span class="o">-</span><span class="nv">on</span><span class="w"> </span><span class="nv">exercises</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">success</span><span class="w"> </span><span class="nv">metrics</span>.
 </code></pre></div>
 
-<h3>Establishing Quality Standards</h3>
+<h3 id="establishing-quality-standards">Establishing Quality Standards</h3>
 <div class="highlight"><pre><span></span><code><span class="nx">Define</span><span class="w"> </span><span class="nx">testing</span><span class="w"> </span><span class="nx">standards</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">team</span><span class="p">:</span>
 
 <span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="nx">Minimum</span><span class="w"> </span><span class="nx">coverage</span><span class="w"> </span><span class="nx">requirements</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="nx">module</span><span class="w"> </span><span class="nx">criticality</span>
@@ -673,18 +652,21 @@ Update dashboard automatically with each CI run.
 <span class="nx">Create</span><span class="w"> </span><span class="nx">automated</span><span class="w"> </span><span class="nx">checks</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">enforce</span><span class="w"> </span><span class="nx">these</span><span class="w"> </span><span class="nx">standards</span><span class="p">.</span>
 </code></pre></div>
 
-<h2>Conclusion: Building a Sustainable Testing Culture</h2>
+<h2 id="conclusion-building-a-sustainable-testing-culture">Conclusion: Building a Sustainable Testing Culture</h2>
 <p>The techniques I've outlined here represent a year of experimentation and refinement. What started as frustration with traditional coverage metrics has evolved into a comprehensive approach to test quality that scales with team size and codebase complexity.</p>
 <p>The key insight is that GitHub Copilot agent mode with MCP can supercharge your development workflow through structured planning, implementation, and testing. By combining behavioral auditing, automated generation, systematic quality control, and continuous monitoring, you create a self-reinforcing cycle of improvement.</p>
 <p>Remember that these tools are force multipliers, not replacements for engineering judgment. The prompts I've shared are starting points - adapt them to your specific context, domain, and team culture. Start with the techniques that address your biggest pain points, then gradually expand your automated testing practices.</p>
 <p>The future of testing isn't about perfect automation - it's about intelligent automation that frees developers to focus on the complex, creative aspects of quality assurance. With these practical techniques, you can build test suites that don't just measure coverage but ensure behavioral correctness, performance, and long-term maintainability.</p>
 <p>What challenges are you facing with your test automation? I'd love to hear about your experiences and continue refining these approaches based on real-world feedback.</p>
 <hr>
-<p><em>This article builds on concepts from my previous post on (most recent link here). For more advanced techniques and team-specific adaptations, feel free to reach out or check out my other articles on software quality engineering.</em></p></div>
+<p><em>This article builds on concepts from my previous post on (most recent link here). For more advanced techniques and team-specific adaptations, feel free to reach out or check out my other articles on software quality engineering.</em></p>
+        </div>
+
+
+
+
             <div class="bibtex-note">
-                <p>
-                    <b>To cite this article:</b>
-                </p>
+                <p><b>To cite this article:</b></p>
                 <pre>@article{Saf2025The,
     author  = {Krystian Safjan},
     title   = {The Practitioner's Guide to Test Suite Automation with GitHub Copilot Agent Mode},
@@ -692,68 +674,86 @@ Update dashboard automatically with each CI run.
     year    = {2025},
 }</pre>
             </div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/github-copilot/">github-copilot</a><a href="https://www.safjan.com/tag/agent-mode/">agent-mode</a><a href="https://www.safjan.com/tag/test-automation/">test-automation</a><a href="https://www.safjan.com/tag/testing-best-practices/">testing-best-practices</a><a href="https://www.safjan.com/tag/test-coverage/">test-coverage</a><a href="https://www.safjan.com/tag/behavioral-auditing/">behavioral-auditing</a><a href="https://www.safjan.com/tag/pytest/">pytest</a><a href="https://www.safjan.com/tag/property-based-testing/">property-based-testing</a><a href="https://www.safjan.com/tag/mutation-testing/">mutation-testing</a><a href="https://www.safjan.com/tag/integration-testing/">integration-testing</a><a href="https://www.safjan.com/tag/end-to-end-testing/">end-to-end-testing</a><a href="https://www.safjan.com/tag/flaky-tests/">flaky-tests</a><a href="https://www.safjan.com/tag/ci-cd/">ci-cd</a><a href="https://www.safjan.com/tag/mcp-server/">mcp-server</a><a href="https://www.safjan.com/tag/test-quality/">test-quality</a><a href="https://www.safjan.com/tag/code-quality/">code-quality</a><a href="https://www.safjan.com/tag/developer-productivity/">developer-productivity</a>            </p>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/github-copilot/" class="article-tag">github-copilot</a>
+                <a href="https://www.safjan.com/tag/agent-mode/" class="article-tag">agent-mode</a>
+                <a href="https://www.safjan.com/tag/test-automation/" class="article-tag">test-automation</a>
+                <a href="https://www.safjan.com/tag/testing-best-practices/" class="article-tag">testing-best-practices</a>
+                <a href="https://www.safjan.com/tag/test-coverage/" class="article-tag">test-coverage</a>
+                <a href="https://www.safjan.com/tag/behavioral-auditing/" class="article-tag">behavioral-auditing</a>
+                <a href="https://www.safjan.com/tag/pytest/" class="article-tag">pytest</a>
+                <a href="https://www.safjan.com/tag/property-based-testing/" class="article-tag">property-based-testing</a>
+                <a href="https://www.safjan.com/tag/mutation-testing/" class="article-tag">mutation-testing</a>
+                <a href="https://www.safjan.com/tag/integration-testing/" class="article-tag">integration-testing</a>
+                <a href="https://www.safjan.com/tag/end-to-end-testing/" class="article-tag">end-to-end-testing</a>
+                <a href="https://www.safjan.com/tag/flaky-tests/" class="article-tag">flaky-tests</a>
+                <a href="https://www.safjan.com/tag/ci-cd/" class="article-tag">ci-cd</a>
+                <a href="https://www.safjan.com/tag/mcp-server/" class="article-tag">mcp-server</a>
+                <a href="https://www.safjan.com/tag/test-quality/" class="article-tag">test-quality</a>
+                <a href="https://www.safjan.com/tag/code-quality/" class="article-tag">code-quality</a>
+                <a href="https://www.safjan.com/tag/developer-productivity/" class="article-tag">developer-productivity</a>
         </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/beyond-coverage-building-truly-complete-test-suites-with-github-copilot/">Beyond Coverage - Building Truly Complete Test Suites with GitHub Copilot</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/pytest-check-lists-equal/">Pytest Check if Lists Are Equal</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/what-is-the-difference-between-mlops-and-modelops/">What Is the Difference Between MLOps and ModelOps?</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/yapf-toml-package-is-needed-for-using-pyproject-toml-as-a-configuration -file/">Yapf Toml Package Is Needed for Using pyproject.toml as a Configuration File</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/black-vs-yapf/">Which Python Code Formatter Is Better - Black or Yapf?</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/beyond-coverage-building-truly-complete-test-suites-with-github-copilot/" class="related-post-card">
+                            <span class="related-post-title">Beyond Coverage - Building Truly Complete Test Suites with GitHub Copilot</span>
+                            <span class="related-post-date">Jun 15, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/pytest-check-lists-equal/" class="related-post-card">
+                            <span class="related-post-title">Pytest Check if Lists Are Equal</span>
+                            <span class="related-post-date">May 12, 2022</span>
+                        </a>
+                        <a href="https://www.safjan.com/what-is-the-difference-between-mlops-and-modelops/" class="related-post-card">
+                            <span class="related-post-title">What Is the Difference Between MLOps and ModelOps?</span>
+                            <span class="related-post-date">Mar 06, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/yapf-toml-package-is-needed-for-using-pyproject-toml-as-a-configuration -file/" class="related-post-card">
+                            <span class="related-post-title">Yapf Toml Package Is Needed for Using pyproject.toml as a Configuration File</span>
+                            <span class="related-post-date">Mar 08, 2023</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of …"/>
     <meta name="keywords" content="git, tag">
-    <meta expr:content="2023-03-31 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2023-07-12 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00" />
-    <meta property="article:published_time" content="2023-03-31 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Git - Annotated vs. Lightweight Tags",
-  "datePublished": "2023-03-31 00:00:00+02:00",
-  "dateModified": "2023-07-12 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Git - Annotated vs. Lightweight Tags"/>
   <meta property="og:description" content="In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of …"/>
@@ -69,23 +67,50 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-03-31 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="git"/>
   <meta property="article:tag" content="tag"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as..."/>
     <meta name="twitter:title" content="Git - Annotated vs. Lightweight Tags"/>
+    <meta name="twitter:description" content="In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/git-annotated-vs-lightweight-tags/"
+  },
+  "headline": "Git - Annotated vs. Lightweight Tags",
+  "datePublished": "2023-03-31T00:00:00+02:00",
+  "dateModified": "2023-07-12T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/git-annotated-vs-lightweight-tags/",
+  "description": "In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate..."
+}
+</script>
 
-    <title>Git - Annotated vs. Lightweight Tags</title>
+    <title>    Git - Annotated vs. Lightweight Tags
+</title>
 
 
 
@@ -96,7 +121,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -107,7 +133,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -144,89 +170,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -242,6 +197,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -250,110 +211,120 @@
             <p>
                 <!-- Posted on: -->
                 2023-03-31 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Git%20-%20Annotated%20vs.%20Lightweight%20Tags&url=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/&via=izikeros&hashtags=git,tag"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Git%20-%20Annotated%20vs.%20Lightweight%20Tags&u=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/&title=Git%20-%20Annotated%20vs.%20Lightweight%20Tags"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Git%20-%20Annotated%20vs.%20Lightweight%20Tags&url=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/&via=izikeros&hashtags=git,tag" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Git%20-%20Annotated%20vs.%20Lightweight%20Tags&u=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-annotated-vs-lightweight-tags/&title=Git%20-%20Annotated%20vs.%20Lightweight%20Tags" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="git-annotated-vs-lightweight-tags">Git - Annotated vs. Lightweight Tags</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><p>In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.</p>
-<h2>Annotated tags</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <p>In Git, tags are used to mark specific points in the history of a repository. They serve as a reference point for developers to easily identify and navigate to important milestones, such as releases or significant commits. There are two types of tags in Git: annotated tags and lightweight tags.</p>
+<h2 id="annotated-tags">Annotated tags</h2>
 <p>Annotated tags are more informative than lightweight tags. When creating an annotated tag, Git stores a full object in the repository that contains the tagger name, email, and date, a tagging message, and a SHA-1 checksum of the commit being tagged. Annotated tags are essentially Git objects that are separate from the commit objects they reference, whereas lightweight tags are simply pointers to specific commits.</p>
 <p>The additional information stored in an annotated tag makes them useful for documenting significant events in the project's history. The tagging message can provide context about why the tag was created and what it represents. Additionally, annotated tags can be signed and verified to ensure their authenticity. Signed tags provide assurance that the tag was created by an authorized person and that the commit being tagged has not been tampered with.</p>
 <p><strong>Example:</strong></p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v1.2<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;my version 1.4&quot;</span>
 </code></pre></div>
 
-<h2>Lightweight tags</h2>
+<h2 id="lightweight-tags">Lightweight tags</h2>
 <p>Lightweight tags, on the other hand, are simply references to specific commits. They do not store any additional information beyond the tag name and the commit ID. Lightweight tags are useful for marking temporary or internal points in the repository history, such as to label a specific commit for testing or debugging purposes. Lightweight tags are created with the <code>git tag</code> command without the <code>-a</code> or <code>-m</code> options.</p>
 <p><strong>Example:</strong></p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>tag<span class="w"> </span>v1.2
 </code></pre></div>
 
-<h2>When to use Annotated and when Lightweight tags?</h2>
+<h2 id="when-to-use-annotated-and-when-lightweight-tags">When to use Annotated and when Lightweight tags?</h2>
 <p>So when should you use annotated tags versus lightweight tags? Annotated tags are ideal for marking significant events in the project's history, such as releases, milestones, or important changes. They are also useful for documenting the context and reasoning behind a particular tag. Lightweight tags, on the other hand, are useful for temporary or internal purposes, such as marking specific commits for debugging or testing purposes.</p>
 <blockquote>
 <p>In general, it is a good practice to <strong>use annotated</strong> tags for any <strong>official releases</strong> or <strong>milestones</strong>, as they provide a clear and detailed record of the project's progress. <strong>Lightweight</strong> tags can be used for more informal purposes, such as to <strong>mark experimental</strong> or <strong>intermediate points</strong> in the project's history.</p>
-</blockquote></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/git/">git</a><a href="https://www.safjan.com/tag/tag/">tag</a>            </p>
+</blockquote>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/git/" class="article-tag">git</a>
+                <a href="https://www.safjan.com/tag/tag/" class="article-tag">tag</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-for-ai-coding/">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/">Keeping performance results in a separate Git branch using `git checkout --orphan`</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/" class="related-post-card">
+                            <span class="related-post-title">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-worktrees-for-ai-coding/" class="related-post-card">
+                            <span class="related-post-title">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/" class="related-post-card">
+                            <span class="related-post-title">Keeping performance results in a separate Git branch using `git checkout --orphan`</span>
+                            <span class="related-post-date">Oct 24, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/" class="related-post-card">
+                            <span class="related-post-title">GitHub - Troubleshooting 'Permission to repo.git denied to user'</span>
+                            <span class="related-post-date">Mar 21, 2024</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

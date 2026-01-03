@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on develop, another on a feature branch, yet …" />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on develop, another on a feature branch, yet …"/>
     <meta name="keywords" content="git, workflows, agents, ai, refactoring">
-    <meta expr:content="2025-11-28 00:00:00+01:00" itemprop='datePublished' />
-    <meta expr:content="2025-11-28 00:00:00+01:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2025-11-28 00:00:00+01:00" />
-    <meta property="article:published_time" content="2025-11-28 00:00:00+01:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Using Git Worktrees as Clean Rooms for AI-Assisted Coding",
-  "datePublished": "2025-11-28 00:00:00+01:00",
-  "dateModified": "2025-11-28 00:00:00+01:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Using Git Worktrees as Clean Rooms for AI-Assisted Coding"/>
   <meta property="og:description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on develop, another on a feature branch, yet …"/>
@@ -69,26 +67,53 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2025-11-28 00:00:00+01:00"/>
   <meta property="article:modified_time" content="2025-11-28 00:00:00+01:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="git"/>
   <meta property="article:tag" content="workflows"/>
   <meta property="article:tag" content="agents"/>
   <meta property="article:tag" content="ai"/>
   <meta property="article:tag" content="refactoring"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having..."/>
     <meta name="twitter:title" content="Using Git Worktrees as Clean Rooms for AI-Assisted Coding"/>
+    <meta name="twitter:description" content="The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/git-worktrees-for-ai-coding/"
+  },
+  "headline": "Using Git Worktrees as Clean Rooms for AI-Assisted Coding",
+  "datePublished": "2025-11-28T00:00:00+01:00",
+  "dateModified": "2025-11-28T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/git-worktrees-for-ai-coding/",
+  "description": "The Mental Model Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object..."
+}
+</script>
 
-    <title>Using Git Worktrees as Clean Rooms for AI-Assisted Coding</title>
+    <title>    Using Git Worktrees as Clean Rooms for AI-Assisted Coding
+</title>
 
 
 
@@ -99,7 +124,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -110,7 +136,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -147,89 +173,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -245,6 +200,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -253,30 +214,34 @@
             <p>
                 <!-- Posted on: -->
                 2025-11-28 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding&url=https%3A//www.safjan.com/git-worktrees-for-ai-coding/&via=izikeros&hashtags=git,workflows,agents,ai,refactoring"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-worktrees-for-ai-coding/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding&u=https%3A//www.safjan.com/git-worktrees-for-ai-coding/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-worktrees-for-ai-coding/&title=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding&url=https%3A//www.safjan.com/git-worktrees-for-ai-coding/&via=izikeros&hashtags=git,workflows,agents,ai,refactoring" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/git-worktrees-for-ai-coding/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding&u=https%3A//www.safjan.com/git-worktrees-for-ai-coding/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/git-worktrees-for-ai-coding/&title=Using%20Git%20Worktrees%20as%20Clean%20Rooms%20for%20AI-Assisted%20Coding" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="git-worktrees-for-ai-coding">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><h2>The Mental Model</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <h2 id="the-mental-model">The Mental Model</h2>
 <p>Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on <code>develop</code>, another on a feature branch, yet another on a temporary test branch, all living side by side without fighting for checkout state. There is no deep magic behind this; Git simply keeps the <code>.git</code> metadata in one place and mounts lightweight directory views that track their own branch heads.</p>
 <p>A tiny example explains the idea better than abstraction ever could:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Add a new worktree checked out to branch feature/refactor</span>
@@ -325,12 +290,12 @@ git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> <
 </code></pre></div>
 
 <p>Agents operate freely. You compare their results with human eyes.</p>
-<h2>Practical Scenarios</h2>
+<h2 id="practical-scenarios">Practical Scenarios</h2>
 <p>This workflow shines when you are working with tools that tend to rewrite code rather than patch it. Many agents do this. A worktree acts like a disposable environment.</p>
 <p>You might use them when engaging in heavy refactors, upgrades across the whole codebase, or exploratory changes generated by an agent, where the risk of polluting your current branch is high. You can let the agent run tests or static checks inside that environment as well, because nothing touches your main working directory.</p>
 <p>There are situations where a worktree is not a good fit. If you are working in a simple repository with a single branch and you rely heavily on ephemeral changes, then switching branches or using commit-based snapshots might be simpler. Also, if an agent expects to operate on a fully isolated clone rather than a shared store, then a real clone is safer. Some poorly implemented tools still assume that <code>.git</code> lives inside the working directory; those break in a worktree layout.</p>
 <p>A real-world example: you have a large Python codebase. You want an agent to attempt a dependency upgrade across many modules. You create a fresh worktree and branch called <code>upgrade/fastapi-0.115</code>. The agent runs its rewrite steps there. You stay focused on a bug fix on <code>develop</code>, undisturbed. Later, you review the agent’s output, run tests, and only then merge. The separation reduces mistakes.</p>
-<h2>The Fine Print</h2>
+<h2 id="the-fine-print">The Fine Print</h2>
 <p>There are a few subtle behaviors worth knowing before using worktrees as part of your AI-assisted coding workflow. The first is that each worktree tracks its own branch head. If you forget which directory you are in, it is easy to commit to the wrong branch. The fix is simple: always inspect <code>git status</code> before committing, especially when moving between folders.</p>
 <p>Another nuance is the deletion cycle. Removing a worktree requires both removing the folder and cleaning up Git’s internal registry. If an AI tool aggressively deletes directories, Git can get confused until you run <code>git worktree prune</code>.</p>
 <p>Performance is usually excellent, since objects are shared, but some agent tools expect the <code>.git</code> directory to be physically inside the folder. Worktrees create a <code>.git</code> file that points elsewhere. When such tools fail, the workaround is to copy the <code>.git</code> directory from the main repo into the worktree. This is safe only for debugging; the correct fix is to use tools that support worktrees properly.</p>
@@ -383,7 +348,7 @@ flowchart TD
     F --> H
 </pre>
 
-<h2>See also:</h2>
+<h2 id="see-also">See also:</h2>
 <ul>
 <li><a href="https://git-scm.com/docs/git-worktree">Git - git-worktree Documentation</a></li>
 <li>Step-by-step tutorial to practice working with multiple worktrees <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a></li>
@@ -391,69 +356,78 @@ flowchart TD
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true });
-</script></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/git/">git</a><a href="https://www.safjan.com/tag/workflows/">workflows</a><a href="https://www.safjan.com/tag/agents/">agents</a><a href="https://www.safjan.com/tag/ai/">ai</a><a href="https://www.safjan.com/tag/refactoring/">refactoring</a>            </p>
+</script>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/git/" class="article-tag">git</a>
+                <a href="https://www.safjan.com/tag/workflows/" class="article-tag">workflows</a>
+                <a href="https://www.safjan.com/tag/agents/" class="article-tag">agents</a>
+                <a href="https://www.safjan.com/tag/ai/" class="article-tag">ai</a>
+                <a href="https://www.safjan.com/tag/refactoring/" class="article-tag">refactoring</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/">Keeping performance results in a separate Git branch using `git checkout --orphan`</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/Git-change-remote-origin-replace-with-new/">Git change remote origin (replace with new)</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/" class="related-post-card">
+                            <span class="related-post-title">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/" class="related-post-card">
+                            <span class="related-post-title">Keeping performance results in a separate Git branch using `git checkout --orphan`</span>
+                            <span class="related-post-date">Oct 24, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/" class="related-post-card">
+                            <span class="related-post-title">GitHub - Troubleshooting 'Permission to repo.git denied to user'</span>
+                            <span class="related-post-date">Mar 21, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/" class="related-post-card">
+                            <span class="related-post-title">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</span>
+                            <span class="related-post-date">Nov 12, 2023</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE)." />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE)."/>
     <meta name="keywords" content="machine-learning, evaluation, metrics, model-performance, evaluation, Kaggle">
-    <meta expr:content="2019-02-16 00:00:00+01:00" itemprop='datePublished' />
-    <meta expr:content="2019-03-01 00:00:00+01:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2019-03-01 00:00:00+01:00" />
-    <meta property="article:published_time" content="2019-02-16 00:00:00+01:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Kaggle Evaluation Metrics Used for Regression Problems",
-  "datePublished": "2019-02-16 00:00:00+01:00",
-  "dateModified": "2019-03-01 00:00:00+01:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Kaggle Evaluation Metrics Used for Regression Problems"/>
   <meta property="og:description" content="This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE)."/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2019-02-16 00:00:00+01:00"/>
   <meta property="article:modified_time" content="2019-03-01 00:00:00+01:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Machine Learning"/>
   <meta property="article:tag" content="machine-learning"/>
   <meta property="article:tag" content="evaluation"/>
@@ -77,19 +75,48 @@
   <meta property="article:tag" content="model-performance"/>
   <meta property="article:tag" content="evaluation"/>
   <meta property="article:tag" content="Kaggle"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/performance_metrics.jpg">
-
-    <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="https://www.safjan.com//images/head/performance_metrics.jpg">
+  <meta property="og:image" content="https://www.safjan.com//images/head/performance_metrics.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/performance_metrics.jpg"/>
+    <meta name="twitter:image:alt" content="Kaggle Evaluation Metrics Used for Regression Problems"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean..."/>
     <meta name="twitter:title" content="Kaggle Evaluation Metrics Used for Regression Problems"/>
+    <meta name="twitter:description" content="This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/"
+  },
+  "headline": "Kaggle Evaluation Metrics Used for Regression Problems",
+  "datePublished": "2019-02-16T00:00:00+01:00",
+  "dateModified": "2019-03-01T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/performance_metrics.jpg",  "url": "https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/",
+  "description": "This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described,..."
+}
+</script>
 
-    <title>Kaggle Evaluation Metrics Used for Regression Problems</title>
+    <title>    Kaggle Evaluation Metrics Used for Regression Problems
+</title>
 
 
 
@@ -100,7 +127,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -111,7 +139,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -148,89 +176,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -246,6 +203,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -254,37 +217,41 @@
             <p>
                 <!-- Posted on: -->
                 2019-02-16 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Kaggle%20Evaluation%20Metrics%20Used%20for%20Regression%20Problems&url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&via=izikeros&hashtags=machine-learning,evaluation,metrics,model-performance,evaluation,kaggle"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Kaggle%20Evaluation%20Metrics%20Used%20for%20Regression%20Problems&u=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&title=Kaggle%20Evaluation%20Metrics%20Used%20for%20Regression%20Problems"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Kaggle%20Evaluation%20Metrics%20Used%20for%20Regression%20Problems&url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&via=izikeros&hashtags=machine-learning,evaluation,metrics,model-performance,evaluation,kaggle" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Kaggle%20Evaluation%20Metrics%20Used%20for%20Regression%20Problems&u=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/&title=Kaggle%20Evaluation%20Metrics%20Used%20for%20Regression%20Problems" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="kaggle-evaluation-metrics-used-for-regression-problems">Kaggle Evaluation Metrics Used for Regression Problems</h1>
             <div class="header-underline"></div>
-<p class="summary"><p>This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE).</p></p>                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                <p class="summary"><p>This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE).</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/">
-                        <img style="width: 100%"
-                             src="/images/head/performance_metrics.jpg"
-                             alt="">
+                        <img style="width: 100%; "
+                             src="/images/head/performance_metrics.jpg" alt="">
                     </a>
                 </div>
+
+
         </header>
-        <div><p>X:<a href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/">Kaggle Evaluation Metrics Used for Regression Problems</a>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <p>X:<a href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/">Kaggle Evaluation Metrics Used for Regression Problems</a>
 X:<a href="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/">Comprehensive Guide to Interpreting R², MSE, and RMSE for Regression Models.</a>
 X:metrics_for_evaluation_in_regression_problems</p>
 <p>While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">sklearn.metrics</a> provides plethora of metrics for suitable for distinct purposes.</p>
@@ -312,7 +279,7 @@ X:metrics_for_evaluation_in_regression_problems</p>
 <!-- /MarkdownTOC -->
 
 <p><a id="absolute-error---ae"></a></p>
-<h2>Absolute Error - AE</h2>
+<h2 id="absolute-error-ae">Absolute Error - AE</h2>
 <p><strong>The sum of the absolute value of each individual error.</strong>
 </p>
 <div class="math">$$
@@ -329,7 +296,7 @@ $$</div>
 <li><a href="https://www.kaggle.com/c/Eurovision2010#Evaluation">Forecast Eurovision Voting</a> - This competition requires contestants to forecast the voting for this year's Eurovision Song Contest in Norway on May 25th, 27th and 29th.</li>
 </ul>
 <p><a id="mean-absolute-error---mae"></a></p>
-<h2>Mean Absolute Error - MAE</h2>
+<h2 id="mean-absolute-error-mae">Mean Absolute Error - MAE</h2>
 <p><strong>Mean of the absolute value of each individual error.</strong></p>
 <p>The mean absolute error (MAE) is a quantity used to measure how close forecasts or predictions are to the eventual outcomes. The mean absolute error is given by formula:</p>
 <div class="math">$$
@@ -359,7 +326,7 @@ $$</div>
 </li>
 </ul>
 <p><a id="weighted-mean-absolute-error---wmae"></a></p>
-<h2>Weighted Mean Absolute Error - WMAE</h2>
+<h2 id="weighted-mean-absolute-error-wmae">Weighted Mean Absolute Error - WMAE</h2>
 <p><strong>Weighted average of absolute errors.</strong></p>
 <p>WMAE can be used as evaluation tool for better assessing the model performance with respect to the goals of the application. For example, in the case of recommending books or movies it could be possible that the accuracy of the predictions varies when focusing on past or recent products. In this situation, it is not reasonable that every error were treated equally, so more stress should be put in recent items.</p>
 <p>WMAE can be also useful as a diagnosis tool that, using a "magnifying lens", can help to identify those cases where an algorithm is having trouble with. The formula for calculating WMAE is:</p>
@@ -381,7 +348,7 @@ $$</div>
 </li>
 </ul>
 <p><a id="pearson-correlation-coefficient"></a></p>
-<h2>Pearson Correlation Coefficient</h2>
+<h2 id="pearson-correlation-coefficient">Pearson Correlation Coefficient</h2>
 <p><strong>Covariance of the two variables divided by the product of the standard deviation of each data sample.</strong></p>
 <p>It is the normalization of the covariance between the two variables to give an interpretable score. The Pearson correlation coefficient can be used to summarize the strength of the linear relationship between two data samples. The formula for calculating Pearson correlation coefficient is:</p>
 <div class="math">$$
@@ -399,7 +366,7 @@ $$</div>
 <li><a href="https://www.kaggle.com/c/MerckActivity#evaluation">Merck Molecular Activity Challenge</a> - Help develop safe and effective medicines by predicting molecular activity.</li>
 </ul>
 <p><a id="spearman%E2%80%99s-rank-correlation"></a></p>
-<h2>Spearman’s Rank Correlation</h2>
+<h2 id="spearmans-rank-correlation">Spearman’s Rank Correlation</h2>
 <p><strong>Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each variable.</strong></p>
 <p>Two variables may be related by a nonlinear relationship, such that the relationship is stronger or weaker across the distribution of the variables. The two variables being considered may have a non-Gaussian distribution.</p>
 <p>The Spearman’s correlation coefficient can be used to summarize the nonlinear relation between the two data samples. Raw scores <span class="math">\(y_i\)</span> and <span class="math">\(\hat{y}_i\)</span> are converted to ranks respectively: <span class="math">\(ry_i\)</span> and <span class="math">\(\hat{ry}_i\)</span>. The formula for calculating Spearman's rank correlation coefficient is:</p>
@@ -417,7 +384,7 @@ $$</div>
 <li>Draper Satellite Image Chronology](<a href="https://www.kaggle.com/c/draper-satellite-image-chronology#evaluation">https://www.kaggle.com/c/draper-satellite-image-chronology#evaluation</a>) - Can you put order to space and time?</li>
 </ul>
 <p><a id="root-mean-squared-error---rmse"></a></p>
-<h2>Root Mean Squared Error - RMSE</h2>
+<h2 id="root-mean-squared-error-rmse">Root Mean Squared Error - RMSE</h2>
 <p><strong>The square root of the mean/average of the square of all of the error.</strong></p>
 <p>The use of RMSE is very common and it makes an excellent general purpose error metric for numerical predictions. Compared to the similar Mean Absolute Error, RMSE amplifies and severely punishes large errors. The formula for calculating RMSE is:</p>
 <div class="math">$$
@@ -446,7 +413,7 @@ $$</div>
 </li>
 </ul>
 <p><a id="root-mean-squared-logarithmic-error---rmsle"></a></p>
-<h2>Root Mean Squared Logarithmic Error - RMSLE</h2>
+<h2 id="root-mean-squared-logarithmic-error-rmsle">Root Mean Squared Logarithmic Error - RMSLE</h2>
 <p><strong>Root mean squared error of variables transformed to logarithmic scale</strong>.
 </p>
 <div class="math">$$
@@ -477,7 +444,7 @@ $$</div>
 </li>
 </ul>
 <p><a id="mean-columnwise-root-mean-squared-error---mcrmse"></a></p>
-<h2>Mean Columnwise Root Mean Squared Error - MCRMSE</h2>
+<h2 id="mean-columnwise-root-mean-squared-error-mcrmse">Mean Columnwise Root Mean Squared Error - MCRMSE</h2>
 <p><strong>Errors of each k-fold CV trials were averaged over n test samples across m target variables.</strong>
 </p>
 <div class="math">$$
@@ -500,7 +467,7 @@ $$</div>
 <li><a href="https://www.kaggle.com/c/afsis-soil-properties#evaluation">Africa Soil Property Prediction Challenge</a> - Predict physical and chemical properties of soil using spectral measurements</li>
 </ul>
 <p><a id="references"></a></p>
-<h2>References</h2>
+<h2 id="references">References</h2>
 <ol>
 <li><a href="archive.org">Kaggle wiki</a></li>
 <li><a href="https://www.ke.tu-darmstadt.de/lehre/arbeiten/studien/2015/Dong_Ying.pdf">Beating Kaggle the easy way, page 43</a></li>
@@ -570,11 +537,14 @@ $$</div>
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-</script></div>
+</script>
+        </div>
+
+
+
+
             <div class="bibtex-note">
-                <p>
-                    <b>To cite this article:</b>
-                </p>
+                <p><b>To cite this article:</b></p>
                 <pre>@article{Saf2019Kaggle,
     author  = {Krystian Safjan},
     title   = {Kaggle Evaluation Metrics Used for Regression Problems},
@@ -582,68 +552,75 @@ $$</div>
     year    = {2019},
 }</pre>
             </div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a><a href="https://www.safjan.com/tag/evaluation/">evaluation</a><a href="https://www.safjan.com/tag/metrics/">metrics</a><a href="https://www.safjan.com/tag/model-performance/">model-performance</a><a href="https://www.safjan.com/tag/evaluation/">evaluation</a><a href="https://www.safjan.com/tag/kaggle/">Kaggle</a>            </p>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/machine-learning/" class="article-tag">machine-learning</a>
+                <a href="https://www.safjan.com/tag/evaluation/" class="article-tag">evaluation</a>
+                <a href="https://www.safjan.com/tag/metrics/" class="article-tag">metrics</a>
+                <a href="https://www.safjan.com/tag/model-performance/" class="article-tag">model-performance</a>
+                <a href="https://www.safjan.com/tag/evaluation/" class="article-tag">evaluation</a>
+                <a href="https://www.safjan.com/tag/kaggle/" class="article-tag">Kaggle</a>
         </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/">Comprehensive Guide to Interpreting R², MSE, and RMSE for Regression Models.</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/difference-between-matthews-and-f1/">What Is the Difference Between Matthews Correlation Coefficient and F1 Metrics</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/metrics-to-compare-histograms/">Metrics Used to Compare Histograms</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/best-small-models-for-fine-tuning/">Best Small Models for Fine Tuning</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" class="related-post-card">
+                            <span class="related-post-title">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</span>
+                            <span class="related-post-date">Aug 30, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/" class="related-post-card">
+                            <span class="related-post-title">Comprehensive Guide to Interpreting R², MSE, and RMSE for Regression Models.</span>
+                            <span class="related-post-date">Feb 13, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/difference-between-matthews-and-f1/" class="related-post-card">
+                            <span class="related-post-title">What Is the Difference Between Matthews Correlation Coefficient and F1 Metrics</span>
+                            <span class="related-post-date">Jan 05, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/metrics-to-compare-histograms/" class="related-post-card">
+                            <span class="related-post-title">Metrics Used to Compare Histograms</span>
+                            <span class="related-post-date">Jan 19, 2020</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

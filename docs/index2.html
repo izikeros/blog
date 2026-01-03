@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -66,7 +75,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -77,7 +87,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -114,89 +124,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -212,909 +151,122 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
 
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/mlops-policies/#mlops-policies">Policies in MLOps</a>
+    <div class="article-list">
+            <article class="article-card">
+                    <a href="https://www.safjan.com/prompt-discovery/" class="article-card-image">
+                        <img src="/images/head/prompt_discovery.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-11-04</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/prompt-discovery/#prompt-discovery">Prompt Discovery</a>
                     </h2>
-                    <p>
-                        2023-01-25 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/mlops-policies/">
-                                <img src="/images/head/mlops_policies.jpg" alt="">
-                            </a>
-                        <div><p>Discover the secrets to successful MLOps - From planning to deployment, get a comprehensive guide to ML policies.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/mlops-policies/#mlops-policies">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/mlops-scorecard/#mlops-scorecard">MLOps Scorecard - How Advanced Is Your Organization in Implementing MLOps Processes?</a>
-                    </h2>
-                    <p>
-                        2023-01-21 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/mlops-scorecard/">
-                                <img src="/images/head/mlops_scorecard_640px.jpg" alt="">
-                            </a>
-                        <div><p>Use proposed scorecard to assess how advanced is your organization in implementing MLOps processes.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/mlops-scorecard/#mlops-scorecard">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/common-types-of-data-science-projects/#common-types-of-data-science-projects">Common Types of Data Science Projects</a>
-                    </h2>
-                    <p>
-                        2023-01-19 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/common-types-of-data-science-projects/">
-                                <img src="/images/head/team_project_head.jpg" alt="">
-                            </a>
-                        <div><p>Learn about common types of data science projects and best practices for approaching them. From end-to-end individual work to production-ready projects, this guide covers it all.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/common-types-of-data-science-projects/#common-types-of-data-science-projects">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/verify-backups-restic-example/#verify-backups-restic-example">Don't Just Create Backups, Verify Them - How Restic Can Help?</a>
-                    </h2>
-                    <p>
-                        2023-01-15 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/verify-backups-restic-example/">
-                                <img src="/images/head/verify_backups.jpg" alt="">
-                            </a>
-                        <div><p>Learn how to verify your backups with Restic, ensure completeness, integrity, and recoverability. Automate the process for peace of mind. Read now</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/verify-backups-restic-example/#verify-backups-restic-example">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/detection-of-texts-generated-by-large-language-models-like-chatgpt/#detection-of-texts-generated-by-large-language-models-like-chatgpt">How to Detect ChatGPT-Generated Text?</a>
-                    </h2>
-                    <p>
-                        2023-01-11 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/detection-of-texts-generated-by-large-language-models-like-chatgpt/">
-                                <img src="/images/head/caligraphy_1_2x1_640px.jpg" alt="">
-                            </a>
-                        <div><p>Discover the latest methods for distinguishing machine-generated text from the human-written text. Learn about statistical, syntactic, semantic, and neural network-based approaches. Stay up-to-date with the latest research in NLP and AI.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/detection-of-texts-generated-by-large-language-models-like-chatgpt/#detection-of-texts-generated-by-large-language-models-like-chatgpt">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/blue-green-deployment-in-mlops/#blue-green-deployment-in-mlops">Maximizing Efficiency in MLOps - How Blue/Green Deployment Can Help?</a>
-                    </h2>
-                    <p>
-                        2023-01-03 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/blue-green-deployment-in-mlops/">
-                                <img src="/images/head/blue_green.jpg" alt="">
-                            </a>
-                        <div><p>Learn about blue/green deployment in MLOps, its usefulness and when to use it, and the cost and complexity of maintaining two separate environments</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/blue-green-deployment-in-mlops/#blue-green-deployment-in-mlops">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/mlops-certifications-a-comprehensive-guide/#mlops-certifications-a-comprehensive-guide">MLOps Certifications - A Comprehensive Guide</a>
-                    </h2>
-                    <p>
-                        2022-11-27 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/mlops-certifications-a-comprehensive-guide/">
-                                <img src="/images/head/mlops_certificates.jpg" alt="">
-                            </a>
-                        <div><p>Learn about popular MLOps certifications offered by Amazon, Google, and Microsoft. Understand if they are worth the effort and money and discover free MLOps certifications available to gain knowledge and understanding of the field.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/mlops-certifications-a-comprehensive-guide/#mlops-certifications-a-comprehensive-guide">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/roles-in-mlops/#roles-in-mlops">Roles in MLOps</a>
-                    </h2>
-                    <p>
-                        2022-11-12 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/roles-in-mlops/">
-                                <img src="/images/head/roles_in_mlops.jpg" alt="">
-                            </a>
-                        <div><p>Learn about the different roles in MLOps and the responsibilities of each role, including Model Deployment Engineer, Data pipeline Engineer, Model Monitoring Engineer, Model Governance Engineer, Machine Learning Infra Engineer and Machine Learning Platform Engineer.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/roles-in-mlops/#roles-in-mlops">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/50-questions-for-MLOps-engineer-job-interview/#50-questions-for-MLOps-engineer-job-interview">50 Questions for MLOps Engineer Job Interview</a>
-                    </h2>
-                    <p>
-                        2022-11-02 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/50-questions-for-MLOps-engineer-job-interview/">
-                                <img src="/images/head/mlops_interview_questions.jpg" alt="">
-                            </a>
-                        <div><p>Get ready for your next MLOps Engineer interview with our comprehensive list of 50+ questions. Covering topics like deployment, management, data pipeline, monitoring, and more.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/50-questions-for-MLOps-engineer-job-interview/#50-questions-for-MLOps-engineer-job-interview">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/mlops_roles_of_the_future/#mlops_roles_of_the_future">MLOps Roles of the Future</a>
-                    </h2>
-                    <p>
-                        2022-10-28 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/mlops_roles_of_the_future/">
-                                <img src="/images/head/mlops_roles_of_the_future.jpg" alt="">
-                            </a>
-                        <div><p>Discover the future of MLOps specializations, including Explainable AI/MLOps, Federated Learning/Edge MLOps, Reinforcement Learning/MLOps, AI/ML in IoT and IIoT, Model Explainability and Fairness.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/mlops_roles_of_the_future/#mlops_roles_of_the_future">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/is-mlops-good-career/#is-mlops-good-career">Is MLOps a Good Career?</a>
-                    </h2>
-                    <p>
-                        2022-10-22 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/is-mlops-good-career/">
-                                <img src="/images/head/is_mlops_good_career.jpg" alt="">
-                            </a>
-                        <div><p>Is a career in MLOps right for you? Learn about the pros and cons of this growing field, including high demand, high earning potential, exciting work, and career growth opportunities.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/is-mlops-good-career/#is-mlops-good-career">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/visual-text-exploration-as-part-of-preprocessing-before-classification/#visual-text-exploration-as-part-of-preprocessing-before-classification">Visual Text Exploration as Part of Preprocessing Before Classification</a>
-                    </h2>
-                    <p>
-                        2022-10-11 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/visual-text-exploration-as-part-of-preprocessing-before-classification/">
-                                <img src="/images/head/visual_text_exploration_wordcloud.jpg" alt="">
-                            </a>
-                        <div><p>This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) &amp; how to use them with popular libraries. Encourages readers to try for own projects.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/visual-text-exploration-as-part-of-preprocessing-before-classification/#visual-text-exploration-as-part-of-preprocessing-before-classification">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/lesser-known-yet-powerful-python-plotting-libraries/#lesser-known-yet-powerful-python-plotting-libraries">10 Lesser-Known, Yet Powerful Python Plotting Libraries</a>
-                    </h2>
-                    <p>
-                        2022-09-30 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/lesser-known-yet-powerful-python-plotting-libraries/">
-                                <img src="/images/head/lesser_known_plotting_libraries.jpg" alt="">
-                            </a>
-                        <div><p>The most widely used libraries for plotting in python are matplotlib, Plotly, seaborn, and bokeh. This article describes 10 other powerful plotting libraries available in Python that can be used to create high-quality plots and visualizations.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/lesser-known-yet-powerful-python-plotting-libraries/#lesser-known-yet-powerful-python-plotting-libraries">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/#automated-trend-detection-and-signal-segmentation">Automated Signal Segmentation, Trend Detection, and Classification</a>
-                    </h2>
-                    <p>
-                        2022-09-12 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/">
-                                <img src="images/head/trend_detection_head.jpg" alt="">
-                            </a>
-                        <div><p>This post presents the trend-classifier package that can be used for signal segmentation into parts where the trend is coherent.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/#automated-trend-detection-and-signal-segmentation">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/the-best-self-hosted-rss-feed-readers-in-2022/#the-best-self-hosted-rss-feed-readers-in-2022">The Best Self-Hosted, Open Source RSS Feed Readers in 2022</a>
-                    </h2>
-                    <p>
-                        2022-08-31 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/the-best-self-hosted-rss-feed-readers-in-2022/">
-                                <img src="/images/head/rss_banner_small.jpg" alt="">
-                            </a>
-                        <div><p>Best self-hosted RSS Feed Readers selected by popularity and project activity.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/the-best-self-hosted-rss-feed-readers-in-2022/#the-best-self-hosted-rss-feed-readers-in-2022">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/popular-and-lesser-known-dataset-sharing-platforms/#popular-and-lesser-known-dataset-sharing-platforms">Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platforms</a>
-                    </h2>
-                    <p>
-                        2022-06-09 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/popular-and-lesser-known-dataset-sharing-platforms/">
-                                <img src="/images/head/abstract_1.jpg" alt="">
-                            </a>
-                        <div><p>Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/popular-and-lesser-known-dataset-sharing-platforms/#popular-and-lesser-known-dataset-sharing-platforms">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/lesser-known-backtesting-libraries/#lesser-known-backtesting-libraries">Lesser Known Backtesting Libraries</a>
-                    </h2>
-                    <p>
-                        2022-06-05 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/lesser-known-backtesting-libraries/">
-                                <img src="images/head/backtesting.jpg" alt="">
-                            </a>
-                        <div><p>This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/lesser-known-backtesting-libraries/#lesser-known-backtesting-libraries">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/top-10-python-libraries-for-document-classification/#top-10-python-libraries-for-document-classification">Top 10 Python Libraries for Document Classification</a>
-                    </h2>
-                    <p>
-                        2022-05-01 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/top-10-python-libraries-for-document-classification/">
-                                <img src="/images/head/document_classification.jpg" alt="">
-                            </a>
-                        <div><p>Unlock the power of document classification with these top Python libraries! Discover the best tools for effortless text analysis and more.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/top-10-python-libraries-for-document-classification/#top-10-python-libraries-for-document-classification">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/create-theme-for-pelican-blog-tutorial/#create-theme-for-pelican-blog-tutorial">Tutorial on How to Create New Theme for Pelican Static Site Generator</a>
-                    </h2>
-                    <p>
-                        2022-03-01 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/create-theme-for-pelican-blog-tutorial/">
-                                <img src="/images/head/pelican_theme.jpg" alt="">
-                            </a>
-                        <div><p>A great Pelican theme can make all the difference. Learn how to design your own with our comprehensive tutorial.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/create-theme-for-pelican-blog-tutorial/#create-theme-for-pelican-blog-tutorial">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/regression-model-errors-plot/#regression-model-errors-plot">Pro Tips for Diagnosing Regression Model Errors</a>
-                    </h2>
-                    <p>
-                        2022-02-22 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/regression-model-errors-plot/">
-                                <img src="/images/head/diagnosing_errors_in_regression_models.jpg" alt="">
-                            </a>
-                        <div><p>Improve your regression model's accuracy and predictability by uncovering hidden errors with these essential plots.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/regression-model-errors-plot/#regression-model-errors-plot">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/#tools-for-doc-deskewing-and-dewarping">15 Tools for Document Deskewing and Dewarping</a>
-                    </h2>
-                    <p>
-                        2022-02-11 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/">
-                                <img src="/images/head/dewarp_deskew.jpg" alt="">
-                            </a>
-                        <div><p>Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article "Summary and recommendations".</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/tools-for-doc-deskewing-and-dewarping/#tools-for-doc-deskewing-and-dewarping">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/how-to-get-most-of-github-copilot/#how-to-get-most-of-github-copilot">How to Get Most of GitHub Copilot</a>
-                    </h2>
-                    <p>
-                        2022-01-25 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/how-to-get-most-of-github-copilot/">
-                                <img src="/images/head/copilot-warp-speed-head.jpg" alt="">
-                            </a>
-                        <div><p>This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - "How to get most of GitHub Copilot".</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/how-to-get-most-of-github-copilot/#how-to-get-most-of-github-copilot">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/micro-and-macro-averages-in-multiclass-multilabel-problems/#micro-and-macro-averages-in-multiclass-multilabel-problems">Understanding Micro and Macro Averages in Multiclass Multilabel Problems</a>
-                    </h2>
-                    <p>
-                        2021-12-22 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/micro-and-macro-averages-in-multiclass-multilabel-problems/">
-                                <img src="/images/head/micro_macro_averaging.jpg" alt="">
-                            </a>
-                        <div><p>Learn about micro and macro averages in multiclass multilabel problems, the difference between multiclass and multilabel problems and when to use micro and macro averages.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/micro-and-macro-averages-in-multiclass-multilabel-problems/#micro-and-macro-averages-in-multiclass-multilabel-problems">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/vscode-as-nim-ide/#vscode-as-nim-ide">Setup VS Code as NIM IDE</a>
-                    </h2>
-                    <p>
-                        2021-12-02 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/vscode-as-nim-ide/">
-                                <img src="/images/head/vscode-as-nim-ide.jpg" alt="">
-                            </a>
-                        <div><p>Learn how to set up VSCode as a Nim IDE from scratch. Includes instructions for downloading VSCode, installing the Nim extension, configuring settings, and debugging Nim code.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/vscode-as-nim-ide/#vscode-as-nim-ide">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/#top-popular-zsh-plugins-on-github-2021">Top Popular ZSH Plugins on GitHub (2021)</a>
-                    </h2>
-                    <p>
-                        2021-11-29 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/">
-                                <img src="/images/head/inside-work-tree.jpg" alt="">
-                            </a>
-                        <div><p>Explore the most popular Zsh plugins from the 1800+ options on the Awesome Zsh plugins GitHub project. See which ones have the highest number of stars from the Zsh community.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2021/#top-popular-zsh-plugins-on-github-2021">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/tsne-tutorial/#tsne-tutorial">Unleashing the Power of T-Sne for Dimensionality Reduction in Python</a>
-                    </h2>
-                    <p>
-                        2021-03-15 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/tsne-tutorial/">
-                                <img src="/images/head/tsne_head.jpg" alt="">
-                            </a>
-                        <div><p>Want to create beautiful visualizations from complex data? Discover the power of T-SNE for dimensionality reduction in Python.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/tsne-tutorial/#tsne-tutorial">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/kurtosis-in-simple-terms/#kurtosis-in-simple-terms">Kurtosis in Simple Terms, Interpretation and Gotchas</a>
-                    </h2>
-                    <p>
-                        2021-02-18 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/kurtosis-in-simple-terms/">
-                                <img src="/images/head/kurtosis.jpg" alt="">
-                            </a>
-                        <div><p>Statistics can be tricky, but understanding kurtosis is a must for anyone who wants to avoid making common mistakes in statistical analyses. Learn how to interpret it in this comprehensive guide.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/kurtosis-in-simple-terms/#kurtosis-in-simple-terms">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/finding-errors-in-data/#finding-errors-in-data">Finding Errors in Data - Data Validation</a>
-                    </h2>
-                    <p>
-                        2021-01-31 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/finding-errors-in-data/">
-                                <img src="/images/head/errors_in_dataset.jpg" alt="">
-                            </a>
-                        <div><p>Explore methods to detect &amp; fix errors in data, including validation, visualizations, statistical tests, cleaning techniques, machine learning &amp; data quality tools. Get concise, easy to understand information with examples &amp; links to external resources.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/finding-errors-in-data/#finding-errors-in-data">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/pandas-schema-validation/#pandas-schema-validation">Pandas Schema Validation</a>
-                    </h2>
-                    <p>
-                        2021-01-16 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/pandas-schema-validation/">
-                                <img src="/images/head/elegant_panda.jpg" alt="">
-                            </a>
-                        <div><p>Overview of the available tools and methods for schema validation in pandas, examplary code snippets and recommendation for when to use given tool.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/pandas-schema-validation/#pandas-schema-validation">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/evaluation-of-interpretability-for-explainable-ai/#evaluation-of-interpretability-for-explainable-ai">Evaluation of Interpretability for Explainable AI</a>
-                    </h2>
-                    <p>
-                        2020-11-05 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/evaluation-of-interpretability-for-explainable-ai/">
-                                <img src="/images/head/AI_gray-haired_1_640.jpg" alt="">
-                            </a>
-                        <div><p>Learn about the evaluation of interpretability in machine learning with this guide. Discover different levels and methods for assessing the explainability of models.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/evaluation-of-interpretability-for-explainable-ai/#evaluation-of-interpretability-for-explainable-ai">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/metrics-to-compare-histograms/#metrics-to-compare-histograms">Metrics Used to Compare Histograms</a>
-                    </h2>
-                    <p>
-                        2020-01-19 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/metrics-to-compare-histograms/">
-                                <img src="/images/head/compare_histograms.jpg" alt="">
-                            </a>
-                        <div><p>Learn about metrics used to compare histograms with examples of how to calculate them in python. From Chi-Squared distance to Kullback-Leibler divergence and Earth Mover's distance. A comprehensive guide.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/metrics-to-compare-histograms/#metrics-to-compare-histograms">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/data-science-command-line-tools/#data-science-command-line-tools">Data Science Command-Line Tools</a>
-                    </h2>
-                    <p>
-                        2019-08-23 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/data-science-command-line-tools/">
-                                <img src="/images/head/cli_tools.jpg" alt="">
-                            </a>
-                        <div><p>Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/data-science-command-line-tools/#data-science-command-line-tools">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2019/#top-popular-zsh-plugins-on-github-2019">Top Popular ZSH Plugins on GitHub (2019)</a>
-                    </h2>
-                    <p>
-                        2019-07-14 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2019/">
-                                <img src="/images/head/inside-work-tree.jpg" alt="">
-                            </a>
-                        <div><p>On the GitHub project <a href="https://github.com/unixorn/awesome-zsh-plugins">Awesome Zsh plugins</a> you can find 1700+ links to plugins, themes, and Zsh plugin managers/frameworks. The number of tools listed on that page is high and it is difficult to get orientation on which plugins gained already a good reputation from the Zsh users community. This post aims at identifying the most popular tools where popularity is measured by the number of stars that Github users added to a given plugin or tool.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/top-popular-zsh-plugins-on-github-2019/#top-popular-zsh-plugins-on-github-2019">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/#learn-bayesian-methods-in-4-steps-by-reading-and-by-doing">Learn Bayesian Methods in 4 Steps - By Reading and by Doing</a>
-                    </h2>
-                    <p>
-                        2019-07-09 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/">
-                                <img src="/images/learn_bayes/probab_distrib.png" alt="">
-                            </a>
-                        <div><p>This post proposes a 4-step path for learning Bayesian methods. The first step is going through the book "Bayesian methods for hackers", second, using complementary books for probability and statistics, the third, reading How to become a Bayesian in eight easy steps, and last, going through the book full of exercises - "Think Bayes".</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/learn-bayesian-methods-in-4-steps-by-reading-and-by-doing/#learn-bayesian-methods-in-4-steps-by-reading-and-by-doing">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/#kaggle-evaluation-metrics-used-for-regression-problems">Kaggle Evaluation Metrics Used for Regression Problems</a>
-                    </h2>
-                    <p>
-                        2019-02-16 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/">
-                                <img src="/images/head/performance_metrics.jpg" alt="">
-                            </a>
-                        <div><p>This post describe evaluation metrics used in Kaggle competitions where problem to solve is has regression nature. Eight different metrics are described, namely - Absolute Error (AE), Mean Absolute Error (MAE), Weighted Mean Absolute Error (WMAE), Pearson Correlation Coefficient, Spearman’s Rank Correlation, Root Mean Squared Error (RMSE), Root Mean Squared Logarithmic Error (RMSLE), Mean Columnwise Root Mean Squared Error (MCRMSE).</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/#kaggle-evaluation-metrics-used-for-regression-problems">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/#how-to-install-tensorflow-and-keras-on-windows-10">How to Install TensorFlow and Keras on Windows 10</a>
-                    </h2>
-                    <p>
-                        2019-01-17 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/">
-                                <img src="/images/head/keras+tensorflow.jpg" alt="">
-                            </a>
-                        <div><p>Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/how-to-install-tensorflow-and-keras-on-windows-10/#how-to-install-tensorflow-and-keras-on-windows-10">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/darwin-approach-to-traveling-salesman/#darwin-approach-to-traveling-salesman">Darwin Approach to Traveling Salesman</a>
-                    </h2>
-                    <p>
-                        2019-01-12 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/darwin-approach-to-traveling-salesman/">
-                                <img src="/images/head/cells_small.jpg" alt="">
-                            </a>
-                        <div><p>Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin's approach. I'm describing the evolution model and design decisions. See the animation of how the population was evolving through the epochs.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/darwin-approach-to-traveling-salesman/#darwin-approach-to-traveling-salesman">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/how-to-organize-data-science-project-based-on-jupyter-notebook/#how-to-organize-data-science-project-based-on-jupyter-notebook">How to Organize Data Science Project Based on Jupyter Notebook</a>
-                    </h2>
-                    <p>
-                        2019-01-05 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/how-to-organize-data-science-project-based-on-jupyter-notebook/">
-                                <img src="/images/head/books.jpg" alt="">
-                            </a>
-                        <div><p>Having several notebook-based projects behind you might result in a mess in the projects directory. Organize your Data Science project based on Jupyter notebooks in a way that one can navigate through it. Especially that "the one" will be most probably you in a few months time. To achieve that, keep your projects directory clean, name the project in a descriptive way and take care of the internal structure of the project.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/how-to-organize-data-science-project-based-on-jupyter-notebook/#how-to-organize-data-science-project-based-on-jupyter-notebook">
-                                Continue reading
-                            </a>
-                </div>
-                    <hr/>
-            </article>
-            <article>
-                <header>
-                    <h2><a href="https://www.safjan.com/top-popular-zsh-plugins-on-github/#top-popular-zsh-plugins-on-github">Top Popular ZSH Plugins on GitHub (2018)</a>
-                    </h2>
-                    <p>
-                        2018-03-22 
-
-
-                    </p>
-                </header>
-                <div>
-                            <a href="https://www.safjan.com/top-popular-zsh-plugins-on-github/">
-                                <img src="/images/head/inside-work-tree.jpg" alt="">
-                            </a>
-                        <div><p>There is an exhaustive but curated list of Zsh plugins posted on GitHub project Awesome Zsh plugins. You can find there 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have the highest number of stars.</p></div>
-                            <br>
-                            <a class="btn"
-                               href="https://www.safjan.com/top-popular-zsh-plugins-on-github/#top-popular-zsh-plugins-on-github">
-                                Continue reading
-                            </a>
+                        <p class="article-card-summary">Learn prompt discovery to uncover the most effective prompts and combinations thereof to achieve specific tasks, while also considering factors like...</p>
                 </div>
             </article>
+            <article class="article-card">
+                    <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/" class="article-card-image">
+                        <img src="/images/head/boosting_RAG.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-11-01</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/#techniques-to-boost-rag-performance-in-production">Techniques to Boost RAG Performance in Production</a>
+                    </h2>
+                        <p class="article-card-summary">This article discusses several advanced techniques that can be applied at different stages of the RAG pipeline to enhance its performance in a production setting.</p>
+                </div>
+            </article>
+            <article class="article-card">
+                    <a href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/" class="article-card-image">
+                        <img src="/images/head/markov_vs_transformers.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-10-07</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/understanding-differences-gpt-transformers-markov-models/#understanding-differences-gpt-transformers-markov-models">Understanding the Differences in Language Models - Transformers vs. Markov Models</a>
+                    </h2>
+                        <p class="article-card-summary">This article explores distinguishing details of Markov Models and Transformer-based models like GPT, focusing on how they predict the next character in a...</p>
+                </div>
+            </article>
+            <article class="article-card">
+                    <a href="https://www.safjan.com/how-agile-can-kill-creativity-in-data-science-team/" class="article-card-image">
+                        <img src="/images/head/agile_data_science_640px.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-09-29</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/how-agile-can-kill-creativity-in-data-science-team/#how-agile-can-kill-creativity-in-data-science-team">How Agile Can Kill Creativity in Data Science team?</a>
+                    </h2>
+                        <p class="article-card-summary">Discover the delicate balance between Agile methodologies and imagination in the domain of data science and analytics. Uncover the impact of Agile...</p>
+                </div>
+            </article>
+            <article class="article-card">
+                    <a href="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/" class="article-card-image">
+                        <img src="/images/head/chunking_puzzle_640px.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-09-11</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/#from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques">From Fixed-Size to NLP Chunking - A Deep Dive into Text Chunking Techniques</a>
+                    </h2>
+                        <p class="article-card-summary">Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can...</p>
+                </div>
+            </article>
+            <article class="article-card">
+                    <a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/" class="article-card-image">
+                        <img src="/images/head/langchain_problems.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-09-01</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/#problems-with-Langchain-and-how-to-minimize-their-impact">Problems with Langchain and how to minimize their impact</a>
+                    </h2>
+                        <p class="article-card-summary">Beyond the Hype - LangChain's Hidden Flaws and How to Master AI Development.</p>
+                </div>
+            </article>
+            <article class="article-card">
+                    <a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/" class="article-card-image">
+                        <img src="/images/head/rag_futuristic_library_640px.jpg" alt="" loading="lazy">
+                    </a>
+                <div class="article-card-content">
+                    <div class="article-card-meta">
+                        <time>2023-08-24</time>
+                    </div>
+                    <h2 class="article-card-title">
+                        <a href="https://www.safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/#understanding-retrieval-augmented-generation-rag-empowering-llms">Understanding Retrieval-Augmented Generation (RAG) empowering LLMs</a>
+                    </h2>
+                        <p class="article-card-summary">Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with...</p>
+                </div>
+            </article>
+    </div>
 
   <div class="pagination">
-    <a class="btn float-right" href="https://www.safjan.com/index.html">
-      Newer Posts <i class="fa fa-angle-right"></i>
+    <a class="pagination-link" href="https://www.safjan.com/index3.html">
+      ← Older Posts
+    </a>
+    <a class="pagination-link" href="https://www.safjan.com/index.html">
+      Newer Posts →
     </a>
   </div>
 
@@ -1122,37 +274,32 @@
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box." />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box."/>
     <meta name="keywords" content="machine-learning, python, explainable-ai, lime">
-    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2023-04-14 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00" />
-    <meta property="article:published_time" content="2023-04-14 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "LIME Tutorial",
-  "datePublished": "2023-04-14 00:00:00+02:00",
-  "dateModified": "2023-04-14 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="LIME Tutorial"/>
   <meta property="og:description" content="Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box."/>
@@ -69,25 +67,54 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-04-14 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2023-04-14 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Responsible AI"/>
   <meta property="article:tag" content="machine-learning"/>
   <meta property="article:tag" content="python"/>
   <meta property="article:tag" content="explainable-ai"/>
   <meta property="article:tag" content="lime"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/lime_tutorial.jpg">
-
-    <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="https://www.safjan.com//images/head/lime_tutorial.jpg">
+  <meta property="og:image" content="https://www.safjan.com//images/head/lime_tutorial.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/lime_tutorial.jpg"/>
+    <meta name="twitter:image:alt" content="LIME Tutorial"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box."/>
     <meta name="twitter:title" content="LIME Tutorial"/>
+    <meta name="twitter:description" content="Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/lime-tutorial/"
+  },
+  "headline": "LIME Tutorial",
+  "datePublished": "2023-04-14T00:00:00+02:00",
+  "dateModified": "2023-04-14T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/lime_tutorial.jpg",  "url": "https://www.safjan.com/lime-tutorial/",
+  "description": "Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box."
+}
+</script>
 
-    <title>LIME Tutorial</title>
+    <title>    LIME Tutorial
+</title>
 
 
 
@@ -98,7 +125,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -109,7 +137,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -146,89 +174,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -244,6 +201,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -252,38 +215,42 @@
             <p>
                 <!-- Posted on: -->
                 2023-04-14 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=LIME%20Tutorial&url=https%3A//www.safjan.com/lime-tutorial/&via=izikeros&hashtags=machine-learning,python,explainable-ai,lime"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/lime-tutorial/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=LIME%20Tutorial&u=https%3A//www.safjan.com/lime-tutorial/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/lime-tutorial/&title=LIME%20Tutorial"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=LIME%20Tutorial&url=https%3A//www.safjan.com/lime-tutorial/&via=izikeros&hashtags=machine-learning,python,explainable-ai,lime" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/lime-tutorial/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=LIME%20Tutorial&u=https%3A//www.safjan.com/lime-tutorial/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/lime-tutorial/&title=LIME%20Tutorial" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="lime-tutorial">LIME Tutorial</h1>
             <div class="header-underline"></div>
-<p class="summary"><p>Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box.</p></p>                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                <p class="summary"><p>Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/lime-tutorial/">
-                        <img style="width: 100%"
-                             src="/images/head/lime_tutorial.jpg"
-                             alt="">
+                        <img style="width: 100%; "
+                             src="/images/head/lime_tutorial.jpg" alt="">
                     </a>
                 </div>
+
+
         </header>
-        <div><p>In this tutorial, we'll be exploring how to use the LIME (Local Interpretable Model-Agnostic Explanations) library for explainable AI. We'll start by discussing what LIME is and why it's useful for explainable AI, and then we'll dive into the code.</p>
-<h2>What is LIME?</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <p>In this tutorial, we'll be exploring how to use the LIME (Local Interpretable Model-Agnostic Explanations) library for explainable AI. We'll start by discussing what LIME is and why it's useful for explainable AI, and then we'll dive into the code.</p>
+<h2 id="what-is-lime">What is LIME?</h2>
 <p>LIME is a library for explaining the predictions of machine learning models. It works by creating "local" surrogate models that approximate the behavior of the original model in the vicinity of a particular prediction. The idea behind LIME is that these surrogate models can be used to provide human-understandable explanations for how the original model arrived at its decision.</p>
 <p>Why is LIME useful for explainable AI? There are a few reasons:</p>
 <ol>
@@ -298,7 +265,7 @@
 </li>
 </ol>
 <p>Now that we understand why LIME is useful, let's dive into the code.</p>
-<h2>Selecting a Dataset</h2>
+<h2 id="selecting-a-dataset">Selecting a Dataset</h2>
 <p>For this tutorial, we'll be using the classic "Iris" dataset, which is a popular dataset for classification tasks. The Iris dataset consists of 150 samples, each with four features (sepal length, sepal width, petal length, and petal width), and each sample belongs to one of three classes (setosa, versicolor, or virginica). The goal is to build a machine learning model that can predict the class of a new sample based on its features.</p>
 <p>To start, we'll load the Iris dataset using scikit-learn:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
@@ -315,7 +282,7 @@
 </code></pre></div>
 
 <p>We'll use the training set to train our machine learning model, and the testing set to evaluate its performance.</p>
-<h2>Training a Machine Learning Model</h2>
+<h2 id="training-a-machine-learning-model">Training a Machine Learning Model</h2>
 <p>For this tutorial, we'll use a random forest classifier as our machine learning model. The random forest algorithm is an ensemble learning method that combines multiple decision trees to improve the accuracy and robustness of the predictions.</p>
 <p>We'll start by importing the necessary libraries and creating the classifier:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -337,7 +304,7 @@
 </code></pre></div>
 
 <p>When we run this code, we should see an accuracy of around 0.97, which means our model is doing a pretty good job of predicting the class of new samples.</p>
-<h2>Explaining Model Predictions with LIME</h2>
+<h2 id="explaining-model-predictions-with-lime">Explaining Model Predictions with LIME</h2>
 <p>Now that we have a trained machine learning model, we can start using LIME to explain its predictions.</p>
 <p>First, we need to create an explainer object:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lime</span>
@@ -378,7 +345,7 @@
 
 <p>This will create a bar chart that shows the contribution of each feature to the prediction, with the most important features at the top:</p>
 <p><img alt="LIME bar chart" src="/images/lime_tutorial/lime_bar_chart.png"></p>
-<h2>Visualizing Model Decisions</h2>
+<h2 id="visualizing-model-decisions">Visualizing Model Decisions</h2>
 <p>In addition to explaining individual predictions, LIME can also be used to visualize how the model is making decisions more generally. We can do this by generating multiple explanations for different samples and visualizing the patterns that emerge.</p>
 <p>To start, we'll generate a of explanation for the testing data point, next, we'll use these explanations to generate a decision plot:</p>
 <div class="highlight"><pre><span></span><code><span class="n">exp</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span>
@@ -390,21 +357,24 @@
 </code></pre></div>
 
 <p><img alt="LIME - explanation visualization" src="/images/lime_tutorial/lime_explanation.png"></p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>In this tutorial, we learned how to use the LIME library for explainable AI. We started by importing the necessary libraries and loading the Iris dataset. Then, we trained a random forest classifier on the dataset and used LIME to explain individual predictions and visualize model decisions.</p>
 <p>We saw how LIME can be used to identify the most important features for a prediction, and how these features can be visualized using a bar chart. We also saw how LIME can be used to visualize how the model is making decisions more generally, using a decision plot.</p>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
-<h2>Related</h2>
+<h2 id="related">Related</h2>
 <ul>
 <li><a href="https://stackoverflow.com/questions/63937620/how-to-plot-lime-report-when-there-is-a-lot-of-features-in-data-set">python - How to plot Lime report when there is a lot of features in data-set - Stack Overflow</a></li>
 <li><a href="https://betterdatascience.com/lime/">LIME: How to Interpret Machine Learning Models With Python | Better Data Science</a></li>
 <li><a href="https://coderzcolumn.com/tutorials/machine-learning/how-to-use-lime-to-understand-sklearn-models-predictions">How to Use LIME to Interpret Predictions of ML Models [Python]?</a></li>
 <li><a href="https://shiring.github.io/machine_learning/2017/04/23/lime">Explaining complex machine learning models with LIME</a> (in R)</li>
-</ul></div>
+</ul>
+        </div>
+
+
+
+
             <div class="bibtex-note">
-                <p>
-                    <b>To cite this article:</b>
-                </p>
+                <p><b>To cite this article:</b></p>
                 <pre>@article{Saf2023LIME,
     author  = {Krystian Safjan},
     title   = {LIME Tutorial},
@@ -412,68 +382,73 @@
     year    = {2023},
 }</pre>
             </div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a><a href="https://www.safjan.com/tag/python/">python</a><a href="https://www.safjan.com/tag/explainable-ai/">explainable-ai</a><a href="https://www.safjan.com/tag/lime/">lime</a>            </p>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/machine-learning/" class="article-tag">machine-learning</a>
+                <a href="https://www.safjan.com/tag/python/" class="article-tag">python</a>
+                <a href="https://www.safjan.com/tag/explainable-ai/" class="article-tag">explainable-ai</a>
+                <a href="https://www.safjan.com/tag/lime/" class="article-tag">lime</a>
         </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/">LIME - Understanding How This Method for Explainable AI Works</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/are-lime-explanations-any-useful/">Are LIME Explanations Any Useful?</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/">SHAP - Understanding How This Method for Explainable AI Works</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/">Techniques to Boost RAG Performance in Production</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/how-the-lime-method-for-explainable-ai-works/" class="related-post-card">
+                            <span class="related-post-title">LIME - Understanding How This Method for Explainable AI Works</span>
+                            <span class="related-post-date">Apr 14, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/are-lime-explanations-any-useful/" class="related-post-card">
+                            <span class="related-post-title">Are LIME Explanations Any Useful?</span>
+                            <span class="related-post-date">Apr 18, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/how-the-shap-method-for-explainable-ai-works/" class="related-post-card">
+                            <span class="related-post-title">SHAP - Understanding How This Method for Explainable AI Works</span>
+                            <span class="related-post-date">Apr 14, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" class="related-post-card">
+                            <span class="related-post-title">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</span>
+                            <span class="related-post-date">Aug 30, 2024</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

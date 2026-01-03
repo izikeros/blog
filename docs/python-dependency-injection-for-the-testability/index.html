@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code." />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code."/>
     <meta name="keywords" content="machine-learning, python, testing, dependency-injection, software-development">
-    <meta expr:content="2023-06-21 00:00:00+02:00" itemprop='datePublished' />
-    <meta expr:content="2023-06-21 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-06-21 00:00:00+02:00" />
-    <meta property="article:published_time" content="2023-06-21 00:00:00+02:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Harnessing the Power of Dependency Injection for Improved Testability in Python",
-  "datePublished": "2023-06-21 00:00:00+02:00",
-  "dateModified": "2023-06-21 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Harnessing the Power of Dependency Injection for Improved Testability in Python"/>
   <meta property="og:description" content="Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code."/>
@@ -69,26 +67,55 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-06-21 00:00:00+02:00"/>
   <meta property="article:modified_time" content="2023-06-21 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Machine Learning"/>
   <meta property="article:tag" content="machine-learning"/>
   <meta property="article:tag" content="python"/>
   <meta property="article:tag" content="testing"/>
   <meta property="article:tag" content="dependency-injection"/>
   <meta property="article:tag" content="software-development"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/dependency_injection_2_cr_640px.jpg">
-
-    <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="https://www.safjan.com//images/head/dependency_injection_2_cr_640px.jpg">
+  <meta property="og:image" content="https://www.safjan.com//images/head/dependency_injection_2_cr_640px.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/dependency_injection_2_cr_640px.jpg"/>
+    <meta name="twitter:image:alt" content="Harnessing the Power of Dependency Injection for Improved Testability in Python"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code."/>
     <meta name="twitter:title" content="Harnessing the Power of Dependency Injection for Improved Testability in Python"/>
+    <meta name="twitter:description" content="Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/python-dependency-injection-for-the-testability/"
+  },
+  "headline": "Harnessing the Power of Dependency Injection for Improved Testability in Python",
+  "datePublished": "2023-06-21T00:00:00+02:00",
+  "dateModified": "2023-06-21T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/dependency_injection_2_cr_640px.jpg",  "url": "https://www.safjan.com/python-dependency-injection-for-the-testability/",
+  "description": "Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code."
+}
+</script>
 
-    <title>Harnessing the Power of Dependency Injection for Improved Testability in Python</title>
+    <title>    Harnessing the Power of Dependency Injection for Improved Testability in Python
+</title>
 
 
 
@@ -99,7 +126,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -110,7 +138,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -147,89 +175,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -245,6 +202,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -253,37 +216,41 @@
             <p>
                 <!-- Posted on: -->
                 2023-06-21 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Harnessing%20the%20Power%20of%20Dependency%20Injection%20for%20Improved%20Testability%20in%20Python&url=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/&via=izikeros&hashtags=machine-learning,python,testing,dependency-injection,software-development"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Harnessing%20the%20Power%20of%20Dependency%20Injection%20for%20Improved%20Testability%20in%20Python&u=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/&title=Harnessing%20the%20Power%20of%20Dependency%20Injection%20for%20Improved%20Testability%20in%20Python"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Harnessing%20the%20Power%20of%20Dependency%20Injection%20for%20Improved%20Testability%20in%20Python&url=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/&via=izikeros&hashtags=machine-learning,python,testing,dependency-injection,software-development" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Harnessing%20the%20Power%20of%20Dependency%20Injection%20for%20Improved%20Testability%20in%20Python&u=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/python-dependency-injection-for-the-testability/&title=Harnessing%20the%20Power%20of%20Dependency%20Injection%20for%20Improved%20Testability%20in%20Python" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="python-dependency-injection-for-the-testability">Harnessing the Power of Dependency Injection for Improved Testability in Python</h1>
             <div class="header-underline"></div>
-<p class="summary"><p>Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code.</p></p>                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                <p class="summary"><p>Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code.</p></p>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/python-dependency-injection-for-the-testability/">
-                        <img style="width: 100%"
-                             src="/images/head/dependency_injection_2_cr_640px.jpg"
-                             alt="">
+                        <img style="width: 100%; "
+                             src="/images/head/dependency_injection_2_cr_640px.jpg" alt="">
                     </a>
                 </div>
+
+
         </header>
-        <div><h2>Introduction</h2>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <h2 id="introduction">Introduction</h2>
 <p>In software development, testability is a crucial aspect that helps ensure the reliability and maintainability of our code. One effective technique for enhancing testability is dependency injection (DI). Dependency injection allows us to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code. In this blog post, we will explore various techniques, use cases, and lesser-known tricks for using dependency injection in Python.</p>
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
@@ -306,10 +273,10 @@
 <!-- /MarkdownTOC -->
 
 <p><a id="what-is-dependency-injection"></a></p>
-<h2>What is Dependency Injection?</h2>
+<h2 id="what-is-dependency-injection">What is Dependency Injection?</h2>
 <p>Dependency injection is a design pattern that allows us to inject dependencies into a class or function from external sources rather than creating them internally. By doing so, we reduce the coupling between components and make them more flexible, reusable, and testable.</p>
 <p><a id="benefits-of-dependency-injection"></a></p>
-<h2>Benefits of Dependency Injection</h2>
+<h2 id="benefits-of-dependency-injection">Benefits of Dependency Injection</h2>
 <ul>
 <li><strong>Improved testability</strong>: By injecting dependencies, we can easily replace them with mocks or stubs during testing, making our tests more isolated and focused.</li>
 <li><strong>Decoupled code</strong>: Dependency injection reduces the tight coupling between components, promoting better separation of concerns and modular design.</li>
@@ -317,9 +284,9 @@
 <li><strong>Easier maintenance</strong>: By externalizing dependencies, we can modify or extend their behavior without affecting the code that uses them.</li>
 </ul>
 <p><a id="techniques-for-dependency-injection"></a></p>
-<h2>Techniques for Dependency Injection</h2>
+<h2 id="techniques-for-dependency-injection">Techniques for Dependency Injection</h2>
 <p><a id="constructor-injection"></a></p>
-<h3>Constructor Injection</h3>
+<h3 id="constructor-injection">Constructor Injection</h3>
 <p>Constructor injection involves passing dependencies through a class's constructor. It ensures that the required dependencies are available before an object is created.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">UserService</span><span class="p">:</span>
@@ -331,7 +298,7 @@
 </code></pre></div>
 
 <p><a id="setter-injection"></a></p>
-<h3>Setter Injection</h3>
+<h3 id="setter-injection">Setter Injection</h3>
 <p>Setter injection involves setting the dependencies using setter methods. This technique allows for more flexibility, as dependencies can be changed or updated after object initialization.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">NotificationService</span><span class="p">:</span>
@@ -343,7 +310,7 @@
 </code></pre></div>
 
 <p><a id="interface-injection"></a></p>
-<h3>Interface Injection</h3>
+<h3 id="interface-injection">Interface Injection</h3>
 <p>Interface injection is a technique where a dependency is injected by providing an interface or an abstract base class. This allows for the injection of different implementations of the same interface, providing flexibility and extensibility.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
@@ -365,9 +332,9 @@
 </code></pre></div>
 
 <p><a id="use-cases-for-dependency-injection"></a></p>
-<h2>Use Cases for Dependency Injection</h2>
+<h2 id="use-cases-for-dependency-injection">Use Cases for Dependency Injection</h2>
 <p><a id="testing-legacy-code"></a></p>
-<h3>Testing Legacy Code</h3>
+<h3 id="testing-legacy-code">Testing Legacy Code</h3>
 <p>When working with legacy code that has tightly coupled dependencies, dependency injection can be used to introduce testability by replacing or mocking those dependencies during testing.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">legacy_function</span><span class="p">():</span>
@@ -385,7 +352,7 @@
 </code></pre></div>
 
 <p><a id="mocking-dependencies"></a></p>
-<h3>Mocking Dependencies</h3>
+<h3 id="mocking-dependencies">Mocking Dependencies</h3>
 <p>In unit testing, dependency injection allows us to replace real dependencies with mock objects, enabling us to focus on testing the behavior of the unit under test in isolation.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">UserService</span><span class="p">:</span>
@@ -403,7 +370,7 @@
 </code></pre></div>
 
 <p><a id="improving-code-reusability"></a></p>
-<h3>Improving Code Reusability</h3>
+<h3 id="improving-code-reusability">Improving Code Reusability</h3>
 <p>Dependency injection promotes code reusability by relying on abstractions rather than concrete implementations. This allows different implementations to be injected based on specific requirements.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PaymentGateway</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
@@ -426,7 +393,7 @@
 <li>Lesser-Known Techniques and Tricks:</li>
 </ol>
 <p><a id="parameter-injection"></a></p>
-<h3>Parameter Injection</h3>
+<h3 id="parameter-injection">Parameter Injection</h3>
 <p>In addition to constructor, setter, and interface injection, parameter injection is a technique where dependencies are passed directly as parameters to functions or methods. This can be useful in situations where direct injection is preferred over using class instances.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
@@ -439,7 +406,7 @@
 </code></pre></div>
 
 <p><a id="context-managers-and-dependency-injection"></a></p>
-<h3>Context Managers and Dependency Injection</h3>
+<h3 id="context-managers-and-dependency-injection">Context Managers and Dependency Injection</h3>
 <p>Context managers can be combined with dependency injection to provide resources or dependencies within a specific scope, ensuring their proper initialization and cleanup.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
@@ -456,7 +423,7 @@
 </code></pre></div>
 
 <p><a id="dependency-injection-containers"></a></p>
-<h3>Dependency Injection Containers</h3>
+<h3 id="dependency-injection-containers">Dependency Injection Containers</h3>
 <p>Dependency injection containers or frameworks provide a centralized way to manage dependencies, their configurations, and their lifetime. Popular Python DI frameworks include <code>injector</code>, <code>DInjector</code>, and <code>inject</code>.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">injector</span> <span class="kn">import</span> <span class="n">inject</span><span class="p">,</span> <span class="n">Injector</span>
@@ -472,13 +439,16 @@
 </code></pre></div>
 
 <p><a id="conclusion"></a></p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>Dependency injection is a powerful technique for improving testability, code modularity, and reusability in Python. By applying various injection techniques and exploring different use cases, you can design more robust and maintainable code. Additionally, the lesser-known tricks and techniques covered in this blog post can further enhance your understanding and application of dependency injection in various scenarios.</p>
-<p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p></div>
+<p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
+        </div>
+
+
+
+
             <div class="bibtex-note">
-                <p>
-                    <b>To cite this article:</b>
-                </p>
+                <p><b>To cite this article:</b></p>
                 <pre>@article{Saf2023Harnessing,
     author  = {Krystian Safjan},
     title   = {Harnessing the Power of Dependency Injection for Improved Testability in Python},
@@ -486,68 +456,74 @@
     year    = {2023},
 }</pre>
             </div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/machine-learning/">machine-learning</a><a href="https://www.safjan.com/tag/python/">python</a><a href="https://www.safjan.com/tag/testing/">testing</a><a href="https://www.safjan.com/tag/dependency-injection/">dependency-injection</a><a href="https://www.safjan.com/tag/software-development/">software-development</a>            </p>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/machine-learning/" class="article-tag">machine-learning</a>
+                <a href="https://www.safjan.com/tag/python/" class="article-tag">python</a>
+                <a href="https://www.safjan.com/tag/testing/" class="article-tag">testing</a>
+                <a href="https://www.safjan.com/tag/dependency-injection/" class="article-tag">dependency-injection</a>
+                <a href="https://www.safjan.com/tag/software-development/" class="article-tag">software-development</a>
         </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/">The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap Between Software Products and Customer Needs</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/">Techniques to Boost RAG Performance in Production</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/">Problems with Langchain and how to minimize their impact</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/">The Best Vector Databases for Storing Embeddings</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/the-role-and-responsibilities-of-a-forward-deployed-engineer/" class="related-post-card">
+                            <span class="related-post-title">The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap Between Software Products and Customer Needs</span>
+                            <span class="related-post-date">Jun 09, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" class="related-post-card">
+                            <span class="related-post-title">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</span>
+                            <span class="related-post-date">Aug 30, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/" class="related-post-card">
+                            <span class="related-post-title">Techniques to Boost RAG Performance in Production</span>
+                            <span class="related-post-date">Nov 01, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/" class="related-post-card">
+                            <span class="related-post-title">Problems with Langchain and how to minimize their impact</span>
+                            <span class="related-post-date">Sep 01, 2023</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>

@@ -3,6 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,17 +19,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
               rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
 
 
-
-        <link id="pygments-light-theme" rel="stylesheet" type="text/css"
-              href="https://www.safjan.com/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -45,22 +54,11 @@
 
 
 
-    <meta name="author" content="Krystian Safjan" />
-    <meta name="description" content="Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your codebase effectively and safely." />
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your codebase effectively and safely."/>
     <meta name="keywords" content="git, git-push, git-push-force, git-push-force-with-lease, version-control, collaboration, commit-history, rebasing, squashing, git-commands">
-    <meta expr:content="2022-11-22 00:00:00+01:00" itemprop='datePublished' />
-    <meta expr:content="2023-07-14 00:00:00+02:00" itemprop='dateModified' />
-    <meta property="article:modified_time" content="2023-07-14 00:00:00+02:00" />
-    <meta property="article:published_time" content="2022-11-22 00:00:00+01:00" />
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Understanding the Differences Between Git Push Force and Git Push Force-With-Lease",
-  "datePublished": "2022-11-22 00:00:00+01:00",
-  "dateModified": "2023-07-14 00:00:00+02:00"
-}
-    </script>
+
+
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Understanding the Differences Between Git Push Force and Git Push Force-With-Lease"/>
   <meta property="og:description" content="Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your codebase effectively and safely."/>
@@ -69,7 +67,7 @@
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2022-11-22 00:00:00+01:00"/>
   <meta property="article:modified_time" content="2023-07-14 00:00:00+02:00"/>
-  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/">
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="note"/>
   <meta property="article:tag" content="git"/>
   <meta property="article:tag" content="git-push"/>
@@ -81,19 +79,46 @@
   <meta property="article:tag" content="rebasing"/>
   <meta property="article:tag" content="squashing"/>
   <meta property="article:tag" content="git-commands"/>
-  <meta property="og:image" content="/images/profile_new.jpg">
-
+  <meta property="og:image" content="/images/profile_new.jpg"/>
     <meta name="twitter:card" content="summary"/>
-
-    <meta property="twitter:image" content="/images/profile_new.jpg">
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
 
 
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
-    <meta name="twitter:description" content="Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your codebase effectively and safely."/>
     <meta name="twitter:title" content="Understanding the Differences Between Git Push Force and Git Push Force-With-Lease"/>
+    <meta name="twitter:description" content="Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your codebase effectively and safely."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/"
+  },
+  "headline": "Understanding the Differences Between Git Push Force and Git Push Force-With-Lease",
+  "datePublished": "2022-11-22T00:00:00+01:00",
+  "dateModified": "2023-07-14T00:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/",
+  "description": "Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your..."
+}
+</script>
 
-    <title>Understanding the Differences Between Git Push Force and Git Push Force-With-Lease</title>
+    <title>    Understanding the Differences Between Git Push Force and Git Push Force-With-Lease
+</title>
 
 
 
@@ -104,7 +129,8 @@
 
 
 </head>
-<body class="light-theme">
+<body>
+<div id="reading-progress" class="reading-progress"></div>
 <aside>
     <div>
         <a href="https://www.safjan.com/">
@@ -115,7 +141,7 @@
             <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist | Researcher | Team Leader<br><br> working at Ernst &amp; Young and writing about <a href="/category/machine-learning.html">Data Science and Visualization</a>, on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> and <a href="/tag/nlp/">NLP</a>. There are also some <a href="/category/howto.html">howto</a> posts on tools and workflows.</p>
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
 
 
         <ul class="social">
@@ -152,89 +178,18 @@
         </ul>
     </div>
 
-<style>
-    .button {
-        background-color: yellow;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .left-col {
-    }
-
-    .right-col {
-    }
-
-    .image {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .book-list {
-        padding-top:0;
-        padding-bottom: 0;
-        text-align:left;
-        box-sizing: border-box;
-        display: block;
-        list-style-image: url(/images/shortcode-tick.webp);
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start:0;
-        margin-inline-end:0;
-        padding-inline-start:40px;
-    }
-
-    .book-list li {
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            grid-template-columns: 1fr;
-        }
-    }
-
-</style>
-<div class="container">
-    <div class="left-col">
-        <a href="https://ksafjanuser.gumroad.com/l/mlops">
-            <img src="/images/mlop_interview_book_cover_3D_300px.jpg" class="image" alt="Interview Book Cover">
-        </a>
-
-        <div class="center">
-            <a href="https://ksafjanuser.gumroad.com/l/mlops">
-                <button class="button">Get for $2.99</button>
-            </a>
-        </div>
-    </div>
-    <div class="right-col">
-        <div>
-            <ul class="book-list">
-                <li>PDF, ePUB, mobi format ebook, no DRM</li>
-                <li>50 questions and answers</li>
-                <li>Stories from real projects</li>
-                <li>92 multiple choice quiz questions</li>
-                <li>80 pages</li>
-            </ul>
-        </div>
-    </div>
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
 </div>
 </aside>
 <main>
@@ -250,6 +205,12 @@
                 <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
 
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
 
     <article class="single">
@@ -258,30 +219,34 @@
             <p>
                 <!-- Posted on: -->
                 2022-11-22 
-                    <span id="post-share-links">
-                        &nbsp;&nbsp;&nbsp;Share on:
-                        <a href="https://twitter.com/intent/tweet?text=Understanding%20the%20Differences%20Between%20Git%20Push%20Force%20and%20Git%20Push%20Force-With-Lease&url=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/&via=izikeros&hashtags=git,git-push,git-push-force,git-push-force-with-lease,version-control,collaboration,commit-history,rebasing,squashing,git-commands"
-                           target="_blank"
-                           title="Share on Twitter">Twitter</a>
-                        |
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/"
-                           target="_blank"
-                           title="Share on Facebook">Facebook</a>
-                        |
-                        <a href="https://news.ycombinator.com/submitlink?t=Understanding%20the%20Differences%20Between%20Git%20Push%20Force%20and%20Git%20Push%20Force-With-Lease&u=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/"
-                           target="_blank"
-                           title="Share on HackerNews">HackerNews</a>
-                        |
-                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/&title=Understanding%20the%20Differences%20Between%20Git%20Push%20Force%20and%20Git%20Push%20Force-With-Lease"
-                           target="_blank"
-                           title="Share via Reddit">Reddit</a>
+
+
+                    <span class="share-icons">
+                        <a href="https://twitter.com/intent/tweet?text=Understanding%20the%20Differences%20Between%20Git%20Push%20Force%20and%20Git%20Push%20Force-With-Lease&url=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/&via=izikeros&hashtags=git,git-push,git-push-force,git-push-force-with-lease,version-control,collaboration,commit-history,rebasing,squashing,git-commands" target="_blank" title="Share on Twitter" class="share-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/" target="_blank" title="Share on Facebook" class="share-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://news.ycombinator.com/submitlink?t=Understanding%20the%20Differences%20Between%20Git%20Push%20Force%20and%20Git%20Push%20Force-With-Lease&u=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/" target="_blank" title="Share on Hacker News" class="share-icon"><i class="fab fa-hacker-news"></i></a>
+                        <a href="https://www.reddit.com/submit?url=https%3A//www.safjan.com/understanding-the-differences-between-git-push-force-and-git-push-force-with-lease/&title=Understanding%20the%20Differences%20Between%20Git%20Push%20Force%20and%20Git%20Push%20Force-With-Lease" target="_blank" title="Share on Reddit" class="share-icon"><i class="fab fa-reddit"></i></a>
                     </span>
-                <br />
+                <br/>
             </p>
             <h1 id="understanding-the-differences-between-git-push-force-and-git-push-force-with-lease">Understanding the Differences Between Git Push Force and Git Push Force-With-Lease</h1>
             <div class="header-underline"></div>
+
+
+
         </header>
-        <div><p>In the world of version control, Git is a powerful and widely-used tool for managing and tracking changes in your codebase. It allows multiple developers to work on the same project simultaneously, without conflicts. But when it comes to pushing changes to a remote repository, you might encounter some challenges. In this article, we will explore two Git commands that can help you overcome these challenges: <code>git push --force</code> and <code>git push --force-with-lease</code>. We will discuss their differences, common use cases, and lesser-known but super useful aspects of each.</p>
+
+
+
+        <details class="toc-details" id="toc-container">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
+
+        <div class="article-content">
+            <p>In the world of version control, Git is a powerful and widely-used tool for managing and tracking changes in your codebase. It allows multiple developers to work on the same project simultaneously, without conflicts. But when it comes to pushing changes to a remote repository, you might encounter some challenges. In this article, we will explore two Git commands that can help you overcome these challenges: <code>git push --force</code> and <code>git push --force-with-lease</code>. We will discuss their differences, common use cases, and lesser-known but super useful aspects of each.</p>
 <!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
 
 <ul>
@@ -314,49 +279,49 @@
 <!-- /MarkdownTOC -->
 
 <p><a id="git-push-force"></a></p>
-<h2>Git Push Force</h2>
+<h2 id="git-push-force">Git Push Force</h2>
 <p><a href="https://git-scm.com/docs/git-push#Documentation/git-push.txt---force"><code>git push --force</code></a> is a command that allows you to overwrite the remote branch with your local branch, regardless of any conflicts or discrepancies between the two branches. This is a powerful command that should be used with caution, as it can result in lost commits and overwritten work.</p>
 <p><a id="use-cases"></a></p>
-<h3>Use Cases</h3>
+<h3 id="use-cases">Use Cases</h3>
 <p><a id="undoing-a-mistaken-push"></a></p>
-<h4>Undoing a mistaken push</h4>
+<h4 id="undoing-a-mistaken-push">Undoing a mistaken push</h4>
 <p>If you accidentally pushed a commit with incorrect changes or to the wrong branch, you can use <code>git push --force</code> to overwrite the remote branch with the correct local branch.</p>
 <p><a id="cleaning-up-messy-commit-history"></a></p>
-<h4>Cleaning up messy commit history</h4>
+<h4 id="cleaning-up-messy-commit-history">Cleaning up messy commit history</h4>
 <p>If you want to clean up a cluttered commit history by squashing or rewriting commits, you can use <code>git push --force</code> to push the updated history to the remote branch.</p>
 <p><a id="updating-a-feature-branch"></a></p>
-<h4>Updating a feature branch</h4>
+<h4 id="updating-a-feature-branch">Updating a feature branch</h4>
 <p>If you have a feature branch that has diverged significantly from the main branch, and you want to update it with the latest changes from the main branch, you can use <code>git push --force</code> to push the updated feature branch to the remote repository.</p>
 <p><a id="git-push-force-with-lease"></a></p>
-<h2>Git Push Force-With-Lease</h2>
+<h2 id="git-push-force-with-lease">Git Push Force-With-Lease</h2>
 <p><a href="https://git-scm.com/docs/git-push#Documentation/git-push.txt---no-force-with-lease"><code>git push --force-with-lease</code></a> is a safer alternative to <code>git push --force</code>. It allows you to push changes to the remote branch only if the remote branch is at the same commit as the one you have locally. If the remote branch has been updated by someone else, the push will be rejected, preventing accidental overwrites.
 <a id="use-cases-1"></a></p>
-<h3>Use Cases</h3>
+<h3 id="use-cases_1">Use Cases</h3>
 <p><a id="collaborative-work"></a></p>
-<h4>Collaborative work</h4>
+<h4 id="collaborative-work">Collaborative work</h4>
 <p>When working with a team, using <code>git push --force-with-lease</code> helps ensure that you do not accidentally overwrite someone else's work.</p>
 <p><a id="rebasing-or-squashing-commits"></a></p>
-<h4>Rebasing or squashing commits</h4>
+<h4 id="rebasing-or-squashing-commits">Rebasing or squashing commits</h4>
 <p>If you need to rebase or squash commits, using <code>git push --force-with-lease</code> is a safer option, as it ensures that you are not overwriting any new commits.</p>
 <p><a id="updating-a-feature-branch-1"></a></p>
-<h4>Updating a feature branch</h4>
+<h4 id="updating-a-feature-branch_1">Updating a feature branch</h4>
 <p>Similar to <code>git push --force</code>, you can use <code>git push --force-with-lease</code> to update a feature branch with the latest changes from the main branch. However, it is a safer option, as it ensures that you are not overwriting any new commits on the remote branch.</p>
 <p><a id="lesser-known-useful-features"></a></p>
-<h3>Lesser-Known Useful Features</h3>
+<h3 id="lesser-known-useful-features">Lesser-Known Useful Features</h3>
 <p><a id="lease-reference"></a></p>
-<h4>Lease reference</h4>
+<h4 id="lease-reference">Lease reference</h4>
 <p><code>git push --force-with-lease</code> accepts an optional argument, the lease reference, which allows you to specify the expected commit of the remote branch. This adds an extra layer of safety by ensuring that the remote branch is at the exact commit you expect before pushing.</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="o">=</span>origin/main:&lt;expected-commit&gt;
 </code></pre></div>
 
 <p><a id="dry-run"></a></p>
-<h4>Dry run</h4>
+<h4 id="dry-run">Dry run</h4>
 <p>By adding the <code>--dry-run</code> option, you can check if the push would succeed without actually pushing the changes. This can help you avoid potential conflicts and overwrites.</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>--dry-run
 </code></pre></div>
 
 <p><a id="comparing-git-push-force-and-git-push-force-with-lease"></a></p>
-<h2>Comparing Git Push Force and Git Push Force-With-Lease</h2>
+<h2 id="comparing-git-push-force-and-git-push-force-with-lease">Comparing Git Push Force and Git Push Force-With-Lease</h2>
 <table>
 <thead>
 <tr>
@@ -382,70 +347,84 @@
 </tbody>
 </table>
 <p><a id="related-reading"></a></p>
-<h2>Related reading</h2>
-<p>Proper way to do git push force: <a href="https://willi.am/blog/2014/08/12/the-dark-side-of-the-force-push/">The Dark Side of the Force Push - Will Anderson</a></p></div>
-        <div class="tag-cloud">
-            <p>
-                    <br />
-                    <br />
-                    Tags:&nbsp;
-<a href="https://www.safjan.com/tag/git/">git</a><a href="https://www.safjan.com/tag/git-push/">git-push</a><a href="https://www.safjan.com/tag/git-push-force/">git-push-force</a><a href="https://www.safjan.com/tag/git-push-force-with-lease/">git-push-force-with-lease</a><a href="https://www.safjan.com/tag/version-control/">version-control</a><a href="https://www.safjan.com/tag/collaboration/">collaboration</a><a href="https://www.safjan.com/tag/commit-history/">commit-history</a><a href="https://www.safjan.com/tag/rebasing/">rebasing</a><a href="https://www.safjan.com/tag/squashing/">squashing</a><a href="https://www.safjan.com/tag/git-commands/">git-commands</a>            </p>
+<h2 id="related-reading">Related reading</h2>
+<p>Proper way to do git push force: <a href="https://willi.am/blog/2014/08/12/the-dark-side-of-the-force-push/">The Dark Side of the Force Push - Will Anderson</a></p>
         </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/git/" class="article-tag">git</a>
+                <a href="https://www.safjan.com/tag/git-push/" class="article-tag">git-push</a>
+                <a href="https://www.safjan.com/tag/git-push-force/" class="article-tag">git-push-force</a>
+                <a href="https://www.safjan.com/tag/git-push-force-with-lease/" class="article-tag">git-push-force-with-lease</a>
+                <a href="https://www.safjan.com/tag/version-control/" class="article-tag">version-control</a>
+                <a href="https://www.safjan.com/tag/collaboration/" class="article-tag">collaboration</a>
+                <a href="https://www.safjan.com/tag/commit-history/" class="article-tag">commit-history</a>
+                <a href="https://www.safjan.com/tag/rebasing/" class="article-tag">rebasing</a>
+                <a href="https://www.safjan.com/tag/squashing/" class="article-tag">squashing</a>
+                <a href="https://www.safjan.com/tag/git-commands/" class="article-tag">git-commands</a>
+        </div>
+
+
+
+
+
             <div class="related-posts">
-                <h4>You might enjoy</h4>
-                <ul class="related-posts">
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-worktrees-for-ai-coding/">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/">Keeping performance results in a separate Git branch using `git checkout --orphan`</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/">GitHub - Troubleshooting 'Permission to repo.git denied to user'</a>
-                        </li>
-                        <li>
-                            <a href="https://www.safjan.com/python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it/">In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?</a>
-                        </li>
-                </ul>
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/git-worktrees-ai-multi-workflows/" class="related-post-card">
+                            <span class="related-post-title">Working Faster with Git Worktrees and AI-Based Multi-Workflow Development</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-worktrees-for-ai-coding/" class="related-post-card">
+                            <span class="related-post-title">Using Git Worktrees as Clean Rooms for AI-Assisted Coding</span>
+                            <span class="related-post-date">Nov 28, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/git-checkout-orphan-gh-pages-performance-results/" class="related-post-card">
+                            <span class="related-post-title">Keeping performance results in a separate Git branch using `git checkout --orphan`</span>
+                            <span class="related-post-date">Oct 24, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/github-permission-to-repogit-denied-to-user/" class="related-post-card">
+                            <span class="related-post-title">GitHub - Troubleshooting 'Permission to repo.git denied to user'</span>
+                            <span class="related-post-date">Mar 21, 2024</span>
+                        </a>
+                </div>
             </div>
+
+
+
+
     </article>
 
     <footer>
 <p>
-  &copy; 2025 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
-</p>
-<p>
-Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
-</p><p>
-  <a rel="license"
-     href="http://creativecommons.org/licenses/by-sa/4.0/"
-     target="_blank">
-    <img alt="Creative Commons License"
-         title="Creative Commons License"
-         style="border-width:0"
-           src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
-         width="80"
-         height="15"/>
-  </a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
-
-
-
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Krystian Safjan's Blog ",
-  "url" : "https://www.safjan.com",
-  "image": "/images/profile_new.jpg",
-  "description": ""
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
 }
 </script>
 
+
+<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 </body>
 </html>
