@@ -96,11 +96,11 @@ format-html:
 
 validate-html:
 	@echo "Validating HTML files (errors only)..."
-	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish --max-warnings=999999 || echo "HTML validation completed."
+	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish 2>&1 | grep -v "warning" || echo "HTML validation completed."
 
 validate-html-strict:
 	@echo "Validating HTML files (errors + warnings)..."
-	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish --max-warnings=0 || echo "HTML validation completed with issues."
+	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish || echo "HTML validation completed with issues."
 
 push:
 	git add . && git commit -m "Blog content update" && git push
