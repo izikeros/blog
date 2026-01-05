@@ -44,47 +44,28 @@ else:
     GOOGLE_ANALYTICS = "G-RM2PKDCCYM"
 
 # =============================================================================
-# THEME CONFIGURATION
+# THEME CONFIGURATION (Flex theme)
 # =============================================================================
 
-MY_THEME = "flex"  # Options: flex | safi
+THEME = "pelican-themes/Flex"
 
-THEME_CONFIG = {
-    "flex": {
-        "path": "pelican-themes/Flex",
-        "theme_color_enable_user_override": True,
-        "custom_css": "styles/custom.css",
-    },
-    "safi": {
-        "path": "pelican-themes/safi_theme",
-        "search_enabled": True,
-        "dark_mode": True,
-    },
-}
+# Site branding
+SITELOGO = "/images/profile_new.jpg"
+SITESUBTITLE = (
+    "Data Scientist | Researcher | Team Leader<br><br> working at "
+    "Ernst &amp; Young and writing about <a "
+    'href="/category/machine-learning.html">Data Science and Visualization</a>, '
+    'on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> '
+    'and <a href="/tag/nlp/">NLP</a>. There are also some '
+    '<a href="/category/howto.html">howto</a> posts on tools and workflows.'
+)
 
-THEME = THEME_CONFIG[MY_THEME]["path"]
-
-# Theme-specific settings for Flex
-if MY_THEME == "flex":
-    SITELOGO = "/images/profile_new.jpg"
-    SITESUBTITLE = (
-        "Data Scientist | Researcher | Team Leader<br><br> working at "
-        "Ernst &amp; Young and writing about <a "
-        'href="/category/machine-learning.html">Data Science and Visualization</a>, '
-        'on <a href="/category/machine-learning.html">Machine Learning, Deep Learning</a> '
-        'and <a href="/tag/nlp/">NLP</a>. There are also some '
-        '<a href="/category/howto.html">howto</a> posts on tools and workflows.'
-    )
-    DISPLAY_DATE_AFTER_TITLE = False
-    DISPLAY_DATE_BEFORE_TITLE = True
-    PROMO_BOX = True
-    CUSTOM_CSS = THEME_CONFIG["flex"]["custom_css"]
-    THEME_COLOR_ENABLE_USER_OVERRIDE = THEME_CONFIG["flex"]["theme_color_enable_user_override"]
-
-# Theme-specific settings for Safi
-elif MY_THEME == "safi":
-    SAFI_SEARCH_ENABLED = THEME_CONFIG["safi"]["search_enabled"]
-    SAFI_DARK_MODE = THEME_CONFIG["safi"]["dark_mode"]
+# Theme display options
+DISPLAY_DATE_AFTER_TITLE = False
+DISPLAY_DATE_BEFORE_TITLE = True
+PROMO_BOX = True  # Show promotional content box in sidebar
+CUSTOM_CSS = "styles/custom.css"
+THEME_COLOR_ENABLE_USER_OVERRIDE = True  # Allow dark/light mode toggle
 
 # =============================================================================
 # CONTENT AND LAYOUT
