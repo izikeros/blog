@@ -100,7 +100,7 @@ Feature selection is a technique used to select the most relevant features for a
 
 ## Advanced methods for avoiding overfitting
 
-<a id="stacking"></a>
+<a></a>
 
 <a id="adversarial-validation"></a>
 

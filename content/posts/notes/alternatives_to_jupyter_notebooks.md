@@ -125,7 +125,7 @@ Marimo's inspiration draws from a collective desire to reinvent Python notebooks
 
 [MATLAB Live Editor](https://www.mathworks.com/products/matlab/live-editor.html) is an interactive development environment for MATLAB that allows for the creation of live scripts. It provides a variety of tools for data analysis, visualization, and modeling.
 
-<a id="rstudio"></a>
+<a></a>
 
 ## RStudio
 

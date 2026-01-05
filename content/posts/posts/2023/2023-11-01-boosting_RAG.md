@@ -62,7 +62,7 @@ Similarly, the [HyDE](http://boston.lti.cs.cmu.edu/luyug/HyDE/HyDE.pdf) strategy
 
 Another technique involves breaking down complex queries into sub-queries, a process that LLMs tend to handle better. This approach can be integrated into the RAG system to decompose a query into multiple simpler questions.
 
-<a id="query-compression"></a>
+<a></a>
 
 ## Query Compression
 

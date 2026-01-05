@@ -64,8 +64,8 @@ The `<datalist>` element permits the creation of pre-defined options for an `<in
 ```
 
 <label for="browsers">Choose a browser from the list:</label>
-<input list="browsers" name="browser" id="browser">
-<datalist id="browsers">
+<input list="browsers" name="browser">
+<datalist>
   <option value="Chrome">
   <option value="Firefox">
   <option value="Internet Explorer">
@@ -106,8 +106,8 @@ The `<output>` tag is a container for calculation results. To link the output el
 ```
 
 <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
-  0<input type="range" id="a" value="50">100 +
-  0<input type="range" id="b" value="50">100 =
+  0<input type="range" value="50">100 +
+  0<input type="range" value="50">100 =
   <output name="x" for="a b"></output>
 </form>
 
@@ -128,7 +128,7 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "#FF0000";
 ctx.fillRect(0, 0, 80, 80);
 ```
-<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+<canvas width="200" height="100" style="border:1px solid #000000;">
 </canvas>
 <script>
 var c = document.getElementById("myCanvas");
