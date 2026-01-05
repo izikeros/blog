@@ -262,6 +262,7 @@ PLUGIN_PATHS = ["./pelican-plugins"]
 PLUGINS = [
     "exclude_category",
     "yaml_metadata",
+    "seo_leo_enhancer",
 ]
 
 # Other plugins (uncomment as needed):
