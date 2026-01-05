@@ -4,6 +4,8 @@ Date: 2023-01-13
 Modified: 2023-07-12
 Slug: 10-scikit-learn-exercises-for-aspiring-data-scientists
 Status: published
+Summary: Learn to apply key machine learning techniques such as linear regression, decision trees, k-means clustering, and SVMs through practical exercises using the Scikit-Learn library on popular datasets like Boston Housing, Iris, and MNIST.
+ai_summary: true
 Tags:
   - scikit-learn-exercises
   - data-science
@@ -28,7 +30,6 @@ Tags:
 Title: 10 Scikit-Learn Exercises for Aspiring Data Scientists
 citation_needed: false
 ---
-
 Here are ideas for 10 scikit-learn exercises for aspiring Data Scientists:
 
 1. Build a linear regression model to predict housing prices using the [Boston Housing dataset](https://www.kaggle.com/c/boston-housing). Relevant scikit-learn tools: [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)

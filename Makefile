@@ -45,6 +45,7 @@ help:
 	@echo '   make validate-html-strict           validate HTML (errors + warnings)  '
 	@echo '   make fix-duplicate-ids              remove duplicate HTML IDs from md  '
 	@echo '   make remove-anchor-ids              remove <a id> anchors from md      '
+	@echo '   make generate-summaries             generate missing summaries (Ollama)'
 	@echo '                                                                          '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
@@ -112,7 +113,11 @@ remove-anchor-ids:
 	@echo "Removing <a id> anchor elements from markdown files..."
 	@$(PY) scripts/remove_anchor_ids.py "$(INPUTDIR)/posts"
 
+generate-summaries:
+	@echo "Generating missing article summaries with Ollama..."
+	@$(PY) scripts/generate_summaries.py "$(INPUTDIR)/posts"
+
 push:
 	git add . && git commit -m "Blog content update" && git push
 
-.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html validate-html-strict fix-duplicate-ids remove-anchor-ids
+.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html validate-html-strict fix-duplicate-ids remove-anchor-ids generate-summaries
