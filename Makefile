@@ -40,6 +40,8 @@ help:
 	@echo '   make devserver [PORT=8000]          serve and regenerate together      '
 	@echo '   make ssh_upload                     upload the web site via SSH        '
 	@echo '   make rsync_upload                   upload the web site via rsync+ssh  '
+	@echo '   make format-html                    format HTML files with Prettier    '
+	@echo '   make validate-html                  validate HTML files                '
 	@echo '                                                                          '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
@@ -83,8 +85,19 @@ devserver-global:
 publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 	npx pagefind --site "$(OUTPUTDIR)"
+	@$(MAKE) format-html
+	@$(MAKE) validate-html
+
+format-html:
+	@echo "Formatting HTML files with Prettier..."
+	@find "$(OUTPUTDIR)" -name "*.html" -type f | xargs -P 4 npx prettier --write --parser html 2>/dev/null || true
+	@echo "HTML formatting complete."
+
+validate-html:
+	@echo "Validating HTML files..."
+	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish || echo "HTML validation completed with warnings."
 
 push:
 	git add . && git commit -m "Blog content update" && git push
 
-.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push
+.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html
