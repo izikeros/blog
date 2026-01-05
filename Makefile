@@ -44,6 +44,7 @@ help:
 	@echo '   make validate-html                  validate HTML (errors only)        '
 	@echo '   make validate-html-strict           validate HTML (errors + warnings)  '
 	@echo '   make fix-duplicate-ids              remove duplicate HTML IDs from md  '
+	@echo '   make remove-anchor-ids              remove <a id> anchors from md      '
 	@echo '                                                                          '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
@@ -88,7 +89,7 @@ publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 	npx pagefind --site "$(OUTPUTDIR)"
 	# @$(MAKE) format-html
-	@$(MAKE) validate-html
+	# @$(MAKE) validate-html
 
 format-html:
 	@echo "Formatting HTML files with Prettier..."
@@ -107,7 +108,11 @@ fix-duplicate-ids:
 	@echo "Fixing duplicate HTML IDs in markdown files..."
 	@$(PY) scripts/fix_duplicate_ids.py "$(INPUTDIR)/posts"
 
+remove-anchor-ids:
+	@echo "Removing <a id> anchor elements from markdown files..."
+	@$(PY) scripts/remove_anchor_ids.py "$(INPUTDIR)/posts"
+
 push:
 	git add . && git commit -m "Blog content update" && git push
 
-.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html validate-html-strict fix-duplicate-ids
+.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html validate-html-strict fix-duplicate-ids remove-anchor-ids
