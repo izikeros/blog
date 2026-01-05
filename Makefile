@@ -41,7 +41,8 @@ help:
 	@echo '   make ssh_upload                     upload the web site via SSH        '
 	@echo '   make rsync_upload                   upload the web site via rsync+ssh  '
 	@echo '   make format-html                    format HTML files with Prettier    '
-	@echo '   make validate-html                  validate HTML files                '
+	@echo '   make validate-html                  validate HTML (errors only)        '
+	@echo '   make validate-html-strict           validate HTML (errors + warnings)  '
 	@echo '                                                                          '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
@@ -85,7 +86,7 @@ devserver-global:
 publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 	npx pagefind --site "$(OUTPUTDIR)"
-	@$(MAKE) format-html
+	# @$(MAKE) format-html
 	@$(MAKE) validate-html
 
 format-html:
@@ -94,10 +95,14 @@ format-html:
 	@echo "HTML formatting complete."
 
 validate-html:
-	@echo "Validating HTML files..."
-	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish || echo "HTML validation completed with warnings."
+	@echo "Validating HTML files (errors only)..."
+	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish --max-warnings=999999 || echo "HTML validation completed."
+
+validate-html-strict:
+	@echo "Validating HTML files (errors + warnings)..."
+	@npx html-validate "$(OUTPUTDIR)/**/*.html" --formatter stylish --max-warnings=0 || echo "HTML validation completed with issues."
 
 push:
 	git add . && git commit -m "Blog content update" && git push
 
-.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html
+.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html validate-html-strict
