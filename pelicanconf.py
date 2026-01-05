@@ -99,7 +99,7 @@ SHOW_ARTICLE_AUTHOR = False
 SHOW_ARTICLE_CATEGORY = False
 SHOW_DATE_MODIFIED = False
 DATE_FOR_ARTICLE_GROUPS = False
-ENABLE_TOC = True  # Enable/disable Table of Contents generation
+ENABLE_TOC = False  # Enable/disable Table of Contents generation
 
 # Pagination and summaries
 # DEFAULT_PAGINATION controls Pelican's internal pagination (set to match filtered page count)
@@ -263,7 +263,15 @@ PLUGINS = [
     "exclude_category",
     "yaml_metadata",
     "seo_leo_enhancer",
+    "feed_utm",
 ]
+
+# UTM parameters for RSS/Atom feed links (for Google Analytics tracking)
+FEED_UTM_PARAMS = {
+    'utm_source': 'rss',
+    'utm_medium': 'feed',
+    'utm_campaign': 'safjan-blog'
+}
 
 # Other plugins (uncomment as needed):
 # "featured_image", "render_math", "neighbors", "related_posts",
