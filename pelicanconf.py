@@ -332,6 +332,7 @@ PLUGINS = [
     "yaml_metadata",      # Parse YAML frontmatter in markdown files
     "seo_leo_enhancer",   # Extract TL;DR, FAQ, HowTo from content markers
     "feed_utm",           # Add UTM tracking params to RSS/Atom feeds
+    "obsidian",           # Obsidian wiki-links and hashtag support
 ]
 
 # Additional plugins (uncomment to enable):
@@ -341,7 +342,6 @@ PLUGINS = [
 #     "neighbors",         # Previous/next article links
 #     "related_posts",     # Related articles suggestions
 #     "sitemap",           # Generate sitemap.xml
-#     "pelican_obsidian",  # Obsidian wiki-link support
 #     "pelican_jupyter",   # Enhanced Jupyter notebook support
 # ]
 
