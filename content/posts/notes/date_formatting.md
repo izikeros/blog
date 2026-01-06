@@ -11,7 +11,7 @@ tags:
 ---
 up::[[MOC_Python]]
 
-# Date formatting
+## Date formatting
 
 These are the most common formatting characters for the date command:
 

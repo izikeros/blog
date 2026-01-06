@@ -18,6 +18,15 @@ prompt: Give me long, markdown blog-post text on how to do deep learning in NIM 
 up::[[MOC_AI]]
 X::[[nim]]
 
+- [[#What is NIM?|What is NIM?]]
+- [[#Deep Learning in NIM|Deep Learning in NIM]]
+- [[#Deep Learning Libraries in NIM|Deep Learning Libraries in NIM]]
+	- [[#Deep Learning Libraries in NIM#SciNim|SciNim]]
+	- [[#Deep Learning Libraries in NIM#Arraymancer|Arraymancer]]
+	- [[#Deep Learning Libraries in NIM#Flambleau|Flambleau]]
+- [[#Links|Links]]
+
+
 NIM is a statically typed, efficient language that, despite being less popular than Python or Java, has a unique set of characteristics making it ideal for specific use-cases. One of these involves implementing deep learning algorithms. This blog post will guide you through the process of getting started with deep learning in NIM and will explore some existing libraries such as SciNim, Arraymancer, and Flambleau.
 
 ## What is NIM?
