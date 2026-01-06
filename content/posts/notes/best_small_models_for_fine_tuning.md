@@ -1,16 +1,18 @@
 ---
-Title: Best Small Models for Fine Tuning
-Slug: best-small-models-for-fine-tuning
+Category: note
 Date: 2024-07-03
 Modified: 2024-08-01
+Slug: best-small-models-for-fine-tuning
 Status: published
+Summary: Learn about the top small models for fine-tuning, including rankings and insights from a webinar on optimizing open-source large language models to rival GPT-4.
+ai_summary: true
+Title: Best Small Models for Fine Tuning
 tags:
   - predibase
   - evaluation
   - llm
   - slm
   - small-language-models
-Category: note
 ---
 X:[[fine_tune_small_language_models_LLM_SLM__broken]]
 X::[[RAG_evaluation]]

@@ -2,8 +2,10 @@
 Category: note
 Date: 2023-07-10
 Modified: 2023-07-12
-Slug: Boosting Productivity and Automation with AppleScript on macOS
+Slug: boosting-productivity-and-automation-with-applescript-on-macos
 Status: published
+Summary: Learn how to boost productivity and automate tasks on macOS using AppleScript, covering its basic commands, cool tricks, and alternatives like Automator and Hammerspoon.
+ai_summary: true
 Tags:
   - macos
   - automation
@@ -12,7 +14,6 @@ Tags:
   - applescript
 Title: Boosting Productivity and Automation With AppleScript on macOS
 ---
-
 ## Introduction
 
 In today's fast-paced digital world, maximizing productivity and finding ways to automate tasks are essential skills. macOS provides a powerful tool called AppleScript, which allows users to write scripts and automate various processes. In this blog post, we will explore the capabilities of AppleScript, discuss cool tricks, and highlight its alternatives.
@@ -37,8 +38,6 @@ In today's fast-paced digital world, maximizing productivity and finding ways to
 - [References](#references)
 
 <!-- /MarkdownTOC -->
-
-<a id="getting-started-with-applescript"></a>
 
 ### Getting Started with AppleScript
 
@@ -79,11 +78,7 @@ Restart without asking for confirmation:
 $ osascript -e 'tell app "System Events" to restart'
 ```
 
-<a id="increasing-productivity-with-applescript"></a>
-
 ### Increasing Productivity with AppleScript
-
-<a id="customized-workflow"></a>
 
 #### Customized Workflow
 
@@ -105,8 +100,6 @@ end tell
 
 > This script allows you to select a source folder and a destination folder. It moves all files from the source folder to the destination folder, simplifying your file organization process.
 
-<a id="application-control"></a>
-
 #### Application Control
 
 With AppleScript, you can interact with various macOS applications. You could automate tasks like sending emails, creating documents, or extracting data from spreadsheets, helping streamline your workflow.
@@ -124,8 +117,6 @@ end tell
 ```
 
 > This script automates the process of creating a new email in Apple Mail. It sets the subject and content of the email and adds a recipient, ready for you to send your message swiftly.
-
-<a id="system-automation"></a>
 
 #### System Automation
 
@@ -152,11 +143,7 @@ tell application "System Preferences" to quit
 
 > This script opens the Display preferences in System Preferences, adjusts the brightness slider to the desired level, and then closes System Preferences. This allows you to quickly customize your display brightness without navigating through menus.
 
-<a id="cool-tricks-with-applescript"></a>
-
 ### Cool Tricks with AppleScript
-
-<a id="displaying-notifications"></a>
 
 #### Displaying Notifications
 
@@ -169,8 +156,6 @@ display notification "Don't forget to submit the report by 5 PM!" with title "Ta
 ```
 
 > This script displays a notification with a reminder for an important task deadline. You can set up similar notifications for time-sensitive activities to keep you on track.
-
-<a id="text-manipulation"></a>
 
 #### Text Manipulation
 
@@ -202,8 +187,6 @@ end replaceTextInString
 
 > This script prompts you to select a folder and replaces all occurrences of "oldText" with "newText" in the contents of every file within that folder. This can be useful for batch text replacements across multiple documents.
 
-<a id="gui-automation"></a>
-
 #### GUI Automation
 
 AppleScript can simulate user interactions with graphical user interfaces (GUI). You can automate tasks that involve clicking buttons, selecting options from menus, or filling out forms in applications, saving you from repetitive manual operations.
@@ -228,33 +211,23 @@ end tell
 ```
 
 > This script automates the process of opening a specific website in Safari, entering a username, password, and submitting the login form. You can adapt this script to automate various web-based actions.
-<a id="alternatives-to-applescript"></a>
-
 ### Alternatives to AppleScript
 
 While AppleScript is a robust tool, other alternatives can also help achieve automation and productivity on macOS:
-
-<a id="automator"></a>
 
 #### Automator
 
 ![automator logo](https://help.apple.com/assets/61E87B255FBFB2628709732E/61E87B275FBFB26287097336/en_GB/573f95d708cbb258343f5c78cc439bcb.png)
 [Automator](https://support.apple.com/en-gb/guide/automator/welcome/mac) is a visual automation tool built into macOS. It provides a drag-and-drop interface to create workflows without writing code. Automator supports a wide range of actions and can be an excellent choice for users who prefer a more intuitive approach.
-<a id="hammerspoon"></a>
-
 #### Hammerspoon
 
 ![Hammerspoon logo](https://www.hammerspoon.org/images/hammerspoon.png)
 [Hammerspoon](https://www.hammerspoon.org/) is a powerful automation tool that uses the Lua scripting language. It offers extensive customization and control over macOS, allowing users to create complex workflows and automation routines.
 
-<a id="keyboard-maestro"></a>
-
 #### Keyboard Maestro
 
 ![Keyboard Maestro logo](https://www.keyboardmaestro.com/img/keyboardmaestro-64.png)
 [Keyboard Maestro](https://www.keyboardmaestro.com/main/) is a comprehensive automation tool that focuses on keyboard and mouse automation. It provides a user-friendly interface to create macros, trigger actions based on specific events, and automate repetitive tasks efficiently.
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

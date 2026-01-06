@@ -4,6 +4,8 @@ Date: 2023-02-18
 Modified: 2023-07-12
 Slug: black-change-max-line-length
 Status: published
+Summary: Learn how to adjust the maximum line length for Black, a popular Python code formatter, to maintain consistent and readable code standards in your projects.
+ai_summary: true
 Tags:
   - black-formatter
   - code-formatting

@@ -2,14 +2,16 @@
 Category: note
 Date: 2023-01-25
 Modified: 2023-07-12
-Prompt: What are the usual but still possible usages of databricks? Give me examples.
 Slug: databricks-potential-usages
 Status: published
+Summary: Learn how Databricks can be used for data engineering, machine learning, real-time stream processing, data analysis, business intelligence, and production deployment.
+ai_summary: true
 Tags:
   - machine-learning
   - data-engineering
   - databricks
 Title: Databricks Potential Usages
+Prompt: What are the usual but still possible usages of databricks? Give me examples.
 ---
 Databricks is a cloud-based platform for big data processing and analytics. Here are some common use cases:
 

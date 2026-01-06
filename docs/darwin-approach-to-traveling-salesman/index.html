@@ -111,9 +111,58 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "https://www.safjan.com//images/head/cells_small.jpg",  "url": "https://www.safjan.com/darwin-approach-to-traveling-salesman/",
-  "description": "Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the..."
+  "description": "Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the...",
+  "articleSection": "Exploring new ideas",
+  "inLanguage": "en",
+  "keywords": "machine-learning, evolutionary, tsp, genetic-algorithms, optimization, optimization-techniques",
+  "wordCount": 1993,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Exploring new ideas",
+      "item": "https://www.safjan.com/category/exploring-new-ideas.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Darwin Approach to Traveling Salesman"
+    }
+  ]
 }
 </script>
+
+
+
+<meta name="ai:summary" content="Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin&#39;s approach. I&#39;m describing the evolution model and design decisions. See the animation of how the...">
+
+<meta name="ai:topics" content="machine-learning, evolutionary, tsp, genetic-algorithms, optimization, optimization-techniques">
+
+
+
+<meta name="ai:word-count" content="1993">
+<meta name="ai:reading-time" content="9 min">
+
+<meta name="ai:section" content="Exploring new ideas">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <title>    Darwin Approach to Traveling Salesman
 </title>
@@ -205,7 +254,7 @@
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
 
             <div id="search" class="nav-search"></div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
@@ -223,7 +272,7 @@
             </p>
             <h1 id="darwin-approach-to-traveling-salesman">Darwin Approach to Traveling Salesman</h1>
             <div class="header-underline"></div>
-                <p class="summary"><p>Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin's approach. I'm describing the evolution model and design decisions. See the animation of how the population was evolving through the epochs.</p></p>
+                <div class="summary"><p>Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin's approach. I'm describing the evolution model and design decisions. See the animation of how the population was evolving through the epochs.</p></div>
 
                 <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/darwin-approach-to-traveling-salesman/">
@@ -237,12 +286,6 @@
 
 
 
-        <details class="toc-details" id="toc-container">
-            <summary>Table of Contents</summary>
-            <nav class="toc" aria-label="Table of Contents">
-                <ul class="toc-list"></ul>
-            </nav>
-        </details>
 
         <div class="article-content">
             <!-- MarkdownTOC autolink="true" autoanchor="true" -->
@@ -274,13 +317,10 @@
 </ul>
 <!-- /MarkdownTOC -->
 
-<p><a id="the-story-behind-this-post"></a></p>
 <h2 id="the-story-behind-this-post">The story behind this post</h2>
 <p>During my Christmas break, I found a blog post from Peter Brookes-Smith <a href="https://blog.objectivity.co.uk/darwin-and-the-travelling-salesperson/">Darwin and The Traveling Salesperson</a>. He wrote, that he was looking for some project for his holidays. He found the blog post that inspired him to start the project and solve the problem by himself without finishing the article. It was similar to my case. I had genetic algorithms in the back of my head for a long, long time. Now while having some spare time between Christmas and New Year - I decided to get my feet wet on that topic.</p>
-<p><a id="introduction"></a></p>
 <h2 id="introduction">Introduction</h2>
 <p>Are you familiar with the Traveling Salesman Problem (TSP)? It's a classic problem in computer science where a salesman is tasked with visiting a set of cities once and returning to the starting place, with the goal of finding the shortest possible route. Tackling the TSP problem can be very challenging, particularly as the number of cities increases. In this blog post, we will explore how to use genetic algorithms to solve TSP problem. We'll take an in-depth look at the different steps involved in the algorithm, along with the results obtained. We'll also provide an overview of the other algorithms that are used to solve TSP, and the comparison with genetic algorithm. Our goal is to provide an easy-to-follow guide that will help you understand the basics of using genetic algorithms to solve TSP, and to inspire you to try your hand at this fascinating problem.</p>
-<p><a id="traveling-salesman-problem-tsp"></a></p>
 <h2 id="traveling-salesman-problem-tsp">Traveling Salesman Problem (TSP)</h2>
 <p>The problem can be defined like this: having a list of cities and finding the shortest route for a salesman to visit each of them once and come back to the starting place.</p>
 <!-- ![TODO](tsp_animated_gif.gif) -->
@@ -293,10 +333,8 @@ $$</p>
 <!-- ![TODO](tps_time_complexity_vs_age_of_universe.gif) -->
 
 <p>The traveling salesman is a beautiful problem to test various optimization algorithms against it. A big portion of metaheuristic solutions came from the evolution algorithm family.</p>
-<p><a id="initial-note"></a></p>
 <h2 id="initial-note">Initial note</h2>
 <p>This post is the recording of an almost naive attempt to apply the evolution approach to solve the problem. Before writing this post, on purpose, I haven't done solid education on genetic algorithms so the terminology and methods might not correspond to ones established in the field. The positive side of this approach is that fun was not spoiled with existing solutions. This I meant as a fun project, not a conference paper. When the disclaimer was done, let's go to the problem-solving.</p>
-<p><a id="solution-outline"></a></p>
 <h2 id="solution-outline">Solution outline</h2>
 <p>The idea for finding the best route using mechanisms that are available in nature in the evolution process described by Karol Darwin is as follows:
 Algorithm initialization:</p>
@@ -310,7 +348,6 @@ Algorithm initialization:</p>
 </ol>
 <p><img alt="steps" src="/images/tsp/tsp_steps.png"></p>
 <p><strong>Figure 1. Steps of evolution algorithm</strong></p>
-<p><a id="adaptation"></a></p>
 <h3 id="adaptation">Adaptation</h3>
 <p>I decided to include mechanisms for minor, local improvements that in nature, organisms might be able to perform to better fit the environment. The implementation of the adaptation is twofold:</p>
 <ol>
@@ -321,27 +358,21 @@ Both are implemented "swapper" or "reverser" as moving along the list of cities 
 <!-- ![TODO](tsp_reverse_two.jpg) -->
 <!-- ![TODO](tsp_reverse_three.jpg) -->
 
-<p><a id="natural-selection"></a></p>
 <h3 id="natural-selection">Natural selection</h3>
 <p>Natural selection allows to remove of poor solutions and makes room for new experimental variants of routes that inherit features from the best solutions found so far. The implementation was to sort the solutions in the ascending order and keep only <code>10%</code> of the best solutions.</p>
-<p><a id="matching-for-the-reproduction"></a></p>
 <h3 id="matching-for-the-reproduction">Matching for the reproduction</h3>
 <p>"Elite" selected in the natural selection step is then used to create pairs of parents to be used in the single act of reproduction. The pairs were drawn randomly with returning, but the random distribution was not uniform. The shortest route of the solution, the higher chance that the solution will be taken as a parent. The probability of selecting the solution was proportional to the inverse of the solution route length i.e. the shorter route - a higher probability to be drawn as a parent. The given organism could be selected as a paired element for multiple reproductions - which should be the case, especially for best-fitted solutions (ones with the shortest route).</p>
-<p><a id="create-children"></a></p>
 <h3 id="create-children">Create children</h3>
 <p>In the process of reproduction always two children were born: one that was the effect of crossover routes from mother and father and the second, based on the same crossover but with mutation added.
 When drawing pairs, the organism is assigned to the role of mother or father which is important only for the crossover process.</p>
-<p><a id="crossover"></a></p>
 <h3 id="crossover">Crossover</h3>
 <p>In crossover selected segment of a given length (e.g. 5 cities) of the route from the father is being injected into the mother's route. The starting element of the segment in being found in the mother's route and the mother's route is divided into three parts: before the "anchor" element, "anchor" element, and after the "anchor" element. The "anchor" element is replaced by injection. In the next steps mother's route is cleaned up in order to remove duplicate cities (those that appeared in the injection from the father). The cities from the injection were removed from the before anchor and from the after anchor part.</p>
 <!-- ![TODO](tsp_crossover.jpg) -->
 
-<p><a id="mutation"></a></p>
 <h3 id="mutation">Mutation</h3>
 <p>The children obtained by applying crossover are then duplicated to have a second child that will be additionally mutated. The mutation is implemented as the random swap of two cities in the list.</p>
 <!-- ![TODO](tsp_mutation.jpg) -->
 
-<p><a id="evolution-in-action"></a></p>
 <h2 id="evolution-in-action">Evolution in action</h2>
 <p>The whole setup of the experiment is highly parameterised and gives endless opportunities to experiment with various setups. The results shown in this blog were produced for this parametrization:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># number of cities</span>
@@ -361,7 +392,6 @@ When drawing pairs, the organism is assigned to the role of mother or father whi
 <p><strong>Figure 2. Visualization of best route found in each epoch</strong></p>
 <p><img alt="length" src="/images/tsp/tsp_r-len.png"></p>
 <p><strong>Figure 3. Length of shortest route found in the given epoch of evolution process</strong></p>
-<p><a id="conclusion"></a></p>
 <h2 id="conclusion">Conclusion</h2>
 <ol>
 <li>The experiment showed me the beauty of the evolutionary approach - directed but random evolution leads to the emergence of the order and optimized solutions (however not optimal solutions).</li>
@@ -369,42 +399,31 @@ When drawing pairs, the organism is assigned to the role of mother or father whi
 <li>Being under the impression of the robustness of the evolutionary system I'm eager to try the evolutional approach as an alternative to Reinforcement learning such as described on <a href="https://blog.openai.com/evolution-strategies/">openai blog</a></li>
 <li>Technical one: even such a side project playing with numerical problems benefits from accompanying tests. Many annoying bugs that appeared during the implementation (mainly from a global range of variables), and covering (at least partially) code with tests helped out to progress.</li>
 </ol>
-<p><a id="alternative-algorithms"></a></p>
 <h2 id="alternative-algorithms">Alternative algorithms</h2>
 <p>There are several other algorithms that can be used to solve the Traveling Salesman Problem (TSP):</p>
-<p><a id="1-brute-force-algorithm"></a></p>
 <h3 id="1-brute-force-algorithm">1.  Brute Force algorithm</h3>
 <p>It is the most simple algorithm for solving TSP problem, where it checks all possible routes one by one and select the one with the minimum distance. However, the time complexity is high, and it is not efficient for a large number of cities.</p>
-<p><a id="2-dynamic-programming-dp"></a></p>
 <h3 id="2-dynamic-programming-dp">2.  Dynamic Programming (DP)</h3>
 <p>It is a method of solving problems by breaking them down into smaller overlapping sub-problems and solving each of them independently. DP can be used to solve TSP by building a table of all possible sub-tours, and the optimal solution is constructed using the entries in the table.</p>
-<p><a id="3-greedy-algorithm"></a></p>
 <h3 id="3-greedy-algorithm">3.  Greedy algorithm</h3>
 <p>It is a simple, intuitive and efficient algorithm. Greedy algorithm solves TSP problem by building a solution incrementally, choosing the next city to add to the tour based on the nearest neighbor criterion.</p>
-<p><a id="4-branch-and-bound"></a></p>
 <h3 id="4-branch-and-bound">4.  Branch and Bound</h3>
 <p>It is a method that allows us to explore all possible solutions while avoiding the ones that are obviously suboptimal. Branch and Bound uses the concept of lower bound and upper bound to prune the branches that cannot give a better solution than the best solution found so far.</p>
-<p><a id="5-ant-colony-optimization-aco"></a></p>
 <h3 id="5-ant-colony-optimization-aco">5.  Ant Colony Optimization (ACO)</h3>
 <p>It is a swarm intelligence-based algorithm. The ACO algorithm simulates the behavior of ants searching for the shortest path from their colony to a food source. The ants leave pheromones on the path they travel, and the path with the highest concentration of pheromones is likely to be the shortest path.</p>
-<p><a id="6-simulated-annealing-sa"></a></p>
 <h3 id="6-simulated-annealing-sa">6.  Simulated Annealing (SA)</h3>
 <p>It is a probabilistic technique for approximating the global optimum of a given function. SA algorithm starts with a random solution and then repeatedly makes small changes to the solution in the hope of finding a better solution.</p>
-<p><a id="7-artificial-neural-network-ann"></a></p>
 <h3 id="7-artificial-neural-network-ann">7.  Artificial Neural Network (ANN)</h3>
 <p>it is a machine learning algorithm that can be used to model the TSP problem and find an approximate solution. ANN algorithm learns from historical data, and</p>
 <p>There is website with multiple algorithms and animated solutions of TSP problem: <a href="https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/">11 Animated Algorithms for the Traveling Salesman Problem</a></p>
-<p><a id="ideas-for-future-work"></a></p>
 <h2 id="ideas-for-future-work">Ideas for future work</h2>
 <ul>
 <li>Deploy it in the server-less mode of operation. Route calculations and transformations are great candidates for "lambda" functions.</li>
 <li>Use GPU to compute things in parallel</li>
 <li>Overcome stagnation of evolution by evolving several populations independently and allowing for contact between populations from time to time - transfer some solutions from one to another population.</li>
 </ul>
-<p><a id="credits"></a></p>
 <h2 id="credits">Credits</h2>
-<p><a id="cover-image-from-httpscommonswikimediaorgwikifilehigh_school_biology_1-13pdf-by-ck-12-foundation-on-cc-license"></a>
-Cover image from <a href="https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf">https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf</a> by CK-12 Foundation on CC license</p>
+<p>Cover image from <a href="https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf">https://commons.wikimedia.org/wiki/File:High_School_Biology_1-13.pdf</a> by CK-12 Foundation on CC license</p>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
         </div>
 
@@ -429,6 +448,8 @@ Cover image from <a href="https://commons.wikimedia.org/wiki/File:High_School_Bi
                 <a href="https://www.safjan.com/tag/optimization/" class="article-tag">optimization</a>
                 <a href="https://www.safjan.com/tag/optimization-techniques/" class="article-tag">optimization-techniques</a>
         </div>
+
+
 
 
 

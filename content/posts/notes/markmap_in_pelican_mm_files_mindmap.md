@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-02-02
 Modified: 2023-07-12
-Prompt: How to embed markmap mindmap (javascript library) in pelican blog post written in markdown?
 Slug: markmap-mindmap-in-pelican-blog
 Status: published
+Summary: Learn how to integrate interactive Markmap mindmaps into your Pelican blog posts with step-by-step instructions for setup and embedding.
+ai_summary: true
 Tags:
   - mindmap
   - mindmapping
@@ -13,9 +14,8 @@ Tags:
   - markmap
   - pelican
 Title: Using Markmap Mindmap Diagrams in Pelican Blog
+Prompt: How to embed markmap mindmap (javascript library) in pelican blog post written in markdown?
 ---
-
-
 Embedding a markmap mindmap in a Pelican blog post written in Markdown requires a few steps:
 
 1. Install the markmap library by running `npm install -g markmap` in your command line.

@@ -4,6 +4,8 @@ Date: 2022-06-03
 Modified: 2023-07-12
 Slug: bash-determine-if-linux-or-macos
 Status: published
+Summary: Learn how to determine if a Bash script is running on Linux, macOS, or other systems using `uname` and conditional statements.
+ai_summary: true
 Tags:
   - bash
   - determine
@@ -11,7 +13,6 @@ Tags:
   - macos
 Title: Bash - Determine if Script Runs on Linux, macOS or Other System
 ---
-
 ```sh
 unameOut="$(uname -s)"
 case "${unameOut}" in

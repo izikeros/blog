@@ -43,8 +43,6 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 
 <!-- /MarkdownTOC -->
 
-<a id="what-is-the-photoprism"></a>
-
 ## What is the photoprism
 
 from the photoprism website:
@@ -52,8 +50,6 @@ from the photoprism website:
 >PhotoPrism® is an AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. You can run it at home, on a private server, or in the cloud.
 
 ![Screenshot](https://docs.photoprism.app/img/preview.jpg)
-
-<a id="feature-overview"></a>
 
 ### Feature Overview
 >
@@ -71,11 +67,7 @@ from the photoprism website:
 
 > **NOTE:** I haven't found functionality to add other accounts than administrator. But in my case having only single user is perfectly fine.
 
-<a id="installation-on-qnap-nas-from-the-cli"></a>
-
 ## Installation on QNAP NAS from the CLI
-
-<a id="prerequisites"></a>
 
 ### Prerequisites
 
@@ -84,13 +76,9 @@ This instruction assumes that you are familiar with using command line interface
 - ensure you have installed Container Station which is providing Docker on QNAP NAS
 - ensure that you have docker in the path
 
-<a id="login-to-your-nas-server-via-ssh"></a>
-
 ### login to your NAS server via SSH
 
 from the terminal or use e.g. `putty` if working on Windows
-
-<a id="create-photoprism-directory"></a>
 
 ### Create photoprism directory
 
@@ -98,8 +86,6 @@ from the terminal or use e.g. `putty` if working on Windows
 mkdir /share/Container/photoprism
 cd photoprism
 ```
-
-<a id="create-docker-composeyml-file"></a>
 
 ### Create `docker-compose.yml` file
 
@@ -224,8 +210,6 @@ volumes:
 >
 > For changing number of workers and disabling TensorFlow see the "Performance tuning" section bellow.
 
-<a id="create-directories-in-sharecontainerphotoprism"></a>
-
 ### Create directories in `/share/Container/photoprism`
 
 ```sh
@@ -236,7 +220,6 @@ mkdir -p originals
 mkdir -p storage
 ```
 
-<a id="run-application-in-the-container"></a>
 ### Run application in the container
 
 Start the container. Pulling images might take few minutes depending on your Internet connection speed.
@@ -256,22 +239,16 @@ http://<YOUR-NAS-IP>:2342
 You need to login as administrator with default password for the first time, after login remember to change that password in settings.
 ![img](/images/photoprism/photoprism_change_password.png)
 
-<a id="using-web-ui"></a>
-
 #### Using web-UI
 
 Now, you can trigger indexing your photos and videos using web-UI or from CLI.
 ![img](/images/photoprism/photoprism_indexing.png)
-
-<a id="using-cli"></a>
 
 #### Using CLI
 
 ```sh
 docker exec -ti photoprism photoprism index
 ```
-
-<a id="manual-upgrading-photoprism-to-the-latests-version"></a>
 
 ### Manual upgrading Photoprism to the latests version
 
@@ -284,8 +261,6 @@ docker-compose up -d
 
 For automated updates check [Watchtower](https://containrrr.dev/watchtower/)
 
-<a id="adding-new-content"></a>
-
 ### Adding new content
 
 - use upload via webDAV
@@ -296,8 +271,6 @@ docker exec photoprism photoprism import
 ```
 
 You can also consider automating import by adding `import` do the cron (e.g. every midnight)
-
-<a id="performance-tuning"></a>
 
 ### Performance tuning
 
@@ -311,22 +284,16 @@ or disable TensorFlow:
 **Credits:**
 I was able to launch this service thanks to the instructions found on reddit [1] provided by [schol4stiker](https://www.reddit.com/user/schol4stiker/).
 
-<a id="installation-using-container-station-gui"></a>
-
 ## Installation using Container Station GUI
 
 I got message from one of the readers, that he realized, it was better to use Container Station to install Photoprism using its GUI. Open **Container Station > Applications > Create**
 
 He named the application 'photoprism' and pasted the docker-compose file (first converted with Claude.ai to Docker Composer v3 format)
 
-<a id="references"></a>
-
 ## References
 
 1. [instruction from reddit](https://www.reddit.com/r/photoprism/comments/vph4ct/comment/ieobj8w/?utm_source=share&utm_medium=web2x&context=3)
 2. [How to Setup PhotoPrism on a Synology NAS in 2022 - WunderTech](https://www.wundertech.net/how-to-setup-photoprism-on-a-synology-nas)
-
-<a id="updates"></a>
 
 ## Updates
 

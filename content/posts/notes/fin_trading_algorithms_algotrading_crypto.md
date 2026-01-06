@@ -28,8 +28,6 @@ This note contains a collection of trading algorithms or links to algorithms
 
 <!-- /MarkdownTOC -->
 
-<a id="momentum"></a>
-
 ## Momentum
 
 **Prices are up and we think they’ll continue to go up = Buy** (or vice versa).
@@ -44,16 +42,12 @@ The simplest TSM we can implement would require us to purchase the stock if it w
 - Moskowitz, Tobias, Yao Hua Ooi, and Lasse Heje Pedersen (2012): “Time Series Momentum.” Journal of Financial Economics, Vol. 104, 228-250.
 - See repo: [trading-with-momentum](https://github.com/izikeros/trading-with-momentum)
 
-<a id="mean-reversion"></a>
-
 ## Mean-Reversion
 
 This is based on the idea that high and low prices of an asset will revert back to its mean (average) value. Once its price is below the mean, it is seen as an opportunity to buy the asset in hopes of the price going above its average. The average value of an asset constantly changes, so it requires constant monitoring.
 
 ***Prices are up but we think they’re due a pull-back = Sell*** (or vice versa).
  Conversely, most mean reversion strategies win more often than they lose however the gain to loss ratio is smaller. Win:lose rates of around 70% with gain:loss of around 55% are also pretty common with profitable algo’s.
-
-<a id="dynamic-hedging"></a>
 
 ## Dynamic Hedging
 
@@ -70,8 +64,6 @@ The fund fundamentally rebalances 10 assets, which can be seen as 10 data source
 In the above, *a**i* represents weight, and *Xi* represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least risk.
 > Read more on [FTSE Russell Capping Methodology](https://research.ftserussell.com/products/downloads/Capping_Methodology_Guide.pdf)
 
-<a id="volume-weighted-average-price-vwap"></a>
-
 ## Volume-Weighted Average Price (VWAP)
 
 This strategy breaks up a large order and releases dynamically determined smaller chunks of the order to the market using stock specific historical volume profiles. The aim is to execute the order close to the VWAP, thereby benefiting on the average price.
@@ -82,16 +74,12 @@ The time-weighted average price strategy breaks up a large order and releases dy
 
 See also:  [STOP Using Moving Averages! Anchored VWAP is the FUTURE in Day Trading - YouTube](https://www.youtube.com/watch?v=m7cL-TMKZpE)
 
-<a id="algorithm-libraries"></a>
-
 ## Algorithm libraries
 
 - [quantconnect strategy-library](https://www.quantconnect.com/tutorials/strategy-library/strategy-library) - each strategy is in form of tutorial with code, references. High quality.
 
 > **NOTE:**
 > These notes are bits collected from the internet. Proper attribution is needed.
-
-<a id="other-links"></a>
 
 ## Other links
 

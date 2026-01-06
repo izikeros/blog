@@ -39,8 +39,6 @@ Here is a list of the most popular (popularity measured by the number of GitHub 
 
 <!-- /MarkdownTOC -->
 
-<a id="backtrader"></a>
-
 ## backtrader
 
 ![github stars shield](https://img.shields.io/github/stars/mementum/backtrader.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/mementum/backtrader)
@@ -48,28 +46,20 @@ Here is a list of the most popular (popularity measured by the number of GitHub 
 
 > **NOTE:**  The last release ([1.9.74.123](https://github.com/mementum/backtrader/releases/tag/1.9.74.123) ) was on 30 May 2019. There are PRs (mainly with fixes) accepted. The software reached a high level of maturity and new features seem to be not added.
 
-<a id="lean"></a>
-
 ## Lean
 
 ![github stars shield](https://img.shields.io/github/stars/QuantConnect/Lean.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/QuantConnect/Lean)
 [Lean](https://github.com/QuantConnect/Lean) is actively developed, and related to [QuantConnect](https://www.quantconnect.com/) platform.
-
-<a id="jesse"></a>
 
 ## Jesse
 
 ![github stars shield](https://img.shields.io/github/stars/jesse-ai/jesse.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/jesse-ai/jesse)
 According to the authors: *[Jesse](<https://github.com/jesse-ai/jesse>](<https://github.com/jesse-ai/jesse>) is more accurate than other solutions, and way more simple. In fact, it is so simple that in case you already know Python, you can get started today, in a matter of minutes, instead of weeks and months.*
 
-<a id="pyalgotrade"></a>
-
 ## PyAlgoTrade
 
 ![github stars shield](https://img.shields.io/github/stars/gbeced/pyalgotrade.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/gbeced/pyalgotrade)
 [PyAlgoTrade](https://gbeced.github.io/pyalgotrade/)
-
-<a id="vectorbt"></a>
 
 ## vectorbt
 
@@ -85,13 +75,9 @@ There is also a paid version, which is refactored with multiple enhancements ove
 >Yes, I still do smaller bug fixes and merge pull requests. But I won't develop any new features, everything is coming to vbt pro.
  (from: [Issue #431](https://github.com/polakowo/vectorbt/issues/431#issuecomment-1096793625))
 
-<a id="vectorbt-pro"></a>
-
 ### vectorbt pro
 
 A paid, proprietary, version of the vectorbt. See the features of vectorbt pro [here](https://vectorbt.pro/features/).
-
-<a id="backtestingpy"></a>
 
 ## backtesting.py
 
@@ -99,15 +85,11 @@ A paid, proprietary, version of the vectorbt. See the features of vectorbt pro [
 
 [backtesting.py](https://github.com/kernc/backtesting.py) - Backtest trading strategies with Python.
 
-<a id="finmarketpy"></a>
-
 ## finmarketpy
 
 ![github stars shield](https://img.shields.io/github/stars/cuemacro/finmarketpy.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/cuemacro/finmarketpy)
 
 [finmarketpy](https://github.com/cuemacro/finmarketpy) is a Python-based library that enables you to analyze market data and also backtest trading strategies using a simple-to-use API, which has prebuilt templates for you to define backtest. Included in the library
-
-<a id="fastquant"></a>
 
 ## fastquant
 
@@ -115,15 +97,11 @@ A paid, proprietary, version of the vectorbt. See the features of vectorbt pro [
 
 Bringing backtesting to the mainstream - [fastquant](https://github.com/enzoampil/fastquant) allows you to easily backtest investment strategies with as few as 3 lines of python code. Its goal is to promote data-driven investments by making quantitative analysis in finance accessible to everyone.
 
-<a id="zipline"></a>
-
 ## zipline
 
 ![github stars shield](https://img.shields.io/github/stars/quantopian/zipline.svg?logo=github) ![commit-activity](https://img.shields.io/github/commit-activity/y/quantopian/zipline)
 
 [zipline](https://github.com/quantopian/zipline) - despite its large popularity, it was put at the end of the list because it is not maintained anymore. However, the community took-over the project and created a fork that is being maintained and developed.
-
-<a id="zipline-reloaded"></a>
 
 ### zipline-reloaded
 

@@ -1,14 +1,16 @@
 ---
-Title: Azure OpenAI Langchain configuration
-Slug: azure-openai-langchain-configuration
+Category: note
 Date: 2023-08-02
 Modified: 2023-10-23
+Slug: azure-openai-langchain-configuration
 Status: published
+Summary: Learn how to configure LangChain to use Azure OpenAI by setting up environment variables and initializing the AzureOpenAI model, including a sample code snippet for reference.
+ai_summary: true
 Tags:
   - langchain
   - azure
   - openai
-Category: note
+Title: Azure OpenAI Langchain configuration
 ---
 This note contains a recipe for how to configure LangChain to use Azure OpenAI.
 

@@ -41,15 +41,11 @@ Let's start with the concept of embedding vectors. In natural language processin
 
 <!-- /MarkdownTOC -->
 
-<a id="intrinsic-evaluation"></a>
-
 ## Intrinsic Evaluation
  >
  > **Intrinsic evaluation** - aims to measure the quality of embeddings by assessing their performance on specific NLP tasks that are related to the embedding space itself, such as word similarity, analogy, and classification.
 
 In this section, we will discuss three commonly used intrinsic evaluation metrics: cosine similarity, Spearman correlation, and accuracy.
-
-<a id="cosine-similarity"></a>
 
 ### Cosine Similarity
 
@@ -60,8 +56,6 @@ cosine\_similarity(\textbf{v}_1, \textbf{v}_2) = \frac{\textbf{v}_1 \cdot \textb
 $$
 
 where $\textbf{v}_1$ and $\textbf{v}_2$ are the embeddings of two words, and $|\cdot|$ denotes the Euclidean norm.
-
-<a id="spearman-correlation"></a>
 
 ### Spearman Correlation
 
@@ -74,21 +68,15 @@ $$
 
 where $d_i$ is the difference between the ranks of the $i$-th pair of similarity scores, and $n$ is the number of pairs.
 
-<a id="accuracy"></a>
-
 ### Accuracy
 
 Accuracy measures the performance of embeddings on classification tasks, such as sentiment analysis or topic classification. Given a dataset of labeled examples, the embeddings are used to represent each example, and a classifier is trained on these representations. The accuracy of the classifier on a held-out test set is then used as a measure of the quality of the embeddings.
-
-<a id="extrinsic-evaluation"></a>
 
 ## Extrinsic Evaluation
 >
 > **Extrinsic evaluation** - aims to measure the quality of embeddings by assessing their performance on downstream NLP tasks, such as machine translation or text classification, that are not directly related to the embedding space itself.
 
 In this section, we will discuss two commonly used extrinsic evaluation metrics: F1 score and perplexity.
-<a id="f1-score"></a>
-
 ### F1 Score
 
 F1 score is a metric commonly used in binary classification problems, such as sentiment analysis or named entity recognition. It combines precision and recall into a single score that ranges from 0 to 1. A high F1 score indicates that the embeddings are able to capture the relevant features of the input data. The formula for F1 score is as follows:
@@ -99,8 +87,6 @@ $$
 
 where precision is the fraction of true positives among the predicted positives, and recall is the fraction of true positives among the actual positives.
 
-<a id="perplexity"></a>
-
 ### Perplexity
 
 Perplexity is a metric commonly used in language modeling tasks, such as machine translation or text generation. It measures how well a language model can predict a held-out test set of text, given the embeddings as input. A low perplexity indicates that the embeddings  are able to capture the semantic and syntactic structures of the language. The formula for perplexity is as follows:
@@ -110,8 +96,6 @@ $$
 $$
 
 where $N$ is the number of tokens in the test set, $\textbf{e}_i$ is the embedding of the $i$-th token, and $p(w_i | \textbf{e}_i)$ is the conditional probability of the $i$-th token given its embedding.
-
-<a id="limitations"></a>
 
 ## Limitations
 

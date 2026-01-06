@@ -1,4 +1,6 @@
 ---
+Summary: Learn the most common formatting characters for displaying dates and times, including options for year, month, day, hour, minute, and second.
+ai_summary: true
 title: Date formatting
 category: note
 date: 2022-05-12

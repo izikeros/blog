@@ -48,11 +48,7 @@ In this article I propose a sample MLOps scorecard that organizations can use to
 
 <!-- /MarkdownTOC -->
 
-<a id="analyze-organization-along-6-dimensions"></a>
-
 ## Analyze organization along 6 dimensions
-
-<a id="1-governance"></a>
 
 ### 1.  Governance
 
@@ -68,8 +64,6 @@ Additional ideas for the questions in this category:
 4. Are there policies and procedures in place to ensure that ML models are developed and deployed ethically?
 5. Do we have a process in place for regularly reviewing and updating our ML governance framework?
 
-<a id="2-data-management"></a>
-
 ### 2.  Data Management
 
 - [ ]   Is there a centralized repository for storing and managing data?
@@ -83,8 +77,6 @@ Additional ideas for the questions in this category:
 3. Do we have a process in place for versioning and tracking changes to data used in ML projects?
 4. Are there procedures in place to ensure that data used in ML projects is kept secure and protected against unauthorized access?
 5. Do we have a process in place for monitoring data usage and ensuring compliance with relevant regulations and laws?
-
-<a id="3-model-development"></a>
 
 ### 3.  Model Development
 
@@ -100,8 +92,6 @@ Additional ideas for the questions in this category:
 4. Are there processes in place for monitoring and addressing bias in the models?
 5. Is there a process in place for continuous improvement and updating of models in response to new data and changing requirements?
 
-<a id="4-deployment"></a>
-
 ### 4.  Deployment
 
 - [ ] Are models deployed in a consistent and repeatable manner?
@@ -115,8 +105,6 @@ Additional ideas for the questions in this category:
 3. Is there a process in place for rolling out updates and new versions of models?
 4. Are there procedures in place for monitoring and addressing model performance in production?
 5. Are there processes in place for managing and securing the data and resources used by deployed models?
-<a id="5-monitoring-and-evaluation"></a>
-
 ### 5.  Monitoring and Evaluation
 
 - [ ]   Are there metrics in place to measure the performance of models in production?
@@ -130,8 +118,6 @@ Additional ideas for the questions in this category:
 3. Are there processes in place for identifying and addressing any issues or errors with deployed models?
 4. Are there procedures in place for collecting and analyzing feedback on deployed models from end-users?
 5. Are there processes in place for implementing and evaluating changes to improve model performance over time?
-
-<a id="6-continuous-improvement"></a>
 
 ### 6.  Continuous Improvement
 
@@ -147,8 +133,6 @@ Additional ideas for the questions in this category:
 4. Are there procedures in place for monitoring and addressing shifts in data distribution and model drift?
 5. Are there processes in place for conducting impact analysis and A/B testing of new models or updates?
 
-<a id="visualize-it"></a>
-
 ## Visualize it
 
 Finally, you can use radar plot to present the results visually, as example see the radar chart below:
@@ -160,47 +144,31 @@ or similar Stellar plot as below:
 <img src="/images/mlops_scorecard/mlops_scorecard_stellar_plot_2.jpg"  alt="MLOps impementation progress - stellar plot">
 
 You can use other type of chart that suit your needs to present the results in a visual manner.
-<a id="limitations-that-you-should-be-aware-of"></a>
-
 ## Limitations that you should be aware of
 
 There are a few potential heads-up to keep in mind when using this kind of evaluation for measuring the maturity of an organization's MLOps processes.
 
-<a id="factors-limiting-potential-utility-of-such-analysis"></a>
-
 ### Factors limiting potential utility of such analysis
-
-<a id="1-subjectivity"></a>
 
 #### 1.  Subjectivity
 
 The evaluation process may be subject to personal biases and interpretations, making it difficult to obtain consistent and accurate results.
 
-<a id="2-lack-of-context"></a>
-
 #### 2.  Lack of context
 
 The evaluation process may not take into account the specific context and constraints of the organization, leading to results that may not be relevant or applicable.
-
-<a id="3-limited-scope"></a>
 
 #### 3.  Limited scope
 
 The evaluation process may only assess a limited number of aspects of MLOps processes, leading to an incomplete understanding of the organization's MLOps maturity.
 
-<a id="4-limited-flexibility"></a>
-
 #### 4.  Limited flexibility
 
 The evaluation process may be limited in its ability to adapt to changing conditions and requirements, making it difficult to maintain its relevance over time.
 
-<a id="5-limited-actionability"></a>
-
 #### 5.  Limited actionability
 
 The results of the evaluation process may not be actionable, meaning that they may not provide clear guidance on how to improve the organization's MLOps processes.
-
-<a id="hints-for-overcoming-limitations"></a>
 
 ### Hints for overcoming limitations
 

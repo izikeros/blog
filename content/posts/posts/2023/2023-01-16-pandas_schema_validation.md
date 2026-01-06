@@ -47,8 +47,6 @@ There are several tools and methods available for schema validation in pandas su
 
 In this article, we will overview the available tools and methods for schema validation in pandas and provide example code snippets and links to further resources. We will also discuss the advantages and disadvantages of each tool and provide recommendations for when to use them.
 
-<a id="overview-of-available-tools-and-methods"></a>
-
 ## Overview of Available Tools and Methods
 
 The tools and methods discussed below accompanying exemplary code snippets. You can use the following contents of a `data.csv` that comply with the schema used in this article:
@@ -87,8 +85,6 @@ This file contains a dataframe with 8 columns: name, age, gender, col1, col2, co
 - This file will not comply with the schema defined in the article and will raise an error when trying to validate it using the code provided in the article
 - This file can be used to demonstrate the validation process and how it will raise errors for invalid data.
 
-<a id="built-in-attributes"></a>
-
 ### Built-in Attributes
 
 Pandas provides built-in attributes such as `.dtypes` and `.shape` that can be used to check the data types and dimensions of a DataFrame. Here's an example of using these attributes to check that a DataFrame has the expected number of rows and columns, and that the columns have the expected data types:
@@ -105,8 +101,6 @@ assert df.shape == (100, 5)
 assert df.dtypes == {"col1": int, "col2": float, "col3": object, "col4": bool, "col5": datetime}
 
 ```
-
-<a id="pandas-schema"></a>
 
 ### Pandas Schema
 
@@ -125,8 +119,6 @@ schema = Schema([
 errors = schema.validate(df)
 
 ```
-
-<a id="great-expectations"></a>
 
 ### Great Expectations
 
@@ -159,8 +151,6 @@ else:
 
 ```
 
-<a id="pandera"></a>
-
 ### Pandera
 
 `pandera` is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the `pandera` library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:
@@ -184,8 +174,6 @@ schema.validate(df)
 
 ```
 
-<a id="data-enforce"></a>
-
 ### Data-enforce
 
 `data-enforce` is a library that allows you to define and validate schemas using a more human-readable syntax and more functionality. Here's an example of using the `data-enforce` library to define a schema for a DataFrame and then validate that the DataFrame conforms to the schema:
@@ -207,8 +195,6 @@ schema = {
 # Validate the DataFrame against the schema
 de.enforce(df, schema)
 ```
-
-<a id="comparison-and-discussion"></a>
 
 ## Comparison and Discussion
 

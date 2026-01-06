@@ -2,17 +2,18 @@
 Category: note
 Date: 2023-01-16
 Modified: 2023-07-12
-Prompt: How to deploy mlflow server on local machine using Docker. Give me text in markdown format including links, hotlinked images or other means to make article more appealing.
 Slug: deploying-mlflow-on-local-machine-using-docker
 Status: published
+Summary: Learn how to deploy an MLFlow server on your local machine using Docker, covering the setup process from pulling the Docker image to accessing the MLFlow web UI and running commands.
+ai_summary: true
 Tags:
   - mlflow
   - machine-learning
   - mlops
   - docker
 Title: Deploying MLFlow on Local Machine Using Docker
+Prompt: How to deploy mlflow server on local machine using Docker. Give me text in markdown format including links, hotlinked images or other means to make article more appealing.
 ---
-
 Docker is a popular tool that allows you to package, deploy, and run your applications in containers. In this tutorial, we will show you how to use Docker to deploy an MLFlow server on your local machine.
 
 ### Prerequisites

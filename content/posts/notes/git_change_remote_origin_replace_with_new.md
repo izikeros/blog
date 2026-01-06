@@ -1,18 +1,19 @@
 ---
-Title: Git change remote origin (replace with new)
-Slug: Git-change-remote-origin-replace-with-new
+Category: note
 Date: 2023-11-11
 Modified: 2023-11-11
+Slug: Git-change-remote-origin-replace-with-new
 Status: published
+Summary: Learn how to replace the remote origin in Git with a new URL, covering steps to verify existing remotes, remove the old one, add a new remote, and push branches to the updated remote.
+ai_summary: true
+Title: Git change remote origin (replace with new)
 tags:
   - git
   - origin
   - remote-origin
-Category: note
 prompt: in git how to change remote origin (replace with new)?
 prompt2: What are the examples of situations when you might want to do such an operation
 ---
-
 up::[[MOC_Git]]
 
 ## Git - Replace remote origin

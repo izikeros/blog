@@ -1,11 +1,13 @@
 ---
-Title: asyncio Basics - async/await and When to Actually Use Them 
-Slug: asyncio-basics-async-await-when-to-use 
-Date: 2025-09-09 
-Modified: 2025-09-09 
-Status: published 
-Tags: python, asyncio, concurrency, async-await, io-bound, performance 
 Category: note
+Date: 2025-09-09
+Modified: 2025-09-09
+Slug: asyncio-basics-async-await-when-to-use
+Status: published
+Summary: Learn how `async`/`await` enables efficient concurrent programming by handling I/O waits without blocking, and discover various ways to run tasks concurrently, manage context managers, and handle timeouts.
+ai_summary: true
+Tags: python, asyncio, concurrency, async-await, io-bound, performance
+Title: asyncio Basics - async/await and When to Actually Use Them
 Series: Python async
 ---
 X::[[python_features_worth_exploring]]

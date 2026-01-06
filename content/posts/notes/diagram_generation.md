@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-01-25
 Modified: 2023-07-12
-Prompt: What are indirect ways that you can provide me diagrams that can be represented (described) in text format? There are several formats either to describe graphics or the code that is used by some engines to render graphs. I would like that some of your answers would contain diagrams as well.
 Slug: diagram-generation
 Status: published
+Summary: Learn about various methods for generating diagrams programmatically using Ascii art, Graphviz, Mermaid, PlantUML, and LaTeX Tikz, along with examples of how to create simple diagrams in each format.
+ai_summary: true
 Tags:
   - diagram
   - visualization
@@ -13,9 +14,9 @@ Tags:
   - mermaid
   - latex
 Title: Programatic Diagram Generation
+Prompt: What are indirect ways that you can provide me diagrams that can be represented (described) in text format? There are several formats either to describe graphics or the code that is used by some engines to render graphs. I would like that some of your answers would contain diagrams as well.
 prompt_2: Give me exemplary diagrams in ASCII art and LaTeX Tikz
 ---
-
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Methods](#methods)
@@ -26,8 +27,6 @@ prompt_2: Give me exemplary diagrams in ASCII art and LaTeX Tikz
   - [LaTeX Tikz](#latex-tikz)
 
 <!-- /MarkdownTOC -->
-
-<a id="methods"></a>
 
 ## Methods
 
@@ -43,11 +42,7 @@ There are several ways to represent diagrams in text format, including:
 
 5. **LaTeX Tikz**: This is a powerful and flexible graphics package for TeX/LaTeX. It allows the creation of high-quality diagrams and graphics using a simple text-based language.
 
-<a id="examples"></a>
-
 ## Examples
-
-<a id="graphviz"></a>
 
 ### Graphviz
 
@@ -61,8 +56,6 @@ digraph G {
     C -> D;
 }
 ```
-
-<a id="mermaid"></a>
 
 ### Mermaid
 
@@ -80,8 +73,6 @@ C -->|Three| F[Car]
 
 You can use these languages to generate a diagram by using the corresponding engine, and then include the generated image in your document or export it to different format.
 
-<a id="ascii-art"></a>
-
 ### ASCII Art
 
 Here is an example of a diagram represented in ASCII art:
@@ -94,8 +85,6 @@ Here is an example of a diagram represented in ASCII art:
 +------------+
 
 ```
-
-<a id="latex-tikz"></a>
 
 ### LaTeX Tikz
 

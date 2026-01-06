@@ -4,6 +4,8 @@ Date: 2023-06-28
 Modified: 2023-07-12
 Slug: script-to-python-package-using-poetry-and-pycharm
 Status: published
+Summary: Learn how to convert a simple Python script into a package using Poetry and PyCharm, including setting up the project, configuring dependencies, and publishing it.
+ai_summary: true
 Tags:
   - python
   - poetry
@@ -37,8 +39,6 @@ X::[[badges_for_readme]]
   - [Versioning and Updates](#versioning-and-updates)
 
 <!-- /MarkdownTOC -->
-
-<a id="the-task"></a>
 
 ## The task
 
@@ -99,13 +99,9 @@ Replace `script_name.py` with the actual name of your script file, and `file_pat
 pip install tiktoken
 ```
 
-<a id="steps-for-package-creation"></a>
-
 ## Steps for Package Creation
 
 To create and publish a Python package based on the provided script, you can follow the steps below:
-
-<a id="create-project-directory"></a>
 
 ### Create Project Directory
 
@@ -119,21 +115,15 @@ poetry init
 
 This command will prompt you to fill in information about your package, such as the package name, version, description, author details, and more. Fill in the required information as prompted.
 
-<a id="open-the-project-in-pycharm"></a>
-
 ### Open the Project in PyCharm
 
 Open PyCharm and select "Open" from the welcome screen or go to "File" > "Open" and choose the project directory you created.
-
-<a id="configure-poetry-virtual-environment"></a>
 
 ### Configure Poetry Virtual Environment
 
 When opening the project in PyCharm for the first time, it will detect the presence of Poetry. You will be prompted to either allow PyCharm to create a Poetry virtual environment or create it manually. Select the option to create the virtual environment.
 
 If you already have a Poetry virtual environment set up manually, you can skip this step.
-
-<a id="install-dependencies"></a>
 
 ### Install Dependencies
 
@@ -145,15 +135,11 @@ poetry install
 
 This command will create a virtual environment and install the required packages specified in your project's `pyproject.toml` file.
 
-<a id="configure-pycharm-interpreter"></a>
-
 ### Configure PyCharm Interpreter
 
 In PyCharm, go to "File" > "Settings" > "Project: <project_name>" > "Python Interpreter". Click on the gear icon and choose "Add...".
 
 Select "Poetry Environment" and choose the existing local Poetry interpreter associated with your project's virtual environment. Click "OK" to apply the changes.
-
-<a id="initialize-git-repository"></a>
 
 ### Initialize Git Repository
 
@@ -189,25 +175,17 @@ env/
 .idea/
 ```
 
-<a id="create-package-structure"></a>
-
 ### Create Package Structure
 
 Inside your project directory, create a package structure that follows Python's best practices. For example, you can create a directory named `my_package` that will contain your script and other necessary files.
-
-<a id="move-script-and-files"></a>
 
 ### Move Script and Files
 
 Move your script file and any other relevant files into the package directory (`my_package` in this example).
 
-<a id="create-__init__py"></a>
-
 ### Create `__init__.py`
 
 Inside the package directory (`my_package`), create an empty file named `__init__.py`. This file is required to make the directory a Python package.
-
-<a id="update-pyprojecttoml"></a>
 
 ### Update `pyproject.toml`
 
@@ -221,8 +199,6 @@ my_script = 'my_package.my_script:main'
 ```
 
 Replace `my_script` with the desired command name for your script, and `my_package.my_script:main` with the correct import path to your script and its main function.
-
-<a id="add-readmemd-file"></a>
 
 ### Add README.md file
 
@@ -246,8 +222,6 @@ You can create a LICENSE file manually. Here's how you can do it:
 4. Replace `[year]` with the current year and `[fullname]` with your name or your organization's name.
 5. Save the file.
 
-<a id="test-the-script"></a>
-
 ### Test the Script
 
 Before publishing your package, it's essential to test your script to ensure it works as expected. You can execute the script locally to verify its functionality.
@@ -258,8 +232,6 @@ If you want to use pytest for testing add it as development dependency and insta
 poetry add --group dev poetry
 ```
 
-<a id="package-the-project"></a>
-
 ### Package the Project
 
 In your command-line interface, navigate to the project directory. Run the following command to create a distributable package:
@@ -269,8 +241,6 @@ poetry build
 ```
 
 This command will generate a distributable package (e.g., a `.tar.gz` file) in the `dist` directory within your project.
-
-<a id="publish-the-package"></a>
 
 ### Publish the Package
 
@@ -283,8 +253,6 @@ poetry publish
 This command will guide you through the process of publishing your package to PyPI. You'll be prompted to enter your PyPI credentials and confirm the publication.
 
 > **Note:** Make sure your package has a unique name to avoid conflicts with existing packages on PyPI.
-
-<a id="versioning-and-updates"></a>
 
 ### Versioning and Updates
 

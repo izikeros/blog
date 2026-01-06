@@ -1,17 +1,18 @@
 ---
-Title: Growth Hacking Methodology
-Slug: growth-hacking-methodology
+Category: note
 Date: 2023-11-07
 Modified: 2023-11-07
+Slug: growth-hacking-methodology
 Status: published
+Summary: Learn about Growth Hacking, a strategy focused on rapid business growth through creative, low-cost experiments and data-driven decisions in marketing and product development. Discover key tactics like experimentation, customer retention strategies, and viral loops used by startups and small businesses for significant growth.
+ai_summary: true
+Title: Growth Hacking Methodology
 tags:
   - growth-hacking
   - startup
   - methodology
   - business
-Category: note
 ---
-
 Growth Hacking is a marketing strategy primarily used by startups and small businesses, which focuses on rapid growth within a short time frame. It involves experimenting with and implementing creative, low-cost strategies to acquire and retain customers.
 
 Here are some key points about Growth Hacking:

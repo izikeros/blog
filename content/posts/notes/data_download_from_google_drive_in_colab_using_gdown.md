@@ -1,9 +1,11 @@
 ---
-Title: Simplifying Data Download from Google Drive in Google Colab Using gdown
-Slug: download-data-google-drive-colab-gdown
+Category: note
 Date: 2023-07-24
 Modified: 2023-07-24
+Slug: download-data-google-drive-colab-gdown
 Status: Published
+Summary: Learn how to easily download files from Google Drive to your Google Colab notebook using the 'gdown' library, simplifying the file access process for machine learning and data analysis tasks.
+ai_summary: true
 Tags:
   - gdown
   - colab
@@ -11,7 +13,7 @@ Tags:
   - data-download
   - google-drive
   - gdrive
-Category: note
+Title: Simplifying Data Download from Google Drive in Google Colab Using gdown
 ---
 X::[[google_colab_cookbook]]
 up::[[google_colab]]

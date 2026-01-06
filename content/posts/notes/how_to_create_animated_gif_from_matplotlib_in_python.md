@@ -1,17 +1,18 @@
 ---
-Title: How to Create Animated Gif From Matplotlib Plot in Python?
-Slug: how-to-create-animated-gif-from-matplotlib-plot-in-python
+Category: note
 Date: 2024-07-03
 Modified: 2024-07-03
+Slug: how-to-create-animated-gif-from-matplotlib-plot-in-python
 Status: published
+Summary: Learn how to create an animated GIF from a Matplotlib plot in Python by generating frames of a sine wave with varying frequencies and saving them as an animated GIF using Pillow.
+ai_summary: true
+Title: How to Create Animated Gif From Matplotlib Plot in Python?
 tags:
   - visualization
   - animation
   - matplotlib
   - python
-Category: note
 ---
-
 Animated visualizations can be a powerful way to showcase data trends over time or illustrate dynamic processes. In this tutorial, we'll learn how to create an animated GIF using Matplotlib in Python. We'll walk through the process step-by-step and provide a working code example that you can adapt for your own projects.
 
 ## Prerequisites

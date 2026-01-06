@@ -4,6 +4,8 @@ Date: 2022-04-27
 Modified: 2023-07-12
 Slug: pandas-dataframe-validation
 Status: published
+Summary: Learn how to validate column presence and data types in pandas DataFrames using Pandera and Dataenforce, including practical examples for schema validation and runtime enforcement.
+ai_summary: true
 Tags:
   - pandas
   - pandas/schema
@@ -15,7 +17,6 @@ Tags:
 Title: Pandas Dataframe Schema and Data Types Validation
 citation_needed: false
 ---
-
 # Contents
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
@@ -33,8 +34,6 @@ citation_needed: false
 <!-- /MarkdownTOC -->
 
 Two things I found most useful and use most are Pandera and Dataenforce.
-
-<a id="pandera-515-stars---column-validation-columns-types-dataframe-schema"></a>
 
 ## Pandera (515 stars) - column validation (columns, types), DataFrame Schema
 
@@ -56,13 +55,9 @@ schema(df_dataset)
 Medium article ["Validate Your pandas DataFrame with Pandera](
 https://towardsdatascience.com/validate-your-pandas-dataframe-with-pandera-2995910e564)
 
-<a id="dataenforce-59-stars---columns-presence-validation"></a>
-
 ## Dataenforce (59 stars) - columns presence validation
 
 used for
-<a id="for-type-hinting-column-names-check-dtype-check"></a>
-
 ### for type hinting (column names check, dtype check)
 
 ```python
@@ -70,8 +65,6 @@ from dataenforce import Dataset
 def process_data(data: Dataset["id": int, "name": object, "latitude": float, "longitude": float])
   pass
 ```
-
-<a id="to-enforce-validation-at-runtime"></a>
 
 ### to enforce validation at runtime
 
@@ -85,11 +78,7 @@ def process_data(data: Dataset["id", "name"]):
 
 Github Link: [dataenforce](https://github.com/CedricFR/dataenforce)
 
-<a id="great-expectations---data-validation"></a>
-
 ## Great expectations - data validation
-
-<a id="automated-expectations-from-profiling"></a>
 
 ### automated expectations from profiling
 
@@ -110,24 +99,16 @@ profile = ProfileReport(df, title="Pandas Profiling Report", explorative=True)
 suite = profile.to_expectation_suite(suite_name="my_pandas_profiling_suite")
 ```
 
-<a id="pandas_schema-135-stars"></a>
-
 ## pandas_schema (135 stars)
-
-<a id="other-data-validation-libraries"></a>
 
 ## Other Data Validation Libraries
 
 Here are a few other alternatives for validating Python data structures.
 
-<a id="generic-python-object-data-validation"></a>
-
 ### Generic Python object data validation
 
 - voloptuous
 - schema
-
-<a id="pandas-specific-data-validation"></a>
 
 ### pandas-specific data validation
 

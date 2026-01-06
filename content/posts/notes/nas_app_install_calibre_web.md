@@ -4,6 +4,8 @@ Date: 2022-10-12
 Modified: 2023-07-12
 Slug: install-calibre-web-qnap-nas-tutorial
 Status: published
+Summary: Learn how to install Calibre-Web on QNAP NAS using Docker, including setup steps and basic configuration for accessing your eBook library from a web interface.
+ai_summary: true
 Tags:
   - calibre
   - calibre-web
@@ -45,25 +47,17 @@ The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but 
 
 <!-- /MarkdownTOC -->
 
-<a id="software"></a>
-
 ## Software
 
 We will be using [dockerized version](https://hub.docker.com/r/linuxserver/calibre-web/) of [janeczku/calibre-web](https://github.com/janeczku/calibre-web)
 
-<a id="installation"></a>
-
 ## Installation
-
-<a id="install-service-from-docker-container-via-container-station"></a>
 
 ### Install service from Docker Container via Container Station
 
 - Search for the `calibre-web` docker image in the `Create` tab of the Container Station.
 - The popup window for version selection should be displayed. Select `latest` unless you have good reason to use an older version. Click `Install`.
 - You need to confirm your intent to install calibre-web on another popup window.
-
-<a id="configuration"></a>
 
 ### Configuration
 
@@ -88,8 +82,6 @@ docker run -d \
 
 The configuration is divided into sections. We will touch: `Environment`, `Shared folders` and `Network`
 
-<a id="environment"></a>
-
 #### Environment
 
 Set the time zone that suits you the most.
@@ -103,8 +95,6 @@ PGID=1000
 TZ=Europe/London
 DOCKER_MODS=linuxserver/calibre-web:calibre
 ```
-
-<a id="shared-folders"></a>
 
 #### Shared Folders
 
@@ -130,19 +120,13 @@ I've created shared folder mappings:
 /Container/calibre/books/books_ml -> /books_ml
 ```
 
-<a id="network"></a>
-
 #### Network
 
 Set the calibre-web container IP address to e.g. 192.168.1.230.
 
-<a id="device"></a>
-
 #### Device
 
 no need to modify anything
-
-<a id="create-container"></a>
 
 ### Create Container
 
@@ -153,8 +137,6 @@ When the customizations in configuration are done, press the "Create" button and
 
 When creation starts, you will be redirected  to the creation screen of Container Station. While creating, you need to wait until the number (1 in the example below) near the top right of the Container Station window (right next to the IoT icon) disappears.
 ![status of calibre-web container configuration](/images/calibre_web_qnap/calibre_web_status.jpg)
-
-<a id="container-initialization"></a>
 
 ### container initialization
 
@@ -172,8 +154,6 @@ INFO in server : Starting Gevent server
 ```
 
 ![calibre-web container initialization](/images/calibre_web_qnap/calibreweb_starting_container_console.jpg)
-<a id="caliber-web-initial-setup"></a>
-
 ### Caliber-web initial setup
 
 Once Caliber-web is available, access the container's server from a web browser.
@@ -190,17 +170,11 @@ By default, as described in <https://hub.docker.com/r/linuxserver/calibre-web/>,
 
 If you can log in, you should be able to see the library you set during initialization.
 
-<a id="post-installation"></a>
-
 ## Post installation
-
-<a id="change-admin-password"></a>
 
 ### Change admin password
 
 To change the admin user's password after logging in, click the lowercase username `admin` with the person icon in the upper right corner of the window to switch to the change profile screen.
-
-<a id="library-change"></a>
 
 ### Library change
 
@@ -210,15 +184,11 @@ To change the admin user's password after logging in, click the lowercase userna
 - Press the "Submit" button to confirm your changes.
 - Click the calibre-web icon on the upper left to display the library, and the changed library should be displayed.
 
-<a id="alternatives"></a>
-
 ## Alternatives
 
 - you can install calibre-web using docker-compose instead of using container station. This is not covered by this tutorial, see docker-compose file on [Docker Hub](https://hub.docker.com/r/linuxserver/calibre-web/)
 - you can use other front-ends for accessing calibre via web. Examples are e.g.:
  	- [seblucas/cops](https://github.com/seblucas/cops) -  Calibre OPDS (and HTML) PHP Server : web-based light alternative to "Calibre content server"/"Calibre2OPDS" to serve ebooks (epub, mobi, pdf, ...)
-
-<a id="credits"></a>
 
 ## Credits
 

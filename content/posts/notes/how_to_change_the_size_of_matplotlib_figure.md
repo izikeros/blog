@@ -4,13 +4,14 @@ Date: 2023-02-12
 Modified: 2023-07-12
 Slug: how-to-change-the-size-of-matplotlib-figure
 Status: published
+Summary: Learn multiple methods to change the size of Matplotlib figures, including using the `figure`, `subplots`, and `set_size_inches` functions.
+ai_summary: true
 Tags:
   - matplotlib
   - python/visualization
   - styling
 Title: How to Change the Size of Matplotlib Figure?
 ---
-
 To change the size of a matplotlib figure, there are several ways you can do it. Here are some examples:
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -22,8 +23,6 @@ To change the size of a matplotlib figure, there are several ways you can do it.
 - [5.  Using the `rc` function](#5-using-the-rc-function)
 
 <!-- /MarkdownTOC -->
-
-<a id="1-using-the-figure-function"></a>
 
 ## 1.  Using the `figure` function
 
@@ -38,8 +37,6 @@ fig = plt.figure(figsize=(8, 6))
 
 This will create a new figure with a width of 8 inches and a height of 6 inches.
 
-<a id="2-using-the-rcparams-dictionary"></a>
-
 ## 2.  Using the `rcParams` dictionary
 
 You can also use the `rcParams` dictionary to set the default figure size for all figures. Here's an example:
@@ -52,8 +49,6 @@ plt.rcParams["figure.figsize"] = (8, 6)
 ```
 
 This will set the default figure size to a width of 8 inches and a height of 6 inches.
-
-<a id="3-using-the-subplots-function"></a>
 
 ## 3.  Using the `subplots` function
 
@@ -68,8 +63,6 @@ fig, ax = plt.subplots(figsize=(8, 6))
 
 This will create a new figure with a single subplot with a width of 8 inches and a height of 6 inches.
 
-<a id="4-using-the-set_size_inches-method"></a>
-
 ## 4.  Using the `set_size_inches` method
 
 You can also use the `set_size_inches` method to change the size of an existing figure. Here's an example:
@@ -83,8 +76,6 @@ fig.set_size_inches(8, 6)
 ```
 
 This will change the size of the existing figure to a width of 8 inches and a height of 6 inches.
-
-<a id="5-using-the-rc-function"></a>
 
 ## 5.  Using the `rc` function
 

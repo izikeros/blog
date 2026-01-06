@@ -34,13 +34,9 @@ prompt: Give me long, blog post text for the machine learning experts on the mos
 <!-- /MarkdownTOC -->
 
 > **NOTE:** This article is still a bit draft but it is published since might be an inspiration and starting point for crafting own visual analysis.
-<a id="introduction"></a>
-
 ## Introduction
 
 When building a regression model, it is essential to check how well the model performs. We use error metrics such as Mean Squared Error (MSE) or Mean Absolute Error (MAE) to measure the performance of our model. However, these error metrics do not always give us a complete picture of the model's performance. Therefore, it is essential to visualize the model's errors to gain a better understanding of how the model is performing.
-
-<a id="tldr---list-of-the-plots-with-short-description"></a>
 
 ## TLDR - list of the plots with short description
 
@@ -56,8 +52,6 @@ When building a regression model, it is essential to check how well the model pe
 10. **Partial Regression Plot**: A plot that shows the relationship between the response variable and one predictor variable, while controlling for the effects of other predictor variables in the model.
 
 In this blog post, we will discuss some of the most insightful plots to visualize regression model prediction errors. We will  provide Python code snippets to generate each type of plot.
-
-<a id="data-preparation"></a>
 
 ## Data Preparation
 
@@ -92,11 +86,7 @@ y_pred = lr.predict(X_test)
 
 Now that we have made predictions using our regression model, let's move on to visualizing the model's errors.
 
-<a id="plots"></a>
-
 ## Plots
-
-<a id="residual-plot"></a>
 
 ### Residual Plot
 
@@ -121,15 +111,11 @@ plt.show()
 
 In the above plot, we can see that the residuals are randomly scattered around the zero line, which indicates that the model is performing well.
 
-<a id="what-can-we-learn-from-a-residual-plot"></a>
-
 #### What can we learn from a residual plot?
 
 - A **horizontal line** at 0 indicates that the model is unbiased, and the residuals are randomly distributed around 0.
 - A curved or **U-shaped** pattern suggests that the model is not capturing the non-linear relationship between the independent and dependent variables.
 - A **funnel-shaped** pattern indicates that the variance of the residuals is not constant across the range of predicted values. This is known as heteroscedasticity and can be corrected by transforming the data or using a different model.
-
-<a id="histogram-of-residuals"></a>
 
 ### Histogram of Residuals
 
@@ -147,15 +133,11 @@ plt.show()
 
 In the above plot, we can see that the residuals follow a normal distribution, which indicates that the model is performing well.
 
-<a id="what-we-can-learn-from-residuals-histogram"></a>
-
 #### What we can learn from Residuals Histogram?
 
 - The residuals histogram can give us insights into the distribution of the errors in the model. If the histogram shows a roughly normal distribution, it indicates that the model is capturing the underlying pattern in the data, and the errors are distributed randomly around the mean. A normal distribution is ideal because it means that the model is making predictions that are equally likely to be too high or too low.
 - A **skewed residuals histogram** indicates that the model is making systematic errors. If the histogram is **skewed to the left**, it means that the model is over-predicting values, while if it is **skewed to the right**, it means that the model is under-predicting values. Skewed distributions can also indicate the presence of outliers in the data.
 - The residuals histogram can be used to identify **outliers** in the data. Outliers are data points that fall far outside the expected range of values, and they can have a significant impact on the model's performance. Outliers can be seen as **peaks or gaps in the histogram**, and they may need to be removed from the dataset to improve the model's accuracy.
-
-<a id="scale-location-plot"></a>
 
 ### Scale-Location Plot
 
@@ -188,8 +170,6 @@ We can see from this plot that there is a slight curve in the line, which may in
 - A **curved or sloping line** in the scale location plot indicates that the variance of the residuals is not constant, and this is an indication of heteroscedasticity. This is a problem because it means that the model is not accounting for the changing variability of the data, which can lead to inaccurate predictions.
 - A scale location plot can be used to identify potential outliers in the data. **Points that are far away from the horizontal line** in the plot may be indicative of outliers that are contributing to the heteroscedasticity in the model.
 - If a scale location plot shows **heteroscedasticity**, it may be possible to improve the model by transforming the response variable or adding additional predictor variables to capture the underlying pattern of variability in the data.
-<a id="q-q-plot"></a>
-
 ### Q-Q Plot
 
 The Q-Q (Quantile-Quantile) plot is a probability plot that shows the theoretical quantiles of the residuals against the actual quantiles of the residuals. A good regression model will have residuals that follow a straight line.
@@ -206,14 +186,10 @@ plt.show()
 
 In the above plot, we can see that the residuals follow a straight line, which indicates that the model is performing well.
 
-<a id="what-can-we-learn-from-a-qq-plot"></a>
-
 #### What can we learn from a QQ plot?
 
 - If the points on the plot fall on a **straight line**, the residuals are normally distributed.
 - If the points **deviate from the straight line**, it suggests that the residuals are not normally distributed, and we may need to transform the data or use a different model.
-
-<a id="leverage-plot"></a>
 
 ### Leverage Plot
 
@@ -248,8 +224,6 @@ plt.show()
 
 In the above plot, we can see that there are no influential points, which indicates that the model is performing well.
 
-<a id="what-we-can-learn-from-leverage-plot"></a>
-
 #### What we can learn from Leverage plot
 
 - The leverage plot shows us how much each data point is affecting the regression line. A data point with high leverage has a large influence on the regression line.
@@ -257,8 +231,6 @@ In the above plot, we can see that there are no influential points, which indica
 - In general, we want to see a **uniform distribution** of the leverage values, with most of the data points falling within the range of 0 to 1. If there are outliers or data points with high leverage values, it may indicate that the model is not capturing the full range of variability in the data.
 - We can use the leverage plot to identify **influential points** that may be affecting the model performance. If we remove these points from the dataset and retrain the model, we can see if the model performance improves.
 - The leverage plot can also be used to diagnose **multicollinearity**, which is a situation where two or more predictor variables in the model are highly correlated with each other. In this case, the leverage values may be high for multiple data points, indicating that they are highly influential in the model.
-
-<a id="cooks-distance-plot"></a>
 
 ### Cook's Distance Plot
 
@@ -299,14 +271,10 @@ plt.show()
 ![residual_plot](/images/model_error/fig_7.png)
 In the above plot, we can see that there are no influential points, which indicates that the model is performing well.
 
-<a id="what-can-we-learn-from-a-cooks-distance-plot"></a>
-
 #### What can we learn from a Cook's distance plot?
 
 - Observations with high Cook's distance values are influential and may be driving the model's predictions. We may want to remove these observations and re-fit the model.
 - Observations with **high leverage values** (i.e., observations with extreme values of the independent variables) can also have high Cook's distance values. We may want to examine these observations more closely to determine if they are valid or outliers.
-
-<a id="actual-vs-predicted-plot"></a>
 
 ### Actual vs. Predicted Plot
 
@@ -345,14 +313,10 @@ plt.show()
 ```
 
 ![residual_plot](/images/model_error/fig_8.png)
-<a id="what-can-we-learn-from-an-actual-vs-predicted-plot"></a>
-
 #### What can we learn from an actual vs. predicted plot?
 
 - If the points on the plot fall on a **straight line**, it indicates that the model is making accurate predictions.
 - If the points **deviate from the straight line**, it suggests that the model is not making accurate predictions and may need to be improved.  
-
-<a id="mean-absolute-error-plot"></a>
 
 ### Mean Absolute Error Plot vs. parameter
 
@@ -388,14 +352,10 @@ plt.show()
 ![residual_plot](/images/model_error/fig_9.png)
 In this example, `alphas` is a list of different regularization parameter values to test for a Lasso regression model. The code fits a model for each value of `alpha` and calculates the mean absolute error on the test set. The resulting MAE values are then plotted against the alpha values to show how the MAE changes with different regularization strengths.
 
-<a id="what-can-we-learn-from-a-mean-absolute-error-plot"></a>
-
 #### What can we learn from a mean absolute error plot?
 
 - The plot can help us **choose the best value of the hyperparameter** by identifying the value that minimizes the MAE.
 - If the **plot is noisy** and **does not have a clear minimum**, it suggests that the hyperparameter may not be important for the model's performance.  
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

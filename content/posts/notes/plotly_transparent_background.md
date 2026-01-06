@@ -4,6 +4,8 @@ Date: 2023-02-13
 Modified: 2023-07-12
 Slug: plotly_transparent_background
 Status: published
+Summary: Learn how to make Plotly plots with transparent backgrounds using the "layout" or "config" parameters, enabling customization for both appearance and interactivity.
+ai_summary: true
 Tags:
   - plotly
   - transparency
@@ -20,8 +22,6 @@ Setting a transparent background for a Plotly plot can be accomplished using dif
 - [Method 3: Using the "to_image" function](#method-3-using-the-to_image-function)
 
 <!-- /MarkdownTOC -->
-
-<a id="method-1-using-the-layout-parameter"></a>
 
 ## Method 1: Using the "layout" parameter
 
@@ -45,8 +45,6 @@ fig.show()
 
 In this example, we create an empty figure and add traces to it. Then, we set the `paper_bgcolor` and `plot_bgcolor` parameters to `rgba(0,0,0,0)` to make the background transparent.
 
-<a id="method-2-using-the-config-parameter"></a>
-
 ## Method 2: Using the "config" parameter
 
 Another way to set the background of a Plotly plot to transparent is by using the "config" parameter. In the `config` parameter, you can set the `displayModeBar` parameter to `False` to remove the toolbar from the plot, and set the `staticPlot` parameter to `True` to disable interactivity. Here's an example:
@@ -63,8 +61,6 @@ fig.show(config={'displayModeBar': False, 'staticPlot': True})
 ```
 
 In this example, we create an empty figure and add traces to it. Then, we set the `displayModeBar` parameter to `False` to remove the toolbar from the plot, and set the `staticPlot` parameter to True to disable interactivity.
-
-<a id="method-3-using-the-to_image-function"></a>
 
 ## Method 3: Using the "to_image" function
 

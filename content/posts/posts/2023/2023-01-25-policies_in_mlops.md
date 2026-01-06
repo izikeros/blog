@@ -36,8 +36,6 @@ todo: add infographics - https://venngage.com/blog/process-infographic-template/
 
 <!-- /MarkdownTOC -->
 
-<a id="introduction"></a>
-
 ## Introduction
 
 Machine Learning Operations (MLOps) is a rapidly growing field that aims to bridge the gap between data science and IT operations. It involves the use of tools and practices to automate, streamline, and optimize the deployment of machine learning models in production. By standardizing practices, organizations can improve the speed, quality, and reliability of their machine learning models while also reducing costs and risks.
@@ -47,8 +45,6 @@ One of the key components of introducing MLOps is the development of policies, g
 ![MLOps Policies and Guidelines](/images/mlops_policies/mlops_policies.jpg)
 
 **Figure 1. MLOps policies and guidelines.**
-
-<a id="1-data-governance-policy"></a>
 
 ### 1.  Data Governance Policy
 
@@ -88,8 +84,6 @@ To prepare a complete Data Governance Policy, organizations can ask themselves t
 
 By answering these questions, organizations can ensure that their Data Governance Policy covers all the necessary topics and provides clear guidelines for managing, storing, and protecting data used in machine learning models.
 
-<a id="2-model-development-standards"></a>
-
 ### 2.  Model Development Standards
 
 Another critical element of MLOps is the development of model development standards. This document lays out the guidelines for developing and implementing ML models, including coding standards, testing protocols, and documentation requirements. For example, it should specify the programming languages and frameworks that should be used, the types of tests that should be run, and the level of documentation that should be provided. By establishing clear standards, organizations can ensure that models are developed in a consistent and reliable manner.
@@ -128,8 +122,6 @@ To prepare a complete Model Development Standards, organizations can ask themsel
 
 By answering these questions, organizations can ensure that their Model Development Standards cover all the necessary topics and provide clear guidelines for developing and implementing machine learning models in a consistent and reliable manner.
 
-<a id="3-model-deployment-and-maintenance-guidelines"></a>
-
 ### 3.  Model Deployment and Maintenance Guidelines
 
 Once models are developed, they need to be deployed and maintained in production. This is where model deployment and maintenance guidelines come in. This document provides instructions for deploying and maintaining ML models in production, including versioning, monitoring, and troubleshooting. It should also specify the procedures for rolling back models in case of issues or errors. By providing clear guidelines for deploying and maintaining models, organizations can ensure that models are deployed and maintained in a consistent and reliable manner.
@@ -163,8 +155,6 @@ To prepare a complete Model Deployment and Maintenance Guidelines, organizations
 
 By answering these questions, organizations can ensure that their Model Deployment and Maintenance Guidelines cover all the necessary topics and provide clear guidelines for deploying and maintaining machine learning models in a consistent and reliable manner.
 
-<a id="4-model-retraining-and-lifecycle-management-policy"></a>
-
 ### 4.  Model Retraining and Lifecycle Management Policy
 
 Machine learning models are not static and will require regular updates and retraining to ensure their continued accuracy and performance. Model retraining and lifecycle management policy provides the procedures for regularly retraining and updating ML models. It should also specify the conditions under which models should be retired or deprecated. By having a clear policy for retraining and managing the lifecycle of models, organizations can ensure that models are kept up to date and continue to provide accurate results.
@@ -196,8 +186,6 @@ To prepare a complete Model Retraining and Lifecycle Management Policy, organiza
 - Are there any compliance requirements that must be met when retraining and managing the lifecycle of models and how will compliance be ensured?
 
 By answering these questions, organizations can ensure that their Model Retraining and Lifecycle Management Policy covers all the necessary topics and provides clear guidelines for regularly retraining and updating machine learning models to ensure their continued accuracy and performance.
-
-<a id="5-infrastructure-and-tooling-guidelines"></a>
 
 ### 5.  Infrastructure and Tooling Guidelines
 
@@ -236,8 +224,6 @@ To prepare a complete Infrastructure and Tooling Guidelines, organizations can a
 
 By answering these questions, organizations can ensure that their Infrastructure and Tooling Guidelines cover all the necessary topics and provide clear guidelines for using the appropriate infrastructure and tools for developing, deploying, and maintaining machine learning models in a consistent and reliable manner.
 
-<a id="6-compliance-and-auditing-protocols"></a>
-
 ### 6.  Compliance and Auditing Protocols
 
 As machine learning models are increasingly used in critical applications, it is important to ensure that they are compliant with relevant regulations and laws. Compliance and Auditing protocols outline the procedures for ensuring compliance with relevant regulations and laws, as well as for conducting regular audits of ML models and processes. This can include regular reviews of models for bias and fairness, as well as procedures for handling any issues that are identified.
@@ -269,8 +255,6 @@ To prepare a complete Compliance and Auditing Protocols, organizations can ask t
 - Are there any specific industry-specific regulations that must be followed and how will compliance be ensured?
 
 By answering these questions, organizations can ensure that their Compliance and Auditing Protocols cover all the necessary topics and provide clear guidelines for ensuring compliance and conducting regular audits of machine learning models and processes.
-
-<a id="7-team-roles-and-responsibilities"></a>
 
 ### 7.  Team Roles and Responsibilities
 
@@ -304,8 +288,6 @@ To prepare a complete Team Roles and Responsibilities document, organizations ca
 
 By answering these questions, organizations can ensure that their Team Roles and Responsibilities document covers all the necessary topics and provides clear guidelines for the roles and responsibilities of each team member in the process of developing, deploying, and maintaining machine learning models.
 
-<a id="8-communication-and-collaboration-protocols"></a>
-
 ### 8.  Communication and Collaboration Protocols
 
 Finally, effective communication and collaboration are essential for the success of MLOps. Communication and Collaboration protocols outline the procedures for communication and collaboration within the MLOps team, including regular meetings and reporting requirements. By establishing clear protocols for communication and collaboration, organizations can ensure that everyone is working together effectively and efficiently.
@@ -336,8 +318,6 @@ To prepare a complete Communication and Collaboration Protocols document, organi
 - How will decisions be made and how conflicts will be resolved?
 
 By answering these questions, organizations can ensure that their Communication and Collaboration Protocols document covers all the necessary topics and provides clear guidelines for effective communication and collaboration within the MLOps team.
-
-<a id="we-have-all-policies-and-guidelines-ready---whats-next"></a>
 
 ## Steps for introducing MLOps in an organization
 
@@ -374,11 +354,7 @@ Regularly conduct audits to ensure that the organization is following the polici
 
 It is also important to establish a governance structure for MLOps, such as an MLOps team, who will be responsible for the overall management and execution of the MLOps process. This team should have a clear leadership, roles and responsibilities and should be accountable for creating and maintaining the MLOps policies and guidelines, as well as implementing and monitoring the MLOps processes.
 
-<a id="what-are-some-factors-that-can-block-or-slow-down-mlops-incubation-in-organization"></a>
-
 ## What are some factors that can block or slow-down MLOps incubation in organization?
-
-<a id="blocking-factors"></a>
 
 ### Blocking factors
 
@@ -392,8 +368,6 @@ When introducing MLOps policies and guidelines in an organization that was opera
 6. **Difficulty in changing established culture:** If the organization has a culture that is not conducive to MLOps, it may be difficult to introduce the new policies and guidelines and to get employees to adopt the new processes.
 7. **Lack of resources:** The organization may not have the resources or expertise to implement the new policies and guidelines, which could lead to delays and inefficiencies.
   
-<a id="actions-to-avoid-or-overcome-blockers"></a>
-
 ### Actions to avoid or overcome blockers
 
 To overcome these problems, potential resistance, some strategies that can be used include:
@@ -409,8 +383,6 @@ To overcome these problems, potential resistance, some strategies that can be us
 5. **Continuous Improvement:** Regularly review and update the policies and guidelines based on feedback and lessons learned, and continuously monitor and improve the MLOps processes.
 
 6. **Metrics and Benchmarking:** Establish metrics and benchmarks to measure the success of introducing MLOps.
-
-<a id="be-prepared-on-what-can-go-wrong"></a>
 
 ## Be prepared on what can go wrong
 
@@ -429,8 +401,6 @@ When introducing MLOps policies and guidelines, there are several potential prob
 6. **Compliance issues:** If the organization does not have a clear understanding of the compliance requirements for MLOps, it can lead to compliance issues and potential legal and financial consequences.
 
 7. **Difficulty in adapting to new tools and technologies:** The organization may have difficulty in adapting to new tools and technologies that are required for the implementation of MLOps, which could lead to delays and inefficiencies.
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

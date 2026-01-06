@@ -45,8 +45,6 @@ The [Kaggle competitions](https://www.kaggle.com/competitions) give insight into
 
 <!-- /MarkdownTOC -->
 
-<a id="absolute-error---ae"></a>
-
 ## Absolute Error - AE
 
 **The sum of the absolute value of each individual error.**
@@ -69,8 +67,6 @@ MAE can cause notable difference between public and private leaderboard calculat
 Exemplary competition using Mean Absolute Error for model evaluation:
 
 - [Forecast Eurovision Voting](https://www.kaggle.com/c/Eurovision2010#Evaluation) - This competition requires contestants to forecast the voting for this year's Eurovision Song Contest in Norway on May 25th, 27th and 29th.
-
-<a id="mean-absolute-error---mae"></a>
 
 ## Mean Absolute Error - MAE
 
@@ -104,8 +100,6 @@ Five exemplary competitions using Mean Absolute Error for model evaluation:
 
 - [Finding Elo](https://www.kaggle.com/c/finding-elo#evaluation) - Predict a chess player's FIDE Elo rating from one game.
 
-<a id="weighted-mean-absolute-error---wmae"></a>
-
 ## Weighted Mean Absolute Error - WMAE
 
 **Weighted average of absolute errors.**
@@ -133,8 +127,6 @@ Two exemplary competitions using Weighted Mean Absolute Error for model evaluati
 - [The Winton Stock Market Challenge](https://www.kaggle.com/c/the-winton-stock-market-challenge#evaluation) - Join a multi-disciplinary team of research scientists.
 
 - [Walmart Recruiting - Store Sales Forecasting](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting#evaluation) - Use historical markdown data to predict store sales.
-
-<a id="pearson-correlation-coefficient"></a>
 
 ## Pearson Correlation Coefficient
 
@@ -164,8 +156,6 @@ Exemplary competition using Pearson Correlation Coefficient for model evaluation
 
 - [Merck Molecular Activity Challenge](https://www.kaggle.com/c/MerckActivity#evaluation) - Help develop safe and effective medicines by predicting molecular activity.
 
-<a id="spearman%E2%80%99s-rank-correlation"></a>
-
 ## Spearman’s Rank Correlation
 
 **Covariance of the two variables converted to ranks divided by the product of the standard deviation of ranks for each variable.**
@@ -193,8 +183,6 @@ $r$ - Spearman's correlation coefficient.
 Exemplary competition using Spearman’s Rank Correlation for model evaluation:
 
 - Draper Satellite Image Chronology](<https://www.kaggle.com/c/draper-satellite-image-chronology#evaluation>) - Can you put order to space and time?
-
-<a id="root-mean-squared-error---rmse"></a>
 
 ## Root Mean Squared Error - RMSE
 
@@ -225,8 +213,6 @@ Five exemplary competition using Root Mean Squared Error for model evaluation:
 - [Predict Future Sales](https://www.kaggle.com/c/competitive-data-science-predict-future-sales#evaluation) - Final project for "How to win a data science competition" Coursera course.
 
 - [New York City Taxi Fare Prediction](https://www.kaggle.com/c/new-york-city-taxi-fare-prediction#evaluation) - Can you predict a rider's taxi fare?
-
-<a id="root-mean-squared-logarithmic-error---rmsle"></a>
 
 ## Root Mean Squared Logarithmic Error - RMSLE
 
@@ -259,8 +245,6 @@ Exemplary competition using Root Mean Squared Logarithmic Error for model evalua
 
 - [Sberbank Russian Housing Market](https://www.kaggle.com/c/sberbank-russian-housing-market#evaluation) - Can you predict realty price fluctuations in Russia’s volatile economy?
 
-<a id="mean-columnwise-root-mean-squared-error---mcrmse"></a>
-
 ## Mean Columnwise Root Mean Squared Error - MCRMSE
 
 **Errors of each k-fold CV trials were averaged over n test samples across m target variables.**
@@ -286,8 +270,6 @@ $\hat{y}_{ij}$ - $i$-th predicted value of $j$-th variable.
 Exemplary competition using Mean Columnwise Root Mean Squared Error for model evaluation:
 
 - [Africa Soil Property Prediction Challenge](https://www.kaggle.com/c/afsis-soil-properties#evaluation) - Predict physical and chemical properties of soil using spectral measurements
-
-<a id="references"></a>
 
 ## References
 

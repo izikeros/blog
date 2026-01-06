@@ -55,13 +55,13 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications. Tversky Similarity Formula Python Example Jaro-Winkler Similarity (for reference) Summary …"/>
+    <meta name="description" content="Learn about Tversky similarity, a metric for comparing sets used in information retrieval and recommendation systems, which balances precision and recall through parameters α and β. Understand its formula and see a Python implementation example."/>
     <meta name="keywords" content="nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Tverski Similarity Metrics"/>
-  <meta property="og:description" content="Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications. Tversky Similarity Formula Python Example Jaro-Winkler Similarity (for reference) Summary …"/>
+  <meta property="og:description" content="Learn about Tversky similarity, a metric for comparing sets used in information retrieval and recommendation systems, which balances precision and recall through parameters α and β. Understand its formula and see a Python implementation example."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/tverski-similarity-metrics/"/>
   <meta property="og:type" content="article"/>
@@ -87,7 +87,7 @@
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
     <meta name="twitter:title" content="Tverski Similarity Metrics"/>
-    <meta name="twitter:description" content="Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific..."/>
+    <meta name="twitter:description" content="Learn about Tversky similarity, a metric for comparing sets used in information retrieval and recommendation systems, which balances precision and recall through parameters α and β. Understand..."/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -112,9 +112,58 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/tverski-similarity-metrics/",
-  "description": "Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are two different similarity metrics that are used to compare strings or..."
+  "description": "Learn about Tversky similarity, a metric for comparing sets used in information retrieval and recommendation systems, which balances precision and recall...",
+  "articleSection": "note",
+  "inLanguage": "en",
+  "keywords": "nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex",
+  "wordCount": 499,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "note",
+      "item": "https://www.safjan.com/category/note.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tverski Similarity Metrics"
+    }
+  ]
 }
 </script>
+
+
+
+<meta name="ai:summary" content="Learn about Tversky similarity, a metric for comparing sets used in information retrieval and recommendation systems, which balances precision and recall through parameters α and β. Understand its formula and see a Python implementation example.">
+
+<meta name="ai:topics" content="nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex">
+
+
+
+<meta name="ai:word-count" content="499">
+<meta name="ai:reading-time" content="2 min">
+
+<meta name="ai:section" content="note">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <title>    Tverski Similarity Metrics
 </title>
@@ -206,7 +255,7 @@
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
 
             <div id="search" class="nav-search"></div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
@@ -231,12 +280,6 @@
 
 
 
-        <details class="toc-details" id="toc-container">
-            <summary>Table of Contents</summary>
-            <nav class="toc" aria-label="Table of Contents">
-                <ul class="toc-list"></ul>
-            </nav>
-        </details>
 
         <div class="article-content">
             <p>Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications.</p>
@@ -251,11 +294,9 @@
 </ul>
 <!-- /MarkdownTOC -->
 
-<p><a id="tversky-similarity"></a></p>
 <h2 id="tversky-similarity">Tversky Similarity</h2>
 <p><strong>Tversky similarity is a metric used to compare sets</strong>, typically in the context of information retrieval, information retrieval evaluation, and recommendation systems. It was introduced by Amos Tversky in his work on set comparison. Tversky similarity takes into account the <strong>number of common elements</strong> between two sets as well as the <strong>differences in elements between them</strong>. It has two parameters, alpha and beta, which control the balance between precision and recall.</p>
 <p>Let's dive into the mathematical formula, explanation, and Python examples for  Tversky similarity.</p>
-<p><a id="formula"></a></p>
 <h3 id="formula">Formula</h3>
 <p>Tversky similarity measures the similarity between two sets A and B, considering the trade-off between false positives and false negatives. The formula for Tversky similarity is:</p>
 <p>$$
@@ -266,7 +307,6 @@ $$</p>
 - $(|A - B|)$ is the size of the set difference of A minus B.
 - ($|B - A|)$ is the size of the set difference of B minus A.
 - $\alpha$ and $\beta$ are parameters that control the trade-off between precision and recall. When $\alpha = \beta = 1$, the Tversky similarity becomes the Jaccard similarity.</p>
-<p><a id="python-example"></a></p>
 <h3 id="python-example">Python Example</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">tversky_similarity</span><span class="p">(</span><span class="n">set_a</span><span class="p">,</span> <span class="n">set_b</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
     <span class="n">intersection</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_a</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set_b</span><span class="p">))</span>
@@ -285,10 +325,8 @@ $$</p>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tversky Similarity:&quot;</span><span class="p">,</span> <span class="n">similarity</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a id="jaro-winkler-similarity-for-reference"></a></p>
 <h2 id="jaro-winkler-similarity-for-reference">Jaro-Winkler Similarity (for reference)</h2>
 <p>Jaro-Winkler similarity is a metric used to compare two strings, often used in record linkage and fuzzy string matching tasks. It was developed by William E. Winkler and Matthew A. Jaro. Jaro-Winkler similarity calculates a score between 0 and 1, where 1 indicates a perfect match and 0 indicates no similarity. It considers the number of matching characters between two strings and the positions of those matching characters. The Jaro-Winkler similarity gives more weight to the common prefix of the strings, making it particularly useful for comparing names and short strings. For more information about Jaro-Winkler similarity see: [[jaro_winkler_similarity]].</p>
-<p><a id="summary"></a></p>
 <h2 id="summary">Summary</h2>
 <p>The main differences between Tversky similarity and Jaro-Winkler similarity are:</p>
 <ul>
@@ -313,6 +351,8 @@ $$</p>
                 <a href="https://www.safjan.com/tag/word-embeddings/" class="article-tag">word-embeddings</a>
                 <a href="https://www.safjan.com/tag/soundex/" class="article-tag">soundex</a>
         </div>
+
+
 
 
 

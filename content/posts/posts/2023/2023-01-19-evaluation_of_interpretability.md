@@ -32,8 +32,6 @@ Interpretability in machine learning is a complex and multifaceted topic. It ref
 
 <!-- /MarkdownTOC -->
 
-<a id="three-levels-of-evaluating-interpretability"></a>
-
 ## Three levels of evaluating interpretability
 
 Doshi-Velez and Kim (2017) propose a framework for evaluating interpretability at three levels: application level, human level, and function level.
@@ -41,19 +39,13 @@ Doshi-Velez and Kim (2017) propose a framework for evaluating interpretability a
 ![taxonomy of evaluation interpretability - three levels](/images/evaluation_of_interpretability/taxonomy_of_evaluation_interpretability.png)
 **Figure 1. Taxonomy of evaluation approaches for interpretability, source: Doshi-Velez and Kim (2017)**
 
-<a id="application-level"></a>
-
 ### Application level
 
 At the application level, interpretability is evaluated by **testing the explanation in the context of the real-world task for which the model was developed**. For example, in the case of a fracture detection software that uses machine learning to locate and mark fractures in X-rays, radiologists would test the software directly to evaluate the model. This approach requires a well-designed experimental setup and an understanding of how to assess the quality of the explanations. A good baseline for this evaluation is always how well a human would perform at explaining the same decision.
 
-<a id="human-level"></a>
-
 ### Human level
 
 The human level evaluation is a simplified version of the application level evaluation. **Instead of testing with domain experts, experiments are conducted with laypersons**. This approach is more cost-effective and allows for more testers to participate. For example, a user might be shown different explanations and asked to choose the best one.
-
-<a id="function-level"></a>
 
 ### Function level
 

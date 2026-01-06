@@ -4,6 +4,8 @@ Date: 2023-03-08
 Modified: 2023-07-12
 Slug: yapf-toml-package-is-needed-for-using-pyproject-toml-as-a-configuration -file
 Status: published
+Summary: "Learn how to resolve the \"yapf: toml package is needed\" error by adding `additional_dependencies: [toml]` when using pyproject.toml as a configuration file."
+ai_summary: true
 Tags:
   - yapf
   - pre-commit
@@ -12,7 +14,6 @@ Tags:
   - code-formatter
 Title: Yapf Toml Package Is Needed for Using pyproject.toml as a Configuration File
 ---
-
 if you are getting error:
 
 yapf: toml package is needed for using pyproject.toml as a configuration file

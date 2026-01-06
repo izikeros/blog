@@ -1,17 +1,18 @@
 ---
-Title: Avoid using curl -u “username:secret”!
-Slug: avoid-using-curl-u-usernamesecret
+Category: note
 Date: 2024-01-20
 Modified: 2024-01-20
+Slug: avoid-using-curl-u-usernamesecret
 Status: published
+Summary: "Learn how storing credentials in the `.netrc` file securely manages Basic Authentication with curl, enhancing both efficiency and security compared to using `-u username:password`."
+ai_summary: true
+Title: "Avoid using curl -u “username:secret”!"
 tags:
   - curl
   - security
   - shell-history
   - netrc
-Category: note
 ---
-
 When invoking an endpoint guarded by Basic Authentication, you might resort to the -u username:password feature in curl.
 
 ```curl -u "jane@examplewebsite.com:mySecretGuard" http://api.myawesomeapp.com/information```

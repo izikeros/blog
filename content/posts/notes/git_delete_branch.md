@@ -4,13 +4,14 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: git-delete-branch
 Status: published
+Summary: Learn how to delete Git branches locally and remotely, including commands for both operations and tips on managing merged branches.
+ai_summary: true
 Tags:
   - branch
   - delete
   - git
 Title: How to Delete a Git Branch Locally and Remotely?
 ---
-
 ## Introduction
 
 Git is a powerful tool for version control, and it is widely used by developers to keep track of changes in their code. One of the key features of Git is the ability to create and manage branches, which allows developers to work on different versions of their code simultaneously. However, as the number of branches grows, it can become difficult to keep track of them all, and it may be necessary to delete some of them. In this article, we will explore how to delete a Git branch locally and remotely.

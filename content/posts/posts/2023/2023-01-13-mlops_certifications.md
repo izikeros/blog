@@ -30,13 +30,9 @@ todo: need to verify the offer and the links
 - [Conclusion](#conclusion)
 <!-- /MarkdownTOC -->
 
-<a id="introduction"></a>
-
 ## Introduction
 
 Machine learning operations (MLOps) is a rapidly growing field that combines the expertise of data science and software engineering to streamline and automate the deployment of machine learning models in production. As the demand for MLOps professionals increases, more and more organizations are offering certifications to validate the skills and knowledge of individuals in this field. In this blog post, we'll take a look at some of the most popular MLOps certifications available and discuss their relevance to the industry.
-
-<a id="mlops-certificates---are-they-worth-your-effort-and-money"></a>
 
 ## MLOps Certificates - Are They Worth Your Effort and Money?
 
@@ -44,11 +40,7 @@ Before diving into the specific certifications, it's important to consider wheth
 
 That being said, a certification can be a great way to gain a deeper understanding of the field and to stay up-to-date with the latest trends and best practices. Additionally, certifications can also help you to stand out in a crowded job market and may be preferred or required by certain employers.
 
-<a id="certifications"></a>
-
 ## Certifications
-
-<a id="aws-certified-machine-learning---specialty"></a>
 
 ### AWS Certified Machine Learning - Specialty
 
@@ -58,8 +50,6 @@ This certification is relevant for those who work with AWS and want to demonstra
 
 Link to certification: [AWS Certified Machine Learning - Specialty Certification | AWS Certification | AWS](https://aws.amazon.com/certification/certified-machine-learning-specialty/)
 
-<a id="google-cloud-professional-machine-learning-engineer"></a>
-
 ### Google Cloud Professional Machine Learning Engineer
 
 The Google Cloud Professional Machine Learning Engineer certification is offered by Google Cloud and is designed for individuals who want to demonstrate their expertise in designing and implementing machine learning solutions on the Google Cloud platform. To earn this certification, candidates must pass an exam that covers topics such as data preparation, model selection, and deployment.
@@ -67,8 +57,6 @@ The Google Cloud Professional Machine Learning Engineer certification is offered
 This certification is relevant for those who work with Google Cloud and want to demonstrate their knowledge of the platform's capabilities for machine learning. It is also useful for those who want to learn more about how to use Google Cloud for MLOps.
 
 Link to certification: [Professional ML Engineer Certification  |  Google Cloud](https://cloud.google.com/certification/machine-learning-engineer)
-
-<a id="free-mlops-certifications"></a>
 
 ## Free MLOps Certifications
 
@@ -94,8 +82,6 @@ Here are a few examples of free MLOps certifications, first one is specializatio
 While these free certifications do not carry as much weight as paid certifications, they can still be a good way to gain knowledge and understanding of the field. They can also be a good starting point for those considering a paid certification in the future. Additionally, the experience and knowledge gained through such certifications can be added to the resume and can be used in the job interview.
 
 It's worth noting that, Even though these certifications are free, they still require effort and dedication to complete, and can be a great way to demonstrate your commitment to learning and growing in the field of MLOps.
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

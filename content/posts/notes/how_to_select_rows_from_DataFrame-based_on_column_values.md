@@ -4,6 +4,8 @@ Date: 2023-02-12
 Modified: 2023-07-12
 Slug: how-to-select-rows-from-DataFrame-based-on-column-values
 Status: published
+Summary: Learn how to select rows from a pandas DataFrame using boolean indexing, the query() method, loc(), and iloc() methods for various conditions and scenarios.
+ai_summary: true
 Tags:
   - python
   - pandas
@@ -22,8 +24,6 @@ To select rows from a pandas DataFrame based on column values, you can use vario
 - [4.  Using the iloc\(\) method](#4-using-the-iloc-method)
 
 <!-- /MarkdownTOC -->
-
-<a id="1-using-boolean-indexing"></a>
 
 ## 1.  Using Boolean indexing
 
@@ -55,8 +55,6 @@ This will output:
 
 ```
 
-<a id="2-using-the-query-method"></a>
-
 ## 2.  Using the query() method
 
 This method allows you to select rows based on a more complex condition using a string expression. For example:
@@ -76,8 +74,6 @@ This will output:
 3    David   40      M
 
 ```
-
-<a id="3-using-the-loc-method"></a>
 
 ## 3.  Using the loc() method
 
@@ -101,8 +97,6 @@ Gender     M
 Name: Bob, dtype: object
 
 ```
-
-<a id="4-using-the-iloc-method"></a>
 
 ## 4.  Using the iloc() method
 

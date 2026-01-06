@@ -1,13 +1,14 @@
 ---
-Title: Using Git Worktrees as Clean Rooms for AI-Assisted Coding
-Slug: git-worktrees-for-ai-coding
+Category: note
 Date: 2025-11-28
 Modified: 2025-11-28
+Slug: git-worktrees-for-ai-coding
 Status: published
+Summary: Learn how Git worktrees create isolated environments for AI-assisted coding, allowing you to keep your main development line clean while experimenting with AI suggestions in dedicated branches.
+ai_summary: true
 Tags: git, workflows, agents, ai, refactoring
-Category: note
+Title: Using Git Worktrees as Clean Rooms for AI-Assisted Coding
 ---
-
 ## The Mental Model
 
 Git worktrees let a single repository sprout multiple working directories, each tied to a different branch but sharing the same object store. It feels almost like having parallel realities: one directory on `develop`, another on a feature branch, yet another on a temporary test branch, all living side by side without fighting for checkout state. There is no deep magic behind this; Git simply keeps the `.git` metadata in one place and mounts lightweight directory views that track their own branch heads.

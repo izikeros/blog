@@ -34,8 +34,6 @@ prompt: Give me long blog-post on Alternatives to Apache AirFlow. For each tool 
 
 <!-- /MarkdownTOC -->
 
-<a id="1-prefect"></a>
-
 ## 1.  Prefect
 
 ![prefect logo](https://d33wubrfki0l68.cloudfront.net/dbca607e3f64720cb471fc40cdb54c68cea5c86d/3ad5f/assets/img/prefect-logo-gradient-white.c4c1e293.svg)
@@ -43,8 +41,6 @@ prompt: Give me long blog-post on Alternatives to Apache AirFlow. For each tool 
 Prefect is a modern, serverless, and open-source workflow management platform that was built to tackle the complexities of data-driven workflows. It aims to provide a simple, intuitive interface for defining, executing, and monitoring workflows, while also offering a robust set of features for handling complex use cases. Prefect offers a wide range of integrations with other tools, including popular cloud platforms like AWS, GCP, and Azure. Prefect also has a growing community of users and developers, making it an excellent option for projects of all sizes.
 
 Link: [https://www.prefect.io/](https://www.prefect.io/)
-
-<a id="2-luigi"></a>
 
 ## 2.  Luigi
 
@@ -54,8 +50,6 @@ Luigi is a Python-based workflow management system that was created by Spotify. 
 
 Link: [https://github.com/spotify/luigi](https://github.com/spotify/luigi)
 
-<a id="3-apache-nifi"></a>
-
 ## 3.  Apache Nifi
 
 ![Apache Nifi logo](https://nifi.apache.org/assets/images/apache-nifi-logo.svg)
@@ -63,8 +57,6 @@ Link: [https://github.com/spotify/luigi](https://github.com/spotify/luigi)
 Apache NiFi is a powerful data integration tool that can be used to manage workflows. NiFi provides a user-friendly interface for designing, executing, and monitoring data flows, making it a great option for projects that require a high degree of control and visibility into the flow of data. NiFi supports a wide range of data sources and destinations, and it can be used to automate many different types of data-driven workflows.
 
 Link: [https://nifi.apache.org/](https://nifi.apache.org/)
-
-<a id="4-argo"></a>
 
 ## 4.  Argo
 
@@ -74,23 +66,17 @@ Argo is an open-source workflow management system that was designed specifically
 
 Link: [https://argoproj.github.io/](https://argoproj.github.io/)
 
-<a id="5-zeebe"></a>
-
 ## 5.  Zeebe
 
 Zeebe is an open-source workflow engine for microservices orchestration. It is designed to be highly scalable, providing a reliable and efficient way to manage complex workflows across multiple microservices. Zeebe offers a user-friendly interface for defining and executing workflows, and it provides a range of features for monitoring and debugging workflows. Zeebe is a great option for projects that require a high degree of coordination and control over microservices.
 
 Link: [https://zeebe.io/](https://zeebe.io/)
 
-<a id="6-dagster"></a>
-
 ## 6.  DAGster
 
 DAGster is an open-source data orchestration platform that was created to manage complex data pipelines. It offers a modular architecture that allows users to easily compose complex workflows, making it a great option for teams that need to build sophisticated data-driven applications. DAGster also offers powerful features for testing, debugging, and monitoring pipelines.
 
 Link: [https://dagster.io/](https://dagster.io/)
-
-<a id="7-conductor"></a>
 
 ## 7.  Conductor
 
@@ -100,15 +86,11 @@ Conductor is a workflow orchestration engine that is designed to manage complex 
 
 Link: [https://netflix.github.io/conductor/](https://netflix.github.io/conductor/)
 
-<a id="8-kubeflow-pipelines"></a>
-
 ## 8.  Kubeflow Pipelines
 
 Kubeflow Pipelines is a platform for building and deploying machine learning pipelines on Kubernetes. It offers a wide range of features for defining and executing machine learning workflows, making it a great option for data scientists and engineers. Kubeflow Pipelines also provides a user-friendly interface for designing and monitoring workflows, and it can be easily integrated with other Kubeflow components.
 
 Link: [https://www.kubeflow.org/docs/components/pipelines/](https://www.kubeflow.org/docs/components/pipelines/)
-
-<a id="9-oozie"></a>
 
 ## 9.  Oozie
 
@@ -118,15 +100,11 @@ Oozie is a workflow scheduler system for Hadoop that is designed to manage batch
 
 Link: [https://oozie.apache.org/](https://oozie.apache.org/)
 
-<a id="10-pinball"></a>
-
 ## 10.  Pinball
 
 Pinball is a workflow management system that was created by Pinterest. It offers a user-friendly interface for defining and executing workflows, and it provides a range of features for handling dependencies and managing job execution. Pinball also offers a powerful set of APIs and can be easily integrated with other tools and services.
 
 Link: [https://github.com/pinterest/pinball](https://github.com/pinterest/pinball)
-
-<a id="summary"></a>
 
 ## Summary
 

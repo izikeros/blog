@@ -1,16 +1,17 @@
 ---
-Title: entr - run arbitrary command when files change
-Slug: entr-run-arbitrary-command-when-files-change
+Category: note
 Date: 2024-01-01
 Modified: 2024-01-01
+Slug: entr-run-arbitrary-command-when-files-change
 Status: published
+Summary: Learn how to use `entr` to automate tasks by running commands when files change, ideal for developers during the coding process. Discover its key features and usage examples for streamlining development workflows.
+ai_summary: true
+Title: entr - run arbitrary command when files change
 tags:
   - change
   - watch
   - watch-files
-Category: note
 ---
-
 `entr` is a UNIX utility which runs arbitrary commands when files change. It helps in automating tasks during development such as rebuilding projects, running tests, or syncing files.
 
 Here's a simple usage example:

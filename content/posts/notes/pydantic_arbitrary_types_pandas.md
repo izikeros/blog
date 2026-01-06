@@ -21,8 +21,6 @@ citation_needed: false
 
 <!-- /MarkdownTOC -->
 
-<a id="solution-1---allow-arbitrary-types"></a>
-
 ## Solution 1 - allow arbitrary types
 
 ```python
@@ -37,8 +35,6 @@ class SubModelInput(BaseModel):
     class Config:
         arbitrary_types_allowed = True
 ```
-
-<a id="solution-2---create-a-pythonic-type-hint-for-a-pddataframe"></a>
 
 ## Solution 2 - create a pythonic type hint for a pd.Dataframe
 
@@ -55,8 +51,6 @@ class SubModelInput(BaseModel):
     a: PandasDataFrame
     b: PandasDataFrame
 ```
-
-<a id="see-also"></a>
 
 ## See also
 

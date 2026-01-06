@@ -1,4 +1,6 @@
 ---
+Summary: Learn how to create and manage virtual environments in Python using popular tools like `venv`, `virtualenv`, and `conda`, ensuring isolated project dependencies and avoiding conflicts.
+ai_summary: true
 category: note
 date: 2022-05-12
 status: published
@@ -21,7 +23,6 @@ tags:
   - python-packaging
 title: Creating Virtual Environments in Python
 ---
-
 Python virtual environments are an essential tool for isolating project dependencies and avoiding conflicts between different projects. This article will guide you through methods of creating virtual environments in Python.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -41,11 +42,7 @@ Python virtual environments are an essential tool for isolating project dependen
 
 <!-- /MarkdownTOC -->
 
-<a id="most-popular-methods"></a>
-
 ## Most popular methods
-
-<a id="using-venv"></a>
 
 ### Using `venv`
 
@@ -77,8 +74,6 @@ source virtual_environment_name/bin/activate
 .\virtual_environment_name\Scripts\activate
 ```
 
-<a id="using-virtualenv"></a>
-
 ### Using `virtualenv`
 
 `virtualenv` is a third-party Python package that you can install using pip. It allows you to create multiple side-by-side environments.
@@ -95,15 +90,11 @@ Then, create a virtual environment with a specific Python version, e.g., 3.9, as
 virtualenv -p 3.9 $HOME/.virtualenvs/safeeyes
 ```
 
-<a id="using-pyenv"></a>
-
 ### Using `pyenv`
 
 `pyenv` is a powerful tool for managing multiple Python versions. It doesn't come pre-installed with Python, so you'll need to install it separately. Once installed, you can use it to create virtual environments.
 
 Detailed instructions on how to use `pyenv` for creating virtual environments will be covered in a separate article.
-
-<a id="using-conda"></a>
 
 ### Using `conda`
 
@@ -121,13 +112,9 @@ To activate the environment, use:
 conda activate virtual_environment_name
 ```
 
-<a id="alternatives"></a>
-
 ## Alternatives
 
 While `venv`, `virtualenv`, and `pyenv` are the most commonly used tools for creating virtual environments in Python, there are alternative methods available. Here are a few:
-<a id="using-pipenv"></a>
-
 ### Using `pipenv`
 
 `pipenv` is a tool that aims to bring the best of all packaging worlds to the Python world. It harnesses Pipfile, pip, and virtualenv into one single command.
@@ -151,8 +138,6 @@ To activate the environment, use:
 ```sh
 pipenv shell
 ```
-
-<a id="using-poetry"></a>
 
 ### Using `Poetry`
 
@@ -178,15 +163,11 @@ To activate the environment, use:
 poetry shell
 ```
 
-<a id="using-docker"></a>
-
 ### Using `Docker`
 
 While not a Python-specific tool, Docker can be used to create isolated environments for Python applications. A Docker container can be thought of as a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the system tools, libraries, and settings.
 
 To use Docker, you need to create a `Dockerfile` that specifies the Python version and the dependencies your application needs. Then, you can build a Docker image from this `Dockerfile` and run your application inside a Docker container based on this image.
-
-<a id="using-pdm"></a>
 
 ### Using `PDM`
 
@@ -204,8 +185,6 @@ To activate the environment, use:
 pdm shell
 ```
 
-<a id="using-hatch"></a>
-
 ### Using `Hatch`
 
 Hatch is a productivity tool designed to make your workflow easier and more efficient, while also reducing the number of other tools you need to know. It is heavily inspired by npm.
@@ -217,8 +196,6 @@ hatch new my_project
 ```
 
 The command above will create a new directory named `my_project`, set up a new virtual environment, and initialize a new Git repository.
-
-<a id="using-pipx"></a>
 
 ### Using `Pipx`
 

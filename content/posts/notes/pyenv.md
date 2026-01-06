@@ -1,4 +1,6 @@
 ---
+Summary: Learn how to use pyenv to manage multiple Python versions on macOS, ensuring consistent behavior across projects without affecting system Python. Discover installation steps and common commands for setting up and managing Python environments efficiently.
+ai_summary: true
 title: Using Pyenv
 slug: using-pyenv
 category: note
@@ -15,7 +17,6 @@ tags:
   - optimizations
   - archflag
 ---
-
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Usage](#usage)
@@ -43,8 +44,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 ```
 This tells your shell to initialize pyenv when you start a new shell session. You can then use pyenv to manage your Python installations.
-
-<a id="usage"></a>
 
 ## Usage
 
@@ -87,8 +86,6 @@ $ pyenv uninstall 3.8.2/envs/greenhouse
 $ pyenv virtualenv-delete greenhouse
 ```
 
-<a id="using-with-pycharm"></a>
-
 ## Using with PyCharm
 
 You can also use pyenv with PyCharm. To use pyenv with PyCharm, you need to create a virtual environment using pyenv first, and then add it to PyCharm as a local interpreter. Here are the steps:
@@ -101,13 +98,9 @@ You can also use pyenv with PyCharm. To use pyenv with PyCharm, you need to crea
 
 You can now use the virtual environment with PyCharm, and any packages you install will be installed in the virtual environment rather than globally on your system.
 
-<a id="installing-python-with-tkinter"></a>
-
 ## Installing Python with tkinter
 
 There is stackoverflow question on that: [Unable to install tkinter with pyenv Pythons on MacOS - Stack Overflow](https://stackoverflow.com/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos)
-
-<a id="install-with-optimizations"></a>
 
 ## Install with optimizations
 

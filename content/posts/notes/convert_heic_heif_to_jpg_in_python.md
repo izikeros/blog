@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-04-14
 Modified: 2023-07-12
-Prompt: give me long blog post on in python how to convert heic and heif to jpeg and other popular formats. in the post give me full working code
 Slug: convert-heic-and-heif-to-jpg-png-bmp-with-python
 Status: published
+Summary: Learn how to use Python, specifically the Pillow library, to convert HEIF and HEIC files into popular formats like JPEG, PNG, and BMP. Follow step-by-step instructions and code examples for single and bulk conversions.
+ai_summary: true
 Tags:
   - python
   - heic
@@ -16,10 +17,9 @@ Tags:
   - image-conversion
   - compression
 Title: Convert HEIC and HEIF to Jpg, Png, BMP With Python
+Prompt: give me long blog post on in python how to convert heic and heif to jpeg and other popular formats. in the post give me full working code
 ---
 HEIF and HEIC image formats are gaining popularity due to their superior image quality and smaller file sizes compared to traditional formats like JPEG and PNG. However, they are not yet widely supported by all devices and software applications. In this blog post, we will explore how to convert HEIF and HEIC files to JPEG and other popular image formats using Python.
-
-<!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
 
 - [Tutorial](#tutorial)
   - [Use Pillow](#use-pillow)
@@ -30,19 +30,11 @@ HEIF and HEIC image formats are gaining popularity due to their superior image q
   - [Use pyheif library](#use-pyheif-library)
 - [Summary](#summary)
 
-<!-- /MarkdownTOC -->
-
-<a id="tutorial"></a>
-
 ## Tutorial
 
 Python provides several libraries for working with images, including Pillow, OpenCV, and PyImageSearch. For this tutorial, we will be using the Pillow library, which is a fork of the Python Imaging Library (PIL) and provides a simple and easy-to-use API for image processing.
 
-<a id="use-pillow"></a>
-
 ### Use Pillow
-
-<a id="step-1-installing-required-libraries"></a>
 
 #### Step 1: Installing Required Libraries
 
@@ -51,8 +43,6 @@ Before we can begin converting HEIF and HEIC files, we need to make sure we have
 ```
 pip install Pillow
 ```
-
-<a id="step-2-converting-heif-and-heic-files-to-jpeg"></a>
 
 #### Step 2: Converting HEIF and HEIC Files to JPEG
 
@@ -94,8 +84,6 @@ for filename in files:
 
 In the code above, we use the `os` library to get a list of HEIF and HEIC files in a directory. We then use a for loop to iterate over the list of file names, open each file using the `Image` module, convert it to RGB color space, and save it as a JPEG file with the same name as the original file.
 
-<a id="step-3-converting-heif-and-heic-files-to-other-formats"></a>
-
 #### Step 3: Converting HEIF and HEIC Files to Other Formats
 
 In addition to converting HEIF and HEIC files to JPEG, we can also convert them to other popular formats like PNG and BMP using the Pillow library. Here is an example that shows how to convert a HEIF or HEIC file to PNG:
@@ -119,8 +107,6 @@ image = Image.open('example.heic')
 # Convert to BMP 
 image.save('example.bmp')
 ```
-
-<a id="step-4-converting-heif-and-heic-files-in-bulk-to-jpeg"></a>
 
 #### Step 4: Converting HEIF and HEIC Files in Bulk to JPEG
 
@@ -146,8 +132,6 @@ for filename in files:
 ```
 
 In the code above, we use the `os` library to get a list of HEIF and HEIC files in a directory. We then create an output directory if it does not already exist. Finally, we use a for loop to iterate over the list of file names, open each file using the `Image` module, convert it to RGB color space, and save it as a JPEG file in the output directory with the same name as the original file.
-
-<a id="use-pyheif-library"></a>
 
 ### Use pyheif library
 
@@ -196,8 +180,6 @@ for filename in files:
 In this code, we use the same approach to get a list of HEIF and HEIC files in a directory and create an output directory if it does not already exist. Then, we use a for loop to iterate over the list of file names, read in each HEIF or HEIC file using `pyheif`, create a PIL image object from the extracted image data, and save it as a JPEG file in the output directory with the same name as the original file.
 
 Using the `pyheif` library to convert HEIF and HEIC files to JPEG is a simple and effective way to handle image file format conversions in Python.
-
-<a id="summary"></a>
 
 ## Summary
 

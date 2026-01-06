@@ -1,10 +1,12 @@
 ---
-Title: MLOps Roadmap
 Category: note
 Date: 2023-01-14
 Modified: 2023-07-12
 Slug: mlops-roadmap
 Status: published
+Summary: "Learn the six key areas of MLOps: data management, experimentation, model development, deployment, monitoring, and automation. Discover how to build a robust MLOps pipeline from start to production."
+ai_summary: true
+Title: MLOps Roadmap
 tags:
   - mlops
   - learning

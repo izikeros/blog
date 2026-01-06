@@ -12,6 +12,7 @@ Tags:
   - software/alternatives
   - Linux
 Title: Awk
+Summary: Code snippets for AWK
 ---
 
 ## Validate CSV number of fields

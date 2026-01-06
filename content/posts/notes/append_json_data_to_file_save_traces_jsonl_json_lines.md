@@ -4,6 +4,8 @@ Date: 2022-06-03
 Modified: 2023-07-12
 Slug: append-json-data-to-file-save-traces
 Status: published
+Summary: Learn how to use JSON Lines for appending data to files in a non-intrusive way, making it ideal for log files and shell pipelines, compared to CSV's ambiguities and limited support for data types.
+ai_summary: true
 Tags:
   - append-json
   - data
@@ -14,7 +16,6 @@ Tags:
   - dataset
 Title: Append JSON Data to File, Save the Traces
 ---
-
 ## The JSON Lines standard
 
 Sometimes there is a need to store data in JSON format but simultaneously append data to files when new data arrive. JSON format stores data, on the top level, like a dictionary or a list it is not trivial to append new data without reading the whole file.

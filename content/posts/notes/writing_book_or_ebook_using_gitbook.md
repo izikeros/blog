@@ -2,17 +2,18 @@
 Category: note
 Date: 2023-01-31
 Modified: 2023-07-12
-Prompt: Give me long markdown article on writing a book in markdown using gitbook. The article is tutorial style with proper introduction and detailed guidance. Can be based on creation of exemplary book with some minimal, multi-chapter content.
 Slug: writing-book-or-ebook-using-gitbook
 Status: published
+Summary: Learn how to create a book or ebook using Gitbook and Markdown, covering setup, writing chapters, adding media, and publishing in various formats like PDF, ePub, and Mobi.
+ai_summary: true
 Tags:
   - markdown
   - content-creation
   - publishing
   - gitbook
 Title: Writing a Book or Ebook Using Gitbook
+Prompt: Give me long markdown article on writing a book in markdown using gitbook. The article is tutorial style with proper introduction and detailed guidance. Can be based on creation of exemplary book with some minimal, multi-chapter content.
 ---
-
 up::[[writing_a_book_or_ebook_in_markdown]]
 
 ## Introduction

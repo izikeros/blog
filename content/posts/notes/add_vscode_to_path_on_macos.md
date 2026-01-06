@@ -1,9 +1,11 @@
 ---
-Title: Add VSCode to PATH
-Slug: add-vscode-to-path
+Category: note
 Date: 2023-07-21
 Modified: 2023-07-21
+Slug: add-vscode-to-path
 Status: published
+Summary: Learn how to resolve the "command not found" error for VSCode by adding the `code` command to your system PATH.
+ai_summary: true
 Tags:
   - vscode
   - path
@@ -11,7 +13,7 @@ Tags:
   - cli
   - bash
   - zsh
-Category: note
+Title: Add VSCode to PATH
 ---
 If you get code command not found error but vscode  is installed:
 

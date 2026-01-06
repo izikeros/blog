@@ -4,6 +4,8 @@ Date: 2023-06-27
 Modified: 2023-07-12
 Slug: bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number
 Status: published
+Summary: Learn how to use a Bash script to rename multiple image files in a directory to a standardized pattern with sequence numbers, maintaining their original extensions for better organization.
+ai_summary: true
 Tags:
   - bash
   - python
@@ -15,7 +17,6 @@ Tags:
   - script
 Title: Bash - Rename Multiple Image Files to Match Pattern With Sequence Number
 ---
-
 The use case for the provided script is to rename multiple image files in a directory while maintaining their original file extensions. This script can be handy in situations where you have a collection of image files with different formats or extensions, and you want to standardize their names for better organization or consistency.
 
 By executing the script, all image files with extensions such as `.jpg`, `.jpeg`, `.png`, `.gif`, `.tiff`, `.heic`, and `.heif` in the current directory will be renamed. The new names will follow the pattern "img_xxx.ext", where "xxx" represents a sequence number starting from 000, and "ext" represents the original file extension.

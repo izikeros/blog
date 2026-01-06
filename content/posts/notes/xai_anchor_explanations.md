@@ -4,6 +4,8 @@ Date: 2023-02-20
 Modified: 2023-07-12
 Slug: anchor-explanations
 Status: published
+Summary: Learn about anchor explanations in explainable AI, which provide transparent, human-readable rules to understand why machine learning models make specific predictions, enhancing trust and decision-making across various fields.
+ai_summary: true
 Tags:
   - explainable-ai
   - anchor-explanations
@@ -23,7 +25,6 @@ Tags:
   - responsible-ai
 Title: Explainable AI - Anchor Explanations
 ---
-
 Anchor explanations are a type of explanation method used in the field of explainable artificial intelligence (XAI). The purpose of anchor explanations is to provide transparent, interpretable, and understandable reasons for the predictions made by machine learning models.
 
 An **anchor explanation is a specific rule or condition that, when met, would cause the model to make the same prediction**. The rule or condition is presented in a human-readable format, which makes it easy for end-users to understand how the model arrived at its prediction.

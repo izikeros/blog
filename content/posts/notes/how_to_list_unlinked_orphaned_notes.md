@@ -4,6 +4,8 @@ Date: 2022-08-17
 Modified: 2023-07-12
 Slug: list-unlinked-orphaned-notes-obsidian
 Status: published
+Summary: Learn how to generate a dynamic list of unlinked (orphaned) notes in Obsidian using Dataview for better note organization and management.
+ai_summary: true
 Tags:
   - obsidian
   - obsidian/dataview
@@ -11,7 +13,6 @@ Tags:
 Title: List Unlinked (Orphaned) Notes in Obsidian
 citation_needed: false
 ---
-
 Here is how you can create dynamic list of unlinked notes (files) using dataview
 <pre>
 ```dataview

@@ -1,16 +1,17 @@
 ---
-Title: Split glued or joined words
-Slug: split-glued-or-joined-words
+Category: note
 Date: 2023-08-12
 Modified: 2023-08-12
+Slug: split-glued-or-joined-words
 Status: published
+Summary: Learn how to split glued words using the wordninja and wordsegment packages, with examples in Python code for both library usage and command-line interface.
+ai_summary: true
 Tags:
   - nlp
   - text-preprocessing
   - split-text
-Category: note
+Title: Split glued or joined words
 ---
-
 up::[[MOC_Python]]
 
 ## wordninja package

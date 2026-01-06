@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-02-13
 Modified: 2023-07-12
-Prompt: Give me few method on how to find most viewed questions with given tag on stackoverflow
 Slug: stackoverflow-most-viewed-question-for-the-tag
 Status: published
+Summary: Learn how to use Stack Exchange Data Explorer (SEDE) to find and analyze the most viewed questions with a specific tag on Stack Overflow. Follow step-by-step instructions to compose and run a SQL query that retrieves top questions based on view count.
+ai_summary: true
 Tags:
   - most-viewed-questions
   - stack-overflow
@@ -14,10 +15,8 @@ Tags:
   - stackoverflow
   - sede
 Title: How to Find Most Viewed Questions With Given Tag on Stackoverflow?
+Prompt: Give me few method on how to find most viewed questions with given tag on stackoverflow
 ---
-
-
-
 You can use the Stack Exchange Data Explorer (SEDE) to find the most viewed questions with a given tag on Stack Overflow. Here are a few steps you can follow:
 
 1. Go to [https://data.stackexchange.com/stackoverflow/queries](https://data.stackexchange.com/stackoverflow/queries) and select "Stack Overflow" as the site.

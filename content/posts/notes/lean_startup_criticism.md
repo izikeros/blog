@@ -1,18 +1,19 @@
 ---
-Title: Criticism of the Lean Startup
-Slug: criticism-of-the-lean-startup
+Category: note
 Date: 2023-09-04
 Modified: 2023-11-07
+Slug: criticism-of-the-lean-startup
 Status: published
+Summary: The Lean Startup method remains valuable but faces criticisms such as oversimplification, overemphasis on MVPs, bias towards tech startups, market saturation, and challenges in applying it across different industries. Readers will learn about these critiques and the evolving nature of startup methodologies.
+ai_summary: true
+Title: Criticism of the Lean Startup
 tags:
   - lean
   - lean-startup
   - methodology
   - startup
-Category: note
 prompt: Is the Lean Startup method still valid today? What is the main criticism of this method regarding the current situation?
 ---
-
 X::[[lean_startup]]
 X::[[product_led_growth]]
 X::[[growth_hacking]]

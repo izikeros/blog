@@ -1,9 +1,12 @@
 ---
-Title: Implementing Sentence Boundary Detection in Python for Improved Text Chunking
-Slug: implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin
+Category: note
 Date: 2024-08-30
 Modified: 2024-08-30
+Slug: implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin
 Status: published
+Summary: Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking.
+ai_summary: true
+Title: Implementing Sentence Boundary Detection in Python for Improved Text Chunking
 tags:
   - Python
   - NLP
@@ -34,9 +37,7 @@ tags:
   - language-detection
   - model-training
   - cross-lingual-evaluation
-Category: note
 ---
-
 [Sentence boundary detection](https://en.wikipedia.org/wiki/Sentence_boundary_disambiguation) also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries.
 
 ## 1. Understanding the Challenge

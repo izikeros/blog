@@ -1,9 +1,12 @@
 ---
-Title: In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?
-Slug: python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it
+Category: note
 Date: 2023-11-12
 Modified: 2023-11-12
+Slug: python-project-with-Poetry-add-poetry-lock-to-the-git-repo-or-ignore-it
 Status: published
+Summary: In a Python project using Poetry, adding `poetry.lock` to your Git repository ensures consistent dependency versions across all environments. Also include `pyproject.toml` for project metadata and clarity on dependencies.
+ai_summary: true
+Title: In the Python project made with Poetry shall I add poetry.lock to the git repo or ignore it?
 tags:
   - python
   - python-project
@@ -11,7 +14,6 @@ tags:
   - gitignore
   - git
   - repo
-Category: note
 ---
 up:[[MOC_Python_Project]]
 

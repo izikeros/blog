@@ -1,17 +1,18 @@
 ---
-Title: Guide to Managing VS Code Keyboard Shortcuts
-Slug: managing-vs-code-keyboard-shortcuts-a-complete-guide
+Category: note
 Date: 2025-02-11
 Modified: 2025-02-11
+Slug: managing-vs-code-keyboard-shortcuts-a-complete-guide
 Status: published
+Summary: Learn how VS Code handles context-dependent keyboard shortcuts, resolve conflicts using the Keyboard Shortcuts editor, and customize them for efficient coding.
+ai_summary: true
 Tags:
   - vscode
   - keybindings
   - personalization
   - customization
-Category: note
+Title: Guide to Managing VS Code Keyboard Shortcuts
 ---
-
 I've been using VS Code for years, and keyboard shortcuts can definitely get messy, especially when you have multiple extensions installed. Let me break this down for you.
 
 The interesting thing about VS Code shortcuts is that they can indeed be context-dependent. This means the same keyboard combination might do different things depending on whether you're in a Python file, Jupyter notebook, or even the integrated terminal.

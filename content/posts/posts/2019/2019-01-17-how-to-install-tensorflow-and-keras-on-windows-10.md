@@ -23,8 +23,6 @@ Quick guide on how to install TensorFlow cpu-only version - the case for machine
 
 <!-- /MarkdownTOC -->
 
-<a id="creating-conda-environment-for-working-with-tensorflow-and-keras"></a>
-
 # Creating Conda environment for working with TensorFlow and Keras
 
 Open `anaconda prompt` (hit `Win+Q`, type anaconda) and create conda virtualenv:
@@ -40,8 +38,6 @@ When the environment is created, activate it. After that the environment’s nam
 ```sh
 activate tf_windows
 ```
-
-<a id="installing-tensorflow"></a>
 
 # Installing TensorFlow
 
@@ -86,8 +82,6 @@ On my machine I got warning when starting a new session:
 
 Don't get scared by that, TensorFlow works, the information displayed means that it isn't as fast as it could be.
 In order to suppress this you will need to build TensorFlow from sources using appropriate flags (see [StackOverflow answer](https://stackoverflow.com/questions/41293077/how-to-compile-tensorflow-with-sse4-2-and-avx-instructions?rq=1)) for compilation otherwise you can ignore it.
-
-<a id="installing-keras"></a>
 
 # Installing Keras
 

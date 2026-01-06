@@ -4,6 +4,8 @@ Date: 2022-04-22
 Modified: 2023-07-12
 Slug: change-extension-for-multiple-files-in-zsh
 Status: published
+Summary: Learn how to use `zmv` in Zsh to change file extensions efficiently, covering multiple files with a single command.
+ai_summary: true
 Tags:
   - zsh
   - shell
@@ -11,7 +13,6 @@ Tags:
 Title: Change Extension for Multiple Files in ZSH
 citation_needed: false
 ---
-
 In Zsh it is a bit easier to perform this because of using `zmv`. First, you need to load `zmv`. In zsh, run the following command once (or put them in your ~/.zshrc for the future):
 
 ```sh

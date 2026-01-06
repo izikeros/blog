@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-03-09
 Modified: 2023-07-12
-Prompt: How to store data in python class. Discuss property/attribute and class variable. Explain the difference
 Slug: the-difference-between-class-attribute-or-property-and-the-class-variable
 Status: published
+Summary: Learn the distinction between attributes (instance-specific data) and class variables (shared data across all instances) in Python classes, crucial for understanding object-oriented programming effectively.
+ai_summary: true
 Tags:
   - python
   - class
@@ -15,9 +16,9 @@ Tags:
   - attribute
   - class-attribute
 Title: The Difference Between Class Attribute or Property and the Class Variable
+Prompt: How to store data in python class. Discuss property/attribute and class variable. Explain the difference
 todo: verify the code
 ---
-
 In Python, you can store data within a class using properties/attributes or class variables.
 
 ## Properties/Attributes

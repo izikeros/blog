@@ -35,13 +35,9 @@ up::[[MOC_Generative_AI]]
 
 <!-- /MarkdownTOC -->
 
-<a id="speculating-on-new-cognitive-skills-in-humans-using-large-language-models-and-advanced-ai-generative-models"></a>
-
 ## Speculating on New Cognitive Skills in Humans Using Large Language Models and Advanced AI Generative Models
 
 The rapid development of large language models and other advanced AI generative models based on prompts has led to speculation about the potential impact on human cognitive skills. As these technologies continue to evolve and become more sophisticated, it is possible that they will lead to the development of entirely new cognitive skills that we have never seen before.
-
-<a id="ability-to-process-and-understand-complex-information-at-an-accelerated-rate"></a>
 
 ### Ability to process and understand complex information at an accelerated rate
 
@@ -52,8 +48,6 @@ Something that can speed up understanding complex information is ***"Tailored In
 In contrast, if a user wants to understand a complex topic in a manner that is simplified and easier to understand, such as asking the model to **"Explain X like I am a 5-year-old child"** the model can present the information in a manner that is appropriate for a less knowledgeable audience. This could involve breaking down complex concepts into simpler terms and providing examples that are easier to understand.
 
 This ability of large language models to tailor the information they present to the user's level of understanding and knowledge is a **significant advantage over traditional search engines** and information sources. It allows users to access and understand complex information in a manner that is customized to their individual needs and abilities, making the information more accessible and easier to understand.
-
-<a id="enhanced-ability-to-think-creatively-and-solve-complex-problems"></a>
 
 ### Enhanced ability to think creatively and solve complex problems
 
@@ -85,13 +79,9 @@ It is also important to be aware of the limitations of LLMs and **not to rely so
 
 While large language models have many benefits, they also have the potential to negatively impact the ability to think creatively and solve complex problems. It is important to balance the use of these models with independent thought and problem-solving, in order to maintain and enhance these important cognitive skills.
 
-<a id="ability-to-multitasking-and-manage-multiple-streams-of-information-at-once"></a>
-
 ### Ability to multitasking and manage multiple streams of information at once
 
 It is also possible that heavy users of these models may develop an increased ability to multitask and manage multiple streams of information at once. This could be due to the ability of the models to process and analyze vast amounts of information in real-time, allowing users to access and analyze multiple streams of information simultaneously. This could lead to improved productivity and an ability to efficiently manage multiple projects and tasks at once.
-
-<a id="summary"></a>
 
 ## Summary
 

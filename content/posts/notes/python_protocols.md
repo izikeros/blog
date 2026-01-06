@@ -1,13 +1,14 @@
 ---
-Title: Understanding Python Protocols - Structural Subtyping in Practice
-Slug: python-protocols-structural-subtyping
+Category: note
 Date: 2025-10-29
 Modified: 2025-10-29
+Slug: python-protocols-structural-subtyping
 Status: published
+Summary: Learn how Python protocols using structural subtyping in PEP 544 allow for flexible, decoupled code by defining shapes through method signatures rather than class inheritance. Explore examples of implementing read-only attributes and optional methods within protocols.
+ai_summary: true
 Tags: python, typing, protocols, static-typing, pep544
-Category: note
+Title: Understanding Python Protocols - Structural Subtyping in Practice
 ---
-
 ## The Basic Idea
 
 Introduced in **Python 3.8** via **[PEP 544](https://peps.python.org/pep-0544/)**, *Protocols* extend Python’s static typing system by allowing **structural subtyping** — also called *static duck typing*.  

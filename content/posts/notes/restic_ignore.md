@@ -1,14 +1,16 @@
 ---
-Title: gitignore-style exclusion for restic
-Slug: gitignore-style-exclusion-for-restic
+Category: note
 Date: 2023-07-27
 Modified: 2023-07-27
+Slug: gitignore-style-exclusion-for-restic
 Status: published
+Summary: Learn how to use `.gitignore`-style exclusion patterns with Restic by creating a `.resticignore` file to ignore specific files and directories during backups.
+ai_summary: true
 Tags:
   - restic
   - ignore
   - gitignore
-Category: note
+Title: gitignore-style exclusion for restic
 ---
 X::[[my_system_for_backups]]
 X::[[2023-01-25-how_to_verify_that_each_automated_backup_is_done_correctly]]

@@ -1,9 +1,11 @@
 ---
-Title: Cookiecutters for the python package with poetry
-Slug: cookiecutter-for-the-python-package-with-poetry
+Category: note
 Date: 2023-07-26
 Modified: 2023-07-26
+Slug: cookiecutter-for-the-python-package-with-poetry
 Status: published
+Summary: Learn how to use Cookiecutter and Poetry to streamline Python project setup, leveraging pre-configured templates and efficient dependency management for a faster development cycle.
+ai_summary: true
 Tags:
   - cookiecutter
   - poetry
@@ -14,7 +16,7 @@ Tags:
   - pypi
   - python-package
   - python/package
-Category: note
+Title: Cookiecutters for the python package with poetry
 ---
 X::[[python_package]]
 
@@ -38,11 +40,7 @@ X::[[python_package]]
 
 <!-- /MarkdownTOC -->
 
-<a id="introduction"></a>
-
 ## Introduction
-
-<a id="cookiecutter-and-poetry-for-python-project-scaffolding"></a>
 
 ### Cookiecutter and Poetry for Python Project Scaffolding
 
@@ -51,8 +49,6 @@ In the world of Python development, efficient project setup and management are e
 **Cookiecutter** is a command-line utility that enables developers to create project templates, or "cookiecutters," which serve as scaffolds for new projects. These cookiecutters are pre-configured templates that include project structures, file layouts, and even code snippets to kickstart the development process. With its simplicity and flexibility, Cookiecutter allows developers to easily generate consistent and well-organized projects without reinventing the wheel each time.
 
 On the other hand, **Poetry** is a modern package manager and build tool for Python projects. It simplifies dependency management, packaging, and publishing while ensuring reproducible builds and version control. Poetry provides a user-friendly interface for managing project dependencies and virtual environments, making it a valuable asset for Python developers looking for an efficient way to manage their project's requirements.
-
-<a id="benefits-of-using-cookiecutter-for-project-scaffolding"></a>
 
 ### Benefits of Using Cookiecutter for Project Scaffolding
 
@@ -66,8 +62,6 @@ Using Cookiecutter for project scaffolding offers several key advantages:
 
 4. **Flexibility and Customization**: While offering pre-configured templates, Cookiecutter also allows developers to customize their project scaffolds. This flexibility ensures that developers can tailor the project structure to fit their specific needs and project requirements.
 
-<a id="advantages-of-using-poetry-for-dependency-management"></a>
-
 ### Advantages of Using Poetry for Dependency Management
 
 Poetry's features complement the benefits of Cookiecutter, making it an ideal companion for Python project development:
@@ -80,11 +74,7 @@ Poetry's features complement the benefits of Cookiecutter, making it an ideal co
 
 4. **Version Control and Reproducibility**: Poetry's `pyproject.toml` file allows for clear specification of package versions, ensuring reproducible builds and making it easier to manage version updates.
 
-<a id="cookiecutters"></a>
-
 ## Cookiecutters
-
-<a id="cjolowiczcookiecutter-hypermodern-python"></a>
 
 ### cjolowicz/cookiecutter-hypermodern-python
 
@@ -115,8 +105,6 @@ Poetry's features complement the benefits of Cookiecutter, making it an ideal co
 - Generate command-line reference with [sphinx-click](https://sphinx-click.readthedocs.io/)
 - Manage project labels with [GitHub Labeler](https://github.com/marketplace/actions/github-labeler)
 
-<a id="fpgmaascookiecutter-poetry"></a>
-
 ### fpgmaas/cookiecutter-poetry
 
 <https://github.com/fpgmaas/cookiecutter-poetry>
@@ -133,15 +121,11 @@ Poetry's features complement the benefits of Cookiecutter, making it an ideal co
 - Compatibility testing for multiple versions of Python with [Tox](https://tox.wiki/en/latest/)
 - Containerization with [Docker](https://www.docker.com/)
 
-<a id="radix-aipoetry-cookiecutter"></a>
-
 ### radix-ai/poetry-cookiecutter
 
 <https://github.com/radix-ai/poetry-cookiecutter>
 
 ![github stars shield](https://img.shields.io/github/stars/radix-ai/poetry-cookiecutter.svg?logo=github)
-
-<a id="albertorioscookiecutter-poetry-pypackage"></a>
 
 ### albertorios/cookiecutter-poetry-pypackage
 
@@ -154,8 +138,6 @@ Poetry's features complement the benefits of Cookiecutter, making it an ideal co
 - Bump semantic version via [bump2version](https://github.com/c4urself/bump2version)
 - Optional command-line interface via [Click](https://click.palletsprojects.com/)
 - Repeatable build environments via [Docker](https://www.docker.com/)
-
-<a id="timhughescookiecutter-poetry"></a>
 
 ### timhughes/cookiecutter-poetry
 
@@ -173,8 +155,6 @@ Cookiecutter template configured with the following:
 - jupyterlab
 - click
 
-<a id="johanvergeercookiecutter-poetry"></a>
-
 ### johanvergeer/cookiecutter-poetry
 
 <https://github.com/johanvergeer/cookiecutter-poetry>
@@ -187,8 +167,6 @@ Cookiecutter template configured with the following:
 - Auto-release to [PyPI](https://pypi.python.org/pypi) when you push a new tag to master (optional)
 - Command-line interface using Click (optional)
 - GitHub Issue templates for bug reports and feature requests
-
-<a id="elbakramercookiecutter-poetry"></a>
 
 ### elbakramer/cookiecutter-poetry
 
@@ -220,8 +198,6 @@ Cookiecutter template configured with the following:
 - Dynamic versioning using [dunamai](https://github.com/mtkennerly/dunamai)
 - Command-line interface using [Click](https://click.palletsprojects.com/en/7.x/)
 
-<a id="wboxx1cookiecutter-pypackage-poetry"></a>
-
 ### wboxx1/cookiecutter-pypackage-poetry
 
 <https://github.com/wboxx1/cookiecutter-pypackage-poetry>
@@ -237,15 +213,11 @@ Cookiecutter template configured with the following:
 - Auto-release to [PyPI](https://pypi.python.org/pypi) when you push a new tag to master (optional)
 - Command-line interface using Click (optional)
 
-<a id="cookiecutter-wrapper"></a>
-
 ## cookiecutter wrapper
 
 <https://pypi.org/project/cookiecutter-poetry/>
 
 Please note that the actual number of GitHub stars would be fetched dynamically when viewing the article in real-time. The badge URL with the GitHub stars includes a placeholder (`{shield}`) for the dynamic value, and the actual number will be displayed when the badge is rendered on the page.
-
-<a id="tools-and-services-often-used-in-python-project-cookiecutters"></a>
 
 ## Tools and services often used in python project cookiecutters
 

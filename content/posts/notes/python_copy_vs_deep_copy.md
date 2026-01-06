@@ -1,9 +1,11 @@
 ---
-Title: Understanding Python's `copy` vs `deepcopy` - When to Use Each
-Slug: understanding-pythons-copy-vs-deepcopy-when-to-use-each
+Category: note
 Date: 2025-03-20
 Modified: 2025-03-20
+Slug: understanding-pythons-copy-vs-deepcopy-when-to-use-each
 Status: published
+Summary: Learn when to use `copy.copy()` for shallow copying and `copy.deepcopy()` for deep copying in Python, understanding their differences and typical use cases.
+ai_summary: true
 Tags:
   - python
   - python-copy
@@ -11,9 +13,8 @@ Tags:
   - mutable
   - immutable
   - nested-objects
-Category: note
+Title: Understanding Python's `copy` vs `deepcopy` - When to Use Each
 ---
-
 When working with Python objects, understanding how to properly copy them is crucial for avoiding unexpected behaviors in your code. Python provides two main approaches for copying objects: `copy` and `deepcopy`. Let's explore the differences, use cases, and potential pitfalls of each.
 
 ## The Basics: Shallow vs. Deep Copying

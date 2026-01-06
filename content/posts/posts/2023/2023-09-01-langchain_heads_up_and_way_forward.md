@@ -45,71 +45,47 @@ X::[[langchain_alternatives]]
 
 <!-- /MarkdownTOC -->
 
-<a id="problems"></a>
-
 ## Problems
-
-<a id="1-overly-complex-and-unnecessary-abstractions"></a>
 
 ### 1. Overly complex and unnecessary abstractions
 
 LangChain has been criticized for having too many layers of abstraction, making it difficult to understand and modify the underlying code. These layers can lead to confusion, especially for those who are new to LLMs or LangChain itself. The complexity can also make it challenging to adapt the library to specific use cases or integrate it with existing tools and scripts. In some cases, users have found that they can achieve their goals more easily by using simpler, more straightforward code.
 
-<a id="2-easy-breakable-and-unreliable"></a>
-
 ### 2. Easy breakable and unreliable
 
 Some users have found LangChain to be unreliable and difficult to fix due to its complex structure. The framework's fragility can lead to unexpected issues in production systems, making it challenging to maintain and scale applications built with LangChain. Users have reported that the deeper and more complex their application becomes, the more LangChain seems to become a risk to its maintainability.
-
-<a id="3-poor-documentation"></a>
 
 ### 3. Poor documentation
 
 LangChain's documentation has been described as confusing and lacking in key details, making it challenging for users to fully understand the library's capabilities and limitations. The documentation often omits explanations of default parameters and important details, leaving users to piece together information from various sources. This lack of clarity can hinder users' ability to effectively leverage LangChain in their projects.
 
-<a id="4-a-high-level-of-abstraction-hinders-customization"></a>
-
 ### 4. A high level of abstraction hinders customization
 
 Users have reported that LangChain's high level of abstraction makes it difficult to modify and adapt the library for specific use cases. This can be particularly problematic when users want to make small changes to the default behavior of LangChain or integrate it with other tools and scripts. In these cases, users may find it easier to bypass LangChain altogether and build their own solutions from scratch.
-
-<a id="5-inefficient-token-usage"></a>
 
 ### 5. Inefficient token usage
 
 LangChain has been criticized for inefficient token usage in its API calls, which can result in higher costs. This can be particularly problematic for users who are trying to minimize their expenses while working with LLMs. Some users have found that they can achieve better results with fewer tokens by using custom Python code or other alternative libraries.
 
-<a id="6-difficult-integration-with-existing-tools"></a>
-
 ### 6. Difficult integration with existing tools
 
 Users have reported difficulties integrating LangChain with their existing Python tools and scripts. This can be especially challenging for those who have complex analytics or other advanced functionality built into their applications. The high level of abstraction in LangChain can make it difficult to interface with these existing tools, forcing users to build workarounds or abandon LangChain in favor of more compatible solutions.
-
-<a id="7-limited-value-proposition"></a>
 
 ### 7. Limited value proposition
 
 Some users feel that LangChain does not provide enough value compared to the effort required to implement and maintain it. They argue that the library's primary use case is to quickly create demos or prototypes, rather than building production-ready applications. In these cases, users may find it more efficient to build their own solutions or explore alternative libraries that offer a better balance of ease of use and functionality.
 
-<a id="8-inconsistent-behavior-and-hidden-details"></a>
-
 ### 8. Inconsistent behavior and hidden details
 
 LangChain has been criticized for hiding important details and having inconsistent behavior, which can lead to unexpected issues in production systems. Users have reported that LangChain's default settings and behaviors are often undocumented or poorly explained, making it difficult to predict how the library will behave in different scenarios. This lack of transparency can lead to frustration and wasted time troubleshooting issues that could have been avoided with better documentation.
-
-<a id="9-better-alternatives-available"></a>
 
 ### 9. Better alternatives available
 
 Users have mentioned other libraries, such as [Semantic Kernel](https://github.com/microsoft/semantic-kernel), [LlamaIndex](https://github.com/jerryjliu/llama_index), [Deepset Haystack](https://haystack.deepset.ai/) , or [SuperAGI](https://github.com/TransformerOptimus/SuperAGI), as more suitable alternatives to LangChain. These alternatives often provide clearer documentation, more flexible customization options, and better integration with existing tools and scripts. In some cases, users have found that they can achieve their goals more easily and efficiently by using these alternative libraries instead of LangChain. See [awesome-langchain](https://github.com/kyrolabs/awesome-langchain#other-llm-frameworks) for a list of LLM frameworks.
 
-<a id="10-primarily-optimized-for-demos"></a>
-
 ### 10. Primarily optimized for demos
 
 LangChain has been described as being primarily optimized for quickly creating demos, rather than for building production-ready applications. [Partnership](https://blog.streamlit.io/langchain-streamlit/) with [Streamlit](https://streamlit.io/generative-ai?ref=blog.streamlit.io) should ease demo creation even more. While this can be useful for those who want to quickly experiment with LLMs or showcase their ideas, it can be limiting for users who want to build more robust, scalable applications. In these cases, users may find that LangChain's focus on demos and prototypes hinders their ability to build high-quality, production-ready applications.
-
-<a id="takeaways---how-to-use-the-langchain-right-way"></a>
 
 ## Takeaways - How to Use the LangChain Right Way?
 
@@ -138,8 +114,6 @@ Based on the community comments and experiences shared, here are some pieces of 
 My favourite choice from this list would be #6 - to learn from the LangChain implemented tools and techniques by looking into the code.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

@@ -4,6 +4,8 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: black-keep-single-quotes-strings
 Status: published
+Summary: Learn how to use Black's `--single-quote` option and `--skip-string-normalization` for consistent single quotes in your codebase, even with pre-existing string conventions.
+ai_summary: true
 Tags:
   - black
   - single-string
@@ -13,7 +15,6 @@ Tags:
   - code-formatter
 Title: Black - Keep Single Quotes for Strings
 ---
-
 See: [Add --single-quote option · Issue #594 · psf/black · GitHub](https://github.com/psf/black/issues/594)
 
 Currently, it requires everyone who uses single quotes to run black and then have a second tool (we use pre-commit double-quote-string-fixer) to ensure that single quotes are being used consistently.

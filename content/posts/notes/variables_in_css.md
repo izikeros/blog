@@ -1,16 +1,17 @@
 ---
-Title: Using CSS Variables for Dynamic and Reusable Styling  
-Slug: css-variables-dynamic-reusable-styling  
-Date: 2025-10-14  
-Modified: 2025-10-14  
-Status: published  
-tags: 
- - css
- - web-development
- - front-end
-Category: note  
+Category: note
+Date: 2025-10-14
+Modified: 2025-10-14
+Slug: css-variables-dynamic-reusable-styling
+Status: published
+Summary: Learn how to use CSS variables for dynamic and reusable styling, enabling features like interactive UIs, easy theming, and design consistency across components. Discover practical usage examples and best practices while understanding limitations and browser support issues.
+ai_summary: true
+Title: Using CSS Variables for Dynamic and Reusable Styling
+tags:
+  - css
+  - web-development
+  - front-end
 ---
-
 ## The Core Idea
 
 CSS variables (custom properties) let you store reusable values directly in CSS and update them at runtime.  

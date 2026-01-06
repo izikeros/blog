@@ -16,8 +16,6 @@ There are plenty of tools designed to ease the life of a Data Scientist. In this
 
 ![Diagram of cli tools for data science](/images/cli_tools_1/cli_tools.png)
 
-<a id="textutils-from-gnu-coreutils"></a>
-
 ## Textutils from GNU Coreutils
 
 From my experience, I have benefited most from mastering the GNU Coreutils. This is the collection of shellutils, fileutils, and textutils - and in this post, I will be discussing the latter.
@@ -45,8 +43,6 @@ From my experience, I have benefited most from mastering the GNU Coreutils. This
 | **[wc](#wc)**                                 | display the number of characters, words, and lines of the given file |
 
 I will give a few examples of commands I use most often or ones that are exceptionally useful.
-
-<a id="comm"></a>
 
 ### comm
 
@@ -80,8 +76,6 @@ comm -13 file1 file2
 comm -12 file1 file2
 ```
 
-<a id="head"></a>
-
 ### head
 
 By default, `head` prints the first 10 lines of each file provided as an argument to standard output.  With more than one file, precede each with a header giving the file name. You can control how many lines are displayed with option `-n`:
@@ -96,8 +90,6 @@ You can also print all but the last N lines by adding `-` sign. For example in o
 head -n -1 file.txt
 ```
 
-<a id="shuf"></a>
-
 ### shuf
 
 To quickly inspect the content of the dataset in a text file you can use `head` which shows some first lines of the file. If you would like to have a more representative example of the content of the file, you can take a random sample of lines from the file with `shuf`:
@@ -105,8 +97,6 @@ To quickly inspect the content of the dataset in a text file you can use `head` 
 ```sh
 shuf -n 5 file.txt
 ```
-
-<a id="sort"></a>
 
 ### sort
 
@@ -130,8 +120,6 @@ Here are options I often use for sort and unique operation:
 sort -bufi data.csv
 ```
 
-<a id="split"></a>
-
 ### split
 
 Sometimes there is a need to split datasets into smaller parts. For E.g. when processing large files you can be hit by memory limitations, or you want to speed up processing using parallel computing. To split the file into N parts with the equal number of lines, use:
@@ -147,8 +135,6 @@ split -n l/10 data.csv
 ```
 
 This will create series of files named: `xaa, xab, xac,...`. The default pattern of  `split` for file naming is PREFIXaa, PREFIXab,...; default PREFIX is `x`. You can provide your own prefix e.g.
-<a id="tail"></a>
-
 ### tail
 
 ```sh
@@ -189,8 +175,6 @@ the alternative solution involves `sed`:
 sed 1d file.txt
 ```
 
-<a id="uniq"></a>
-
 ### uniq
 
 often used with `sort` in a way:
@@ -210,8 +194,6 @@ Moreover, `sort` has the option `-u` which stands for *unique*. Therefore, to ha
 ```sh
 sort -u file.txt
 ```
-
-<a id="wc"></a>
 
 ### wc
 

@@ -2,16 +2,17 @@
 Category: note
 Date: 2023-03-05
 Modified: 2023-07-12
-Prompt: Give me the list of data science competitions where winners can win real money
 Slug: data-science-competitions-win-money
 Status: published
+Summary: Learn about Kaggle, DrivenData, DataHack, Analytics Vidhya, Topcoder, and CodaLab—platforms hosting data science competitions with substantial cash prizes for solving real-world problems.
+ai_summary: true
 Tags:
   - data-science
   - competition
   - kaggle
 Title: Data Science Competitions Where Winners Can Win Real Money
+Prompt: Give me the list of data science competitions where winners can win real money
 ---
-
 Data science competitions where winners can win real money:
 
 ## 1.  Kaggle

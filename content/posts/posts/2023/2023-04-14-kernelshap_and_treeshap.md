@@ -43,8 +43,6 @@ Two popular methods for explaining AI models are KernelShap and TreeShap. These 
 
 <!-- /MarkdownTOC -->
 
-<a id="kernelshap"></a>
-
 ## KernelShap
   
 KernelShap is a model-agnostic explanation method that provides interpretable explanations for any black-box model. It uses the concept of Shapley values from cooperative game theory to attribute feature importance to individual features in the context of a specific prediction.
@@ -79,8 +77,6 @@ The first term, $\sum_{i=1}{n}(y_i - X_i\beta)2$, is the sum of squared residual
 
 The second term, $\lambda\sum_{j=1}^{p}|\beta_j|$, is the L1 penalty term that adds the absolute values of the coefficients multiplied by the regularization parameter $\lambda$. By increasing $\lambda$, the penalty term forces some coefficients to be exactly zero, effectively selecting a subset of features for the final model. The optimal value of $\lambda$ is usually determined through cross-validation.
 
-<a id="steps"></a>
-
 ### Steps
 
 The KernelShap algorithm involves the following steps:
@@ -89,8 +85,6 @@ The KernelShap algorithm involves the following steps:
 2. Compute the output of the black-box model for each instance.
 3. Fit a weighted linear regression model on the generated dataset, where the weights are determined by the similarity between the instance and the instance of interest.
 4. The coefficients of the linear regression model represent the approximate Shapley values.
-
-<a id="kernelshap-advantages-and-limitations"></a>
 
 ### KernelShap advantages and limitations
 
@@ -105,15 +99,11 @@ However, KernelShap also has some **limitations**:
 - It can be computationally expensive, especially for high-dimensional data or complex models.
 - It requires a large number of samples to provide accurate estimates of the Shapley values.
 
-<a id="treeshap"></a>
-
 ## TreeShap
 
 TreeShap is a model-specific explanation method designed for tree-based models, such as decision trees, random forests, and gradient boosting machines. Like KernelShap, it is based on Shapley values, but it exploits the structure of tree-based models to compute the values efficiently.
 
 TreeShap **computes the exact Shapley values for each feature by recursively traversing the decision tree**, attributing contributions to each feature as it moves down the tree. It uses a dynamic programming approach to avoid redundant calculations and reduce the computational complexity.
-
-<a id="steps-1"></a>
 
 ### Steps
 
@@ -124,8 +114,6 @@ The TreeShap algorithm involves the following steps:
 3. Repeat the process for all trees in the ensemble, if applicable.
 4. Average the contributions across all trees to obtain the final Shapley values.
 
-<a id="treeshap-advantages-and-limitations"></a>
-
 ### TreeShap advantages and limitations
 
 TreeShap has several advantages:
@@ -135,8 +123,6 @@ TreeShap has several advantages:
 - It is specifically designed for tree-based models, which are widely used in practice.
 
 However, TreeShap is limited to tree-based models and cannot be applied to other types of models, such as deep learning or support vector machines.
-<a id="conclusion"></a>
-
 ## Conclusion
   
 KernelShap and TreeShap are powerful methods for explaining AI models in the context of responsible AI. Both techniques leverage the concept of Shapley values to provide interpretable and fair attributions of feature importance. While KernelShap is a model-agnostic approach that can be applied to any black-box model, TreeShap is tailored for tree-based models and offers exact Shapley values with computational efficiency.

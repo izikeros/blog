@@ -29,8 +29,6 @@ There may be times when you want to import modules from a parent directory in Py
 
 <!-- /MarkdownTOC -->
 
-<a id="method-1-using-syspathinsert"></a>
-
 ## Method 1: Using `sys.path.insert()`
 
 One way to add a parent directory to the Python path is to use the `sys.path.insert()` method. This method allows you to insert a new path at a specific index in the `sys.path` list. To add a parent directory to the Python path, you can use the following code:
@@ -41,8 +39,6 @@ sys.path.insert(0, '..')
 ```
 
 This code imports the `sys` module and then uses the `insert()` method to add the parent directory (indicated by `'..'`) to the beginning of the `sys.path` list. This means that the parent directory will be searched before any other paths in the list when importing modules.
-
-<a id="method-2-using-syspathappend"></a>
 
 ## Method 2: Using `sys.path.append()`
 
@@ -55,8 +51,6 @@ sys.path.append('..')
 
 This method would work in the same way as above method but the order of search of the path will be different.
 
-<a id="method-3-using-pythonpath-environment-variable"></a>
-
 ## Method 3: Using `PYTHONPATH` environment variable
 
 You can also add a parent directory to the Python path by setting the `PYTHONPATH` environment variable.
@@ -66,8 +60,6 @@ export PYTHONPATH="$PYTHONPATH:/path/to/parent/directory"
 ```
 
 This way the parent directory will be added to the python path for the current terminal session. To make the change permanent, you can add the above line to your shell startup file, such as `~/.bashrc` or `~/.bash_profile`
-
-<a id="method-4-using-pth-file"></a>
 
 ## Method 4: Using `.pth` file
 
@@ -86,8 +78,6 @@ This will add the parent directory as a permanent path to python's sys.path list
 > - lines starting with `import` (followed by space or tab) are executed.
 
 See the official Python documentation:  [site - Site-specific configuration hook - Python 3.12.3 documentation](https://docs.python.org/3/library/site.html)
-
-<a id="using-pathlib"></a>
 
 ## Using `Pathlib`
 
@@ -116,8 +106,6 @@ sys.path.append(str(path))
 This way you can join multiple directories using the joinpath method.
 
 It's important to note that this method uses the `str()` function to convert the `Path` object to a string, as the `sys.path` list only accepts strings.
-<a id="conclusion"></a>
-
 ## Conclusion
 
 In this article, we have covered different ways to add a parent directory to the Python path, which can be useful when working with Jupyter notebooks or other projects that require a specific directory structure.

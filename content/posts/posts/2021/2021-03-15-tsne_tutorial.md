@@ -36,21 +36,15 @@ todo: publish this as notebook to allow interactive visualizations with bokeh
 
 <!-- /MarkdownTOC -->
 
-<a id="introduction"></a>
-
 ## Introduction
 
 Dimensionality reduction is a fundamental technique used in machine learning and data analysis. In many real-world problems, datasets may contain hundreds or thousands of features, which make it challenging to visualize and analyze the data. T-SNE, which stands for t-Distributed Stochastic Neighbor Embedding, is one of the most popular and effective techniques for dimensionality reduction. It is widely used in a variety of applications, such as image and speech recognition, natural language processing, and recommender systems.
 
 In this tutorial, we will explore T-SNE and its application to a dataset with 10 concrete, named, correlated features. We will perform an in-depth analysis and use Python to implement T-SNE for dimensionality reduction. We will also visualize the results using interactive visualizations.
 
-<a id="dataset"></a>
-
 ## Dataset
 
 We will use the Iris dataset, which is a well-known dataset that contains measurements of the sepal length, sepal width, petal length, and petal width of 150 iris flowers. Each flower is labeled as one of three species: Setosa, Versicolor, or Virginica. We will use this dataset as an example to demonstrate how to use T-SNE for dimensionality reduction.
-
-<a id="getting-started"></a>
 
 ## Getting started
 
@@ -102,8 +96,6 @@ Target names:  ['setosa' 'versicolor' 'virginica']
 
 We can see that the dataset has four features, and the labels are represented by integers from 0 to 2, corresponding to the three species.
 
-<a id="visualizing-the-data"></a>
-
 ## Visualizing the data
 
 Before we apply T-SNE for dimensionality reduction, we can visualize the data to get a better understanding of the relationships between the features and the labels. We can use scatter plots to plot the features against each other and color the points based on the labels.
@@ -117,8 +109,6 @@ plt.show()
 ![pairplot](/images/tsne_tutorial/pair_plot_pre_tsne.png)
 
 We can see that some of the features are highly correlated, such as the petal length and petal width, while others, such as the sepal length and sepal width, show less correlation. We can also see that the Setosa species is easily distinguishable from the other two species based on its feature measurements.
-
-<a id="applying-t-sne"></a>
 
 ## Applying T-SNE
 
@@ -136,8 +126,6 @@ X_tsne = tsne.fit_transform(X)
 
 In this example, we are reducing the dimensionality of the dataset to 2 components, which will allow us to visualize the data in a 2D space. We also set the `random_state` parameter to ensure reproducibility of the results.
 
-<a id="visualizing-the-t-sne-results"></a>
-
 ## Visualizing the T-SNE results
 
 We can now visualize the T-SNE results using a scatter plot, where the points are colored based on their species labels. We can use the `plt.scatter` function to create the scatter plot and the `plt.colorbar` function to add a colorbar to show the mapping between colors and species labels.
@@ -153,8 +141,6 @@ plt.show()
 ![scatter plot post T-SNE](/images/tsne_tutorial/scatter_plot_post_tsne.png)
 
 We can see that the T-SNE results separate the three species quite well, with minimal overlap between the points. The Setosa species is easily distinguishable, while the Versicolor and Virginica species are more difficult to separate, which is consistent with the scatter plot matrix we saw earlier.
-
-<a id="interactive-visualizations"></a>
 
 ## Interactive visualizations
 
@@ -198,8 +184,6 @@ Output:
 [T-SNE scatter plot with Bokeh]
 
 We can see that the Bokeh scatter plot provides several additional features that were not available in the static scatter plot. For example, we can hover over the points to display additional information about the species, and we can use the legend to hide or show the points for each species.
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

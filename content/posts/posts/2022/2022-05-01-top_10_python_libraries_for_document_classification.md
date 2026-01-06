@@ -72,8 +72,6 @@ Document classification is the task of assigning a document to one or more prede
 
 <!-- /MarkdownTOC -->
 
-<a id="1-scikit-learn"></a>
-
 ## 1. Scikit-learn
 
 ![Scikit-learn](https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png)
@@ -91,8 +89,6 @@ GitHub: <https://github.com/scikit-learn/scikit-learn>
 - [Text Classification Using Python and Scikit-learn](https://dylancastillo.co/text-classification-using-python-and-scikit-learn/)
 - [Text Classification with sklearn - Sanjaya’s Blog](https://sanjayasubedi.com.np/machinelearning/nlp/text-classification-with-sklearn/)
 
-<a id="2-nltk"></a>
-
 ## 2. NLTK
 
 The [Natural Language Toolkit](https://www.nltk.org/) (NLTK) is a library that provides various tools and algorithms for natural language processing. NLTK offers a range of tools for document classification, including feature extraction, classification algorithms, and performance evaluation. NLTK also provides pre-trained models for sentiment analysis, text classification, and other NLP tasks.
@@ -106,8 +102,6 @@ GitHub: <https://github.com/nltk/nltk>
 - [6. Learning to Classify Text](https://www.nltk.org/book/ch06.html)
 - [Text Classification using NLTK | Foundations of AI & ML](https://mylearningsinaiml.wordpress.com/nlp/text-classification-using-nltk/)
 - [Movie Reviews (Text) Classification Using NLTK | by Bhattaram Manojkumar | Medium](https://manojkumar-bhattaram.medium.com/movie-reviews-text-classification-using-nltk-f6644cb9958d)
-
-<a id="3-gensim"></a>
 
 ## 3. Gensim
 
@@ -125,8 +119,6 @@ GitHub: <https://github.com/RaRe-Technologies/gensim>
 - [Word2Vec For Text Classification [How To In Python & CNN]](https://spotintelligence.com/2023/02/15/word2vec-for-text-classification/)
 -
 
-<a id="4-tensorflow"></a>
-
 ## 4. TensorFlow
 
 ![TensorFlow](https://www.gstatic.com/devrel-devsite/prod/ve53a52d1b45000b9df3bcdfe3060bb6d50689f5a6c2b8f03cdaa24fff649fba3/tensorflow/images/lockup.svg)
@@ -143,8 +135,6 @@ GitHub: <https://github.com/tensorflow/tensorflow>
 - [Text Classification with Movie Reviews  |  TensorFlow Hub](https://www.tensorflow.org/hub/tutorials/tf2_text_classification)
 - [Multi Class Text Classification with LSTM using TensorFlow 2.0 | by Susan Li | Towards Data Science](https://towardsdatascience.com/multi-class-text-classification-with-lstm-using-tensorflow-2-0-d88627c10a35)
 - [Multi-class Text Classification using BERT and TensorFlow | by Nicolo Cosimo Albanese | Towards Data Science](https://towardsdatascience.com/multi-label-text-classification-using-bert-and-tensorflow-d2e88d8f488d)
-
-<a id="5-pytorch"></a>
 
 ## 5. PyTorch
 
@@ -165,8 +155,6 @@ GitHub: <https://github.com/pytorch/pytorch>
 - [RBeaudet/Text-Classification-Using-PyTorch](https://github.com/RBeaudet/Text-Classification-Using-PyTorch) -  A didactic repository to understand Deep Learning models for text classification using PyTorch
 - [Text Classification Using Transformers (Pytorch Implementation) | by Yassine Hamdaoui | The Startup | Medium](https://medium.com/swlh/text-classification-using-transformers-pytorch-implementation-5ff9f21bd106)
 
-<a id="6-keras"></a>
-
 ## 6. Keras
 
 ![Keras](https://keras.io/img/logo.png)
@@ -181,8 +169,6 @@ GitHub: <https://github.com/keras-team/keras>
 - [Practical Text Classification With Python and Keras – Real Python](https://realpython.com/python-keras-text-classification/)
 - [Large-scale multi-label text classification](https://keras.io/examples/nlp/multi_label_classification/)
 - [Text classification with Transformer](https://keras.io/examples/nlp/text_classification_with_transformer/)
-
-<a id="7-pycaret"></a>
 
 ## 7. PyCaret
 
@@ -200,8 +186,6 @@ GitHub:
 - [NLP Text-Classification in Python: PyCaret Approach Vs The Traditional Approach | by Prateek Baghel | Towards Data Science](https://towardsdatascience.com/nlp-classification-in-python-pycaret-approach-vs-the-traditional-approach-602d38d29f06)
 - [Beginner's Guide to Classifying Text with PyCaret | Datapeaker](https://datapeaker.com/en/big--data/Beginner's-Guide-to-Text-Classification-with-Pycaret/)
 
-<a id="8-fasttext"></a>
-
 ## 8. FastText
 
 ![FastText](https://fasttext.cc/img/fasttext-logo-color-web.png)
@@ -218,8 +202,6 @@ GitHub: <https://github.com/facebookresearch/fastText/>
 - [FastText Working and Implementation - GeeksforGeeks](https://www.geeksforgeeks.org/fasttext-working-and-implementation/)
 - [Text Classification with FastText | by Rukshan Jayasekara | Medium](https://medium.com/@rukshanjayasekara/text-classification-with-fasttext-5cac26ce7bc6)
 
-<a id="9-pytext"></a>
-
 ## 9. PyText
 
 [PyText](https://pytext.readthedocs.io/en/latest/) is a deep learning library for natural language processing that provides various tools and algorithms for document classification. PyText offers a range of deep learning architectures, such as Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs), which are widely used for document classification tasks. PyText also provides pre-trained models for document classification and supports transfer learning.
@@ -233,8 +215,6 @@ GitHub: <https://github.com/facebookresearch/pytext>
 - [Text/Document Classification using PyText | by Jay Rodge | Medium](https://medium.com/@jayrodge/text-document-classification-using-pytext-ca7e1c380d5f)
 - [Train your first model - PyText documentation](https://pytext.readthedocs.io/en/master/train_your_first_model.html)
 - [PyText Documentation - PyText documentation](https://pytext.readthedocs.io/en/master/)
-
-<a id="10-textblob"></a>
 
 ## 10. TextBlob
 
@@ -253,8 +233,6 @@ GitHub: <https://github.com/sloria/TextBlob>
 - [Tutorial: Simple Text Classification with Python and TextBlob | stevenloria.com](https://stevenloria.com/simple-text-classification/)
 - [Naive bayesian text classifier using textblob and python - Learn Steps](https://www.learnsteps.com/naive-bayesian-text-classifier-using-textblob-python/)
 - [NLP for beginners | Classifying text using TextBlob | Datapeaker](https://datapeaker.com/en/big--data/pnl-for-beginners-classifying-text-using-textblob/)
-
-<a id="other-tools"></a>
 
 ## Other tools
 

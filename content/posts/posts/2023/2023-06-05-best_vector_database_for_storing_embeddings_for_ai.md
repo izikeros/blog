@@ -75,13 +75,9 @@ This article explores the best vector databases available, their unique features
 
 <!-- /MarkdownTOC -->
 
-<a id="tldr"></a>
-
 ## TLDR
 
 If you don't want to spent time on reading about each solution, you might want to head directly for the [recommendations](#recommendations) section where solutions for various use cases are proposed.
-<a id="what-vector-databases-are-and-why-there-is-demand-for-them"></a>
-
 ## What vector databases are, and why there is demand for them?
 
 Vector databases are specialized databases designed for efficient storage, retrieval, and manipulation of vector representations, particularly in the context of Natural Language Processing (NLP) and machine learning applications. They are optimized for handling high-dimensional embeddings that represent textual or numerical data in a vectorized format.
@@ -104,8 +100,6 @@ While traditional databases like PostgreSQL are versatile and battle-tested, the
 
 While traditional databases like PostgreSQL can handle various data types, including vectors, they may lack the specialized optimizations and features provided by vector databases. Vector databases excel in efficiently storing and querying high-dimensional embeddings, enabling faster similarity search and supporting specific vector-related operations. By leveraging these optimizations, vector databases streamline the development and deployment of NLP and machine learning applications.
 
-<a id="understanding-tradeoffs-and-identifying-the-specific-requirements-to-choose-the-best-tool"></a>
-
 ## Understanding tradeoffs and identifying the specific requirements to choose the best tool
 
 When choosing a vector database, there are several tradeoffs and potentially contradicting requirements that developers need to consider. Here are some typical tradeoffs and contradictions related to selecting a vector database:
@@ -126,11 +120,7 @@ When choosing a vector database, there are several tradeoffs and potentially con
 
 Understanding these tradeoffs and identifying the specific requirements of a project is crucial in selecting a vector database that best aligns with the desired tradeoff priorities. It requires carefully evaluating the tradeoffs and making informed decisions based on the unique needs of the application or system being developed.
 
-<a id="vector-databases"></a>
-
 ## Vector databases
-
-<a id="chroma"></a>
 
 ### Chroma
 
@@ -159,8 +149,6 @@ c.query(...)
 ```
 
 Note: there are plugins for LangChain, LlamaIndex, OpenAI and others.
-<a id="haystack-by-deepsetai"></a>
-
 ### Haystack by DeepsetAI
 
 ![github stars shield](https://img.shields.io/github/stars/deepset-ai/haystack?logo=github)
@@ -170,8 +158,6 @@ DeepsetAI's [Haystack](https://haystack.deepset.ai/) is another popular vector d
 
 Haystack stands out with its **intuitive query language**, which supports complex **semantic searches** and **filtering** based on various parameters. Additionally, it offers a **modular pipeline** architecture for preprocessing, **embedding extraction**, and querying, making it **highly customizable and adaptable** to different NLP use cases. With its **user-friendly interface** and comprehensive functionality, DeepsetAI's Haystack is an excellent choice for developers seeking a flexible and feature-rich vector database for NLP.
 
-<a id="faiss-by-facebook"></a>
-
 ### Faiss by Facebook
 
 ![github stars shield](https://img.shields.io/github/stars/facebookresearch/faiss?logo=github)
@@ -179,8 +165,6 @@ Haystack stands out with its **intuitive query language**, which supports comple
 [Faiss logo](https://faiss.ai/), developed by Facebook AI Research, is a widely-used vector database renowned for its high-performance similarity search capabilities. It provides a range of indexing methods optimized for efficient retrieval of nearest neighbors, including IVF (Inverted File) and HNSW (Hierarchical Navigable Small World). Faiss also supports GPU acceleration, enabling fast computation on large-scale embeddings.
 
 One of Faiss' notable features is its support for **multi-index search**, which combines different indexing methods to improve search accuracy and speed. Additionally, Faiss offers a **Python interface**, making it easy to integrate with existing NLP pipelines and frameworks. With its focus on **search performance and versatility**, Faiss is a go-to choice for projects demanding fast and accurate similarity **search over vast embedding collections**.
-
-<a id="milvus"></a>
 
 ### Milvus
 
@@ -192,8 +176,6 @@ One of Faiss' notable features is its support for **multi-index search**, which 
 
 One key feature of Milvus is its **GPU support**, leveraging NVIDIA GPUs for accelerated computation. This makes Milvus an excellent choice **for deep learning applications** that require fast vector search and similarity calculations. Furthermore, Milvus provides a user-friendly **WebUI** and supports **multiple programming languages**, simplifying development and deployment processes. With its focus on scalability and GPU acceleration, Milvus is an ideal vector database for large-scale NLP projects.
 
-<a id="pgvector"></a>
-
 ### pgvector
 
 ![github stars shield](https://img.shields.io/github/stars/ankane/pgvector?logo=github)
@@ -202,8 +184,6 @@ Open-source vector similarity search for Postgres. Pgvector helps to built vecto
 
 One key advantage of pgvector is its seamless **integration with the broader PostgreSQL** ecosystem. Users can leverage the rich functionality of PostgreSQL, such as ACID compliance and support for complex queries, while benefiting from vector-specific operations. pgvector provides a PostgreSQL extension that extends the SQL syntax to handle vector operations and offers a Python library for easy integration. With its compatibility with PostgreSQL and efficient vector storage, pgvector is a reliable choice for NLP applications that require a seamless SQL integration.
 
-<a id="pinecone"></a>
-
 ### Pinecone
 
 ![Pinecone logo](/images/vectordb/pinecone.png)
@@ -211,8 +191,6 @@ One key advantage of pgvector is its seamless **integration with the broader Pos
 [Pinecone](https://www.pinecone.io/) is a managed vector database built for handling large-scale embeddings in real-time applications. It focuses on low-latency search and high-throughput indexing, making it suitable for latency-sensitive NLP use cases. Pinecone's cloud-native infrastructure handles indexing, storage, and query serving, allowing developers to focus on building their applications.
 
 Pinecone offers a RESTful **API** and client libraries **for various programming languages**, simplifying integration with different NLP frameworks. It supports **dynamic indexing**, allowing incremental updates to embeddings without rebuilding the entire index. Pinecone also provides advanced features like **vector similarity search**, **filtering**, and result ranking. With its **emphasis on real-time performance** and ease of use, Pinecone is an excellent choice for developers seeking a fully managed vector database for NLP applications.
-
-<a id="supabase"></a>
 
 ### Supabase
 
@@ -224,8 +202,6 @@ Pinecone offers a RESTful **API** and client libraries **for various programming
 
 One distinctive aspect of Supabase is its **real-time capabilities**, enabled by its integration with PostgREST and PostgreSQL's logical decoding feature. This allows developers to build real-time applications that can react to changes in vector data. Supabase also provides a user-friendly **interface** and **client libraries** for **various programming languages**, making it accessible to developers with different skill sets. With its combination of vector storage and real-time capabilities, Supabase is an excellent choice for NLP projects that require both scalability and real-time updates.
 
-<a id="qdrant"></a>
-
 ### Qdrant
 
 ![github stars shield](https://img.shields.io/github/stars/qdrant/qdrant?logo=github)
@@ -235,8 +211,6 @@ One distinctive aspect of Supabase is its **real-time capabilities**, enabled by
 Qdrant is an open-source vector database designed for similarity search and efficient storage of high-dimensional embeddings. It leverages an approximate nearest neighbor (ANN) algorithm based on Hierarchical Navigable Small World (HNSW) graphs, enabling fast and accurate similarity searches. Qdrant supports both CPU and GPU inference, allowing users to leverage hardware acceleration for faster computations.
 
 One notable feature of Qdrant is its **RESTful API**, which provides a user-friendly **interface for indexing, searching, and managing vector data**. Qdrant also offers **flexible query options**, allowing users to specify search parameters and control the trade-off between accuracy and speed. With its focus on efficient similarity search and user-friendly API, Qdrant is a powerful vector database for various NLP applications.
-
-<a id="vespa"></a>
 
 ### Vespa
 
@@ -248,8 +222,6 @@ One notable feature of Qdrant is its **RESTful API**, which provides a user-frie
 
 One of Vespa's key features is its **built-in ranking framework**, allowing developers to define custom ranking models and apply **complex ranking algorithms to search results**. Vespa also supports **real-time updates**, making it suitable for **dynamic embedding datasets**. Additionally, Vespa provides a **query language** and a user-friendly **WebUI** for managing and monitoring the vector database. With its focus on **distributed processing** and advanced ranking capabilities, Vespa is a powerful tool for NLP applications that require complex ranking models and real-time updates.
 
-<a id="weaviate"></a>
-
 ### Weaviate
 
 ![github stars shield](https://img.shields.io/github/stars/semi-technologies/weaviate?logo=github)
@@ -260,8 +232,6 @@ One of Vespa's key features is its **built-in ranking framework**, allowing deve
 
 One unique aspect of Weaviate is its **focus on semantics and contextual relationships**. It allows users to define **custom schema and relationships between entities**, enabling **complex queries that go beyond simple vector similarity**. Weaviate also provides a **RESTful API**, client libraries, and a user-friendly **WebUI** for easy integration and management. With its combination of **graph database features** and vector search capabilities, Weaviate is an excellent choice **for NLP applications that require semantic understanding and exploration of embeddings**.
 
-<a id="deeplake"></a>
-
 ### DeepLake
 
 ![github stars shield](https://img.shields.io/github/stars/activeloopai/deeplake?logo=github)
@@ -271,8 +241,6 @@ One unique aspect of Weaviate is its **focus on semantics and contextual relatio
 
 One unique feature of DeepLake is its support for **distributed vector indexing and querying**. It leverages an **ANN** algorithm based on the Product Quantization (PQ) method, enabling fast and accurate similarity searches. DeepLake also provides a **RESTful API** for easy integration with NLP pipelines and frameworks. With its emphasis on **scalability and distributed processing**, DeepLake is a robust vector database for demanding NLP applications.
 
-<a id="vectorstore-from-langchain"></a>
-
 ### VectorStore from LangChain
 
 ![github stars shield](https://img.shields.io/github/stars/hwchase17/langchain?logo=github)
@@ -280,8 +248,6 @@ One unique feature of DeepLake is its support for **distributed vector indexing 
 LangChain [VectorStore](https://docs.langchain.com/docs/components/indexing/vectorstore) is an open-source vector database optimized for multilingual NLP applications. It focuses on efficient storage and retrieval of embeddings across multiple languages. VectorStore supports various indexing methods, including approximate nearest neighbor (ANN) algorithms like HNSW and Annoy, for fast similarity searches.
 
 One distinguishing feature of VectorStore is its **language-specific indexing** and **retrieval capabilities**. It provides **language-specific tokenization** and **indexing strategies** to **optimize search accuracy for different languages**. VectorStore also offers a **RESTful API** and client libraries for easy integration with NLP pipelines. With its multilingual support and language-specific indexing, VectorStore is an excellent choice for projects that deal with embeddings across multiple languages.
-
-<a id="other-relevant-vector-databases"></a>
 
 ### Other Relevant Vector Databases
 
@@ -315,8 +281,6 @@ These vector databases provide additional options and features that may suit spe
 
 To explore more, often lesser-known libraries you can use GitHub's topic search: [vector-database · GitHub Topics · GitHub](https://github.com/topics/vector-database)
 
-<a id="tabular-summary-of-the-features"></a>
-
 ## Tabular summary of the features
 
 | Tool             | Scalability | Query Speed | Search Accuracy | Flexibility | Persistence | Storage Location |
@@ -338,13 +302,9 @@ To explore more, often lesser-known libraries you can use GitHub's topic search:
 | Hnswlib           | High        | High        | High            | High        | No           | Local/Cloud
 | NMSLIB           | High        | High        | High            | High        | No           | Local/Cloud
 
-<a id="recommendations"></a>
-
 ## Recommendations
 
 Please find recommendations for three groups of use cases
-<a id="easy-start-and-user-friendliness---good-for-poc"></a>
-
 ### Easy Start and User-Friendliness - good for PoC
 
 In this group, the focus is on vector databases that are easy to start with and user-friendly, even if they may sacrifice some advanced capabilities or performance.
@@ -353,8 +313,6 @@ In this group, the focus is on vector databases that are easy to start with and 
 
 2. **DeepsetAI**: DeepsetAI is another tool that prioritizes user-friendliness without compromising on essential functionalities. It offers a user-friendly interface, powerful search capabilities, and easy integration into existing NLP workflows. DeepsetAI is well-suited for developers who want a simple and efficient solution for storing and querying vector embeddings.
 
-<a id="advanced-capabilities-and-performance"></a>
-
 ### Advanced Capabilities and Performance
 
 In this group, we consider vector databases that provide advanced capabilities and high-performance, catering to more demanding use cases.
@@ -362,8 +320,6 @@ In this group, we consider vector databases that provide advanced capabilities a
 1. **Faiss**: Faiss is a widely used and highly performant vector database that specializes in efficient similarity search. It offers a range of indexing structures and search algorithms, making it suitable for large-scale projects that require fast and accurate retrieval of embeddings. Faiss is an optimal choice when performance and search accuracy are critical.
 
 2. **Milvus**: Milvus is another powerful vector database known for its scalability and performance. It provides distributed storage and indexing, allowing for efficient handling of large-scale embedding datasets. Milvus supports various indexing algorithms, including approximate nearest neighbor (ANN) search, enabling fast similarity search. It is a robust solution for projects that demand scalability, high-performance, and flexibility.
-
-<a id="customization-and-advanced-use-cases"></a>
 
 ### Customization and Advanced Use Cases
 
@@ -374,8 +330,6 @@ In this group, we consider vector databases that offer extensive customization o
 2. **Supabase**: Supabase is an open-source database platform that provides a wide range of features, including support for vector storage and retrieval. With its flexibility and customizability, Supabase is suitable for projects that require not only vector database functionality but also the benefits of a comprehensive database platform.
 
 By considering the diverse requirements of each group, we have recommended vector databases that prioritize ease of use, advanced capabilities, and customization. These recommendations aim to assist developers in selecting the most appropriate vector database for their specific use case and level of expertise.
-<a id="related-reading"></a>
-
 ## Related reading
 
 1. [Riding the AI Wave with Vector Databases: How they work (and why VCs love them) - LunaBrain](https://lunabrain.com/blog/riding-the-ai-wave-with-vector-databases-how-they-work-and-why-vcs-love-them/)

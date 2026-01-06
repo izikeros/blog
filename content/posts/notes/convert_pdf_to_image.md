@@ -1,4 +1,6 @@
 ---
+Summary: Learn how to convert a PDF document into images using the `pdftoppm` tool in Linux, including options for specifying page ranges and adjusting resolution.
+ai_summary: true
 category: note
 title: Convert PDF document to image
 date: 2022-05-12

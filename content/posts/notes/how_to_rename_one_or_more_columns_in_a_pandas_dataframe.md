@@ -4,12 +4,13 @@ Date: 2023-02-12
 Modified: 2023-07-12
 Slug: how-to-rename-one-or-more-columns-in-pandas-dataframe
 Status: published
+Summary: Learn how to rename one or more columns in a pandas DataFrame using the `rename` function, including renaming single and multiple columns, performing in-place modifications, and using functions for dynamic renaming.
+ai_summary: true
 Tags:
   - pandas
   - rename-column
 Title: How to Rename One or More Columns in Pandas Dataframe?
 ---
-
 To rename one or more columns in a pandas DataFrame, you can use the `rename` function. Here are some examples of how to use it:
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -21,8 +22,6 @@ To rename one or more columns in a pandas DataFrame, you can use the `rename` fu
 - [5.  Rename columns by index](#5-rename-columns-by-index)
 
 <!-- /MarkdownTOC -->
-
-<a id="1-rename-a-single-column"></a>
 
 ## 1.  Rename a single column
 
@@ -41,8 +40,6 @@ print(df)
 
 This will rename the column "A" to "new_column_name".
 
-<a id="2-rename-multiple-columns"></a>
-
 ## 2.  Rename multiple columns
 
 To rename multiple columns, you can use a dictionary to map the old column names to the new ones. Here's an example:
@@ -59,8 +56,6 @@ print(df)
 ```
 
 This will rename the columns "A" and "B" to "new_column_name_1" and "new_column_name_2", respectively.
-
-<a id="3-rename-columns-in-place"></a>
 
 ## 3.  Rename columns in place
 
@@ -79,8 +74,6 @@ print(df)
 
 This will rename the column "A" to "new_column_name" in place.
 
-<a id="4-rename-columns-with-a-function"></a>
-
 ## 4.  Rename columns with a function
 
 You can also use a function to rename the columns. The function will be applied to each column name, and the result will be used as the new column name. Here's an example:
@@ -97,8 +90,6 @@ print(df)
 ```
 
 This will rename the columns to lowercase.
-
-<a id="5-rename-columns-by-index"></a>
 
 ## 5.  Rename columns by index
 

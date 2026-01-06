@@ -1,9 +1,11 @@
 ---
-Title: Tverski Similarity Metrics
-Slug: tverski-similarity-metrics
+Category: note
 Date: 2023-12-10
 Modified: 2023-12-10
+Slug: tverski-similarity-metrics
 Status: published
+Summary: Learn about Tversky similarity, a metric for comparing sets used in information retrieval and recommendation systems, which balances precision and recall through parameters α and β. Understand its formula and see a Python implementation example.
+ai_summary: true
 Tags:
   - nlp
   - text-similarity
@@ -14,9 +16,8 @@ Tags:
   - levenshtein
   - word-embeddings
   - soundex
-Category: note
+Title: Tverski Similarity Metrics
 ---
-
 Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -29,15 +30,11 @@ Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are t
 
 <!-- /MarkdownTOC -->
 
-<a id="tversky-similarity"></a>
-
 ## Tversky Similarity
 
 **Tversky similarity is a metric used to compare sets**, typically in the context of information retrieval, information retrieval evaluation, and recommendation systems. It was introduced by Amos Tversky in his work on set comparison. Tversky similarity takes into account the **number of common elements** between two sets as well as the **differences in elements between them**. It has two parameters, alpha and beta, which control the balance between precision and recall.
 
 Let's dive into the mathematical formula, explanation, and Python examples for  Tversky similarity.
-
-<a id="formula"></a>
 
 ### Formula
 
@@ -52,8 +49,6 @@ Where:
 - $(|A - B|)$ is the size of the set difference of A minus B.
 - ($|B - A|)$ is the size of the set difference of B minus A.
 - $\alpha$ and $\beta$ are parameters that control the trade-off between precision and recall. When $\alpha = \beta = 1$, the Tversky similarity becomes the Jaccard similarity.
-
-<a id="python-example"></a>
 
 ### Python Example
 
@@ -75,13 +70,9 @@ similarity = tversky_similarity(set1, set2, alpha, beta)
 print("Tversky Similarity:", similarity)
 ```
 
-<a id="jaro-winkler-similarity-for-reference"></a>
-
 ## Jaro-Winkler Similarity (for reference)
 
 Jaro-Winkler similarity is a metric used to compare two strings, often used in record linkage and fuzzy string matching tasks. It was developed by William E. Winkler and Matthew A. Jaro. Jaro-Winkler similarity calculates a score between 0 and 1, where 1 indicates a perfect match and 0 indicates no similarity. It considers the number of matching characters between two strings and the positions of those matching characters. The Jaro-Winkler similarity gives more weight to the common prefix of the strings, making it particularly useful for comparing names and short strings. For more information about Jaro-Winkler similarity see: [[jaro_winkler_similarity]].
-
-<a id="summary"></a>
 
 ## Summary
 

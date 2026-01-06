@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-03-05
 Modified: 2023-07-12
-Prompt: give me long, blog-post text on What are the newest, modern, emerging web standards that can replace RSS?
 Slug: emerging-alternatives-to-rss
 Status: published
+Summary: Learn about JSON Feed, WebSub, ActivityPub, and GraphQL—emerging web standards that could replace RSS due to their efficiency, versatility, and support for real-time content delivery in modern web applications.
+ai_summary: true
 Tags:
   - rss
   - json-feed
@@ -13,8 +14,8 @@ Tags:
   - graphql
   - amp
 Title: RSS vs. The Emerging Web Standards - Which Will Reign Supreme?
+Prompt: give me long, blog-post text on What are the newest, modern, emerging web standards that can replace RSS?
 ---
-
 While RSS has been a widely adopted web feed format for over two decades, there are concerns that it may become obsolete in the face of emerging technologies and trends. In this article, we will explore some of the newest, modern, emerging web standards that could potentially replace RSS in the years to come.
 
 ## 1.  JSON Feed

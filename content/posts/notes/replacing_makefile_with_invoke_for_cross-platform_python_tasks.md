@@ -1,9 +1,11 @@
 ---
-Title: Replacing Makefile with Invoke for Cross-Platform Python Tasks
-Slug: replacing-makefile-with-invoke-for-crossplatform-python-tasks
+Category: note
 Date: 2025-08-14
 Modified: 2025-08-14
+Slug: replacing-makefile-with-invoke-for-crossplatform-python-tasks
 Status: published
+Summary: Learn how switching from Make to Invoke improves cross-platform compatibility for Python project tasks, ensuring consistent behavior across macOS, Linux, and Windows.
+ai_summary: true
 Tags:
   - makefile
   - cross-platform-build
@@ -17,7 +19,7 @@ Tags:
   - team-collaboration
   - build-tools
   - portable-scripts
-Category: note
+Title: Replacing Makefile with Invoke for Cross-Platform Python Tasks
 ---
 I’ve always liked Make. It’s quick to type, powerful, and honestly kind of fun once you know the quirks. On macOS and Linux, it just works.
 

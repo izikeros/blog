@@ -1,9 +1,12 @@
 ---
-Title: RAG-Fusion - Enhancing Information Retrieval in Large Language Models
-Slug: rag-fusion-enhancing-information-retrieval-in-large-language-models
+Category: note
 Date: 2023-11-06
 Modified: 2023-11-06
+Slug: rag-fusion-enhancing-information-retrieval-in-large-language-models
 Status: published
+Summary: Learn about RAG-fusion, a technique that generates multiple query versions from user input and re-ranks them to enhance information retrieval in Large Language Models, providing more relevant responses.
+ai_summary: true
+Title: RAG-Fusion - Enhancing Information Retrieval in Large Language Models
 tags:
   - llm
   - information-retrieval
@@ -11,9 +14,7 @@ tags:
   - re-ranking
   - semantic-search
   - llm-technique
-Category: note
 ---
-
 In the realm of Large Language Models (LLMs) such as ChatGPT, a new technique known as Retrieval Augmented Generation (RAG) is gaining prominence. This technique is designed to enhance a user's input by incorporating additional information from an external source. This supplementary data is then leveraged by the LLM to enrich the response it generates. In this blog post, we will look deeper into the core concept of RAG-fusion, which revolves around multiple query generation and re-ranking of results. For other methods that can improve RAG performance see my other [[2023-11-01-boosting_RAG|article]].
 
 ## What is RAG-fusion?

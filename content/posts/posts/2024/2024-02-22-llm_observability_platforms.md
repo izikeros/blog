@@ -21,7 +21,6 @@ Summary: Managing and monitoring the complex behavior of Large Language Models (
 Status: published
 prompt:
 ---
-<a id="llm-observability-in-the-context-of-llmops-for-generative-ai"></a>
 ## LLM Observability in the Context of LLMOps for Generative AI
 
 AI is transforming the world, and one area where it has made significant strides is in generative models, particularly in the field of Large Language Models (LLMs) like GPT-3 and transformer models. However, as impressive as these models are, managing, monitoring, and understanding their behavior and output remains a challenge. Enter LLMOps, a new field focusing on the management and deployment of LLMs, and a key aspect of this is LLM Observability.
@@ -36,15 +35,11 @@ AI is transforming the world, and one area where it has made significant strides
 
 <!-- /MarkdownTOC -->
 
-<a id="what-is-llm-observability"></a>
-
 ## What is LLM Observability?
 
 LLM Observability is the ability to understand, monitor, and infer the internal state of an LLM from its external outputs. It encompasses several areas including model health monitoring, performance tracking, debugging, and evaluating model fairness and safety.
 
 In the context of LLMOps, LLM Observability is critical. LLMs are complex and can be unpredictable, producing outputs that range from harmless to potentially harmful or biased. It's therefore essential to have the right tools and methodologies for observing and understanding these models' behaviors in real-time, during training, testing, and after deployment.
-
-<a id="expected-functionalities-of-an-llm-observability-solution"></a>
 
 ## Expected Functionalities of an LLM Observability Solution
 
@@ -61,8 +56,6 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 6. **Integration with Existing LLMOps Tools**: Finally, the solution should be capable of integrating with existing LLMOps tools and workflows, from model development and training to deployment and maintenance.
 
 > LLM Observability is a crucial aspect of LLMOps for generative AI. It provides the **visibility** and **control** needed **to effectively manage, deploy, and maintain Large Language Models**, ensuring they **perform as expected, are free from bias, and are safe to use**.
-
-<a id="open-source-llm-observability-tools-and-platforms"></a>
 
 ## Open Source LLM Observability Tools and Platforms
 
@@ -84,13 +77,9 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 13. [Fiddler AI](https://github.com/fiddler-labs/fiddler-auditor) - ![github stars shield](https://img.shields.io/github/stars/fiddler-labs/fiddler-auditor.svg?logo=github) - Evaluate, monitor, analyse, and improve machine learning and generative models from pre-production to production. Ship more ML and LLMs into production, and monitor ML and LLM metrics like hallucination, PII, and toxicity.
 14. [OmniLog](https://github.com/Theodo-UK/OmniLog) - ![github stars shield](https://img.shields.io/github/stars/Theodo-UK/OmniLog.svg?logo=github) - Observability tool for your LLM prompts.
 
-<a id="non-open-source"></a>
-
 ## Non-open source
 
 - [Generative AI Studio - Galileo](https://docs.rungalileo.io/galileo/galileo-gen-ai-studio/llm-studio)
-
-<a id="other---related"></a>
 
 ## Other - related
 
@@ -100,8 +89,6 @@ In the context of LLMOps, LLM Observability is critical. LLMs are complex and ca
 - [LLM Observability](https://github.com/AstronomerAmber/LLM_Observability)
 - [baml](https://github.com/BoundaryML/baml)  - A programming language to build strongly-typed LLM functions. Testing and observability included
 - [aperture](https://github.com/fluxninja/aperture) - Rate limiting, caching, and request prioritization for modern workloads
-
-<a id="references"></a>
 
 ## References
 

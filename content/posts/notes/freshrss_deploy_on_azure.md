@@ -4,6 +4,8 @@ Date: 2023-04-11
 Modified: 2023-07-12
 Slug: how-to-deploy-freshrss-in-the-cloud-for-free-on-azure
 Status: published
+Summary: Learn how to deploy FreshRSS in the cloud for free using Microsoft Azure, gaining access to scalable and reliable RSS feed aggregation from anywhere.
+ai_summary: true
 Tags:
   - rss
   - freshrss
@@ -13,7 +15,6 @@ Tags:
 Title: How to Deploy FreshRSS in the Cloud for Free on Azure?
 todo: verify the steps
 ---
-
 FreshRSS is a free and open-source RSS feed aggregator that allows you to easily follow your favorite websites and blogs in one place. By deploying FreshRSS in the cloud, you can access your feeds from anywhere and enjoy the benefits of cloud computing, such as scalability, reliability, and cost-effectiveness. Microsoft Azure is a popular cloud platform that offers a wide range of services for building, deploying, and managing applications in the cloud. In this tutorial, we'll show you how to deploy FreshRSS in the cloud for free on Azure.
 
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
@@ -27,8 +28,6 @@ FreshRSS is a free and open-source RSS feed aggregator that allows you to easily
 
 <!-- /MarkdownTOC -->
 
-<a id="prerequisites"></a>
-
 ## Prerequisites
 
 - A Microsoft Azure account
@@ -36,11 +35,7 @@ FreshRSS is a free and open-source RSS feed aggregator that allows you to easily
 - A web browser
 - An SSH client (optional)
 
-<a id="step-by-step-guide"></a>
-
 ## Step-by-step guide
-
-<a id="step-1-create-a-new-azure-web-app"></a>
 
 ### Step 1: Create a new Azure web app
 
@@ -60,8 +55,6 @@ The first step is to create a new Azure web app, which will host your FreshRSS i
 
 7. Wait for the deployment to complete, which may take a few minutes.
 
-<a id="step-2-configure-your-web-app"></a>
-
 ### Step 2: Configure your web app
 
 The next step is to configure your web app with the necessary settings and dependencies. Follow these steps to configure your web app:
@@ -78,8 +71,6 @@ The next step is to configure your web app with the necessary settings and depen
     - Key: WEBSITE_AUTH_ENABLED, Value: False
     - Key: WEBSITE_NODE_DEFAULT_VERSION, Value: 10.14.2
 5. Click on the "Save" button to save your changes.
-
-<a id="step-3-deploy-freshrss"></a>
 
 ### Step 3: Deploy FreshRSS
 
@@ -114,8 +105,6 @@ The next step is to deploy FreshRSS to your web app. Follow these steps to deplo
 11. Follow the on-screen instructions to complete the FreshRSS installation. Make sure to set the database type to "SQLite" and the database path to "/home/site/wwwroot/data/freshrss.db".
 
 12. Once the installation is complete, you should be able to access FreshRSS and start adding your favorite feeds.
-
-<a id="step-4-configure-ssl-optional"></a>
 
 ### Step 4: Configure SSL (optional)
 

@@ -57,8 +57,6 @@ An effective chunking strategy ensures that search results accurately capture th
 
 <!-- /MarkdownTOC -->
 
-<a id="factors-influencing-chunking-strategy"></a>
-
 ## Factors Influencing Chunking Strategy
 
 There are three main factors to consider when determining a chunking strategy for a specific use case and application:
@@ -67,32 +65,22 @@ There are three main factors to consider when determining a chunking strategy fo
 2. The length and complexity of user queries
 3. The utilization of the retrieved results in the application
 
-<a id="size-of-the-texts-to-be-indexed"></a>
-
 ### Size of the Texts to be Indexed
 
 The chunking unit and size should be adjusted according to the nature of the text. The chunk should be long enough to contain the relevant semantic load. For instance, individual words may not convey a specific message or piece of information, while putting an entire encyclopedia in one chunk may result in a chunk that is "about everything."
-
-<a id="length-and-complexity-of-user-queries"></a>
 
 ### Length and Complexity of User Queries
 
 - **Longer queries** or those with greater complexity typically **benefit from a smaller chunk length**. This helps to narrow down the search space and improve the precision of the search results. Smaller chunks allow more focused matching against embeddings, reducing the impact of irrelevant parts within the query.
 - **Shorter and simpler queries** might not require chunking at all, as they can be processed as a single unit. Chunking may introduce unnecessary overhead in these cases, potentially hampering search performance.
 
-<a id="utilization-of-the-retrieved-results-in-the-application"></a>
-
 ### Utilization of the Retrieved Results in the Application
 
 In cases where search results are only an intermediate step in the whole chain in the app, the size of the chunk might have significant importance for the seamless operation of the application. For example, if results from multiple search queries are the input context for the prompt to the LLM, having small chunks might ease fitting all inputs in the maximum allowed context size for a given LLM. Conversely, if the search result is presented to the user, larger chunks may be more appropriate.
 
-<a id="chunking-methods"></a>
-
 ## Chunking Methods
 
 There are several methods for chunking text, each with its own advantages and disadvantages. The choice of method depends on the specific requirements of the use case and application.
-
-<a id="fixed-size-in-characters-overlapping-sliding-window"></a>
 
 ### Fixed-size (in characters) Overlapping Sliding Window
 
@@ -127,8 +115,6 @@ However, for tasks that require semantic understanding and precise context, such
 - Scenarios where the text does not have a strong semantic structure, such as certain types of raw data or logs
 - Not recommended for tasks requiring semantic understanding and precise contexts like sentiment analysis, question-answering systems, or text summarization
 
-<a id="fixed-size-in-tokens-overlapping-sliding-window"></a>
-
 ### Fixed-size (in tokens) Overlapping Sliding Window
 
 The Fixed-size sliding window method in tokens is another approach to text chunking. Unlike the character-based method, this approach divides the text into chunks based on the count of tokens that came out from the tokenizer, making it more aligned with the way language models operate.
@@ -155,8 +141,6 @@ The use cases are similar to the fixed size window based on characters count wit
 
 - For exploratory, initial work with LLMs
 - Not recommended for tasks requiring a deep understanding of the semantics and context of the text, like sentiment analysis or text summarization
-
-<a id="recursive-structure-aware-splitting"></a>
 
 ### Recursive Structure Aware Splitting
 
@@ -193,8 +177,6 @@ However, due to its complexity, it might not be the best fit for tasks that requ
 - Useful in tasks where both the granularity of tokens and the preservation of semantic integrity are crucial, such as text summarization, sentiment analysis, and document classification
 - Not recommended for tasks requiring quick and simple text chunking, or tasks involving texts with inconsistent or unclear structural divisions
 
-<a id="structure-aware-splitting-by-sentence-paragraph-section-chapter"></a>
-
 ### Structure Aware Splitting (by Sentence, Paragraph, Section, Chapter)
 
 Structure Aware Splitting is an advanced approach to text chunking, which takes into account the inherent structure of the text. Instead of using a fixed-size window, this method divides the text into chunks based on its natural divisions such as sentences, paragraphs, sections, or chapters.
@@ -227,8 +209,6 @@ However, it might not be the best fit for tasks involving texts that lack define
 - Effective for tasks requiring good understanding of context and semantics, such as text summarization, sentiment analysis, and document classification
 - Not recommended for tasks involving texts that lack defined structural divisions, or tasks needing finer granularity, like word-level NER
 
-<a id="nlp-chunking-tracking-topic-changes"></a>
-
 ### NLP Chunking: Tracking Topic Changes
 
 NLP Chunking with Topic Tracking is a sophisticated approach to text chunking. This method divides the text into chunks based on semantic understanding, specifically by detecting significant shifts in the topics of sentences. If the topic of a sentence significantly differs from the topic of the previous chunk, this sentence is considered the beginning of a new chunk.
@@ -260,8 +240,6 @@ This method might not be the best fit for tasks involving texts that have a high
 - Highly effective for tasks requiring semantic context and topic continuity, such as text summarization, sentiment analysis, and document classification
 - Not recommended for tasks involving texts with high degrees of topic overlap or tasks requiring simple text chunking without the need for deep semantic understanding
 
-<a id="content-aware-splitting-markdown-latex-html"></a>
-
 ### Content-Aware Splitting (Markdown, LaTeX, HTML)
 
 Content-Aware Splitting is a method of text chunking that focuses on the type and structure of the content, particularly in structured documents like those written in Markdown, LaTeX, or HTML. This method identifies and respects the inherent structure and divisions of the content, such as headings, code blocks, and tables, to create distinct chunks.
@@ -292,8 +270,6 @@ However, this method might not be the best fit for unstructured or plain text do
 
 - Particularly useful for structured documents or content with clear formatting, such as technical documentation, academic papers, or web pages
 - Not recommended for unstructured or plain text documents, or tasks that do not require a deep understanding of the content structure
-
-<a id="adding-extra-context-to-the-chunk-metadata-summaries"></a>
 
 ### Adding Extra Context to the Chunk (metadata, summaries)
 
@@ -362,16 +338,12 @@ The choice of chunking method, whether it's fixed-size, structure-aware, or NLP 
 Moreover, adding extra context to the chunks, such as metadata or summaries, can further enhance the value of each chunk and improve the overall understanding of the text. Experimental strategies like keyword tagging, sentiment analysis, entity recognition, topic classification, and chunk linking offer promising avenues for further exploration.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
-<a id="references"></a>
-
 ## References
 
 - [^1] [Create a CustomGPT And Supercharge your Company with AI  -  Pick the Best LLM - The Abacus.AI Blog](https://blog.abacus.ai/blog/2023/08/10/create-your-custom-chatgpt-pick-the-best-llm-that-works-for-you/)
 - [^2] [Chunking Strategies for LLM Applications | Pinecone](https://www.pinecone.io/learn/chunking-strategies/)
 - [^3] [Optimize LLM Enterprise Applications through Embeddings and Chunking Strategy. | by Actalyst | Aug, 2023 | Medium](https://actalyst.medium.com/optimize-llm-enterprise-applications-through-embeddings-and-chunking-strategy-1bbdb03bedae)
 - [^4] [Retrieval Augmented Generation (RAG) Done Right: Chunking - Vectara](https://vectara.com/grounded-generation-done-right-chunking/) (NLP chunking, compare chunking strategies) + [notebook](https://github.com/vectara/example-notebooks/blob/main/notebooks/chunking-demo.ipynb)
-
-<a id="further-reading"></a>
 
 ## Further Reading
 

@@ -1,11 +1,12 @@
 ---
 Category: note
 Date: 2023-03-06
-Image: /images/misc/protester.png
 Modified: 2023-07-12
-Prompt: Give me long text for the Federated Social Web manifesto (like Hacker manifesto)
+Image: /images/misc/protester.png
 Slug: federated-social-web-manifesto
 Status: published
+Summary: The Federated Social Web manifesto advocates for a decentralized social network based on openness, user control, and interoperability to counteract the dominance of large corporations and promote free expression and collaboration online.
+ai_summary: true
 Tags:
   - federated-social-web
   - manifesto
@@ -17,6 +18,7 @@ Tags:
   - accessibility
   - innovation
 Title: Federated Social Web Manifesto
+Prompt: Give me long text for the Federated Social Web manifesto (like Hacker manifesto)
 ---
 X::[[mastodon]]
 

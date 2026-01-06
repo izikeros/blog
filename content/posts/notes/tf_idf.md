@@ -1,9 +1,12 @@
 ---
-Title: TF-IDF with examples
-Slug: tfidf-with-examples
+Category: note
 Date: 2023-11-10
 Modified: 2023-11-10
+Slug: tfidf-with-examples
 Status: published
+Summary: Learn how TF-IDF calculates the importance of a word in a document and why rare words are given more weight than common ones. Explore examples to understand term frequency and inverse document frequency metrics.
+ai_summary: true
+Title: TF-IDF with examples
 tags:
   - tfidf
   - tf-idf
@@ -12,11 +15,9 @@ tags:
   - text-vectorization
   - information-retrieval
   - text-mining
-Category: note
 prompt: Explain me how the TF-IDF works. Give me a minimal example that showcase calculation of high and low TF-IDF
 prompt2: give me TF-IDF inline latex equation
 ---
-
 X::[[SPLADE_embeddings]]
 
 **TF-IDF** stands for **Term Frequency-Inverse Document Frequency**. It's a numerical statistic used to reflect how important a word is to a document in a collection or corpus. It's often used in information retrieval and text mining.

@@ -4,6 +4,8 @@ Date: 2023-03-14
 Modified: 2023-07-12
 Slug: salt-and-pepper-for-hashing
 Status: published
+Summary: Learn about "salt" and "pepper" techniques in hashing/obfuscation to enhance security by adding randomness and secret keys, making it harder for attackers to reverse-engineer input values.
+ai_summary: true
 Tags:
   - hashing
   - salt
@@ -12,7 +14,6 @@ Tags:
   - obfuscation
 Title: Salt and Pepper in the Context of Hashing/Obfuscation
 ---
-
 In the context of hashing/obfuscation, "salt and pepper" refer to two different techniques used to enhance the security of hash functions.
 
 ## Salt

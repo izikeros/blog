@@ -46,8 +46,6 @@ Shortcuts to categories:
 
 <!-- /MarkdownTOC -->
 
-<a id="tools"></a>
-
 ## Tools
 
 | link                                                                            | description                                                                                                                                                                      | stars |
@@ -87,8 +85,6 @@ An interactive cheatsheet tool for the command-line.
 `shellfirm` will intercept any risky patterns and immediately prompt a small challenge that will double verify your action, think of it as a captcha for your terminal.
 ![shellfirm example](https://github.com/kaplanelad/shellfirm/raw/main/docs/media/example.gif)
 
-<a id="frameworks"></a>
-
 ## Frameworks
 
 The top-3 Zsh frameworks in the ranking remains the same: Oh My Zsh, prezto and antigen.
@@ -105,8 +101,6 @@ The top-3 Zsh frameworks in the ranking remains the same: Oh My Zsh, prezto and 
 |[zgen](https://github.com/tarjoilija/zgen)                                 |A lightweight and simple plugin manager for ZSH                                                                                                                      |1.4k  |
 
 Personally, I use zgen, which works well however, last commits to the repo of this projects are from 2018. There is continuation of the heritage of this plugin manager in the project called: [zgenom](https://github.com/jandamm/zgenom)
-<a id="prompts"></a>
-
 ## Prompts
 
 |                               link                                |                                                                             description                                                                             |stars|
@@ -127,8 +121,6 @@ Personally, I use zgen, which works well however, last commits to the repo of th
 |[typewritten](https://github.com/reobin/typewritten)               |A minimal, lightweight, informative zsh prompt theme                                                                                                                 |0.8k |
 |[hyperzsh](https://github.com/tylerreckart/hyperzsh)               |Hyperminimal zsh prompt                                                                                                                                              |0.5k |
 |[posh-git-sh](https://github.com/lyze/posh-git-sh)                 |Bash/ZSH version of the posh-git command prompt                                                                                                                      |0.4k |
-
-<a id="python-tools"></a>
 
 ## Python tools
 
@@ -151,8 +143,6 @@ Since I work a lot in Python environment - this category will be bit longer than
 |[one-key-linux-setup](https://github.com/miracleyoo/one-key-linux-setup)                 |Scripts which aims to initialize and configure a linux system quickly. Mainly include update, zsh, oh-my-zsh, zsh plugins, python, and so on. Continue to update and welcome issues.|7    |
 |[zsh-activate-py-environment](https://github.com/se-jaeger/zsh-activate-py-environment)  |ZSH plugin that automagically detects and activates your python environments (poetry, virtualenv, conda) while traversing directories.                                              |7    |
 
-<a id="fuzzy-finders"></a>
-
 ## Fuzzy finders
 
 | link                                                                        | description                                                                               | stars |
@@ -167,8 +157,6 @@ Since I work a lot in Python environment - this category will be bit longer than
 
 Note other, less popular tools in that category:
 [pmy](https://github.com/relastle/pmy), [zeno.zsh](https://github.com/yuki-yano/zeno.zsh), [fzf-zsh-completions](https://github.com/chitoku-k/fzf-zsh-completions),[fzshell](https://github.com/mnowotnik/fzshell),[zsh-fzy](https://github.com/aperezdc/zsh-fzy),[zsh-history-filter](https://github.com/MichaelAquilina/zsh-history-filter),[zsh-fzf-pass](https://github.com/smeagol74/zsh-fzf-pass),[zsh-plugin-fd](https://github.com/aubreypwd/zsh-plugin-fd),[zsh-fuzzy-wd](https://github.com/spodin/zsh-fuzzy-wd), [qwy](https://github.com/Ryooooooga/qwy)
-
-<a id="dockercontainers"></a>
 
 ## Docker/Containers
 

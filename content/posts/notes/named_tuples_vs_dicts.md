@@ -4,6 +4,8 @@ Date: 2023-04-03
 Modified: 2023-07-12
 Slug: named-tuples-vs-dictionaries
 Status: published
+Summary: Learn about the pros and cons of using named tuples versus dictionaries in Python for storing structured data, including their memory efficiency, mutability, and readability.
+ai_summary: true
 Tags:
   - python
   - named-tuple

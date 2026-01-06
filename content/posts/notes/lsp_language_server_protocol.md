@@ -1,14 +1,15 @@
 ---
-Title: Understanding the Language Server Protocol through a Minimal Working Example
-Slug: language-server-protocol-minimal-example
+Category: note
 Date: 2025-10-16
 Modified: 2025-10-16
+Slug: language-server-protocol-minimal-example
 Status: published
+Summary: Learn how the Language Server Protocol standardizes communication between code editors and language servers, enabling editors like VS Code to request features such as diagnostics and completions from a single server, simplifying development workflows.
+ai_summary: true
 Tags: language-server-protocol, vscode, lsp, developer-tools, editors, programming
-Category: note
-llm: https://chatgpt.com/c/68f0c9b0-b1b8-8328-ae36-d30546f7276b
+Title: Understanding the Language Server Protocol through a Minimal Working Example
+llm: "https://chatgpt.com/c/68f0c9b0-b1b8-8328-ae36-d30546f7276b"
 ---
-
 ## The Mental Model: What Is the Language Server Protocol
 
 The **Language Server Protocol (LSP)** is one of those invisible technologies that quietly revolutionized the developer experience. It defines a **standard way for code editors (clients)** to communicate with **language-specific analysis engines (servers)**.  

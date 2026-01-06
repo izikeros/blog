@@ -1,9 +1,11 @@
 ---
-Title: Lesser-known Python Package Repository Managers
-Slug: lesser-known-python-package-repository-managers
+Category: note
 Date: 2023-08-12
 Modified: 2023-08-12
+Slug: lesser-known-python-package-repository-managers
 Status: published
+Summary: Learn about lesser-known Python package repository managers like Warehouse, pypiserver, Bandersnatch, and EggBasket, each offering unique features for hosting private packages or mirroring PyPI.
+ai_summary: true
 Tags:
   - pypi
   - python
@@ -11,7 +13,7 @@ Tags:
   - package-repository
   - artifactory
   - devpi
-Category: note
+Title: Lesser-known Python Package Repository Managers
 ---
 X::[[self_hosted_python_package_repository]]
 X::[[python_packages_on_local_NAS]]
@@ -28,8 +30,6 @@ The [Artifactory](https://jfrog.com/artifactory/) (paid) and [Devpi](https://dev
 
 <!-- /MarkdownTOC -->
 
-<a id="warehouse"></a>
-
 ## Warehouse
 
 ![github stars shield](https://img.shields.io/github/stars/pypa/warehouse.svg?logo=github)
@@ -37,8 +37,6 @@ The [Artifactory](https://jfrog.com/artifactory/) (paid) and [Devpi](https://dev
 The current codebase behind the Python Package Index (PyPI). While not lesser-known, it's worth mentioning as an alternative to the official PyPI implementation.
 
 - Source Code: [https://github.com/pypa/warehouse](https://github.com/pypa/warehouse)
-
-<a id="pypiserver"></a>
 
 ## pypiserver
 
@@ -48,8 +46,6 @@ PyHockey is a minimal Python package server that's easy to set up and use for ho
 
 - Source Code: [https://github.com/pypiserver/pypiserver](https://github.com/pypiserver/pypiserver)
 
-<a id="bandersnatch"></a>
-
 ## Bandersnatch
 
 ![github stars shield](https://img.shields.io/github/stars/pypa/bandersnatch.svg?logo=github)
@@ -58,8 +54,6 @@ A PyPI mirror client that can be used to create a complete copy of the Python Pa
 
 - Home: [https://pypi.org/project/bandersnatch/](https://pypi.org/project/bandersnatch/)
 - Source Code: [https://github.com/pypa/bandersnatch](https://github.com/pypa/bandersnatch)
-
-<a id="eggbasket"></a>
 
 ## EggBasket
 

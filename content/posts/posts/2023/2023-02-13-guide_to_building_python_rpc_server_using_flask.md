@@ -34,8 +34,6 @@ Remote Procedure Call (RPC) is a communication protocol that allows a client app
 
 <!-- /MarkdownTOC -->
 
-<a id="step-1-install-flask"></a>
-
 ### Step 1: Install Flask
 
 The first step is to install Flask. You can install Flask using pip, which is the package installer for Python.
@@ -43,8 +41,6 @@ The first step is to install Flask. You can install Flask using pip, which is th
 ```sh
 pip install flask
 ```
-
-<a id="step-2-create-a-flask-app"></a>
 
 ### Step 2: Create a Flask app
 
@@ -61,8 +57,6 @@ def index():
 ```
 
 The above code creates a Flask app and defines a route for the root URL. When a client sends a GET request to the root URL, the server will return 'Hello, world!'.
-
-<a id="step-3-add-a-json-rpc-endpoint"></a>
 
 ### Step 3: Add a JSON-RPC endpoint
 
@@ -85,8 +79,6 @@ def rpc(request):
 ```
 
 The above code defines a JSON-RPC endpoint at the URL `/rpc`. When a client sends a JSON-RPC request to the URL `/rpc`, the server will dispatch the request to the appropriate function and return the result in a JSON-RPC response.
-
-<a id="step-4-define-json-rpc-functions"></a>
 
 ### Step 4: Define JSON-RPC functions
 
@@ -129,8 +121,6 @@ def divide(a: int, b: int) -> float:
 
 The above code defines four JSON-RPC functions: `add`, `subtract`, `multiply`, and `divide`. Each function takes two integer arguments and returns an integer or float.
 
-<a id="step-5-test-the-json-rpc-server"></a>
-
 ### Step 5: Test the JSON-RPC server
 
 The final step is to test the JSON-RPC server. You can test the server by sending JSON-RPC requests to the URL `/rpc`. You can use any JSON-RPC client to send requests to the server. In the following example, we will use the `jsonrpcclient` package to send requests to the server.
@@ -157,8 +147,6 @@ print(result)  # Output: {'code': -32602, 'message': 'Invalid params', 'data': '
 ```
 
 The above code sends five JSON-RPC requests to the server and prints the results. The first four requests call the `add`, `subtract`, `multiply`, and `divide` functions, respectively. The last request calls the `divide` function with a zero value for the `b` argument, which raises an `InvalidParams` exception.
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

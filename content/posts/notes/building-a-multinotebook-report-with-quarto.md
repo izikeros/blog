@@ -1,9 +1,11 @@
 ---
-Title: Building a Multi-Notebook Report with Quarto
-Slug: building-a-multinotebook-report-with-quarto
+Category: note
 Date: 2025-07-23
 Modified: 2025-07-23
+Slug: building-a-multinotebook-report-with-quarto
 Status: published
+Summary: Learn how to split a large Jupyter notebook into multiple notebooks and combine them into a cohesive report using Quarto's book project functionality for HTML, PDF, or EPUB formats.
+ai_summary: true
 Tags:
   - quarto
   - jupyter-notebooks
@@ -12,9 +14,8 @@ Tags:
   - experiment-management
   - research
   - research-report
-Category: note
+Title: Building a Multi-Notebook Report with Quarto
 ---
-
 Over the past few months, I’ve been using Jupyter notebooks to explore and document various data analysis tasks. At some point, I realized I wanted to share the results in a more polished way, so I used quarto to generate report. Over the time analysis notebook has grown to the monster size. I wanted to split it into multiple notebooks, each focusing on a specific aspect of the analysis. But I also wanted to combine them into a single cohesive report.
 Something that reads like a real report. I didn't want to just dump a bunch of disconnected notebooks on someone.
 

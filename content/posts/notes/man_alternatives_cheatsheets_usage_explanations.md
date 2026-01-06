@@ -4,6 +4,8 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: man-alternatives-usage-explanations-and-cheatsheets
 Status: published
+Summary: Learn how to use `tldr` pages, `cheat`, and `eg` for simplified command-line documentation and interactive cheatsheets to boost your productivity.
+ai_summary: true
 Tags:
   - software/alternatives
   - cheatsheet
@@ -13,7 +15,6 @@ Tags:
   - cli
 Title: Man Alternatives, CLI Command Usage Explanations, and Cheatsheets
 ---
-
 ## [tldr](https://tldr.sh/) ![GitHub stars](https://img.shields.io/github/stars/tldr-pages/tldr.svg?logo=github)
 >
 > Simplified and community-driven man pages

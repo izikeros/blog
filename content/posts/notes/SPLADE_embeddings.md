@@ -1,9 +1,12 @@
 ---
-Title: SPLADE sparse vectors - explaination, properties
-Slug: splade-sparse-vectors
+Category: note
 Date: 2023-11-10
 Modified: 2023-12-08
+Slug: splade-sparse-vectors
 Status: published
+Summary: SPLADE learns query/document sparse expansion using BERT's MLM head and sparse regularization, offering efficient use of inverted indices, explicit lexical matches, and interpretability while excelling in generalizing to out-of-domain data.
+ai_summary: true
+Title: SPLADE sparse vectors - explaination, properties
 tags:
   - splade
   - tf-idf
@@ -12,7 +15,6 @@ tags:
   - beir
   - sparse
   - text-vectorization
-Category: note
 ---
 X::[[retrieve_and_re_rank]]
 X::[[retrieving_strategies]]

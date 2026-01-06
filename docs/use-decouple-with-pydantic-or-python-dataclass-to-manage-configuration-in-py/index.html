@@ -55,13 +55,13 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="X::[[python_configuration_management]] Basic Usage Add pydantic or dataclass Using pydantic: Using dataclass: Advantages of using pydantic or dataclass: Should the config be immutable? dataclass + decouple example Basic Usage python-decouple is a viable alternative to python-dotenv for managing environment variables in Python projects …"/>
+    <meta name="description" content="Learn how to use python-decouple with Pydantic or dataclasses for managing configuration in Python applications, including basic setup and advantages of using these tools."/>
     <meta name="keywords" content="python, config, configuration, pydantic, decouple, python-app-config, immutable, casting, env-vars, environmental-variables">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App"/>
-  <meta property="og:description" content="X::[[python_configuration_management]] Basic Usage Add pydantic or dataclass Using pydantic: Using dataclass: Advantages of using pydantic or dataclass: Should the config be immutable? dataclass + decouple example Basic Usage python-decouple is a viable alternative to python-dotenv for managing environment variables in Python projects …"/>
+  <meta property="og:description" content="Learn how to use python-decouple with Pydantic or dataclasses for managing configuration in Python applications, including basic setup and advantages of using these tools."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/"/>
   <meta property="og:type" content="article"/>
@@ -88,7 +88,7 @@
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
     <meta name="twitter:title" content="Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App"/>
-    <meta name="twitter:description" content="X::[[python_configuration_management]] Basic Usage Add pydantic or dataclass Using pydantic: Using dataclass: Advantages of using pydantic or dataclass: Should the config be immutable?..."/>
+    <meta name="twitter:description" content="Learn how to use python-decouple with Pydantic or dataclasses for managing configuration in Python applications, including basic setup and advantages of using these tools."/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -113,9 +113,58 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py/",
-  "description": "X::[[python_configuration_management]] Basic Usage Add pydantic or dataclass Using pydantic: Using dataclass: Advantages of using pydantic or dataclass:..."
+  "description": "Learn how to use python-decouple with Pydantic or dataclasses for managing configuration in Python applications, including basic setup and advantages of...",
+  "articleSection": "note",
+  "inLanguage": "en",
+  "keywords": "python, config, configuration, pydantic, decouple, python-app-config, immutable, casting, env-vars, environmental-variables",
+  "wordCount": 785,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "note",
+      "item": "https://www.safjan.com/category/note.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Use Decouple With Pydantic or Python Dataclass..."
+    }
+  ]
 }
 </script>
+
+
+
+<meta name="ai:summary" content="Learn how to use python-decouple with Pydantic or dataclasses for managing configuration in Python applications, including basic setup and advantages of using these tools.">
+
+<meta name="ai:topics" content="python, config, configuration, pydantic, decouple, python-app-config, immutable, casting, env-vars, environmental-variables">
+
+
+
+<meta name="ai:word-count" content="785">
+<meta name="ai:reading-time" content="3 min">
+
+<meta name="ai:section" content="note">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <title>    Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App
 </title>
@@ -207,7 +256,7 @@
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
 
             <div id="search" class="nav-search"></div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
@@ -232,12 +281,6 @@
 
 
 
-        <details class="toc-details" id="toc-container">
-            <summary>Table of Contents</summary>
-            <nav class="toc" aria-label="Table of Contents">
-                <ul class="toc-list"></ul>
-            </nav>
-        </details>
 
         <div class="article-content">
             <p>X::[[python_configuration_management]]</p>
@@ -254,7 +297,6 @@
 </ul>
 <!-- /MarkdownTOC -->
 
-<p><a id="usage"></a></p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p><code>python-decouple</code> is a viable alternative to <code>python-dotenv</code> for managing environment variables in Python projects. It allows you to define environment variables in a <code>.env</code> file and access them in your Python code easily. Here's how you can migrate from <code>python-dotenv</code> to <code>python-decouple</code>:</p>
 <ol>
@@ -296,11 +338,9 @@
 <p>In the above example:
    - <code>config('SECRET_KEY')</code> reads the value of <code>SECRET_KEY</code> from the <code>.env</code> file.
    - <code>config('DEBUG', default=False, cast=bool)</code> reads the value of <code>DEBUG</code> from the <code>.env</code> file, with a default value of <code>False</code> if <code>DEBUG</code> is not set, and converts it to a boolean.</p>
-<p><a id="add-pydantic-or-dataclass"></a></p>
 <h2 id="add-pydantic-or-dataclass">Add pydantic or dataclass</h2>
 <p>Using <code>pydantic</code> or <code>dataclass</code> to define a configuration class in your Python project can  lead to more reliable and pythonic code. Both <code>pydantic</code> and <code>dataclass</code> provide ways to define data structures with type validation and optional default values. Whether your config should be immutable depends on your specific use case and preferences, but immutability can often lead to safer and more predictable behavior, especially in multi-threaded or concurrent environments.</p>
 <p>Here's how you can use <code>pydantic</code> and <code>dataclass</code> to define a configuration class for your project:</p>
-<p><a id="using-pydantic"></a></p>
 <h3 id="using-pydantic">Using <code>pydantic</code></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
@@ -313,7 +353,6 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a id="using-dataclass"></a></p>
 <h3 id="using-dataclass">Using <code>dataclass</code></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -327,7 +366,6 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a id="advantages-of-using-pydantic-or-dataclass"></a></p>
 <h3 id="advantages-of-using-pydantic-or-dataclass">Advantages of using <code>pydantic</code> or <code>dataclass</code></h3>
 <ol>
 <li>
@@ -343,7 +381,6 @@
 <p><strong>Pythonic syntax</strong>: Both <code>pydantic</code> and <code>dataclass</code> provide a concise and pythonic syntax for defining data structures, making your code more readable and maintainable.</p>
 </li>
 </ol>
-<p><a id="should-the-config-be-immutable"></a></p>
 <h3 id="should-the-config-be-immutable">Should the config be immutable?</h3>
 <p>Whether your config should be immutable depends on your specific use case and requirements. Here are some considerations:</p>
 <ul>
@@ -352,7 +389,6 @@
 <li><strong>Testing</strong>: Immutable objects are often easier to test since you don't need to worry about side effects from modifications.</li>
 </ul>
 <p>However, if you anticipate needing to modify configuration values dynamically at runtime, immutability may not be suitable for your use case. Ultimately, consider your project's requirements and design your configuration class accordingly.</p>
-<p><a id="dataclass--decouple-example"></a></p>
 <h2 id="dataclass-decouple-example">dataclass + decouple example</h2>
 <p>Here is an example demonstrating how to combine <code>dataclass</code> with <code>python-decouple</code> to manage configuration in a Python project:</p>
 <ol>
@@ -420,6 +456,8 @@
                 <a href="https://www.safjan.com/tag/env-vars/" class="article-tag">env-vars</a>
                 <a href="https://www.safjan.com/tag/environmental-variables/" class="article-tag">environmental-variables</a>
         </div>
+
+
 
 
 

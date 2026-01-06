@@ -1,13 +1,14 @@
 ---
-Title: Keeping performance results in a separate Git branch using `git checkout --orphan`
-Slug: git-checkout-orphan-gh-pages-performance-results
+Category: note
 Date: 2025-10-24
 Modified: 2025-10-24
+Slug: git-checkout-orphan-gh-pages-performance-results
 Status: published
+Summary: Learn how to use `git checkout --orphan` to create a separate Git branch with no history, ideal for storing performance results or other generated content independently from your codebase. Discover the process and benefits of using orphan branches, including an example GitHub Actions workflow for publishing test results.
+ai_summary: true
 Tags: git, github-actions, ci, deployment, performance
-Category: note
+Title: Keeping performance results in a separate Git branch using `git checkout --orphan`
 ---
-
 ## Understanding orphan branches in Git
 
 There’s a lesser-known Git feature that allows you to start a branch with no history at all:  

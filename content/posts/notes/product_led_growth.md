@@ -1,16 +1,17 @@
 ---
-Title: Product Led Growth
-Slug: product-led-growth
+Category: note
 Date: 2023-11-07
 Modified: 2023-11-07
+Slug: product-led-growth
 Status: published
+Summary: Product Led Growth (PLG) focuses on using a user-friendly product to drive acquisition and expansion, relying on features that encourage self-service, viral growth, and data-driven improvements. Readers will learn how PLG companies prioritize user experience, freemium models, and customer success to achieve organic growth.
+ai_summary: true
+Title: Product Led Growth
 tags:
   - startup
   - methodology
   - product-led-growth
-Category: note
 ---
-
 Product Led Growth (PLG) is a business methodology in which the product itself serves as the primary driver of customer acquisition, conversion, and expansion. It's a model that prioritizes product usage as the key growth driver, rather than traditional marketing or sales efforts.
 
 Here are some key points about Product Led Growth:

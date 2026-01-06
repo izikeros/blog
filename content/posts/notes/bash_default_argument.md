@@ -4,12 +4,13 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: bash-default-argument
 Status: published
+Summary: Learn how to set default values for command-line arguments in Bash scripts using parameter expansion and see examples of optional input handling.
+ai_summary: true
 Tags:
   - default-argument
   - bash
 Title: Bash - Default Argument for the Script
 ---
-
 See the example of `somecommand.sh`:
 
 ```bash

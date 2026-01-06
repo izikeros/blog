@@ -41,13 +41,9 @@ In software development, testability is a crucial aspect that helps ensure the r
 
 <!-- /MarkdownTOC -->
 
-<a id="what-is-dependency-injection"></a>
-
 ## What is Dependency Injection?
 
 Dependency injection is a design pattern that allows us to inject dependencies into a class or function from external sources rather than creating them internally. By doing so, we reduce the coupling between components and make them more flexible, reusable, and testable.
-
-<a id="benefits-of-dependency-injection"></a>
 
 ## Benefits of Dependency Injection
 
@@ -56,11 +52,7 @@ Dependency injection is a design pattern that allows us to inject dependencies i
 - **Code reusability**: With dependency injection, components become more reusable as they rely on abstractions rather than concrete implementations.
 - **Easier maintenance**: By externalizing dependencies, we can modify or extend their behavior without affecting the code that uses them.
 
-<a id="techniques-for-dependency-injection"></a>
-
 ## Techniques for Dependency Injection
-
-<a id="constructor-injection"></a>
 
 ### Constructor Injection
 
@@ -77,8 +69,6 @@ class UserService:
         return self.user_repository.get(user_id)
 ```
 
-<a id="setter-injection"></a>
-
 ### Setter Injection
 
 Setter injection involves setting the dependencies using setter methods. This technique allows for more flexibility, as dependencies can be changed or updated after object initialization.
@@ -93,8 +83,6 @@ class NotificationService:
     def send_notification(self, user):
         self.email_service.send(user.email, "New notification!")
 ```
-
-<a id="interface-injection"></a>
 
 ### Interface Injection
 
@@ -121,11 +109,7 @@ class PostgresDatabase(Database):
         pass
 ```
 
-<a id="use-cases-for-dependency-injection"></a>
-
 ## Use Cases for Dependency Injection
-
-<a id="testing-legacy-code"></a>
 
 ### Testing Legacy Code
 
@@ -148,8 +132,6 @@ def test_legacy_function():
     # Test the function
 ```
 
-<a id="mocking-dependencies"></a>
-
 ### Mocking Dependencies
 
 In unit testing, dependency injection allows us to replace real dependencies with mock objects, enabling us to focus on testing the behavior of the unit under test in isolation.
@@ -170,8 +152,6 @@ def test_get_user():
     service = UserService(user_repository=mock_repository)
     # Test the method using the mock repository
 ```
-
-<a id="improving-code-reusability"></a>
 
 ### Improving Code Reusability
 
@@ -198,8 +178,6 @@ class StripeGateway(PaymentGateway):
 
 5. Lesser-Known Techniques and Tricks:
 
-<a id="parameter-injection"></a>
-
 ### Parameter Injection
 
 In addition to constructor, setter, and interface injection, parameter injection is a technique where dependencies are passed directly as parameters to functions or methods. This can be useful in situations where direct injection is preferred over using class instances.
@@ -215,8 +193,6 @@ def process_data(data, logger):
 logger = Logger()
 process_data(data, logger)
 ```
-
-<a id="context-managers-and-dependency-injection"></a>
 
 ### Context Managers and Dependency Injection
 
@@ -238,8 +214,6 @@ with db_connection() as db:
     # Use the database connection within the context
 ```
 
-<a id="dependency-injection-containers"></a>
-
 ### Dependency Injection Containers
 
 Dependency injection containers or frameworks provide a centralized way to manage dependencies, their configurations, and their lifetime. Popular Python DI frameworks include `injector`, `DInjector`, and `inject`.
@@ -258,8 +232,6 @@ class UserService:
 injector = Injector()
 user_service = injector.get(UserService)
 ```
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

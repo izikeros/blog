@@ -1,17 +1,18 @@
 ---
-Title: Tracking Down zsh Alias Plugin Sources
-Slug: tracking-down-zsh-alias-plugin-sources
+Category: note
 Date: 2025-02-28
 Modified: 2025-02-28
+Slug: tracking-down-zsh-alias-plugin-sources
 Status: published
+Summary: Learn how to trace and identify the source of zsh aliases defined by plugins using verbose tracing and grep, enabling you to pinpoint exactly where custom aliases are created.
+ai_summary: true
 Tags:
   - til
   - zsh
   - zsh-alias
   - alias
-Category: note
+Title: Tracking Down zsh Alias Plugin Sources
 ---
-
 When hunting for the origin of mysteriously defined by unknown plugin zsh aliases:
 
 ```bash

@@ -4,6 +4,8 @@ Date: 2023-04-20
 Modified: 2023-07-12
 Slug: python-user-home-directory
 Status: published
+Summary: Learn how to get the user's home directory path in Python using cross-platform methods like `os.path.expanduser()`, `Path.home()`, and other alternatives.
+ai_summary: true
 Tags:
   - python
   - home

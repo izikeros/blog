@@ -1,18 +1,19 @@
 ---
-Title: Bearer Token Authentication for API
-Slug: bearer-token-authentication-for-api
+Category: note
 Date: 2023-08-24
 Modified: 2023-08-24
+Slug: bearer-token-authentication-for-api
 Status: published
+Summary: Learn about bearer token authentication for API security, including how it works, its benefits, and key considerations for implementation and security.
+ai_summary: true
 Tags:
   - bearer
   - bearer-token
   - authentication
   - json
   - api
-Category: note
+Title: Bearer Token Authentication for API
 ---
-
 ## Bearer Token Authentication
 
 Bearer authentication is a method of API authentication that involves including a "bearer token" in the request header. This token is typically a long string of characters, often encoded in a specific format like JSON Web Token (JWT) or OAuth token. Bearer authentication is commonly used to secure APIs by allowing only authorized users or applications to access protected resources.

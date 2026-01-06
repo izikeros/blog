@@ -1,18 +1,19 @@
 ---
-Title: Implementing Reciprocal Rank Fusion (RRF) in Python
-Slug: implementing-rank-fusion-in-python
+Category: note
 Date: 2023-07-28
 Modified: 2024-07-14
+Slug: implementing-rank-fusion-in-python
 Status: published
+Summary: Learn how to implement Reciprocal Rank Fusion (RRF) in Python for combining multiple ranking models to improve information retrieval performance, focusing on collecting reciprocal rank scores and merging them effectively.
+ai_summary: true
+Title: Implementing Reciprocal Rank Fusion (RRF) in Python
 tags:
   - rank-fusion
   - hybrid-search
   - rank
   - search
   - python
-Category: note
 ---
-
 X::[[borda_count_python]]
 
 In the *Information Retrieval*, ranking is one of the most crucial aspects. It prioritizes the matching information according to its relevancy. In many cases, having a single ranking model may not satisfy the diverse needs of users. This is where the idea of Rank Fusion comes in; combining various ranking models to enhance the retrieval performance.

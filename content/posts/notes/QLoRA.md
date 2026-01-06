@@ -1,9 +1,12 @@
 ---
-Title: How does QLoRA works?
-Slug: how-does-qlora-works
+Category: note
 Date: 2024-07-03
 Modified: 2024-07-03
+Slug: how-does-qlora-works
 Status: published
+Summary: QLoRA (Quantized Low-Rank Adaptation) enables efficient fine-tuning of large language models using a 4-bit quantized base model and trainable low-rank adapters, significantly reducing memory usage while maintaining performance. Key techniques include 4-bit NormalFloat quantization, paged optimizers, and double quantization.
+ai_summary: true
+Title: How does QLoRA works?
 tags:
   - qlora
   - lora
@@ -15,9 +18,7 @@ tags:
   - double-quantisation
   - training
   - fine-tuning
-Category: note
 ---
-
 ## TL;DR
 
 > **QLoRA** (Quantized Low-Rank Adaptation) is a memory-efficient fine-tuning method for large language models. It uses a frozen 4-bit quantized base model with trainable adapters. During fine-tuning, only the adapters are updated, with gradients backpropagated through the quantized weights. Key innovations include 4-bit NormalFloat quantization, paged optimizers, and double quantization, all of which significantly reduce memory usage. This allows fine-tuning of large models on consumer hardware without compromising performance.

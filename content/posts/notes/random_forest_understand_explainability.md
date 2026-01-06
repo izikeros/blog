@@ -2,14 +2,16 @@
 Category: note
 Date: 2023-01-18
 Modified: 2023-07-12
-Prompt: Give me long markdown article with hyperlinks. Article on lesser known but useful Tools helping understand and tweak random forest classifier.
 Slug: random-forest-understand-and-tweak
 Status: published
+Summary: Learn how to effectively understand and optimize your Random Forest classifier using tools like permutation importance and SHAP values for feature importance, and partial dependence plots for visualizing feature relationships.
+ai_summary: true
 Tags:
   - machine-learning
   - random-forest
   - xai
 Title: Tools That Helps to Understand and Tweak Random Forest Classifier
+Prompt: Give me long markdown article with hyperlinks. Article on lesser known but useful Tools helping understand and tweak random forest classifier.
 ---
 X::[[random_forest_explainer]]
 

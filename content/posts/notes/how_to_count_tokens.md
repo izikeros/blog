@@ -1,10 +1,12 @@
 ---
-Title: How to Count Tokens - Tokenization With Tiktoken.
 Category: note
 Date: 2023-06-08
 Modified: 2023-07-12
 Slug: how-to-count-tokens
 Status: published
+Summary: Learn how to accurately count tokens in text using OpenAI's `tiktoken` library, essential for controlling prompt length and managing costs in natural language processing projects.
+ai_summary: true
+Title: How to Count Tokens - Tokenization With Tiktoken.
 tags:
   - tokenizers
   - token
@@ -14,7 +16,6 @@ tags:
   - NLP
 up: "[[MOC_Generative_AI]]"
 ---
-
 Counting tokens is a useful task in natural language processing (NLP) that allows us to measure the length and complexity of a text. The two important use cases for counting the tokens are:
 
 - **controlling the length of the prompt** -  models has limit on the number of input tokens - it is good to have control if you don't exceed the limits for the model

@@ -32,11 +32,7 @@ Comparing histograms is a crucial step in data analysis, as it allows us to gain
 
 <!-- /MarkdownTOC -->
 
-<a id="most-common-methods"></a>
-
 ## Most common methods
-
-<a id="1-chi-squared-distance"></a>
 
 ### 1. Chi-Squared Distance
 
@@ -61,8 +57,6 @@ chi2, p = chisquare(obs1, obs2)
 print(chi2)
 ```
 
-<a id="2-earth-movers-distance"></a>
-
 ### 2. Earth Mover's Distance
 
 The Earth Mover's distance (EMD) is a more sophisticated metric that takes into account the shape of the histograms as well as the differences in frequency. The EMD is defined as the minimum amount of "work" required to transform one histogram into the other, where "work" is defined as the product of the difference in frequency and the distance between the bins. The EMD is commonly used in image processing and computer vision, but can also be used to compare histograms.
@@ -86,8 +80,6 @@ emd_val = emd(bins1, bins2, freq1, freq2)
 
 print(emd_val)
 ```
-
-<a id="3-kullback-leibler-divergence"></a>
 
 ### 3. Kullback-Leibler Divergence
 
@@ -116,8 +108,6 @@ kld = entropy(prob1, prob2)
 print(kld)
 ```
 
-<a id="other-methods-for-histogram-comparison"></a>
-
 ## Other methods for histogram comparison
 
 - **Intersection**: it is a simple but widely used measure, which counts the number of bins where the histograms overlap. This metric gives a value between 0 and the minimum number of samples in the two histograms, with 0 indicating no overlap and the maximum value indicating perfect overlap.
@@ -127,8 +117,6 @@ print(kld)
 - **Wasserstein Distance**: Also known as the "Earth Mover's Distance" (EMD), it is a distance measure between probability distributions. It is widely used in image processing and computer vision, and has been applied to the comparison of histograms.
 
 There are other metrics such as [Hellinger distance](https://en.wikipedia.org/wiki/Hellinger_distance), [Jeffreys divergence](https://encyclopediaofmath.org/wiki/Jeffreys_distance), [Jensen-Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence), etc. that can be used to compare histograms as well.
-
-<a id="conclusion"></a>
 
 ## Conclusion
 

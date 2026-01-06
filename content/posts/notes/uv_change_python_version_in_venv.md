@@ -1,9 +1,11 @@
 ---
-Title: Downgrade or Upgrade Your Python Version with uv
-Slug: downgrade-or-upgrade-your-python-version-with-uv
+Category: note
 Date: 2025-06-26
 Modified: 2025-06-26
+Slug: downgrade-or-upgrade-your-python-version-with-uv
 Status: published
+Summary: Learn how to downgrade or upgrade your project’s Python version using the `uv` tool, including steps for installing, pinning, and recreating your virtual environment.
+ai_summary: true
 Tags:
   - uv
   - python-version
@@ -11,9 +13,8 @@ Tags:
   - python-upgrade
   - python-downgrade
   - python-version
-Category: note
+Title: Downgrade or Upgrade Your Python Version with uv
 ---
-
 To downgrade your project’s virtual environment e.g. from Python 3.11 to 3.10 using **uv**, here’s a step‑by‑step process:
 
 ### 1. Install the desired Python version

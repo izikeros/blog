@@ -38,22 +38,14 @@ Retrieval-Augmented Generation (RAG) is a powerful tool in the domain of machine
 
 <!-- /MarkdownTOC -->
 
-<a id="leveraging-hybrid-search"></a>
-
 ## Leveraging Hybrid Search
 
 Hybrid search, a fusion of semantic search and keyword search, can be employed to retrieve pertinent data from a vector store. This method often yields superior results across a range of use cases. It essentially combines the strength of keyword search (precision) and semantic search (recall), providing a more comprehensive search solution.
 [[dups/hybrid_search]]
 
-<a id="utilizing-summaries-for-data-chunks"></a>
-
 ## Utilizing Summaries for Data Chunks
 
 An efficient way to enhance the quality of generation and reduce the number of tokens in the input is by summarizing the chunks of data and storing these summaries in the vector store. This technique is especially useful when dealing with data that includes numerous filler words. By summarizing the chunks, we can eliminate these superfluous elements, thereby refining the quality of the input data.
-<a id="query-compression"></a>
-
-<a id="applying-query-transformations"></a>
-
 ## Applying Query Transformations
 
 Query transformations can significantly enhance the quality of responses. For instance, if a system does not find relevant context for a query, the LLM can rephrase the query and try again. See the [[rag_fusion|RAG Fusion]].
@@ -67,51 +59,35 @@ Another technique involves breaking down complex queries into sub-queries, a pro
 ## Query Compression
 
 Query compression, (see a tool like [LongLLMLingua](https://www.microsoft.com/en-us/research/project/llmlingua/longllmlingua/)) is a technique for improving RAG's performance in long context scenarios where large language models often face challenges such as increased computational and financial costs, longer latency, and inferior performance. By enhancing the density and optimizing the position of key information in the input prompt, LongLLMLingua improves LLMs' perception of key information, which in turn, reduces computational load, decreases latency, and improves performance. This strategy ensures that vital information is not lost or diluted in lengthy contexts, thereby enhancing the relevance and quality of the generated output.
-<a id="optimal-chunking-strategy"></a>
-
 ## Optimal Chunking Strategy
 
 There are multiple strategies that can be applied to chunking see [Chunking strategies](https://safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/#from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques). One of the aspects can be controlling the chunk overlap. Semantic retrieval may pose a challenge when a selected chunk has meaningful context in adjacent chunks that could be missed. To mitigate this, an overlap of chunks can be implemented, whereby neighboring chunks are also passed to the Language Model (LLM) for generation. This guarantees that the surrounding context is incorporated, thus enhancing the output's quality.
-
-<a id="fine-tuning-embedding-models"></a>
 
 ## Fine-tuning Embedding Models
 
 While off-the-shelf embedding models such as BERT and Ada may suffice for many use cases, they might not adequately represent specific domains in the vector space, leading to suboptimal retrieval quality. In such instances, it would be advantageous to fine-tune an embedding model using domain-specific data to significantly improve retrieval quality.
 
-<a id="enriching-metadata"></a>
-
 ## Enriching Metadata
 
 The provision of metadata like source information about the chunks being processed can enhance the LLM's comprehension of the context, leading to a better output generation. This additional layer of information can provide the LLM with a more holistic understanding of the data, enabling it to generate more accurate and relevant responses.
-
-<a id="employing-re-ranking"></a>
 
 ## Employing Re-ranking
 
 Semantic search may yield top-k results that are too similar to each other. To ensure a wider array of snippets, it is beneficial to [re-rank](https://www.sbert.net/examples/applications/retrieve_rerank/README.html) the results based on other factors such as metadata and keyword matches. This diversification of snippets can lead to a more nuanced and comprehensive context for the LLM to generate responses. Re-ranker can be based on a cross-encoder.
 
-<a id="addressing-the-lost-in-the-middle-problem"></a>
-
 ## Addressing the 'Lost in the Middle' Problem
 
 LLMs tend not to assign equal weight to all tokens in the input, often overlooking tokens located in the middle. This phenomenon, known as the ['lost in the middle' problem](https://arxiv.org/abs/2307.03172), can be addressed by reordering the context snippets to place the most vital snippets at the beginning and end of the input, with less important snippets situated in the middle.
 
-<a id="meta-data-filtering"></a>
-
 ## Meta-data Filtering
 
 Meta-data, such as date tags, can be added to your chunks to improve retrieval. For example, filtering by recency can be beneficial when querying email history. Recent emails may not necessarily be the most similar from an embedding standpoint, but they are more likely to be relevant.
-
-<a id="query-routing"></a>
 
 ## Query Routing
 
 Having multiple indexes and routing queries to the appropriate index can be beneficial. For instance, different indexes could handle summarization questions, pointed questions, and date-sensitive questions. Trying to optimize one index for all these behaviors may compromise its effectiveness.
 
 The performance of RAG in production can be significantly improved by applying a range of techniques, including hybrid search, chunk summarization, overlapping chunks, fine-tuned embedding models, metadata enhancement, re-ranking, addressing the 'lost in the middle' problem, query transformations, meta-data filtering, and query routing. These strategies will help to optimize the RAG pipeline, ensuring higher quality output and improved overall performance.
-
-<a id="references"></a>
 
 ## References
 

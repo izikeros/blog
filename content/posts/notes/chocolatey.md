@@ -4,6 +4,8 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: chocolatey
 Status: published
+Summary: Learn how to set up and use Chocolatey on Windows to manage software installations via PowerShell commands, including configuration steps, package installation, upgrades, and a list of recommended packages.
+ai_summary: true
 Tags:
   - chocolatey
   - windows
@@ -11,7 +13,6 @@ Tags:
   - winget
 Title: Chocolatey (Windows)
 ---
-
 > **NOTE:**
 > there is already an official tool from Microsoft for downloading and upgrading software as packages: [[windows_winget_install_update_packages|winget]]
 

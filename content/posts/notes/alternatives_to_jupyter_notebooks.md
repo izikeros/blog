@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-02-27
 Modified: 2023-07-12
-Prompt: what are the alternatives to jupyter notebooks. add quick characterization of each solution
 Slug: best-alternatives-to-jupyter-notebooks
 Status: published
+Summary: Explore various alternatives to Jupyter Notebooks, including Visual Studio Code, Spyder, PyCharm, and more, each with unique features suited for different data science needs.
+ai_summary: true
 Tags:
   - openai
   - jupyter
@@ -40,6 +41,7 @@ Tags:
   - data-analysis
   - marimo
 Title: Best Alternatives to Jupyter Notebooks
+Prompt: what are the alternatives to jupyter notebooks. add quick characterization of each solution
 ---
 up::[[MOC_Jupyter_notebooks]]
 
@@ -65,8 +67,6 @@ There are several alternatives to Jupyter Notebooks, each with their own strengt
 
 <!-- /MarkdownTOC -->
 
-<a id="visual-studio-code"></a>
-
 ## Visual Studio Code
 
 Visual Studio Code (VSCode) is a general-purpose code editor that can be used for many programming languages. It has a rich ecosystem of extensions that can be used for data science tasks. VSCode also supports Markdown and provides a variety of debugging and testing tools.
@@ -74,23 +74,15 @@ Visual Studio Code (VSCode) is a general-purpose code editor that can be used fo
 See: [Working with Jupyter Notebooks in Visual Studio Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 X::[[vscode_for_jupyter_notebooks]]
 
-<a id="rstudio"></a>
-
-<a id="spyder"></a>
-
 ## Spyder
 
 Spyder is another IDE that is specifically designed for scientific computing with Python. It provides a variety of features, such as a code editor, a variable explorer, and a debugger. Spyder also allows for the creation of interactive plots and supports multiple kernels.
-
-<a id="pycharm"></a>
 
 ## PyCharm
 
 PyCharm is an IDE for Python that is popular among data scientists and developers. It provides a variety of features, such as a code editor, a debugger, and support for version control systems. PyCharm also supports scientific libraries and allows for the creation of interactive plots.
 
 See: [Create and edit Jupyter notebooks | PyCharm Documentation](https://www.jetbrains.com/help/pycharm/editing-jupyter-notebook-files.html)
-
-<a id="marimo"></a>
 
 ## Marimo
 
@@ -102,24 +94,16 @@ Moreover, Marimo prioritizes **reproducibility** and **shareability**, storing *
 
 Marimo's inspiration draws from a collective desire to reinvent Python notebooks into robust, interactive, and shareable programming environments. With influences from projects like [Pluto.jl](https://plutojl.org/) and [ObservableHQ](https://observablehq.com/), Marimo contributes to the ongoing evolution towards reactive dataflow programming, promising a better ecosystem for research, collaboration, and computational exploration.
 
-<a id="zeppelin"></a>
-
 ## Zeppelin
 
 [Zeppelin](https://zeppelin.apache.org/) is an open-source web-based notebook that supports multiple programming languages, including Scala, Python, and R. It provides a variety of visualization tools and supports the integration of external data sources.
-<a id="databricks-notebook"></a>
-
 ## Databricks Notebook
 
 [Databricks Notebook](https://www.databricks.com/product/collaborative-notebooks) is a web-based notebook that supports multiple languages, including Python, R, and SQL. It provides a variety of visualization and collaboration tools and is optimized for use with Apache Spark.
 
-<a id="colaboratory"></a>
-
 ## Colaboratory
 
 [Colaboratory](https://colab.research.google.com/) (also known as Colab) is a web-based notebook that is hosted by Google. It supports Python and provides a variety of libraries and tools for data analysis and machine learning.
-
-<a id="matlab-live-editor"></a>
 
 ## MATLAB Live Editor
 
@@ -133,37 +117,25 @@ RStudio is a popular integrated development environment (IDE) for the R programm
 
 See: [Using Python with the RStudio IDE – Posit Support](https://support.posit.co/hc/en-us/articles/1500007929061-Using-Python-with-the-RStudio-IDE)
 
-<a id="r-markdown"></a>
-
 ## R Markdown
 
 R Markdown is a document format that allows for the creation of reproducible reports and documents that combine R code, text, and graphics. It provides a variety of output formats, including PDF, HTML, and Word.
-
-<a id="emacs-org-mode"></a>
 
 ## Emacs Org-mode
 
 Emacs Org-mode is a markup language that allows for the creation of structured documents that combine code, text, and images. It provides a variety of tools for data analysis and presentation.
 
-<a id="datacamp-light"></a>
-
 ## DataCamp Light
 
 [DataCamp Light](https://cdn.datacamp.com/dcl-react-prod/index.html) is a browser-based tool that allows for the creation of interactive code tutorials. It supports multiple languages, including Python and R. With DataCamp Light, anyone can create an interactive learning platform for data science. Data Camp Light helps to  convert any website or blog to an interactive learning platform.
-
-<a id="trinket"></a>
 
 ## Trinket
 
 [Trinket](https://trinket.io/) is a web-based code editor that allows for the creation of interactive code snippets and tutorials. It supports multiple languages, including Python, JavaScript, and Ruby.
 
-<a id="observable"></a>
-
 ## Observable
 
 [Observable](https://observablehq.com/) is a web-based notebook that allows for the creation of interactive visualizations and data-driven documents. It supports JavaScript and provides a variety of libraries and tools for data analysis and visualization.
-
-<a id="hydrogen"></a>
 
 ## Hydrogen
 

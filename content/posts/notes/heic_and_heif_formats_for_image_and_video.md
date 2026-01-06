@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-04-14
 Modified: 2023-07-12
-Prompt: Give me long blog post on heic and heif formats. dig into technical details. use latex inline equations when needed.
 Slug: heif-and-heic-format-for-images-and-video
 Status: published
+Summary: Learn about the benefits of using HEIF and HEIC formats, including smaller file sizes, better image quality, support for advanced features like HDR and WCG, and improved management of image collections.
+ai_summary: true
 Tags:
   - heic
   - heif
@@ -14,8 +15,8 @@ Tags:
   - image-compression
   - compression
 Title: Smaller Files, Better Quality - The Advantages of HEIF and HEIC
+Prompt: Give me long blog post on heic and heif formats. dig into technical details. use latex inline equations when needed.
 ---
-
 ## Overview
 
 High Efficiency Image Format (HEIF) and High Efficiency Video Coding (HEVC) Image Format (HEIC) are the two latest image file formats introduced by the Moving Picture Experts Group (MPEG). These formats are designed to improve image quality while reducing file size, which is particularly important for mobile devices with limited storage capacity.
@@ -40,8 +41,6 @@ One of the key advantages of HEIF and HEIC is their support for advanced image f
 
 HEIF and HEIC also support multiple images and image sequences in a single file, which can make it easier to manage and share collections of images. This is particularly useful for applications such as live photos, which combine still images and short videos into a single file.
 
-<a id="technical-details-of-heif-and-heic"></a>
-
 ## Technical Details of HEIF and HEIC
 
 HEIF and HEIC use a container format that is based on the ISO Base Media File Format (ISOBMFF). This format is similar to other container formats such as MP4 and MOV, and it provides a flexible and extensible framework for storing media data.
@@ -54,37 +53,25 @@ HEIF and HEIC also support a variety of image features such as alpha channels, d
 
 HEIF and HEIC also support a variety of metadata formats, including Exif, IPTC, and XMP. Exif is a standard format for storing metadata such as camera settings and location information, while IPTC is a standard format for storing news and media metadata. XMP is a metadata format that is used by Adobe products such as Photoshop and Lightroom.
 
-<a id="advantages-of-heif-and-heic"></a>
-
 ## Advantages of HEIF and HEIC
 
 HEIF and HEIC offer a number of advantages over previous image formats such as JPEG and PNG. Some of the key advantages include:
-
-<a id="smaller-file-sizes"></a>
 
 ### Smaller File Sizes
 
 HEIF and HEIC can achieve smaller file sizes than previous formats, which can reduce storage requirements and improve download times. This is particularly important for mobile devices, which often have limited storage capacity.
 
-<a id="better-image-quality"></a>
-
 ### Better Image Quality
 
 HEIF and HEIC can provide better image quality than previous formats, particularly for images with high dynamic range or wide color gamut. This can result in more realistic and vibrant images.
-
-<a id="support-for-advanced-features"></a>
 
 ### Support for Advanced Features
 
 HEIF and HEIC support advanced features such as alpha channels, depth maps, and image sequences, which can provide greater flexibility and creativity for image processing and manipulation.
 
-<a id="compatibility"></a>
-
 ### Compatibility
 
 Although HEIF and HEIC are relatively new formats, they are now widely supported by modern operating systems and devices. For example, iOS devices have supported HEIC since iOS 11, and macOS and Windows both have built-in support for HEIF and HEIC.
-
-<a id="future-proofing"></a>
 
 ### Future-Proofing
 

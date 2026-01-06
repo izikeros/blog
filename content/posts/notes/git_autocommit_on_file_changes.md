@@ -38,8 +38,6 @@ My choice was **gitwatch** used as systemd service.
 
 <!-- /MarkdownTOC -->
 
-<a id="gitwatch--active"></a>
-
 # [gitwatch](https://github.com/gitwatch/gitwatch) ![GitHub stars](https://img.shields.io/github/stars/gitwatch/gitwatch.svg?logo=github), active
 
 A bash script to watch a file or folder and commit changes to a git repo
@@ -56,8 +54,6 @@ Usage:
 gitwatch [-s <secs>] [-d <fmt>] [-r <remote> [-b <branch>]]
           [-m <msg>] [-l|-L <lines>] <target>
 ```
-
-<a id="notes-for-installation-on-mac"></a>
 
 ## Notes for installation on Mac
 
@@ -85,15 +81,11 @@ On macOS you need to act differently
 - copy modified plist to `/Library/LaunchDaemons/`` with sudo
 - note: if there is a proper `gitwatch` script path (I needed to change `gitwatch.sh` to `gitwatch`)
 
-<a id="gwatch-low-activity"></a>
-
 # [gwatch](https://github.com/jw0k/gwatch) ![GitHub stars](https://img.shields.io/github/stars/jw0k/gwatch.svg?logo=github) low activity
 
 A program that watches a folder for file modifications and commits them to a git repository automatically
 
 After `gwatch` is started it will watch a given folder and all of its subfolders (recursively) for changes. If a change occurs, a timer will be started (the 30s by default). After the timer expires, `gwatch` will create a new git commit with all the modifications. The timer is to prevent creating too many commits when there are a lot of modifications. In order for `gwatch` to successfully create commits, a git repository must be initialized in the watched folder.
-
-<a id="etckeeper"></a>
 
 # [etckeeper](http://joeyh.name/code/etckeeper/)
 >
@@ -103,39 +95,27 @@ After `gwatch` is started it will watch a given folder and all of its subfolders
 
 `etckeeper` now has a website at <http://etckeeper.branchable.com/>.
 
-<a id="git-etc-github-%E2%98%854-low-activity-created-9-years-ago-last-commit-in-2014"></a>
-
 # [git-etc](https://arcanis.me/projects/git-etc) github: ★4, low activity, created 9 years ago, last commit in 2014
 
 A simple daemon that automatically creates a git repository in the given directory and creates a commit at the specified time interval.
 
 Has GUI, has AUR package
 
-<a id="git-powercommit"></a>
-
 # [Git Powercommit](https://github.com/grwlf/git-powercommit)
 
 Commit every changed submodule. Commit every changed regular file or folder, aggregating the files that share a folder into a single commit.
-
-<a id="git-wip"></a>
 
 # [git-wip](https://github.com/bartman/git-wip)
 
 `git-wip` is a script that will manage Work In Progress (or WIP) branches. WIP branches are mostly thrown away but identify points of development between commits. The intent is to tie this script into your editor so that each time you save your file, the `git-wip` script captures that state in git. `git-wip` also helps you return to a previous state of development.
 
-<a id="inotify"></a>
-
 # [inotify](http://inotify.aiken.cz/?section=incron&page=about&lang=en)
 
 This program is an "inotify cron" system. It consists of a daemon and a table manipulator. You can use it in a similar way as the regular cron. The difference is that the inotify cron handles filesystem events rather than time periods.
 
-<a id="watchman"></a>
-
 # [watchman](https://facebook.github.io/watchman/)
 
 Watchman exists to watch files and record when they change. It can also trigger actions (such as rebuilding assets) when matching files change
-
-<a id="inotifysh"></a>
 
 # [inotify.sh](https://github.com/nzvincent/nzvincent-github/blob/master/inotify-tools/inotify.sh)
 

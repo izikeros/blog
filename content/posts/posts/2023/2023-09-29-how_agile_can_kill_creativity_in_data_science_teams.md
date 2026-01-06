@@ -43,45 +43,29 @@ Agile methodologies can provide numerous benefits to data science and analytics 
 
 <!-- /MarkdownTOC -->
 
-<a id="potential-problems"></a>
-
 ## Potential problems
-
-<a id="tight-deadlines-and-sprints"></a>
 
 ### Tight deadlines and sprints
 
 Agile typically operates on tight timelines with fixed sprints. This can limit the time available for exploration, experimentation, and creative thinking. The emphasis on adhering to strict schedules may discourage innovative approaches that require more time to develop.
 
-<a id="focus-on-deliverables"></a>
-
 ### Focus on deliverables
 
 Agile methodologies often prioritize delivering functioning solutions over long-term exploration. This focus on short-term goals can discourage team members from taking the time to explore complex problems creatively, resulting in a more practical, rather than innovative, approach.
-
-<a id="lack-of-autonomy"></a>
 
 ### Lack of autonomy
 
 In some Agile implementations, teams may be closely supervised or required to adhere to preset workflows. This kind of micromanagement limits individual creativity, as team members may not have the freedom to experiment, propose alternative solutions, or take calculated risks.
 
-<a id="constant-and-sudden-changes"></a>
-
 ### Constant and sudden changes
 
 Agile projects often involve iterative development with frequent changes in priorities and requirements. While this adaptability is beneficial in many cases, it can disrupt the creative process and impede the ability to think deeply about problems. Constantly switching gears may hinder the exploration of unconventional solutions.
-
-<a id="overemphasis-on-standardized-processes"></a>
 
 ### Overemphasis on standardized processes
 
 Agile frameworks provide standardized processes and practices that ensure consistency and predictability. While these are essential for efficient project management, a strict adherence to these processes can stifle creativity as it may discourage deviation from the prescribed methods.
 
-<a id="mitigation"></a>
-
 ## Mitigation
-
-<a id="complementary-practices"></a>
 
 ### Complementary practices
 
@@ -93,8 +77,6 @@ To prevent the potential negative impact on creativity, Agile methodologies shou
 - Support a **psychologically safe environment** that allows for experimentation and failure.
 - **Recognize** and reward **creative thinking** and experimentation within the team.
 
-<a id="frameworks-tailored-for-data-science-projects"></a>
-
 ### Frameworks tailored for data science projects
 
 The data science teams need to adapt Agile practices to suit their specific needs and contexts, and to balance the trade-offs between speed, flexibility, and quality. Data science teams can adopt or modify a framework that is tailored for data science projects, such as the **[Team Data Science Process](https://learn.microsoft.com/en-us/azure/architecture/data-science-process/overview)** (TDSP) or the **[Agile Data Science Process](https://www.datascience-pm.com/agile-data-science/)** These frameworks provide guidance on how to structure, execute, and manage data science projects using Agile principles and practices.
@@ -102,8 +84,6 @@ The data science teams need to adapt Agile practices to suit their specific need
 By adjusting Agile practices to accommodate these considerations, data science/analytics teams can create a balance between efficient project management and fostering creativity and innovation.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
-
-<a id="references"></a>
 
 ## References
 

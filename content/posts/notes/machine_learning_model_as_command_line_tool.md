@@ -4,6 +4,8 @@ Date: 2023-01-17
 Modified: 2023-07-12
 Slug: creating-command-line-tools-from-machine-learning-models
 Status: published
+Summary: Learn how to create efficient and portable command line tools from machine learning models using Python's argparse and PEX files, enabling easy integration into various workflows.
+ai_summary: true
 Tags:
   - machine-learning
   - packaging
@@ -13,7 +15,6 @@ Tags:
   - commandline
 Title: Creating Command Line Tools From Machine Learning Models
 ---
-
 Machine learning (ML) models are becoming increasingly popular in various industries, and as a result, the need to distribute and deploy these models in a secure, portable, and efficient manner has become crucial. One way to accomplish this is by creating command line tools from ML models. Command line tools are easy to use, efficient and can be integrated with other tools and workflows.
 
 ## Overview
@@ -30,13 +31,9 @@ This article will cover the following topics:
 
 <!-- /MarkdownTOC -->
 
-<a id="why-use-command-line-tools-for-ml-models"></a>
-
 ## Why use command line tools for ML models
 
 Command line tools are a simple and efficient way to interact with an ML model. They can be easily integrated into existing systems and workflows, and can be run on a variety of platforms, including Windows, Linux, and Mac. Additionally, command line tools are easy to use and can be invoked from the command line, making them accessible to non-technical users.
-
-<a id="creating-a-command-line-tool-using-argparse"></a>
 
 ## Creating a command line tool using argparse
 
@@ -58,8 +55,6 @@ print(args.accumulate(args.integers))
 
 This example creates a command line tool that takes a list of integers and an optional "--sum" flag. If the "--sum" flag is provided, the tool will sum the integers, otherwise, it will find the max.
 
-<a id="integrating-the-model-into-the-command-line-tool"></a>
-
 ## Integrating the model into the command line tool
 
 Once you have created the command line interface using argparse, the next step is to integrate the ML model into the tool. This can be done by importing the model and using it to process the input arguments.
@@ -78,8 +73,6 @@ if __name__ == '__main__':
 
 In this example, the `mymodel` module is imported and its `predict` function is used to process the inputs passed in through the command line
 
-<a id="packaging-the-command-line-tool-as-a-python-pex-file"></a>
-
 ## Packaging the command line tool as a Python PEX file
 
 Once you have created the command line tool and integrated the ML model, the next step is to package it as a Python PEX (Python executable) file. This can be done using the [pex](https://pex.readthedocs.io/en/stable/) library. PEX files are self-contained and do not require a specific environment or dependencies to be installed on the machine, making it easy to distribute and run the tool on different systems. Additionally, PEX files can be optimized for performance and can be signed, which allows users to verify the authenticity of the file.
@@ -93,8 +86,6 @@ Then, you can use the following command to create a PEX file for your command li
 `pex . -o mytool.pex`
 
 This will create a PEX file called "mytool.pex" in the current directory, which can be distributed and run on any system with Python installed.
-
-<a id="examples-of-command-line-tools-for-ml-models"></a>
 
 ## Examples of command line tools for ML models
 

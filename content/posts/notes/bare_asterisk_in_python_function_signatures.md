@@ -1,13 +1,14 @@
 ---
-Title: Bare Asterisk in Python Function Signatures - Keyword Only Arguments
-Slug: bare-asterisk-in-python-function-signatures
+Category: note
 Date: 2025-10-10
 Modified: 2025-10-10
+Slug: bare-asterisk-in-python-function-signatures
 Status: published
+Summary: Learn how to use the bare asterisk in Python function signatures to enforce keyword-only arguments, enhancing clarity and preventing argument order bugs in your code.
+ai_summary: true
 Tags: python, api, pep, keyword-arguments, future-proofing
-Category: note
+Title: Bare Asterisk in Python Function Signatures - Keyword Only Arguments
 ---
-
 ## Core Principle
 
 The `*` by itself in a function signature forces everything after it to be keyword-only arguments. It's a syntax barrier - arguments before the asterisk can be positional, arguments after it must be named.

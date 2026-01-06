@@ -1,9 +1,12 @@
 ---
-Title: Choosing technology for the LLM knowledge graph
-Slug: choosing-technology-for-the-lmm-knowledge-graph
+Category: note
 Date: 2023-11-05
 Modified: 2023-11-05
+Slug: choosing-technology-for-the-lmm-knowledge-graph
 Status: published
+Summary: Learn about three key technologies—RDF, Graph Databases, and Triplestores—for implementing knowledge graphs, each offering unique advantages in flexibility, efficiency, and specialized RDF data handling.
+ai_summary: true
+Title: Choosing technology for the LLM knowledge graph
 tags:
   - llm
   - knowledge-graph
@@ -17,7 +20,6 @@ tags:
   - janusgraph
   - triplestore
   - allegrograph
-Category: note
 ---
 X::[[networkx]]
 X::[[graphrag]]

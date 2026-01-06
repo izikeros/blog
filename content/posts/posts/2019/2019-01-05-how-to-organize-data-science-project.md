@@ -31,13 +31,9 @@ In this blog post, I will share the way to organize your Data Science project ba
 
 <!-- /MarkdownTOC -->
 
-<a id="problem-with-finding-valuable-work-you-did-in-the-jupyter-notebook-in-the-past"></a>
-
 ## Problem with finding valuable work you did in the Jupyter notebook in the past
 
 I had a few problems like that. In my projects, I used to find multiple untitled notebooks such as `Untitled1.ipynb`, `Untitled2.ipynb`, `Untitled3.ipynb` - that requires extra effort to check out what is inside. Similarly, with data: shall this be in `~/datasets` or `~/projects/my_project/datasets`. The need for standardization emerged after creating like dozen of notebook-based projects. Here are lessons learned and solutions worked out for my use cases.
-
-<a id="rules-i-try-to-follow"></a>
 
 ## Rules I try to follow
 
@@ -84,8 +80,6 @@ my_project_name/
   └── reports
 ```
 
-<a id="using-version-control"></a>
-
 ## Using version control
 
 The use of version control tools like Git to manage and track changes in the project over time is a standard in software projects. However, data science project has its own specificity related to the fact that:
@@ -93,8 +87,6 @@ The use of version control tools like Git to manage and track changes in the pro
 - data is a part of the project
 - Jupyter notebooks are typically stored as in JSON format and can contain output that can cause problems in reviewing the changes in the notebook.
 Using version control in the Data Science project is a topic for a separate article.
-
-<a id="specific-aspects-for-different-use-cases"></a>
 
 ## Specific aspects for different use cases
 
@@ -121,8 +113,6 @@ Using version control is also highly recommended even if tracing differences in 
 Take care of reproducibility - either for yourself if the updates to the outcome document will be needed or for someone else that would like to reproduce your results e.g. when following the tutorial you created.
 
 For a more complex project setup take look at [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science).
-
-<a id="additional-tips"></a>
 
 ## Additional Tips
 

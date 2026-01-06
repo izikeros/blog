@@ -46,8 +46,6 @@ Python provides several libraries and frameworks for building command-line inter
 
 <!-- /MarkdownTOC -->
 
-<a id="click"></a>
-
 ## Click
 
 ![github stars shield](https://img.shields.io/github/stars/pallets/click.svg?logo=github)
@@ -68,8 +66,6 @@ Click is an excellent choice for both simple and complex CLI applications. Its s
 Click is suitable for a wide range of CLI applications, from small scripts to large-scale tools. It is a popular choice for building command-line interfaces in Python due to its simplicity, flexibility, and extensive feature set.
 
 To learn more about Click, visit the [official documentation](https://click.palletsprojects.com/) or explore the [GitHub repository](https://github.com/pallets/click).
-
-<a id="argparse"></a>
 
 ## argparse
 
@@ -92,8 +88,6 @@ argparse is well-suited for a variety of CLI applications, from basic scripts to
 
 For detailed information about argparse, refer to the [official documentation](https://docs.python.org/3/library/argparse.html) or explore the [GitHub repository](https://github.com/python/cpython).
 
-<a id="typer"></a>
-
 ## Typer
 
 ![github stars shield](https://img.shields.io/github/stars/tiangolo/typer.svg?logo=github)
@@ -115,8 +109,6 @@ Typer is particularly well-suited for developers who value code readability and 
 
 To learn more about Typer, refer to the [official documentation](https://typer.tiangolo.com/) or explore the [GitHub repository](https://github.com/tiangolo/typer).
 
-<a id="fire"></a>
-
 ## Fire
 
 ![github stars shield](https://img.shields.io/github/stars/google/python-fire.svg?logo=github)
@@ -136,8 +128,6 @@ Fire's simplicity and automatic CLI generation make it an excellent choice for r
 Fire is best suited for quickly creating simple CLI tools based on existing Python code. It is ideal for situations where you want to expose the functionality of your Python objects through a command-line interface without the need for explicit command definitions.
 
 To learn more about Fire, refer to the [official documentation](https://google.github.io/python-fire/) or explore the [GitHub repository](https://github.com/google/python-fire).
-
-<a id="cement"></a>
 
 ## cement
 
@@ -159,8 +149,6 @@ One of the standout features of cement is its plugin architecture, which enables
 cement is suitable for building CLI applications of any complexity. Its modular design and extensive feature set make it an excellent choice for projects that require advanced customization, plugin support, and flexible output rendering.
 
 For detailed information about cement, refer to the [official documentation](https://builtoncement.com/) or explore the [GitHub repository](https://github.com/datafolklabs/cement).
-
-<a id="docopt"></a>
 
 ## Docopt
 
@@ -184,8 +172,6 @@ Docopt is an excellent choice for projects where a human-readable and self-docum
 Docopt is best suited for projects where a human-readable and self-documenting CLI interface is desired. It is a good choice for developers who prefer a more descriptive and expressive way of defining the command-line interface.
 
 For more information about Docopt, refer to the [official documentation](http://docopt.org/) or explore the [GitHub repository](https://github.com/docopt/docopt).
-
-<a id="plumbum"></a>
 
 ## Plumbum
 

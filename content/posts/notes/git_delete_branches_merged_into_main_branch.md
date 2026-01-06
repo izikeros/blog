@@ -4,6 +4,8 @@ Date: 2021-12-16
 Modified: 2023-07-12
 Slug: git-delete-branches-merged-into-main-branch
 Status: published
+Summary: Learn how to clean up outdated feature branches by using `git fetch --prune` to remove irrelevant local branches that have been merged into the main branch, ensuring your repository stays organized and clutter-free.
+ai_summary: true
 Tags:
   - branch
   - delete
@@ -12,7 +14,6 @@ Tags:
 Title: Git - Delete Branches That Are Merged Into the Main Branch
 suggested_tags: branch, delete, git, merged
 ---
-
 <!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
 
 - [First - fetch and prune](#first---fetch-and-prune)
@@ -23,8 +24,6 @@ suggested_tags: branch, delete, git, merged
 <!-- /MarkdownTOC -->
 
 When actively developing feature branches that are later merged into develop branch you might end up with a bunch of local branches that are not relevant anymore, and do not have their remote counterparts and it would be good to remove them locally.
-
-<a id="first---fetch-and-prune"></a>
 
 ## First - fetch and prune
 
@@ -42,13 +41,9 @@ git fetch --all && git remote prune
 
 Read more about it: [Git Cleanup: "git Remote Prune" Explained | by Maroun Maroun | Better Programming](https://betterprogramming.pub/git-cleanup-git-remote-prune-explained-679fadc53ba7)
 
-<a id="how-do-i-clean-outdated-branches"></a>
-
 ### How Do I Clean Outdated Branches?
 
 `git fetch --prune` is the best utility for cleaning outdated branches. It will connect to a shared remote repository remote and fetch all remote branch refs. It will then delete remote refs that are no longer in use on the remote repository.
-
-<a id="does-git-remote-prune-origin-delete-the-local-branch"></a>
 
 ### Does Git Remote Prune Origin Delete the Local Branch?
 
@@ -62,8 +57,6 @@ If you want to have prune executed with every fetch operation, you can configure
 ```sh
 git config --global fetch.prune true
 ```
-
-<a id="second---delete-merged-local-branches"></a>
 
 ## Second - delete merged local branches
 

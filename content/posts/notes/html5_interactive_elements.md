@@ -1,14 +1,15 @@
 ---
-Title: HTML5 interactive elements
-Slug: html5-interactive-elements
+Category: note
 Date: 2024-01-04
 Modified: 2024-01-04
+Slug: html5-interactive-elements
 Status: published
+Summary: Learn about HTML5's interactive elements like `<details>`, `<summary>`, and `<dialog>` to enhance web content interactivity without complex JavaScript, plus see practical examples.
+ai_summary: true
+Title: HTML5 interactive elements
 tags:
   - html5
-Category: note
 ---
-
 # HTML5 Interactive Elements: An Overview and Usage Guide
 
 HyperText Markup Language (HTML) is the standard markup language for documents designed to be rendered in a web browser. Over the years, HTML has evolved to keep up with the growing need for better structure and interactivity.

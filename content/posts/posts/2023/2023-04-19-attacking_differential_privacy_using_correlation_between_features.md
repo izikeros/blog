@@ -40,13 +40,9 @@ Differential privacy is a technique that adds random noise to the data to protec
 
 <!-- /MarkdownTOC -->
 
-<a id="background"></a>
-
 ## Background
 
 Differential privacy adds random noise to the data to protect the privacy of individuals. The amount of noise added depends on a parameter called the privacy budget. The higher the privacy budget, the less noise is added, and the lower the privacy budget, the more noise is added. The privacy budget is usually set based on the desired level of privacy and the size of the data set. A smaller privacy budget leads to better privacy but less accurate data analysis, while a larger privacy budget leads to less privacy but more accurate data analysis.
-
-<a id="correlation-between-features"></a>
 
 ## Correlation Between Features
 
@@ -60,43 +56,29 @@ where $cov(x,y)$ is the covariance between $x$ and $y$, and $\sigma_x$ and $\sig
 
 Correlation between features can be used to attack differential privacy. An attacker can use the correlation between features to infer the presence or absence of an individual's data in the data set. For example, suppose an attacker knows that two features x and y are highly correlated. If the attacker sees that the value of y is very different from what they would expect based on the value of x, they can infer that the individual's data was not included in the data set.
 
-<a id="steps-for-the-attack-using-correlation-between-features"></a>
-
 ## Steps for the attack using correlation between features
 
 An attacker can use the following steps to attack differential privacy using correlation between features:
-
-<a id="1-identify-highly-correlated-features"></a>
 
 ### 1. Identify highly correlated features
 
 The attacker identifies which features in the data set are highly correlated with each other.
 
-<a id="2-compute-expected-values"></a>
-
 ### 2. Compute expected values
 
 The attacker computes the expected values of the features based on the values of the other features.
-
-<a id="3-compare-expected-and-observed-values"></a>
 
 ### 3. Compare expected and observed values
 
 The attacker compares the expected values with the observed values of the features. If the observed values are significantly different from the expected values, the attacker can infer that the individual's data was not included in the data set.
 
-<a id="mitigating-the-attack"></a>
-
 ## Mitigating the Attack
 
 There are several ways to mitigate the attack using correlation between features. One approach is to **decorrelate the features** by transforming the data. For example, principal component analysis (PCA) can be used to decorrelate the features. Another approach is to **add noise to the data** in a way that preserves the correlation between features. This approach is called differentially private PCA (DP-PCA). DP-PCA adds noise to the data in a way that satisfies differential privacy while preserving the correlation between features.
 
-<a id="summary"></a>
-
 ## Summary
 
 Correlation between features can be used to attack differential privacy. An attacker can use the correlation between features to infer the presence or absence of an individual's data in the data set. To mitigate this attack, the features can be decorrelated or noise can be added to the data using DP-PCA. Data security experts should be aware of this attack and take appropriate measures to mitigate its effects.
-
-<a id="tutorial"></a>
 
 ## Tutorial
 
@@ -107,8 +89,6 @@ In the tutorial we will be using pydp Python library, so you need to install it 
 ```sh
 pip install python-dp
 ```
-
-<a id="select-a-dataset-that-requires-privacy-protection"></a>
 
 ### Select a dataset that requires privacy protection
 
@@ -124,8 +104,6 @@ df = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/adul
                         "hours-per-week", "native-country", "income"])
 
 ```
-
-<a id="apply-differential-privacy"></a>
 
 ### Apply differential privacy
 
@@ -145,8 +123,6 @@ bm = BoundedMean(epsilon=epsilon, lower=0, upper=16)
 df["education-num"] = df["education-num"].apply(lambda x: bm.quick_result(x))
 
 ```
-
-<a id="perform-the-attack---reconstruct-original-data-by-exploiting-correlation-between-features"></a>
 
 ### Perform the attack - reconstruct original data by exploiting correlation between features
 
@@ -219,8 +195,6 @@ Reconstructed: [13.19164695 13.19406455  9.04750693  6.8549391  13.25155432 13.7
 ```
 
 As we can see, the reconstructed values are quite similar to the original values. This suggests that an attacker could use the correlation between the age and education-num features to infer the original values, even with the protection of differential privacy.
-
-<a id="conclusion"></a>
 
 ### Conclusion
 

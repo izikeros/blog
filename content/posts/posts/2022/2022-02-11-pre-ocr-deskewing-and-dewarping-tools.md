@@ -57,11 +57,7 @@ Reconstruction of spatial (3D) structure of the document is typically done using
 
 <!-- /MarkdownTOC -->
 
-<a id="dewarping"></a>
-
 # Dewarping
-
-<a id="page-dewarp-11k-stars"></a>
 
 ## Page dewarp ![github stars shield](https://img.shields.io/github/stars/mzucker/page_dewarp.svg?logo=github)
 >
@@ -77,8 +73,6 @@ Read more here: [Page dewarping](https://mzucker.github.io/2016/08/15/page-dewar
 
 Since the original work of mzucker was written in Python 2 and not developed further there was the initiative to renovate the original scripts and there is [page-dewarp](https://github.com/lmmx/page-dewarp) which is also available on Pypi, and it is pip installable (`pip install page-dewarp`)
 
-<a id="moran-579-stars"></a>
-
 ## MORAN ![github stars shield](https://img.shields.io/github/stars/Canjie-Luo/MORAN_v2.svg?logo=github)
 >
 > Last commit: 30 Jul 2019
@@ -89,8 +83,6 @@ Since the original work of mzucker was written in Python 2 and not developed fur
 
 Written in Python, using PyTorch
 > NOTE: The project is only free for academic research purposes.
-
-<a id="dewarpnet-291-stars"></a>
 
 ## DewarpNet ![github stars shield](https://img.shields.io/github/stars/cvlab-stonybrook/DewarpNet.svg?logo=github)
 >
@@ -106,8 +98,6 @@ Written in Python, using PyTorch
 
 [DewarpNet pre-trained models]( https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view) are available for download from Google Drive.
 
-<a id="document-image-dewarping---algorithm-241-stars"></a>
-
 ## Document Image Dewarping  - algorithm ![github stars shield](https://img.shields.io/github/stars/xellows1305/Document-Image-Dewarping.svg?logo=github)
 >
 > Last commit: 30 Sep 2019
@@ -115,8 +105,6 @@ Written in Python, using PyTorch
 [Document-Image-Dewarping](https://github.com/xellows1305/Document-Image-Dewarping)- Document image dewarping is approached by using text lines and line segments.
 
 In this repository, there is **no public code** to use but just algorithm description and executable available for [download](http://ispl.synology.me:8480/sharing/uA2DTRA8U).
-
-<a id="unproject-text-104-stars"></a>
 
 ## Unproject Text ![github stars shield](https://img.shields.io/github/stars/mzucker/unproject_text.svg?logo=github)
 >
@@ -136,8 +124,6 @@ Image source: repository owner's [writeup](https://mzucker.github.io/2016/10/11/
 
 More information about the method can be found in the [article](https://mzucker.github.io/2016/10/11/unprojecting-text-with-ellipses.html) and [paper by Carlos Merino-Gracia et al.](http://www.sciencedirect.com/science/article/pii/S0262885613001066) .
 
-<a id="docuwarp-stars-83"></a>
-
 ## Docuwarp ![github stars shield](https://img.shields.io/github/stars/thomasjhuang/deep-learning-for-document-dewarping.svg?logo=github)
 >
 > Last commit: 18 Oct 2021
@@ -146,8 +132,6 @@ More information about the method can be found in the [article](https://mzucker.
 This project is focused on dewarping document images through the usage of pix2pixHD, a GAN that is useful for the general image to image translation. The objective is to take images of documents that are warped, folded, crumpled, etc., and convert the image to a "dewarped" state by using pix2pixHD to train and perform inference.
 
 Written in Python.
-
-<a id="book-content-segmentation-and-dewarping-under-construction-11-stars"></a>
 
 ## Book content segmentation and dewarping (under construction)  ![github stars shield](https://img.shields.io/github/stars/RaymondMcGuire/BOOK-CONTENT-SEGMENTATION-AND-DEWARPING.svg?logo=github)
 >
@@ -159,11 +143,7 @@ The segmentation demo is available here: <https://raymondmgwx.github.io/?e=Proje
 
 > NOTE: that Data Augment and Dewarp Algorithm are in TODO of this project.
 
-<a id="deskewing"></a>
-
 # Deskewing
-
-<a id="unpaper-770-stars"></a>
 
 ## Unpaper  ![github stars shield](https://img.shields.io/github/stars/unpaper/unpaper.svg?logo=github)
 
@@ -178,8 +158,6 @@ The segmentation demo is available here: <https://raymondmgwx.github.io/?e=Proje
 The program also tries to detect misaligned centering and rotation of pages and will **automatically straighten each page** by rotating it to the correct angle. This process is called "deskewing".
 
 Written mostly in C.
-
-<a id="alyn-222-stars"></a>
 
 ## Alyn  ![github stars shield](https://img.shields.io/github/stars/kakul/Alyn.svg?logo=github)
 >
@@ -199,16 +177,12 @@ How the Alyns' skew detection works:
 
 Alyn is written in Python can be installed with pip (`pip install allyn`).
 
-<a id="deskew-211-stars"></a>
-
 ## Deskew ![github stars shield](https://img.shields.io/github/stars/sbrunner/deskew.svg?logo=github)
 >
 > Last commit : 10 Feb 2022
 
 [deskew](https://github.com/sbrunner/deskew) - Library used to **deskew a scanned document**. Skew detection and correction in images containing text
 Written in Python, lightweight. Inspired by [Alyn](#alyn-222-stars).
-
-<a id="galfardeskew-102-stars"></a>
 
 ## galfar/deskew ![github stars shield](https://img.shields.io/github/stars/galfar/deskew.svg?logo=github)
 >
@@ -220,13 +194,9 @@ There are binaries built for these platforms: Win64, Win32, Linux 64bit, macOS, 
 
 > NOTE: It is written in Pascal.
 
-<a id="skew-correction-12-stars"></a>
-
 ## Skew correction ![github stars shield](https://img.shields.io/github/stars/prajwalmylar/skew_correction.svg?logo=github)
 
 [skew_correction](https://github.com/prajwalmylar/skew_correction) - **Deskewing images** with slanted content by finding the deviation using Canny Edge Detection.
-
-<a id="deskewing-stars-8"></a>
 
 ## Deskewing ![github stars shield](https://img.shields.io/github/stars/sauravbiswasiupr/deskewing.svg?logo=github)
 >
@@ -234,8 +204,6 @@ There are binaries built for these platforms: Win64, Win32, Linux 64bit, macOS, 
 
 [deskewing](https://github.com/sauravbiswasiupr/deskewing) - Contains code to **deskew images using MLPs, LSTMs and LLS transformations.**
 Written in Python.
-
-<a id="text-deskewing-5-stars"></a>
 
 ## Text deskewing ![github stars shield](https://img.shields.io/github/stars/dehaisea/text_deskewing.svg?logo=github)
 >
@@ -245,11 +213,7 @@ Written in Python.
 
 It is written in Python and the repository does not contain a lot of code - it is easy to follow and learn how those simple techniques can be used to desk the text.
 
-<a id="summary-and-recommendations"></a>
-
 # Summary and recommendations
-
-<a id="what-to-use-for-deskewing"></a>
 
 ## What to use for Deskewing?
 
@@ -257,15 +221,11 @@ It is written in Python and the repository does not contain a lot of code - it i
 - If you just need to **correct the rotation** of the document use: [Alyn](https://github.com/kakul/Alyn) or [deskew](https://github.com/sbrunner/deskew)
 - If you want to **learn about using Edge Detection and Hough Transform** for document deskewing you might want to have look at: [text_deskewing](https://github.com/dehaisea/text_deskewing)
 
-<a id="what-to-use-for-unwarping-and-deskewing"></a>
-
 ## What to use for Unwarping and Deskewing?
 
 - For dewarping book pages that have **smooth bendings** consider using [page-dewarp](https://github.com/lmmx/page-dewarp) (renovated version of popular [page_dewarp](https://github.com/mzucker/page_dewarp).
 - For more complex dewarping including e.g. **folded pages** use Deep Learning-based solutions such as [DewarpNet](https://github.com/cvlab-stonybrook/DewarpNet) or [Docuwarp](https://github.com/thomasjhuang/deep-learning-for-document-dewarping).
 - If you are working with flat pages and you just need to **correct perspective** [unproject_text](https://github.com/mzucker/unproject_text) might be the right tool for you.
-<a id="what-to-use-for-document-segmentation"></a>
-
 ## What to use for Document Segmentation
 
 Document segmentation was not in the scope of this article. You can check [awesome-ocr](https://github.com/zacharywhitley/awesome-ocr) section on Document Segmentation

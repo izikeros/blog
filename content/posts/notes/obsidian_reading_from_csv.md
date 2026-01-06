@@ -4,6 +4,8 @@ Date: 2022-08-16
 Modified: 2023-07-12
 Slug: reading-csv-with-obsidian-dataview-dataviewjs
 Status: published
+Summary: Learn how to read and display CSV data in Obsidian using both `dataview` and `dataviewjs`, including date formatting with `dataview`.
+ai_summary: true
 Tags:
   - obsidian
   - obsidian/dataview
@@ -12,7 +14,6 @@ Tags:
 Title: Reading CSV With Obsidian Dataview and Dataviewjs
 citation_needed: false
 ---
-
 The [obsidian-dataview](https://github.com/blacksmithgu/obsidian-dataview) plugin allows reading data from the notes in the vault and data files such as CSV. Both `dataview` and `dataviewjs` can be used for that purpose. I'm more fluent in using `dataview` therefore I will dedicate more space to this solution
 
 ## Reading with dataview

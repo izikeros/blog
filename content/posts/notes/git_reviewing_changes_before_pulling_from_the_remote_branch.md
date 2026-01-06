@@ -1,15 +1,17 @@
 ---
-Title: Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch
-Slug: git-workflow-reviewing-changes-before-pulling-remote-branch
+Category: note
 Date: 2023-06-20
 Modified: 2024-10-31
+Slug: git-workflow-reviewing-changes-before-pulling-remote-branch
 Status: published
+Summary: Learn a streamlined workflow to review changes made in a remote Git branch before pulling, using commands like `git fetch`, `git diff`, and `tig` to ensure your local repository stays up-to-date without conflicts.
+ai_summary: true
+Title: Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch
 tags:
   - git
   - workflow
   - github
   - pull-request
-Category: note
 todo: add links
 ---
 ## TLDR: Quick Git Command Reference
@@ -71,8 +73,6 @@ When working with Git, it is essential to have a streamlined workflow that ensur
 
 <!-- /MarkdownTOC -->
 
-<a id="step-1-fetch-remote-changes"></a>
-
 ### Step 1: Fetch Remote Changes
 
 Before reviewing any changes, it is crucial to fetch the latest updates from the remote repository. This step ensures that your local repository has the most up-to-date information. To fetch changes, run the following command:
@@ -83,8 +83,6 @@ git fetch
 
 This command retrieves all the latest changes from the remote repository without automatically merging them into your local branch.
 
-<a id="step-2-inspect-remote-branch"></a>
-
 ### Step 2: Inspect Remote Branch
 
 After fetching the remote changes, you can inspect the remote branch to see the modifications made by others. This step helps you understand the nature and scope of the changes before merging them into your branch. To view the remote branch, use the following command:
@@ -94,8 +92,6 @@ git log origin/branch-name
 ```
 
 Replace `branch-name` with the name of the remote branch you want to review. This command displays a list of commits made to the remote branch, showing the commit hash, author, timestamp, and commit message.
-
-<a id="step-3-review-changes"></a>
 
 ### Step 3: Review Changes
 
@@ -212,8 +208,6 @@ VSCode provides powerful built-in Git functionality that can be further enhanced
    - The "Next Change" (F7) and "Previous Change" (Shift+F7) commands
    - The arrows in the gutter to move between changes
 
-<a id="step-4-resolve-conflicts-if-any"></a>
-
 ### Step 4: Resolve Conflicts (if any)
 
 During your review, you may encounter conflicts between the changes made by others and your local modifications. Conflicts arise when Git cannot automatically merge two sets of changes. If conflicts occur, it is crucial to resolve them before pulling the changes into your branch.
@@ -249,8 +243,6 @@ git mergetool
 2. **Communicate with the author** of the other changes when necessary
 3. **Test thoroughly** after resolving conflicts
 4. Consider using **feature branches** to minimize conflict scope
-
-<a id="step-5-pull-changes"></a>
 
 ### Step 5: Pull Changes
 

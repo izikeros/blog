@@ -4,6 +4,8 @@ Date: 2023-02-14
 Modified: 2023-07-12
 Slug: jupyter-duplicated-nbextensions-locations
 Status: published
+Summary: Learn how to manage and prevent duplicated nbextensions in Jupyter notebooks, diagnose issues, and troubleshoot conflicts by understanding where nbextensions are installed and using specific installation flags.
+ai_summary: true
 Tags:
   - jupyter
   - jupyter-notebook
@@ -22,7 +24,6 @@ Tags:
   - jupyter_contrib_nbextensions
 Title: Jupyte Notebook Duplicated Locations for Nbextensions
 ---
-
 Jupyter notebooks are a great tool for data analysis and scientific computing, but they can also be customized and extended through the use of nbextensions. Nbextensions are additional pieces of code that can add new functionality, enhance existing features, and provide more customization options to Jupyter notebooks.
 
 However, sometimes nbextensions can be duplicated or installed in multiple places, leading to conflicts and errors. In this article, we'll discuss how to manage and prevent duplicated nbextensions files, diagnose the current state of your nbextensions, and troubleshoot any issues that may arise.

@@ -1,17 +1,18 @@
 ---
-Title: What Is the Key Difference Between PCA and SVD?
-Slug: what-is-the-key-difference-between-pca-and-svd
+Category: note
 Date: 2023-11-06
 Modified: 2023-11-06
+Slug: what-is-the-key-difference-between-pca-and-svd
 Status: published
+Summary: Learn about Principal Component Analysis (PCA) and Singular Value Decomposition (SVD), understanding their differences in application, matrix operations, and computational efficiency.
+ai_summary: true
+Title: What Is the Key Difference Between PCA and SVD?
 tags:
   - PCA
   - SVD
   - dimensionality-reduction
-Category: note
 prompt: What is the key difference between PCA and SVD?
 ---
-
 up::[[MOC_AI]]
 
 Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) are two matrix factorization methods used in machine learning and data analysis for dimensionality reduction. Though they are used for similar purposes, there are some key differences between the two. The key difference between Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) lies in their respective applications and the matrices they operate on.

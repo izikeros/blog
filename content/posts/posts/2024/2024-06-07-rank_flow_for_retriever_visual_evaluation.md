@@ -45,8 +45,6 @@ status: published
 ## TLDR
 
 This article discusses the importance of tracking and visualizing rank changes in Retrieval-Augmented Generation (RAG) systems. It introduces the concept of rank flow visualization, which helps analyze how document rankings evolve through different stages of retrieval and re-ranking. The article outlines methods for collecting rank data using structured logging and callbacks, and presents a Python library called 'rankflow' for creating visual representations of these rank changes. This visualization technique enables AI professionals to quickly identify patterns and optimize their RAG systems, ultimately improving the quality of information retrieval and generation.
-<a id="introduction-and-problem-statement"></a>
-
 ## Introduction and problem statement
 
 Retrieval-Augmented Generation (RAG) systems are composed of two primary components: the **retriever** and the **answer generator**. The overall efficacy of RAG is largely contingent on the quality of the retriever, making it a critical area for optimization and analysis.
@@ -64,8 +62,6 @@ In this article we focus on two aspects of visual analysis of rank changes: coll
 ![RankFlow Plot](/images/rankflow/rankflow_plot_full.jpg)
 
 ***Figure 1:** RankFlow chart illustrating rank changes in four steps of re-ranking. You can track the given node's rank history visually. For example, Document 4, after hybrid search, initially had a rank of 4. Then, after the Cross-encoder surfaced, it was re-ranked to 1. The Graph re-ranker subsequently placed it at rank 6, and finally, the Booster changed its rank to 0.*
-
-<a id="inspiration---rank-flow-visualization"></a>
 
 ## Inspiration - Rank flow visualization
 
@@ -85,8 +81,6 @@ You can create the Excel table that reflect rank of the documents on each step. 
 
 This tool was an appetiser to have something similar implemented in Python. Before going to visualization, let's spent some time on how to collect data required for this visual analysis.
 
-<a id="tracking-the-rank-changes-in-your-rag"></a>
-
 ## Tracking the rank changes in your RAG
 
 This is a separate topic - depending on the architecture of your retriever. I envision two main approaches:
@@ -97,27 +91,19 @@ This is a separate topic - depending on the architecture of your retriever. I en
 
 Here, we will discuss only first two since they are pretty while skipping the specific observability tools.
 
-<a id="rank-tracking-using-the-structured-logs"></a>
-
 ### Rank tracking using the structured logs
 
 > **What are the struct logs?**
 Structured logs are a standardized format for logging data where information is organized into consistent, machine-readable fields rather than free-form text. **They typically use formats like JSON or key-value pairs**, making it easier to parse, search, and analyze log data programmatically. The benefits of using structured logs include improved log consistency, easier data extraction and analysis, better integration with log management tools, and enhanced ability to generate insights and troubleshoot issues in complex systems.
 
-<a id="how-to-track-with-struct-logs"></a>
-
 ### How to track with struct logs?
 
 [Struct log]() have the advantage over non-structured log that you can easily, and with more confidentiality, extract data from it without using sophisticated log parsers. In Python, you can use loguru to drop the rank information to the separate log sink after each step that involves some form of reranking and trace e.g. node (chunk) id, new rank, and "label" for the reranking step. In this way you will get a jsonlines log file with all the data you need to create visualization. You can read more about how to use struct logs with loguru in [loguru docs]() and [this]() article.
-
-<a id="rank-tracking-using-callbacks"></a>
 
 ### Rank tracking using callbacks
 >
 > **What are the callbacks?**
 Callbacks in programming are functions passed as arguments to other functions, which are then executed at specific points during the execution of the containing function. In the context of machine learning and deep learning frameworks, callbacks are often used to track and log various metrics, execute custom actions, or modify behavior during training or inference.
-
-<a id="how-to-track-retriever-data-with-callbacks"></a>
 
 ### How to track retriever data with callbacks?
 
@@ -224,8 +210,6 @@ if __name__ == "__main__":
     tracker.flush()
 ```
 
-<a id="visualization"></a>
-
 ## Visualization
 
 For the visualization part you can use small Python library [rankflow](https://pypi.org/project/rankflow/) (disclaimer: I'm the author) that is able to produce this type of visualization:
@@ -263,8 +247,6 @@ plt.show()
 If you found this library useful, please star the [repo](https://github.com/izikeros/rankflow).
 
 With plotting options you have also some alternatives that you can use or take inspiration to create you own, customized rankflow plot/bump chart. See the references for alternatives.
-
-<a id="references"></a>
 
 ## References
 

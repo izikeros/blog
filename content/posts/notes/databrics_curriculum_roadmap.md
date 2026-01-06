@@ -1,16 +1,18 @@
 ---
-Title: Databricks Curriculum - From Zero to Hero
-Slug: databricks-curriculum-from-zero-to-hero
+Category: note
 Date: 2023-12-04
 Modified: 2023-12-04
+Slug: databricks-curriculum-from-zero-to-hero
 Status: published
+Summary: Learn from scratch to become proficient in Databricks by understanding its basics, setting up the environment, grasping Apache Spark fundamentals, and performing basic data processing tasks.
+ai_summary: true
+Title: Databricks Curriculum - From Zero to Hero
 tags:
   - databricks
   - learning
   - learn-databricks
   - databricks-roadmap
   - databricks-learning-plan
-Category: note
 ---
 up::[[MOC_Databricks]]
 

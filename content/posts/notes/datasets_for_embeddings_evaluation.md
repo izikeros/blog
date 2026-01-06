@@ -4,6 +4,8 @@ Date: 2023-02-09
 Modified: 2023-07-12
 Slug: datasets-for-embeddings-evaluation
 Status: published
+Summary: Learn about datasets for evaluating embeddings performance in text search, code search, sentence similarity, and text classification tasks. Explore BEIR, CodeSearchNet, SentEval, and more to improve retrieval and analysis models.
+ai_summary: true
 Tags:
   - machine-learning
   - NLP

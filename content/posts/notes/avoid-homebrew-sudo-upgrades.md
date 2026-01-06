@@ -1,13 +1,14 @@
 ---
-Title: Avoiding Homebrew Upgrades That Require Sudo on macOS
-Slug: avoid-homebrew-sudo-upgrades
+Category: note
 Date: 2025-10-31
 Modified: 2025-10-31
+Slug: avoid-homebrew-sudo-upgrades
 Status: published
+Summary: Learn how to manage Homebrew upgrades on macOS to avoid sudo prompts, by differentiating between formulae and casks and using specific commands like `--formula`, `--cask`, and pinning problematic packages.
+ai_summary: true
 Tags: homebrew, macos, automation, dev-tools
-Category: note
+Title: Avoiding Homebrew Upgrades That Require Sudo on macOS
 ---
-
 ## Understanding the Problem
 
 Homebrew is designed to install software without root privileges. Most formulae live peacefully under `/usr/local` or `/opt/homebrew`, updating silently. Yet sometimes you hit an upgrade that stops mid-flow asking for your password. This happens when the formula is actually a **cask** that installs via a macOS `.pkg` file. Those installers, like `dotnet-sdk`, Java, or Docker, need admin rights to write under `/Library`.

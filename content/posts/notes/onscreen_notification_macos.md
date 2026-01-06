@@ -4,6 +4,8 @@ Date: 2023-07-10
 Modified: 2023-07-12
 Slug: display-a-notification-on-the-screen-in-macos
 Status: published
+Summary: Learn how to use the `osascript` command in macOS Terminal to display custom notifications on your screen, including the necessary permissions for newer versions of macOS.
+ai_summary: true
 Tags:
   - macos
   - notification

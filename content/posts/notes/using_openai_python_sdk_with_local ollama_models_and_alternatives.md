@@ -1,9 +1,11 @@
 ---
-Title: Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)
-Slug: openai-python-sdk-with-local-ollama-models-and-alternatives
+Category: note
 Date: 2025-07-29
 Modified: 2025-07-29
+Slug: openai-python-sdk-with-local-ollama-models-and-alternatives
 Status: published
+Summary: Learn how to use the official `openai` Python package with local Ollama models and when it's better to opt for LiteLLM as a more unified alternative.
+ai_summary: true
 Tags:
   - openai
   - openai-sdk
@@ -13,9 +15,8 @@ Tags:
   - llama-index
   - guidance
   - instructor
-Category: note
+Title: Using OpenAI Python SDK with Local Ollama Models (and When to Opt for Alternatives)
 ---
-
 I've been diving into how to use the official `openai` Python package to **talk to local Ollama models**—and when it makes sense to bring in abstraction layers like **LiteLLM**. Let me walk you through what I learned.
 
 ### 1. Can I use the OpenAI Python package for local Ollama models?

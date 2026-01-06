@@ -1,4 +1,6 @@
 ---
+Summary: Learn how to use the precision field in Python logging to truncate log levels to a single character using formatter configurations.
+ai_summary: true
 title: Python logging - single character log level
 category: note
 date: 2022-05-27
@@ -9,7 +11,6 @@ tags:
   - logging
   - python
 ---
-
 You can use the precision field to set a maximum field width:
 
 ```python

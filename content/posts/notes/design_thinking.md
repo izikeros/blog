@@ -1,16 +1,17 @@
 ---
-Title: Design Thinking
-Slug: design-thinking
+Category: note
 Date: 2023-09-04
 Modified: 2023-11-07
+Slug: design-thinking
 Status: published
+Summary: Design thinking is an innovative approach emphasizing empathy, creativity, and iteration to solve complex problems and develop user-centric solutions, applicable across various industries for effective product development.
+ai_summary: true
+Title: Design Thinking
 tags:
   - startup
   - design-thinking
   - methodology
-Category: note
 ---
-
 X::[[lean_startup_criticism]]
 X::[[lean_startup]]
 X::[[growth_hacking]]

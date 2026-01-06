@@ -55,13 +55,13 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="X::[[posts/notes/Tverski_similarity]] Jaro-Winkler Similarity Python Example: Valuable Properties of Jaro-Winkler Similarity: Recommendations for Usage: Cases to Consider Alternatives: Jaro-Winkler Similarity Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula …"/>
+    <meta name="description" content="Learn about Jaro-Winkler similarity, a string-matching algorithm that emphasizes common prefixes and how to implement it in Python, providing better performance for strings with shared beginnings."/>
     <meta name="keywords" content="nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Jaro-Winkler Similarity"/>
-  <meta property="og:description" content="X::[[posts/notes/Tverski_similarity]] Jaro-Winkler Similarity Python Example: Valuable Properties of Jaro-Winkler Similarity: Recommendations for Usage: Cases to Consider Alternatives: Jaro-Winkler Similarity Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula …"/>
+  <meta property="og:description" content="Learn about Jaro-Winkler similarity, a string-matching algorithm that emphasizes common prefixes and how to implement it in Python, providing better performance for strings with shared beginnings."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/jaro-winkler-similarity/"/>
   <meta property="og:type" content="article"/>
@@ -87,7 +87,7 @@
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
     <meta name="twitter:title" content="Jaro-Winkler Similarity"/>
-    <meta name="twitter:description" content="X::[[posts/notes/Tverski_similarity]] Jaro-Winkler Similarity Python Example: Valuable Properties of Jaro-Winkler Similarity: Recommendations for Usage: Cases to Consider Alternatives:..."/>
+    <meta name="twitter:description" content="Learn about Jaro-Winkler similarity, a string-matching algorithm that emphasizes common prefixes and how to implement it in Python, providing better performance for strings with shared beginnings."/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -112,9 +112,58 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/jaro-winkler-similarity/",
-  "description": "X::[[posts/notes/Tverski_similarity]] Jaro-Winkler Similarity Python Example: Valuable Properties of Jaro-Winkler Similarity: Recommendations for Usage:..."
+  "description": "Learn about Jaro-Winkler similarity, a string-matching algorithm that emphasizes common prefixes and how to implement it in Python, providing better...",
+  "articleSection": "note",
+  "inLanguage": "en",
+  "keywords": "nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex",
+  "wordCount": 1011,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "note",
+      "item": "https://www.safjan.com/category/note.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Jaro-Winkler Similarity"
+    }
+  ]
 }
 </script>
+
+
+
+<meta name="ai:summary" content="Learn about Jaro-Winkler similarity, a string-matching algorithm that emphasizes common prefixes and how to implement it in Python, providing better performance for strings with shared beginnings.">
+
+<meta name="ai:topics" content="nlp, text-similarity, string-similarity, similarity-metrics, jaccard, cosine-similarity, levenshtein, word-embeddings, soundex">
+
+
+
+<meta name="ai:word-count" content="1011">
+<meta name="ai:reading-time" content="5 min">
+
+<meta name="ai:section" content="note">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <title>    Jaro-Winkler Similarity
 </title>
@@ -206,7 +255,7 @@
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
 
             <div id="search" class="nav-search"></div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
@@ -231,12 +280,6 @@
 
 
 
-        <details class="toc-details" id="toc-container">
-            <summary>Table of Contents</summary>
-            <nav class="toc" aria-label="Table of Contents">
-                <ul class="toc-list"></ul>
-            </nav>
-        </details>
 
         <div class="article-content">
             <p>X::[[posts/notes/Tverski_similarity]]</p>
@@ -251,7 +294,6 @@
 </ul>
 <!-- /MarkdownTOC -->
 
-<p><a id="jaro-winkler-similarity"></a></p>
 <h2 id="jaro-winkler-similarity">Jaro-Winkler Similarity</h2>
 <p>Jaro-Winkler similarity is designed to compare two strings, giving more weight to the common prefix of the strings. The formula for Jaro-Winkler similarity is:</p>
 <p>$$
@@ -271,7 +313,6 @@ Where:</p>
 <ul>
 <li>$m$  is the number of matching characters</li>
 </ul>
-<p><a id="python-example"></a></p>
 <h3 id="python-example">Python Example</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">jaro_similarity</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
     <span class="n">len_s1</span><span class="p">,</span> <span class="n">len_s2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
@@ -320,8 +361,7 @@ Where:</p>
 <div class="highlight"><pre><span></span><code>Jaro-Winkler Similarity: 0.9722222222222223
 </code></pre></div>
 
-<p>The Jaro-Winkler similarity metric possesses several valuable properties that make it suitable for specific use cases. However, it's important to note that no single similarity metric is universally best for all scenarios. Here are some valuable properties of the Jaro-Winkler metric, as well as recommendations for its usage and instances where other metrics might be more appropriate.
-<a id="valuable-properties-of-jaro-winkler-similarity"></a></p>
+<p>The Jaro-Winkler similarity metric possesses several valuable properties that make it suitable for specific use cases. However, it's important to note that no single similarity metric is universally best for all scenarios. Here are some valuable properties of the Jaro-Winkler metric, as well as recommendations for its usage and instances where other metrics might be more appropriate.</p>
 <h3 id="valuable-properties-of-jaro-winkler-similarity">Valuable Properties of Jaro-Winkler Similarity</h3>
 <ol>
 <li>
@@ -334,7 +374,6 @@ Where:</p>
 <p><strong>Simple to Understand and Implement:</strong> The calculation of Jaro-Winkler similarity involves straightforward string matching and prefix length consideration, making it relatively easy to implement and understand.</p>
 </li>
 </ol>
-<p><a id="recommendations-for-usage"></a></p>
 <h3 id="recommendations-for-usage">Recommendations for Usage</h3>
 <ol>
 <li>
@@ -347,7 +386,6 @@ Where:</p>
 <p><strong>Short Texts:</strong> Jaro-Winkler is well-suited for comparing short texts like product names, usernames, and titles, where the common prefix is an important aspect of similarity.</p>
 </li>
 </ol>
-<p><a id="cases-to-consider-alternatives"></a></p>
 <h3 id="cases-to-consider-alternatives">Cases to Consider Alternatives</h3>
 <ol>
 <li>
@@ -436,6 +474,8 @@ Explanation: The short string "AI" has a higher similarity to the beginning of "
                 <a href="https://www.safjan.com/tag/word-embeddings/" class="article-tag">word-embeddings</a>
                 <a href="https://www.safjan.com/tag/soundex/" class="article-tag">soundex</a>
         </div>
+
+
 
 
 

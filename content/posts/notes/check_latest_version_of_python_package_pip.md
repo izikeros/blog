@@ -1,9 +1,12 @@
 ---
-Title: How to Check Latest Version of Python Package?
-Slug: how-to-check-latest-version-of-python-package
+Category: note
 Date: 2024-07-03
 Modified: 2024-07-03
+Slug: how-to-check-latest-version-of-python-package
 Status: published
+Summary: Learn how to check the latest version of a Python package using pip's new command, PyPI API with curl and jq, or the `yolk` package, each method offering different levels of convenience and speed.
+ai_summary: true
+Title: How to Check Latest Version of Python Package?
 tags:
   - pip
   - package-version
@@ -14,9 +17,7 @@ tags:
   - yolk
   - json
   - python
-Category: note
 ---
-
 Recently, for pip >= 21.2 the syntax `pip install pandas==` does not work anymore. There are several methods to get this information in a different way.
 
 ## Use pip

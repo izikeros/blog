@@ -55,13 +55,13 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="Sentence boundary detection also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries …"/>
+    <meta name="description" content="Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking."/>
     <meta name="keywords" content="Python, NLP, sentence-boundary-detection, text-chunking, spaCy, preprocessing, edge-cases, abbreviations, ellipsis, performance-optimization, multiprocessing, evaluation, multilingual-support, language-models, script-detection, non-English-texts, bidirectional-text, fine-tuning, CJK-languages, Arabic, Unicode, regular-expressions, machine-learning, text-analysis, data-preprocessing, NLP-pipeline, language-detection, model-training, cross-lingual-evaluation">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Implementing Sentence Boundary Detection in Python for Improved Text Chunking"/>
-  <meta property="og:description" content="Sentence boundary detection also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries …"/>
+  <meta property="og:description" content="Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/"/>
   <meta property="og:type" content="article"/>
@@ -107,7 +107,7 @@
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
     <meta name="twitter:title" content="Implementing Sentence Boundary Detection in Python for Improved Text Chunking"/>
-    <meta name="twitter:description" content="Sentence boundary detection also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide..."/>
+    <meta name="twitter:description" content="Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking."/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -132,9 +132,58 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/",
-  "description": "Sentence boundary detection also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks,..."
+  "description": "Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking.",
+  "articleSection": "note",
+  "inLanguage": "en",
+  "keywords": "Python, NLP, sentence-boundary-detection, text-chunking, spaCy, preprocessing, edge-cases, abbreviations, ellipsis, performance-optimization, multiprocessing, evaluation, multilingual-support, language-models, script-detection, non-English-texts, bidirectional-text, fine-tuning, CJK-languages, Arabic, Unicode, regular-expressions, machine-learning, text-analysis, data-preprocessing, NLP-pipeline, language-detection, model-training, cross-lingual-evaluation",
+  "wordCount": 1194,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "note",
+      "item": "https://www.safjan.com/category/note.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Implementing Sentence Boundary Detection in..."
+    }
+  ]
 }
 </script>
+
+
+
+<meta name="ai:summary" content="Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking.">
+
+<meta name="ai:topics" content="Python, NLP, sentence-boundary-detection, text-chunking, spaCy, preprocessing, edge-cases, abbreviations, ellipsis, performance-optimization, multiprocessing, evaluation, multilingual-support, language-models, script-detection, non-English-texts, bidirectional-text, fine-tuning, CJK-languages, Arabic, Unicode, regular-expressions, machine-learning, text-analysis, data-preprocessing, NLP-pipeline, language-detection, model-training, cross-lingual-evaluation">
+
+
+
+<meta name="ai:word-count" content="1194">
+<meta name="ai:reading-time" content="5 min">
+
+<meta name="ai:section" content="note">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <title>    Implementing Sentence Boundary Detection in Python for Improved Text Chunking
 </title>
@@ -226,7 +275,7 @@
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
 
             <div id="search" class="nav-search"></div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
@@ -251,12 +300,6 @@
 
 
 
-        <details class="toc-details" id="toc-container">
-            <summary>Table of Contents</summary>
-            <nav class="toc" aria-label="Table of Contents">
-                <ul class="toc-list"></ul>
-            </nav>
-        </details>
 
         <div class="article-content">
             <p><a href="https://en.wikipedia.org/wiki/Sentence_boundary_disambiguation">Sentence boundary detection</a> also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries.</p>
@@ -533,6 +576,8 @@
                 <a href="https://www.safjan.com/tag/model-training/" class="article-tag">model-training</a>
                 <a href="https://www.safjan.com/tag/cross-lingual-evaluation/" class="article-tag">cross-lingual-evaluation</a>
         </div>
+
+
 
 
 

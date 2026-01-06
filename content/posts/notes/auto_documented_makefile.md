@@ -4,6 +4,8 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: auto-documented-makefile
 Status: published
+Summary: Learn how to create an auto-documented makefile that generates help information from comments, making it easier to understand and navigate large projects.
+ai_summary: true
 Tags:
   - auto-documented
   - makefile

@@ -1,15 +1,17 @@
 ---
-Title: Cookiecutter alternatives
-Slug: cookiecutter-alternatives
+Category: note
 Date: 2023-08-12
 Modified: 2025-03-18
+Slug: cookiecutter-alternatives
 Status: published
+Summary: Learn about alternative scaffolding tools to Cookiecutter, including Yeoman, Hygen, Plop, Slush, SAO, Jolt, and Boilr, each suited for different project needs such as rapid prototyping, large-scale projects, and advanced file processing.
+ai_summary: true
+Title: Cookiecutter alternatives
 tags:
   - cookiecutter
   - scaffolding
   - templates
   - python-project
-Category: note
 ---
 - [Alternative Tools to Cookiecutter for Scaffolding Projects](#alternative-tools-to-cookiecutter-for-scaffolding-projects)
 	- [Yeoman](#yeoman)
@@ -53,8 +55,6 @@ Hygen focuses on simplicity and allows developers to create templates using thei
 The ability to generate code snippets and templates quickly and effortlessly makes Hygen ideal for scenarios where rapid prototyping and iterative development are essential.
 
 **Best Use Case:** Hygen is best suited for developers who need a lightweight, customizable, and language-agnostic solution for scaffolding projects.
-
-<a id="3-plop"></a>
 
 ### Plop
 

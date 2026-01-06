@@ -55,13 +55,13 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="Python&#39;s **kwargs is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It&#39;s particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of **kwargs comes …"/>
+    <meta name="description" content="Learn best practices for using **kwargs in Python, including maintaining code clarity, avoiding typos, and ensuring robustness, to help you write more idiomatic and secure Python code."/>
     <meta name="keywords" content="python, kwargs, idiomatic-python, clean-code, refactoring, static-type-checking, security-risk">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Mastering kwargs in Python - Best Practices for Experienced Developers"/>
-  <meta property="og:description" content="Python&#39;s **kwargs is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It&#39;s particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of **kwargs comes …"/>
+  <meta property="og:description" content="Learn best practices for using **kwargs in Python, including maintaining code clarity, avoiding typos, and ensuring robustness, to help you write more idiomatic and secure Python code."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/"/>
   <meta property="og:type" content="article"/>
@@ -85,7 +85,7 @@
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
     <meta name="twitter:title" content="Mastering kwargs in Python - Best Practices for Experienced Developers"/>
-    <meta name="twitter:description" content="Python's **kwargs is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when..."/>
+    <meta name="twitter:description" content="Learn best practices for using **kwargs in Python, including maintaining code clarity, avoiding typos, and ensuring robustness, to help you write more idiomatic and secure Python code."/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -110,9 +110,58 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/mastering-kwargs-in-python-best-practices-for-experienced-developers/",
-  "description": "Python's **kwargs is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you..."
+  "description": "Learn best practices for using **kwargs in Python, including maintaining code clarity, avoiding typos, and ensuring robustness, to help you write more...",
+  "articleSection": "note",
+  "inLanguage": "en",
+  "keywords": "python, kwargs, idiomatic-python, clean-code, refactoring, static-type-checking, security-risk",
+  "wordCount": 870,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "note",
+      "item": "https://www.safjan.com/category/note.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mastering kwargs in Python - Best Practices..."
+    }
+  ]
 }
 </script>
+
+
+
+<meta name="ai:summary" content="Learn best practices for using **kwargs in Python, including maintaining code clarity, avoiding typos, and ensuring robustness, to help you write more idiomatic and secure Python code.">
+
+<meta name="ai:topics" content="python, kwargs, idiomatic-python, clean-code, refactoring, static-type-checking, security-risk">
+
+
+
+<meta name="ai:word-count" content="870">
+<meta name="ai:reading-time" content="4 min">
+
+<meta name="ai:section" content="note">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <title>    Mastering kwargs in Python - Best Practices for Experienced Developers
 </title>
@@ -204,7 +253,7 @@
                 <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
 
             <div id="search" class="nav-search"></div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
             </button>
@@ -229,12 +278,6 @@
 
 
 
-        <details class="toc-details" id="toc-container">
-            <summary>Table of Contents</summary>
-            <nav class="toc" aria-label="Table of Contents">
-                <ul class="toc-list"></ul>
-            </nav>
-        </details>
 
         <div class="article-content">
             <p>Python's <code>**kwargs</code> is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of <code>**kwargs</code> comes with its own set of challenges. In this article, we'll look into the potential pitfalls of using <code>**kwargs</code> and how to mitigate them, helping you write more idiomatic and robust Python code.</p>
@@ -252,7 +295,6 @@
 <li><a href="#related-articles">Related articles</a></li>
 </ul>
 <!-- /MarkdownTOC -->
-<p><a id="1-loss-of-clarity"></a></p>
 <h2 id="1-loss-of-clarity">1. Loss of Clarity</h2>
 <p>The first challenge with <code>**kwargs</code> is that it can make your code less clear. When a function accepts <code>**kwargs</code>, it's not immediately apparent what arguments it expects.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -276,7 +318,6 @@
     <span class="k">pass</span>
 </code></pre></div>
 
-<p><a id="2-typos-in-argument-names"></a></p>
 <h2 id="2-typos-in-argument-names">2. Typos in Argument Names</h2>
 <p>Misspelled keyword argument names will not raise an error, which can lead to hard-to-trace bugs.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -295,7 +336,6 @@
     <span class="c1"># Plot graph with title</span>
 </code></pre></div>
 
-<p><a id="3-difficulty-in-refactoring"></a></p>
 <h2 id="3-difficulty-in-refactoring">3. Difficulty in Refactoring</h2>
 <p>Refactoring tools may not be able to update keyword arguments automatically, as they are not explicitly defined in the function signature.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -317,7 +357,6 @@
 <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a id="4-incompatibility-with-static-type-checking"></a></p>
 <h2 id="4-incompatibility-with-static-type-checking">4. Incompatibility with Static Type Checking</h2>
 <p><code>**kwargs</code> can make it harder to use static type checking, as the types of the passed arguments are not explicit.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -340,7 +379,6 @@
     <span class="k">pass</span>
 </code></pre></div>
 
-<p><a id="5-introspection-limitations"></a></p>
 <h2 id="5-introspection-limitations">5. Introspection Limitations</h2>
 <p>Tools and IDEs may not provide accurate autocompletion or parameter hints for functions that use <code>**kwargs</code>.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -370,7 +408,6 @@
     <span class="k">return</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a id="6-performance-overhead"></a></p>
 <h2 id="6-performance-overhead">6. Performance Overhead</h2>
 <p>Functions that use <code>**kwargs</code> have a slight performance overhead because of the dictionary packing and unpacking.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -386,7 +423,6 @@
     <span class="k">pass</span>
 </code></pre></div>
 
-<p><a id="7-security-risks"></a></p>
 <h2 id="7-security-risks">7. Security Risks</h2>
 <p>If <code>**kwargs</code> is used to pass user input to functions or classes (like ORM queries), it can lead to security vulnerabilities if not properly sanitized.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -401,7 +437,6 @@
     <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a id="8-default-values-and-none-checks"></a></p>
 <h2 id="8-default-values-and-none-checks">8. Default Values and None Checks</h2>
 <p>It can be unclear whether a <code>None</code> value for a keyword argument was intentional or if the argument was omitted.</p>
 <p><strong>Problematic Usage:</strong></p>
@@ -436,6 +471,8 @@
                 <a href="https://www.safjan.com/tag/static-type-checking/" class="article-tag">static-type-checking</a>
                 <a href="https://www.safjan.com/tag/security-risk/" class="article-tag">security-risk</a>
         </div>
+
+
 
 
 

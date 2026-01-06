@@ -1,9 +1,12 @@
 ---
-Title: How to Remove Diacritics and Sanitize Strings in Python
-Slug: how-to-remove-diacritics-and-sanitize-strings-in-python
+Category: note
 Date: 2024-08-30
 Modified: 2024-08-30
+Slug: how-to-remove-diacritics-and-sanitize-strings-in-python
 Status: published
+Summary: Learn how to easily remove diacritics and sanitize strings in Python using the `unidecode` library, enabling better search functionality and data normalization for international text.
+ai_summary: true
+Title: How to Remove Diacritics and Sanitize Strings in Python
 tags:
   - python
   - nlp
@@ -13,9 +16,7 @@ tags:
   - accent
   - umlaut
   - unidecode
-Category: note
 ---
-
 When working with international text data, you often need to convert characters with diacritical marks (like accents, umlauts, or other language-specific symbols) to their basic Latin equivalents. This process, known as diacritic removal or string sanitization, can be crucial for tasks such as:
 
 - Improving search functionality

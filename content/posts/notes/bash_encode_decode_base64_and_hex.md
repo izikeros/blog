@@ -4,6 +4,8 @@ Date: 2022-05-20
 Modified: 2023-07-12
 Slug: bash-encode-decode-base64-and-hex
 Status: published
+Summary: Learn how to encode and decode data using bash commands for Base64, hex, ROT13, and Caesar cipher transformations.
+ai_summary: true
 Tags:
   - base64
   - bash
@@ -12,7 +14,6 @@ Tags:
   - hex
 Title: Bash - Encode, Decode Base64 and Hex
 ---
-
 ## Tools
 
 `xxd` - make a hexdump or do the reverse.

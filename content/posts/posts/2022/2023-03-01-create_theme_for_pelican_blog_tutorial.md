@@ -36,25 +36,17 @@ prompt: Give me detailed outline of the tutorial on How to create from scratch a
 
 <!-- /MarkdownTOC -->
 
-<a id="1-choose-a-name-for-your-theme"></a>
-
 ## 1.  Choose a name for your theme
 
 Choose a name that reflects the design or purpose of your theme. Make sure it's not already taken by another Pelican theme.
-
-<a id="2-create-a-new-directory-for-your-theme"></a>
 
 ## 2.  Create a new directory for your theme
 
 Create a new directory under the `themes` directory in your Pelican project. Use the name you chose in step 1 as the directory name.
 
-<a id="3-create-a-templates-directory"></a>
-
 ## 3.  Create a `templates` directory
 
 Inside your theme directory, create a new directory called `templates`. This is where you'll store all the HTML templates for your theme.
-
-<a id="4-create-a-base-template"></a>
 
 ## 4.  Create a base template
 
@@ -91,13 +83,9 @@ Create a base template for your theme. This template will define the basic struc
 
 In this template, `{{ page.title }}` and `{{ site.title }}` will be replaced with the title of the current page and the title of your site, respectively. The `header` section includes a navigation menu that lists all the categories on your site. The `main` section is where the content of each page will go. The `footer` includes your copyright information.
 
-<a id="5-create-a-static-directory"></a>
-
 ## 5.  Create a `static` directory
 
 Create a new directory called `static` inside your theme directory. This is where you'll store all the static assets (like CSS, images, and JavaScript) for your theme.
-
-<a id="6-create-a-themeconf-file"></a>
 
 ## 6.  Create a `theme.conf` file
 
@@ -110,8 +98,6 @@ description = A simple, responsive theme for Pelican
 author = Jane Doe
 
 ```
-
-<a id="7-add-css-to-your-theme"></a>
 
 ## 7.  Add CSS to your theme
 
@@ -227,8 +213,6 @@ In addition to the base styles, you'll also want to add styles specific to your 
 
 ```
 
-<a id="8-create-other-templates"></a>
-
 ## 8.  Create other templates
 
 Now that you have a base template and some CSS, it's time to create the other templates for your theme. This will include templates for individual pages, blog posts, tags, categories, and any other pages your site might have. Here's an example of a blog post template:
@@ -255,8 +239,6 @@ Now that you have a base template and some CSS, it's time to create the other te
 
 In this template, the `extends` tag tells Pelican to use the `base.html` template as the starting point. The `block content` tag defines where the content of the page should go. The `page.title`, `page.date`, and `page.tags` variables are replaced with the title, date, and tags of the current blog post.
 
-<a id="9-configure-your-pelican-project"></a>
-
 ## 9.  Configure your Pelican project
 
 Once you've created your new theme, you'll need to configure your Pelican project to use it. In your `pelicanconf.py` file, set the `THEME` variable to the name of your theme directory. For example:
@@ -264,8 +246,6 @@ Once you've created your new theme, you'll need to configure your Pelican projec
 ```python
 THEME = 'my-new-theme'
 ```
-
-<a id="10-test-your-theme"></a>
 
 ## 10.  Test your theme
 

@@ -38,8 +38,6 @@ Retrieval augmented generation refers to the method of enhancing a user's input 
 
 <!-- /MarkdownTOC -->
 
-<a id="introduction-understanding-retrieval-augmented-generation-rag"></a>
-
 ## Introduction: Understanding Retrieval-Augmented Generation (RAG)
 
 Retrieval-Augmented Generation, commonly referred to as RAG, and sometimes called Grounded Generation (GG), represents an ingenious integration of pretrained dense retrieval (DPR) and [sequence-to-sequence](https://en.wikipedia.org/wiki/Seq2seq) models.
@@ -52,15 +50,11 @@ The process involves retrieving documents using DPR and subsequently transmittin
 
 Figure 1. Data processing, storage and referencing in RAG method. Source: [Microsoft](https://learn.microsoft.com/en-us/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2)
 
-<a id="the-need-for-rag-in-large-language-models"></a>
-
 ## The Need for RAG in Large Language Models
 
 Large language models, while powerful, can sometimes be inconsistent in their responses. They may provide accurate answers to certain questions but struggle with others, often regurgitating random facts from their training data. This inconsistency stems from the fact that LLMs understand the statistical relationships between words but not their actual meanings.
 
 To address this issue, researchers have developed the RAG **framework, which improves the quality of LLM-generated responses by grounding the model in external sources of knowledge.** This approach not only ensures access to the most current and reliable facts but also allows users to verify the model's claims for accuracy and trustworthiness.
-
-<a id="the-open-book-approach-of-rag"></a>
 
 ## The 'Open Book' Approach of RAG
 
@@ -73,15 +67,11 @@ In the generative phase, the LLM uses the retrieved information and its internal
 ![RAG Operation](/images/retrieval_augmented_generation/RAG.png)
 Figure 2. RAG operation. Information preparation and storage. Augmenting prompt with external information.
 
-<a id="personalized-and-verifiable-responses-with-rag"></a>
-
 ## Personalized and Verifiable Responses with RAG
 
 RAG allows LLM-powered chatbots to provide more personalized answers without the need for human-written scripts. By reducing the need to continuously train the model on new data, RAG can lower the computational and financial costs of running LLM-powered chatbots in an enterprise setting.
 
 Moreover, RAG enables LLMs to generate more specific, diverse, and factual language compared to traditional parametric-only seq2seq models. This feature is particularly useful for businesses that require up-to-date information and verifiable responses.
-
-<a id="challenges-and-future-directions"></a>
 
 ## Challenges and Future Directions
 
@@ -89,15 +79,11 @@ Despite its advantages, RAG is not without its challenges. For instance, **LLMs 
 
 Furthermore, there is ongoing research to improve both the retrieval and generation aspects of RAG. This includes **finding and fetching the most relevant information possible and structuring that information** to elicit the richest responses from the LLM.
 
-<a id="conclusion"></a>
-
 ## Conclusion
 
 Retrieval-Augmented Generation offers a promising solution to the limitations of large language models by grounding them in external knowledge sources. By adopting RAG, businesses can achieve customized solutions, maintain data relevance, and optimize costs while harnessing the reasoning capabilities of LLMs. As research continues to advance in this area, we can expect even more powerful and efficient language models in the future.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
-
-<a id="references"></a>
 
 ## References
 

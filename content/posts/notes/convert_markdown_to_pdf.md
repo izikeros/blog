@@ -4,6 +4,8 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: convert-markdown-to-pdf
 Status: published
+Summary: Learn how to convert Markdown documents to PDF using Pandoc, including options for adding a table of contents and alternative PDF engines.
+ai_summary: true
 Tags:
   - conversion
   - markdown

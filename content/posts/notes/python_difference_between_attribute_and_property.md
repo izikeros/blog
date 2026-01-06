@@ -4,6 +4,8 @@ Date: 2023-03-09
 Modified: 2023-07-12
 Slug: python-difference-betwee-attribute-and-property
 Status: published
+Summary: An attribute is a simple variable belonging to an instance of a class, while a property is a special kind of attribute accessed or modified using getter and setter methods.
+ai_summary: true
 Tags:
   - python
 Title: Python - Is There Any Difference Between Attribute and Property?

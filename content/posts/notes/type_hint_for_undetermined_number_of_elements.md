@@ -2,9 +2,10 @@
 Category: note
 Date: 2023-04-03
 Modified: 2023-07-12
-Prompt: in python how to make type hint for the tuple with undetermined number of strings
 Slug: type-hint-for-undetermined-number-of-elements
 Status: published
+Summary: Learn how to use Python's `typing.Tuple` and `Union` with ellipsis (`...`) to create type hints for tuples containing an undetermined number of strings.
+ai_summary: true
 Tags:
   - python
   - type-hints
@@ -14,8 +15,8 @@ Tags:
   - union
   - python/typing
 Title: Python - How to Make Type Hint for the Tuple With Undetermined Number of Strings?
+Prompt: in python how to make type hint for the tuple with undetermined number of strings
 ---
-
 To make a type hint for a tuple with an undetermined number of strings in Python, you can use the `Tuple` and `Union` types from the `typing` module. Here's an example:
 
 ```python

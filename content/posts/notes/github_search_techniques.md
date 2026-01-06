@@ -1,9 +1,12 @@
 ---
-Title: GitHub Search Techniques
-Slug: github-search-techniques
+Category: note
 Date: 2023-12-07
 Modified: 2023-12-07
+Slug: github-search-techniques
 Status: published
+Summary: Learn how to effectively use GitHub's advanced search features, including searching by name, description, README, topic, organization, license, stars, date, forks, language, and last push, to find the exact repositories you need.
+ai_summary: true
+Title: GitHub Search Techniques
 tags:
   - github
   - search
@@ -11,9 +14,7 @@ tags:
   - code-search
   - project-search
   - project-discovery
-Category: note
 ---
-
 X::[[github_project_discovery]]
 
 1. **Search By Name**: Use "in:name" along with your search term to find repositories with that name. Example: "Ruby-Projects in:name".

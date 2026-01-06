@@ -1,9 +1,12 @@
 ---
-Title: How to add HuggingFace model to ollama
-Slug: how-to-add-huggingface-model-to-ollama
+Category: note
 Date: 2024-06-12
 Modified: 2024-06-12
+Slug: how-to-add-huggingface-model-to-ollama
 Status: published
+Summary: Learn how to download and integrate HuggingFace language models into Ollama by creating a modelfile with specific parameters and running the model using the Ollama command.
+ai_summary: true
+Title: How to add HuggingFace model to ollama
 tags:
   - ollama
   - huggingface
@@ -11,7 +14,6 @@ tags:
   - oss-llm
   - os-llm
   - open-source
-Category: note
 ---
 Create directory where you will be storying your HuggingFace LLMs. Ollama keeps their models in `~/ollama`. I have created `~/.ollama_hf_llms` to store my downloaded models.
 

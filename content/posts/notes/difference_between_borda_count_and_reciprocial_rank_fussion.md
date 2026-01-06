@@ -1,9 +1,12 @@
 ---
-Title: Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data
-Slug: borda-count-vs-reciprocal-rank
+Category: note
 Date: 2024-07-15
 Modified: 2024-07-15
+Slug: borda-count-vs-reciprocal-rank
 Status: published
+Summary: Learn about Borda Count and Reciprocal Rank methods for combining rankings, understanding their key differences in approach and sensitivity to item positions. Discover when each method is more suitable based on specific use cases.
+ai_summary: true
+Title: Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data
 tags:
   - borda
   - rank
@@ -11,9 +14,7 @@ tags:
   - rank-fussion
   - reciprocal-rank-fussion
   - reciprocal-rank-combining
-Category: note
 ---
-
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [Borda count and Reciprocal Rank Combining - approach and calculation](#borda-count-and-reciprocal-rank-combining---approach-and-calculation)
@@ -31,13 +32,9 @@ Category: note
 
 <!-- /MarkdownTOC -->
 
-<a id="borda-count-and-reciprocal-rank-combining---approach-and-calculation"></a>
-
 ## Borda count and Reciprocal Rank Combining - approach and calculation
 
 Borda count and Reciprocal Rank are both methods used in information retrieval and voting systems to combine rankings, but they differ in their approach and calculation. For details of the calculation see [[borda_count_python]] and [[implementing_reciprocal_rank_fusion_in_python]]. In this blog post we will focus on comparison of both algorithms and key differences.
-
-<a id="borda-count"></a>
 
 ### Borda Count
 
@@ -46,8 +43,6 @@ Borda count and Reciprocal Rank are both methods used in information retrieval a
 - Sums up the points across all rankings
 - Final ranking is determined by the total points, with higher scores ranking better
 
-<a id="reciprocal-rank"></a>
-
 ### Reciprocal Rank
 
 - Focuses on the position of each item in the rankings
@@ -55,16 +50,12 @@ Borda count and Reciprocal Rank are both methods used in information retrieval a
 - Averages these reciprocal ranks across all rankings
 - Final ranking is determined by the average reciprocal rank, with higher values ranking better
 
-<a id="key-differences"></a>
-
 ## Key differences
 
 1. **Scale**: Borda count uses a linear scale, while Reciprocal Rank uses a non-linear scale that emphasizes top rankings more heavily.
 2. **Sensitivity**: Reciprocal Rank is more sensitive to high rankings and less affected by lower rankings compared to Borda count.
 3. **Range**: Borda count scores depend on the number of items, while Reciprocal Rank scores are always between 0 and 1.
 4. **Interpretation**: Borda count provides a cumulative score, while Reciprocal Rank gives an average of inverse rankings.
-
-<a id="example"></a>
 
 ## Example
 
@@ -144,8 +135,6 @@ Reciprocal Rank Ranking:
 
 ```
 
-<a id="key-observations"></a>
-
 ### Key observations
 
 1. Borda Count Ranking: [1 2 0 3 4 5]
@@ -153,8 +142,6 @@ Reciprocal Rank Ranking:
 
 2. Reciprocal Rank Ranking: [0 3 1 2 4 5]
    - Item 0 has the highest score, followed by 3, 1, 2, 4, and 5.
-
-<a id="the-main-differences"></a>
 
 ### The main differences
 
@@ -175,13 +162,9 @@ Reciprocal Rank Ranking:
 
 This example clearly demonstrates how Borda Count and Reciprocal Rank can produce different final rankings based on their different approaches to scoring. Borda Count tends to favor consistent performance across all ranks, while Reciprocal Rank gives more weight to top rankings, especially first-place finishes.
 
-<a id="which-one-to-use-and-when"></a>
-
 ## Which one to use and when?
 
 The choice between Borda Count and Reciprocal Rank Combining depends on the specific context and goals of your ranking task. Here are some practical recommendations for when to use each method:
-
-<a id="borda-count-is-better-when"></a>
 
 ### Borda Count is better when...
 
@@ -195,8 +178,6 @@ The choice between Borda Count and Reciprocal Rank Combining depends on the spec
 
 5. **Voting systems**: In scenarios like political elections where fairness across all options is crucial.
 
-<a id="reciprocal-rank-is-better-when"></a>
-
 ### Reciprocal Rank is better when...
 
 1. **Emphasis on top rankings**: The top few positions are significantly more important than lower ones.
@@ -209,8 +190,6 @@ The choice between Borda Count and Reciprocal Rank Combining depends on the spec
 
 5. **Normalization**: You need scores that are always between 0 and 1, regardless of the number of items.
 
-<a id="additional-considerations"></a>
-
 ### Additional considerations
 
 1. If you're dealing with expert opinions where being consistently in the top few ranks is crucial, Reciprocal Rank might be more appropriate.
@@ -220,8 +199,6 @@ The choice between Borda Count and Reciprocal Rank Combining depends on the spec
 3. In scenarios where you want to balance between rewarding top performance and consistent overall performance, you might consider using a combination of both methods or a modified version.
 
 4. If your ranking problem involves a mix of complete and partial rankings, Reciprocal Rank might be more flexible.
-
-<a id="summary"></a>
 
 ## Summary
 

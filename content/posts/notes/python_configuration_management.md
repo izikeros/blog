@@ -37,8 +37,6 @@ One of the key aspects of any Python project is managing configurations, which c
 
 <!-- /MarkdownTOC -->
 
-<a id="hydra"></a>
-
 ## hydra
 
 [Hydra](https://hydra.cc/) is a Python library that allows you to access parameters from a configuration file inside a Python script.
@@ -100,8 +98,6 @@ Hands-on tutorial how to introduce hydra to the exemplary data science project:
 https://www.youtube.com/watch?v=tEsPyYnzt8s
 ```
 
-<a id="decouple"></a>
-
 ## decouple
 >
 > Python Decouple: Strict separation of settings from code
@@ -134,8 +130,6 @@ From: package description on pypi
 
 > **NOTE:** Since `config` can read parameters from .env (and .ini) - decouple can replace using dotenv.
 
-<a id="omegaconf"></a>
-
 ## omegaconf
 
 [OmegaConf](https://github.com/omry/omegaconf) is a hierarchical configuration system, with support for merging configurations from multiple sources (YAML config files, dataclasses/objects and CLI arguments) providing a consistent API regardless of how the configuration was created.
@@ -144,22 +138,16 @@ From: package description on pypi
 
 Documentation v2.2: [Installation - OmegaConf 2.2.4.dev0 documentation](https://omegaconf.readthedocs.io/en/2.2_branch/usage.html)
 
-<a id="upsilonconf"></a>
-
 ## Upsilonconf
 
 ![github stars shield](https://img.shields.io/github/stars/hoedt/upsilonconf.svg?logo=github)
 Concretely, the idea of [upsilonconf](https://github.com/hoedt/upsilonconf) library is to provide an alternative to OmegaConf without the overhead of the variable interpolation (especially the `antlr` dependency). It is also very similar to the (discontinued) [AttrDict](https://github.com/bcj/AttrDict) library. In the meantime, there is also the [ml_collections](https://github.com/google/ml_collections) library, which seems to build on similar ideas as this project.
-
-<a id="ml_collections"></a>
 
 ## ml_collections
 
 [google/ml_collections](https://github.com/google/ml_collections)
 ML Collections is a library of Python Collections designed for ML use cases.
 The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" data structures with dot access to nested elements. Together, they are supposed to be used as a main way of expressing configurations of experiments and models.
-
-<a id="features"></a>
 
 ### Features
 
@@ -172,8 +160,6 @@ The two classes called `ConfigDict` and `FrozenConfigDict` are "dict-like" d
 - Human readable printing (with valid references and cycles), using valid YAML format.
 - Fields can be passed as keyword arguments using the `**` operator.
 - There is one exception to the strong type-safety of the ConfigDict: `int` values can be passed in to fields of type `float`. In such a case, the value is type-converted to a `float` before being stored. (Back in the day of Python 2, there was a similar exception to allow both `str` and `unicode` values in string fields.)
-
-<a id="basic-usage-of-ml_collections"></a>
 
 ### Basic Usage of ml_collections
 
@@ -201,8 +187,6 @@ cfg.nested.string_field = u'bob'  # `String` fields can store Unicode strings.
 
 print(cfg)
 ```
-
-<a id="pydantic"></a>
 
 ## Pydantic
 

@@ -4,12 +4,13 @@ Date: 2023-02-28
 Modified: 2023-07-12
 Slug: git-sign-commit-n-commits-back
 Status: published
+Summary: Learn how to sign specific commits that are multiple steps back in a Git history using interactive rebase, including the necessary commands and steps involved.
+ai_summary: true
 Tags:
   - git
   - commit
 Title: Git - Sign Commit That Is N Commits Back (Earlier)
 ---
-
 ## Example
 
 To sign two specific commits that are respectively 4 and 5 commits back in Git, you can use the `git rebase` command with the `--exec` option to sign the commits as they are being rebased. Here are the steps:

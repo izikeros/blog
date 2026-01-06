@@ -1,18 +1,19 @@
 ---
-Title: Bash Parameter Expansion With Default Value
-Slug: bash-parameter-expansion-with-default-value
+Category: note
 Date: 2024-08-01
 Modified: 2024-08-01
+Slug: bash-parameter-expansion-with-default-value
 Status: published
+Summary: Learn how to use bash parameter expansion with default values to handle unset or null variables, improve script robustness, and enhance readability through various examples and use cases.
+ai_summary: true
+Title: Bash Parameter Expansion With Default Value
 tags:
   - bash
   - parameter-expansion
-Category: note
 ---
-
 up::[[MOC_Shell_Bash_Zsh]]
 
-## Bash parameter expansion with default value
+## Parameter expansion
 
 Bash parameter expansion with default value is a useful feature for handling variables that may or may not be set. The syntax is:
 
