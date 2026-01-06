@@ -266,6 +266,35 @@ Use `black --ipynb .` in `posts` directory to format notebooks (requires black w
 - headline is hardcoded in `pelicanconf.py` in `SITESUBTITLE` variable
 - social icons `style.less`
 
+## Favicons
+
+The blog uses [RealFaviconGenerator](https://realfavicongenerator.net/) for cross-platform favicon support.
+
+### Generating new favicons
+
+1. Go to [realfavicongenerator.net](https://realfavicongenerator.net/)
+2. Upload your logo/icon (recommend 512x512 or larger)
+3. Configure colors (theme color, tile color, etc.)
+4. Download the favicon package
+5. Extract these files to `content/` directory:
+   - `favicon.ico`
+   - `apple-touch-icon.png`
+   - `favicon-32x32.png`
+   - `favicon-16x16.png`
+   - `site.webmanifest`
+6. Rebuild the site with `make publish`
+
+### Configuration
+
+In `pelicanconf.py`:
+
+```python
+RFG_FAVICONS = True                    # Enable full favicon package
+RFG_THEME_COLOR = "#333333"            # Browser theme color
+# RFG_SAFARI_PINNED_TAB = "#5bbad5"    # Optional: Safari pinned tab color
+# RFG_MSAPPLICATION_TILECOLOR = "#da532c"  # Optional: Windows tile color
+```
+
 ## New metadata
 
 see my fork of Flex new metadata
