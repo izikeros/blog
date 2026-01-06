@@ -43,10 +43,17 @@ STATIC_PATHS = [
     "pdfs",        # PDF files (resume, etc.)
     "zipfiles",    # Downloadable archives
     "robots.txt",  # Search engine directives
-    "favicon.ico", # Browser tab icon
     ".nojekyll",   # Disable Jekyll processing on GitHub Pages
     "CNAME",       # Custom domain for GitHub Pages
     "ads.txt",     # Ads.txt for ad networks
+    # Favicon files (generate at https://realfavicongenerator.net/)
+    "favicon.ico",
+    "apple-touch-icon.png",
+    "favicon-32x32.png",
+    "favicon-16x16.png",
+    "site.webmanifest",
+    # "safari-pinned-tab.svg",  # Optional: Safari pinned tabs
+    # "browserconfig.xml",       # Optional: Windows tiles
 ]
 
 # =============================================================================
@@ -120,6 +127,15 @@ THEME_COLOR_ENABLE_USER_OVERRIDE = True  # Allow dark/light mode toggle
 # Code syntax highlighting theme (Pygments)
 # Options: monokai, github, friendly, colorful, etc.
 PYGMENTS_STYLE = "github"
+
+# Favicon configuration
+# Option 1: Simple favicon - set FAVICON = "/favicon.ico"
+# Option 2: RealFaviconGenerator package (recommended for all platforms)
+#   Generate at https://realfavicongenerator.net/ and place files in content/
+RFG_FAVICONS = True                    # Enable full favicon package
+RFG_THEME_COLOR = "#333333"            # Browser theme color (address bar, etc.)
+# RFG_SAFARI_PINNED_TAB = "#5bbad5"    # Optional: Safari pinned tab icon color
+# RFG_MSAPPLICATION_TILECOLOR = "#da532c"  # Optional: Windows tile color
 
 # =============================================================================
 # CONTENT DISPLAY
