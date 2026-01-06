@@ -24,7 +24,7 @@ In this blog post I will present 4 steps for Bayesian methods mastery. The rough
 
 ## 1. "Bayesian methods for hackers"  - free book in form of Jupyter notebooks with interactive content
 
-<img style="float: lefts;" src="/images/learn_bayes/bmh.jpg" width="25%" height="25%">
+<img style="float: left; width: 25%;" src="/images/learn_bayes/bmh.jpg" alt="Bayesian Methods for Hackers book cover">
 
 The first chapter of "Bayesian methods for hackers" (BMH) will introduce you to the Bayesian way of thinking. Understand reducing uncertainty using observations. You will go through the first example that is showing statistical modeling of the texting rate. The following chapters explain new techniques in detail. New techniques are immediately applied to solving exemplary problems.
 
@@ -42,13 +42,13 @@ My choice for complementary probability and statistics books was twofold:
 
 ["How to become a Bayesian in eight easy steps: An annotated reading list"](https://psyarxiv.com/ph6sw) by Etz, Alexander, et al., is a paper, not a target at Computer Scientists. Actually, it originates from the field of psychology but is written in a domain-agnostic style, so readers from any discipline can enjoy reading this. The paper has a survey style and uses the classification of the covered papers in two dimensions: difficulty (from easy to hard), and focus (from theoretical to practical). See the Figure below, borrowed from the paper.
 
-<img src="/images/learn_bayes/readinglist.png" width="45%" height="45%">
+<img style="width: 45%;" src="/images/learn_bayes/readinglist.png" alt="Bayesian reading list classification">
 
 The main paper and references are rather light reading and I found it useful in building context for diving into  Bayesian analysis.
 
 ## 4. Exercises to develop Bayesian thinking: "Think Bayes" by Allen Downey
 
-<img style="float: left;" src="/images/learn_bayes/think_bayes_1.jpg" width="25%" height="25%">
+<img style="float: left; width: 25%;" src="/images/learn_bayes/think_bayes_1.jpg" alt="Think Bayes book cover">
 
 Another great book to learn Bayesian thinking. It is divided into smaller units than BMH which makes it easier to digest for readers that are quickly losing attention when reading scientific stuff. When compared to BMH, it has much more examples. Crashing a large number of cases is to me very good approach for training Bayesian intuition and learning methods.
 

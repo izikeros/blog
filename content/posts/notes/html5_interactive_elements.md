@@ -66,7 +66,7 @@ The `<datalist>` element permits the creation of pre-defined options for an `<in
 
 <div>
 <label for="browser-demo">Choose a browser from the list:</label>
-<input list="browsers-demo" name="browser" id="browser-demo">
+<input type="text" list="browsers-demo" name="browser" id="browser-demo">
 <datalist id="browsers-demo">
   <option value="Chrome"></option>
   <option value="Firefox"></option>
