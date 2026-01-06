@@ -137,7 +137,7 @@ This command will create a virtual environment and install the required packages
 
 ### Configure PyCharm Interpreter
 
-In PyCharm, go to "File" > "Settings" > "Project: <project_name>" > "Python Interpreter". Click on the gear icon and choose "Add...".
+In PyCharm, go to `"File" > "Settings" > "Project: YOUR_PROJECT_NAME" > "Python Interpreter"`. Click on the gear icon and choose "Add...".
 
 Select "Poetry Environment" and choose the existing local Poetry interpreter associated with your project's virtual environment. Click "OK" to apply the changes.
 

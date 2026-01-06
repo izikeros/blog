@@ -90,6 +90,6 @@ If you have any further questions or would like to learn more about visual text 
 
 **Credits:**
 
-Header graphics from <www.wordle.net>, [User:Ragettho](https://commons.wikimedia.org/wiki/User:Ragettho "User:Ragettho") found on [wikimedia](https://commons.wikimedia.org/wiki/File:Wikinews_word_cloud.jpg)
+Header graphics from [www.wordle.net](https://www.wordle.net), [User:Ragettho](https://commons.wikimedia.org/wiki/User:Ragettho "User:Ragettho") found on [wikimedia](https://commons.wikimedia.org/wiki/File:Wikinews_word_cloud.jpg)
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*

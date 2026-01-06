@@ -64,15 +64,17 @@ The `<datalist>` element permits the creation of pre-defined options for an `<in
 </datalist>
 ```
 
-<label for="browsers">Choose a browser from the list:</label>
-<input list="browsers" name="browser">
-<datalist>
-  <option value="Chrome">
-  <option value="Firefox">
-  <option value="Internet Explorer">
-  <option value="Opera">
-  <option value="Safari">
+<div>
+<label for="browser-demo">Choose a browser from the list:</label>
+<input list="browsers-demo" name="browser" id="browser-demo">
+<datalist id="browsers-demo">
+  <option value="Chrome"></option>
+  <option value="Firefox"></option>
+  <option value="Internet Explorer"></option>
+  <option value="Opera"></option>
+  <option value="Safari"></option>
 </datalist>
+</div>
 
 ## The `<progress>` Element
 
@@ -82,7 +84,9 @@ The `<progress>` element serves to represent the progress of a task. Use the `va
 <progress value="70" max="100"></progress>
 ```
 
+<div>
 <progress value="70" max="100"></progress>
+</div>
 
 ## The `<meter>` Element
 
@@ -92,7 +96,9 @@ The `<meter>` tag is used to represent the scalar measurement within a known ran
 Disk usage: <meter value="0.6">60%</meter>
 ```
 
+<div>
 Disk usage: <meter value="0.6">60%</meter>
+</div>
 
 ## The `<output>` Element
 
@@ -106,11 +112,13 @@ The `<output>` tag is a container for calculation results. To link the output el
 </form>
 ```
 
+<div>
 <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
   0<input type="range" value="50">100 +
   0<input type="range" value="50">100 =
   <output name="x" for="a b"></output>
 </form>
+</div>
 
 ## The `<canvas>` Element
 
@@ -129,11 +137,13 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "#FF0000";
 ctx.fillRect(0, 0, 80, 80);
 ```
-<canvas width="200" height="100" style="border:1px solid #000000;">
-</canvas>
+
+<div>
+<canvas id="myCanvasDemo" width="200" height="100" style="border:1px solid #000000;"></canvas>
 <script>
-var c = document.getElementById("myCanvas");
+var c = document.getElementById("myCanvasDemo");
 var ctx = c.getContext("2d");
 ctx.fillStyle = "#FF0000";
 ctx.fillRect(0, 0, 80, 80);
 </script>
+</div>
