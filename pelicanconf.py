@@ -137,6 +137,11 @@ RFG_THEME_COLOR = "#333333"            # Browser theme color (address bar, etc.)
 # RFG_SAFARI_PINNED_TAB = "#5bbad5"    # Optional: Safari pinned tab icon color
 # RFG_MSAPPLICATION_TILECOLOR = "#da532c"  # Optional: Windows tile color
 
+# YouTube Auto-Embed
+# Converts bare YouTube URLs and Obsidian vid code blocks to embedded players
+# Supports: youtube.com/watch?v=, youtu.be/, and ```vid code fences
+YOUTUBE_EMBED = True
+
 # =============================================================================
 # CONTENT DISPLAY
 # =============================================================================
