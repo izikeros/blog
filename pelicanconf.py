@@ -33,19 +33,19 @@ DEFAULT_LANG = "en"
 # PATHS AND OUTPUT
 # =============================================================================
 
-PATH = "content"              # Source content directory
-OUTPUT_PATH = "docs"          # Generated site output (GitHub Pages compatible)
+PATH = "content"  # Source content directory
+OUTPUT_PATH = "docs"  # Generated site output (GitHub Pages compatible)
 
 # Files and directories to copy as-is to output
 STATIC_PATHS = [
-    "styles",      # Custom CSS
-    "images",      # Article images and assets
-    "pdfs",        # PDF files (resume, etc.)
-    "zipfiles",    # Downloadable archives
+    "styles",  # Custom CSS
+    "images",  # Article images and assets
+    "pdfs",  # PDF files (resume, etc.)
+    "zipfiles",  # Downloadable archives
     "robots.txt",  # Search engine directives
-    ".nojekyll",   # Disable Jekyll processing on GitHub Pages
-    "CNAME",       # Custom domain for GitHub Pages
-    "ads.txt",     # Ads.txt for ad networks
+    ".nojekyll",  # Disable Jekyll processing on GitHub Pages
+    "CNAME",  # Custom domain for GitHub Pages
+    "ads.txt",  # Ads.txt for ad networks
     # Favicon files (generate at https://realfavicongenerator.net/)
     "favicon.ico",
     "apple-touch-icon.png",
@@ -95,9 +95,9 @@ FEED_MAX_ITEMS = 100
 # UTM parameters added to feed links for Google Analytics tracking
 # These help identify traffic coming from RSS readers
 FEED_UTM_PARAMS = {
-    'utm_source': 'rss',       # Traffic source identifier
-    'utm_medium': 'feed',      # Marketing medium
-    'utm_campaign': 'safjan-blog'  # Campaign name for tracking
+    "utm_source": "rss",  # Traffic source identifier
+    "utm_medium": "feed",  # Marketing medium
+    "utm_campaign": "safjan-blog",  # Campaign name for tracking
 }
 
 # =============================================================================
@@ -118,22 +118,26 @@ SITESUBTITLE = (
 )
 
 # Theme display options
-DISPLAY_DATE_BEFORE_TITLE = True   # Show date above article title
-DISPLAY_DATE_AFTER_TITLE = False   # Don't show date below title
-PROMO_BOX = True                   # Show promotional content box in sidebar
-CUSTOM_CSS = "styles/custom.css"   # Path to custom stylesheet
+DISPLAY_DATE_BEFORE_TITLE = True  # Show date above article title
+DISPLAY_DATE_AFTER_TITLE = False  # Don't show date below title
+PROMO_BOX = True  # Show promotional content box in sidebar
+CUSTOM_CSS = "styles/custom.css"  # Path to custom stylesheet
 THEME_COLOR_ENABLE_USER_OVERRIDE = True  # Allow dark/light mode toggle
 
 # Code syntax highlighting theme (Pygments)
 # Options: monokai, github, friendly, colorful, etc.
 PYGMENTS_STYLE = "github"
+# PYGMENTS_STYLE_DARK = "monokai"  # Optional: different theme for dark mode
+
+# Notebook syntax highlighting - use theme's pygments CSS for unified styling
+IPYNB_SKIP_CSS = True  # Don't inject notebook's own pygments CSS (uses theme's instead)
 
 # Favicon configuration
 # Option 1: Simple favicon - set FAVICON = "/favicon.ico"
 # Option 2: RealFaviconGenerator package (recommended for all platforms)
 #   Generate at https://realfavicongenerator.net/ and place files in content/
-RFG_FAVICONS = True                    # Enable full favicon package
-RFG_THEME_COLOR = "#333333"            # Browser theme color (address bar, etc.)
+RFG_FAVICONS = True  # Enable full favicon package
+RFG_THEME_COLOR = "#333333"  # Browser theme color (address bar, etc.)
 # RFG_SAFARI_PINNED_TAB = "#5bbad5"    # Optional: Safari pinned tab icon color
 # RFG_MSAPPLICATION_TILECOLOR = "#da532c"  # Optional: Windows tile color
 
@@ -147,14 +151,14 @@ YOUTUBE_EMBED = True
 # =============================================================================
 
 # Date formatting
-DATE_FORMATS = {"en": "%Y-%m-%d"}      # Format: 2024-01-15
-DEFAULT_DATE_FORMAT = "%B %d, %Y"       # Format: January 15, 2024
+DATE_FORMATS = {"en": "%Y-%m-%d"}  # Format: 2024-01-15
+DEFAULT_DATE_FORMAT = "%B %d, %Y"  # Format: January 15, 2024
 
 # Article metadata display
-SHOW_ARTICLE_AUTHOR = False    # Hide author name (single-author blog)
+SHOW_ARTICLE_AUTHOR = False  # Hide author name (single-author blog)
 SHOW_ARTICLE_CATEGORY = False  # Hide category in article header
-SHOW_DATE_MODIFIED = False     # Hide "last modified" date
-HOME_HIDE_TAGS = True          # Hide tags on home page article cards
+SHOW_DATE_MODIFIED = False  # Hide "last modified" date
+HOME_HIDE_TAGS = True  # Hide tags on home page article cards
 
 # Table of Contents
 ENABLE_TOC = False  # Disable automatic TOC generation
@@ -169,7 +173,7 @@ TYPOGRIFY_IGNORE_TAGS = ["style", "script", "title", "code", "pre"]
 # The exclude_category plugin provides filtered, paginated article lists
 
 # Categories to exclude from main index (articles still accessible directly)
-INDEX_EXCLUDE_CATEGORIES = ['note']
+INDEX_EXCLUDE_CATEGORIES = ["note"]
 
 # Number of articles per page on filtered index
 INDEX_ARTICLES_PER_PAGE = 10
@@ -227,9 +231,9 @@ TAG_SAVE_AS = "tag/{slug}/index.html"
 
 # Author pages (disabled - single author blog)
 AUTHOR_URL = "author/{slug}/"
-AUTHOR_SAVE_AS = ""      # Empty = don't generate
+AUTHOR_SAVE_AS = ""  # Empty = don't generate
 AUTHORS_URL = "authors/"
-AUTHORS_SAVE_AS = ""     # Empty = don't generate
+AUTHORS_SAVE_AS = ""  # Empty = don't generate
 
 # =============================================================================
 # SOCIAL MEDIA AND LINKS
@@ -267,7 +271,7 @@ CC_LICENSE = {
 # MARKDOWN CONFIGURATION
 # =============================================================================
 
-# Supported markup formats
+# Supported markup formats (for pelican_jupyter plugin)
 MARKUP = ("md", "ipynb")
 
 # Markdown extension configuration
@@ -282,8 +286,8 @@ MARKDOWN = {
         # Table of contents generation
         "markdown.extensions.toc": {
             "title": "",
-            "toc_depth": "2-3",     # Include h2 and h3 only
-            "permalink": False,     # No permalink anchors
+            "toc_depth": "2-3",  # Include h2 and h3 only
+            "permalink": False,  # No permalink anchors
         },
         # Mermaid.js diagram support
         "markdown_mermaidjs": {},
@@ -304,6 +308,7 @@ BIBTEX_JOURNAL = "Krystian's Safjan Blog"
 # Settings for rendering .ipynb files as blog posts
 
 from nbconvert.preprocessors import RegexRemovePreprocessor, TagRemovePreprocessor
+from pelican_jupyter import markup as nb_markup
 from traitlets.config import Config
 
 # Ignore Jupyter checkpoint files
@@ -312,13 +317,15 @@ IGNORE_FILES = [".ipynb_checkpoints"]
 # Notebook cell preprocessing - remove tagged cells
 c = Config()
 c.TagRemovePreprocessor.enabled = True
-c.TagRemovePreprocessor.remove_cell_tags = ("remove_cell",)           # Remove entire cell
-c.TagRemovePreprocessor.remove_all_outputs_tags = ("remove_output",)  # Remove cell output only
-c.TagRemovePreprocessor.remove_input_tags = ("remove_input",)         # Remove cell input only
+c.TagRemovePreprocessor.remove_cell_tags = ("remove_cell",)  # Remove entire cell
+c.TagRemovePreprocessor.remove_all_outputs_tags = (
+    "remove_output",
+)  # Remove cell output only
+c.TagRemovePreprocessor.remove_input_tags = ("remove_input",)  # Remove cell input only
 
 IPYNB_PREPROCESSORS = [
     RegexRemovePreprocessor(patterns=[r"\s*\Z"]),  # Remove empty cells
-    TagRemovePreprocessor(config=c),               # Remove tagged cells
+    TagRemovePreprocessor(config=c),  # Remove tagged cells
 ]
 
 # =============================================================================
@@ -328,34 +335,34 @@ IPYNB_PREPROCESSORS = [
 PLUGIN_PATHS = ["./pelican-plugins"]
 
 PLUGINS = [
-    "exclude_category",   # Filter categories from index, provide pagination
-    "yaml_metadata",      # Parse YAML frontmatter in markdown files
-    "seo_leo_enhancer",   # Extract TL;DR, FAQ, HowTo from content markers
-    "feed_utm",           # Add UTM tracking params to RSS/Atom feeds
-    "obsidian",           # Obsidian wiki-links and hashtag support
+    "exclude_category",  # Filter categories from index, provide pagination
+    "yaml_metadata",  # Parse YAML frontmatter in markdown files
+    "seo_leo_enhancer",  # Extract TL;DR, FAQ, HowTo from content markers
+    "feed_utm",  # Add UTM tracking params to RSS/Atom feeds
+    "obsidian",  # Obsidian wiki-links and hashtag support
 ]
 
 # Additional plugins (uncomment to enable):
-# PLUGINS += [
-#     "featured_image",    # Extract featured image from article
-#     "render_math",       # LaTeX math rendering
-#     "neighbors",         # Previous/next article links
-#     "related_posts",     # Related articles suggestions
-#     "sitemap",           # Generate sitemap.xml
-#     "pelican_jupyter",   # Enhanced Jupyter notebook support
-# ]
+PLUGINS += [
+    #     "featured_image",    # Extract featured image from article (not needed, theme has native support for that)
+    "render_math",  # LaTeX math rendering
+    "neighbors",  # Previous/next article links
+    "related_posts",  # Related articles suggestions
+    "sitemap",  # Generate sitemap.xml
+    "nb_markup",  # Enhanced Jupyter notebook support
+]
 
 # =============================================================================
 # SEO AND SEARCH
 # =============================================================================
 
 # SEO plugin configuration
-SEO_REPORT = False              # Don't generate SEO analysis report
-SEO_ENHANCER = True             # Enable SEO meta tag generation
+SEO_REPORT = False  # Don't generate SEO analysis report
+SEO_ENHANCER = True  # Enable SEO meta tag generation
 SEO_ENHANCER_OPEN_GRAPH = True  # Generate Open Graph tags (Facebook, LinkedIn)
-SEO_ENHANCER_TWITTER_CARDS = False  # Twitter Cards (using custom implementation)
-SEO_ARTICLES_LIMIT = 10         # Articles to include in SEO report
-SEO_PAGES_LIMIT = 10            # Pages to include in SEO report
+SEO_ENHANCER_TWITTER_CARDS = True  # Twitter Cards (using custom implementation)
+SEO_ARTICLES_LIMIT = 10  # Articles to include in SEO report
+SEO_PAGES_LIMIT = 10  # Pages to include in SEO report
 
 # Sitemap configuration (requires sitemap plugin)
 SITEMAP = {
