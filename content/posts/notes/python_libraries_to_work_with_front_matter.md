@@ -1,11 +1,13 @@
 ---
-Category: Note
+Category: note
 Date: 2023-07-11
 Modified: 2023-07-12
 Slug: python-packages-yaml-front-matter-markdown
 Status: Published
 Summary: Learn about using Python packages like PyYAML and Frontmatter for extracting and processing YAML front matter in Markdown documents, suitable for both simple extraction and advanced manipulation tasks.
 ai_summary: true
+Image: /images/head/markdown_yaml_640px.jpg
+banner: "/images/head/markdown_yaml_640px.jpg"
 Tags:
   - python
   - markdown
@@ -15,6 +17,7 @@ Tags:
   - packages
 Title: Exploring Python Packages for Loading and Processing YAML Front Matter in Markdown Documents
 Prompt: What python packages can load and process yaml frontmatter in markdown documents (front matter is typically used in the markdown version of the article to publish). Please give me the long list with descriptions and links to Pypi and Git Hub (or another place where the code is stored). Give me a long blog post on that.
+
 ---
 <!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
@@ -124,7 +127,7 @@ with open('article.md', 'w') as file:
 
 ### mistune
 
-Description: mistune is a fast and extensible Markdown parser implemented in pure Python. It aims to be compatible with the Markdown specification while offering various customization options, including support for front matter parsing.
+Mistune is a fast and extensible Markdown parser implemented in pure Python. It aims to be compatible with the Markdown specification while offering various customization options, including support for front matter parsing.
 
 - PyPI: [mistune](https://pypi.org/project/mistune/)
 - GitHub: [mistune on GitHub](https://github.com/lepture/mistune)
@@ -224,7 +227,3 @@ If adhering to the CommonMark specification is essential, Commonmark is a compre
 - Recommended Library: **YAML Front Matter**
 
 YAML Front Matter is a minimalistic package that focuses on simplicity and ease of use. If you prefer a lightweight solution for extracting YAML front matter from Markdown files without additional complexity, YAML Front Matter provides a straightforward and efficient approach.
-
-## Conclusion
-
-In this blog post, we explored several Python packages that can load and process YAML front matter in Markdown documents. These packages provide convenient and efficient methods for extracting metadata from the front matter section, enabling you to access and manipulate this valuable information.
