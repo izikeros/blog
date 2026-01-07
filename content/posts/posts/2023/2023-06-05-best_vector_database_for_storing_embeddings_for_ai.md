@@ -28,7 +28,7 @@ Tags:
   - deeplake
   - vectorstore
 Title: The Best Vector Databases for Storing Embeddings
-banner: /images/head/vectordb.jpg
+banner: "/images/head/vectordb.jpg"
 prompt: see chatGPT prompts
 prompt1: explain what vector databases are, and why there is demand for them when other types of databases exits and they are battlefield tested (like postgres)
 ---
@@ -148,7 +148,9 @@ c.add(...)
 c.query(...) 
 ```
 
-Note: there are plugins for LangChain, LlamaIndex, OpenAI and others.
+>[!note] Note:
+> there are plugins for LangChain, LlamaIndex, OpenAI and others.
+
 ### Haystack by DeepsetAI
 
 ![github stars shield](https://img.shields.io/github/stars/deepset-ai/haystack?logo=github)

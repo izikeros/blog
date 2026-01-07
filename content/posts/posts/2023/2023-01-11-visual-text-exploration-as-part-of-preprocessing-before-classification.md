@@ -2,7 +2,7 @@
 Category: Machine Learning
 Date: 2022-10-11
 Image: /images/head/visual_text_exploration_wordcloud.jpg
-Modified: 2023-07-12
+Modified: 2026-01-07
 Slug: visual-text-exploration-as-part-of-preprocessing-before-classification
 Status: published
 Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
@@ -10,7 +10,7 @@ Tags:
   - NLP
   - python
 Title: Visual Text Exploration as Part of Preprocessing Before Classification
-banner: /images/head/visual_text_exploration_wordcloud.jpg
+banner: "/images/head/visual_text_exploration_wordcloud.jpg"
 ---
 
 ## Introduction
@@ -46,7 +46,8 @@ There are a variety of libraries and packages available for performing sentiment
 
 For example, using NLTK library, you can perform sentiment analysis using the `VaderSentimentIntensityAnalyzer` by creating an object of it and passing your text to the polarity_scores method, which returns a dictionary containing scores for each sentiment-negative, neutral and positive. With TextBlob, you can directly use the sentiment method, which returns a named tuple of form (polarity, subjectivity ) where polarity is a float within the range \[-1.0, 1.0\] and subjectivity is a float within the range \[0.0, 1.0\].
 
-Note that sentiment analysis is a complex task and the results can be affected by the language and context of the text. However, with the right tools and techniques, sentiment analysis can be a powerful way to gain insights and identify patterns in text data.
+> [!note] Note: 
+> Sentiment analysis is a complex task and the results can be affected by the language and context of the text. However, with the right tools and techniques, sentiment analysis can be a powerful way to gain insights and identify patterns in text data.
 
 ## Textual Data Exploration with topic modeling
 

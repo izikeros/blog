@@ -9,13 +9,17 @@ ai_summary: true
 Tags:
   - matplotlib
   - visualization
+  - plot-in-plot
+  - picture-in-picture
 Title: Plot Inside Plot With Matplotlib
 ---
+
+> [!note] Notice:
 > this is not my article, this is just English translation of: [图中图 | 莫烦Python](https://mofanpy.com/tutorials/data-manipulation/plt/plot-in-plot/)
 
 This time we will talk about a very interesting function in matplotlib called plot in plot. The final effect is as follows:
 
-![[pip_fig_1.png]]
+![[images/pip_fig_1.png]]
 
 It can be seen that the whole Figure 1 contains three pictures, two of which appear in the small picture `title inside 1`and the big picture . How is this done?`title inside 2``title`
 
@@ -55,7 +59,7 @@ ax1.set_title('title')
 
 The effect is as follows:
 
-![[pip_fig_2.png]]
+![[images/pip_fig_2.png]]
 
 # Thumbnails
 
@@ -72,7 +76,7 @@ ax2.set_title('title inside 1')
 
 The effect is as follows:
 
-![[pip_fig_3.png]]
+![[images/pip_fig_3.png]]
 
 Finally, let's draw the small graph in the lower right corner. Here we adopt a simpler method, that is, add a new coordinate system directly to plt:
 
@@ -90,7 +94,7 @@ Finally display the image:
 plt.show()
 ```
 
-​![[pip_fig_4.png]]
+​![[images/pip_fig_4.png]]
 
 **Credits:**
 all credits goes to original author: **Mofan Zhou** (this page is just a translation)

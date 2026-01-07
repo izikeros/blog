@@ -15,7 +15,7 @@ Tags:
   - software-project
   - jupyter
 Title: Common Types of Data Science Projects
-banner: /images/head/team_project_head.jpg
+banner: "/images/head/team_project_head.jpg"
 ---
 
 ## Introduction
