@@ -13,6 +13,7 @@ tags:
   - llm
   - slm
   - small-language-models
+  - fine-tuning
 ---
 X:[[fine_tune_small_language_models_LLM_SLM__broken]]
 X::[[RAG_evaluation]]

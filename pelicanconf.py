@@ -311,8 +311,8 @@ from nbconvert.preprocessors import RegexRemovePreprocessor, TagRemovePreprocess
 from pelican_jupyter import markup as nb_markup
 from traitlets.config import Config
 
-# Ignore Jupyter checkpoint files
-IGNORE_FILES = [".ipynb_checkpoints"]
+# Ignore Jupyter checkpoint files and virtual environments
+IGNORE_FILES = [".ipynb_checkpoints", ".venv"]
 
 # Notebook cell preprocessing - remove tagged cells
 c = Config()

@@ -1,0 +1,237 @@
+================================================================================
+USING GIT SUBMODULES FOR NOTEBOOK PROJECTS
+================================================================================
+
+This guide explains how to manage larger notebook projects as separate git
+repositories using submodules, while keeping smaller projects directly in
+the blog repository.
+
+--------------------------------------------------------------------------------
+WHEN TO USE SUBMODULES
+--------------------------------------------------------------------------------
+
+Use a SEPARATE REPOSITORY (submodule) when:
+  - Notebook project is large (many files, datasets, images)
+  - Project has its own release cycle or versioning
+  - Multiple people collaborate on the notebook independently
+  - You want to reuse the notebook in other contexts
+  - Project has heavy dependencies that bloat the blog repo
+
+Keep IN-BLOG (regular directory) when:
+  - Notebook is small and self-contained
+  - Tightly coupled to blog content
+  - No need for independent versioning
+  - Single author, simple workflow
+
+--------------------------------------------------------------------------------
+ADDING A NOTEBOOK AS SUBMODULE
+--------------------------------------------------------------------------------
+
+1. Create a new repository for your notebook project:
+
+   # On GitHub/GitLab, create new repo: my-big-notebook
+   # Initialize it with the standard notebook structure:
+   
+   git clone https://github.com/youruser/my-big-notebook.git
+   cd my-big-notebook
+   
+   # Copy the standard files from an existing notebook project:
+   cp ../blog/content/posts/notebooks/scripts/notebook.mk .
+   
+   # Create Makefile (note: path differs for submodule)
+   echo "include notebook.mk" > Makefile
+   
+   # Create other files: pyproject.toml, .gitignore, notebook.ipynb, etc.
+   git add .
+   git commit -m "Initial notebook structure"
+   git push
+
+2. Add the submodule to your blog repository:
+
+   cd /path/to/blog
+   git submodule add https://github.com/youruser/my-big-notebook.git \
+       content/posts/notebooks/my-big-notebook
+
+3. Commit the submodule reference:
+
+   git add .gitmodules content/posts/notebooks/my-big-notebook
+   git commit -m "Add my-big-notebook as submodule"
+   git push
+
+--------------------------------------------------------------------------------
+SUBMODULE MAKEFILE ADJUSTMENT
+--------------------------------------------------------------------------------
+
+For submodules, the Makefile needs a local copy of notebook.mk since
+"../scripts/" won't exist. Two options:
+
+OPTION A: Copy notebook.mk into the submodule repo
+   
+   # In the submodule repository
+   cp /path/to/blog/content/posts/notebooks/scripts/notebook.mk .
+   cp /path/to/blog/content/posts/notebooks/scripts/setup_env.sh .
+   cp /path/to/blog/content/posts/notebooks/scripts/execute_notebooks.sh .
+   
+   # Update Makefile to use local copy
+   echo "include notebook.mk" > Makefile
+
+OPTION B: Standalone Makefile (no include)
+
+   # Create a self-contained Makefile in the submodule:
+   
+   .PHONY: help setup dev execute clean
+
+   help:
+   	@echo "  setup   - Install dependencies"
+   	@echo "  dev     - Open in VS Code"
+   	@echo "  execute - Run notebook"
+   	@echo "  clean   - Remove .venv"
+
+   setup:
+   	@test -d .venv || uv venv
+   	@uv sync
+
+   dev: setup
+   	@code .
+
+   execute: setup
+   	@uv run jupyter nbconvert --to notebook --execute --inplace *.ipynb
+
+   clean:
+   	@rm -rf .venv .ipynb_checkpoints
+
+--------------------------------------------------------------------------------
+CLONING BLOG WITH SUBMODULES
+--------------------------------------------------------------------------------
+
+When cloning the blog on a new machine:
+
+   # Clone with all submodules
+   git clone --recursive https://github.com/youruser/blog.git
+
+   # OR clone first, then initialize submodules
+   git clone https://github.com/youruser/blog.git
+   cd blog
+   git submodule update --init --recursive
+
+--------------------------------------------------------------------------------
+UPDATING SUBMODULES
+--------------------------------------------------------------------------------
+
+Pull latest changes from submodule's upstream:
+
+   # Update single submodule
+   cd content/posts/notebooks/my-big-notebook
+   git pull origin main
+   cd ../../../..
+   git add content/posts/notebooks/my-big-notebook
+   git commit -m "Update my-big-notebook submodule"
+
+   # OR update all submodules at once
+   git submodule update --remote --merge
+   git add .
+   git commit -m "Update all submodules"
+
+--------------------------------------------------------------------------------
+MIXED SETUP: IN-BLOG + SUBMODULES
+--------------------------------------------------------------------------------
+
+Both types coexist naturally:
+
+   notebooks/
+   ├── scripts/                    # Shared scripts (for in-blog projects)
+   │   ├── notebook.mk
+   │   ├── setup_env.sh
+   │   └── execute_notebooks.sh
+   ├── 2024-simple-tutorial/       # In-blog (regular directory)
+   │   ├── Makefile                # include ../scripts/notebook.mk
+   │   └── ...
+   ├── my-big-notebook/            # SUBMODULE (separate repo)
+   │   ├── Makefile                # include notebook.mk (local copy)
+   │   ├── notebook.mk             # Local copy of shared makefile
+   │   └── ...
+   └── another-submodule/          # SUBMODULE
+       └── ...
+
+The parent Makefile targets work with both:
+
+   make dev-2024-simple-tutorial   # Works (in-blog)
+   make dev-my-big-notebook        # Works (submodule)
+
+Pelican processes both identically - it sees them as regular directories.
+
+--------------------------------------------------------------------------------
+CI/CD: GITHUB ACTIONS
+--------------------------------------------------------------------------------
+
+Add submodule checkout to your workflow:
+
+   # .github/workflows/build.yml
+   
+   jobs:
+     build:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v4
+           with:
+             submodules: recursive    # <-- Important!
+         
+         - name: Build site
+           run: make publish
+
+--------------------------------------------------------------------------------
+COMMON ISSUES
+--------------------------------------------------------------------------------
+
+Q: Submodule directory is empty after clone
+A: Run: git submodule update --init --recursive
+
+Q: Changes in submodule not showing in blog repo
+A: Submodules are pinned to specific commits. After making changes in the
+   submodule, you must commit in the parent repo to update the reference:
+   
+   cd content/posts/notebooks/my-big-notebook
+   git add . && git commit -m "changes" && git push
+   cd ../../../..
+   git add content/posts/notebooks/my-big-notebook
+   git commit -m "Update submodule reference"
+
+Q: "make dev-submodule" fails with missing scripts
+A: Submodules need local copies of notebook.mk and helper scripts,
+   or use a standalone Makefile (see OPTION B above).
+
+Q: Detached HEAD in submodule
+A: This is normal. To make changes:
+   
+   cd content/posts/notebooks/my-big-notebook
+   git checkout main
+   # make changes
+   git add . && git commit && git push
+
+Q: How to remove a submodule?
+A: 
+   git submodule deinit content/posts/notebooks/my-big-notebook
+   git rm content/posts/notebooks/my-big-notebook
+   rm -rf .git/modules/content/posts/notebooks/my-big-notebook
+   git commit -m "Remove submodule"
+
+--------------------------------------------------------------------------------
+QUICK REFERENCE
+--------------------------------------------------------------------------------
+
+Add submodule:
+   git submodule add <url> content/posts/notebooks/<name>
+
+Clone with submodules:
+   git clone --recursive <url>
+
+Initialize submodules (after regular clone):
+   git submodule update --init --recursive
+
+Update all submodules to latest:
+   git submodule update --remote --merge
+
+Check submodule status:
+   git submodule status
+
+================================================================================

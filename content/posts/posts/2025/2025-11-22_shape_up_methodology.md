@@ -15,25 +15,6 @@ prompt:
 
 #agile #scrum #shape-up #basecamp #37-signals #kanban
 
-X::[[2025-01-16-simple_inmemory_knowledge_graphs_for_quick_graph_querying]]
-
-- [[2025-06-30-practitioners-guide-to-test-suite-automation-with-github-copilot-agent]]
-
-> [!note] Important Information
-> This is a note callout.
-> It can span multiple lines.
-
-erte t
-
-> [!warning]
-> Be careful with this operation!
-
-ertert etert
-
-> [!tip] Pro Tip
-> Use keyboard shortcuts to save time.
-
-
 I've been thinking a lot lately about how we build software. Not the code itself—that's the easy part, really—but the _process_. The endless ceremonies, the sprint planning that somehow takes three hours, the daily standups that drift into problem-solving sessions, the backlog that's become this unwieldy beast no one wants to groom.
 
 For years, we've been told that Agile is the answer. Scrum, Kanban, SAFe—pick your flavor. And look, these frameworks have helped countless teams ship better software. But somewhere along the way, something started feeling off. The two-week sprints that fragment work into artificial chunks. The constant context switching without possibility to think deeply about the problem on the table. The **weird pressure to estimate story points for work we barely understand yet**. The nagging feeling that we're **spending more time _managing_ the process than actually building things**.
