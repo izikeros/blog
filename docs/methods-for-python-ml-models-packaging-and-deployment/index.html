@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
     <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
 
-    <link rel="stylesheet" href="https://www.safjan.com/pagefind/pagefind-ui.css">
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
 
         <link rel="stylesheet" type="text/css"
               href="https://www.safjan.com/styles/custom.css">
@@ -356,14 +356,14 @@
 </script>
 
 
-<script src="https://www.safjan.com/pagefind/pagefind-ui.js"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         new PagefindUI({
             element: "#search",
             showSubResults: false,
             showImages: false,
-            basePath: "https://www.safjan.com/pagefind/"
+            basePath: "/pagefind/"
         });
     });
 </script>
@@ -371,7 +371,7 @@
 <script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
 
 <style>
-.youtube-embed {
+.video-embed {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
@@ -379,7 +379,7 @@
     border-radius: 0.375rem;
     overflow: hidden;
 }
-.youtube-embed iframe {
+.video-embed iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -387,21 +387,21 @@
     height: 100%;
     border: 0;
 }
-.youtube-embed-wrapper {
+.video-embed-wrapper {
     margin-bottom: 1rem;
 }
-.youtube-embed-info {
+.video-embed-info {
     padding: 0.5rem 0.75rem;
     background: var(--color-bg-secondary, #f6f8fa);
     border-radius: 0 0 0.375rem 0.375rem;
     font-size: 0.875rem;
     margin-top: -0.375rem;
 }
-.youtube-embed-info a {
+.video-embed-info a {
     text-decoration: none;
     color: inherit;
 }
-.youtube-embed-info a:hover {
+.video-embed-info a:hover {
     text-decoration: underline;
 }
 </style>
@@ -409,13 +409,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('pre > code').forEach(function(code) {
         var text = code.textContent.trim();
-        if (!text.match(/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)/)) return;
-
         var lines = text.split('\n');
         var url = lines[0].trim();
-        var match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
-        if (!match) return;
-        var videoId = match[1];
+
+        var videoId = null;
+        var embedUrl = null;
+        var platform = null;
+
+        // YouTube detection
+        var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+            videoId = ytMatch[1];
+            embedUrl = 'https://www.youtube-nocookie.com/embed/' + videoId;
+            platform = 'youtube';
+        }
+
+        // Vimeo detection
+        var vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        if (vimeoMatch) {
+            videoId = vimeoMatch[1];
+            embedUrl = 'https://player.vimeo.com/video/' + videoId + '?dnt=1';
+            platform = 'vimeo';
+        }
+
+        if (!videoId || !embedUrl) return;
 
         var meta = {};
         lines.slice(1).forEach(function(line) {
@@ -424,17 +441,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         var wrapper = document.createElement('div');
-        wrapper.className = 'youtube-embed-wrapper';
+        wrapper.className = 'video-embed-wrapper';
 
         var embed = document.createElement('div');
-        embed.className = 'youtube-embed';
-        embed.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + videoId +
-            '" allowfullscreen loading="lazy" title="' + (meta.title || 'YouTube video').replace(/"/g, '&quot;') + '"></iframe>';
+        embed.className = 'video-embed';
+        embed.innerHTML = '<iframe src="' + embedUrl +
+            '" allowfullscreen loading="lazy" title="' + (meta.title || (platform === 'youtube' ? 'YouTube video' : 'Vimeo video')).replace(/"/g, '&quot;') + '"></iframe>';
         wrapper.appendChild(embed);
 
         if (meta.title || meta.author) {
             var info = document.createElement('div');
-            info.className = 'youtube-embed-info';
+            info.className = 'video-embed-info';
             var html = meta.title ? '<strong>' + meta.title + '</strong>' : '';
             if (meta.author) {
                 html += (meta.title ? ' &bull; ' : '');
@@ -444,6 +461,64 @@ document.addEventListener('DOMContentLoaded', function() {
             wrapper.appendChild(info);
         }
         code.closest('pre').replaceWith(wrapper);
+    });
+});
+</script>
+
+<style>
+.tweet-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.tweet-embed-loading {
+    padding: 1rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0.375rem;
+    color: var(--color-text-secondary, #6c757d);
+    font-size: 0.875rem;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var twitterScriptLoaded = false;
+
+    function loadTwitterScript() {
+        if (twitterScriptLoaded) return;
+        twitterScriptLoaded = true;
+        var script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }
+
+    document.querySelectorAll('pre > code.language-tweet').forEach(function(code) {
+        var text = code.textContent.trim();
+        var url = text.split('\n')[0].trim();
+
+        // Twitter/X URL detection
+        var tweetMatch = url.match(/^https?:\/\/(twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
+        if (!tweetMatch) return;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'tweet-embed-wrapper';
+        wrapper.innerHTML = '<div class="tweet-embed-loading">Loading tweet...</div>';
+
+        code.closest('pre').replaceWith(wrapper);
+
+        // Fetch oEmbed data
+        var oembedUrl = 'https://publish.twitter.com/oembed?url=' + encodeURIComponent(url) + '&dnt=true&omit_script=true';
+
+        fetch(oembedUrl)
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                wrapper.innerHTML = data.html;
+                loadTwitterScript();
+                if (window.twttr && window.twttr.widgets) {
+                    window.twttr.widgets.load(wrapper);
+                }
+            })
+            .catch(function() {
+                wrapper.innerHTML = '<div class="tweet-embed-loading">Failed to load tweet. <a href="' + url + '" target="_blank" rel="noopener">View on Twitter</a></div>';
+            });
     });
 });
 </script>

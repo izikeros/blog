@@ -1,0 +1,2312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.safjan.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.safjan.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.safjan.com/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://www.safjan.com/favicon.ico">
+    <link rel="manifest" href="https://www.safjan.com/site.webmanifest">
+    <meta name="theme-color" content="#333333">
+    <meta name="apple-mobile-web-app-title" content="Krystian Safjan's Blog">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain, create golden evaluation datasets, and systematically assess retrieval quality using Faithfulness, Context Precision, Context Recall, and Factual Correctness metrics. Supports OpenAI, Azure OpenAI, and Ollama backends."/>
+    <meta name="keywords" content="python, mlflow, ragas, rag, llm, evaluation, langchain, tutorial">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="RAG Evaluation with RAGAS and MLflow - A Practical Guide"/>
+  <meta property="og:description" content="A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain, create golden evaluation datasets, and systematically assess retrieval quality using Faithfulness, Context Precision, Context Recall, and Factual Correctness metrics. Supports OpenAI, Azure OpenAI, and Ollama backends."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-01-08 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-01-08 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
+  <meta property="article:section" content="Data Science"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="mlflow"/>
+  <meta property="article:tag" content="ragas"/>
+  <meta property="article:tag" content="rag"/>
+  <meta property="article:tag" content="llm"/>
+  <meta property="article:tag" content="evaluation"/>
+  <meta property="article:tag" content="langchain"/>
+  <meta property="article:tag" content="tutorial"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_1.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/abstract_1.jpg"/>
+    <meta name="twitter:image:alt" content="RAG Evaluation with RAGAS and MLflow - A Practical Guide"/>
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:title" content="RAG Evaluation with RAGAS and MLflow - A Practical Guide"/>
+    <meta name="twitter:description" content="A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain, create golden evaluation datasets,..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/"
+  },
+  "headline": "RAG Evaluation with RAGAS and MLflow - A Practical Guide",
+  "datePublished": "2026-01-08T00:00:00+01:00",
+  "dateModified": "2026-01-08T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/abstract_1.jpg",  "url": "https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/",
+  "description": "A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain,...",
+  "articleSection": "Data Science",
+  "inLanguage": "en",
+  "keywords": "python, mlflow, ragas, rag, llm, evaluation, langchain, tutorial",
+  "wordCount": 4191,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Data Science",
+      "item": "https://www.safjan.com/category/data-science.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "RAG Evaluation with RAGAS and MLflow - A..."
+    }
+  ]
+}
+</script>
+
+
+
+<meta name="ai:summary" content="A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain, create golden evaluation datasets, and systematically assess retrieval quality using Faithfulness, Context Precision, Context Recall, and...">
+
+<meta name="ai:topics" content="python, mlflow, ragas, rag, llm, evaluation, langchain, tutorial">
+
+
+
+<meta name="ai:word-count" content="4191">
+<meta name="ai:reading-time" content="20 min">
+
+<meta name="ai:section" content="Data Science">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <title>    RAG Evaluation with RAGAS and MLflow - A Practical Guide
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body>
+<div id="reading-progress" class="reading-progress"></div>
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
+</div>
+</aside>
+<main>
+
+        <nav aria-label="Main navigation">
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2026-01-08 
+
+
+                <br/>
+            </p>
+            <h1>RAG Evaluation with RAGAS and MLflow - A Practical Guide</h1>
+            <div class="header-underline"></div>
+                <div class="summary"><p>A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain, create golden evaluation datasets, and systematically assess retrieval quality using Faithfulness, Context Precision, Context Recall, and Factual Correctness metrics. Supports OpenAI, Azure OpenAI, and Ollama backends.</p></div>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/">
+                        <img style="width: 100%; "
+                             src="/images/head/abstract_1.jpg" alt="RAG Evaluation with RAGAS and MLflow - A Practical Guide">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+
+
+        <div class="article-content">
+            <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="RAG-Evaluation-with-RAGAS-and-MLflow">RAG Evaluation with RAGAS and MLflow</h1>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Table of contents</strong><a id="toc0_"></a></p>
+<ul>
+<li><a href="#toc1_">What You'll Learn</a></li>
+<li><a href="#toc2_">Prerequisites</a></li>
+<li><a href="#toc3_">Setup and Configuration</a><ul>
+<li><a href="#toc3_1_">LLM Provider Configuration</a></li>
+</ul>
+</li>
+<li><a href="#toc4_">Sample Knowledge Base</a></li>
+<li><a href="#toc5_">Minimal RAG Pipeline</a><ul>
+<li><a href="#toc5_1_">Enable MLflow Tracing</a></li>
+</ul>
+</li>
+<li><a href="#toc6_">Load Golden Dataset</a><ul>
+<li><a href="#toc6_1_">Generate RAG Responses for Evaluation</a></li>
+</ul>
+</li>
+<li><a href="#toc7_">RAGAS Evaluation with MLflow</a><ul>
+<li><a href="#toc7_1_">Prepare Evaluation Data</a></li>
+</ul>
+</li>
+<li><a href="#toc8_">MLflow Results Analysis</a></li>
+<li><a href="#toc9_">Extras: Comparing RAG Variants with MLflow</a><ul>
+<li><a href="#toc9_1_">Example: Comparing Chunk Sizes</a></li>
+<li><a href="#toc9_2_">Comparing Results in MLflow UI</a></li>
+</ul>
+</li>
+</ul>
+<!-- vscode-jupyter-toc-config
+	numbering=false
+	anchor=true
+	flat=false
+	minLevel=2
+	maxLevel=6
+	/vscode-jupyter-toc-config -->
+<!-- THIS CELL WILL BE REPLACED ON TOC UPDATE. DO NOT WRITE YOUR TEXT IN THIS CELL -->
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This tutorial demonstrates how to evaluate Retrieval-Augmented Generation (RAG) systems using <strong>RAGAS</strong> (Retrieval Augmented Generation Assessment) metrics through <strong>MLflow</strong> integration.</p>
+<h2 id="What-You'll-Learn"><a id="toc1_"></a><a href="#toc0_">What You'll Learn</a></h2><ol>
+<li><strong>Build a minimal RAG pipeline</strong> using LangChain and FAISS</li>
+<li><strong>Create a golden evaluation dataset</strong> with expected answers</li>
+<li><strong>Evaluate RAG quality</strong> using RAGAS metrics (Faithfulness, Context Precision, Context Recall, Factual Correctness)</li>
+<li><strong>Track results in MLflow</strong> for systematic comparison</li>
+<li><strong>Support multiple LLM providers</strong>: OpenAI, Azure OpenAI, and Ollama</li>
+</ol>
+<h2 id="Prerequisites"><a id="toc2_"></a><a href="#toc0_">Prerequisites</a></h2><ul>
+<li>Python 3.10+</li>
+<li>API key for your chosen LLM provider</li>
+<li>Basic understanding of RAG concepts</li>
+</ul>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Setup-and-Configuration"><a id="toc3_"></a><a href="#toc0_">Setup and Configuration</a></h2>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="LLM-Provider-Configuration"><a id="toc3_1_"></a><a href="#toc0_">LLM Provider Configuration</a></h3><p>This tutorial supports three LLM providers. Choose your provider and configure the appropriate environment variables:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Required Environment Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI</td>
+<td><code>OPENAI_API_KEY</code></td>
+</tr>
+<tr>
+<td>Azure OpenAI</td>
+<td><code>AZURE_OPENAI_ENDPOINT</code>, <code>AZURE_OPENAI_API_KEY</code>, <code>AZURE_OPENAI_DEPLOYMENT_NAME</code></td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>None (runs locally on <code>http://localhost:11434</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LLMProvider</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">OPENAI</span> <span class="o">=</span> <span class="s2">"openai"</span>
+    <span class="n">AZURE_OPENAI</span> <span class="o">=</span> <span class="s2">"azure_openai"</span>
+    <span class="n">OLLAMA</span> <span class="o">=</span> <span class="s2">"ollama"</span>
+
+
+<span class="c1"># === CONFIGURE YOUR PROVIDER HERE ===</span>
+<span class="n">PROVIDER</span> <span class="o">=</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">AZURE_OPENAI</span>
+
+<span class="c1"># Model names per provider</span>
+<span class="n">MODEL_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"chat_model"</span><span class="p">:</span> <span class="s2">"gpt-4o-mini"</span><span class="p">,</span>
+        <span class="s2">"embedding_model"</span><span class="p">:</span> <span class="s2">"text-embedding-3-small"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">LLMProvider</span><span class="o">.</span><span class="n">AZURE_OPENAI</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"chat_model"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_OPENAI_DEPLOYMENT_NAME"</span><span class="p">,</span> <span class="s2">"gpt-4o-mini"</span><span class="p">),</span>
+        <span class="s2">"embedding_model"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_OPENAI_EMBEDDING_DEPLOYMENT"</span><span class="p">,</span> <span class="s2">"text-embedding-3-small"</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OLLAMA</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"chat_model"</span><span class="p">:</span> <span class="s2">"llama3.2:3b"</span><span class="p">,</span>
+        <span class="s2">"embedding_model"</span><span class="p">:</span> <span class="s2">"nomic-embed-text"</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Using provider: </span><span class="si">{</span><span class="n">PROVIDER</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Chat model: </span><span class="si">{</span><span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">PROVIDER</span><span class="p">][</span><span class="s1">'chat_model'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Embedding model: </span><span class="si">{</span><span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">PROVIDER</span><span class="p">][</span><span class="s1">'embedding_model'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Using provider: azure_openai
+Chat model: gpt-4o-mini
+Embedding model: text-embedding-ada-002-v2
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">validate_environment</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="n">LLMProvider</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Validate required environment variables for the selected provider."""</span>
+    <span class="n">required_vars</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OPENAI_API_KEY"</span><span class="p">],</span>
+        <span class="n">LLMProvider</span><span class="o">.</span><span class="n">AZURE_OPENAI</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"AZURE_OPENAI_ENDPOINT"</span><span class="p">,</span>
+            <span class="s2">"AZURE_OPENAI_API_KEY"</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OLLAMA</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="p">}</span>
+
+    <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">required_vars</span><span class="p">[</span><span class="n">provider</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">var</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">EnvironmentError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Missing environment variables for </span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">missing</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="sa">f</span><span class="s2">"Please set them before continuing."</span>
+        <span class="p">)</span>
+    
+    <span class="c1"># Set provider-specific env vars for litellm (used by RAGAS scorers)</span>
+    <span class="k">if</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OLLAMA</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"OLLAMA_API_BASE"</span><span class="p">,</span> <span class="s2">"http://localhost:11434"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"OLLAMA_API_BASE set to: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'OLLAMA_API_BASE'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">AZURE_OPENAI</span><span class="p">:</span>
+        <span class="c1"># Set litellm Azure env vars from Azure OpenAI vars</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_OPENAI_API_KEY"</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_API_KEY"</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AZURE_API_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AZURE_OPENAI_API_KEY"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_OPENAI_ENDPOINT"</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_API_BASE"</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AZURE_API_BASE"</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AZURE_OPENAI_ENDPOINT"</span><span class="p">]</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"AZURE_API_VERSION"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_OPENAI_API_VERSION"</span><span class="p">,</span> <span class="s2">"2024-02-01"</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Azure litellm env vars configured"</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Environment validated for </span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="n">validate_environment</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Azure litellm env vars configured
+Environment validated for azure_openai
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span><span class="p">,</span> <span class="n">OpenAIEmbeddings</span><span class="p">,</span> <span class="n">AzureChatOpenAI</span><span class="p">,</span> <span class="n">AzureOpenAIEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain_community.embeddings</span> <span class="kn">import</span> <span class="n">OllamaEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain_community.chat_models</span> <span class="kn">import</span> <span class="n">ChatOllama</span>
+
+
+<span class="k">def</span> <span class="nf">get_llm</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="n">LLMProvider</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Factory function to create LLM instance based on provider."""</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">provider</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">"chat_model"</span><span class="p">],</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">AZURE_OPENAI</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">AzureChatOpenAI</span><span class="p">(</span>
+            <span class="n">azure_deployment</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">"chat_model"</span><span class="p">],</span>
+            <span class="n">api_version</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_OPENAI_API_VERSION"</span><span class="p">,</span> <span class="s2">"2024-02-01"</span><span class="p">),</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OLLAMA</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ChatOllama</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">"chat_model"</span><span class="p">],</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">base_url</span><span class="o">=</span><span class="s2">"http://localhost:11434"</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_embeddings</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="n">LLMProvider</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Factory function to create embeddings instance based on provider."""</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">provider</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">OpenAIEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">"embedding_model"</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">AZURE_OPENAI</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">AzureOpenAIEmbeddings</span><span class="p">(</span>
+            <span class="n">azure_deployment</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">"embedding_model"</span><span class="p">],</span>
+            <span class="n">api_version</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AZURE_OPENAI_API_VERSION"</span><span class="p">,</span> <span class="s2">"2024-02-01"</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OLLAMA</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">OllamaEmbeddings</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">"embedding_model"</span><span class="p">],</span>
+            <span class="n">base_url</span><span class="o">=</span><span class="s2">"http://localhost:11434"</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_mlflow_model_uri</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="n">LLMProvider</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Get MLflow model URI for RAGAS scorers (uses litellm format)."""</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">provider</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"openai:/</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">'chat_model'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">AZURE_OPENAI</span><span class="p">:</span>
+        <span class="c1"># Azure format: azure/&lt;deployment_name&gt;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"azure:/</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">'chat_model'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">LLMProvider</span><span class="o">.</span><span class="n">OLLAMA</span><span class="p">:</span>
+        <span class="c1"># Ollama format for litellm: ollama/&lt;model_name&gt;</span>
+        <span class="c1"># Note: ollama_chat format has issues with litellm, use ollama/ prefix</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"ollama:/</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">'chat_model'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">get_llm</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">get_embeddings</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
+<span class="n">mlflow_model_uri</span> <span class="o">=</span> <span class="n">get_mlflow_model_uri</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"LLM initialized: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Embeddings initialized: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MLflow model URI: </span><span class="si">{</span><span class="n">mlflow_model_uri</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>LLM initialized: AzureChatOpenAI
+Embeddings initialized: AzureOpenAIEmbeddings
+MLflow model URI: azure:/gpt-4o-mini
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Sample-Knowledge-Base"><a id="toc4_"></a><a href="#toc0_">Sample Knowledge Base</a></h2><p>We'll create a small knowledge base about <strong>MLflow</strong> - fitting for a tutorial that uses MLflow for evaluation! This dataset contains key concepts that our RAG system will retrieve from.</p>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Load knowledge base from external file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"data/knowledge_base.json"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">KNOWLEDGE_BASE</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Knowledge base contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">KNOWLEDGE_BASE</span><span class="p">)</span><span class="si">}</span><span class="s2"> documents"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">KNOWLEDGE_BASE</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">preview</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">preview</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Knowledge base contains 20 documents
+  1. MLflow Tracking is an API and UI for logging parameters, code versions, metrics,...
+  2. The MLflow Model Registry is a centralized model store that provides model linea...
+  3. MLflow GenAI provides specialized tools for developing and evaluating generative...
+  4. RAGAS (Retrieval Augmented Generation Assessment) is an evaluation framework int...
+  5. MLflow Projects package code in a reusable, reproducible form. A project is simp...
+  6. MLflow's autolog feature automatically logs metrics, parameters, and models duri...
+  7. The MLflow Model format is a standard format for packaging machine learning mode...
+  8. Evaluation in MLflow can be performed using mlflow.evaluate() for traditional ML...
+  9. MLflow Model Serving enables deploying models as REST API endpoints. You can ser...
+  10. MLflow Recipes (formerly MLflow Pipelines) provide predefined templates for comm...
+  11. The MLflow CLI provides commands for running projects, serving models, and manag...
+  12. MLflow's REST API allows programmatic access to the tracking server. Endpoints i...
+  13. MLflow experiments organize runs into logical groups. Each experiment has a uniq...
+  14. MLflow provides run comparison capabilities through the UI and API. The Compare ...
+  15. MLflow artifacts are files associated with runs, such as models, data files, and...
+  16. Model signatures in MLflow define the expected input and output schema for model...
+  17. MLflow on Databricks provides managed MLflow tracking, model registry, and model...
+  18. MLflow supports multiple environment managers for reproducibility. Projects can ...
+  19. MLflow Prompt Engineering tools help develop and version prompts for LLM applica...
+  20. MLflow integrates with LangChain through mlflow.langchain module. The integratio...
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_text_splitters</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain_community.vectorstores</span> <span class="kn">import</span> <span class="n">FAISS</span>
+<span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">KNOWLEDGE_BASE</span><span class="p">]</span>
+
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">splits</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Split into </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">splits</span><span class="p">)</span><span class="si">}</span><span class="s2"> chunks"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Split into 20 chunks
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">splits</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+<span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"k"</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Vector store created with </span><span class="si">{</span><span class="n">vectorstore</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">ntotal</span><span class="si">}</span><span class="s2"> vectors"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Vector store created with 20 vectors
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_query</span> <span class="o">=</span> <span class="s2">"What metrics does RAGAS provide?"</span>
+<span class="n">test_results</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">test_query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test query: '</span><span class="si">{</span><span class="n">test_query</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_results</span><span class="p">)</span><span class="si">}</span><span class="s2"> documents:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_results</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Document </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> ---"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"..."</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Test query: 'What metrics does RAGAS provide?'
+Retrieved 3 documents:
+
+--- Document 1 ---
+RAGAS (Retrieval Augmented Generation Assessment) is an evaluation framework integrated with MLflow for assessing RAG pipelines. Key metrics include: Faithfulness (measures if the answer is grounded i...
+
+--- Document 2 ---
+MLflow GenAI provides specialized tools for developing and evaluating generative AI applications. It includes mlflow.genai.evaluate() for systematic assessment of LLM outputs using configurable scorer...
+
+--- Document 3 ---
+Evaluation in MLflow can be performed using mlflow.evaluate() for traditional ML models or mlflow.genai.evaluate() for generative AI applications. For GenAI, evaluation uses Scorer objects that can be...
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Minimal-RAG-Pipeline"><a id="toc5_"></a><a href="#toc0_">Minimal RAG Pipeline</a></h2><p>We'll build a simple RAG chain using LangChain's LCEL (LangChain Expression Language) that:</p>
+<ol>
+<li>Retrieves relevant context from our FAISS vector store</li>
+<li>Formats a prompt with the context and question</li>
+<li>Generates an answer using the LLM</li>
+</ol>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="kn">from</span> <span class="nn">langchain_core.output_parsers</span> <span class="kn">import</span> <span class="n">StrOutputParser</span>
+<span class="kn">from</span> <span class="nn">langchain_core.runnables</span> <span class="kn">import</span> <span class="n">RunnablePassthrough</span>
+
+<span class="n">RAG_PROMPT</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">You are a helpful assistant answering questions about MLflow.</span>
+<span class="s2">Use ONLY the following context to answer the question.</span>
+<span class="s2">If the context doesn't contain the answer, say "I don't have enough information to answer this question."</span>
+
+<span class="s2">Context:</span>
+<span class="si">{context}</span>
+
+<span class="s2">Question: </span><span class="si">{question}</span>
+
+<span class="s2">Answer:</span>
+<span class="s2">"""</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">format_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">)</span>
+
+
+<span class="n">rag_chain</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"context"</span><span class="p">:</span> <span class="n">retriever</span> <span class="o">|</span> <span class="n">format_docs</span><span class="p">,</span>
+        <span class="s2">"question"</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">(),</span>
+    <span class="p">}</span>
+    <span class="o">|</span> <span class="n">RAG_PROMPT</span>
+    <span class="o">|</span> <span class="n">llm</span>
+    <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"RAG chain created successfully"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>RAG chain created successfully
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_answer</span> <span class="o">=</span> <span class="n">rag_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">"What is MLflow Tracking?"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Test Question: What is MLflow Tracking?"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Answer: </span><span class="si">{</span><span class="n">test_answer</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Test Question: What is MLflow Tracking?
+
+Answer: MLflow Tracking is an API and UI for logging parameters, code versions, metrics, and artifacts when running your machine learning code. It allows you to log and query experiments using Python, REST, R API, and Java API. The MLflow Tracking component lets you log source code, models, and visualizations. Each run records: code version, start and end time, source, parameters, metrics, and artifacts.
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Enable-MLflow-Tracing"><a id="toc5_1_"></a><a href="#toc0_">Enable MLflow Tracing</a></h3><p>MLflow's LangChain integration can automatically capture traces of our RAG pipeline invocations. This is essential for evaluation - RAGAS scorers analyze these traces to compute metrics.</p>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">mlflow</span>
+
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">"RAG-Evaluation-Tutorial"</span><span class="p">)</span>
+
+<span class="n">mlflow</span><span class="o">.</span><span class="n">langchain</span><span class="o">.</span><span class="n">autolog</span><span class="p">(</span><span class="n">log_traces</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MLflow experiment: </span><span class="si">{</span><span class="n">mlflow</span><span class="o">.</span><span class="n">get_experiment_by_name</span><span class="p">(</span><span class="s1">'RAG-Evaluation-Tutorial'</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"LangChain autologging enabled with tracing"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2026/01/08 16:18:16 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+2026/01/08 16:18:16 INFO mlflow.store.db.utils: Updating database tables
+2026/01/08 16:18:16 INFO alembic.runtime.migration: Context impl SQLiteImpl.
+2026/01/08 16:18:16 INFO alembic.runtime.migration: Will assume non-transactional DDL.
+2026/01/08 16:18:16 INFO alembic.runtime.migration: Context impl SQLiteImpl.
+2026/01/08 16:18:16 INFO alembic.runtime.migration: Will assume non-transactional DDL.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>MLflow experiment: RAG-Evaluation-Tutorial
+LangChain autologging enabled with tracing
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Load-Golden-Dataset"><a id="toc6_"></a><a href="#toc0_">Load Golden Dataset</a></h2><p>A <strong>golden dataset</strong> (also called ground truth or evaluation dataset) contains:</p>
+<ul>
+<li><strong>Questions</strong>: User queries we want to evaluate</li>
+<li><strong>Expected Answers</strong>: The correct/ideal responses</li>
+<li><strong>Expected Contexts</strong> (optional): Which documents should be retrieved</li>
+</ul>
+<p>This dataset allows us to systematically measure our RAG system's quality.</p>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load golden dataset from external file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"data/golden_dataset.json"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">GOLDEN_DATASET</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">eval_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">GOLDEN_DATASET</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Golden dataset contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">GOLDEN_DATASET</span><span class="p">)</span><span class="si">}</span><span class="s2"> evaluation samples"</span><span class="p">)</span>
+<span class="n">eval_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Golden dataset contains 20 evaluation samples
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>question</th>
+<th>ground_truth</th>
+<th>contexts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>What is MLflow Tracking used for?</td>
+<td>MLflow Tracking is used for logging parameters...</td>
+<td>[MLflow Tracking is an API and UI for logging ...</td>
+</tr>
+<tr>
+<th>1</th>
+<td>What features does the MLflow Model Registry p...</td>
+<td>The MLflow Model Registry provides model linea...</td>
+<td>[The MLflow Model Registry is a centralized mo...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Generate-RAG-Responses-for-Evaluation"><a id="toc6_1_"></a><a href="#toc0_">Generate RAG Responses for Evaluation</a></h3><p>We'll run our RAG pipeline on each question and collect the responses along with the retrieved contexts. This data will be used by RAGAS scorers.</p>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define traced RAG function for evaluation</span>
+<span class="c1"># IMPORTANT: Function parameter names must match keys in data['inputs']</span>
+<span class="c1"># Since inputs={'question': ...}, the function must accept 'question' parameter</span>
+
+<span class="nd">@mlflow</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">span_type</span><span class="o">=</span><span class="s2">"CHAIN"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">traced_rag_predict</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Traced RAG prediction function for mlflow.genai.evaluate().</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        question: The question to answer (matches inputs['question'] key)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict with 'response' and 'retrieved_contexts' for RAGAS scorers</span>
+<span class="sd">    """</span>
+    <span class="c1"># Retrieval step - creates RETRIEVER span</span>
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"retriever"</span><span class="p">,</span> <span class="n">span_type</span><span class="o">=</span><span class="s2">"RETRIEVER"</span><span class="p">)</span> <span class="k">as</span> <span class="n">span</span><span class="p">:</span>
+        <span class="n">retrieved_docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+        <span class="n">contexts</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">retrieved_docs</span><span class="p">]</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_inputs</span><span class="p">({</span><span class="s2">"question"</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_outputs</span><span class="p">({</span><span class="s2">"retrieved_contexts"</span><span class="p">:</span> <span class="n">contexts</span><span class="p">})</span>
+    
+    <span class="c1"># Generation step - creates LLM span</span>
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"generator"</span><span class="p">,</span> <span class="n">span_type</span><span class="o">=</span><span class="s2">"LLM"</span><span class="p">)</span> <span class="k">as</span> <span class="n">span</span><span class="p">:</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">rag_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_inputs</span><span class="p">({</span><span class="s2">"question"</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span> <span class="s2">"contexts"</span><span class="p">:</span> <span class="n">contexts</span><span class="p">})</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_outputs</span><span class="p">({</span><span class="s2">"response"</span><span class="p">:</span> <span class="n">answer</span><span class="p">})</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"response"</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
+        <span class="s2">"retrieved_contexts"</span><span class="p">:</span> <span class="n">contexts</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Preview a sample from the golden dataset</span>
+<span class="c1"># Note: With predict_fn approach, answers are generated during evaluation</span>
+<span class="n">sample_idx</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sample evaluation record #</span><span class="si">{</span><span class="n">sample_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">eval_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">][</span><span class="s1">'question'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Expected Answer: </span><span class="si">{</span><span class="n">eval_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">][</span><span class="s1">'ground_truth'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Show what the traced function would produce for this question</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Testing RAG response for this question ---"</span><span class="p">)</span>
+<span class="n">test_output</span> <span class="o">=</span> <span class="n">traced_rag_predict</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="n">eval_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">][</span><span class="s1">'question'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">RAG Answer: </span><span class="si">{</span><span class="n">test_output</span><span class="p">[</span><span class="s1">'response'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Retrieved Contexts (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_output</span><span class="p">[</span><span class="s1">'retrieved_contexts'</span><span class="p">])</span><span class="si">}</span><span class="s2">):</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">ctx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_output</span><span class="p">[</span><span class="s1">'retrieved_contexts'</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Context </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ctx</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Sample evaluation record #3:
+
+Question: What metrics does RAGAS provide for RAG evaluation?
+
+Expected Answer: RAGAS provides four key metrics: Faithfulness (measures if the answer is grounded in context), Context Precision (evaluates if relevant documents are ranked higher), Context Recall (checks if context contains all needed information), and Factual Correctness (compares output against expected answers).
+
+--- Testing RAG response for this question ---
+
+RAG Answer: RAGAS provides the following key metrics for RAG evaluation: Faithfulness, Context Precision, Context Recall, and Factual Correctness.
+
+Retrieved Contexts (3):
+
+  Context 1: RAGAS (Retrieval Augmented Generation Assessment) is an evaluation framework integrated with MLflow ...
+
+  Context 2: Evaluation in MLflow can be performed using mlflow.evaluate() for traditional ML models or mlflow.ge...
+
+  Context 3: MLflow GenAI provides specialized tools for developing and evaluating generative AI applications. It...
+
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="RAGAS-Evaluation-with-MLflow"><a id="toc7_"></a><a href="#toc0_">RAGAS Evaluation with MLflow</a></h2><p>Now we'll use MLflow's RAGAS integration to evaluate our RAG pipeline. The key metrics we'll compute:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What it measures</th>
+<th>Requires</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Faithfulness</strong></td>
+<td>Is the answer grounded in the retrieved context?</td>
+<td>answer, contexts</td>
+</tr>
+<tr>
+<td><strong>Context Precision</strong></td>
+<td>Are relevant docs ranked higher than irrelevant ones?</td>
+<td>question, contexts, expected_answer</td>
+</tr>
+<tr>
+<td><strong>Context Recall</strong></td>
+<td>Does the context contain all info needed to answer?</td>
+<td>contexts, expected_answer</td>
+</tr>
+<tr>
+<td><strong>Factual Correctness</strong></td>
+<td>Does the answer match the expected ground truth?</td>
+<td>answer, expected_answer</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note on LLM Judge</strong>: RAGAS metrics use an LLM as a judge. For best results, use <strong>OpenAI</strong> (gpt-4o-mini) as the judge model even if you're using Ollama for RAG generation. Ollama/local models may have issues with litellm's structured output parsing. Set <code>JUDGE_PROVIDER = LLMProvider.OPENAI</code> below if you encounter scoring errors with Ollama.</p>
+</blockquote>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Test litellm connectivity (optional - helps debug scoring issues)</span>
+<span class="kn">import</span> <span class="nn">litellm</span>
+
+<span class="k">def</span> <span class="nf">test_litellm_connection</span><span class="p">(</span><span class="n">model_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Test if litellm can connect to the model."""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">litellm</span><span class="o">.</span><span class="n">completion</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model_uri</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"Say 'test' and nothing else."</span><span class="p">}],</span>
+            <span class="n">max_tokens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ litellm connection successful: </span><span class="si">{</span><span class="n">model_uri</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Response: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✗ litellm connection failed: </span><span class="si">{</span><span class="n">model_uri</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Error: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)[:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="c1"># Test the judge model connection</span>
+<span class="n">judge_model_uri</span> <span class="o">=</span> <span class="n">get_mlflow_model_uri</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Testing judge model: </span><span class="si">{</span><span class="n">judge_model_uri</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">litellm_ok</span> <span class="o">=</span> <span class="n">test_litellm_connection</span><span class="p">(</span><span class="n">judge_model_uri</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">litellm_ok</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">⚠️  Consider using OpenAI as judge model for reliable scoring."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"   Set JUDGE_PROVIDER = LLMProvider.OPENAI in the next cell."</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Testing judge model: azure:/gpt-4o-mini
+
+
+<span class="ansi-red-intense-fg ansi-bold">Provider List: https://docs.litellm.ai/docs/providers</span>
+
+
+<span class="ansi-red-intense-fg ansi-bold">Provider List: https://docs.litellm.ai/docs/providers</span>
+
+✗ litellm connection failed: azure:/gpt-4o-mini
+  Error: BadRequestError: litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call.
+
+⚠️  Consider using OpenAI as judge model for reliable scoring.
+   Set JUDGE_PROVIDER = LLMProvider.OPENAI in the next cell.
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mlflow.genai.scorers.ragas</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Faithfulness</span><span class="p">,</span>
+    <span class="n">ContextPrecision</span><span class="p">,</span>
+    <span class="n">ContextRecall</span><span class="p">,</span>
+    <span class="n">FactualCorrectness</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Configure the judge model for RAGAS evaluation</span>
+<span class="c1"># For reliable scoring, use OpenAI even when using Ollama for RAG generation</span>
+<span class="n">JUDGE_PROVIDER</span> <span class="o">=</span> <span class="n">PROVIDER</span>  <span class="c1"># Change to LLMProvider.OPENAI for better results</span>
+<span class="n">judge_model_uri</span> <span class="o">=</span> <span class="n">get_mlflow_model_uri</span><span class="p">(</span><span class="n">JUDGE_PROVIDER</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Judge model: </span><span class="si">{</span><span class="n">judge_model_uri</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"(Change JUDGE_PROVIDER to LLMProvider.OPENAI if scoring fails with Ollama)</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Note: ContextPrecision and ContextRecall require traces with RETRIEVER spans</span>
+<span class="c1"># For evaluation without traces, use Faithfulness and FactualCorrectness</span>
+<span class="n">scorers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Faithfulness</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">judge_model_uri</span><span class="p">),</span>
+    <span class="n">FactualCorrectness</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">judge_model_uri</span><span class="p">),</span>
+    <span class="c1"># These require traces with retriever spans - may show errors without proper tracing:</span>
+    <span class="n">ContextPrecision</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">judge_model_uri</span><span class="p">),</span>
+    <span class="n">ContextRecall</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">judge_model_uri</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Configured </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">scorers</span><span class="p">)</span><span class="si">}</span><span class="s2"> RAGAS scorers:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">scorer</span> <span class="ow">in</span> <span class="n">scorers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">scorer</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Judge model: azure:/gpt-4o-mini
+(Change JUDGE_PROVIDER to LLMProvider.OPENAI if scoring fails with Ollama)
+
+Configured 4 RAGAS scorers:
+  - Faithfulness
+  - FactualCorrectness
+  - ContextPrecision
+  - ContextRecall
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Prepare-Evaluation-Data"><a id="toc7_1_"></a><a href="#toc0_">Prepare Evaluation Data</a></h3><p>MLflow's <code>genai.evaluate()</code> expects data in a specific format. We need to map our data to the expected schema.</p>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare evaluation data for predict_fn approach</span>
+<span class="c1"># With predict_fn, we pass inputs and expectations - outputs come from the traced function</span>
+<span class="n">eval_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">eval_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">eval_data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">"inputs"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"question"</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">"question"</span><span class="p">]},</span>
+        <span class="s2">"expectations"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"ground_truth"</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">"ground_truth"</span><span class="p">],</span>
+            <span class="s2">"contexts"</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"contexts"</span><span class="p">,</span> <span class="p">[]),</span>  <span class="c1"># For ContextRecall</span>
+        <span class="p">},</span>
+    <span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Prepared </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">eval_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples for evaluation"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Sample format:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  inputs: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">eval_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'inputs'</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  expectations: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">eval_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'expectations'</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">eval_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'expectations'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'ground_truth'</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  ground_truth contexts: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">eval_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'expectations'</span><span class="p">][</span><span class="s1">'ground_truth'</span><span class="p">])</span><span class="si">}</span><span class="s2"> items"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Note: outputs will be generated by traced_rag_predict() during evaluation"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"      ground_truth enables ContextPrecision and ContextRecall metrics"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Prepared 20 samples for evaluation
+
+Sample format:
+  inputs: ['question']
+  expectations: ['ground_truth', 'contexts']
+  ground_truth contexts: 205 items
+
+Note: outputs will be generated by traced_rag_predict() during evaluation
+      ground_truth enables ContextPrecision and ContextRecall metrics
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Running RAGAS evaluation with traced predict_fn..."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"This generates traces with RETRIEVER spans for Faithfulness metric.</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="s2">"ragas-evaluation-traced"</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"provider"</span><span class="p">,</span> <span class="n">PROVIDER</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"model"</span><span class="p">,</span> <span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">PROVIDER</span><span class="p">][</span><span class="s2">"chat_model"</span><span class="p">])</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"num_samples"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">eval_data</span><span class="p">))</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"retriever_k"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"evaluation_mode"</span><span class="p">,</span> <span class="s2">"predict_fn"</span><span class="p">)</span>
+
+    <span class="c1"># Use predict_fn to generate traces with RETRIEVER spans</span>
+    <span class="c1"># This allows Faithfulness scorer to access retrieved_contexts</span>
+    <span class="n">eval_results</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">genai</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">predict_fn</span><span class="o">=</span><span class="n">traced_rag_predict</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">eval_data</span><span class="p">,</span>
+        <span class="n">scorers</span><span class="o">=</span><span class="n">scorers</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">run_id</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Evaluation complete! Run ID: </span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2026/01/08 16:18:22 INFO mlflow.models.evaluation.utils.trace: Auto tracing is temporarily enabled during the model evaluation for computing some metrics and debugging. To disable tracing, call `mlflow.autolog(disable=True)`.
+2026/01/08 16:18:22 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/08 16:18:22 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Running RAGAS evaluation with traced predict_fn...
+This generates traces with RETRIEVER spans for Faithfulness metric.
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2026/01/08 16:18:23 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Evaluating:   0%|          | 0/20 [Elapsed: 00:00, Remaining: ?] </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+✨ Evaluation completed.
+
+Metrics and evaluation results are logged to the MLflow run:
+  Run name: <span class="ansi-blue-intense-fg">ragas-evaluation-traced</span>
+  Run ID: <span class="ansi-blue-intense-fg">c18463db51174ea8ba36935fe2adcfe5</span>
+
+To view the detailed evaluation results with sample-wise scores,
+open the <span class="ansi-yellow-intense-fg ansi-bold">Traces</span> tab in the Run page in the MLflow UI.
+
+
+Evaluation complete! Run ID: c18463db51174ea8ba36935fe2adcfe5
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="MLflow-Results-Analysis"><a id="toc8_"></a><a href="#toc0_">MLflow Results Analysis</a></h2><p>Let's examine the evaluation results both programmatically and understand how to view them in the MLflow UI.</p>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"RAGAS EVALUATION RESULTS"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">eval_results</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="s2">"eval_results"</span><span class="p">]</span>
+
+<span class="c1"># Find RAGAS scorer columns (Faithfulness, FactualCorrectness, Context*)</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">ragas_metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Faithfulness'</span><span class="p">,</span> <span class="s1">'FactualCorrectness'</span><span class="p">,</span> <span class="s1">'ContextPrecision'</span><span class="p">,</span> <span class="s1">'ContextRecall'</span><span class="p">]</span>
+<span class="n">value_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span> 
+                 <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'/value'</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">m</span> <span class="ow">in</span> <span class="n">col</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ragas_metrics</span><span class="p">)]</span>
+<span class="n">error_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span> 
+                 <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'/error'</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">m</span> <span class="ow">in</span> <span class="n">col</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ragas_metrics</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">RAGAS Metrics:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">successful_metrics</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">failed_metrics</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">value_columns</span><span class="p">:</span>
+    <span class="c1"># Convert to numeric, coercing errors to NaN</span>
+    <span class="n">numeric_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+    <span class="n">non_null</span> <span class="o">=</span> <span class="n">numeric_col</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+    <span class="n">success_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_null</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">success_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">mean_val</span> <span class="o">=</span> <span class="n">non_null</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">std_val</span> <span class="o">=</span> <span class="n">non_null</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_null</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  ✓ </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">mean_val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (±</span><span class="si">{</span><span class="n">std_val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">) [</span><span class="si">{</span><span class="n">success_count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> samples]"</span><span class="p">)</span>
+        <span class="n">successful_metrics</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  ✗ </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: NO SCORES (0/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> samples succeeded)"</span><span class="p">)</span>
+        <span class="n">failed_metrics</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Summary: </span><span class="si">{</span><span class="n">successful_metrics</span><span class="si">}</span><span class="s2"> metrics succeeded, </span><span class="si">{</span><span class="n">failed_metrics</span><span class="si">}</span><span class="s2"> metrics failed"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   Total samples: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Error diagnostics (if any metrics failed)</span>
+<span class="k">if</span> <span class="n">failed_metrics</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"🔍 DIAGNOSTIC: Error Details for Failed Metrics"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">error_columns</span><span class="p">:</span>
+        <span class="n">metric_name</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'/error'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">❌ </span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s2">:"</span><span class="p">)</span>
+            <span class="c1"># Get first unique error message</span>
+            <span class="n">unique_errors</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">unique_errors</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>  <span class="c1"># Show max 2 unique errors</span>
+                <span class="c1"># Truncate long error messages</span>
+                <span class="n">err_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)[:</span><span class="mi">300</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">:</span>
+                    <span class="n">err_str</span> <span class="o">+=</span> <span class="s2">"..."</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   </span><span class="si">{</span><span class="n">err_str</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"💡 Common fixes:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"   1. Use OpenAI as judge: JUDGE_PROVIDER = LLMProvider.OPENAI"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"   2. For Ollama: ensure model is running and OLLAMA_API_BASE is set"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"   3. ContextPrecision/ContextRecall require traces with RETRIEVER spans"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ All metrics computed successfully!"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>============================================================
+RAGAS EVALUATION RESULTS
+============================================================
+
+RAGAS Metrics:
+----------------------------------------
+  ✓ ContextRecall/value: 0.830 (±0.201) [20/20 samples]
+  ✓ ContextPrecision/value: 0.992 (±0.037) [20/20 samples]
+  ✓ Faithfulness/value: 0.994 (±0.020) [20/20 samples]
+  ✓ FactualCorrectness/value: 0.550 (±0.218) [20/20 samples]
+
+Summary: 4 metrics succeeded, 0 metrics failed
+   Total samples: 20
+
+✅ All metrics computed successfully!
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Helper function to extract question from request column</span>
+<span class="k">def</span> <span class="nf">extract_question</span><span class="p">(</span><span class="n">request_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Extract question from MLflow request column."""</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">request_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">request_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"question"</span><span class="p">,</span> <span class="s2">"N/A"</span><span class="p">))[:</span><span class="mi">60</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">request_data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">request_data</span><span class="p">[:</span><span class="mi">60</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s2">"N/A"</span>
+
+<span class="c1"># Display results summary with metric columns</span>
+<span class="n">available_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">value_columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">results_summary</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">available_cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Add question column from request data</span>
+<span class="k">if</span> <span class="s2">"request"</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">results_summary</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"question"</span><span class="p">,</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">"request"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">extract_question</span><span class="p">))</span>
+
+<span class="n">results_summary</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Identifying Low-Scoring Samples:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">value_columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">numeric_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+        <span class="n">low_mask</span> <span class="o">=</span> <span class="n">numeric_col</span> <span class="o">&lt;</span> <span class="mf">0.5</span>
+        <span class="n">low_scores</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">low_mask</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">low_scores</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">⚠️  </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> &lt; 0.5: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">low_scores</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">low_scores</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="n">question</span> <span class="o">=</span> <span class="n">extract_question</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"request"</span><span class="p">,</span> <span class="p">{}))</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="n">numeric_col</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"    - [</span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+Identifying Low-Scoring Samples:
+----------------------------------------
+
+⚠️  ContextRecall/value &lt; 0.5: 1 samples
+    - [0.33] What is Faithfulness in RAGAS?...
+
+⚠️  FactualCorrectness/value &lt; 0.5: 7 samples
+    - [0.43] What is MLflow GenAI used for?...
+    - [0.40] How can you run MLflow Projects?...
+    - [0.12] What is Faithfulness in RAGAS?...
+    - [0.40] What frameworks support MLflow autolog?...
+    - [0.35] What are MLflow Recipes and what steps do they include?...
+    - [0.24] How can you access MLflow programmatically via REST API?...
+    - [0.40] What are model signatures and input examples in MLflow?...
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>To view detailed results in the MLflow UI:</p>
+<ol>
+<li><p>Start MLflow UI (if not running):
+<code>$ mlflow ui --port 5000</code></p>
+</li>
+<li><p>Open <a href="http://localhost:5000">http://localhost:5000</a> in your browser</p>
+</li>
+<li><p>Navigate to:</p>
+<ul>
+<li>Experiment: 'RAG-Evaluation-Tutorial'</li>
+<li>Run: 'ragas-evaluation'</li>
+</ul>
+</li>
+<li><p>In the run details, you'll find:</p>
+<ul>
+<li>Parameters: model configuration</li>
+<li>Metrics: aggregate RAGAS scores</li>
+<li>Artifacts: detailed evaluation tables</li>
+<li>Traces: individual RAG invocations</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Run ID: </span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Run ID: c18463db51174ea8ba36935fe2adcfe5
+</pre>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"🎉 Tutorial Complete!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">Summary:</span>
+<span class="s2">  - Provider: </span><span class="si">{</span><span class="n">PROVIDER</span><span class="o">.</span><span class="n">value</span><span class="si">}</span>
+<span class="s2">  - Model: </span><span class="si">{</span><span class="n">MODEL_CONFIG</span><span class="p">[</span><span class="n">PROVIDER</span><span class="p">][</span><span class="s1">'chat_model'</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">  - Samples evaluated: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">eval_data</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">  - MLflow Run ID: </span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span>
+
+<span class="s2">View results: mlflow ui --port 5000</span>
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+============================================================
+🎉 Tutorial Complete!
+============================================================
+
+Summary:
+  - Provider: azure_openai
+  - Model: gpt-4o-mini
+  - Samples evaluated: 20
+  - MLflow Run ID: c18463db51174ea8ba36935fe2adcfe5
+
+View results: mlflow ui --port 5000
+
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h2 id="Extras:-Comparing-RAG-Variants-with-MLflow"><a id="toc9_"></a><a href="#toc0_">Extras: Comparing RAG Variants with MLflow</a></h2><p>One of MLflow's key strengths is enabling systematic A/B comparisons between different RAG configurations. Here's how to structure experiments comparing variants like chunk sizes, models, or retrieval strategies.</p>
+<h3 id="Example:-Comparing-Chunk-Sizes"><a id="toc9_1_"></a><a href="#toc0_">Example: Comparing Chunk Sizes</a></h3>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Comparing RAG Variants: Different Chunk Sizes</span>
+<span class="c1"># This demonstrates how to evaluate the same RAG pipeline with different configurations</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Running chunk size comparison experiments..."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="n">CHUNK_SIZES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">]</span>
+<span class="n">experiment_run_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">chunk_size</span> <span class="ow">in</span> <span class="n">CHUNK_SIZES</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Testing chunk_size=</span><span class="si">{</span><span class="n">chunk_size</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="c1"># Rebuild the vector store with new chunk size</span>
+    <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+        <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">,</span>
+        <span class="n">chunk_overlap</span><span class="o">=</span><span class="n">chunk_size</span> <span class="o">//</span> <span class="mi">10</span>
+    <span class="p">)</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+    
+    <span class="c1"># Update the global vectorstore and retriever used by traced_rag_predict</span>
+    <span class="k">global</span> <span class="n">vectorstore</span><span class="p">,</span> <span class="n">retriever</span>
+    <span class="n">vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+    <span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"k"</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   Created </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span><span class="si">}</span><span class="s2"> chunks"</span><span class="p">)</span>
+    
+    <span class="c1"># Run evaluation</span>
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">"chunk-size-</span><span class="si">{</span><span class="n">chunk_size</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"chunk_size"</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"chunk_overlap"</span><span class="p">,</span> <span class="n">chunk_size</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"num_chunks"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">))</span>
+        
+        <span class="n">eval_results</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">genai</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+            <span class="n">predict_fn</span><span class="o">=</span><span class="n">traced_rag_predict</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">eval_data</span><span class="p">,</span>
+            <span class="n">scorers</span><span class="o">=</span><span class="n">scorers</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">experiment_run_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   ✓ Run ID: </span><span class="si">{</span><span class="n">run</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Completed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">CHUNK_SIZES</span><span class="p">)</span><span class="si">}</span><span class="s2"> experiments. Run IDs saved for comparison."</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Running chunk size comparison experiments...
+============================================================
+
+Testing chunk_size=50
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2026/01/08 16:23:07 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/08 16:23:07 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+2026/01/08 16:23:08 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>   Created 175 chunks
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Evaluating:   0%|          | 0/20 [Elapsed: 00:00, Remaining: ?] </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+✨ Evaluation completed.
+
+Metrics and evaluation results are logged to the MLflow run:
+  Run name: <span class="ansi-blue-intense-fg">chunk-size-50</span>
+  Run ID: <span class="ansi-blue-intense-fg">5843dd1f28b94c3a9bc0aace400ab8dd</span>
+
+To view the detailed evaluation results with sample-wise scores,
+open the <span class="ansi-yellow-intense-fg ansi-bold">Traces</span> tab in the Run page in the MLflow UI.
+
+   ✓ Run ID: 5843dd1f28b94c3a9bc0aace400ab8dd
+
+Testing chunk_size=150
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2026/01/08 16:23:40 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/08 16:23:40 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+2026/01/08 16:23:41 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>   Created 62 chunks
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Evaluating:   0%|          | 0/20 [Elapsed: 00:00, Remaining: ?] </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+✨ Evaluation completed.
+
+Metrics and evaluation results are logged to the MLflow run:
+  Run name: <span class="ansi-blue-intense-fg">chunk-size-150</span>
+  Run ID: <span class="ansi-blue-intense-fg">07e5bad6efbc4c79b017e6b8828ba7c5</span>
+
+To view the detailed evaluation results with sample-wise scores,
+open the <span class="ansi-yellow-intense-fg ansi-bold">Traces</span> tab in the Run page in the MLflow UI.
+
+   ✓ Run ID: 07e5bad6efbc4c79b017e6b8828ba7c5
+
+============================================================
+Completed 2 experiments. Run IDs saved for comparison.
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Comparing-Results-in-MLflow-UI"><a id="toc9_2_"></a><a href="#toc0_">Comparing Results in MLflow UI</a></h3><p>After running multiple variants:</p>
+<ol>
+<li>Open MLflow UI: <code>mlflow ui --port 5000</code></li>
+<li>Navigate to your experiment</li>
+<li>Select runs to compare using checkboxes</li>
+<li>Click <strong>Compare</strong> to see side-by-side metrics</li>
+<li>Use <strong>Chart</strong> view to visualize metric differences</li>
+</ol>
+<p>You can also compare programmatically:</p>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea">
+
+
+
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Compare Results Programmatically</span>
+<span class="c1"># Query MLflow for runs and display a formatted comparison table</span>
+
+<span class="n">experiment_name</span> <span class="o">=</span> <span class="s2">"RAG-Evaluation-Tutorial"</span>
+
+<span class="c1"># Get runs with chunk_size parameter (our comparison experiments)</span>
+<span class="n">runs_df</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">search_runs</span><span class="p">(</span>
+    <span class="n">experiment_names</span><span class="o">=</span><span class="p">[</span><span class="n">experiment_name</span><span class="p">],</span>
+    <span class="n">filter_string</span><span class="o">=</span><span class="s2">"params.chunk_size != ''"</span><span class="p">,</span>
+    <span class="n">order_by</span><span class="o">=</span><span class="p">[</span><span class="s2">"params.chunk_size ASC"</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs_df</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"No chunk size comparison runs found. Run the comparison cell above first."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Debug: show available metric columns</span>
+    <span class="n">metric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">runs_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"metrics."</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Available metric columns (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">metric_cols</span><span class="p">)</span><span class="si">}</span><span class="s2"> total):"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">metric_cols</span><span class="p">[:</span><span class="mi">8</span><span class="p">]:</span>  <span class="c1"># Show first 8</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="c1"># Define metrics we want (will search for partial matches)</span>
+    <span class="n">metric_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Faithfulness"</span><span class="p">,</span> <span class="s2">"FactualCorrectness"</span><span class="p">,</span> <span class="s2">"ContextPrecision"</span><span class="p">,</span> <span class="s2">"ContextRecall"</span><span class="p">]</span>
+    
+    <span class="c1"># Find actual column names (may have backticks or different format)</span>
+    <span class="k">def</span> <span class="nf">find_metric_col</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Find column containing metric_name in its name."""</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="n">col</span> <span class="ow">and</span> <span class="s2">"mean"</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">col</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">comparison_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">runs_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"Run Name"</span><span class="p">:</span> <span class="n">run</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"tags.mlflow.runName"</span><span class="p">,</span> <span class="s2">"N/A"</span><span class="p">),</span>
+            <span class="s2">"Chunk Size"</span><span class="p">:</span> <span class="n">run</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"params.chunk_size"</span><span class="p">,</span> <span class="s2">"N/A"</span><span class="p">),</span>
+            <span class="s2">"Num Chunks"</span><span class="p">:</span> <span class="n">run</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"params.num_chunks"</span><span class="p">,</span> <span class="s2">"N/A"</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="n">metric_names</span><span class="p">:</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">find_metric_col</span><span class="p">(</span><span class="n">runs_df</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">col</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span> <span class="s2">"N/A"</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"N/A"</span>
+        <span class="n">comparison_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    
+    <span class="n">comparison_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comparison_data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Chunk Size Comparison Results"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">comparison_df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    
+    <span class="c1"># Find best configuration</span>
+    <span class="k">if</span> <span class="s2">"FactualCorrectness"</span> <span class="ow">in</span> <span class="n">comparison_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">best_idx</span> <span class="o">=</span> <span class="n">comparison_df</span><span class="p">[</span><span class="s2">"FactualCorrectness"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s2">"N/A"</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✨ Best configuration: </span><span class="si">{</span><span class="n">comparison_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">best_idx</span><span class="p">][</span><span class="s1">'Run Name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Available metric columns (4 total):
+  - metrics.FactualCorrectness/mean
+  - metrics.Faithfulness/mean
+  - metrics.ContextRecall/mean
+  - metrics.ContextPrecision/mean
+
+Chunk Size Comparison Results
+================================================================================
+      Run Name Chunk Size Num Chunks Faithfulness FactualCorrectness ContextPrecision ContextRecall
+chunk-size-150        150         62        0.915              0.781            0.983         0.834
+ chunk-size-50         50        175        0.944              0.758            0.983         0.844
+
+✨ Best configuration: chunk-size-150
+</pre>
+</div>
+</div>
+</div>
+
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+        </div>
+
+
+
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>@article{Saf2026RAG,
+    author  = {Krystian Safjan},
+    title   = {RAG Evaluation with RAGAS and MLflow - A Practical Guide},
+    journal = {Krystian's Safjan Blog},
+    year    = {2026},
+}</pre>
+            </div>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/python/" class="article-tag">python</a>
+                <a href="https://www.safjan.com/tag/mlflow/" class="article-tag">mlflow</a>
+                <a href="https://www.safjan.com/tag/ragas/" class="article-tag">ragas</a>
+                <a href="https://www.safjan.com/tag/rag/" class="article-tag">rag</a>
+                <a href="https://www.safjan.com/tag/llm/" class="article-tag">llm</a>
+                <a href="https://www.safjan.com/tag/evaluation/" class="article-tag">evaluation</a>
+                <a href="https://www.safjan.com/tag/langchain/" class="article-tag">langchain</a>
+                <a href="https://www.safjan.com/tag/tutorial/" class="article-tag">tutorial</a>
+        </div>
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/techniques-to-boost-rag-performance-in-production/" class="related-post-card">
+                            <span class="related-post-title">Techniques to Boost RAG Performance in Production</span>
+                            <span class="related-post-date">Nov 01, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/problems-with-Langchain-and-how-to-minimize-their-impact/" class="related-post-card">
+                            <span class="related-post-title">Problems with Langchain and how to minimize their impact</span>
+                            <span class="related-post-date">Sep 01, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" class="related-post-card">
+                            <span class="related-post-title">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</span>
+                            <span class="related-post-date">Aug 30, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/" class="related-post-card">
+                            <span class="related-post-title">The Best Vector Databases for Storing Embeddings</span>
+                            <span class="related-post-date">Jun 05, 2023</span>
+                        </a>
+                </div>
+            </div>
+
+
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>    </footer>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
+}
+</script>
+
+
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false,
+            basePath: "/pagefind/"
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
+
+<style>
+.video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.video-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.video-embed-info {
+    padding: 0.5rem 0.75rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0 0 0.375rem 0.375rem;
+    font-size: 0.875rem;
+    margin-top: -0.375rem;
+}
+.video-embed-info a {
+    text-decoration: none;
+    color: inherit;
+}
+.video-embed-info a:hover {
+    text-decoration: underline;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('pre > code').forEach(function(code) {
+        var text = code.textContent.trim();
+        var lines = text.split('\n');
+        var url = lines[0].trim();
+
+        var videoId = null;
+        var embedUrl = null;
+        var platform = null;
+
+        // YouTube detection
+        var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+            videoId = ytMatch[1];
+            embedUrl = 'https://www.youtube-nocookie.com/embed/' + videoId;
+            platform = 'youtube';
+        }
+
+        // Vimeo detection
+        var vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        if (vimeoMatch) {
+            videoId = vimeoMatch[1];
+            embedUrl = 'https://player.vimeo.com/video/' + videoId + '?dnt=1';
+            platform = 'vimeo';
+        }
+
+        if (!videoId || !embedUrl) return;
+
+        var meta = {};
+        lines.slice(1).forEach(function(line) {
+            var m = line.match(/^(\w+):\s*(.+)$/);
+            if (m) meta[m[1].toLowerCase()] = m[2].trim();
+        });
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'video-embed-wrapper';
+
+        var embed = document.createElement('div');
+        embed.className = 'video-embed';
+        embed.innerHTML = '<iframe src="' + embedUrl +
+            '" allowfullscreen loading="lazy" title="' + (meta.title || (platform === 'youtube' ? 'YouTube video' : 'Vimeo video')).replace(/"/g, '&quot;') + '"></iframe>';
+        wrapper.appendChild(embed);
+
+        if (meta.title || meta.author) {
+            var info = document.createElement('div');
+            info.className = 'video-embed-info';
+            var html = meta.title ? '<strong>' + meta.title + '</strong>' : '';
+            if (meta.author) {
+                html += (meta.title ? ' &bull; ' : '');
+                html += meta.authorurl ? '<a href="' + meta.authorurl + '" target="_blank" rel="noopener">' + meta.author + '</a>' : meta.author;
+            }
+            info.innerHTML = html;
+            wrapper.appendChild(info);
+        }
+        code.closest('pre').replaceWith(wrapper);
+    });
+});
+</script>
+
+<style>
+.tweet-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.tweet-embed-loading {
+    padding: 1rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0.375rem;
+    color: var(--color-text-secondary, #6c757d);
+    font-size: 0.875rem;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var twitterScriptLoaded = false;
+
+    function loadTwitterScript() {
+        if (twitterScriptLoaded) return;
+        twitterScriptLoaded = true;
+        var script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }
+
+    document.querySelectorAll('pre > code.language-tweet').forEach(function(code) {
+        var text = code.textContent.trim();
+        var url = text.split('\n')[0].trim();
+
+        // Twitter/X URL detection
+        var tweetMatch = url.match(/^https?:\/\/(twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
+        if (!tweetMatch) return;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'tweet-embed-wrapper';
+        wrapper.innerHTML = '<div class="tweet-embed-loading">Loading tweet...</div>';
+
+        code.closest('pre').replaceWith(wrapper);
+
+        // Fetch oEmbed data
+        var oembedUrl = 'https://publish.twitter.com/oembed?url=' + encodeURIComponent(url) + '&dnt=true&omit_script=true';
+
+        fetch(oembedUrl)
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                wrapper.innerHTML = data.html;
+                loadTwitterScript();
+                if (window.twttr && window.twttr.widgets) {
+                    window.twttr.widgets.load(wrapper);
+                }
+            })
+            .catch(function() {
+                wrapper.innerHTML = '<div class="tweet-embed-loading">Failed to load tweet. <a href="' + url + '" target="_blank" rel="noopener">View on Twitter</a></div>';
+            });
+    });
+});
+</script>
+</body>
+</html>
