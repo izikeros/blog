@@ -46,8 +46,8 @@ dependencies = [
     "jupyter>=1.1.1",
 ]
 
-[tool.uv]
-dev-dependencies = []
+[dependency-groups]
+dev = []
 EOF
 
 # Create Makefile
