@@ -1,0 +1,733 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.safjan.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.safjan.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.safjan.com/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://www.safjan.com/favicon.ico">
+    <link rel="manifest" href="https://www.safjan.com/site.webmanifest">
+    <meta name="theme-color" content="#333333">
+    <meta name="apple-mobile-web-app-title" content="Krystian Safjan's Blog">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="You can use MLflow&#39;s RAGAS integration to calculate evaluation scores and log them to experiments without implementing MLflow traces in your RAG pipeline. This is useful when: You have an existing RAG pipeline you don&#39;t want to modify You&#39;re doing batch evaluation …"/>
+    <meta name="keywords" content="mlflow, ragas, RAG-evaluation, rag-optimization, rag">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Using MLflow-RAGAS Integration Without Tracing"/>
+  <meta property="og:description" content="You can use MLflow&#39;s RAGAS integration to calculate evaluation scores and log them to experiments without implementing MLflow traces in your RAG pipeline. This is useful when: You have an existing RAG pipeline you don&#39;t want to modify You&#39;re doing batch evaluation …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/using-mlflowragas-integration-without-tracing/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-01-11 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-01-11 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="mlflow"/>
+  <meta property="article:tag" content="ragas"/>
+  <meta property="article:tag" content="RAG-evaluation"/>
+  <meta property="article:tag" content="rag-optimization"/>
+  <meta property="article:tag" content="rag"/>
+  <meta property="og:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:title" content="Using MLflow-RAGAS Integration Without Tracing"/>
+    <meta name="twitter:description" content="You can use MLflow&#39;s RAGAS integration to calculate evaluation scores and log them to experiments without implementing MLflow traces in your RAG pipeline. This is useful when: You have an..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/using-mlflowragas-integration-without-tracing/"
+  },
+  "headline": "Using MLflow-RAGAS Integration Without Tracing",
+  "datePublished": "2026-01-11T00:00:00+01:00",
+  "dateModified": "2026-01-11T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/using-mlflowragas-integration-without-tracing/",
+  "description": "You can use MLflow's RAGAS integration to calculate evaluation scores and log them to experiments without implementing MLflow traces in your RAG pipeline....",
+  "articleSection": "note",
+  "inLanguage": "en",
+  "keywords": "mlflow, ragas, RAG-evaluation, rag-optimization, rag",
+  "wordCount": 692,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "note",
+      "item": "https://www.safjan.com/category/note.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Using MLflow-RAGAS Integration Without Tracing"
+    }
+  ]
+}
+</script>
+
+
+
+<meta name="ai:summary" content="You can use MLflow&#39;s RAGAS integration to calculate evaluation scores and log them to experiments without implementing MLflow traces in your RAG pipeline. This is useful when: You have an existing RAG pipeline you don&#39;t want to modify You&#39;re doing batch evaluation …">
+
+<meta name="ai:topics" content="mlflow, ragas, RAG-evaluation, rag-optimization, rag">
+
+
+
+<meta name="ai:word-count" content="692">
+<meta name="ai:reading-time" content="3 min">
+
+<meta name="ai:section" content="note">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <title>    Using MLflow-RAGAS Integration Without Tracing
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body>
+<div id="reading-progress" class="reading-progress"></div>
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+    </div>
+
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
+</div>
+</aside>
+<main>
+
+        <nav aria-label="Main navigation">
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2026-01-11 
+
+
+                <br/>
+            </p>
+            <h1>Using MLflow-RAGAS Integration Without Tracing</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+
+
+        <div class="article-content">
+            <p>You can use MLflow's RAGAS integration to calculate evaluation scores and log them to experiments <strong>without</strong> implementing MLflow traces in your RAG pipeline. This is useful when:</p>
+<ul>
+<li>You have an existing RAG pipeline you don't want to modify</li>
+<li>You're doing batch evaluation of pre-computed results</li>
+<li>You want to quickly test RAGAS metrics without full instrumentation</li>
+</ul>
+<h2 id="option-1-static-data-approach-recommended">Option 1: Static Data Approach (Recommended)</h2>
+<p>Pre-compute your RAG outputs, then pass everything to <code>mlflow.genai.evaluate()</code> with the <code>outputs</code> field already populated.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">mlflow</span>
+<span class="kn">from</span> <span class="nn">mlflow.genai.scorers</span> <span class="kn">import</span> <span class="n">Faithfulness</span><span class="p">,</span> <span class="n">FactualCorrectness</span>
+
+<span class="c1"># Your existing RAG pipeline (no MLflow code needed)</span>
+<span class="k">def</span> <span class="nf">my_rag_pipeline</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Your RAG implementation - completely unchanged.&quot;&quot;&quot;</span>
+    <span class="n">contexts</span> <span class="o">=</span> <span class="n">my_retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">my_llm</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">contexts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">answer</span><span class="p">,</span> <span class="n">contexts</span>
+
+<span class="c1"># Golden dataset</span>
+<span class="n">golden_dataset</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What is MLflow?&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ground_truth&quot;</span><span class="p">:</span> <span class="s2">&quot;MLflow is an open-source platform for ML lifecycle management.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MLflow is an open-source platform...&quot;</span><span class="p">]</span>  <span class="c1"># Expected contexts</span>
+    <span class="p">},</span>
+    <span class="c1"># ... more samples</span>
+<span class="p">]</span>
+
+<span class="c1"># Step 1: Run your RAG pipeline and collect outputs</span>
+<span class="n">eval_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">golden_dataset</span><span class="p">:</span>
+    <span class="n">answer</span><span class="p">,</span> <span class="n">retrieved_contexts</span> <span class="o">=</span> <span class="n">my_rag_pipeline</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">])</span>
+    <span class="n">eval_data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
+            <span class="s2">&quot;retrieved_contexts&quot;</span><span class="p">:</span> <span class="n">retrieved_contexts</span><span class="p">,</span>  <span class="c1"># Required for Faithfulness</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;expectations&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;expected_answer&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;ground_truth&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;ground_truth&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;contexts&quot;</span><span class="p">,</span> <span class="p">[]),</span>  <span class="c1"># For ContextRecall</span>
+        <span class="p">},</span>
+    <span class="p">})</span>
+
+<span class="c1"># Step 2: Run evaluation with static data (no predict_fn)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">&quot;rag-evaluation&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="s2">&quot;static-data-evaluation&quot;</span><span class="p">):</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;evaluation_mode&quot;</span><span class="p">,</span> <span class="s2">&quot;static_data&quot;</span><span class="p">)</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;num_samples&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">eval_data</span><span class="p">))</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">genai</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">eval_data</span><span class="p">,</span>  <span class="c1"># Data already includes outputs</span>
+        <span class="n">scorers</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">Faithfulness</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai:/gpt-4o-mini&quot;</span><span class="p">),</span>
+            <span class="n">FactualCorrectness</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai:/gpt-4o-mini&quot;</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results logged to run: </span><span class="si">{</span><span class="n">mlflow</span><span class="o">.</span><span class="n">active_run</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="key-points">Key Points</h3>
+<ul>
+<li><strong>No <code>predict_fn</code> needed</strong> - outputs are pre-computed</li>
+<li><strong><code>retrieved_contexts</code> in outputs</strong> - Required for Faithfulness metric to work</li>
+<li><strong>Your RAG code stays unchanged</strong> - No decorators or MLflow imports needed in your pipeline</li>
+</ul>
+<h2 id="option-2-simple-predict_fn-no-tracing-decorator">Option 2: Simple predict_fn (No Tracing Decorator)</h2>
+<p>If you prefer the <code>predict_fn</code> approach but don't want tracing:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">simple_rag_predict</span><span class="p">(</span><span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper around your RAG - no @mlflow.trace decorator.&quot;&quot;&quot;</span>
+    <span class="n">contexts</span> <span class="o">=</span> <span class="n">my_retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">my_llm</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">contexts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
+        <span class="s2">&quot;retrieved_contexts&quot;</span><span class="p">:</span> <span class="n">contexts</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="c1"># Evaluation data without outputs (they&#39;ll be generated)</span>
+<span class="n">eval_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]},</span>
+        <span class="s2">&quot;expectations&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;expected_answer&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;ground_truth&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;ground_truth&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;contexts&quot;</span><span class="p">,</span> <span class="p">[]),</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">golden_dataset</span>
+<span class="p">]</span>
+
+<span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">genai</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">predict_fn</span><span class="o">=</span><span class="n">simple_rag_predict</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">eval_data</span><span class="p">,</span>
+        <span class="n">scorers</span><span class="o">=</span><span class="n">scorers</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+<h2 id="comparison-when-to-use-each-approach">Comparison: When to Use Each Approach</h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Tracing</th>
+<th>Faithfulness</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Static data</strong> (Option 1)</td>
+<td>Not needed</td>
+<td>Works (needs <code>retrieved_contexts</code> in outputs)</td>
+<td>Existing pipelines, batch evaluation, CI/CD</td>
+</tr>
+<tr>
+<td><strong>predict_fn with @mlflow.trace</strong></td>
+<td>Required</td>
+<td>Works (reads from RETRIEVER spans)</td>
+<td>New pipelines, debugging, detailed traces</td>
+</tr>
+<tr>
+<td><strong>predict_fn without tracing</strong> (Option 2)</td>
+<td>Not needed</td>
+<td>Works (needs <code>retrieved_contexts</code> in return)</td>
+<td>Quick integration, simple pipelines</td>
+</tr>
+</tbody>
+</table>
+<h2 id="complete-working-example">Complete Working Example</h2>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Complete example: Evaluate any RAG pipeline with RAGAS metrics in MLflow.</span>
+<span class="sd">No tracing required in your RAG implementation.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">mlflow</span>
+<span class="kn">from</span> <span class="nn">mlflow.genai.scorers</span> <span class="kn">import</span> <span class="n">Faithfulness</span><span class="p">,</span> <span class="n">FactualCorrectness</span>
+
+<span class="c1"># Configure MLflow</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_tracking_uri</span><span class="p">(</span><span class="s2">&quot;http://localhost:5000&quot;</span><span class="p">)</span>  <span class="c1"># Or your tracking server</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">&quot;my-rag-evaluation&quot;</span><span class="p">)</span>
+
+<span class="c1"># Your RAG pipeline (example - replace with your implementation)</span>
+<span class="k">class</span> <span class="nc">MyRAGPipeline</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="n">llm</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">retriever</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
+
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="n">contexts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Context: </span><span class="si">{</span><span class="n">contexts</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Answer:&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="p">,</span> <span class="n">contexts</span>
+
+<span class="c1"># Initialize your pipeline</span>
+<span class="n">rag</span> <span class="o">=</span> <span class="n">MyRAGPipeline</span><span class="p">(</span><span class="n">retriever</span><span class="o">=</span><span class="n">my_retriever</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">my_llm</span><span class="p">)</span>
+
+<span class="c1"># Your evaluation dataset</span>
+<span class="n">test_questions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What is X?&quot;</span><span class="p">,</span> <span class="s2">&quot;ground_truth&quot;</span><span class="p">:</span> <span class="s2">&quot;X is...&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Y work?&quot;</span><span class="p">,</span> <span class="s2">&quot;ground_truth&quot;</span><span class="p">:</span> <span class="s2">&quot;Y works by...&quot;</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># Build evaluation data with pre-computed outputs</span>
+<span class="n">eval_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test_questions</span><span class="p">:</span>
+    <span class="n">answer</span><span class="p">,</span> <span class="n">contexts</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">])</span>
+    <span class="n">eval_data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]},</span>
+        <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
+            <span class="s2">&quot;retrieved_contexts&quot;</span><span class="p">:</span> <span class="n">contexts</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;expectations&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;expected_answer&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;ground_truth&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">})</span>
+
+<span class="c1"># Run evaluation</span>
+<span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="s2">&quot;rag-eval-no-tracing&quot;</span><span class="p">):</span>
+    <span class="c1"># Log your pipeline configuration</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_params</span><span class="p">({</span>
+        <span class="s2">&quot;retriever_k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;llm_model&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;num_samples&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">eval_data</span><span class="p">),</span>
+    <span class="p">})</span>
+    <span class="c1"># Evaluate with RAGAS scorers</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">genai</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">eval_data</span><span class="p">,</span>
+        <span class="n">scorers</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">Faithfulness</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai:/gpt-4o-mini&quot;</span><span class="p">),</span>
+            <span class="n">FactualCorrectness</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai:/gpt-4o-mini&quot;</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="c1"># Results are automatically logged to MLflow</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evaluation complete!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;View results: mlflow ui --port 5000&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Run ID: </span><span class="si">{</span><span class="n">mlflow</span><span class="o">.</span><span class="n">active_run</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Access results programmatically</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="s2">&quot;eval_results_table&quot;</span><span class="p">])</span>
+</code></pre></div>
+
+<h2 id="recommendation">Recommendation</h2>
+<p>For existing RAG pipelines, use <strong>Option 1 (Static Data)</strong>:</p>
+<ol>
+<li><strong>Minimal changes</strong> - Your RAG code stays completely unchanged</li>
+<li><strong>Batch-friendly</strong> - Run your pipeline once, evaluate multiple times with different scorers</li>
+<li><strong>CI/CD compatible</strong> - Easy to integrate into automated testing pipelines</li>
+<li><strong>Full metric support</strong> - All RAGAS metrics work when you include <code>retrieved_contexts</code> in outputs</li>
+</ol>
+<p>The only requirement is that your RAG pipeline returns both the answer and the retrieved contexts, which most RAG implementations already do.</p>
+        </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/mlflow/" class="article-tag">mlflow</a>
+                <a href="https://www.safjan.com/tag/ragas/" class="article-tag">ragas</a>
+                <a href="https://www.safjan.com/tag/rag-evaluation/" class="article-tag">RAG-evaluation</a>
+                <a href="https://www.safjan.com/tag/rag-optimization/" class="article-tag">rag-optimization</a>
+                <a href="https://www.safjan.com/tag/rag/" class="article-tag">rag</a>
+        </div>
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/" class="related-post-card">
+                            <span class="related-post-title">RAG Evaluation with RAGAS and MLflow - A Practical Guide</span>
+                            <span class="related-post-date">Jan 08, 2026</span>
+                        </a>
+                        <a href="https://www.safjan.com/ragas-metrics-cheat-sheet/" class="related-post-card">
+                            <span class="related-post-title">RAGAS metrics cheat sheet</span>
+                            <span class="related-post-date">May 31, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" class="related-post-card">
+                            <span class="related-post-title">RankFlow plot for retriever visual evaluation</span>
+                            <span class="related-post-date">Jul 08, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/deploying-mlflow-on-local-machine-using-docker/" class="related-post-card">
+                            <span class="related-post-title">Deploying MLFlow on Local Machine Using Docker</span>
+                            <span class="related-post-date">Jan 16, 2023</span>
+                        </a>
+                </div>
+            </div>
+
+
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>    </footer>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
+}
+</script>
+
+
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false,
+            basePath: "/pagefind/"
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
+
+<style>
+.video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.video-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.video-embed-info {
+    padding: 0.5rem 0.75rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0 0 0.375rem 0.375rem;
+    font-size: 0.875rem;
+    margin-top: -0.375rem;
+}
+.video-embed-info a {
+    text-decoration: none;
+    color: inherit;
+}
+.video-embed-info a:hover {
+    text-decoration: underline;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('pre > code').forEach(function(code) {
+        var text = code.textContent.trim();
+        var lines = text.split('\n');
+        var url = lines[0].trim();
+
+        var videoId = null;
+        var embedUrl = null;
+        var platform = null;
+
+        // YouTube detection
+        var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+            videoId = ytMatch[1];
+            embedUrl = 'https://www.youtube-nocookie.com/embed/' + videoId;
+            platform = 'youtube';
+        }
+
+        // Vimeo detection
+        var vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        if (vimeoMatch) {
+            videoId = vimeoMatch[1];
+            embedUrl = 'https://player.vimeo.com/video/' + videoId + '?dnt=1';
+            platform = 'vimeo';
+        }
+
+        if (!videoId || !embedUrl) return;
+
+        var meta = {};
+        lines.slice(1).forEach(function(line) {
+            var m = line.match(/^(\w+):\s*(.+)$/);
+            if (m) meta[m[1].toLowerCase()] = m[2].trim();
+        });
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'video-embed-wrapper';
+
+        var embed = document.createElement('div');
+        embed.className = 'video-embed';
+        embed.innerHTML = '<iframe src="' + embedUrl +
+            '" allowfullscreen loading="lazy" title="' + (meta.title || (platform === 'youtube' ? 'YouTube video' : 'Vimeo video')).replace(/"/g, '&quot;') + '"></iframe>';
+        wrapper.appendChild(embed);
+
+        if (meta.title || meta.author) {
+            var info = document.createElement('div');
+            info.className = 'video-embed-info';
+            var html = meta.title ? '<strong>' + meta.title + '</strong>' : '';
+            if (meta.author) {
+                html += (meta.title ? ' &bull; ' : '');
+                html += meta.authorurl ? '<a href="' + meta.authorurl + '" target="_blank" rel="noopener">' + meta.author + '</a>' : meta.author;
+            }
+            info.innerHTML = html;
+            wrapper.appendChild(info);
+        }
+        code.closest('pre').replaceWith(wrapper);
+    });
+});
+</script>
+
+<style>
+.tweet-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.tweet-embed-loading {
+    padding: 1rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0.375rem;
+    color: var(--color-text-secondary, #6c757d);
+    font-size: 0.875rem;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var twitterScriptLoaded = false;
+
+    function loadTwitterScript() {
+        if (twitterScriptLoaded) return;
+        twitterScriptLoaded = true;
+        var script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }
+
+    document.querySelectorAll('pre > code.language-tweet').forEach(function(code) {
+        var text = code.textContent.trim();
+        var url = text.split('\n')[0].trim();
+
+        // Twitter/X URL detection
+        var tweetMatch = url.match(/^https?:\/\/(twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
+        if (!tweetMatch) return;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'tweet-embed-wrapper';
+        wrapper.innerHTML = '<div class="tweet-embed-loading">Loading tweet...</div>';
+
+        code.closest('pre').replaceWith(wrapper);
+
+        // Fetch oEmbed data
+        var oembedUrl = 'https://publish.twitter.com/oembed?url=' + encodeURIComponent(url) + '&dnt=true&omit_script=true';
+
+        fetch(oembedUrl)
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                wrapper.innerHTML = data.html;
+                loadTwitterScript();
+                if (window.twttr && window.twttr.widgets) {
+                    window.twttr.widgets.load(wrapper);
+                }
+            })
+            .catch(function() {
+                wrapper.innerHTML = '<div class="tweet-embed-loading">Failed to load tweet. <a href="' + url + '" target="_blank" rel="noopener">View on Twitter</a></div>';
+            });
+    });
+});
+</script>
+</body>
+</html>

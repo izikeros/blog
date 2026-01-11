@@ -1,5 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2026-01-08T00:00:00+01:00</updated><subtitle>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</subtitle><entry><title>RAG Evaluation with RAGAS and MLflow - A Practical Guide</title><link href="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-08T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-01-08:/ragas-mlflow-rag-evaluation-tutorial/</id><summary type="html">&lt;p&gt;A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain, create golden evaluation datasets, and systematically assess retrieval quality using Faithfulness, Context Precision, Context Recall, and Factual Correctness metrics. Supports OpenAI, Azure OpenAI, and Ollama backends.&lt;/p&gt;</summary><content type="html">&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2026-01-11T00:00:00+01:00</updated><subtitle>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</subtitle><entry><title>Using MLflow-RAGAS Integration Without Tracing</title><link href="https://www.safjan.com/using-mlflowragas-integration-without-tracing/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-01-11T00:00:00+01:00</published><updated>2026-01-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-01-11:/using-mlflowragas-integration-without-tracing/</id><summary type="html">&lt;p&gt;You can use MLflow's RAGAS integration to calculate evaluation scores and log them to experiments &lt;strong&gt;without&lt;/strong&gt; implementing MLflow traces in your RAG pipeline. This is useful when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You have an existing RAG pipeline you don't want to modify&lt;/li&gt;
+&lt;li&gt;You're doing batch evaluation …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;You can use MLflow's RAGAS integration to calculate evaluation scores and log them to experiments &lt;strong&gt;without&lt;/strong&gt; implementing MLflow traces in your RAG pipeline. This is useful when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You have an existing RAG pipeline you don't want to modify&lt;/li&gt;
+&lt;li&gt;You're doing batch evaluation of pre-computed results&lt;/li&gt;
+&lt;li&gt;You want to quickly test RAGAS metrics without full instrumentation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="option-1-static-data-approach-recommended"&gt;Option 1: Static Data Approach (Recommended)&lt;/h2&gt;
+&lt;p&gt;Pre-compute your RAG outputs, then pass everything to &lt;code&gt;mlflow.genai.evaluate()&lt;/code&gt; with the &lt;code&gt;outputs&lt;/code&gt; field already populated.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;mlflow&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mlflow.genai.scorers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Faithfulness&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FactualCorrectness&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Your existing RAG pipeline (no MLflow code needed)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_rag_pipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Your RAG implementation - completely unchanged.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;contexts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;my_retriever&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;retrieve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;answer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;my_llm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contexts&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contexts&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Golden dataset&lt;/span&gt;
+&lt;span class="n"&gt;golden_dataset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;What is MLflow?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;MLflow is an open-source platform for ML lifecycle management.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;contexts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MLflow is an open-source platform...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c1"&gt;# Expected contexts&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="c1"&gt;# ... more samples&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Step 1: Run your RAG pipeline and collect outputs&lt;/span&gt;
+&lt;span class="n"&gt;eval_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;golden_dataset&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;retrieved_contexts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;my_rag_pipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;eval_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;inputs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;outputs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;response&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;retrieved_contexts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;retrieved_contexts&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Required for Faithfulness&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;expectations&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;expected_answer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;contexts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[]),&lt;/span&gt;  &lt;span class="c1"&gt;# For ContextRecall&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Step 2: Run evaluation with static data (no predict_fn)&lt;/span&gt;
+&lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_experiment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rag-evaluation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start_run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;run_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;static-data-evaluation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log_param&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;evaluation_mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;static_data&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log_param&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;num_samples&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eval_data&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;genai&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;evaluate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;eval_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Data already includes outputs&lt;/span&gt;
+        &lt;span class="n"&gt;scorers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="n"&gt;Faithfulness&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai:/gpt-4o-mini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;FactualCorrectness&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai:/gpt-4o-mini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Results logged to run: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;active_run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_id&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="key-points"&gt;Key Points&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No &lt;code&gt;predict_fn&lt;/code&gt; needed&lt;/strong&gt; - outputs are pre-computed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;retrieved_contexts&lt;/code&gt; in outputs&lt;/strong&gt; - Required for Faithfulness metric to work&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Your RAG code stays unchanged&lt;/strong&gt; - No decorators or MLflow imports needed in your pipeline&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="option-2-simple-predict_fn-no-tracing-decorator"&gt;Option 2: Simple predict_fn (No Tracing Decorator)&lt;/h2&gt;
+&lt;p&gt;If you prefer the &lt;code&gt;predict_fn&lt;/code&gt; approach but don't want tracing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;simple_rag_predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Wrapper around your RAG - no @mlflow.trace decorator.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;contexts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;my_retriever&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;retrieve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;answer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;my_llm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contexts&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;response&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;retrieved_contexts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;contexts&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Evaluation data without outputs (they&amp;#39;ll be generated)&lt;/span&gt;
+&lt;span class="n"&gt;eval_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;inputs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]},&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;expectations&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;expected_answer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;contexts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[]),&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;golden_dataset&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start_run&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;genai&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;evaluate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;predict_fn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;simple_rag_predict&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;eval_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;scorers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;scorers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="comparison-when-to-use-each-approach"&gt;Comparison: When to Use Each Approach&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Approach&lt;/th&gt;
+&lt;th&gt;Tracing&lt;/th&gt;
+&lt;th&gt;Faithfulness&lt;/th&gt;
+&lt;th&gt;Best For&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Static data&lt;/strong&gt; (Option 1)&lt;/td&gt;
+&lt;td&gt;Not needed&lt;/td&gt;
+&lt;td&gt;Works (needs &lt;code&gt;retrieved_contexts&lt;/code&gt; in outputs)&lt;/td&gt;
+&lt;td&gt;Existing pipelines, batch evaluation, CI/CD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;predict_fn with @mlflow.trace&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Required&lt;/td&gt;
+&lt;td&gt;Works (reads from RETRIEVER spans)&lt;/td&gt;
+&lt;td&gt;New pipelines, debugging, detailed traces&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;predict_fn without tracing&lt;/strong&gt; (Option 2)&lt;/td&gt;
+&lt;td&gt;Not needed&lt;/td&gt;
+&lt;td&gt;Works (needs &lt;code&gt;retrieved_contexts&lt;/code&gt; in return)&lt;/td&gt;
+&lt;td&gt;Quick integration, simple pipelines&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="complete-working-example"&gt;Complete Working Example&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;Complete example: Evaluate any RAG pipeline with RAGAS metrics in MLflow.&lt;/span&gt;
+&lt;span class="sd"&gt;No tracing required in your RAG implementation.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;mlflow&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mlflow.genai.scorers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Faithfulness&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FactualCorrectness&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Configure MLflow&lt;/span&gt;
+&lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_tracking_uri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://localhost:5000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Or your tracking server&lt;/span&gt;
+&lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_experiment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;my-rag-evaluation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Your RAG pipeline (example - replace with your implementation)&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyRAGPipeline&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;retriever&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;retriever&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;retriever&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;llm&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]:&lt;/span&gt;
+        &lt;span class="n"&gt;contexts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;retriever&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;answer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Context: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;contexts&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;Question: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;Answer:&amp;quot;&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contexts&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Initialize your pipeline&lt;/span&gt;
+&lt;span class="n"&gt;rag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MyRAGPipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;retriever&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;my_retriever&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;llm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;my_llm&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Your evaluation dataset&lt;/span&gt;
+&lt;span class="n"&gt;test_questions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;What is X?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;X is...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;How does Y work?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Y works by...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Build evaluation data with pre-computed outputs&lt;/span&gt;
+&lt;span class="n"&gt;eval_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;test_questions&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;contexts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;eval_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;inputs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;question&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]},&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;outputs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;response&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;retrieved_contexts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;contexts&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;expectations&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;expected_answer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ground_truth&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Run evaluation&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start_run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;run_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rag-eval-no-tracing&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Log your pipeline configuration&lt;/span&gt;
+    &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log_params&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;retriever_k&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;llm_model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gpt-4o-mini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;num_samples&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eval_data&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+    &lt;span class="c1"&gt;# Evaluate with RAGAS scorers&lt;/span&gt;
+    &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;genai&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;evaluate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;eval_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;scorers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="n"&gt;Faithfulness&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai:/gpt-4o-mini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;FactualCorrectness&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai:/gpt-4o-mini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# Results are automatically logged to MLflow&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Evaluation complete!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;View results: mlflow ui --port 5000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Run ID: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;mlflow&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;active_run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_id&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Access results programmatically&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;metrics&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tables&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eval_results_table&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="recommendation"&gt;Recommendation&lt;/h2&gt;
+&lt;p&gt;For existing RAG pipelines, use &lt;strong&gt;Option 1 (Static Data)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Minimal changes&lt;/strong&gt; - Your RAG code stays completely unchanged&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Batch-friendly&lt;/strong&gt; - Run your pipeline once, evaluate multiple times with different scorers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CI/CD compatible&lt;/strong&gt; - Easy to integrate into automated testing pipelines&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Full metric support&lt;/strong&gt; - All RAGAS metrics work when you include &lt;code&gt;retrieved_contexts&lt;/code&gt; in outputs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The only requirement is that your RAG pipeline returns both the answer and the retrieved contexts, which most RAG implementations already do.&lt;/p&gt;</content><category term="note"/><category term="mlflow"/><category term="ragas"/><category term="RAG-evaluation"/><category term="rag-optimization"/><category term="rag"/></entry><entry><title>RAG Evaluation with RAGAS and MLflow - A Practical Guide</title><link href="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-01-08T00:00:00+01:00</published><updated>2026-01-11T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-01-08:/ragas-mlflow-rag-evaluation-tutorial/</id><summary type="html">&lt;p&gt;A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain, create golden evaluation datasets, and systematically assess retrieval quality using Faithfulness, Context Precision, Context Recall, and Factual Correctness metrics. Supports OpenAI, Azure OpenAI, and Ollama backends.&lt;/p&gt;</summary><content type="html">&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
 
 
 &lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
@@ -39,6 +256,13 @@
 &lt;li&gt;&lt;a href="#toc9_2_"&gt;Comparing Results in MLflow UI&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href="#toc10_"&gt;How to inspect results in MLflow UI:&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#toc10_1_"&gt;Select the experiment to inspect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#toc10_2_"&gt;Configure comparison of the runs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#toc10_3_"&gt;View Comparison Results&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#toc11_"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- vscode-jupyter-toc-config
 	numbering=false
@@ -56,7 +280,31 @@
 
 
 &lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h2 id="Why-This-Tutorial?"&gt;Why This Tutorial?&lt;/h2&gt;&lt;p&gt;Evaluating RAG pipelines is surprisingly difficult. You can build a working retrieval system in an afternoon, but answering "Is it actually good?" requires systematic measurement.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The challenge:&lt;/strong&gt; Manual evaluation doesn't scale. Eyeballing a few responses tells you almost nothing about overall quality. You need metrics that capture different aspects of RAG performance:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is the retriever finding relevant documents?&lt;/li&gt;
+&lt;li&gt;Is the LLM staying faithful to the retrieved context (not hallucinating)?&lt;/li&gt;
+&lt;li&gt;Are the answers factually correct?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;The solution:&lt;/strong&gt; RAGAS provides standardized metrics for RAG evaluation. MLflow provides experiment tracking. Together, they enable systematic, reproducible evaluation that you can run on every pipeline change.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What made this tricky:&lt;/strong&gt; The MLflow-RAGAS integration looks simple in the docs, but getting it to work with a real LangChain pipeline required navigating several non-obvious requirements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Specific model URI formats for different providers&lt;/li&gt;
+&lt;li&gt;Function signatures that match MLflow's expectations&lt;/li&gt;
+&lt;li&gt;Proper tracing spans for context-aware metrics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This tutorial documents what actually works, including the gotchas I encountered along the way.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
 &lt;p&gt;This tutorial demonstrates how to evaluate Retrieval-Augmented Generation (RAG) systems using &lt;strong&gt;RAGAS&lt;/strong&gt; (Retrieval Augmented Generation Assessment) metrics through &lt;strong&gt;MLflow&lt;/strong&gt; integration.&lt;/p&gt;
+&lt;p&gt;NOTE: RAGAS is a third-party evaluation library. For more details, visit the &lt;a href="https://github.com/explodinggradients/ragas"&gt;RAGAS GitHub repository&lt;/a&gt;. At the time of writing (January 2026), apart from RAGAS, MLFlow supports another &lt;a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/third-party/"&gt;third-party scorer/evaluation&lt;/a&gt; library: DeepEval.&lt;/p&gt;
 &lt;h2 id="What-You'll-Learn"&gt;&lt;a id="toc1_"&gt;&lt;/a&gt;&lt;a href="#toc0_"&gt;What You'll Learn&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Build a minimal RAG pipeline&lt;/strong&gt; using LangChain and FAISS&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Create a golden evaluation dataset&lt;/strong&gt; with expected answers&lt;/li&gt;
@@ -644,12 +892,12 @@ Answer: MLflow Tracking is an API and UI for logging parameters, code versions, 
 &lt;div class="jp-OutputArea-child"&gt;
 
 &lt;div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr"&gt;
-&lt;pre&gt;2026/01/08 16:18:16 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
-2026/01/08 16:18:16 INFO mlflow.store.db.utils: Updating database tables
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Context impl SQLiteImpl.
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Will assume non-transactional DDL.
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Context impl SQLiteImpl.
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Will assume non-transactional DDL.
+&lt;pre&gt;2026/01/11 09:22:25 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+2026/01/11 09:22:25 INFO mlflow.store.db.utils: Updating database tables
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Context impl SQLiteImpl.
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Will assume non-transactional DDL.
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Context impl SQLiteImpl.
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Will assume non-transactional DDL.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -660,6 +908,17 @@ Answer: MLflow Tracking is an API and UI for logging parameters, code versions, 
 LangChain autologging enabled with tracing
 &lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: If you don't have tracing enabled in your RAG there is still possibility to pass the evaluation data to MLflow to ease analysis. If this is your case please refer to the text on my blog explaining how to do it: &lt;a href="https://safjan.com/using-mlflowragas-integration-without-tracing"&gt;RAG Evaluation with RAGAS and MLflow - without tracing&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -871,32 +1130,38 @@ Retrieved Contexts (3):
 &lt;tr&gt;
 &lt;th&gt;Metric&lt;/th&gt;
 &lt;th&gt;What it measures&lt;/th&gt;
-&lt;th&gt;Requires&lt;/th&gt;
+&lt;th&gt;Required Data&lt;/th&gt;
+&lt;th&gt;Common Failure&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Faithfulness&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Is the answer grounded in the retrieved context?&lt;/td&gt;
+&lt;td&gt;Is the answer grounded in retrieved context?&lt;/td&gt;
 &lt;td&gt;answer, contexts&lt;/td&gt;
+&lt;td&gt;Missing RETRIEVER spans&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Context Precision&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Are relevant docs ranked higher than irrelevant ones?&lt;/td&gt;
-&lt;td&gt;question, contexts, expected_answer&lt;/td&gt;
+&lt;td&gt;Are relevant docs ranked higher?&lt;/td&gt;
+&lt;td&gt;question, contexts, ground_truth&lt;/td&gt;
+&lt;td&gt;No ground_truth provided&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Context Recall&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Does the context contain all info needed to answer?&lt;/td&gt;
-&lt;td&gt;contexts, expected_answer&lt;/td&gt;
+&lt;td&gt;Does context contain needed info?&lt;/td&gt;
+&lt;td&gt;contexts, ground_truth&lt;/td&gt;
+&lt;td&gt;No ground_truth provided&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Factual Correctness&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Does the answer match the expected ground truth?&lt;/td&gt;
-&lt;td&gt;answer, expected_answer&lt;/td&gt;
+&lt;td&gt;Does answer match expected?&lt;/td&gt;
+&lt;td&gt;answer, ground_truth&lt;/td&gt;
+&lt;td&gt;Semantic mismatch (strict)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;p&gt;These metrics provide an initial quantitative assessment of RAG quality across multiple dimensions. There are more RAGAS tool metrics available through the  MLflow integration.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Note on LLM Judge&lt;/strong&gt;: RAGAS metrics use an LLM as a judge. For best results, use &lt;strong&gt;OpenAI&lt;/strong&gt; (gpt-4o-mini) as the judge model even if you're using Ollama for RAG generation. Ollama/local models may have issues with litellm's structured output parsing. Set &lt;code&gt;JUDGE_PROVIDER = LLMProvider.OPENAI&lt;/code&gt; below if you encounter scoring errors with Ollama.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1125,9 +1390,9 @@ Note: outputs will be generated by traced_rag_predict() during evaluation
 &lt;div class="jp-OutputArea-child"&gt;
 
 &lt;div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr"&gt;
-&lt;pre&gt;2026/01/08 16:18:22 INFO mlflow.models.evaluation.utils.trace: Auto tracing is temporarily enabled during the model evaluation for computing some metrics and debugging. To disable tracing, call `mlflow.autolog(disable=True)`.
-2026/01/08 16:18:22 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
-2026/01/08 16:18:22 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+&lt;pre&gt;2026/01/11 09:22:33 INFO mlflow.models.evaluation.utils.trace: Auto tracing is temporarily enabled during the model evaluation for computing some metrics and debugging. To disable tracing, call `mlflow.autolog(disable=True)`.
+2026/01/11 09:22:33 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/11 09:22:33 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1143,7 +1408,7 @@ This generates traces with RETRIEVER spans for Faithfulness metric.
 &lt;div class="jp-OutputArea-child"&gt;
 
 &lt;div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr"&gt;
-&lt;pre&gt;2026/01/08 16:18:23 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+&lt;pre&gt;2026/01/11 09:22:34 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1161,13 +1426,13 @@ This generates traces with RETRIEVER spans for Faithfulness metric.
 
 Metrics and evaluation results are logged to the MLflow run:
   Run name: &lt;span class="ansi-blue-intense-fg"&gt;ragas-evaluation-traced&lt;/span&gt;
-  Run ID: &lt;span class="ansi-blue-intense-fg"&gt;c18463db51174ea8ba36935fe2adcfe5&lt;/span&gt;
+  Run ID: &lt;span class="ansi-blue-intense-fg"&gt;35029b87d0e542128dedd53531ba0710&lt;/span&gt;
 
 To view the detailed evaluation results with sample-wise scores,
 open the &lt;span class="ansi-yellow-intense-fg ansi-bold"&gt;Traces&lt;/span&gt; tab in the Run page in the MLflow UI.
 
 
-Evaluation complete! Run ID: c18463db51174ea8ba36935fe2adcfe5
+Evaluation complete! Run ID: 35029b87d0e542128dedd53531ba0710
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1249,7 +1514,7 @@ Evaluation complete! Run ID: c18463db51174ea8ba36935fe2adcfe5
                 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"   &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;err_str&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;"-"&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"💡 Common fixes:"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Common fixes:"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"   1. Use OpenAI as judge: JUDGE_PROVIDER = LLMProvider.OPENAI"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"   2. For Ollama: ensure model is running and OLLAMA_API_BASE is set"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"   3. ContextPrecision/ContextRecall require traces with RETRIEVER spans"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1272,10 +1537,10 @@ RAGAS EVALUATION RESULTS
 
 RAGAS Metrics:
 ----------------------------------------
-  ✓ ContextRecall/value: 0.830 (±0.201) [20/20 samples]
-  ✓ ContextPrecision/value: 0.992 (±0.037) [20/20 samples]
-  ✓ Faithfulness/value: 0.994 (±0.020) [20/20 samples]
-  ✓ FactualCorrectness/value: 0.550 (±0.218) [20/20 samples]
+  ✓ ContextRecall/value: 0.853 (±0.196) [20/20 samples]
+  ✓ ContextPrecision/value: 0.967 (±0.116) [20/20 samples]
+  ✓ Faithfulness/value: 0.984 (±0.047) [20/20 samples]
+  ✓ FactualCorrectness/value: 0.613 (±0.250) [20/20 samples]
 
 Summary: 4 metrics succeeded, 0 metrics failed
    Total samples: 20
@@ -1344,18 +1609,62 @@ Identifying Low-Scoring Samples:
 ----------------------------------------
 
 ⚠️  ContextRecall/value &amp;lt; 0.5: 1 samples
-    - [0.33] What is Faithfulness in RAGAS?...
+    - [0.33] What is MLflow GenAI used for?...
 
-⚠️  FactualCorrectness/value &amp;lt; 0.5: 7 samples
-    - [0.43] What is MLflow GenAI used for?...
-    - [0.40] How can you run MLflow Projects?...
+⚠️  ContextPrecision/value &amp;lt; 0.5: 1 samples
+    - [0.50] How can you run MLflow Projects?...
+
+⚠️  FactualCorrectness/value &amp;lt; 0.5: 6 samples
+    - [0.46] What is MLflow Tracking used for?...
+    - [0.30] What is MLflow GenAI used for?...
+    - [0.47] How can you run MLflow Projects?...
     - [0.12] What is Faithfulness in RAGAS?...
-    - [0.40] What frameworks support MLflow autolog?...
-    - [0.35] What are MLflow Recipes and what steps do they include?...
-    - [0.24] How can you access MLflow programmatically via REST API?...
-    - [0.40] What are model signatures and input examples in MLflow?...
+    - [0.31] What frameworks support MLflow autolog?...
+    - [0.40] How can you access MLflow programmatically via REST API?...
 &lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h3 id="Interpreting-RAGAS-Scores"&gt;Interpreting RAGAS Scores&lt;/h3&gt;&lt;p&gt;All RAGAS metrics return scores between 0.0 and 1.0. Here's rough guidance:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Score Range&lt;/th&gt;
+&lt;th&gt;Interpretation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.9 - 1.0&lt;/td&gt;
+&lt;td&gt;Excellent - production ready&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0.7 - 0.9&lt;/td&gt;
+&lt;td&gt;Good - minor improvements needed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0.5 - 0.7&lt;/td&gt;
+&lt;td&gt;Fair - significant room for improvement&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt; 0.5&lt;/td&gt;
+&lt;td&gt;Poor - investigate specific failures&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Important caveats:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;These thresholds are guidelines, not absolutes&lt;/li&gt;
+&lt;li&gt;Different applications have different quality requirements&lt;/li&gt;
+&lt;li&gt;Low FactualCorrectness often reflects semantic similarity issues, not actual incorrectness&lt;/li&gt;
+&lt;li&gt;Focus on relative improvements when comparing variants, not absolute scores&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1408,7 +1717,7 @@ Identifying Low-Scoring Samples:
 &lt;div class="jp-OutputArea-child"&gt;
 
 &lt;div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"&gt;
-&lt;pre&gt;Run ID: c18463db51174ea8ba36935fe2adcfe5
+&lt;pre&gt;Run ID: 35029b87d0e542128dedd53531ba0710
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1453,12 +1762,34 @@ Summary:
   - Provider: azure_openai
   - Model: gpt-4o-mini
   - Samples evaluated: 20
-  - MLflow Run ID: c18463db51174ea8ba36935fe2adcfe5
+  - MLflow Run ID: 35029b87d0e542128dedd53531ba0710
 
 View results: mlflow ui --port 5000
 
 &lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h2 id="Common-Pitfalls-and-Solutions"&gt;Common Pitfalls and Solutions&lt;/h2&gt;&lt;p&gt;During development of this tutorial, several non-obvious issues emerged:&lt;/p&gt;
+&lt;h3 id="1.-Model-URI-Format"&gt;1. Model URI Format&lt;/h3&gt;&lt;p&gt;MLflow uses litellm under the hood. The URI format matters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OpenAI: &lt;code&gt;openai:/gpt-4o-mini&lt;/code&gt; (note the colon-slash)&lt;/li&gt;
+&lt;li&gt;Azure: &lt;code&gt;azure:/deployment-name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Ollama: &lt;code&gt;ollama:/llama3.2:3b&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Using &lt;code&gt;azure/&lt;/code&gt; instead of &lt;code&gt;azure:/&lt;/code&gt; will fail silently or produce cryptic errors.&lt;/p&gt;
+&lt;h3 id="2.-Function-Signature-Must-Match-Input-Keys"&gt;2. Function Signature Must Match Input Keys&lt;/h3&gt;&lt;p&gt;When using &lt;code&gt;predict_fn&lt;/code&gt;, the function parameter names must exactly match the keys in your &lt;code&gt;inputs&lt;/code&gt; dictionary:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# If your data has: {"inputs": {"question": "..."}}&lt;/span&gt;
+&lt;span class="c1"&gt;# Your function MUST be: def predict(question: str)  # NOT def predict(query: str)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="3.-RETRIEVER-Spans-for-Context-Metrics"&gt;3. RETRIEVER Spans for Context Metrics&lt;/h3&gt;&lt;p&gt;Faithfulness, ContextPrecision, and ContextRecall require traces with RETRIEVER-type spans. Without them, these metrics return errors or incorrect values. The &lt;code&gt;traced_rag_predict&lt;/code&gt; function in this tutorial creates these spans explicitly.&lt;/p&gt;
+&lt;h3 id="4.-Judge-Model-Limitations"&gt;4. Judge Model Limitations&lt;/h3&gt;&lt;p&gt;RAGAS metrics use an LLM as a judge. Local models (Ollama) may struggle with the structured output parsing that RAGAS requires. For reliable scoring, consider using OpenAI/Azure as the judge even when your RAG uses a different provider.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1543,9 +1874,9 @@ Testing chunk_size=50
 &lt;div class="jp-OutputArea-child"&gt;
 
 &lt;div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr"&gt;
-&lt;pre&gt;2026/01/08 16:23:07 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
-2026/01/08 16:23:07 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
-2026/01/08 16:23:08 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+&lt;pre&gt;2026/01/11 09:23:10 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/11 09:23:10 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+2026/01/11 09:23:10 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1570,12 +1901,12 @@ Testing chunk_size=50
 
 Metrics and evaluation results are logged to the MLflow run:
   Run name: &lt;span class="ansi-blue-intense-fg"&gt;chunk-size-50&lt;/span&gt;
-  Run ID: &lt;span class="ansi-blue-intense-fg"&gt;5843dd1f28b94c3a9bc0aace400ab8dd&lt;/span&gt;
+  Run ID: &lt;span class="ansi-blue-intense-fg"&gt;34464d4c3bb34a0a8ce4d43760149f1e&lt;/span&gt;
 
 To view the detailed evaluation results with sample-wise scores,
 open the &lt;span class="ansi-yellow-intense-fg ansi-bold"&gt;Traces&lt;/span&gt; tab in the Run page in the MLflow UI.
 
-   ✓ Run ID: 5843dd1f28b94c3a9bc0aace400ab8dd
+   ✓ Run ID: 34464d4c3bb34a0a8ce4d43760149f1e
 
 Testing chunk_size=150
 &lt;/pre&gt;
@@ -1584,9 +1915,9 @@ Testing chunk_size=150
 &lt;div class="jp-OutputArea-child"&gt;
 
 &lt;div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr"&gt;
-&lt;pre&gt;2026/01/08 16:23:40 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
-2026/01/08 16:23:40 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
-2026/01/08 16:23:41 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+&lt;pre&gt;2026/01/11 09:23:33 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/11 09:23:33 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+2026/01/11 09:23:33 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1611,12 +1942,12 @@ Testing chunk_size=150
 
 Metrics and evaluation results are logged to the MLflow run:
   Run name: &lt;span class="ansi-blue-intense-fg"&gt;chunk-size-150&lt;/span&gt;
-  Run ID: &lt;span class="ansi-blue-intense-fg"&gt;07e5bad6efbc4c79b017e6b8828ba7c5&lt;/span&gt;
+  Run ID: &lt;span class="ansi-blue-intense-fg"&gt;c77546d4d930426b98ebeb1bf1a09a3f&lt;/span&gt;
 
 To view the detailed evaluation results with sample-wise scores,
 open the &lt;span class="ansi-yellow-intense-fg ansi-bold"&gt;Traces&lt;/span&gt; tab in the Run page in the MLflow UI.
 
-   ✓ Run ID: 07e5bad6efbc4c79b017e6b8828ba7c5
+   ✓ Run ID: c77546d4d930426b98ebeb1bf1a09a3f
 
 ============================================================
 Completed 2 experiments. Run IDs saved for comparison.
@@ -1720,20 +2051,111 @@ Completed 2 experiments. Run IDs saved for comparison.
 
 &lt;div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"&gt;
 &lt;pre&gt;Available metric columns (4 total):
-  - metrics.FactualCorrectness/mean
   - metrics.Faithfulness/mean
+  - metrics.FactualCorrectness/mean
   - metrics.ContextRecall/mean
   - metrics.ContextPrecision/mean
 
 Chunk Size Comparison Results
 ================================================================================
       Run Name Chunk Size Num Chunks Faithfulness FactualCorrectness ContextPrecision ContextRecall
+chunk-size-150        150         62        0.911              0.768            0.992         0.890
 chunk-size-150        150         62        0.915              0.781            0.983         0.834
+ chunk-size-50         50        175        0.942              0.743            0.983         0.840
  chunk-size-50         50        175        0.944              0.758            0.983         0.844
 
 ✨ Best configuration: chunk-size-150
 &lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h2 id="How-to-inspect-results-in-MLflow-UI:"&gt;&lt;a id="toc10_"&gt;&lt;/a&gt;&lt;a href="#toc0_"&gt;How to inspect results in MLflow UI:&lt;/a&gt;&lt;/h2&gt;&lt;h3 id="Select-the-experiment-to-inspect"&gt;&lt;a id="toc10_1_"&gt;&lt;/a&gt;&lt;a href="#toc0_"&gt;Select the experiment to inspect&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;img alt="" src="http://safjan.com/ragas-mlflow/01_experiments.png"/&gt;
+***Figure 1**: Select the experiment you want to analyze.*&lt;/p&gt;
+&lt;p&gt;Experiment type should be automatically recognized as "GenAI Evaluation" - when opening the experiment for the first time - you need to confirm this. Perhaps there is a way to pass this parameter when creating the experiment via code, but I have not found it yet.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h3 id="Configure-comparison-of-the-runs"&gt;&lt;a id="toc10_2_"&gt;&lt;/a&gt;&lt;a href="#toc0_"&gt;Configure comparison of the runs&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;img alt="" src="http://safjan.com/ragas-mlflow/02_runs.png"/&gt;
+***Figure 2**: Runs overview - high level overview of the results achieved for the various configurations/variant of your RAG under evaluation.*&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can &lt;strong&gt;edit experiment name and description&lt;/strong&gt; here. Informative names help when comparing multiple experiments. Description can provide additional context about the experiment's purpose.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;NOTE: Perhaps there is a way to pass description when creating the experiment via code, but I have not found it yet.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;In this view you can see all the runs (evaluate RAG variants) that belongs to this experiment. Each run corresponds to a different RAG configuration (e.g., different chunk sizes, models, etc.). You can see &lt;strong&gt;parameters&lt;/strong&gt; (e.g., model name, chunk size), &lt;strong&gt;aggregated metrics&lt;/strong&gt; (e.g., mean Faithfulness, mean Context Precision). The displayed columns with parameters, metrics can be customized using the "Columns" button on the top right, so you can focus on the most relevant information.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you want to do the comparison of two runs, select the runs you want to compare by checking the checkboxes next to each run. Note that, the second run you select will be treated as the "baseline" run in the comparison. The score changes of the first selected run will be calculated against the second selected run.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You can select multiple runs to compare their metrics side-by-side. This is useful for evaluating different RAG configurations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You can also select columns to display in the comparison table.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h3 id="View-Comparison-Results"&gt;&lt;a id="toc10_3_"&gt;&lt;/a&gt;&lt;a href="#toc0_"&gt;View Comparison Results&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;img alt="Compare - two pannels" src="http://safjan.com/ragas-mlflow/05_questions_compare_single.png"/&gt;
+&lt;em&gt;&lt;strong&gt;Figure 3**: Comparison of individual question results for selected runs.*
+In this view, you can see detailed comparison of individual question results for the selected runs. The zoom of the single panel is presented in the ***Figure 4&lt;/strong&gt;&lt;/em&gt; below.  This helps to analyze how each RAG configuration performed on specific queries. You can inspects full RAG output and details like retrieved contexts for each question.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zoom at the detailed results" src="http://safjan.com/ragas-mlflow/03_compare.png"/&gt;
+***Figure 4**: Zoom at the detailed results for the single variant*&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;p&gt;&lt;img alt="" src="http://safjan.com/ragas-mlflow/04_questions_compare_both.png"/&gt;
+***Figure 5**: Comparison of individual question results for selected runs - detailed view showing metrics for each question.*&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h2 id="More-from-MLflow"&gt;More from MLflow&lt;/h2&gt;&lt;p&gt;This tutorial focused on RAG evaluation using RAGAS metrics. MLflow offers many more features for RAG or GenAI model management, including:&lt;/p&gt;
+&lt;h3 id="built-in-metrics"&gt;built-in metrics&lt;/h3&gt;&lt;p&gt;&lt;a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/"&gt;MLFlow predefined&lt;/a&gt; metrics for GenAI models&lt;/p&gt;
+&lt;h3 id="Guidelines-based-LLM-Scorers"&gt;Guidelines-based LLM Scorers&lt;/h3&gt;&lt;p&gt;&lt;a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/guidelines/"&gt;Guidelines-based LLM Scorers&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;from MLflow Documentation:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Guidelines is a powerful scorer class designed to let you quickly and easily customize evaluation by defining natural language criteria that are framed as pass/fail conditions. It is ideal for checking compliance with rules, style guides, or information inclusion/exclusion.&lt;/p&gt;
+&lt;p&gt;Guidelines have the distinct advantage of being easy to explain to business stakeholders ("we are evaluating if the app delivers upon this set of rules") and, as such, can often be directly written by domain experts.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="MCP-server"&gt;MCP server&lt;/h3&gt;&lt;p&gt;&lt;a href="https://mlflow.org/docs/latest/genai/mcp/index.html"&gt;MLflow MCP Server&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;...and many more features. Explore the &lt;a href="https://mlflow.org/docs/latest/genai/index.html"&gt;MLflow GenAI documentation&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="jp-Cell jp-MarkdownCell jp-Notebook-cell"&gt;
+
+
+&lt;div class="jp-InputArea jp-Cell-inputArea"&gt;&lt;div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown"&gt;
+&lt;h2 id="References,-further-reading"&gt;&lt;a id="toc11_"&gt;&lt;/a&gt;&lt;a href="#toc0_"&gt;References, further reading&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/third-party/ragas/"&gt;MLflow Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mlflow.org/docs/latest/genai/flavors/langchain/notebooks/langchain-retriever"&gt;Introduction to RAG with MLflow and LangChain&lt;/a&gt; - MLflow documentation - exemplary implementation of RAG with LangChain and MLflow (without RAGAS evaluation).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MoRaouf/rag_evaluation_and_tracking"&gt;GitHub - rag_evaluation_and_tracking&lt;/a&gt; - This project houses a Retrieval Augmented Generation (RAG) LLM application built for robust and context-aware text generation. It leverages the combined power of LangChain for orchestration, MLflow for tracking and experimentation, DVC for version control, and RAGAS for evaluation.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -4687,242 +5109,4 @@ rg&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="alternative-libraries"&gt;Alternative Libraries&lt;/h2&gt;
-&lt;p&gt;While &lt;code&gt;unidecode&lt;/code&gt; is comprehensive, you might also explore alternatives like &lt;code&gt;unicodedata&lt;/code&gt; from the Python standard library for more control over the process.&lt;/p&gt;</content><category term="note"/><category term="python"/><category term="nlp"/><category term="sanitize"/><category term="sanitization"/><category term="diacritics"/><category term="accent"/><category term="umlaut"/><category term="unidecode"/></entry><entry><title>Implementing Sentence Boundary Detection in Python for Improved Text Chunking</title><link href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2024-08-30T00:00:00+02:00</published><updated>2024-08-30T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-08-30:/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/</id><summary type="html">&lt;p&gt;Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Sentence_boundary_disambiguation"&gt;Sentence boundary detection&lt;/a&gt; also known as Sentence boundary disambiguation (SBD) is a crucial preprocessing step for many natural language processing tasks, including text chunking. This guide will walk you through implementing a robust SBD system in Python, utilizing state-of-the-art techniques and libraries.&lt;/p&gt;
-&lt;h2 id="1-understanding-the-challenge"&gt;1. Understanding the Challenge&lt;/h2&gt;
-&lt;p&gt;Accurate SBD is non-trivial due to ambiguities in punctuation usage. For instance, periods can indicate abbreviations, decimals, or sentence boundaries. A sophisticated SBD system must handle these nuances.&lt;/p&gt;
-&lt;h2 id="2-choosing-the-right-tools"&gt;2. Choosing the Right Tools&lt;/h2&gt;
-&lt;p&gt;We'll use &lt;a href="https://spacy.io/"&gt;spaCy&lt;/a&gt;, a powerful NLP library in Python, for its efficiency and accuracy in SBD tasks.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;spacy&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="3-loading-a-pre-trained-model"&gt;3. Loading a Pre-trained Model&lt;/h2&gt;
-&lt;p&gt;spaCy offers pre-trained models with varying levels of complexity. For optimal performance, we'll use the large English model.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;nlp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;en_core_web_lg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="4-implementing-the-sbd-function"&gt;4. Implementing the SBD Function&lt;/h2&gt;
-&lt;p&gt;Let's create a function that takes a text input and returns a list of sentences:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;detect_sentence_boundaries&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;doc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;sent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sents&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="5-handling-edge-cases"&gt;5. Handling Edge Cases&lt;/h2&gt;
-&lt;p&gt;To improve accuracy, we'll implement custom rules for common edge cases:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;preprocess_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c1"&gt;# Handle ellipsis&lt;/span&gt;
-    &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;\.{3,}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;ellipsis&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Handle common abbreviations&lt;/span&gt;
-    &lt;span class="n"&gt;abbr_pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;\b([A-Z]\.)+[A-Z]?\b&amp;#39;&lt;/span&gt;
-    &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abbr_pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;dot&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;postprocess_sentences&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;sent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;ellipsis&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;dot&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;improved_sentence_detection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;preprocessed_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;preprocess_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;raw_sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;detect_sentence_boundaries&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;preprocessed_text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;postprocess_sentences&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;raw_sentences&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="handle-common-abbreviations-explanation"&gt;Handle common abbreviations - explanation&lt;/h2&gt;
-&lt;p&gt;This part of the code is designed to handle common abbreviations in the text to prevent them from being mistakenly identified as sentence boundaries. Let's break it down:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The regular expression pattern:
-   &lt;code&gt;python
-   abbr_pattern = r'\b([A-Z]\.)+[A-Z]?\b'&lt;/code&gt;
-   This pattern matches:&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\b&lt;/code&gt;: A word boundary&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;([A-Z]\.)&lt;/code&gt;: A capital letter followed by a period, grouped&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;+&lt;/code&gt;: One or more occurrences of the previous group&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;[A-Z]?&lt;/code&gt;: Optionally followed by another capital letter&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;\b&lt;/code&gt;: Another word boundary&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The substitution:
-   &lt;code&gt;python
-   text = re.sub(abbr_pattern, lambda m: m.group().replace('.', '&amp;lt;dot&amp;gt;'), text)&lt;/code&gt;
-   This replaces all matches of the pattern in the text. For each match, it applies a lambda function that replaces all periods (&lt;code&gt;.&lt;/code&gt;) with &lt;code&gt;&amp;lt;dot&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Here are some examples of how this works:&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;I work for the U.S. Government. It&amp;#39;s a good job.&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abbr_pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;dot&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="c1"&gt;# Output: &amp;quot;I work for the U&amp;lt;dot&amp;gt;S&amp;lt;dot&amp;gt; Government. It&amp;#39;s a good job.&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Example 2:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;He has a Ph.D. in Computer Science. He also has an M.A.&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abbr_pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;dot&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="c1"&gt;# Output: &amp;quot;He has a Ph&amp;lt;dot&amp;gt;D&amp;lt;dot&amp;gt; in Computer Science. He also has an M&amp;lt;dot&amp;gt;A&amp;lt;dot&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Example 3:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Visit the U.S.A. for your vacation. Don&amp;#39;t forget your I.D.&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;abbr_pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;dot&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="c1"&gt;# Output: &amp;quot;Visit the U&amp;lt;dot&amp;gt;S&amp;lt;dot&amp;gt;A&amp;lt;dot&amp;gt; for your vacation. Don&amp;#39;t forget your I&amp;lt;dot&amp;gt;D&amp;lt;dot&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;In these examples, the abbreviations are modified so that their periods are replaced with &lt;code&gt;&amp;lt;dot&amp;gt;&lt;/code&gt;. This prevents the sentence boundary detection algorithm from mistaking these periods as sentence endings.&lt;/p&gt;
-&lt;p&gt;The advantage of this approach is that it preserves the structure of common abbreviations while making them distinct from sentence-ending periods. Later in the process, these &lt;code&gt;&amp;lt;dot&amp;gt;&lt;/code&gt; placeholders can be replaced back with actual periods, maintaining the original text's integrity while improving sentence boundary detection accuracy.&lt;/p&gt;
-&lt;h2 id="6-integrating-with-text-chunking"&gt;6. Integrating with Text Chunking&lt;/h2&gt;
-&lt;p&gt;Now, let's integrate our SBD function into a text chunking pipeline:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;chunk_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_chunk_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;improved_sentence_detection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;chunks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-    &lt;span class="n"&gt;current_chunk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sentence&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_chunk&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sentence&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;max_chunk_size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;current_chunk&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;sentence&lt;/span&gt;
-        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;chunks&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_chunk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-            &lt;span class="n"&gt;current_chunk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sentence&lt;/span&gt;
-
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;current_chunk&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;chunks&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_chunk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;chunks&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="7-optimizing-performance"&gt;7. Optimizing Performance&lt;/h2&gt;
-&lt;p&gt;Chunking large amount of text can take significant amount of time. For large-scale applications, consider the following optimizations:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Use spaCy's &lt;code&gt;pipe()&lt;/code&gt; method for batch processing.&lt;/li&gt;
-&lt;li&gt;Implement multiprocessing for parallel sentence detection.&lt;/li&gt;
-&lt;li&gt;Fine-tune the spaCy model on your specific domain if needed.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;See also: &lt;a href="https://spacy.io/api/sentencizer/"&gt;Sentencizer&lt;/a&gt; - Pipeline component for rule-based sentence boundary detection&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="8-evaluating-the-system"&gt;8. Evaluating the System&lt;/h2&gt;
-&lt;p&gt;To assess the quality of your SBD implementation:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Use standard datasets like &lt;a href="https://huggingface.co/datasets/eriktks/conll2003"&gt;CoNLL-2003&lt;/a&gt; for benchmarking.&lt;/li&gt;
-&lt;li&gt;Implement metrics such as &lt;a href="https://en.wikipedia.org/wiki/F-score"&gt;F1 score&lt;/a&gt; for boundary detection accuracy.&lt;/li&gt;
-&lt;li&gt;Conduct error analysis to identify and address remaining issues.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Certainly. Here's an additional section on working with non-English texts for our article:&lt;/p&gt;
-&lt;h2 id="9-working-with-non-english-texts"&gt;9. Working with Non-English Texts&lt;/h2&gt;
-&lt;p&gt;Implementing sentence boundary detection for non-English texts presents unique challenges due to varying punctuation rules, writing systems, and linguistic structures. Here's how to adapt our approach for multilingual support:&lt;/p&gt;
-&lt;h3 id="91-using-language-specific-models"&gt;9.1 Using Language-Specific Models&lt;/h3&gt;
-&lt;p&gt;spaCy offers models for various languages. Load the appropriate model based on the input language:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;load_language_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lang_code&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;lang_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;_core_news_lg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;OSError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Model for &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;lang_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; not found. Downloading...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="n"&gt;spacy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;lang_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;_core_news_lg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;lang_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;_core_news_lg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Usage&lt;/span&gt;
-&lt;span class="n"&gt;de_nlp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_language_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;de&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# German&lt;/span&gt;
-&lt;span class="n"&gt;ja_nlp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_language_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ja&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Japanese&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="92-handling-script-specific-challenges"&gt;9.2 Handling Script-Specific Challenges&lt;/h3&gt;
-&lt;p&gt;Different writing systems require tailored approaches:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unicodedata&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;detect_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;scripts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;char&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;unicodedata&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-        &lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;preprocess_by_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;detect_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;CJK&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="c1"&gt;# For Chinese, Japanese, Korean&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;。&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.&amp;lt;stop&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;！&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;!&amp;lt;stop&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;？&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;?&amp;lt;stop&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ARABIC&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="c1"&gt;# For Arabic and Persian&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.&amp;lt;stop&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;؟&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;?&amp;lt;stop&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="c1"&gt;# Add more script-specific rules as needed&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;postprocess_by_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;CJK&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;sent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;stop&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ARABIC&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;sent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;stop&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sentences&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sentences&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="93-implementing-a-multilingual-sbd-function"&gt;9.3 Implementing a Multilingual SBD Function&lt;/h3&gt;
-&lt;p&gt;Combine the above approaches into a unified multilingual SBD function:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;multilingual_sbd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lang_code&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;nlp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_language_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lang_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;detect_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;preprocessed_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;preprocess_by_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;preprocess_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;doc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;preprocessed_text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;raw_sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;sent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sents&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-
-    &lt;span class="n"&gt;cleaned_sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;postprocess_by_script&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;raw_sentences&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;postprocess_sentences&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cleaned_sentences&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Usage&lt;/span&gt;
-&lt;span class="n"&gt;german_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hallo Welt! Wie geht es dir? Dr. Müller ist hier.&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;german_sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;multilingual_sbd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;german_text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;de&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;japanese_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;こんにちは世界！お元気ですか？山田先生がいらっしゃいました。&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;japanese_sentences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;multilingual_sbd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;japanese_text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ja&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="94-handling-bidirectional-text"&gt;9.4 Handling Bidirectional Text&lt;/h3&gt;
-&lt;p&gt;For languages with right-to-left script, such as Arabic or Hebrew, ensure proper handling:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;bidi.algorithm&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;bidi&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;handle_bidi_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;bidi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_display&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Incorporate this into the multilingual_sbd function for relevant scripts&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="95-fine-tuning-for-specific-languages"&gt;9.5 Fine-tuning for Specific Languages&lt;/h3&gt;
-&lt;p&gt;If the pre-trained models don't perform well for your specific use case, consider fine-tuning:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Collect a dataset of sentences in your target language.&lt;/li&gt;
-&lt;li&gt;Use spaCy's training API to fine-tune the model on your dataset.&lt;/li&gt;
-&lt;li&gt;Evaluate the fine-tuned model against a held-out test set.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;train_custom_sbd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;nlp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;spacy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;sbd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_pipe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sentencizer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;optimizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;initialize&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="n"&gt;losses&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;annotations&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;train_data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;doc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make_doc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="n"&gt;example&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Example&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;annotations&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;sgd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;optimizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;losses&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;losses&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;nlp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_disk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output_dir&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id="96-evaluating-multilingual-performance"&gt;9.6 Evaluating Multilingual Performance&lt;/h3&gt;
-&lt;p&gt;To ensure your multilingual SBD system performs well across languages:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Create or obtain evaluation datasets for each supported language.&lt;/li&gt;
-&lt;li&gt;Implement language-specific evaluation metrics when necessary.&lt;/li&gt;
-&lt;li&gt;Conduct regular cross-lingual evaluations to maintain quality across all supported languages.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;This guide has provided a comprehensive approach to implementing sentence boundary detection (SBD) in Python, focusing on improving text chunking accuracy. We've covered core SBD techniques, edge case handling, integration with text chunking, performance optimization, and expansion into multilingual support. By combining pre-trained models with custom rules and language-specific adaptations, this system offers a robust solution for diverse NLP applications. As you apply these techniques, remember to continuously evaluate and refine your implementation to meet the specific needs of your projects and to adapt to the evolving landscape of natural language processing.&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/topics/sentence-boundary-detection"&gt;sentence-boundary-detection · GitHub Topics · GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"/><category term="Python"/><category term="NLP"/><category term="sentence-boundary-detection"/><category term="text-chunking"/><category term="spaCy"/><category term="preprocessing"/><category term="edge-cases"/><category term="abbreviations"/><category term="ellipsis"/><category term="performance-optimization"/><category term="multiprocessing"/><category term="evaluation"/><category term="multilingual-support"/><category term="language-models"/><category term="script-detection"/><category term="non-English-texts"/><category term="bidirectional-text"/><category term="fine-tuning"/><category term="CJK-languages"/><category term="Arabic"/><category term="Unicode"/><category term="regular-expressions"/><category term="machine-learning"/><category term="text-analysis"/><category term="data-preprocessing"/><category term="NLP-pipeline"/><category term="language-detection"/><category term="model-training"/><category term="cross-lingual-evaluation"/></entry></feed>
+&lt;p&gt;While &lt;code&gt;unidecode&lt;/code&gt; is comprehensive, you might also explore alternatives like &lt;code&gt;unicodedata&lt;/code&gt; from the Python standard library for more control over the process.&lt;/p&gt;</content><category term="note"/><category term="python"/><category term="nlp"/><category term="sanitize"/><category term="sanitization"/><category term="diacritics"/><category term="accent"/><category term="umlaut"/><category term="unidecode"/></entry></feed>

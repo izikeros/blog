@@ -74,7 +74,7 @@
   <meta property="og:url" content="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2026-01-08 00:00:00+01:00"/>
-  <meta property="article:modified_time" content="2026-01-08 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-01-11 00:00:00+01:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Data Science"/>
   <meta property="article:tag" content="python"/>
@@ -85,11 +85,11 @@
   <meta property="article:tag" content="evaluation"/>
   <meta property="article:tag" content="langchain"/>
   <meta property="article:tag" content="tutorial"/>
-  <meta property="og:image" content="https://www.safjan.com//images/head/abstract_1.jpg"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/ragas-mlfow-demo-640px.jpg"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:image" content="https://www.safjan.com//images/head/abstract_1.jpg"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/ragas-mlfow-demo-640px.jpg"/>
     <meta name="twitter:image:alt" content="RAG Evaluation with RAGAS and MLflow - A Practical Guide"/>
 
 
@@ -107,7 +107,7 @@
   },
   "headline": "RAG Evaluation with RAGAS and MLflow - A Practical Guide",
   "datePublished": "2026-01-08T00:00:00+01:00",
-  "dateModified": "2026-01-08T00:00:00+01:00",
+  "dateModified": "2026-01-11T00:00:00+01:00",
   "author": {
     "@type": "Person",
     "name": "Krystian Safjan",
@@ -120,12 +120,12 @@
       "@type": "ImageObject",
       "url": "/images/profile_new.jpg"
     }  },
-"image": "https://www.safjan.com//images/head/abstract_1.jpg",  "url": "https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/",
+"image": "https://www.safjan.com//images/head/ragas-mlfow-demo-640px.jpg",  "url": "https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/",
   "description": "A comprehensive tutorial demonstrating RAG evaluation using RAGAS metrics through MLflow integration. Learn to build a minimal RAG pipeline with LangChain,...",
   "articleSection": "Data Science",
   "inLanguage": "en",
   "keywords": "python, mlflow, ragas, rag, llm, evaluation, langchain, tutorial",
-  "wordCount": 4191,
+  "wordCount": 5338,
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
@@ -165,8 +165,8 @@
 
 
 
-<meta name="ai:word-count" content="4191">
-<meta name="ai:reading-time" content="20 min">
+<meta name="ai:word-count" content="5338">
+<meta name="ai:reading-time" content="26 min">
 
 <meta name="ai:section" content="Data Science">
 
@@ -287,7 +287,7 @@
                 <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/">
                         <img style="width: 100%; "
-                             src="/images/head/abstract_1.jpg" alt="RAG Evaluation with RAGAS and MLflow - A Practical Guide">
+                             src="/images/head/ragas-mlfow-demo-640px.jpg" alt="RAG Evaluation with RAGAS and MLflow - A Practical Guide">
                     </a>
                 </div>
 
@@ -338,6 +338,13 @@
 <li><a href="#toc9_2_">Comparing Results in MLflow UI</a></li>
 </ul>
 </li>
+<li><a href="#toc10_">How to inspect results in MLflow UI:</a><ul>
+<li><a href="#toc10_1_">Select the experiment to inspect</a></li>
+<li><a href="#toc10_2_">Configure comparison of the runs</a></li>
+<li><a href="#toc10_3_">View Comparison Results</a></li>
+</ul>
+</li>
+<li><a href="#toc11_">References</a></li>
 </ul>
 <!-- vscode-jupyter-toc-config
 	numbering=false
@@ -355,7 +362,31 @@
 
 
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Why-This-Tutorial?">Why This Tutorial?</h2><p>Evaluating RAG pipelines is surprisingly difficult. You can build a working retrieval system in an afternoon, but answering "Is it actually good?" requires systematic measurement.</p>
+<p><strong>The challenge:</strong> Manual evaluation doesn't scale. Eyeballing a few responses tells you almost nothing about overall quality. You need metrics that capture different aspects of RAG performance:</p>
+<ul>
+<li>Is the retriever finding relevant documents?</li>
+<li>Is the LLM staying faithful to the retrieved context (not hallucinating)?</li>
+<li>Are the answers factually correct?</li>
+</ul>
+<p><strong>The solution:</strong> RAGAS provides standardized metrics for RAG evaluation. MLflow provides experiment tracking. Together, they enable systematic, reproducible evaluation that you can run on every pipeline change.</p>
+<p><strong>What made this tricky:</strong> The MLflow-RAGAS integration looks simple in the docs, but getting it to work with a real LangChain pipeline required navigating several non-obvious requirements:</p>
+<ul>
+<li>Specific model URI formats for different providers</li>
+<li>Function signatures that match MLflow's expectations</li>
+<li>Proper tracing spans for context-aware metrics</li>
+</ul>
+<p>This tutorial documents what actually works, including the gotchas I encountered along the way.</p>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>This tutorial demonstrates how to evaluate Retrieval-Augmented Generation (RAG) systems using <strong>RAGAS</strong> (Retrieval Augmented Generation Assessment) metrics through <strong>MLflow</strong> integration.</p>
+<p>NOTE: RAGAS is a third-party evaluation library. For more details, visit the <a href="https://github.com/explodinggradients/ragas">RAGAS GitHub repository</a>. At the time of writing (January 2026), apart from RAGAS, MLFlow supports another <a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/third-party/">third-party scorer/evaluation</a> library: DeepEval.</p>
 <h2 id="What-You'll-Learn"><a id="toc1_"></a><a href="#toc0_">What You'll Learn</a></h2><ol>
 <li><strong>Build a minimal RAG pipeline</strong> using LangChain and FAISS</li>
 <li><strong>Create a golden evaluation dataset</strong> with expected answers</li>
@@ -943,12 +974,12 @@ Answer: MLflow Tracking is an API and UI for logging parameters, code versions, 
 <div class="jp-OutputArea-child">
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2026/01/08 16:18:16 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
-2026/01/08 16:18:16 INFO mlflow.store.db.utils: Updating database tables
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Context impl SQLiteImpl.
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Will assume non-transactional DDL.
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Context impl SQLiteImpl.
-2026/01/08 16:18:16 INFO alembic.runtime.migration: Will assume non-transactional DDL.
+<pre>2026/01/11 09:22:25 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+2026/01/11 09:22:25 INFO mlflow.store.db.utils: Updating database tables
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Context impl SQLiteImpl.
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Will assume non-transactional DDL.
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Context impl SQLiteImpl.
+2026/01/11 09:22:25 INFO alembic.runtime.migration: Will assume non-transactional DDL.
 </pre>
 </div>
 </div>
@@ -959,6 +990,17 @@ Answer: MLflow Tracking is an API and UI for logging parameters, code versions, 
 LangChain autologging enabled with tracing
 </pre>
 </div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<blockquote>
+<p><strong>NOTE</strong>: If you don't have tracing enabled in your RAG there is still possibility to pass the evaluation data to MLflow to ease analysis. If this is your case please refer to the text on my blog explaining how to do it: <a href="https://safjan.com/using-mlflowragas-integration-without-tracing">RAG Evaluation with RAGAS and MLflow - without tracing</a></p>
+</blockquote>
 </div>
 </div>
 
@@ -1170,32 +1212,38 @@ Retrieved Contexts (3):
 <tr>
 <th>Metric</th>
 <th>What it measures</th>
-<th>Requires</th>
+<th>Required Data</th>
+<th>Common Failure</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Faithfulness</strong></td>
-<td>Is the answer grounded in the retrieved context?</td>
+<td>Is the answer grounded in retrieved context?</td>
 <td>answer, contexts</td>
+<td>Missing RETRIEVER spans</td>
 </tr>
 <tr>
 <td><strong>Context Precision</strong></td>
-<td>Are relevant docs ranked higher than irrelevant ones?</td>
-<td>question, contexts, expected_answer</td>
+<td>Are relevant docs ranked higher?</td>
+<td>question, contexts, ground_truth</td>
+<td>No ground_truth provided</td>
 </tr>
 <tr>
 <td><strong>Context Recall</strong></td>
-<td>Does the context contain all info needed to answer?</td>
-<td>contexts, expected_answer</td>
+<td>Does context contain needed info?</td>
+<td>contexts, ground_truth</td>
+<td>No ground_truth provided</td>
 </tr>
 <tr>
 <td><strong>Factual Correctness</strong></td>
-<td>Does the answer match the expected ground truth?</td>
-<td>answer, expected_answer</td>
+<td>Does answer match expected?</td>
+<td>answer, ground_truth</td>
+<td>Semantic mismatch (strict)</td>
 </tr>
 </tbody>
 </table>
+<p>These metrics provide an initial quantitative assessment of RAG quality across multiple dimensions. There are more RAGAS tool metrics available through the  MLflow integration.</p>
 <blockquote>
 <p><strong>Note on LLM Judge</strong>: RAGAS metrics use an LLM as a judge. For best results, use <strong>OpenAI</strong> (gpt-4o-mini) as the judge model even if you're using Ollama for RAG generation. Ollama/local models may have issues with litellm's structured output parsing. Set <code>JUDGE_PROVIDER = LLMProvider.OPENAI</code> below if you encounter scoring errors with Ollama.</p>
 </blockquote>
@@ -1424,9 +1472,9 @@ Note: outputs will be generated by traced_rag_predict() during evaluation
 <div class="jp-OutputArea-child">
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2026/01/08 16:18:22 INFO mlflow.models.evaluation.utils.trace: Auto tracing is temporarily enabled during the model evaluation for computing some metrics and debugging. To disable tracing, call `mlflow.autolog(disable=True)`.
-2026/01/08 16:18:22 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
-2026/01/08 16:18:22 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+<pre>2026/01/11 09:22:33 INFO mlflow.models.evaluation.utils.trace: Auto tracing is temporarily enabled during the model evaluation for computing some metrics and debugging. To disable tracing, call `mlflow.autolog(disable=True)`.
+2026/01/11 09:22:33 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/11 09:22:33 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 </pre>
 </div>
 </div>
@@ -1442,7 +1490,7 @@ This generates traces with RETRIEVER spans for Faithfulness metric.
 <div class="jp-OutputArea-child">
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2026/01/08 16:18:23 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+<pre>2026/01/11 09:22:34 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 </pre>
 </div>
 </div>
@@ -1460,13 +1508,13 @@ This generates traces with RETRIEVER spans for Faithfulness metric.
 
 Metrics and evaluation results are logged to the MLflow run:
   Run name: <span class="ansi-blue-intense-fg">ragas-evaluation-traced</span>
-  Run ID: <span class="ansi-blue-intense-fg">c18463db51174ea8ba36935fe2adcfe5</span>
+  Run ID: <span class="ansi-blue-intense-fg">35029b87d0e542128dedd53531ba0710</span>
 
 To view the detailed evaluation results with sample-wise scores,
 open the <span class="ansi-yellow-intense-fg ansi-bold">Traces</span> tab in the Run page in the MLflow UI.
 
 
-Evaluation complete! Run ID: c18463db51174ea8ba36935fe2adcfe5
+Evaluation complete! Run ID: 35029b87d0e542128dedd53531ba0710
 </pre>
 </div>
 </div>
@@ -1548,7 +1596,7 @@ Evaluation complete! Run ID: c18463db51174ea8ba36935fe2adcfe5
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   </span><span class="si">{</span><span class="n">err_str</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     
     <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"💡 Common fixes:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Common fixes:"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"   1. Use OpenAI as judge: JUDGE_PROVIDER = LLMProvider.OPENAI"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"   2. For Ollama: ensure model is running and OLLAMA_API_BASE is set"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"   3. ContextPrecision/ContextRecall require traces with RETRIEVER spans"</span><span class="p">)</span>
@@ -1571,10 +1619,10 @@ RAGAS EVALUATION RESULTS
 
 RAGAS Metrics:
 ----------------------------------------
-  ✓ ContextRecall/value: 0.830 (±0.201) [20/20 samples]
-  ✓ ContextPrecision/value: 0.992 (±0.037) [20/20 samples]
-  ✓ Faithfulness/value: 0.994 (±0.020) [20/20 samples]
-  ✓ FactualCorrectness/value: 0.550 (±0.218) [20/20 samples]
+  ✓ ContextRecall/value: 0.853 (±0.196) [20/20 samples]
+  ✓ ContextPrecision/value: 0.967 (±0.116) [20/20 samples]
+  ✓ Faithfulness/value: 0.984 (±0.047) [20/20 samples]
+  ✓ FactualCorrectness/value: 0.613 (±0.250) [20/20 samples]
 
 Summary: 4 metrics succeeded, 0 metrics failed
    Total samples: 20
@@ -1643,18 +1691,62 @@ Identifying Low-Scoring Samples:
 ----------------------------------------
 
 ⚠️  ContextRecall/value &lt; 0.5: 1 samples
-    - [0.33] What is Faithfulness in RAGAS?...
+    - [0.33] What is MLflow GenAI used for?...
 
-⚠️  FactualCorrectness/value &lt; 0.5: 7 samples
-    - [0.43] What is MLflow GenAI used for?...
-    - [0.40] How can you run MLflow Projects?...
+⚠️  ContextPrecision/value &lt; 0.5: 1 samples
+    - [0.50] How can you run MLflow Projects?...
+
+⚠️  FactualCorrectness/value &lt; 0.5: 6 samples
+    - [0.46] What is MLflow Tracking used for?...
+    - [0.30] What is MLflow GenAI used for?...
+    - [0.47] How can you run MLflow Projects?...
     - [0.12] What is Faithfulness in RAGAS?...
-    - [0.40] What frameworks support MLflow autolog?...
-    - [0.35] What are MLflow Recipes and what steps do they include?...
-    - [0.24] How can you access MLflow programmatically via REST API?...
-    - [0.40] What are model signatures and input examples in MLflow?...
+    - [0.31] What frameworks support MLflow autolog?...
+    - [0.40] How can you access MLflow programmatically via REST API?...
 </pre>
 </div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Interpreting-RAGAS-Scores">Interpreting RAGAS Scores</h3><p>All RAGAS metrics return scores between 0.0 and 1.0. Here's rough guidance:</p>
+<table>
+<thead>
+<tr>
+<th>Score Range</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.9 - 1.0</td>
+<td>Excellent - production ready</td>
+</tr>
+<tr>
+<td>0.7 - 0.9</td>
+<td>Good - minor improvements needed</td>
+</tr>
+<tr>
+<td>0.5 - 0.7</td>
+<td>Fair - significant room for improvement</td>
+</tr>
+<tr>
+<td>&lt; 0.5</td>
+<td>Poor - investigate specific failures</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important caveats:</strong></p>
+<ul>
+<li>These thresholds are guidelines, not absolutes</li>
+<li>Different applications have different quality requirements</li>
+<li>Low FactualCorrectness often reflects semantic similarity issues, not actual incorrectness</li>
+<li>Focus on relative improvements when comparing variants, not absolute scores</li>
+</ul>
 </div>
 </div>
 
@@ -1707,7 +1799,7 @@ Identifying Low-Scoring Samples:
 <div class="jp-OutputArea-child">
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Run ID: c18463db51174ea8ba36935fe2adcfe5
+<pre>Run ID: 35029b87d0e542128dedd53531ba0710
 </pre>
 </div>
 </div>
@@ -1752,12 +1844,34 @@ Summary:
   - Provider: azure_openai
   - Model: gpt-4o-mini
   - Samples evaluated: 20
-  - MLflow Run ID: c18463db51174ea8ba36935fe2adcfe5
+  - MLflow Run ID: 35029b87d0e542128dedd53531ba0710
 
 View results: mlflow ui --port 5000
 
 </pre>
 </div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Common-Pitfalls-and-Solutions">Common Pitfalls and Solutions</h2><p>During development of this tutorial, several non-obvious issues emerged:</p>
+<h3 id="1.-Model-URI-Format">1. Model URI Format</h3><p>MLflow uses litellm under the hood. The URI format matters:</p>
+<ul>
+<li>OpenAI: <code>openai:/gpt-4o-mini</code> (note the colon-slash)</li>
+<li>Azure: <code>azure:/deployment-name</code></li>
+<li>Ollama: <code>ollama:/llama3.2:3b</code></li>
+</ul>
+<p>Using <code>azure/</code> instead of <code>azure:/</code> will fail silently or produce cryptic errors.</p>
+<h3 id="2.-Function-Signature-Must-Match-Input-Keys">2. Function Signature Must Match Input Keys</h3><p>When using <code>predict_fn</code>, the function parameter names must exactly match the keys in your <code>inputs</code> dictionary:</p>
+<div class="highlight"><pre><span></span><span class="c1"># If your data has: {"inputs": {"question": "..."}}</span>
+<span class="c1"># Your function MUST be: def predict(question: str)  # NOT def predict(query: str)</span>
+</pre></div>
+<h3 id="3.-RETRIEVER-Spans-for-Context-Metrics">3. RETRIEVER Spans for Context Metrics</h3><p>Faithfulness, ContextPrecision, and ContextRecall require traces with RETRIEVER-type spans. Without them, these metrics return errors or incorrect values. The <code>traced_rag_predict</code> function in this tutorial creates these spans explicitly.</p>
+<h3 id="4.-Judge-Model-Limitations">4. Judge Model Limitations</h3><p>RAGAS metrics use an LLM as a judge. Local models (Ollama) may struggle with the structured output parsing that RAGAS requires. For reliable scoring, consider using OpenAI/Azure as the judge even when your RAG uses a different provider.</p>
 </div>
 </div>
 
@@ -1842,9 +1956,9 @@ Testing chunk_size=50
 <div class="jp-OutputArea-child">
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2026/01/08 16:23:07 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
-2026/01/08 16:23:07 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
-2026/01/08 16:23:08 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+<pre>2026/01/11 09:23:10 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/11 09:23:10 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+2026/01/11 09:23:10 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 </pre>
 </div>
 </div>
@@ -1869,12 +1983,12 @@ Testing chunk_size=50
 
 Metrics and evaluation results are logged to the MLflow run:
   Run name: <span class="ansi-blue-intense-fg">chunk-size-50</span>
-  Run ID: <span class="ansi-blue-intense-fg">5843dd1f28b94c3a9bc0aace400ab8dd</span>
+  Run ID: <span class="ansi-blue-intense-fg">34464d4c3bb34a0a8ce4d43760149f1e</span>
 
 To view the detailed evaluation results with sample-wise scores,
 open the <span class="ansi-yellow-intense-fg ansi-bold">Traces</span> tab in the Run page in the MLflow UI.
 
-   ✓ Run ID: 5843dd1f28b94c3a9bc0aace400ab8dd
+   ✓ Run ID: 34464d4c3bb34a0a8ce4d43760149f1e
 
 Testing chunk_size=150
 </pre>
@@ -1883,9 +1997,9 @@ Testing chunk_size=150
 <div class="jp-OutputArea-child">
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2026/01/08 16:23:40 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
-2026/01/08 16:23:40 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
-2026/01/08 16:23:41 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+<pre>2026/01/11 09:23:33 INFO mlflow.genai.utils.data_validation: Testing model prediction with the first sample in the dataset. To disable this check, set the MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION environment variable to True.
+2026/01/11 09:23:33 WARNING mlflow.tracing.fluent: Failed to start span VectorStoreRetriever: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
+2026/01/11 09:23:33 WARNING mlflow.tracing.fluent: Failed to start span RunnableSequence: 'NonRecordingSpan' object has no attribute 'context'. For full traceback, set logging level to debug.
 </pre>
 </div>
 </div>
@@ -1910,12 +2024,12 @@ Testing chunk_size=150
 
 Metrics and evaluation results are logged to the MLflow run:
   Run name: <span class="ansi-blue-intense-fg">chunk-size-150</span>
-  Run ID: <span class="ansi-blue-intense-fg">07e5bad6efbc4c79b017e6b8828ba7c5</span>
+  Run ID: <span class="ansi-blue-intense-fg">c77546d4d930426b98ebeb1bf1a09a3f</span>
 
 To view the detailed evaluation results with sample-wise scores,
 open the <span class="ansi-yellow-intense-fg ansi-bold">Traces</span> tab in the Run page in the MLflow UI.
 
-   ✓ Run ID: 07e5bad6efbc4c79b017e6b8828ba7c5
+   ✓ Run ID: c77546d4d930426b98ebeb1bf1a09a3f
 
 ============================================================
 Completed 2 experiments. Run IDs saved for comparison.
@@ -2019,20 +2133,111 @@ Completed 2 experiments. Run IDs saved for comparison.
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Available metric columns (4 total):
-  - metrics.FactualCorrectness/mean
   - metrics.Faithfulness/mean
+  - metrics.FactualCorrectness/mean
   - metrics.ContextRecall/mean
   - metrics.ContextPrecision/mean
 
 Chunk Size Comparison Results
 ================================================================================
       Run Name Chunk Size Num Chunks Faithfulness FactualCorrectness ContextPrecision ContextRecall
+chunk-size-150        150         62        0.911              0.768            0.992         0.890
 chunk-size-150        150         62        0.915              0.781            0.983         0.834
+ chunk-size-50         50        175        0.942              0.743            0.983         0.840
  chunk-size-50         50        175        0.944              0.758            0.983         0.844
 
 ✨ Best configuration: chunk-size-150
 </pre>
 </div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="How-to-inspect-results-in-MLflow-UI:"><a id="toc10_"></a><a href="#toc0_">How to inspect results in MLflow UI:</a></h2><h3 id="Select-the-experiment-to-inspect"><a id="toc10_1_"></a><a href="#toc0_">Select the experiment to inspect</a></h3><p><img alt="" src="http://safjan.com/ragas-mlflow/01_experiments.png"/>
+***Figure 1**: Select the experiment you want to analyze.*</p>
+<p>Experiment type should be automatically recognized as "GenAI Evaluation" - when opening the experiment for the first time - you need to confirm this. Perhaps there is a way to pass this parameter when creating the experiment via code, but I have not found it yet.</p>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Configure-comparison-of-the-runs"><a id="toc10_2_"></a><a href="#toc0_">Configure comparison of the runs</a></h3><p><img alt="" src="http://safjan.com/ragas-mlflow/02_runs.png"/>
+***Figure 2**: Runs overview - high level overview of the results achieved for the various configurations/variant of your RAG under evaluation.*</p>
+<ul>
+<li>You can <strong>edit experiment name and description</strong> here. Informative names help when comparing multiple experiments. Description can provide additional context about the experiment's purpose.</li>
+</ul>
+<p>NOTE: Perhaps there is a way to pass description when creating the experiment via code, but I have not found it yet.</p>
+<ul>
+<li><p>In this view you can see all the runs (evaluate RAG variants) that belongs to this experiment. Each run corresponds to a different RAG configuration (e.g., different chunk sizes, models, etc.). You can see <strong>parameters</strong> (e.g., model name, chunk size), <strong>aggregated metrics</strong> (e.g., mean Faithfulness, mean Context Precision). The displayed columns with parameters, metrics can be customized using the "Columns" button on the top right, so you can focus on the most relevant information.</p>
+</li>
+<li><p>If you want to do the comparison of two runs, select the runs you want to compare by checking the checkboxes next to each run. Note that, the second run you select will be treated as the "baseline" run in the comparison. The score changes of the first selected run will be calculated against the second selected run.</p>
+</li>
+<li><p>You can select multiple runs to compare their metrics side-by-side. This is useful for evaluating different RAG configurations.</p>
+</li>
+<li><p>You can also select columns to display in the comparison table.</p>
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="View-Comparison-Results"><a id="toc10_3_"></a><a href="#toc0_">View Comparison Results</a></h3><p><img alt="Compare - two pannels" src="http://safjan.com/ragas-mlflow/05_questions_compare_single.png"/>
+<em><strong>Figure 3**: Comparison of individual question results for selected runs.*
+In this view, you can see detailed comparison of individual question results for the selected runs. The zoom of the single panel is presented in the ***Figure 4</strong></em> below.  This helps to analyze how each RAG configuration performed on specific queries. You can inspects full RAG output and details like retrieved contexts for each question.</p>
+<p><img alt="Zoom at the detailed results" src="http://safjan.com/ragas-mlflow/03_compare.png"/>
+***Figure 4**: Zoom at the detailed results for the single variant*</p>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="" src="http://safjan.com/ragas-mlflow/04_questions_compare_both.png"/>
+***Figure 5**: Comparison of individual question results for selected runs - detailed view showing metrics for each question.*</p>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="More-from-MLflow">More from MLflow</h2><p>This tutorial focused on RAG evaluation using RAGAS metrics. MLflow offers many more features for RAG or GenAI model management, including:</p>
+<h3 id="built-in-metrics">built-in metrics</h3><p><a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/">MLFlow predefined</a> metrics for GenAI models</p>
+<h3 id="Guidelines-based-LLM-Scorers">Guidelines-based LLM Scorers</h3><p><a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/guidelines/">Guidelines-based LLM Scorers</a></p>
+<p>from MLflow Documentation:</p>
+<blockquote>
+<p>Guidelines is a powerful scorer class designed to let you quickly and easily customize evaluation by defining natural language criteria that are framed as pass/fail conditions. It is ideal for checking compliance with rules, style guides, or information inclusion/exclusion.</p>
+<p>Guidelines have the distinct advantage of being easy to explain to business stakeholders ("we are evaluating if the app delivers upon this set of rules") and, as such, can often be directly written by domain experts.</p>
+</blockquote>
+<h3 id="MCP-server">MCP server</h3><p><a href="https://mlflow.org/docs/latest/genai/mcp/index.html">MLflow MCP Server</a></p>
+<p>...and many more features. Explore the <a href="https://mlflow.org/docs/latest/genai/index.html">MLflow GenAI documentation</a> for more details.</p>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="References,-further-reading"><a id="toc11_"></a><a href="#toc0_">References, further reading</a></h2><ul>
+<li><a href="https://mlflow.org/docs/latest/genai/eval-monitor/scorers/third-party/ragas/">MLflow Documentation</a></li>
+<li><a href="https://mlflow.org/docs/latest/genai/flavors/langchain/notebooks/langchain-retriever">Introduction to RAG with MLflow and LangChain</a> - MLflow documentation - exemplary implementation of RAG with LangChain and MLflow (without RAGAS evaluation).</li>
+<li><a href="https://github.com/MoRaouf/rag_evaluation_and_tracking">GitHub - rag_evaluation_and_tracking</a> - This project houses a Retrieval Augmented Generation (RAG) LLM application built for robust and context-aware text generation. It leverages the combined power of LangChain for orchestration, MLflow for tracking and experimentation, DVC for version control, and RAGAS for evaluation.</li>
+</ul>
 </div>
 </div>
 
@@ -2109,13 +2314,13 @@ chunk-size-150        150         62        0.915              0.781            
                             <span class="related-post-title">Problems with Langchain and how to minimize their impact</span>
                             <span class="related-post-date">Sep 01, 2023</span>
                         </a>
+                        <a href="https://www.safjan.com/using-mlflowragas-integration-without-tracing/" class="related-post-card">
+                            <span class="related-post-title">Using MLflow-RAGAS Integration Without Tracing</span>
+                            <span class="related-post-date">Jan 11, 2026</span>
+                        </a>
                         <a href="https://www.safjan.com/implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin/" class="related-post-card">
                             <span class="related-post-title">Implementing Sentence Boundary Detection in Python for Improved Text Chunking</span>
                             <span class="related-post-date">Aug 30, 2024</span>
-                        </a>
-                        <a href="https://www.safjan.com/the-best-vector-databases-for-storing-embeddings/" class="related-post-card">
-                            <span class="related-post-title">The Best Vector Databases for Storing Embeddings</span>
-                            <span class="related-post-date">Jun 05, 2023</span>
                         </a>
                 </div>
             </div>
