@@ -2,7 +2,7 @@
 Category: Howto
 Date: 2023-06-09
 Image: /images/head/forward_deployed_engineer_2.jpg
-banner: /images/head/forward_deployed_engineer_2.jpg
+banner: "/images/head/forward_deployed_engineer_2.jpg"
 Modified: 2023-06-09
 Slug: the-role-and-responsibilities-of-a-forward-deployed-engineer
 Start: 2023-06-09
@@ -17,6 +17,9 @@ Tags:
 Title: The Role and Responsibilities of a Forward Deployed Engineer - Bridging the Gap Between Software Products and Customer Needs
 prompt:
 ---
+
+X::[[product-minded-engineer]]
+
 ## TL;DR
 
 A Forward Deployed Engineer (FDE) is a versatile software engineer who works closely with customers to bridge the gap between enterprise software products and their specific implementation needs. FDEs collaborate with engineering teams, provide technical support, partner with product teams, assist in revenue growth activities, and lead customer success efforts. With a mix of technical skills, an entrepreneurial mindset, and product intuition, FDEs play a crucial role in ensuring successful product deployment and customer satisfaction.
