@@ -8,7 +8,7 @@ Tags: agentic-coding, vibe-coding, software-development, software-project
 Category: note
 ---
 
-In a Hacker News [discussion](https://news.ycombinator.com/item?id=46782811)! on the article [Management as AI Superpower](https://www.oneusefulthing.org/p/management-as-ai-superpower) by Ethan Mollick, I came across a comment that resonated strongly with a realization I’ve had recently while coding with a factory.ai droid:
+In a Hacker News [discussion](https://news.ycombinator.com/item?id=46782811) on the article [Management as AI Superpower](https://www.oneusefulthing.org/p/management-as-ai-superpower) by Ethan Mollick, I came across a comment that resonated strongly with a realization I’ve had recently while coding with a factory.ai droid:
 
 > The limiting factor at work isn’t writing code anymore. It’s deciding what to build and catching when things go sideways.
 

@@ -340,6 +340,7 @@ PLUGINS = [
     "seo_leo_enhancer",  # Extract TL;DR, FAQ, HowTo from content markers
     "feed_utm",  # Add UTM tracking params to RSS/Atom feeds
     "obsidian",  # Obsidian wiki-links and hashtag support
+    "pelican_ai_analyzer_bar",  # AI service buttons for article analysis
 ]
 
 # Additional plugins (uncomment to enable):
@@ -382,6 +383,20 @@ SITEMAP = {
 # Robots meta tag for search engines
 # Allows indexing with full snippets and image previews
 ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+
+# =============================================================================
+# AI ANALYZER BAR
+# =============================================================================
+# Adds buttons to analyze articles with AI services (ChatGPT, Perplexity, etc.)
+
+AI_ANALYZER_BAR = {
+    'enabled': True,
+    'services': ['chatgpt', 'perplexity', 'claude', 'gemini', 'grok'],
+    'position': 'after_summary',
+    'text': 'Summarize and analyze this article with:',
+    'exclude_categories': ['note'],
+    'exclude_paths': [],
+}
 
 # =============================================================================
 # THIRD-PARTY INTEGRATIONS
