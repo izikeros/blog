@@ -410,3 +410,11 @@ USE_APPLAUSE = False
 
 # Disqus comments (disabled)
 # DISQUS_SITENAME = 'krystian-safjan'
+
+# =============================================================================
+# LINKEDIN FOLLOW BUTTON
+# =============================================================================
+# Displays a "Follow on LinkedIn" button in the sidebar below social icons
+
+LINKEDIN_FOLLOW = True
+LINKEDIN_FOLLOW_MEMBER = "krystiansafjan"
