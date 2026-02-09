@@ -20,7 +20,7 @@ Title: Cookiecutters for the python package with poetry
 ---
 X::[[python_package]]
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
   - [Cookiecutter and Poetry for Python Project Scaffolding](#cookiecutter-and-poetry-for-python-project-scaffolding)
@@ -38,7 +38,7 @@ X::[[python_package]]
 - [cookiecutter wrapper](#cookiecutter-wrapper)
 - [Tools and services often used in python project cookiecutters](#tools-and-services-often-used-in-python-project-cookiecutters)
 
-<!-- /MarkdownTOC -->
+
 
 ## Introduction
 

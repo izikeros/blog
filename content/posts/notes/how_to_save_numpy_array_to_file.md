@@ -12,12 +12,12 @@ Tags:
   - machine-learning
 Title: How to Save Numpy Array to File?
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Save/Load single array](#saveload-single-array)
 - [Save/Load multiple arrays](#saveload-multiple-arrays)
 
-<!-- /MarkdownTOC -->
+
 
 ## Save/Load single array
 

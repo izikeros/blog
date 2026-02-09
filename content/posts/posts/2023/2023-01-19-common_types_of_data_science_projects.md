@@ -22,7 +22,7 @@ banner: "/images/head/team_project_head.jpg"
 
 Data science is a rapidly growing field that encompasses a wide range of activities and applications. As a data scientist, you may find yourself working on a variety of different types of projects, each with their own unique challenges and requirements. In this article, we'll explore some of the most common types of data science projects and discuss best practices for approaching them.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1. End-to-end Individual Work](#1-end-to-end-individual-work)
 - [2. Collaborative Project](#2-collaborative-project)
@@ -31,7 +31,7 @@ Data science is a rapidly growing field that encompasses a wide range of activit
 - [5. Research Projects](#5-research-projects)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ### 1. End-to-end Individual Work
 

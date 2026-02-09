@@ -15,7 +15,6 @@ Tags:
   - optimization-techniques
 Title: Darwin Approach to Traveling Salesman
 ---
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 - [The story behind this post](#the-story-behind-this-post)
 - [Introduction](#introduction)
@@ -41,7 +40,6 @@ Title: Darwin Approach to Traveling Salesman
 - [Ideas for future work](#ideas-for-future-work)
 - [Credits](#credits)
 
-<!-- /MarkdownTOC -->
 
 ## The story behind this post
 

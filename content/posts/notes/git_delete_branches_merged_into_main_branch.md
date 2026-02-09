@@ -14,14 +14,14 @@ Tags:
 Title: Git - Delete Branches That Are Merged Into the Main Branch
 suggested_tags: branch, delete, git, merged
 ---
-<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
 
 - [First - fetch and prune](#first---fetch-and-prune)
  	- [How Do I Clean Outdated Branches?](#how-do-i-clean-outdated-branches)
  	- [Does Git Remote Prune Origin Delete the Local Branch?](#does-git-remote-prune-origin-delete-the-local-branch)
 - [Second - delete merged local branches](#second---delete-merged-local-branches)
 
-<!-- /MarkdownTOC -->
+
 
 When actively developing feature branches that are later merged into develop branch you might end up with a bunch of local branches that are not relevant anymore, and do not have their remote counterparts and it would be good to remove them locally.
 

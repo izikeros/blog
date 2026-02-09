@@ -19,6 +19,16 @@ Series: Zsh plugins
 > **NOTE:** This article was written in 2021, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/).
 > The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
+- [GitHub Stars as an indicator of project popularity](#github-stars-as-an-indicator-of-project-popularity)
+- [Top popular plugins as of November 2021](#top-popular-plugins-as-of-november-2021)
+  - [1. diff-so-fancy](#1-diff-so-fancy)
+  - [2. tig](#2-tig)
+- [Frameworks](#frameworks)
+- [Prompts](#prompts)
+- [Python tools](#python-tools)
+- [Final words](#final-words)
+
+
 The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) of projects that can be useful for Zsh users grew substantially from the first, 2018 release of my article on Top-popular Zsh plugins - from 800+ to 1800+.  In this article, I'm listing top-popular tools that might be interesting for Zsh users or in most cases console users. I have divided them into four categories:
 
 - **Tools** - general tools that are popular among console lovers, in most cases not limited to Zsh
@@ -26,11 +36,11 @@ The collection [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plug
 - **Prompts** - projects that help to configure shell prompts
 - **Python tools** - tools that ease work with Python virtual environments
 
-# GitHub Stars as an indicator of project popularity
+## GitHub Stars as an indicator of project popularity
 
 One of the ways to estimate project popularity is to look at the number of stars. GitHub users often use stars as a kind of bookmark to mark interesting projects to come back to later. People that marked a project with a star are called "Star gazers". For sake of this article, to extract the "most popular" plugin projects I have used stars.
 
-# Top popular plugins as of November 2021
+## Top popular plugins as of November 2021
 
 | link                                                         | description of the Github project repo                       | stars |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ----- |
@@ -56,7 +66,7 @@ One of the ways to estimate project popularity is to look at the number of stars
 
 I have selected two projects that I haven't described in previous years but I'm a happy user of both.
 
-# 1. [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
+### 1. [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 
 As authors call it `diff-so-fancy` strives to make your diffs human-readable instead of machine-readable. This helps improve code quality and helps you spot defects faster and it does what it promises. See the screenshot that compares vanilla `git diff` vs. `git` and `diff-so-fancy`.
 
@@ -64,7 +74,7 @@ As authors call it `diff-so-fancy` strives to make your diffs human-readable ins
 
 You might have noticed that differences are spotted not only on the line level but also on the character level.
 
-# 2. [tig](https://github.com/jonas/tig)
+### 2. [tig](https://github.com/jonas/tig)
 
 Tig is a ncurses-based text-mode interface for git. It functions mainly as a Git repository browser, but can also assist in staging changes for commit at the chunk level. Tig allows for convenient staging files in an interactive mode:
 
@@ -76,7 +86,7 @@ In the main view, you can interactively browse commit history and jump into insp
 
 Next to git-gui it is my favorite tool for staging git changes.
 
-# Frameworks
+## Frameworks
 
 Here is a quick glance at the most popular frameworks that manage configuration and plugins for Zsh. [Oh-my-zsh]((https://github.com/ohmyzsh/ohmyzsh)) regins here having ~10x stars compared to the closest contender [prezto](https://github.com/sorin-ionescu/prezto).
 
@@ -89,7 +99,7 @@ Here is a quick glance at the most popular frameworks that manage configuration 
 |[dotzsh](https://github.com/dotphiles/dotzsh)                                    |A community-driven framework for Zsh                                                                                                                                                                                                                                                                                                                 |193  |
 |[alf](https://github.com/psyrendust/alf)                                         |Alf is an out-of-this-world super fast and configurable framework for Zsh; it's modeled after Prezto and Antigen while utilizing Oh My Zsh under the covers; and offers standard defaults, aliases, functions, auto-completion, automated updates, and installable prompt themes and plugins.                                                         |88  |
 
-# Prompts
+## Prompts
 
 > NOTE: Popular theme managers such as powerlevel9k and powerlevel10k also provides highly configurable prompts but are not listed here.
 
@@ -109,7 +119,7 @@ Here is a quick glance at the most popular frameworks that manage configuration 
 | [geometry](https://github.com/geometry-zsh/geometry)         | geometry is a minimal, fully customizable, and composable zsh prompt theme | 0.8k  |
 | [typewritten](https://github.com/reobin/typewritten)         | A minimal, lightweight, informative zsh prompt theme         | 0.6k  |
 
-# Python tools
+## Python tools
 
 Since Python dominates in the code I write, I have added a section for two projects that helps to manage virtual environments.
 
@@ -118,7 +128,7 @@ Since Python dominates in the code I write, I have added a section for two proje
 | [pew](https://github.com/berdario/pew)                       | A tool to manage multiple virtual environments written in pure python | 1.1k  |
 | [zsh-autoswitch-virtualenv](https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv) | ZSH plugin to automatically switch python virtualenvs (including pipenv and poetry) as you move between directories | 0.3k  |
 
-# Final words
+## Final words
 
 It is interesting how the number of starts growing - the IT world includes more and more people every day. Lots of these people wish to optimize their work environment. Those who work often in console takes look at the helper tools listed on pages as [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) or [Terminals Are Sexy](https://github.com/k4m4/terminals-are-sexy). This article aimed to highlight projects gaining a lot of attention and brings added value to the awesome lists that are ordered alphabetically without information on the number of stars.
 

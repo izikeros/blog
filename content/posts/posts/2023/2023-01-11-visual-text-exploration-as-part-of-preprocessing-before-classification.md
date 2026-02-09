@@ -2,7 +2,7 @@
 Category: Machine Learning
 Date: 2022-10-11
 Image: /images/head/visual_text_exploration_wordcloud.jpg
-Modified: 2026-01-07
+Modified: 2026-02-07
 Slug: visual-text-exploration-as-part-of-preprocessing-before-classification
 Status: published
 Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
@@ -13,6 +13,19 @@ Title: Visual Text Exploration as Part of Preprocessing Before Classification
 banner: "/images/head/visual_text_exploration_wordcloud.jpg"
 ---
 
+
+
+- [Introduction](#introduction)
+- [Textual data cleaning](#textual-data-cleaning)
+- [Textual Data Exploration with Sentiment Analysis](#textual-data-exploration-with-sentiment-analysis)
+- [Textual Data Exploration with topic modeling](#textual-data-exploration-with-topic-modeling)
+- [Conclusion](#conclusion)
+- [References and Additional Resources](#references-and-additional-resources)
+
+
+
+<a id="introduction"></a>
+
 ## Introduction
 
 The process of text classification is a common task in natural language processing and machine learning. In order to classify text data, it's essential to preprocess the data first. One of the key aspects of preprocessing is to explore the data in order to understand its characteristics, identify patterns and outliers, and determine which techniques and methods should be used to clean and prepare the data for classification.
@@ -20,6 +33,8 @@ The process of text classification is a common task in natural language processi
 Visual text exploration is a powerful tool that can be used to gain insights and understanding of text data. By visualizing the data in different ways, it's possible to detect patterns and identify trends that might not be immediately apparent from just reading through the data. Additionally, visual text exploration can also bring ideas for processing actions that need to be taken on the dataset.
 
 In this blog post, we will analyze modern tools that can be used for visual exploration of text data and provide generic ideas for textual data inspection that can be applied in many text-exploration tasks. We will cover techniques such as wordcloud, Sentiment Analysis and topic modeling which are widely used by researchers to analyze text data and extract insights. Additionally, we will also cover textual data cleaning and it's role in preprocessing of text data.
+
+<a id="textual-data-cleaning"></a>
 
 ## Textual data cleaning
 
@@ -33,6 +48,8 @@ There are multiple techniques such as:
 - Text normalization - converting all the text to lowercase, removing punctuation and converting numbers to words.
 
 Textual data cleaning will be not discussed in details in this article.
+
+<a id="textual-data-exploration-with-sentiment-analysis"></a>
 
 ## Textual Data Exploration with Sentiment Analysis
 
@@ -48,6 +65,8 @@ For example, using NLTK library, you can perform sentiment analysis using the `V
 
 > [!note] Note: 
 > Sentiment analysis is a complex task and the results can be affected by the language and context of the text. However, with the right tools and techniques, sentiment analysis can be a powerful way to gain insights and identify patterns in text data.
+
+<a id="textual-data-exploration-with-topic-modeling"></a>
 
 ## Textual Data Exploration with topic modeling
 
@@ -65,6 +84,8 @@ LDAvis is a R package that provides interactive visualizations of LDA models. It
 
 Topic modeling can be a powerful tool for uncovering the hidden structure in large collections of text data. It can be used to classify text into predefined topics or to discover new and previously unknown topics. With the right tools and techniques, topic modeling can be a powerful way to gain insights and identify patterns in text data.
 
+<a id="conclusion"></a>
+
 ## Conclusion
 
 Visual text exploration is a powerful tool that can be used to gain insights and understanding of text data as part of preprocessing before classification. We have seen how techniques such as wordcloud, Sentiment Analysis, topic modeling, and textual data cleaning can be used to explore text data and extract insights.
@@ -74,6 +95,8 @@ Visual text exploration allows us to detect patterns and identify trends that mi
 Note that the techniques discussed in this post are just a starting point and there are many other tools and techniques that can be used for visual text exploration. Furthermore, the best approach will depend on the specific dataset and problem you are working on.
 
 I encourage readers to try out the tools and techniques covered in this post and to use them in their own text exploration projects. With the right tools and techniques, you can gain valuable insights and improve the performance of text classification models.
+
+<a id="references-and-additional-resources"></a>
 
 ## References and Additional Resources
 
@@ -94,3 +117,7 @@ If you have any further questions or would like to learn more about visual text 
 Header graphics from [www.wordle.net](https://www.wordle.net), [User:Ragettho](https://commons.wikimedia.org/wiki/User:Ragettho "User:Ragettho") found on [wikimedia](https://commons.wikimedia.org/wiki/File:Wikinews_word_cloud.jpg)
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

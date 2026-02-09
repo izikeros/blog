@@ -21,7 +21,7 @@ X::[[piwigo_photo_gallery]]
 Photoprism is a modern, searchable, well organized web gallery of your photos and videos. At the moment of writing, the official documentation, does not contain a dedicated instructions on  how to install Photoprism on QNAP NAS. This article is meant to fill that gap.
 Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but should be applicable to wide variety of other QNAP NAS models. There is also possibility to install photoprism using Container Station GUI and modified docker-compose file (see lower in the article).
 
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [What is the photoprism](#what-is-the-photoprism)
   - [Feature Overview](#feature-overview)
@@ -41,7 +41,7 @@ Installation described here was done on TS-251+ (Celeron J1900 4 Cores) but shou
 - [References](#references)
 - [Updates](#updates)
 
-<!-- /MarkdownTOC -->
+
 
 ## What is the photoprism
 

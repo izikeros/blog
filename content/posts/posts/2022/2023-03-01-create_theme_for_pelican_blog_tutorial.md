@@ -18,10 +18,10 @@ Tags:
   - site-design
   - web-design
 Title: Tutorial on How to Create New Theme for Pelican Static Site Generator
-banner: /images/head/pelican_theme.jpg
+banner: "/images/head/pelican_theme.jpg"
 prompt: Give me detailed outline of the tutorial on How to create from scratch a new theme for Pelican (Static Site Generator).
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1.  **Choose a name for your theme**:](#1-choose-a-name-for-your-theme)
 - [2.  **Create a new directory for your theme**](#2-create-a-new-directory-for-your-theme)
@@ -34,7 +34,7 @@ prompt: Give me detailed outline of the tutorial on How to create from scratch a
 - [9.  **Configure your Pelican project**](#9-configure-your-pelican-project)
 - [10.  **Test your theme**](#10-test-your-theme)
 
-<!-- /MarkdownTOC -->
+
 
 ## 1.  Choose a name for your theme
 

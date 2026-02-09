@@ -18,7 +18,7 @@ Title: Boosting Productivity and Automation With AppleScript on macOS
 
 In today's fast-paced digital world, maximizing productivity and finding ways to automate tasks are essential skills. macOS provides a powerful tool called AppleScript, which allows users to write scripts and automate various processes. In this blog post, we will explore the capabilities of AppleScript, discuss cool tricks, and highlight its alternatives.
 
-<!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
   - [Getting Started with AppleScript](#getting-started-with-applescript)
@@ -37,7 +37,7 @@ In today's fast-paced digital world, maximizing productivity and finding ways to
 - [Conclusion](#conclusion)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ### Getting Started with AppleScript
 

@@ -22,7 +22,7 @@ tags:
 
 Rank fusion is a fundamental technique used in various domains, including data science and search engine optimization, to combine multiple ranked lists into a single, more reliable ranking. This process aims to exploit the strengths of individual ranking algorithms and mitigate their weaknesses, leading to improved overall performance. In this blog post, we will explore a range of rank fusion algorithms, starting from simple yet effective methods to advanced techniques employed by tech giants to achieve state-of-the-art results. If you want to analyse rank changes over time in a visual manner, you might be interested in using [[2024-06-07-rank_flow_for_retriever_visual_evaluation|rankflow]] package.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Algorithms](#algorithms)
  	- [Borda Algorithm](#borda-algorithm)
@@ -34,7 +34,7 @@ Rank fusion is a fundamental technique used in various domains, including data s
 - [Conclusion](#conclusion)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## Algorithms
 

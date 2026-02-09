@@ -18,7 +18,7 @@ Prompt: Give me long blog post on ActivityPub with examples how you can use it i
 ---
 ActivityPub is a protocol designed to enable decentralized social networking. It is based on the principles of the ***Federated Social Web***, which aims to create a social web that is not owned by any single entity or corporation. In this blog post, we will explore the basics of ActivityPub and how it can be used in your applications.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [What is ActivityPub?](#what-is-activitypub)
 - [How does ActivityPub work?](#how-does-activitypub-work)
@@ -36,7 +36,7 @@ ActivityPub is a protocol designed to enable decentralized social networking. It
 - [Conclusion](#conclusion)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## What is ActivityPub?
 

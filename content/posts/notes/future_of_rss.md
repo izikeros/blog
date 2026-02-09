@@ -17,14 +17,14 @@ Title: Future of RSS
 
 RSS (Rich Site Summary or Really Simple Syndication) is a widely used web feed format used to publish frequently updated content, such as blog posts, news articles, and podcasts. It was first introduced in 1999, and since then, it has been widely adopted by publishers and users alike. However, as technology evolves and new trends emerge, the future of the RSS standard is uncertain. In this article, we will speculate on the future of the RSS standard.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [could become obsolete](#could-become-obsolete)
 - [could evolve to become more interactive and engaging](#could-evolve-to-become-more-interactive-and-engaging)
 - [could be used to combat misinformation and fake news](#could-be-used-to-combat-misinformation-and-fake-news)
 - [could continue to be a vital tool for content discovery and consumption](#could-continue-to-be-a-vital-tool-for-content-discovery-and-consumption)
 
-<!-- /MarkdownTOC -->
+
 
 ## could become obsolete
 

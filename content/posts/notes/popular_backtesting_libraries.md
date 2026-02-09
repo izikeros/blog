@@ -23,7 +23,7 @@ todo: Add a logarithmic scale git activity graph for all the projects
 ---
 Here is a list of the most popular (popularity measured by the number of GitHub stars) backtesting libraries related to Python ecosystem.
 
-<!-- MarkdownTOC levels='2,3' autolink="true" autoanchor="true" -->
+
 
 - [backtrader](#backtrader)
 - [Lean](#lean)
@@ -37,7 +37,7 @@ Here is a list of the most popular (popularity measured by the number of GitHub 
 - [zipline](#zipline)
   - [zipline-reloaded](#zipline-reloaded)
 
-<!-- /MarkdownTOC -->
+
 
 ## backtrader
 

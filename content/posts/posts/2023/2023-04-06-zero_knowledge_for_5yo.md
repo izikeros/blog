@@ -2,7 +2,7 @@
 Category: Algorithmic Trading
 Date: 2023-04-06
 Image: /images/head/zero_knowledge.jpg
-Modified: 2023-04-06
+Modified: 2026-02-07
 Slug: zero-knowledge-for-5yo
 Start: 2023-04-06
 Status: published
@@ -12,12 +12,22 @@ Tags:
   - cryptocurrency
   - zero-knowledge
 Title: Zero-Knowledge Explained Like to 5 Years Old
-banner: /images/head/zero_knowledge.jpg
+banner: "/images/head/zero_knowledge.jpg"
 prompt: give me long, cryptocurrency-related, blog post on entitled zero-knowledge explained like to 5yo.
 prompt-gfx: the two keys made of digits - symbol of a pair of private keys, keys are background of the connected blocks that symbolise blockchain digital art.
 ---
 
+
+
+- [Helper example](#helper-example)
+- [Zero-knowledge in Cryptocurrency](#zero-knowledge-in-cryptocurrency)
+- [Related reading](#related-reading)
+
+
+
 Zero-knowledge proofs (ZKPs) are a key technology that underpins the security and privacy of many modern cryptocurrencies. In essence, ZKPs allow parties to prove that they know a piece of information, without revealing that information itself. But what does that mean, exactly? In this blog post, we'll explain ZKPs in a way that even a 5-year-old can understand.
+
+<a id="helper-example"></a>
 
 ## Helper example
 
@@ -30,6 +40,8 @@ But what if your friend wants to prove that they know the toy, without giving yo
 Imagine your friend has a magic wand that can tell them whether a particular guess is right or wrong, without actually revealing what the correct answer is. So they can make a guess, wave the wand, and get a "yes" or "no" answer. If the answer is "no", they can make another guess and try again. If the answer is "yes", they've proven that they know the toy, without actually revealing what it is.
 
 This is a bit like playing "20 questions", but with a magical yes-or-no answer that doesn't give away any information. Your friend doesn't need to ask you any questions about the toy, they just need to make a series of guesses and use the magic wand to check if they're right or wrong. And because the wand doesn't reveal anything about the toy itself, you still don't know what it is.
+
+<a id="zero-knowledge-in-cryptocurrency"></a>
 
 ## Zero-knowledge in Cryptocurrency
 
@@ -56,6 +68,8 @@ So there you have it, zero-knowledge proofs explained like you're 5 years old! T
 > Zero-knowledge proofs were first introduced by researchers Shafi Goldwasser, Silvio Micali, and Charles Rackoff in 1985. Their groundbreaking paper, ["The Knowledge Complexity of Interactive Proof-Systems,"](https://dl.acm.org/doi/10.1145/22145.22178) laid the foundation for zero-knowledge proof systems.
 > Silvio Micali, won the [Turing Award](https://amturing.acm.org/award_winners/micali_9954407.cfm) for his works on cryptography and inventing Zero Knowledge (ZK) Proofs
 
+<a id="related-reading"></a>
+
 ## Related reading
 
 - The reddit user [busterrulezzz (u/busterrulezzz) - Reddit](https://www.reddit.com/user/busterrulezzz/)proposed other ELI5 explanation of how the ZKP works: [Zero-knowledge proof explained like you are 5 years old : r/CryptoCurrency](https://www.reddit.com/r/CryptoCurrency/comments/rwpfkx/zeroknowledge_proof_explained_like_you_are_5/)
@@ -64,3 +78,7 @@ So there you have it, zero-knowledge proofs explained like you're 5 years old! T
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
 up::[[MOC_Cryptocurrency]]
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

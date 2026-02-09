@@ -21,13 +21,13 @@ Tags:
   - model-monitoring
   - model-evaluation
 Title: MLOps Scorecard - How Advanced Is Your Organization in Implementing MLOps Processes?
-banner: /images/head/mlops_scorecard_640px.jpg
+banner: "/images/head/mlops_scorecard_640px.jpg"
 prompt: give me MLOps score card - a detailed check-list that will help organization to asses to which extend they have mlops process in place.
 ---
 
 In this article I propose a sample MLOps scorecard that organizations can use to assess their current level of MLOps implementation. All what's needed is to count score (0-100) in each of the 6 layers of introducing  MLOps practices:
 
-<!-- MarkdownTOC levels="2,3,4,5" autolink="true" autoanchor="true" -->
+
 
 - [Analyze organization along 6 dimensions](#analyze-organization-along-6-dimensions)
   - [1.  Governance](#1-governance)
@@ -46,7 +46,7 @@ In this article I propose a sample MLOps scorecard that organizations can use to
     - [5.  Limited actionability](#5-limited-actionability)
   - [Hints for overcoming limitations](#hints-for-overcoming-limitations)
 
-<!-- /MarkdownTOC -->
+
 
 ## Analyze organization along 6 dimensions
 

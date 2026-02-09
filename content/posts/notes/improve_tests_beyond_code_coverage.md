@@ -14,7 +14,7 @@ tags:
 ---
 For Python professionals seeking to elevate their unit testing practices beyond basic code coverage, this guide outlines advanced metrics and approaches. By integrating these strategies, you can gain deeper insights into your test suite's effectiveness and overall code quality.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Metrics and methods](#metrics-and-methods)
   - [1. Code Coverage Metrics](#1-code-coverage-metrics)
@@ -35,7 +35,7 @@ For Python professionals seeking to elevate their unit testing practices beyond 
   - [16. Test Metrics and Reporting](#16-test-metrics-and-reporting)
 - [Tools to Consider](#tools-to-consider)
 
-<!-- /MarkdownTOC -->
+
 
 ## Metrics and methods
 

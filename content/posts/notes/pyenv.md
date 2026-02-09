@@ -17,14 +17,14 @@ tags:
   - optimizations
   - archflag
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Usage](#usage)
 - [Using with PyCharm](#using-with-pycharm)
 - [Installing Python with tkinter](#installing-python-with-tkinter)
 - [Install with optimizations](#install-with-optimizations)
 
-<!-- /MarkdownTOC -->
+
 
 Python is a popular programming language used for a wide range of applications, from web development to data analysis and machine learning. As a Python developer, it is important to manage your Python installations properly to avoid conflicts and ensure consistent behavior across different projects. One tool that can help with this is pyenv, a simple and powerful Python version management tool.
 

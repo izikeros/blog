@@ -18,7 +18,7 @@ tags:
 ---
 Python's `**kwargs` is a powerful tool that allows developers to pass a variable number of keyword arguments to a function. It's particularly useful when you need to create flexible APIs or when working with configuration dictionaries. However, the use of `**kwargs` comes with its own set of challenges. In this article, we'll look into the potential pitfalls of using `**kwargs` and how to mitigate them, helping you write more idiomatic and robust Python code.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1. Loss of Clarity](#1-loss-of-clarity)
 - [2. Typos in Argument Names](#2-typos-in-argument-names)
@@ -30,7 +30,7 @@ Python's `**kwargs` is a powerful tool that allows developers to pass a variable
 - [8. Default Values and None Checks](#8-default-values-and-none-checks)
 - [Related articles](#related-articles)
 
-<!-- /MarkdownTOC -->
+
 ## 1. Loss of Clarity
 
 The first challenge with `**kwargs` is that it can make your code less clear. When a function accepts `**kwargs`, it's not immediately apparent what arguments it expects.

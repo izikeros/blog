@@ -33,7 +33,7 @@ Image: ""
 
 Python provides several libraries and frameworks for building command-line interface (CLI) applications, each with its own set of features and advantages. In this article, we will explore some of the popular alternatives to build Python CLI apps, including Click, argparse, and Typer, among others.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Click](#click)
 - [argparse](#argparse)
@@ -44,7 +44,7 @@ Python provides several libraries and frameworks for building command-line inter
 - [Docopt](#docopt)
 - [Plumbum](#plumbum)
 
-<!-- /MarkdownTOC -->
+
 
 ## Click
 

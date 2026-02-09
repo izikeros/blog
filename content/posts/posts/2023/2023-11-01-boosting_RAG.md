@@ -14,14 +14,14 @@ tags:
   - lost-in-the-middle
 Category: Generative AI
 Image: /images/head/boosting_RAG.jpg
-banner: /images/head/boosting_RAG.jpg
+banner: "/images/head/boosting_RAG.jpg"
 Summary: This article discusses several advanced techniques that can be applied at different stages of the RAG pipeline to enhance its performance in a production setting.
 Status: published
 prompt:
 ---
 Retrieval-Augmented Generation (RAG) is a powerful tool in the domain of machine learning, offering significant potential for improving the quality of text generation in various applications. However, optimizing its performance can be a challenging task. For the introductory text on RAG see my other [article](https://safjan.com/understanding-retrieval-augmented-generation-rag-empowering-llms/). This article discusses several advanced techniques that can be applied at different stages of the RAG pipeline to enhance its performance in a production setting.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Leveraging Hybrid Search](#leveraging-hybrid-search)
 - [Utilizing Summaries for Data Chunks](#utilizing-summaries-for-data-chunks)
@@ -36,7 +36,7 @@ Retrieval-Augmented Generation (RAG) is a powerful tool in the domain of machine
 - [Query Routing](#query-routing)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## Leveraging Hybrid Search
 

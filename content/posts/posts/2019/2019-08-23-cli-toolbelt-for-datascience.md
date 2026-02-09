@@ -12,6 +12,17 @@ Title: Data Science Command-Line Tools
 started: 2019-07-04
 ---
 
+- [Textutils from GNU Coreutils](#textutils-from-gnu-coreutils)
+  - [comm](#comm)
+  - [head](#head)
+  - [shuf](#shuf)
+  - [sort](#sort)
+  - [split](#split)
+  - [tail](#tail)
+  - [uniq](#uniq)
+  - [wc](#wc)
+
+
 There are plenty of tools designed to ease the life of a Data Scientist. In this group, the special place has tools that are used from the command line. They are special because are available for most operating systems and are designed with Unix philosophy in mind: they do one thing extremely well, they can be chained creating convenient workflows.
 
 ![Diagram of cli tools for data science](/images/cli_tools_1/cli_tools.png)

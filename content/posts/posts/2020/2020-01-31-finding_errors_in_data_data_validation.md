@@ -18,8 +18,6 @@ banner: /images/head/errors_in_dataset.jpg
 prompt: Give me long data-science markdown article on methods for finding errors in data. Use hyperlinks to external resources when referring to methods or tools.
 ---
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
-
 - [Introduction](#introduction)
 - [Data Validation: A Key Method for Finding Errors in Data](#data-validation-a-key-method-for-finding-errors-in-data)
   - [What is Data Validation?](#what-is-data-validation)
@@ -32,7 +30,7 @@ prompt: Give me long data-science markdown article on methods for finding errors
   - [Visualizing Outliers and Anomalies in Data](#visualizing-outliers-and-anomalies-in-data)
   - [Using Visualizations to Identify Errors in Data](#using-visualizations-to-identify-errors-in-data)
   - [Tools for Data Visualization](#tools-for-data-visualization)
-- [Conclusion](#conclusion-1)
+  - [Conclusion](#conclusion-1)
 - [Using Statistical Methods to Find Errors in Data](#using-statistical-methods-to-find-errors-in-data)
   - [Mean and Standard Deviation](#mean-and-standard-deviation)
   - [Z-scores](#z-scores)
@@ -40,13 +38,19 @@ prompt: Give me long data-science markdown article on methods for finding errors
 - [Using Data Cleaning Techniques to Remove or Correct Errors](#using-data-cleaning-techniques-to-remove-or-correct-errors)
   - [Imputation](#imputation)
   - [Normalization](#normalization)
+    - [Min-Max Normalization](#min-max-normalization)
+    - [Z-Score Normalization](#z-score-normalization)
+    - [Log Normalization](#log-normalization)
   - [Encoding](#encoding)
 - [Using Machine Learning Algorithms to Identify Errors in Data](#using-machine-learning-algorithms-to-identify-errors-in-data)
   - [Clustering](#clustering)
   - [Anomaly Detection](#anomaly-detection)
   - [Classification](#classification)
+- [Using Data Quality Tools to Find and Fix Errors in Data](#using-data-quality-tools-to-find-and-fix-errors-in-data)
+  - [Talend](#talend)
+  - [Trifacta](#trifacta)
+  - [Informatica](#informatica)
 
-<!-- /MarkdownTOC -->
 
 ## Introduction
 

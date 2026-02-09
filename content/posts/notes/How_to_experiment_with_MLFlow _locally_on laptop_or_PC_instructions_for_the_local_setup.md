@@ -12,7 +12,7 @@ Tags:
 Title: How to Experiment With MLFlow Locally on Laptop or PC? Instructions for the Local Setup.
 citation_needed: false
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Instructions for local usage](#instructions-for-local-usage)
 - [Using an MLFlow server from your local machine](#using-an-mlflow-server-from-your-local-machine)
@@ -21,7 +21,7 @@ citation_needed: false
  	- [3.  Using a containerization technology like Docker](#3-using-a-containerization-technology-like-docker)
  	- [4. Using a Kubernetes-based deployment](#4-using-a-kubernetes-based-deployment)
 
-<!-- /MarkdownTOC -->
+
 
 ## Instructions for local usage
 

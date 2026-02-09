@@ -17,7 +17,7 @@ todo: verify the steps
 ---
 FreshRSS is a free and open-source RSS feed aggregator that allows you to easily follow your favorite websites and blogs in one place. By deploying FreshRSS in the cloud, you can access your feeds from anywhere and enjoy the benefits of cloud computing, such as scalability, reliability, and cost-effectiveness. Microsoft Azure is a popular cloud platform that offers a wide range of services for building, deploying, and managing applications in the cloud. In this tutorial, we'll show you how to deploy FreshRSS in the cloud for free on Azure.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Prerequisites:](#prerequisites)
 - [Step-by-step guide](#step-by-step-guide)
@@ -26,7 +26,7 @@ FreshRSS is a free and open-source RSS feed aggregator that allows you to easily
   - [Step 3: Deploy FreshRSS](#step-3-deploy-freshrss)
   - [Step 4: Configure SSL (optional)](#step-4-configure-ssl-optional)
 
-<!-- /MarkdownTOC -->
+
 
 ## Prerequisites
 

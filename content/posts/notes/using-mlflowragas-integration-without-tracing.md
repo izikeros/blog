@@ -8,6 +8,14 @@ Tags: mlflow, ragas, RAG-evaluation, rag-optimization, rag
 Category: note
 ---
 
+- [Option 1: Static Data Approach (Recommended)](#option-1-static-data-approach-recommended)
+  - [Key Points](#key-points)
+- [Option 2: Simple predict\_fn (No Tracing Decorator)](#option-2-simple-predict_fn-no-tracing-decorator)
+- [Comparison: When to Use Each Approach](#comparison-when-to-use-each-approach)
+- [Complete Working Example](#complete-working-example)
+- [Recommendation](#recommendation)
+
+
 You can use MLflow's RAGAS integration to calculate evaluation scores and log them to experiments **without** implementing MLflow traces in your RAG pipeline. This is useful when:
 
 - You have an existing RAG pipeline you don't want to modify

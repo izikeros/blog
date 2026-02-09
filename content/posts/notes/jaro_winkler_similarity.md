@@ -20,7 +20,7 @@ Title: Jaro-Winkler Similarity
 ---
 X::[[posts/notes/Tverski_similarity]]
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Jaro-Winkler Similarity](#jaro-winkler-similarity)
   - [Python Example:](#python-example)
@@ -28,7 +28,7 @@ X::[[posts/notes/Tverski_similarity]]
   - [Recommendations for Usage:](#recommendations-for-usage)
   - [Cases to Consider Alternatives:](#cases-to-consider-alternatives)
 
-<!-- /MarkdownTOC -->
+
 
 ## Jaro-Winkler Similarity
 

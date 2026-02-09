@@ -15,7 +15,7 @@ tags:
   - reciprocal-rank-fussion
   - reciprocal-rank-combining
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Borda count and Reciprocal Rank Combining - approach and calculation](#borda-count-and-reciprocal-rank-combining---approach-and-calculation)
     - [Borda Count](#borda-count)
@@ -30,7 +30,7 @@ tags:
     - [Additional considerations](#additional-considerations)
 - [Summary](#summary)
 
-<!-- /MarkdownTOC -->
+
 
 ## Borda count and Reciprocal Rank Combining - approach and calculation
 

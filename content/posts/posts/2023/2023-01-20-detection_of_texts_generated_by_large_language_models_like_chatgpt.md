@@ -15,7 +15,7 @@ Tags:
   - Adversarial-networks
   - GAN
 Title: How to Detect ChatGPT-Generated Text?
-banner: /images/head/caligraphy_1_2x1_640px.jpg
+banner: "/images/head/caligraphy_1_2x1_640px.jpg"
 prompt:
 tweet: Just learned about the latest methods for distinguishing machine-generated text from human-written text, including neural network-based approaches. Stay ahead of the game in NLP and AI research!
 ---
@@ -29,7 +29,7 @@ There are several approaches that have been proposed for this task, including st
 
 Overall, the detection of synthetic text is a challenging problem that requires the integration of multiple techniques to achieve high accuracy. It is an active area of research in NLP, and new methods and approaches are constantly being proposed to improve the performance of synthetic text detection.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
 - [Non-Neural Network Approaches](#non-neural-network-approaches)
@@ -48,7 +48,7 @@ Overall, the detection of synthetic text is a challenging problem that requires 
  	- [Pre-trained models](#pre-trained-models)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## Non-Neural Network Approaches
 

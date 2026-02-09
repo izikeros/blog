@@ -13,13 +13,13 @@ Tags:
   - interview
   - machine-learning
 Title: MLOps Certifications - A Comprehensive Guide
-banner: /images/head/mlops_certificates.jpg
+banner: "/images/head/mlops_certificates.jpg"
 modified: 2023-01-13
 prompt:
 todo: need to verify the offer and the links
 ---
 
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
 - [MLOps Certificates - Are They Worth Your Effort and Money?](#mlops-certificates---are-they-worth-your-effort-and-money)
@@ -28,7 +28,7 @@ todo: need to verify the offer and the links
   - [Google Cloud Professional Machine Learning Engineer](#google-cloud-professional-machine-learning-engineer)
 - [Free MLOps Certifications](#free-mlops-certifications)
 - [Conclusion](#conclusion)
-<!-- /MarkdownTOC -->
+
 
 ## Introduction
 

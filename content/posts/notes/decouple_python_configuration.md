@@ -21,7 +21,7 @@ tags:
 ---
 X::[[python_configuration_management]]
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Basic Usage](#usage)
 - [Add pydantic or dataclass](#add-pydantic-or-dataclass)
@@ -31,7 +31,7 @@ X::[[python_configuration_management]]
    - [Should the config be immutable?](#should-the-config-be-immutable)
 - [dataclass + decouple example](#dataclass--decouple-example)
 
-<!-- /MarkdownTOC -->
+
 
 ## Basic Usage
 

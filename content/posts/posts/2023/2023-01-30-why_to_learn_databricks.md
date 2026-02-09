@@ -12,7 +12,7 @@ Tags:
   - databricks
   - data-engineering
 Title: Becoming a Data Wizard - The Benefits of Learning Databricks
-banner: /images/head/databricks_logo.jpg
+banner: "/images/head/databricks_logo.jpg"
 prompt:
 ---
 up::[[MOC_Databricks]]
@@ -21,7 +21,7 @@ up::[[MOC_Databricks]]
 
 Data is becoming an increasingly important part of our world, and as such, the ability to work with and understand data is becoming a valuable skill. One tool that can help you develop this skill is Databricks, a powerful platform for working with big data.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [The Advantages of Databricks](#the-advantages-of-databricks)
   - [Handling Large Amounts of Data](#handling-large-amounts-of-data)
@@ -30,7 +30,7 @@ Data is becoming an increasingly important part of our world, and as such, the a
   - [The Convenience of a Cloud-based Platform](#the-convenience-of-a-cloud-based-platform)
 - [The Overall Benefits of Learning Databricks](#the-overall-benefits-of-learning-databricks)
 
-<!-- /MarkdownTOC -->
+
 ## The Advantages of Databricks
 
 Databricks is an integrated platform for data engineering, machine learning, and analytics that is built on top of Apache Spark, a popular open-source big data processing framework. It provides a number of advantages over other big data tools, including a powerful and easy-to-use interface, a wide range of built-in data processing and machine learning libraries, and integration with other popular data tools.

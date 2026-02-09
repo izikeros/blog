@@ -16,12 +16,8 @@ Tags:
   - project-management
   - data-science
 Title: How to Organize Data Science Project Based on Jupyter Notebook
-banner: /images/head/books.jpg
+banner: "/images/head/books.jpg"
 ---
-
-In this blog post, I will share the way to organize your Data Science project based on Jupyter notebooks in a way that one can navigate through it. Especially that "the one" will be most probably you in a few months' time. So be nice to yourselves and organize your project in a rational structure rather than spontaneous chaos.
-
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
 
 - [Problem with finding valuable work you did in the Jupyter notebook in the past](#problem-with-finding-valuable-work-you-did-in-the-jupyter-notebook-in-the-past)
 - [Rules I try to follow](#rules-i-try-to-follow)
@@ -29,7 +25,8 @@ In this blog post, I will share the way to organize your Data Science project ba
 - [Specific aspects for different use cases](#specific-aspects-for-different-use-cases)
 - [Additional Tips](#additional-tips)
 
-<!-- /MarkdownTOC -->
+
+In this blog post, I will share the way to organize your Data Science project based on Jupyter notebooks in a way that one can navigate through it. Especially that "the one" will be most probably you in a few months' time. So be nice to yourselves and organize your project in a rational structure rather than spontaneous chaos.
 
 ## Problem with finding valuable work you did in the Jupyter notebook in the past
 

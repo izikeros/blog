@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.safjan.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.safjan.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.safjan.com/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://www.safjan.com/favicon.ico">
+    <link rel="manifest" href="https://www.safjan.com/site.webmanifest">
+    <meta name="theme-color" content="#333333">
+    <meta name="apple-mobile-web-app-title" content="Krystian Safjan's Blog">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Overview Homebrew distribution lets users install your Python CLI with brew install your-tool. The process: create a GitHub &#34;tap&#34; repository, generate a Ruby formula file, test it, and publish. Prerequisites Your package must be on PyPI with an sdist (source distribution), not …"/>
+    <meta name="keywords" content="python, homebrew, cli, packaging, distribution, macos">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Publishing a Python CLI Tool to Homebrew"/>
+  <meta property="og:description" content="Overview Homebrew distribution lets users install your Python CLI with brew install your-tool. The process: create a GitHub &#34;tap&#34; repository, generate a Ruby formula file, test it, and publish. Prerequisites Your package must be on PyPI with an sdist (source distribution), not …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/publishing-python-cli-tool-to-homebrew/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-02-05 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-02-05 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
+  <meta property="article:section" content="note"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="homebrew"/>
+  <meta property="article:tag" content="cli"/>
+  <meta property="article:tag" content="packaging"/>
+  <meta property="article:tag" content="distribution"/>
+  <meta property="article:tag" content="macos"/>
+  <meta property="og:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content="/images/profile_new.jpg"/>
+    <meta name="twitter:image:alt" content="Krystian Safjan's Blog"/>
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:title" content="Publishing a Python CLI Tool to Homebrew"/>
+    <meta name="twitter:description" content="Overview Homebrew distribution lets users install your Python CLI with brew install your-tool. The process: create a GitHub &#34;tap&#34; repository, generate a Ruby formula file, test it, and..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/publishing-python-cli-tool-to-homebrew/"
+  },
+  "headline": "Publishing a Python CLI Tool to Homebrew",
+  "datePublished": "2026-02-05T00:00:00+01:00",
+  "dateModified": "2026-02-05T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "/images/profile_new.jpg",  "url": "https://www.safjan.com/publishing-python-cli-tool-to-homebrew/",
+  "description": "Overview Homebrew distribution lets users install your Python CLI with brew install your-tool. The process: create a GitHub "tap" repository, generate a...",
+  "articleSection": "note",
+  "inLanguage": "en",
+  "keywords": "python, homebrew, cli, packaging, distribution, macos",
+  "wordCount": 317,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "note",
+      "item": "https://www.safjan.com/category/note.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Publishing a Python CLI Tool to Homebrew"
+    }
+  ]
+}
+</script>
+
+
+
+<meta name="ai:summary" content="Overview Homebrew distribution lets users install your Python CLI with brew install your-tool. The process: create a GitHub &#34;tap&#34; repository, generate a Ruby formula file, test it, and publish. Prerequisites Your package must be on PyPI with an sdist (source distribution), not …">
+
+<meta name="ai:topics" content="python, homebrew, cli, packaging, distribution, macos">
+
+
+
+<meta name="ai:word-count" content="317">
+<meta name="ai:reading-time" content="1 min">
+
+<meta name="ai:section" content="note">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <title>    Publishing a Python CLI Tool to Homebrew
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body>
+<div id="reading-progress" class="reading-progress"></div>
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+
+            <a class="linkedin-follow-btn"
+               href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=krystiansafjan"
+               target="_blank">Follow on LinkedIn</a>
+    </div>
+
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
+</div>
+</aside>
+<main>
+
+        <nav aria-label="Main navigation">
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2026-02-05 
+
+
+                <br/>
+            </p>
+            <h1>Publishing a Python CLI Tool to Homebrew</h1>
+            <div class="header-underline"></div>
+
+
+
+        </header>
+
+
+
+
+        <div class="article-content">
+            <h2 id="overview">Overview</h2>
+<p>Homebrew distribution lets users install your Python CLI with <code>brew install your-tool</code>. The process: create a GitHub "tap" repository, generate a Ruby formula file, test it, and publish.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Your package must be on PyPI with an <code>sdist</code> (source distribution), not just wheels. All dependencies need <code>sdist</code> too. Define entry points in <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[project.scripts]</span>
+<span class="n">your-cli-tool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;your_package.cli:main&quot;</span>
+</code></pre></div>
+
+<h2 id="step-by-step-process">Step-by-Step Process</h2>
+<p><strong>1. Create a tap repository.</strong> A Homebrew tap is just a GitHub repository with a specific naming convention. Create a repo named <code>homebrew-{something}</code> under your account. When someone runs <code>brew tap yourusername/something</code>, Homebrew looks for <code>github.com/yourusername/homebrew-something</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Users will install your tool like this:</span>
+brew<span class="w"> </span>tap<span class="w"> </span>yourusername/tools
+brew<span class="w"> </span>install<span class="w"> </span>your-cli-tool
+
+<span class="c1"># Or in one command using the full path:</span>
+brew<span class="w"> </span>install<span class="w"> </span>yourusername/tools/your-cli-tool
+</code></pre></div>
+
+<p>Inside your tap repository, create a <code>Formula</code> directory for your Ruby <code>.rb</code> formula files. See <a href="https://docs.brew.sh/How-to-Create-and-Maintain-a-Tap">How to Create and Maintain a Tap</a>.</p>
+<p><strong>2. Generate the formula</strong> using <a href="https://github.com/tdsmith/homebrew-pypi-poet">homebrew-pypi-poet</a> in a fresh venv:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/tmp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>your-cli-tool<span class="w"> </span>homebrew-pypi-poet
+poet<span class="w"> </span>-f<span class="w"> </span>your-cli-tool<span class="w"> </span>&gt;<span class="w"> </span>your-cli-tool.rb
+</code></pre></div>
+
+<p><strong>3. Test locally</strong> before pushing:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">HOMEBREW_NO_INSTALL_FROM_API</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>--build-from-source<span class="w"> </span>--verbose<span class="w"> </span>--debug<span class="w"> </span>./your-cli-tool.rb
+</code></pre></div>
+
+<p><strong>4. Push to GitHub.</strong> Users install via <code>brew install yourusername/tapname/your-cli-tool</code>.</p>
+<pre class="mermaid">
+flowchart LR
+    A[Create tap repo] --> B[Generate formula with poet]
+    B --> C[Test locally]
+    C --> D[Push to GitHub]
+    D --> E[Users can brew install]
+</pre>
+
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<ul>
+<li><strong>Missing sdist</strong> - Package or dependency lacks source distribution on PyPI</li>
+<li><strong>Contaminated poet env</strong> - Always use a fresh venv for formula generation</li>
+<li><strong>No license</strong> - Required for homebrew-core submission</li>
+</ul>
+<h2 id="going-further">Going Further</h2>
+<p>For homebrew-core submission (pre-compiled bottles, <code>brew search</code> discoverability), see <a href="https://github.com/Homebrew/homebrew-core/blob/master/CONTRIBUTING.md">homebrew-core CONTRIBUTING</a>. For automated updates, see <a href="https://til.simonwillison.net/homebrew/auto-formulas-github-actions">GitHub Actions automation</a>.</p>
+<h2 id="sources-and-further-reading">Sources and Further Reading</h2>
+<ul>
+<li><a href="https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew">Packaging a Python CLI tool for Homebrew</a> - Simon Willison's comprehensive walkthrough</li>
+<li><a href="https://docs.brew.sh/Python-for-Formula-Authors">Python for Formula Authors</a> - Official Homebrew Python documentation</li>
+<li><a href="https://docs.brew.sh/Formula-Cookbook">Formula Cookbook</a> - Writing and testing formulas</li>
+<li><a href="https://github.com/tdsmith/homebrew-pypi-poet">homebrew-pypi-poet</a> - Formula generation tool</li>
+</ul>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+</script>
+        </div>
+
+
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/python/" class="article-tag">python</a>
+                <a href="https://www.safjan.com/tag/homebrew/" class="article-tag">homebrew</a>
+                <a href="https://www.safjan.com/tag/cli/" class="article-tag">cli</a>
+                <a href="https://www.safjan.com/tag/packaging/" class="article-tag">packaging</a>
+                <a href="https://www.safjan.com/tag/distribution/" class="article-tag">distribution</a>
+                <a href="https://www.safjan.com/tag/macos/" class="article-tag">macos</a>
+        </div>
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/replacing-makefile-with-invoke-for-crossplatform-python-tasks/" class="related-post-card">
+                            <span class="related-post-title">Replacing Makefile with Invoke for Cross-Platform Python Tasks</span>
+                            <span class="related-post-date">Aug 14, 2025</span>
+                        </a>
+                        <a href="https://www.safjan.com/audio-notifications-in-jupyter-notebooks-across-platforms/" class="related-post-card">
+                            <span class="related-post-title">Audio Notifications in Jupyter Notebooks Across Platforms</span>
+                            <span class="related-post-date">Sep 13, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/the-benefits-of-packaging-an-ml-model-as-a-python-pex-file/" class="related-post-card">
+                            <span class="related-post-title">The Benefits of Packaging an ML Model as a Python PEX File</span>
+                            <span class="related-post-date">Jan 17, 2023</span>
+                        </a>
+                        <a href="https://www.safjan.com/using-pyenv/" class="related-post-card">
+                            <span class="related-post-title">Using Pyenv</span>
+                            <span class="related-post-date">May 12, 2022</span>
+                        </a>
+                </div>
+            </div>
+
+
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>    </footer>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
+}
+</script>
+
+
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false,
+            basePath: "/pagefind/"
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
+
+<style>
+.video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.video-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.video-embed-info {
+    padding: 0.5rem 0.75rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0 0 0.375rem 0.375rem;
+    font-size: 0.875rem;
+    margin-top: -0.375rem;
+}
+.video-embed-info a {
+    text-decoration: none;
+    color: inherit;
+}
+.video-embed-info a:hover {
+    text-decoration: underline;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('pre > code').forEach(function(code) {
+        var text = code.textContent.trim();
+        var lines = text.split('\n');
+        var url = lines[0].trim();
+
+        var videoId = null;
+        var embedUrl = null;
+        var platform = null;
+
+        // YouTube detection
+        var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+            videoId = ytMatch[1];
+            embedUrl = 'https://www.youtube-nocookie.com/embed/' + videoId;
+            platform = 'youtube';
+        }
+
+        // Vimeo detection
+        var vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        if (vimeoMatch) {
+            videoId = vimeoMatch[1];
+            embedUrl = 'https://player.vimeo.com/video/' + videoId + '?dnt=1';
+            platform = 'vimeo';
+        }
+
+        if (!videoId || !embedUrl) return;
+
+        var meta = {};
+        lines.slice(1).forEach(function(line) {
+            var m = line.match(/^(\w+):\s*(.+)$/);
+            if (m) meta[m[1].toLowerCase()] = m[2].trim();
+        });
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'video-embed-wrapper';
+
+        var embed = document.createElement('div');
+        embed.className = 'video-embed';
+        embed.innerHTML = '<iframe src="' + embedUrl +
+            '" allowfullscreen loading="lazy" title="' + (meta.title || (platform === 'youtube' ? 'YouTube video' : 'Vimeo video')).replace(/"/g, '&quot;') + '"></iframe>';
+        wrapper.appendChild(embed);
+
+        if (meta.title || meta.author) {
+            var info = document.createElement('div');
+            info.className = 'video-embed-info';
+            var html = meta.title ? '<strong>' + meta.title + '</strong>' : '';
+            if (meta.author) {
+                html += (meta.title ? ' &bull; ' : '');
+                html += meta.authorurl ? '<a href="' + meta.authorurl + '" target="_blank" rel="noopener">' + meta.author + '</a>' : meta.author;
+            }
+            info.innerHTML = html;
+            wrapper.appendChild(info);
+        }
+        code.closest('pre').replaceWith(wrapper);
+    });
+});
+</script>
+
+<style>
+.tweet-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.tweet-embed-loading {
+    padding: 1rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0.375rem;
+    color: var(--color-text-secondary, #6c757d);
+    font-size: 0.875rem;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var twitterScriptLoaded = false;
+
+    function loadTwitterScript() {
+        if (twitterScriptLoaded) return;
+        twitterScriptLoaded = true;
+        var script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }
+
+    document.querySelectorAll('pre > code.language-tweet').forEach(function(code) {
+        var text = code.textContent.trim();
+        var url = text.split('\n')[0].trim();
+
+        // Twitter/X URL detection
+        var tweetMatch = url.match(/^https?:\/\/(twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
+        if (!tweetMatch) return;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'tweet-embed-wrapper';
+        wrapper.innerHTML = '<div class="tweet-embed-loading">Loading tweet...</div>';
+
+        code.closest('pre').replaceWith(wrapper);
+
+        // Fetch oEmbed data
+        var oembedUrl = 'https://publish.twitter.com/oembed?url=' + encodeURIComponent(url) + '&dnt=true&omit_script=true';
+
+        fetch(oembedUrl)
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                wrapper.innerHTML = data.html;
+                loadTwitterScript();
+                if (window.twttr && window.twttr.widgets) {
+                    window.twttr.widgets.load(wrapper);
+                }
+            })
+            .catch(function() {
+                wrapper.innerHTML = '<div class="tweet-embed-loading">Failed to load tweet. <a href="' + url + '" target="_blank" rel="noopener">View on Twitter</a></div>';
+            });
+    });
+});
+</script>
+</body>
+</html>

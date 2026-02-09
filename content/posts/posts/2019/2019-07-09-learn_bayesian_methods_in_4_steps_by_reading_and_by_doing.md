@@ -14,6 +14,14 @@ Title: Learn Bayesian Methods in 4 Steps - By Reading and by Doing
 started: 2019-07-04
 todo: shorten the summary
 ---
+
+- [Background](#background)
+- [1. "Bayesian methods for hackers"  - free book in form of Jupyter notebooks with interactive content](#1-bayesian-methods-for-hackers----free-book-in-form-of-jupyter-notebooks-with-interactive-content)
+- [2. Probability and Statistics books that will help you learn/refresh math to build a solid foundation](#2-probability-and-statistics-books-that-will-help-you-learnrefresh-math-to-build-a-solid-foundation)
+- [3. "How to become a Bayesian in eight easy steps: An annotated reading list"](#3-how-to-become-a-bayesian-in-eight-easy-steps-an-annotated-reading-list)
+- [4. Exercises to develop Bayesian thinking: "Think Bayes" by Allen Downey](#4-exercises-to-develop-bayesian-thinking-think-bayes-by-allen-downey)
+
+
 ## Background
 
 When reading this article you probably have some experience with machine learning models. You might have tried RandomForest, XGBoost, etc. They are easy to use but it is difficult to understand how final predictions were done. This is sometimes referred to as predictions out of the black box. Of course, there are techniques that might help a bit e.g. extracting feature importance from the trained models.

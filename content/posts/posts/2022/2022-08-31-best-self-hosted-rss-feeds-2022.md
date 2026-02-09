@@ -16,7 +16,7 @@ tags:
   - atom
   - news-aggregator
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [What is RSS](#what-is-rss)
 - [Actively developed and popular self-hosted Feed readers](#actively-developed-and-popular-self-hosted-feed-readers)
@@ -32,7 +32,7 @@ tags:
   - [RSSMonster](#rssmonster)
   - [Sismics Reader](#sismics-reader)
 
-<!-- /MarkdownTOC -->
+
 
 X::[[freshrss_deploy_on_azure]]
 X::[[fresh_rss_deploy_on_GCP]]

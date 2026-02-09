@@ -2,7 +2,7 @@
 Category: Responsible AI
 Date: 2023-04-14
 Image: /images/head/lime_tutorial.jpg
-Modified: 2023-04-14
+Modified: 2026-02-07
 Slug: lime-tutorial
 Start: 2023-04-14
 Status: published
@@ -13,11 +13,25 @@ Tags:
   - explainable-ai
   - lime
 Title: LIME Tutorial
-banner: /images/head/lime_tutorial.jpg
+banner: "/images/head/lime_tutorial.jpg"
 prompt:
 ---
 
+
+
+- [What is LIME?](#what-is-lime)
+- [Selecting a Dataset](#selecting-a-dataset)
+- [Training a Machine Learning Model](#training-a-machine-learning-model)
+- [Explaining Model Predictions with LIME](#explaining-model-predictions-with-lime)
+- [Visualizing Model Decisions](#visualizing-model-decisions)
+- [Conclusion](#conclusion)
+- [Related](#related)
+
+
+
 In this tutorial, we'll be exploring how to use the LIME (Local Interpretable Model-Agnostic Explanations) library for explainable AI. We'll start by discussing what LIME is and why it's useful for explainable AI, and then we'll dive into the code.
+
+<a id="what-is-lime"></a>
 
 ## What is LIME?
 
@@ -32,6 +46,8 @@ Why is LIME useful for explainable AI? There are a few reasons:
 3. **Debugging:** LIME can help us identify problems with our model by highlighting areas where the model is making incorrect or unexpected predictions.
 
 Now that we understand why LIME is useful, let's dive into the code.
+
+<a id="selecting-a-dataset"></a>
 
 ## Selecting a Dataset
 
@@ -58,6 +74,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 ```
 
 We'll use the training set to train our machine learning model, and the testing set to evaluate its performance.
+
+<a id="training-a-machine-learning-model"></a>
 
 ## Training a Machine Learning Model
 
@@ -91,6 +109,8 @@ print(f"Accuracy: {accuracy:.2f}")
 ```
 
 When we run this code, we should see an accuracy of around 0.97, which means our model is doing a pretty good job of predicting the class of new samples.
+
+<a id="explaining-model-predictions-with-lime"></a>
 
 ## Explaining Model Predictions with LIME
 
@@ -150,6 +170,8 @@ This will create a bar chart that shows the contribution of each feature to the 
 
 ![LIME bar chart](/images/lime_tutorial/lime_bar_chart.png)
 
+<a id="visualizing-model-decisions"></a>
+
 ## Visualizing Model Decisions
 
 In addition to explaining individual predictions, LIME can also be used to visualize how the model is making decisions more generally. We can do this by generating multiple explanations for different samples and visualizing the patterns that emerge.
@@ -167,6 +189,8 @@ exp.show_in_notebook(show_table=True)
 
 ![LIME - explanation visualization](/images/lime_tutorial/lime_explanation.png)
 
+<a id="conclusion"></a>
+
 ## Conclusion
 
 In this tutorial, we learned how to use the LIME library for explainable AI. We started by importing the necessary libraries and loading the Iris dataset. Then, we trained a random forest classifier on the dataset and used LIME to explain individual predictions and visualize model decisions.
@@ -175,9 +199,15 @@ We saw how LIME can be used to identify the most important features for a predic
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
 
+<a id="related"></a>
+
 ## Related
 
 - [python - How to plot Lime report when there is a lot of features in data-set - Stack Overflow](https://stackoverflow.com/questions/63937620/how-to-plot-lime-report-when-there-is-a-lot-of-features-in-data-set)
 - [LIME: How to Interpret Machine Learning Models With Python | Better Data Science](https://betterdatascience.com/lime/)
 - [How to Use LIME to Interpret Predictions of ML Models [Python]?](https://coderzcolumn.com/tutorials/machine-learning/how-to-use-lime-to-understand-sklearn-models-predictions)
 - [Explaining complex machine learning models with LIME](https://shiring.github.io/machine_learning/2017/04/23/lime) (in R)
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

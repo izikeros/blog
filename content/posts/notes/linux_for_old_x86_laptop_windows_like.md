@@ -17,7 +17,7 @@ Prompt: What are the best Linux distributions for old x86 laptop to have windows
 ---
 There are several Linux distributions that can provide a Windows-like look and feel, but the best one for an old x86 laptop will depend on the hardware specifications of the device. Here are some options that you can consider:
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1.  Lubuntu](#1-lubuntu)
 - [2.  Linux Mint Xfce](#2-linux-mint-xfce)
@@ -25,7 +25,7 @@ There are several Linux distributions that can provide a Windows-like look and f
 - [4.  Peppermint OS](#4-peppermint-os)
 - [5.  LXLE](#5-lxle)
 
-<!-- /MarkdownTOC -->
+
 
 ## 1.  Lubuntu
 

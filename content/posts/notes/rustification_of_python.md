@@ -32,7 +32,7 @@ Python has been one of the most popular programming languages for years now. It�
 
 In this article, we’ll explore the trend of Rustification of Python, provide some concrete examples, and discuss the future role of Rust in Python.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Rustification of Python](#rustification-of-python)
 - [Concrete Examples](#concrete-examples)
@@ -54,7 +54,7 @@ In this article, we’ll explore the trend of Rustification of Python, provide s
  	- [Community backlash](#community-backlash)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## Rustification of Python
 

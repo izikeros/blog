@@ -14,7 +14,7 @@ Tags:
   - debugging
   - nimrod
 Title: Setup VS Code as NIM IDE
-banner: /images/head/vscode-as-nim-ide.jpg
+banner: "/images/head/vscode-as-nim-ide.jpg"
 modified: 2023-01-13
 prompt: Give me detailed instructions how to prepare vscode as NIM IDE starting from scratch (downloading vscode). Provide blog-post style answer with introduction and in the closing reference to related topics such as debugging in vscode and other. In the introduction - provide short info about the nim language.
 ---
@@ -25,7 +25,7 @@ prompt: Give me detailed instructions how to prepare vscode as NIM IDE starting 
 
 In this tutorial, we will go over how to set up [Visual Studio Code](https://code.visualstudio.com/) (VS Code) as a Nim IDE (Integrated Development Environment) from scratch. This includes downloading VS Code, installing the Nim extension, and configuring the necessary settings for debugging and code completion.
 
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [Installation steps](#installation-steps)
   - [1. Download and Install VSCode](#1-download-and-install-vscode)
@@ -36,7 +36,7 @@ In this tutorial, we will go over how to set up [Visual Studio Code](https://cod
   - [6. Debugging](#6-debugging)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Installation steps
 

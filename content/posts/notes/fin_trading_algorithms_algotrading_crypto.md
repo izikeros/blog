@@ -17,7 +17,7 @@ citation_needed: true
 ---
 This note contains a collection of trading algorithms or links to algorithms
 
-<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
 
 - [Momentum](#momentum)
 - [Mean-Reversion](#mean-reversion)
@@ -26,7 +26,7 @@ This note contains a collection of trading algorithms or links to algorithms
 - [Algorithm libraries](#algorithm-libraries)
 - [Other links](#other-links)
 
-<!-- /MarkdownTOC -->
+
 
 ## Momentum
 

@@ -15,7 +15,7 @@ prompt: Give me long text on What are the best python IDEs to be used on an old 
 ---
 Python is one of the most widely used programming languages for a variety of applications such as web development, data science, artificial intelligence, and more. Choosing the right integrated development environment (IDE) is essential for efficient and productive coding, especially if you have an older computer with limited resources. Here are some of the best Python IDEs that are suitable for older computers.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Best IDEs](#best-ides)
   - [1.  IDLE](#1-idle)
@@ -32,7 +32,7 @@ Python is one of the most widely used programming languages for a variety of app
 - [References](#references)
 - [Extras](#extras)
 
-<!-- /MarkdownTOC -->
+
 
 ## Best IDEs
 

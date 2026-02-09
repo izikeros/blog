@@ -2,7 +2,7 @@
 Category: Machine Learning
 Date: 2022-06-09
 Image: /images/head/abstract_1.jpg
-Modified: 2023-06-09
+Modified: 2026-02-07
 Slug: popular-and-lesser-known-dataset-sharing-platforms
 Start: 2023-06-09
 Status: published
@@ -11,36 +11,63 @@ Tags:
   - machine-learning
   - python
 Title: Discovering Hidden Gems - Popular and Lesser-Known Dataset Sharing Platforms
-banner: /images/head/abstract_1.jpg
+banner: "/images/head/abstract_1.jpg"
 prompt: what are the best dataset-sharing platforms
 ---
+
+
+
+- [Kaggle](#kaggle)
+- [UCI Machine Learning Repository](#uci-machine-learning-repository)
+- [Google Dataset Search](#google-dataset-search)
+- [Data.gov](#datagov)
+- [OpenML](#openml)
+- [GitHub](#github)
+- [Other platforms](#other-platforms)
+
+
+
 up::[[MOC_AI]]
 
 There are several popular dataset-sharing platforms available that researchers, data scientists, and machine learning practitioners can utilize to access and share datasets. Here are some of the best dataset-sharing platforms:
+
+<a id="kaggle"></a>
 
 ## Kaggle
 
 Kaggle is a well-known platform for data science competitions, but it also provides a [dataset repository](https://www.kaggle.com/datasets) where users can discover and share datasets. It offers a wide range of datasets in various domains, along with tools for data exploration and collaboration.
 
+<a id="uci-machine-learning-repository"></a>
+
 ## UCI Machine Learning Repository
 
 The University of California, Irvine (UCI) hosts a [repository of datasets](https://archive.ics.uci.edu/) specifically designed for machine learning research. It provides a diverse collection of datasets, including text, image, and time series data, covering a wide range of domains.
+
+<a id="google-dataset-search"></a>
 
 ## Google Dataset Search
 
 [Google Dataset Search](https://datasetsearch.research.google.com/) is a search engine that specifically focuses on indexing datasets. It aggregates datasets from various sources on the web, making it easier to find publicly available datasets. It provides information about the dataset, including its description, author, and availability.
 
+<a id="datagov"></a>
+
 ## Data.gov
 
 [Data.gov](https://data.gov/) is a U.S. government initiative that provides access to a wide range of datasets from different federal agencies. It offers datasets covering various domains such as health, climate, finance, transportation, and more. The platform aims to promote transparency and facilitate public access to government data.
+
+<a id="openml"></a>
 
 ## OpenML
 
 OpenML is an open-source platform that allows users to share, discover, and analyze [datasets](https://www.openml.org/search?type=data&sort=runs&status=active) and machine learning experiments. It provides a collaborative environment for researchers and practitioners to collaborate and contribute to the development of machine learning algorithms.
 
+<a id="github"></a>
+
 ## GitHub
 
 Although GitHub is primarily a code hosting platform, it also serves as a repository for datasets. Many researchers and organizations share datasets on GitHub, making it a valuable resource for finding datasets across various domains. You can search for datasets using specific keywords or explore repositories dedicated to datasets.
+
+<a id="other-platforms"></a>
 
 ## Other platforms
 
@@ -78,3 +105,7 @@ Here are 30 lesser-known dataset-sharing platforms that you can explore:
 30. Open Data Soft: [https://www.opendatasoft.com/](https://www.opendatasoft.com/)
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

@@ -19,7 +19,7 @@ Title: Exploring Python Packages for Loading and Processing YAML Front Matter in
 Prompt: What python packages can load and process yaml frontmatter in markdown documents (front matter is typically used in the markdown version of the article to publish). Please give me the long list with descriptions and links to Pypi and Git Hub (or another place where the code is stored). Give me a long blog post on that.
 
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
   - [PyYAML](#pyyaml)
@@ -37,7 +37,7 @@ Prompt: What python packages can load and process yaml frontmatter in markdown d
   - [Minimalistic Approach](#minimalistic-approach)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Introduction
 

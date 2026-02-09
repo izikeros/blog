@@ -19,7 +19,7 @@ prompt: What are the key differences between LIME and SHAP
 
 LIME and SHAP are both popular methods for explainable AI (XAI), but they differ in several key ways.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Model-agnostic vs model-specific](#model-agnostic-vs-model-specific)
 - [Local vs global explanations](#local-vs-global-explanations)
@@ -27,7 +27,7 @@ LIME and SHAP are both popular methods for explainable AI (XAI), but they differ
 - [Interpretability vs accuracy trade-off](#interpretability-vs-accuracy-trade-off)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Model-agnostic vs model-specific
 

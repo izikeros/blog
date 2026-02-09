@@ -14,7 +14,7 @@ Tags:
   - xai
   - responsible-ai
 Title: Attacking Differential Privacy Using the Correlation Between the Features
-banner: /images/head/attacking_differential_privacy.jpg
+banner: "/images/head/attacking_differential_privacy.jpg"
 prompt: Give me long texts for the data security experts on How to use correlation between features to attack differential privacy? Use latex equations in code fences (for ease copy-paste them) where needed. Use research paper style.
 ---
 
@@ -22,7 +22,7 @@ prompt: Give me long texts for the data security experts on How to use correlati
 
 Differential privacy is a technique that adds random noise to the data to protect individual privacy while still allowing for accurate data analysis. However, differential privacy can still be vulnerable to attacks that can compromise the privacy of individuals. One such attack is through the use of correlation between features. In this blog post, we will discuss how an attacker can use correlation between features to attack differential privacy and how to mitigate this attack.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Background](#background)
 - [Correlation Between Features](#correlation-between-features)
@@ -38,7 +38,7 @@ Differential privacy is a technique that adds random noise to the data to protec
   - [Perform the attack - reconstruct original data by exploiting correlation between features](#perform-the-attack---reconstruct-original-data-by-exploiting-correlation-between-features)
   - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Background
 

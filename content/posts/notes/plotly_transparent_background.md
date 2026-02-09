@@ -15,13 +15,13 @@ Title: How to Set Transparent Background for Plotly Plot?
 ---
 Setting a transparent background for a Plotly plot can be accomplished using different methods depending on the use case. In this answer, I will provide some examples of how to achieve this.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Method 1: Using the "layout" parameter](#method-1-using-the-layout-parameter)
 - [Method 2: Using the "config" parameter](#method-2-using-the-config-parameter)
 - [Method 3: Using the "to_image" function](#method-3-using-the-to_image-function)
 
-<!-- /MarkdownTOC -->
+
 
 ## Method 1: Using the "layout" parameter
 

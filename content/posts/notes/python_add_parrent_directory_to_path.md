@@ -18,7 +18,7 @@ citation_needed: false
 
 There may be times when you want to import modules from a parent directory in Python. This can be useful, for example, when working with Jupyter notebooks and you want to keep your code organized in a specific directory structure. In this article, we will explore different ways to add a parent directory to the Python path so that you can import modules from it.
 
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [Method 1: Using `sys.path.insert()`](#method-1-using-syspathinsert)
 - [Method 2: Using `sys.path.append()`](#method-2-using-syspathappend)
@@ -27,7 +27,7 @@ There may be times when you want to import modules from a parent directory in Py
 - [Using `Pathlib`](#using-pathlib)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Method 1: Using `sys.path.insert()`
 

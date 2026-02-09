@@ -11,7 +11,7 @@ Tags:
   - packaging
 Title: The Benefits of Packaging an ML Model as a Python PEX File
 ---
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [The Benefits of Packaging an ML Model as a Python PEX File](#the-benefits-of-packaging-an-ml-model-as-a-python-pex-file)
 	- [Portability](#portability)
@@ -22,7 +22,7 @@ Title: The Benefits of Packaging an ML Model as a Python PEX File
 - [](#)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 Machine learning (ML) models are becoming increasingly popular in various industries, and as a result, the need to distribute and deploy these models in a secure, portable, and efficient manner has become crucial. One way to accomplish this is by packaging an ML model as a Python PEX (Python executable) file.
 

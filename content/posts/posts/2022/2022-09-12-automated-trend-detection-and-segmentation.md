@@ -2,7 +2,7 @@
 Category: Howto
 Date: 2022-09-12
 Image: images/head/trend_detection_head.jpg
-Modified: 2023-07-12
+Modified: 2026-02-07
 Slug: automated-trend-detection-and-signal-segmentation
 Status: Published
 Summary: This post presents the trend-classifier package that can be used for signal segmentation into parts where the trend is coherent.
@@ -15,10 +15,25 @@ citation_needed: false
 todo: None
 ---
 
+
+
+- [Problem statement](#problem-statement)
+- [Windowing Approach](#windowing-approach)
+- [Example](#example)
+- [Controlling generalization](#controlling-generalization)
+- [An exemplary application of trend detection and segmentation](#an-exemplary-application-of-trend-detection-and-segmentation)
+- [Summary](#summary)
+
+
+
+<a id="problem-statement"></a>
+
 ## Problem statement
 
 1. Partition time series into segments, where the signal in the segment has a consistent trend (e.g. up-trend, down-trend)
 2. Characterise trend in the segment, e.g. provide coefficients of the equation describing the trend in the segment.
+
+<a id="windowing-approach"></a>
 
 ## Windowing Approach
 
@@ -28,6 +43,8 @@ The discussed solution is based on the concept of analyzing signals using a slid
 **Figure 1. Windowing approach for trend detection - trend line fit to datapoints in each overlapping window.**
 
 For each window perform linear regression to find the line that best fits the signal. If the parameters of a linear regression between two windows do not differ too much, the signal covered by these two windows is considered as belonging to the same segment with a coherent trend.
+
+<a id="example"></a>
 
 ## Example
 
@@ -71,6 +88,8 @@ You can have information about all segments in tabular form using `Segmenter.seg
 seg.segments.to_dataframe()
 ```
 
+<a id="controlling-generalization"></a>
+
 ## Controlling generalization
 
 There is a parameter that controls the "generalization" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behavior, when initializing `Segmenter()` (e.g. `Segmenter(x_in, y_in, n=20)` use various values for `n` parameter. The larger `n` the generalization is stronger (fewer segments).
@@ -80,6 +99,8 @@ There is a parameter that controls the "generalization" factor, i.e. you can try
 
 ![segmentation for n=80](/images/trend_segmentation/segments_n_80.jpg)
 **Figure 4. Signal segmentation with rough granularity (strong generalization), n=80.**
+
+<a id="an-exemplary-application-of-trend-detection-and-segmentation"></a>
 
 ## An exemplary application of trend detection and segmentation
 
@@ -132,6 +153,8 @@ seg.plot_segment(horiz_idx)
 
 The classification function used in the example was very simple and one can implement a more robust function e.g. one, that uses other than `slope` data stored in the segment object.
 
+<a id="summary"></a>
+
 ## Summary
 
 This article describes the [trend-classifier](https://pypi.org/project/trend-classifier/) library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:
@@ -141,3 +164,7 @@ This article describes the [trend-classifier](https://pypi.org/project/trend-cla
 - since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

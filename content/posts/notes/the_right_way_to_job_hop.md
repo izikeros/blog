@@ -19,7 +19,7 @@ NOTE: The text below are the advices extracted from the podcast transcript using
 
 Based on the podcast "The right way to Job-hop" [transcript](https://stackoverflow.blog/2022/10/11/the-right-way-to-job-hop-ai-generated-pokemon-ep-495/), here are some key pieces of advice on how to do "job hopping" the right way:
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Key Pieces of Advice](#key-pieces-of-advice)
   - [Follow New Tech Trends](#follow-new-tech-trends)
@@ -52,7 +52,7 @@ Based on the podcast "The right way to Job-hop" [transcript](https://stackoverfl
   - [Keep Your Skills Up to Date](#keep-your-skills-up-to-date)
   - [Network Effectively](#network-effectively)
 
-<!-- /MarkdownTOC -->
+
 
 ## Key Pieces of Advice
 

@@ -16,14 +16,14 @@ prompt: Give me long, stacoverflow-style text with snippets of code, analyse var
 ---
 To select rows from a pandas DataFrame based on column values, you can use various methods. Here are some of the most common ones:
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1.  Using Boolean indexing](#1-using-boolean-indexing)
 - [2.  Using the query\(\) method](#2-using-the-query-method)
 - [3.  Using the loc\(\) method](#3-using-the-loc-method)
 - [4.  Using the iloc\(\) method](#4-using-the-iloc-method)
 
-<!-- /MarkdownTOC -->
+
 
 ## 1.  Using Boolean indexing
 

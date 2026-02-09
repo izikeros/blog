@@ -16,7 +16,7 @@ tags:
   - callback
 Category: Machine Learning
 Image: /images/head/rankflow_plot_head.jpg
-banner: /images/head/rankflow_plot_head.jpg
+banner: "/images/head/rankflow_plot_head.jpg"
 Summary: RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.
 summary2: Retrieval-Augmented Generation systems rely heavily on effective retrieval. Tracking rank changes across multiple re-ranking stages is crucial but challenging. Visual analysis tools like rankflow charts can help AI professionals gain rapid insights into retriever performance.
 summary3: The retriever is a critical component in RAG systems. Monitoring how document ranks shift across re-ranking phases provides valuable performance insights. We'll examine methods for tracking rank data and creating visual representations to streamline retriever analysis.
@@ -27,7 +27,7 @@ status: published
 ---
 
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [TLDR](#tldr)
 - [Introduction and problem statement](#introduction-and-problem-statement)
@@ -40,7 +40,7 @@ status: published
 - [Visualization](#visualization)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## TLDR
 

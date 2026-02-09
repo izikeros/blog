@@ -12,13 +12,13 @@ Tags:
   - workflow
   - mlops
 Title: Beyond Airflow - 10 Workflow Tools You Need to Know
-banner: /images/head/pipelines.jpg
+banner: "/images/head/pipelines.jpg"
 prompt: Give me long blog-post on Alternatives to Apache AirFlow. For each tool provide link.
 ---
 
 [Apache Airflow](https://airflow.apache.org/) is a popular open-source platform for scheduling and managing workflows. It provides a unified interface for defining, executing, and monitoring workflows, making it a valuable tool for data engineers and scientists. However, Apache Airflow is not the only option available, and in some cases, other alternatives may be better suited to meet the specific needs of a project. In this blog post, we will explore some alternatives to Apache Airflow that can be used to manage workflows and schedule tasks.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1.  Prefect](#1-prefect)
 - [2.  Luigi](#2-luigi)
@@ -32,7 +32,7 @@ prompt: Give me long blog-post on Alternatives to Apache AirFlow. For each tool 
 - [10.  Pinball](#10-pinball)
 - [Summary](#summary)
 
-<!-- /MarkdownTOC -->
+
 
 ## 1.  Prefect
 

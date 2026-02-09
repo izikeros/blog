@@ -5,6 +5,7 @@ Date: 2018-03-22
 Image: /images/head/inside-work-tree.jpg
 Slug: top-popular-zsh-plugins-on-github
 Start: 2018-03-22
+Modified: 2026-02-02
 Status: published
 Summary: There is an exhaustive but curated list of Zsh plugins posted on GitHub project Awesome Zsh plugins. You can find there 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have the highest number of stars.
 tags:
@@ -13,20 +14,34 @@ tags:
   - python
   - Linux
 modified: 2022-09-01
-banner: /images/head/inside-work-tree.jpg
+banner: "/images/head/inside-work-tree.jpg"
 Series: Zsh plugins
 ---
+
+- [What are Github stars?](#what-are-github-stars)
+- [Top 20 most popular plugins as of March 2018](#top-20-most-popular-plugins-as-of-march-2018)
+  - [1. autojump](#1-autojump)
+  - [2. syntax-highlighting](#2-syntax-highlighting)
+  - [3. autosuggestions](#3-autosuggestions)
+  - [4. blackbox](#4-blackbox)
+  - [5. git-flow-completion](#5-git-flow-completion)
+  - [6. zsh-completions](#6-zsh-completions)
+  - [7. ansiweather](#7-ansiweather)
+  - [8. k](#8-k)
+  - [9. enhancd](#9-enhancd)
+  - [10. git-secret](#10-git-secret)
+
 
 > **NOTE:** This article was written in 2018, for a more recent version of the ranking see: [2023](../top-popular-zsh-plugins-on-github-2023/).
 > The older articles have description of the selected, interesting tools that are not in this article - so you might also to visit the older editions of the survey.
 
 On the GitHub project [Awesome Zsh plugins](https://github.com/unixorn/awesome-zsh-plugins) you can find 800+ links to plugins, themes, and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from the Zsh users community. This post aims at identifying the most popular plugins where popularity is measured by the number of stars that GitHub users added to the given plugin. For clarity, I will focus here only on plugins excluding frameworks and themes that are also listed on "Awesome Zsh plugins" website.
 
-# What are Github stars?
+## What are Github stars?
 
 Stars is the way how users can 'bookmark' projects - this can serve as an indication for others that a project successfully grabbed someone's attention. The `stargazers` statistics are available via [GithubAPI](https://developer.github.com/v4/)
 
-# Top 20 most popular plugins as of March 2018
+## Top 20 most popular plugins as of March 2018
 
 link                                                                               | description                                                                                                                                            | stars
 ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | -----
@@ -49,11 +64,11 @@ link                                                                            
 
 Below you can find a short description of the 10 most popular plugins
 
-## 1. [autojump](https://github.com/wting/autojump)
+### 1. [autojump](https://github.com/wting/autojump)
 
 autojump is a faster way to navigate your filesystem. It works by maintaining a database of the directories you use the most from the command line. Directories must be visited first before they can be jumped to. It can be an alternative for [z](https://github.com/rupa/z) or [fasd](https://github.com/clvv/fasd)
 
-## 2. [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+### 2. [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
 This package provides Fish shell-like syntax highlighting for the Zsh. It enables highlighting of commands whilst they are typed at a Zsh prompt into an interactive terminal. This helps in reviewing commands before running them, particularly in catching syntax errors.
 Some examples:
@@ -66,17 +81,17 @@ Before: ![Screenshot #3.1](https://raw.githubusercontent.com/zsh-users/zsh-synta
 <br>
 After: ![Screenshot #3.2](https://raw.githubusercontent.com/zsh-users/zsh-syntax-highlighting/master/images/after3-smaller.png)
 
-## 3. [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+### 3. [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
 This package provides Fish-like fast/unobtrusive autosuggestions for Zsh. It suggests commands as you type, based on command history.
 Example:
 <a href="https://asciinema.org/a/37390" target="_blank"><img src="https://asciinema.org/a/37390.png" width="400" /></a>
 
-## 4. [blackbox](https://github.com/StackExchange/blackbox)
+### 4. [blackbox](https://github.com/StackExchange/blackbox)
 
 This package allows to safely store secrets in a VCS repo (i.e. Git, Mercurial, Subversion, or Perforce). These commands make it easy for you to Gnu Privacy Guard (GPG) to encrypt specific files in a repo, so they are "encrypted at rest" in your repository. However, the scripts make it easy to decrypt them when you need to view or edit them and decrypt them for use in production. Originally written for Puppet, BlackBox now works with any Git or Mercurial repository.
 
-## 5. [git-flow-completion](https://github.com/bobthecow/git-flow-completion)
+### 5. [git-flow-completion](https://github.com/bobthecow/git-flow-completion)
 
 Bash, Zsh, and Fish completion support for [git-flow](http://github.com/nvie/gitflow).
 
@@ -86,14 +101,14 @@ This package provides support for completing:
 * feature, hotfix, and release branches
 * remote feature, hotfix, and release branch names
 
-## 6. [zsh-completions](https://github.com/zsh-users/zsh-completions)
+### 6. [zsh-completions](https://github.com/zsh-users/zsh-completions)
 
 This project aims at gathering/develop new completion scripts that are not available in Zsh yet.
 Demo:
 
 ![zsh-completions-demo](https://raw.githubusercontent.com/supercrabtree/k/gh-pages/inside-work-tree.jpg)
 
-## 7. [ansiweather](https://github.com/fcambus/ansiweather)
+### 7. [ansiweather](https://github.com/fcambus/ansiweather)
 
 AnsiWeather is a Shell script for displaying the current weather conditions
 in your terminal, with support for ANSI colors and Unicode symbols.
@@ -102,12 +117,12 @@ in your terminal, with support for ANSI colors and Unicode symbols.
 
 Weather data comes from the `OpenWeatherMap` free weather API.
 
-## 8. [k](https://github.com/rimraf/k)
+### 8. [k](https://github.com/rimraf/k)
 
 k is a Zsh script / plugin to make directory listings more readable, adding a bit of color and some git status information on files and directories.
 ![k](https://raw.githubusercontent.com/supercrabtree/k/gh-pages/inside-work-tree.jpg)
 
-## 9. [enhancd](https://github.com/b4b4r07/enhancd)
+### 9. [enhancd](https://github.com/b4b4r07/enhancd)
 
 The new `cd` command called "enhancd" enhanced the flexibility and usability for a user. enhancd will memorize all directories visited by a user and use it for the pathname resolution. If the log of enhancd has more than one directory path with the same name, enhancd will pass the candidate directories list to the filter within the `ENHANCD_FILTER` environment variable in order to narrow it down to one directory.
 
@@ -115,7 +130,7 @@ Thanks to this mechanism, the users can intuitively and easily change the direct
 
 ![enhancd-demo](https://raw.githubusercontent.com/b4b4r07/screenshots/master/enhancd/demo.gif)
 
-## 10. [git-secret](https://github.com/sobolevn/git-secret)
+### 10. [git-secret](https://github.com/sobolevn/git-secret)
 
 `git-secret` is a bash tool to store your private data inside a git repo. It encrypts data, using `gpg`, the tracked files with the public keys of all the users that you trust. So every one of them can decrypt these files using only their personal secret key. Usage of private-public makes it easier for everyone to manage access rights. There are no passwords that change. When someone is out - just delete their public key, re-encrypt the files, and they won’t be able to decrypt secrets anymore.
 [![git-secret terminal preview](https://asciinema.org/a/41811.png)](https://asciinema.org/a/41811?autoplay=1)
@@ -123,3 +138,6 @@ Thanks to this mechanism, the users can intuitively and easily change the direct
 On the list there are 300+ projects that are falling into the scope of this research, you can get the complete dataset by downloading this CSV file: [CSV](/downloads/180322_results_sorted.csv).
 
 _Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post)._
+
+**Edits:**
+* 2026-02-02: added ToC

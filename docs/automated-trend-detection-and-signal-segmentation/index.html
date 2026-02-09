@@ -74,7 +74,7 @@
   <meta property="og:url" content="https://www.safjan.com/automated-trend-detection-and-signal-segmentation/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2022-09-12 00:00:00+02:00"/>
-  <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2026-02-07 00:00:00+01:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Howto"/>
   <meta property="article:tag" content="trend"/>
@@ -102,7 +102,7 @@
   },
   "headline": "Automated Signal Segmentation, Trend Detection, and Classification",
   "datePublished": "2022-09-12T00:00:00+02:00",
-  "dateModified": "2023-07-12T00:00:00+02:00",
+  "dateModified": "2026-02-07T00:00:00+01:00",
   "author": {
     "@type": "Person",
     "name": "Krystian Safjan",
@@ -120,7 +120,7 @@
   "articleSection": "Howto",
   "inLanguage": "en",
   "keywords": "trend, segmentation, algotrading",
-  "wordCount": 797,
+  "wordCount": 822,
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
@@ -160,8 +160,8 @@
 
 
 
-<meta name="ai:word-count" content="797">
-<meta name="ai:reading-time" content="3 min">
+<meta name="ai:word-count" content="822">
+<meta name="ai:reading-time" content="4 min">
 
 <meta name="ai:section" content="Howto">
 
@@ -320,16 +320,27 @@
 
 
         <div class="article-content">
-            <h2 id="problem-statement">Problem statement</h2>
+            <ul>
+<li><a href="#problem-statement">Problem statement</a></li>
+<li><a href="#windowing-approach">Windowing Approach</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#controlling-generalization">Controlling generalization</a></li>
+<li><a href="#an-exemplary-application-of-trend-detection-and-segmentation">An exemplary application of trend detection and segmentation</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<p><a id="problem-statement"></a></p>
+<h2 id="problem-statement">Problem statement</h2>
 <ol>
 <li>Partition time series into segments, where the signal in the segment has a consistent trend (e.g. up-trend, down-trend)</li>
 <li>Characterise trend in the segment, e.g. provide coefficients of the equation describing the trend in the segment.</li>
 </ol>
+<p><a id="windowing-approach"></a></p>
 <h2 id="windowing-approach">Windowing Approach</h2>
 <p>The discussed solution is based on the concept of analyzing signals using a sliding window with a fixed length. The consecutive windows can overlap.</p>
 <p><img alt="trend lines within the window" src="/images/trend_segmentation/trend_in_windows.jpg">
 <strong>Figure 1. Windowing approach for trend detection - trend line fit to datapoints in each overlapping window.</strong></p>
 <p>For each window perform linear regression to find the line that best fits the signal. If the parameters of a linear regression between two windows do not differ too much, the signal covered by these two windows is considered as belonging to the same segment with a coherent trend.</p>
+<p><a id="example"></a></p>
 <h2 id="example">Example</h2>
 <p>Let's say, we wanted to do segmentation of the time series on segments with similar trends. For that task, you can use <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> Python library. It is pip installable (<code>pip3 install trend-classifier</code>).</p>
 <p>Here is an example that gets the time series data from YahooFinance and performs the analysis.</p>
@@ -361,12 +372,14 @@
 <div class="highlight"><pre><span></span><code><span class="n">seg</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 </code></pre></div>
 
+<p><a id="controlling-generalization"></a></p>
 <h2 id="controlling-generalization">Controlling generalization</h2>
 <p>There is a parameter that controls the "generalization" factor, i.e. you can try to fit a trend line to a smaller range of time series - you will end up with a large number of segments, or you can go for the segments spanning a bigger part of the time series (more general trend line) and end up with a time series divided into fewer segments. To control that behavior, when initializing <code>Segmenter()</code> (e.g. <code>Segmenter(x_in, y_in, n=20)</code> use various values for <code>n</code> parameter. The larger <code>n</code> the generalization is stronger (fewer segments).</p>
 <p><img alt="segmentation for n=20" src="../images/trend_segmentation/segments_n_20.jpg">
 <strong>Figure 3. Signal segmentation with fine granularity (weak generalization), n=20.</strong></p>
 <p><img alt="segmentation for n=80" src="/images/trend_segmentation/segments_n_80.jpg">
 <strong>Figure 4. Signal segmentation with rough granularity (strong generalization), n=80.</strong></p>
+<p><a id="an-exemplary-application-of-trend-detection-and-segmentation"></a></p>
 <h2 id="an-exemplary-application-of-trend-detection-and-segmentation">An exemplary application of trend detection and segmentation</h2>
 <p>This tool can be used to extract parts of the signal where the trend has given parameters. E.g. extract segments with:</p>
 <ul>
@@ -406,6 +419,7 @@
 <p><img alt="horizontal-trend" src="/images/trend_segmentation/horiz_trend.jpg">
 <strong>Figure 7. Segments classified as "horizontal-trend".</strong></p>
 <p>The classification function used in the example was very simple and one can implement a more robust function e.g. one, that uses other than <code>slope</code> data stored in the segment object.</p>
+<p><a id="summary"></a></p>
 <h2 id="summary">Summary</h2>
 <p>This article describes the <a href="https://pypi.org/project/trend-classifier/">trend-classifier</a> library that is using the calculation of linear regression within the overlapping windows for signal segmentation. If the parameters of the regression for the following windows are similar, then the windows are considered as belonging to the same trend and the segment is extended by the newly analyzed window and the operation is continued for the next windows. When using this tool you need to know the limitations:</p>
 <ul>
@@ -414,6 +428,10 @@
 <li>since the criterion for starting a new segment is a "significant" difference between two consecutive windows, one can imagine that if the trend is changing slowly, with small changes e.g. uptrend can change to downtrend, and no trend change will be detected.</li>
 </ul>
 <p><em>Any comments or suggestions? <a href="mailto:ksafjan@gmail.com?subject=Blog+post">Let me know</a>.</em></p>
+<p><strong>Edits:</strong></p>
+<ul>
+<li>2026-02-07: Added table of contents with anchor links</li>
+</ul>
         </div>
 
 

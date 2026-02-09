@@ -41,7 +41,7 @@ git pull origin main
 
 When working with Git, it is essential to have a streamlined workflow that ensures you **review the changes made by others** before pulling them into your local branch. This practice helps **prevent conflicts** and ensures that your local repository remains in sync with the remote branch. In this blog post, we will outline a few simple steps to check the changes introduced by others in the remote branch before performing a `git pull`.
 
-<!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
+
 
 - [TLDR: Quick Git Command Reference](#tldr-quick-git-command-reference)
 - [Introduction](#introduction)
@@ -71,7 +71,7 @@ When working with Git, it is essential to have a streamlined workflow that ensur
 - [Extras 2: Common Review Commands](#extras-2-common-review-commands)
 - [Extras 3: Git Aliases for Efficient Review](#extras-3-git-aliases-for-efficient-review)
 
-<!-- /MarkdownTOC -->
+
 
 ### Step 1: Fetch Remote Changes
 

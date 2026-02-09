@@ -24,7 +24,7 @@ Tags:
   - automl
   - bayesian
 Title: Beat Overfitting in Kaggle Competitions - Proven Techniques
-banner: /images/head/data_scientist.jpg
+banner: "/images/head/data_scientist.jpg"
 prompt:
 ---
 ## Overfitting problem in Kaggle competitions
@@ -33,7 +33,7 @@ Overfitting is a common issue in Kaggle competitions where the goal is to develo
 
 To avoid overfitting, it's essential to evaluate the model during the training process, and select the best model that generalizes well to unseen data. Here are some effective techniques to achieve this:
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Popular methods for avoiding overfitting](#popular-methods-for-avoiding-overfitting)
   - [Cross-validation](#cross-validation)
@@ -54,7 +54,7 @@ To avoid overfitting, it's essential to evaluate the model during the training p
   - [Boosting](#boosting)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Popular methods for avoiding overfitting
 

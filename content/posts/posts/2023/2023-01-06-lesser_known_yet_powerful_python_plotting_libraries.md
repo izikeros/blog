@@ -42,13 +42,13 @@ Tags:
   - tidyverse
   - python
 Title: 10 Lesser-Known, Yet Powerful Python Plotting Libraries
-banner: /images/head/lesser_known_plotting_libraries.jpg
+banner: "/images/head/lesser_known_plotting_libraries.jpg"
 citation_needed: false
 todo: get rid of hotlinking
 ---
 There are a few widely used plotting libraries used in python projects: [matplotlib](https://matplotlib.org/), [plotly](https://plotly.com/python/), [seaborn](https://seaborn.pydata.org/) , and [Bokeh](https://docs.bokeh.org/en/latest/index.html). However, the python ecosystem is not limited to these libraries. Many powerful and lesser-known plotting libraries in Python can be used to create high-quality plots and visualizations.
 
-<!-- MarkdownTOC levels='2,3' autolink=True -->
+
 
 - [1. HoloViews](#1-holoviews-)
 - [2. Bqplot](#2-bqplot-)
@@ -63,7 +63,7 @@ There are a few widely used plotting libraries used in python projects: [matplot
 - [11. Lets-plot](#11-lets-plot)
 - [Plotly Express](#plotly-express-)
 
-<!-- /MarkdownTOC -->
+
 
 ### 1. [HoloViews](https://holoviews.org/) ![GitHub stars shield](https://img.shields.io/github/stars/ioam/holoviews.svg?logo=github)
 

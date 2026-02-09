@@ -14,13 +14,24 @@ Tags:
   - evaluation
   - Kaggle
 Title: Kaggle Evaluation Metrics Used for Regression Problems
-banner: /images/head/performance_metrics.jpg
+banner: "/images/head/performance_metrics.jpg"
 ---
 X:[[2019-02-16-kaggle-metrics_regression]]
 X:[[2023-02-13-metrics_interpretation_for_measuring_regression_model]]
 X:[[metrics_for_evaluation_in_regression_problems]]
 
-While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The [sklearn.metrics](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics) provides plethora of metrics for suitable for distinct purposes.
+- [Absolute Error - AE](#absolute-error---ae)
+- [Mean Absolute Error - MAE](#mean-absolute-error---mae)
+- [Weighted Mean Absolute Error - WMAE](#weighted-mean-absolute-error---wmae)
+- [Pearson Correlation Coefficient](#pearson-correlation-coefficient)
+- [Spearman’s Rank Correlation](#spearmans-rank-correlation)
+- [Root Mean Squared Error - RMSE](#root-mean-squared-error---rmse)
+- [Root Mean Squared Logarithmic Error - RMSLE](#root-mean-squared-logarithmic-error---rmsle)
+- [Mean Columnwise Root Mean Squared Error - MCRMSE](#mean-columnwise-root-mean-squared-error---mcrmse)
+- [References](#references)
+
+
+While crafting machine learning model there is always a need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The [sklearn.metrics](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics) provides plethora of metrics for suitable for distinct purposes.
 
 In this series of posts I will discuss four groups of common machine learning tasks each requires specific metrics:
 
@@ -29,21 +40,7 @@ In this series of posts I will discuss four groups of common machine learning ta
 3. *Multiple class classification* - assign sample to one of many classes example: classify new article to category "sport", "politics", "economy", "pop-culture",...
 4. *Other*
 
-The [Kaggle competitions](https://www.kaggle.com/competitions) give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There use to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems. Here metrics that are discussed in this post.
-
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
-
-- [Absolute Error - AE](#absolute-error---ae)
-- [Mean Absolute Error - MAE](#mean-absolute-error---mae)
-- [Weighted Mean Absolute Error - WMAE](#weighted-mean-absolute-error---wmae)
-- [Pearson Correlation Coefficient](#pearson-correlation-coefficient)
-- [Spearman’s Rank Correlation](#spearman%E2%80%99s-rank-correlation)
-- [Root Mean Squared Error - RMSE](#root-mean-squared-error---rmse)
-- [Root Mean Squared Logarithmic Error - RMSLE](#root-mean-squared-logarithmic-error---rmsle)
-- [Mean Columnwise Root Mean Squared Error - MCRMSE](#mean-columnwise-root-mean-squared-error---mcrmse)
-- [References](#references)
-
-<!-- /MarkdownTOC -->
+The [Kaggle competitions](https://www.kaggle.com/competitions) give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There used to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems.
 
 ## Absolute Error - AE
 

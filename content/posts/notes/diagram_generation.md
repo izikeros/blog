@@ -17,7 +17,7 @@ Title: Programatic Diagram Generation
 Prompt: What are indirect ways that you can provide me diagrams that can be represented (described) in text format? There are several formats either to describe graphics or the code that is used by some engines to render graphs. I would like that some of your answers would contain diagrams as well.
 prompt_2: Give me exemplary diagrams in ASCII art and LaTeX Tikz
 ---
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Methods](#methods)
 - [Examples](#examples)
@@ -26,7 +26,7 @@ prompt_2: Give me exemplary diagrams in ASCII art and LaTeX Tikz
   - [ASCII Art](#ascii-art)
   - [LaTeX Tikz](#latex-tikz)
 
-<!-- /MarkdownTOC -->
+
 
 ## Methods
 

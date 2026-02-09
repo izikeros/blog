@@ -12,7 +12,7 @@ Tags:
   - software-development
 Category: Machine Learning
 Image: /images/head/dependency_injection_2_cr_640px.jpg
-banner: /images/head/dependency_injection_2_cr_640px.jpg
+banner: "/images/head/dependency_injection_2_cr_640px.jpg"
 Summary: Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code.
 Status: published
 prompt:
@@ -22,7 +22,6 @@ prompt:
 
 In software development, testability is a crucial aspect that helps ensure the reliability and maintainability of our code. One effective technique for enhancing testability is dependency injection (DI). Dependency injection allows us to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code. In this blog post, we will explore various techniques, use cases, and lesser-known tricks for using dependency injection in Python.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
 
 - [What is Dependency Injection?](#what-is-dependency-injection)
 - [Benefits of Dependency Injection:](#benefits-of-dependency-injection)
@@ -39,7 +38,7 @@ In software development, testability is a crucial aspect that helps ensure the r
   - [Dependency Injection Containers](#dependency-injection-containers)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## What is Dependency Injection?
 

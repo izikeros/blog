@@ -15,7 +15,7 @@ Title: Understanding Bhattacharyya Distance and Coefficient for Probability Dist
 
 In the fields of statistics, machine learning, and data science, measuring the similarity between probability distributions is crucial for various tasks. One commonly used measure for this purpose is the [Bhattacharyya distance](https://en.wikipedia.org/wiki/Bhattacharyya_distance), which quantifies the dissimilarity between two distributions. The Bhattacharyya coefficient, on the other hand, provides a measure of the overlap between two statistical samples or populations. In this blog post, we will look into the concepts of Bhattacharyya distance and coefficient, discuss their applications, and provide Python code examples for better understanding.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
 	- [Bhattacharyya Distance](#bhattacharyya-distance)
@@ -25,7 +25,7 @@ In the fields of statistics, machine learning, and data science, measuring the s
 	- [Other metrics](#other-metrics)
 	- [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Bhattacharyya Distance
 

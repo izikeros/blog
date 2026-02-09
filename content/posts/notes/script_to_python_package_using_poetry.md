@@ -18,7 +18,7 @@ Title: Script to Python Package Using Poetry (And PyCharm)
 ---
 X::[[badges_for_readme]]
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [The task](#the-task)
 - [Steps for Package Creation](#steps-for-package-creation)
@@ -38,7 +38,7 @@ X::[[badges_for_readme]]
   - [Publish the Package](#publish-the-package)
   - [Versioning and Updates](#versioning-and-updates)
 
-<!-- /MarkdownTOC -->
+
 
 ## The task
 

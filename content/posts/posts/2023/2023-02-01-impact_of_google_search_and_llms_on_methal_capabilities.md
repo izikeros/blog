@@ -14,11 +14,11 @@ Tags:
   - memory
   - creativity
 Title: The Impact of Search Engines and AI Generative Models on Mental and Cognitive Capabilities
-banner: /images/head/search_engines_impact_on_cognitive_skills.jpg
+banner: "/images/head/search_engines_impact_on_cognitive_skills.jpg"
 prompt:
 ---
 ## Contents
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [The Positive Effects of Search Engines on Mental and Cognitive Capabilities](#the-positive-effects-of-search-engines-on-mental-and-cognitive-capabilities)
   - [Increased Access to Information](#increased-access-to-information)
@@ -41,7 +41,7 @@ prompt:
   - [Final Thoughts on the Impact of Search Engines and Large Language Models on Mental and Cognitive Capabilities](#final-thoughts-on-the-impact-of-search-engines-and-large-language-models-on-mental-and-cognitive-capabilities)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## Introduction
 

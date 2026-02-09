@@ -42,7 +42,7 @@ As natural language processing (NLP) continues to advance, the need for efficien
 
 This article explores the best vector databases available, their unique features, and the crucial parameters that differentiate them.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Best Vector Databases for Storing Embeddings in NLP](#best-vector-databases-for-storing-embeddings-in-nlp)
 - [TLDR](#tldr)
@@ -73,7 +73,7 @@ This article explores the best vector databases available, their unique features
  	- [Customization and Advanced Use Cases](#customization-and-advanced-use-cases)
 - [Related reading](#related-reading)
 
-<!-- /MarkdownTOC -->
+
 
 ## TLDR
 

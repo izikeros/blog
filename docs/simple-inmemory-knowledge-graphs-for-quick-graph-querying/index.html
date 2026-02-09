@@ -74,7 +74,7 @@
   <meta property="og:url" content="https://www.safjan.com/simple-inmemory-knowledge-graphs-for-quick-graph-querying/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2025-01-16 00:00:00+01:00"/>
-  <meta property="article:modified_time" content="2025-01-16 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-02-07 00:00:00+01:00"/>
   <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
   <meta property="article:section" content="Howto"/>
   <meta property="article:tag" content="graph"/>
@@ -106,7 +106,7 @@
   },
   "headline": "Simple In-Memory Knowledge Graphs for Quick Graph Querying",
   "datePublished": "2025-01-16T00:00:00+01:00",
-  "dateModified": "2025-01-16T00:00:00+01:00",
+  "dateModified": "2026-02-07T00:00:00+01:00",
   "author": {
     "@type": "Person",
     "name": "Krystian Safjan",
@@ -124,7 +124,7 @@
   "articleSection": "Howto",
   "inLanguage": "en",
   "keywords": "graph, knowledge-graph, query, networkx, neo4j, rdflib, SPARQL",
-  "wordCount": 1442,
+  "wordCount": 1497,
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
@@ -164,7 +164,7 @@
 
 
 
-<meta name="ai:word-count" content="1442">
+<meta name="ai:word-count" content="1497">
 <meta name="ai:reading-time" content="7 min">
 
 <meta name="ai:section" content="Howto">
@@ -324,7 +324,20 @@
 
 
         <div class="article-content">
-            <p>Working with knowledge graphs doesn't always require <a href="https://neo4j.com/">Neo4j</a> or other heavyweight solutions. Sometimes you need a lightweight way to represent and query graph data right in memory. Let me share some approachable solutions I've found particularly useful.</p>
+            <ul>
+<li><a href="#networkx---the-python-swiss-army-knife">NetworkX - The Python Swiss Army Knife</a></li>
+<li><a href="#rdflib---when-you-need-semantic-power">RDFLib - When You Need Semantic Power</a></li>
+<li><a href="#pygraphviz---visualization-with-query-capabilities">PyGraphviz - Visualization with Query Capabilities</a></li>
+<li><a href="#diy-solution---custom-graph-structure">DIY Solution - Custom Graph Structure</a></li>
+<li><a href="#making-the-right-choice">Making the Right Choice</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#beyond-simple-solutions">Beyond Simple Solutions</a></li>
+<li><a href="#a-note-on-automated-graph-construction">A Note on Automated Graph Construction</a></li>
+<li><a href="#wrapping-up">Wrapping Up</a></li>
+<li><a href="#further-reading-references">Further Reading, References</a></li>
+</ul>
+<p>Working with knowledge graphs doesn't always require <a href="https://neo4j.com/">Neo4j</a> or other heavyweight solutions. Sometimes you need a lightweight way to represent and query graph data right in memory. Let me share some approachable solutions I've found particularly useful.</p>
+<p><a id="networkx---the-python-swiss-army-knife"></a></p>
 <h2 id="networkx-the-python-swiss-army-knife">NetworkX - The Python Swiss Army Knife</h2>
 <p><a href="https://github.com/networkx/networkx">NetworkX</a> has been my reliable companion for simple graph operations. It's incredibly intuitive and perfect for smaller knowledge graphs:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -354,6 +367,7 @@
 <span class="p">[(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relationship&#39;</span><span class="p">:</span> <span class="s1">&#39;knows&#39;</span><span class="p">}),</span> <span class="p">(</span><span class="s1">&#39;TechCorp&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relationship&#39;</span><span class="p">:</span> <span class="s1">&#39;works_at&#39;</span><span class="p">})]</span>
 </code></pre></div>
 
+<p><a id="rdflib---when-you-need-semantic-power"></a></p>
 <h2 id="rdflib-when-you-need-semantic-power">RDFLib - When You Need Semantic Power</h2>
 <p>If you're dealing with semantic data and need <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>-like querying, <a href="https://rdflib.readthedocs.io/en/stable/index.html">RDFLib</a> provides a perfect middle ground:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">URIRef</span>
@@ -382,6 +396,7 @@
 <span class="n">Alice</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Bob</span>
 </code></pre></div>
 
+<p><a id="pygraphviz---visualization-with-query-capabilities"></a></p>
 <h2 id="pygraphviz-visualization-with-query-capabilities">PyGraphviz - Visualization with Query Capabilities</h2>
 <p>When you need both visualization and querying use <a href="https://github.com/pygraphviz/pygraphviz">pygraphviz</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygraphviz</span> <span class="k">as</span> <span class="nn">pgv</span>
@@ -396,6 +411,7 @@
 <blockquote>
 <p><strong>NOTE</strong>: There might be an problem when installing pygraphviz in Google Colab, you can use matlplotlib + networkx instead</p>
 </blockquote>
+<p><a id="diy-solution---custom-graph-structure"></a></p>
 <h2 id="diy-solution-custom-graph-structure">DIY Solution - Custom Graph Structure</h2>
 <p>Sometimes, a custom solution fits best:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -589,6 +605,7 @@ Find paths from Alice to TechCorp: &#39;Alice&#39;, &#39;Bob&#39;, &#39;TechCorp
 <span class="err">[&#39;</span><span class="n">Inception</span><span class="err">&#39;]</span>
 </code></pre></div>
 
+<p><a id="making-the-right-choice"></a></p>
 <h2 id="making-the-right-choice">Making the Right Choice</h2>
 <p>The best solution depends on your specific needs:</p>
 <ul>
@@ -597,18 +614,23 @@ Find paths from Alice to TechCorp: &#39;Alice&#39;, &#39;Bob&#39;, &#39;TechCorp
 <li>Go with PyGraphviz when visualization is important</li>
 <li>Consider a custom solution for specialized query patterns</li>
 </ul>
+<p><a id="performance-considerations"></a></p>
 <h2 id="performance-considerations">Performance Considerations</h2>
 <p>These solutions work well for graphs with thousands of nodes and edges. The key is keeping everything in memory and optimizing your query patterns. For NetworkX and RDFLib, using their built-in query methods is usually faster than writing custom traversal code.</p>
+<p><a id="beyond-simple-solutions"></a></p>
 <h2 id="beyond-simple-solutions">Beyond Simple Solutions</h2>
 <p>When your knowledge graph grows beyond memory constraints or you need more complex querying capabilities, it might be time to consider solutions like <a href="https://neo4j.com/">Neo4j</a> or <a href="https://aws.amazon.com/neptune/">Amazon Neptune</a>. However, for many use cases, these in-memory solutions provide the perfect balance of simplicity and functionality.</p>
+<p><a id="a-note-on-automated-graph-construction"></a></p>
 <h2 id="a-note-on-automated-graph-construction">A Note on Automated Graph Construction</h2>
 <p>Building knowledge graphs by hand, as shown in our examples, is straightforward. However, automatically constructing them from documents or unstructured data is a complex challenge worthy of its own article. Here are some key challenges you'll face:</p>
 <p><strong>Entity recognition</strong> and <strong>disambiguation</strong> is perhaps the trickiest part - determining whether "Apple" refers to the fruit or the company, or whether two mentions of "John Smith" refer to the same person. You'll need to handle coreference resolution (understanding that "he" refers to "John" mentioned earlier) and deal with variations in how entities are written ("NYC" vs "New York City").</p>
 <p><strong>Relationship extraction</strong> comes with its own set of problems. Natural language is complex and often implicit - extracting clear, structured relationships from sentences like "After years at Microsoft, Sarah brought her expertise to the startup" requires sophisticated NLP techniques.</p>
 <p><strong>Data quality</strong> and <strong>consistency</strong> are also major concerns. Sources might conflict with each other, contain outdated information, or present opinions as facts. You'll need strategies for handling uncertainty and conflicting information in your graph.</p>
 <p>If you're interested in automatic graph construction, I'd recommend starting with established NLP libraries and knowledge graph toolkits rather than building everything from scratch. But that's a topic for another deep dive!</p>
+<p><a id="wrapping-up"></a></p>
 <h2 id="wrapping-up">Wrapping Up</h2>
 <p>Don't jump to complex graph databases when simpler solutions might suffice. These in-memory approaches can handle surprisingly complex tasks while keeping your codebase clean and maintainable. Plus, they're perfect for prototyping before committing to a full-scale graph database solution.</p>
+<p><a id="further-reading-references"></a></p>
 <h2 id="further-reading-references">Further Reading, References</h2>
 <ul>
 <li>paper <a href="https://arxiv.org/abs/2305.14485">[2305.14485] Knowledge Graphs Querying</a></li>
@@ -616,6 +638,10 @@ Find paths from Alice to TechCorp: &#39;Alice&#39;, &#39;Bob&#39;, &#39;TechCorp
 <li><a href="https://memgraph.com/docs/ai-ecosystem/graph-rag">GraphRAG</a></li>
 <li><a href="https://cognipy.org/">CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface - CogniPy 1.0.0 documentation</a> - In-memory Graph Database and Knowledge Graph with Natural Language Interface</li>
 <li>not necessarily small and simple solutions: <a href="https://www.puppygraph.com/blog/best-graph-databases">Title Unavailable | Site Unreachable</a></li>
+</ul>
+<p><strong>Edits:</strong></p>
+<ul>
+<li>2026-02-07: Added table of contents with anchor links</li>
 </ul>
         </div>
 

@@ -2,7 +2,7 @@
 Title: Six Weeks, Real Progress - Exploring Shape Up for Product Work
 Slug: six-weeks-real-progress-exploring-shape-up-for-product-work
 Date: 2025-10-06
-Modified: 2025-11-22
+Modified: 2026-02-07
 Start: 2025-10-06
 Tags: agile, scrum, shape-up, basecamp, 37-signals, shape-up-method, six-week-cycles, product-development-process, agile-alternatives, autonomous-teams, shaping-phase, delivery-rhythm, software-process-design, software-development
 Category: Software Development
@@ -13,6 +13,16 @@ Status: published
 prompt:
 ---
 
+
+
+- [What Makes Shape Up Different?](#what-makes-shape-up-different)
+- [When Shape Up Really Shines](#when-shape-up-really-shines)
+- [When It Might Not Be Your Best Bet](#when-it-might-not-be-your-best-bet)
+- [The Real Question](#the-real-question)
+- [Further reading](#further-reading)
+
+
+
 #agile #scrum #shape-up #basecamp #37-signals #kanban
 
 I've been thinking a lot lately about how we build software. Not the code itself—that's the easy part, really—but the _process_. The endless ceremonies, the sprint planning that somehow takes three hours, the daily standups that drift into problem-solving sessions, the backlog that's become this unwieldy beast no one wants to groom.
@@ -20,6 +30,8 @@ I've been thinking a lot lately about how we build software. Not the code itself
 For years, we've been told that Agile is the answer. Scrum, Kanban, SAFe—pick your flavor. And look, these frameworks have helped countless teams ship better software. But somewhere along the way, something started feeling off. The two-week sprints that fragment work into artificial chunks. The constant context switching without possibility to think deeply about the problem on the table. The **weird pressure to estimate story points for work we barely understand yet**. The nagging feeling that we're **spending more time _managing_ the process than actually building things**.
 
 Then I stumbled onto [Shape Up](https://basecamp.com/shapeup), the approach developed by Basecamp (now [37signals](https://37signals.com/)), and it felt like someone had articulated frustrations I didn't even know I had.
+
+<a id="what-makes-shape-up-different"></a>
 
 ## What Makes Shape Up Different?
 
@@ -34,6 +46,8 @@ Then **small teams** (typically a **designer** and **one or two programmers**) t
 
 **There's no backlog**. Ideas that don't make it into a cycle just… don't exist anymore. **If they're good, they'll come back**. If they're not, well, you just saved yourself from maintaining a graveyard of forgotten tickets.
 
+<a id="when-shape-up-really-shines"></a>
+
 ## When Shape Up Really Shines
 
 I've seen Shape Up work beautifully for product teams that are tired of the sprint treadmill. It's particularly powerful when you're **building features that need genuine design thinking** and integration work—the kind of projects that get mangled when you try to slice them into two-week chunks.
@@ -43,6 +57,8 @@ It works when your **team is experienced enough** to operate with autonomy. When
 The six-week cycles are a game-changer for **work that has natural complexity**. You can actually design something properly, build it thoughtfully, and refine it without this artificial urgency every two weeks. Teams report feeling less fragmented, more focused, and paradoxically more creative because they have room to think.
 
 The "no backlog" philosophy is incredibly liberating. You stop maintaining this guilt-inducing list of things you'll never do. You stop feeling bad about all those tickets that have been sitting there for eighteen months. Each cycle is a fresh start.
+
+<a id="when-it-might-not-be-your-best-bet"></a>
 
 ## When It Might Not Be Your Best Bet - Shape Up isn't a universal solution.
 
@@ -56,6 +72,8 @@ It's also **not ideal if you're in true discovery mode**, experimenting rapidly 
 
 And let's be honest: if your **organization is deeply committed to Agile** ceremonies, metrics, and tooling, the transition can be difficult. No velocity charts. No burndown graphs. No story points. Some organizations aren't ready to let go of those security blankets.
 
+<a id="the-real-question"></a>
+
 ## The Real Question
 
 > The more I dig into Shape Up, the more I think the real question isn't "Is Shape Up better than Agile?" It's **"What problems are we actually trying to solve?"**
@@ -66,7 +84,13 @@ Shape Up' is opinionated. It makes trade-offs. It acknowledges that different co
 
 Not that Shape Up is better or worse than Scrum or Kanban, but that we should **be more thoughtful about _why_ we work the way we do**. Remember: dare to question the defaults. 
 
+<a id="further-reading"></a>
+
 ## Further reading
 - overview article on shape up method - [Shape Up: a complete guide to this new development methodology (2024)](https://agilefirst.io/what-is-shape-up/)
 - free book on shape up - [Shape Up: Stop Running in Circles and Ship Work that Matters](https://basecamp.com/shapeup)
 - [37signals](https://37signals.com/) - This site is a catalog of liberating ideas about how they (company behind basecamp, Ruby on Rails,...) works, do business, live...
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

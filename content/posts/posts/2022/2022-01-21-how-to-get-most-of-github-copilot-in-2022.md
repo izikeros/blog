@@ -2,7 +2,7 @@
 Category: Howto
 Date: 2022-01-25
 Image: /images/head/copilot-warp-speed-head.jpg
-Modified: 2023-08-24
+Modified: 2026-02-07
 Slug: how-to-get-most-of-github-copilot
 Status: Published
 Summary: This post describes techniques that help to get most accurate suggestions from the GitHub Copilot "Your AI pair programmer". For those who never heard of Copilot there is short introduction, if you already know Copilot - you can jump directly to section 4 - "How to get most of GitHub Copilot".
@@ -11,12 +11,27 @@ Tags:
   - coding
   - ai
 Title: How to Get Most of GitHub Copilot
-banner: /images/head/copilot-warp-speed-head.jpg
+banner: "/images/head/copilot-warp-speed-head.jpg"
 citation_needed: false
 todo: None
 ---
 
 
+
+- [TLDR](#tldr)
+- [Outline](#outline)
+- [1. What is GitHub Copilot?](#1-what-is-github-copilot)
+- [2. How to get it?](#2-how-to-get-it)
+- [3. How to use it?](#3-how-to-use-it)
+- [4. How to get most of GitHub Copilot?](#4-how-to-get-most-of-github-copilot)
+  - [Simple case - write short comment](#simple-case---write-short-comment)
+  - [Simple case - write function name](#simple-case---write-function-name)
+  - [More complex cases - write pseudocode](#more-complex-cases---write-pseudocode)
+  - [My impressions after using Copilot](#my-impressions-after-using-copilot)
+
+
+
+<a id="tldr"></a>
 
 ## TLDR
 
@@ -26,12 +41,16 @@ To get accurate autosuggestion from Copilot you can:
 2. **Write pseudocode**: describe steps for the function with complex business logic.
 3. For functions with complex business logic **divide them into multiple smaller functions**. Purpose of smaller function is easier to describe with just function name or the comment/docstring.
 
+<a id="outline"></a>
+
 ## Outline
 
 1. What is GitHub Copilot?
 2. How to get it?
 3. How to use it?
 4. How to get most of GitHub Copilot?
+
+<a id="1-what-is-github-copilot"></a>
 
 ## 1. What is GitHub Copilot?
 
@@ -43,18 +62,26 @@ The way how it is used is that human programmer provides comment with intention 
 ![diagram GitHub Copilot](/images/copilot/diagram-github-copilot-739x355-3516979431.png)
 Figure 1. Data exchange between GitHub Copilot service, OpenAI Codex Model and Private Code and IDE. Image from: copilot.github.com
 
+<a id="2-how-to-get-it"></a>
+
 ## 2. How to get it?
 
 Access to GitHub Copilot is limited to a small group of testers during the technical preview. You can sign up and join the wait-list to try it out [here](https://github.com/features/copilot/signup).
+
+<a id="3-how-to-use-it"></a>
 
 ## 3. How to use it?
 
 Provide a docstring, comment, function name, or the piece of code itself, GitHub Copilot will use the context you’ve provided and generate code as suggestion.
 
+<a id="4-how-to-get-most-of-github-copilot"></a>
+
 ## 4. How to get most of GitHub Copilot?
 
 After using the GitHub Copilot service for almost three months, I was amazed how useful suggestions from Copilot can be. Of course, it is not ideal - suggestions are not always meeting my expectations. Sometimes it took few attempts to formulate my expectations to get the code that was looking good to me.
 What I learned by the time of writing this post, are the few simple rules that can increase accuracy of the suggestions. I will outline them below. I'm using three main strategies to communicate my expectations with the GitHub Copilot service:
+
+<a id="simple-case---write-short-comment"></a>
 
 ### Simple case - write short comment
 
@@ -111,10 +138,14 @@ Other examples of functions that short comment can sufficiently describe respons
 # get information using public API from stocktwits
 ```
 
+<a id="simple-case---write-function-name"></a>
+
 ## Simple case - write function name
 
 Starting with descriptive function name can work as well:
  ![img](/images/copilot/copilot_2.gif)
+
+<a id="more-complex-cases---write-pseudocode"></a>
 
 ### More complex cases - write pseudocode
 
@@ -171,6 +202,8 @@ For functions with complex business logic **divide them into multiple smaller fu
 
 This rule also works when applied to using GitHub Copilot, I will not go into details since the method is pretty obvious and if not one can easily find multiple texts on applying "Divide and conquer" applications to software engineering.
 
+<a id="my-impressions-after-using-copilot"></a>
+
 ### My impressions after using Copilot
 
 I have started using Copilot in November 2021. When I had copilot plugin enabled I put more attention to use meaningful function names expecting the reward in form of auto-suggested code that will fit my needs.
@@ -182,3 +215,7 @@ I found Copilot great for using python for automation tasks - many simple functi
 warp speed image comes from [here](https://videohive.net/item/warp-speed-effect-v10/47100)
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

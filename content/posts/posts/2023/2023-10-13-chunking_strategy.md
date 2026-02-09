@@ -26,7 +26,7 @@ tags:
   - rag
 Category: Machine Learning
 Image: /images/head/chunking_puzzle_640px.jpg
-banner: /images/head/chunking_puzzle_640px.jpg
+banner: "/images/head/chunking_puzzle_640px.jpg"
 Summary: Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?
 Status: published
 prompt:
@@ -38,7 +38,7 @@ Chunking is a process that aims to embed a piece of content with as little noise
 
 An effective chunking strategy ensures that search results accurately capture the essence of a user's query. If our chunks are too small or too large, it may lead to imprecise search results or missed opportunities to surface relevant content. As a **rule of thumb**, if the **chunk of text makes sense without the surrounding context to a human**, it will likely make sense to the language model as well[^2]. Therefore, finding the optimal chunk size for the documents in the corpus is crucial to ensuring that the search results are accurate and relevant.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Factors Influencing Chunking Strategy](#factors-influencing-chunking-strategy)
   - [Size of the Texts to be Indexed](#size-of-the-texts-to-be-indexed)
@@ -55,7 +55,7 @@ An effective chunking strategy ensures that search results accurately capture th
 - [References](#references)
 - [Further Reading](#further-reading)
 
-<!-- /MarkdownTOC -->
+
 
 ## Factors Influencing Chunking Strategy
 

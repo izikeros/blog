@@ -32,7 +32,7 @@ and added two new categories
 - **Docker/Containers/Kubernetes** - tools that helps to work with container technologies
 
 Shortcuts to categories:
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Tools](#tools)
   - [navi](#navi)
@@ -44,7 +44,6 @@ Shortcuts to categories:
 - [Docker/Containers](#dockercontainers)
   - [K9s](#k9s)
 
-<!-- /MarkdownTOC -->
 
 ## Tools
 

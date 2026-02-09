@@ -16,7 +16,7 @@ todo: add infographics - https://venngage.com/blog/process-infographic-template/
 ---
 
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
   - [1.  Data Governance Policy](#1-data-governance-policy)
@@ -34,7 +34,7 @@ todo: add infographics - https://venngage.com/blog/process-infographic-template/
 - [Be prepared on what can go wrong](#be-prepared-on-what-can-go-wrong)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Introduction
 

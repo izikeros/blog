@@ -13,13 +13,13 @@ Title: Allow Arbitrary Types (Such as Pandas Dataframe) in Pydantic
 citation_needed: false
 ---
 
-<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
 
 - [Solution 1 - allow arbitrary types](#solution-1---allow-arbitrary-types)
 - [Solution 2 - create a pythonic type hint for a pd.Dataframe](#solution-2---create-a-pythonic-type-hint-for-a-pddataframe)
 - [See also](#see-also)
 
-<!-- /MarkdownTOC -->
+
 
 ## Solution 1 - allow arbitrary types
 

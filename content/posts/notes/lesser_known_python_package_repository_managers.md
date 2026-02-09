@@ -21,14 +21,14 @@ up::[[MOC_Python]]
 
 The [Artifactory](https://jfrog.com/artifactory/) (paid) and [Devpi](https://devpi.net/docs/devpi/devpi/stable/%2Bd/index.html) (free, open source) are most widely used python package repository managers, but there are some other interesting projects. Here are a few lesser-known Python package repository managers along with links to their source code or home websites.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Warehouse](#warehouse)
 - [pypiserver](#pypiserver)
 - [Bandersnatch](#bandersnatch)
 - [EggBasket](#eggbasket)
 
-<!-- /MarkdownTOC -->
+
 
 ## Warehouse
 

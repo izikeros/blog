@@ -47,7 +47,7 @@ up::[[MOC_Jupyter_notebooks]]
 
 There are several alternatives to Jupyter Notebooks, each with their own strengths and weaknesses. Here are some popular ones:
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Visual Studio Code](#visual-studio-code)
 - [Spyder](#spyder)
@@ -65,7 +65,7 @@ There are several alternatives to Jupyter Notebooks, each with their own strengt
 - [Observable](#observable)
 - [Hydrogen](#hydrogen)
 
-<!-- /MarkdownTOC -->
+
 
 ## Visual Studio Code
 

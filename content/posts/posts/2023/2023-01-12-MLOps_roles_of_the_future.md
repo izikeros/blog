@@ -15,14 +15,14 @@ Tags:
   - job-search
   - roles
 Title: MLOps Roles of the Future
-banner: /images/head/mlops_roles_of_the_future.jpg
+banner: "/images/head/mlops_roles_of_the_future.jpg"
 modified: 2023-01-12
 ---
 up::[[mlops]]
 
 As the field of MLOps is still relatively new and evolving, there are likely to be new specializations that will emerge in the future. Here are a few potential areas of specialization that may become more prominent in the future:
 
-<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
 
 - [1.  Explainable AI/MLOps](#1-explainable-aimlops)
 - [2.  Federated Learning/Edge MLOps](#2-federated-learningedge-mlops)
@@ -30,7 +30,6 @@ As the field of MLOps is still relatively new and evolving, there are likely to 
 - [4.  AI/ML in IoT and IIoT](#4-aiml-in-iot-and-iiot)
 - [5.  Model Explainability and Fairness](#5-model-explainability-and-fairness)
 
-<!-- /MarkdownTOC -->
 
 ## 1.  Explainable AI/MLOps
 

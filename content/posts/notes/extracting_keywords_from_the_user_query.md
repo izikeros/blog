@@ -15,7 +15,7 @@ Prompt: Give me text about possible approaches for extracting keywords or key te
 ---
 X::[[dups/hybrid_search]]
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Rule-Based Approach](#rule-based-approach)
 - [Linguistic Analysis](#linguistic-analysis)
@@ -27,7 +27,7 @@ X::[[dups/hybrid_search]]
 - [More on Machine Learning and statistical Methods for Keywords Extraction](#more-on-machine-learning-and-statistical-methods-for-keywords-extraction)
 - [Exemplary implementation](#exemplary-implementation)
 
-<!-- /MarkdownTOC -->
+
 
 When it comes to extracting keywords or key terms from a user query, there are several approaches that can be used. Each approach has its own set of pros and cons, which I will discuss below:
 

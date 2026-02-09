@@ -2,7 +2,7 @@
 Category: Machine Learning
 Date: 2021-12-22
 Image: /images/head/micro_macro_averaging.jpg
-Modified: 2023-01-17
+Modified: 2026-02-07
 Slug: micro-and-macro-averages-in-multiclass-multilabel-problems
 Start: 2023-01-17
 Status: published
@@ -18,11 +18,24 @@ Tags:
   - multi-class
   - multi-label
 Title: Understanding Micro and Macro Averages in Multiclass Multilabel Problems
-banner: /images/head/micro_macro_averaging.jpg
+banner: "/images/head/micro_macro_averaging.jpg"
 prompt: Give me a long, markdown article with hyperlinks and references to learn more about it. Use hyperlinks on crucial terms and tools. Provide mathematical formulas in LaTeX in display format (not inline). Article should be on how to calculate micro/macro averages in case of multiclass multilabel problems. In the end provide also HTML page description for this article (less than 160 characters)
 ---
 
+
+
+- [Multiclass vs Multilabel](#multiclass-vs-multilabel)
+- [Micro and Macro Averages](#micro-and-macro-averages)
+  - [Micro Average](#micro-average)
+  - [Macro Average](#macro-average)
+- [Choosing between Micro and Macro averages](#choosing-between-micro-and-macro-averages)
+- [Conclusion](#conclusion)
+
+
+
 When working with multiclass multilabel problems, it's important to understand how to calculate micro and macro averages in order to evaluate the performance of a model. Micro and macro averages provide different perspectives on the performance of a model and are useful in different situations. In this article, we will explore the concepts of micro and macro averages and how to calculate them.
+
+<a id="multiclass-vs-multilabel"></a>
 
 ## Multiclass vs Multilabel
 
@@ -32,9 +45,13 @@ In a **multiclass** problem, there is only **one correct label** per example. Fo
 
 On the other hand, in a **multilabel** problem, there can be **multiple correct labels** per example. For example, in a problem of categorizing music into different genres (e.g. rock, pop, hip hop, etc.) an example can belong to multiple genres.
 
+<a id="micro-and-macro-averages"></a>
+
 ## Micro and Macro Averages
 
 In multiclass multilabel problems, there are two commonly used measures of performance: micro and macro averages.
+
+<a id="micro-average"></a>
 
 ### Micro Average
 
@@ -45,6 +62,8 @@ $$Precision_{micro} = \frac{\sum_{i=1}^{n} TP_i}{\sum_{i=1}^{n} (TP_i + FP_i)}$$
 $$Recall_{micro} = \frac{\sum_{i=1}^{n} TP_i}{\sum_{i=1}^{n} (TP_i + FN_i)}$$
 
 $$F1-score_{micro} = 2 * \frac{Precision_{micro} * Recall_{micro}}{Precision_{micro} + Recall_{micro}}$$
+
+<a id="macro-average"></a>
 
 ### Macro Average
 
@@ -60,6 +79,8 @@ where n is the number of classes.
 
 It's important to note that in multilabel problems, these metrics are calculated for each label independently and then combined by taking the mean, sum or some other combination.
 
+<a id="choosing-between-micro-and-macro-averages"></a>
+
 ## Choosing between Micro and Macro averages
 
 The choice between micro and macro averages depends on the specific problem and the desired perspective on the model's performance.
@@ -72,6 +93,8 @@ In some cases, it may be useful to report both micro and macro averages to get a
 
 It's also important to note that micro and macro averages are not the only metrics to evaluate the performance of a model in multiclass multilabel problems. Other metrics such as ROC-AUC, [Hamming loss](https://en.wikipedia.org/wiki/Multi-label_classification#Statistics_and_evaluation_metrics) and [Jaccard similarity](https://en.wikipedia.org/wiki/Jaccard_index) can also be used.
 
+<a id="conclusion"></a>
+
 ## Conclusion
 
 Micro and macro averages are important measures of performance in multiclass multilabel problems. They provide different perspectives on the model's performance and should be used depending on the specific problem and desired perspective. It's important to consider the class imbalance and the relative importance of each class when choosing between micro and macro averages.
@@ -81,3 +104,7 @@ Micro and macro averages are important measures of performance in multiclass mul
 **Credits:**
 
 Heading image from [Unsplash](https://unsplash.com/photos/pv5SUbgRRIU) by [vackground.com](https://unsplash.com/@vackground)
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

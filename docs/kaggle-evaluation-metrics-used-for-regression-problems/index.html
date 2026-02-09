@@ -123,7 +123,7 @@
   "articleSection": "Machine Learning",
   "inLanguage": "en",
   "keywords": "machine-learning, evaluation, metrics, model-performance, evaluation, Kaggle",
-  "wordCount": 1621,
+  "wordCount": 1614,
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
@@ -163,7 +163,7 @@
 
 
 
-<meta name="ai:word-count" content="1621">
+<meta name="ai:word-count" content="1614">
 <meta name="ai:reading-time" content="8 min">
 
 <meta name="ai:section" content="Machine Learning">
@@ -326,7 +326,18 @@
             <p>X:<a href="https://www.safjan.com/kaggle-evaluation-metrics-used-for-regression-problems/">Kaggle Evaluation Metrics Used for Regression Problems</a>
 X:<a href="https://www.safjan.com/interpreting-r2-mse-rmse-for-regression-models/">Comprehensive Guide to Interpreting R², MSE, and RMSE for Regression Models.</a>
 X:metrics_for_evaluation_in_regression_problems</p>
-<p>While crafting machine learning model there is always need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">sklearn.metrics</a> provides plethora of metrics for suitable for distinct purposes.</p>
+<ul>
+<li><a href="#absolute-error---ae">Absolute Error - AE</a></li>
+<li><a href="#mean-absolute-error---mae">Mean Absolute Error - MAE</a></li>
+<li><a href="#weighted-mean-absolute-error---wmae">Weighted Mean Absolute Error - WMAE</a></li>
+<li><a href="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
+<li><a href="#spearmans-rank-correlation">Spearman’s Rank Correlation</a></li>
+<li><a href="#root-mean-squared-error---rmse">Root Mean Squared Error - RMSE</a></li>
+<li><a href="#root-mean-squared-logarithmic-error---rmsle">Root Mean Squared Logarithmic Error - RMSLE</a></li>
+<li><a href="#mean-columnwise-root-mean-squared-error---mcrmse">Mean Columnwise Root Mean Squared Error - MCRMSE</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<p>While crafting machine learning model there is always a need to asses its performance. When trying multiple models or hyper parameter tuning it is useful to compare different approaches and choose the best one. The <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">sklearn.metrics</a> provides plethora of metrics for suitable for distinct purposes.</p>
 <p>In this series of posts I will discuss four groups of common machine learning tasks each requires specific metrics:</p>
 <ol>
 <li><em>Regression</em> - predict value of one or more variables that are continuous, e.g. predict stock price of given asset or predict temperature for next day.</li>
@@ -334,22 +345,7 @@ X:metrics_for_evaluation_in_regression_problems</p>
 <li><em>Multiple class classification</em> - assign sample to one of many classes example: classify new article to category "sport", "politics", "economy", "pop-culture",...</li>
 <li><em>Other</em></li>
 </ol>
-<p>The <a href="https://www.kaggle.com/competitions">Kaggle competitions</a> give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There use to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems. Here metrics that are discussed in this post.</p>
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
-
-<ul>
-<li><a href="#absolute-error---ae">Absolute Error - AE</a></li>
-<li><a href="#mean-absolute-error---mae">Mean Absolute Error - MAE</a></li>
-<li><a href="#weighted-mean-absolute-error---wmae">Weighted Mean Absolute Error - WMAE</a></li>
-<li><a href="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
-<li><a href="#spearman%E2%80%99s-rank-correlation">Spearman’s Rank Correlation</a></li>
-<li><a href="#root-mean-squared-error---rmse">Root Mean Squared Error - RMSE</a></li>
-<li><a href="#root-mean-squared-logarithmic-error---rmsle">Root Mean Squared Logarithmic Error - RMSLE</a></li>
-<li><a href="#mean-columnwise-root-mean-squared-error---mcrmse">Mean Columnwise Root Mean Squared Error - MCRMSE</a></li>
-<li><a href="#references">References</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-
+<p>The <a href="https://www.kaggle.com/competitions">Kaggle competitions</a> give insight into approach taken by Kaggle team to select best evaluation metrics for given task. There used to be Kaggle wiki under containing short definitions of metrics used in Kaggle competitions but it is not available anymore. In this post we will look closer at the first group and explain few model evaluation metrics used in regression problems.</p>
 <h2 id="absolute-error-ae">Absolute Error - AE</h2>
 <p><strong>The sum of the absolute value of each individual error.</strong>
 </p>

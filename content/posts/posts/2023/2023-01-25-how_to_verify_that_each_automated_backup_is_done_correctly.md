@@ -2,7 +2,7 @@
 Category: Howto
 Date: 2023-01-15
 Image: /images/head/verify_backups.jpg
-Modified: 2023-01-25
+Modified: 2026-02-07
 Slug: verify-backups-restic-example
 Start: 2023-01-25
 Status: published
@@ -18,17 +18,32 @@ prompt: Give me long article on How to verify that each backup is done correctly
 todo: add diagram
 ---
 
+
+
+- [Introduction](#introduction)
+- [General principles of backup verification](#general-principles-of-backup-verification)
+- [How to verify backups created with Restic?](#how-to-verify-backups-created-with-restic)
+- [Conclusion](#conclusion)
+
+
+
+<a id="introduction"></a>
+
 ## Introduction
 
 Creating regular backups of your data is an important step in protecting against data loss due to hardware failure, human error, or malicious attacks. However, it is not enough to simply create backups - it is also crucial to ensure that the backups are done correctly and can be successfully restored in the event of a disaster. In this article, we will discuss how to verify that backups created with the open-source backup tool Restic are done correctly.
 
-## general principles of backup verification
+<a id="general-principles-of-backup-verification"></a>
+
+## General principles of backup verification
 
 Before diving into the specifics of Restic, it's important to understand the general principles of backup verification. When verifying backups, you should ensure that the following three elements are present:
 
 1. **Completeness**: The backup should contain all of the files and data that you expect it to contain.
 2. **Integrity**: The backup should be free from errors, such as corrupted files or missing data.
 3. **Recoverability**: The backup should be able to be restored to a usable state in the event of a disaster.
+
+<a id="how-to-verify-backups-created-with-restic"></a>
 
 ## How to verify backups created with Restic?
 
@@ -50,6 +65,8 @@ The most important aspect of backup verification is the ability to restore the d
 
 It can be time-consuming to manually check backups for completeness, integrity and recoverability. To automate this process, you can schedule Restic's commands `restic check`, `restic check --read-data` and `restic restore` to run at specific intervals using a cron job or a task scheduler.
 
+<a id="conclusion"></a>
+
 ## Conclusion
 
 Backup verification is an essential step in protecting your data. By using the open-source tool Restic and following the steps outlined in this article, you can ensure that your backups are done correctly and can be successfully restored in the event of a disaster. Remember to schedule the verification process to run at specific intervals and to regularly review the backups to ensure that they are complete, accurate, and usable.
@@ -61,3 +78,7 @@ Backup verification is an essential step in protecting your data. By using the o
 Heading image from [Unsplash](https://unsplash.com/photos/GNyjCePVRs8) by [benjamin lehman](https://unsplash.com/@benjaminlehman)
 
 X::[[my_system_for_backups]]
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

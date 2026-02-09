@@ -26,7 +26,7 @@ The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but 
 
 > **Caution**: This is a simple setup assuming that service will be used only within the LAN by the trusted users and therefore access management, other networking, and security matters are not in the scope of this tutorial.
 
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [Software](#software)
 - [Installation](#installation)
@@ -45,7 +45,7 @@ The installation described here was done on TS-251+ (Celeron J1900 4 Cores) but 
 - [Alternatives](#alternatives)
 - [Credits](#credits)
 
-<!-- /MarkdownTOC -->
+
 
 ## Software
 

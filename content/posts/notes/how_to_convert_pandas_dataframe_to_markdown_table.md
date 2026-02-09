@@ -15,14 +15,14 @@ tags:
 ---
 up: [[MOC_Pandas]]
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Method 1: Directly from pandas](#method-1-directly-from-pandas)
 - [Method 2: Direct use of tabulate package](#method-2-direct-use-of-tabulate-package)
 - [Method 3: Generate a Styled HTML Table](#method-3-generate-a-styled-html-table)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 Generating an ASCII table from a pandas DataFrame can be accomplished in several ways. In this post, we will explore three convenient methods to help you convert pandas DataFrame to a markdown table.
 
 ## Method 1: Directly from pandas

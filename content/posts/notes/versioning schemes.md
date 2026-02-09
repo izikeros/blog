@@ -24,7 +24,7 @@ X::[[software_project_conventions_branchning_commits]]
   
 Software versioning schemes are essential in the world of programming, as they help developers, users, and collaborators keep track of various versions of a software product. A proper versioning scheme enables easy identification of the current release, the changes made in each version, and the compatibility of a version with previous ones. In this blog post, we will discuss some of the most popular versioning schemes used in the software industry, along with a few lesser-known but useful alternatives.  
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Semantic Versioning](#semantic-versioning)
 - [Calendar Versioning \(CalVer\)](#calendar-versioning-calver)
@@ -35,7 +35,7 @@ Software versioning schemes are essential in the world of programming, as they h
  	- [Custom Versioning Schemes](#custom-versioning-schemes)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Semantic Versioning (SemVer)
   

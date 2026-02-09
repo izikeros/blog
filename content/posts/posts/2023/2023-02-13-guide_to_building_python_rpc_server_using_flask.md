@@ -14,7 +14,7 @@ Tags:
   - client-server
   - communication
 Title: A Guide to Building a Python RPC Server Using Flask
-banner: /images/head/rpc_server.jpg
+banner: "/images/head/rpc_server.jpg"
 prompt:
 todo: verify if it works, add repo with code
 ---
@@ -23,7 +23,7 @@ todo: verify if it works, add repo with code
 
 Remote Procedure Call (RPC) is a communication protocol that allows a client application to call a function or method on a remote server. RPC is widely used in distributed systems for inter-process communication. Python is a powerful programming language for building applications, and Flask is a popular web framework for building web applications in Python. In this blog post, we will guide you on how to build a Python RPC server using Flask.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Step 1: Install Flask](#step-1-install-flask)
 - [Step 2: Create a Flask app](#step-2-create-a-flask-app)
@@ -32,7 +32,7 @@ Remote Procedure Call (RPC) is a communication protocol that allows a client app
 - [Step 5: Test the JSON-RPC server](#step-5-test-the-json-rpc-server)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ### Step 1: Install Flask
 

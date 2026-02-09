@@ -17,7 +17,7 @@ tags:
   - pretrained-dense-retrieval
 Category: Generative AI
 Image: /images/head/rag_futuristic_library_640px.jpg
-banner: /images/head/rag_futuristic_library_640px.jpg
+banner: "/images/head/rag_futuristic_library_640px.jpg"
 Summary: Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.
 Status: published
 note: see RAG.excalidraw
@@ -26,7 +26,7 @@ note: see RAG.excalidraw
 
 Retrieval augmented generation refers to the method of enhancing a user's input to a large language model (LLM) such as ChatGPT by incorporating extra information obtained from an external source. This additional data can then be utilized by the LLM to enrich the response it produces.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction: Understanding Retrieval-Augmented Generation \(RAG\)](#introduction-understanding-retrieval-augmented-generation-rag)
 - [The Need for RAG in Large Language Models](#the-need-for-rag-in-large-language-models)
@@ -36,7 +36,7 @@ Retrieval augmented generation refers to the method of enhancing a user's input 
 - [Conclusion](#conclusion)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## Introduction: Understanding Retrieval-Augmented Generation (RAG)
 

@@ -2,7 +2,7 @@
 Category: MLOps
 Date: 2023-01-03
 Image: /images/head/blue_green.jpg
-Modified: 2023-01-17
+Modified: 2026-02-07
 Slug: blue-green-deployment-in-mlops
 Start: 2023-01-17
 Status: published
@@ -14,19 +14,31 @@ Tags:
   - deployment
   - production
 Title: Maximizing Efficiency in MLOps - How Blue/Green Deployment Can Help?
-banner: /images/head/blue_green.jpg
+banner: "/images/head/blue_green.jpg"
 prompt: Learn about blue/green deployment in MLOps, its usefulness and when to use it, and the cost and complexity of maintaining two separate environments.
 ---
+
+
+
+- [What is Blue/Green Deployment?](#what-is-bluegreen-deployment)
+- [Is Blue/Green Deployment useful in MLOps?](#is-bluegreen-deployment-useful-in-mlops)
+- [Conclusion](#conclusion)
+
+
 
 X::[[mlops]]
 
 MLOps (Machine Learning Operations) is a rapidly growing field that aims to bridge the gap between data science and production. One of the key practices in MLOps is the deployment of machine learning models. Blue/Green deployment is a deployment strategy that can be used to minimize downtime and reduce the risk of introducing new bugs when deploying machine learning models. In this article, we will explore the concept of Blue/Green deployment and its usefulness in MLOps.
+
+<a id="what-is-bluegreen-deployment"></a>
 
 ## What is Blue/Green Deployment?
 
 Blue/Green deployment is a technique for deploying a new version of a service by running two identical production environments, called Blue and Green. The current live environment, or Blue, continues to serve live traffic while the new version, or Green, is deployed. Once the new version is deployed and validated, traffic is switched over to the new environment, or Green. The previous environment, or Blue, is then decommissioned or repurposed for future deployments.
 
 The main advantage of Blue/Green deployment is that it allows for minimal downtime during deployments and easy rollbacks in case of issues. In addition, it allows for testing the new version of the service in a live environment before making it available to the users.
+
+<a id="is-bluegreen-deployment-useful-in-mlops"></a>
 
 ## Is Blue/Green Deployment useful in MLOps?
 
@@ -38,6 +50,8 @@ On the other hand, in cases where the machine learning model is complex, and the
 
 When considering Blue/Green deployment in MLOps, it's important to also consider the cost and complexity of maintaining two separate environments. It's also important to have a clear rollback strategy in case of issues with the new version of the service.
 
+<a id="conclusion"></a>
+
 ## Conclusion
 
 Blue/Green deployment is a useful technique for deploying machine learning models in cases where the model is critical to the business and downtime is not acceptable. However, it's important to consider the complexity and scale of the deployment, as well as the cost and complexity of maintaining two separate environments. It's also important to have a clear rollback strategy in case of issues with the new version of the service.
@@ -46,3 +60,7 @@ Blue/Green deployment is a useful technique for deploying machine learning model
 
 **Credits:**
 Header image from [Unsplash](https://unsplash.com/photos/pfX-GsJMtDY) by [Joel Filipe](https://unsplash.com/@joelfilip)
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

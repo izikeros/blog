@@ -24,7 +24,7 @@ X::[[product-minded-engineer]]
 
 A Forward Deployed Engineer (FDE) is a versatile software engineer who works closely with customers to bridge the gap between enterprise software products and their specific implementation needs. FDEs collaborate with engineering teams, provide technical support, partner with product teams, assist in revenue growth activities, and lead customer success efforts. With a mix of technical skills, an entrepreneurial mindset, and product intuition, FDEs play a crucial role in ensuring successful product deployment and customer satisfaction.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [TL;DR](#tldr)
 - [Introduction](#introduction)
@@ -39,7 +39,7 @@ A Forward Deployed Engineer (FDE) is a versatile software engineer who works clo
  	- [Product Intuition](#product-intuition)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Introduction
 

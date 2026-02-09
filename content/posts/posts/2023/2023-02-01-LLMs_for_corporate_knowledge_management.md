@@ -15,19 +15,19 @@ Tags:
   - knowledge-management
   - corporate
 Title: Leveraging Language Models in Corporate Environments - The Future of Knowledge Management
-banner: /images/head/language_models_for_corporate_knowledge.jpg
+banner: "/images/head/language_models_for_corporate_knowledge.jpg"
 prompt:
 ---
 ## Contents
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Advantages of LLMs for Knowledge Management](#advantages-of-llms-for-knowledge-management)
 - [Implementing LLMs in Corporate Environments](#implementing-llms-in-corporate-environments)
 - [What can slow-down incubation of LLMs in corporate environments?](#what-can-slow-down-incubation-of-llms-in-corporate-environments)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 # Introduction
 

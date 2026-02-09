@@ -2,7 +2,7 @@
 Title: Simple In-Memory Knowledge Graphs for Quick Graph Querying
 Slug: simple-inmemory-knowledge-graphs-for-quick-graph-querying
 Date: 2025-01-16
-Modified: 2025-01-16
+Modified: 2026-02-07
 Start: 2025-01-16
 tags:
   - graph
@@ -19,9 +19,27 @@ Summary: As developers, we often reach for full-scale graph databases when simpl
 Status: published
 prompt:
 ---
+
+
+
+- [NetworkX - The Python Swiss Army Knife](#networkx---the-python-swiss-army-knife)
+- [RDFLib - When You Need Semantic Power](#rdflib---when-you-need-semantic-power)
+- [PyGraphviz - Visualization with Query Capabilities](#pygraphviz---visualization-with-query-capabilities)
+- [DIY Solution - Custom Graph Structure](#diy-solution---custom-graph-structure)
+- [Making the Right Choice](#making-the-right-choice)
+- [Performance Considerations](#performance-considerations)
+- [Beyond Simple Solutions](#beyond-simple-solutions)
+- [A Note on Automated Graph Construction](#a-note-on-automated-graph-construction)
+- [Wrapping Up](#wrapping-up)
+- [Further Reading, References](#further-reading-references)
+
+
+
 up::[[knowledge_graphs]]
 
 Working with knowledge graphs doesn't always require [Neo4j](https://neo4j.com/) or other heavyweight solutions. Sometimes you need a lightweight way to represent and query graph data right in memory. Let me share some approachable solutions I've found particularly useful.
+
+<a id="networkx---the-python-swiss-army-knife"></a>
 
 ## NetworkX - The Python Swiss Army Knife
 
@@ -59,6 +77,8 @@ NetworkX Example:
 [('Alice', {'relationship': 'knows'}), ('TechCorp', {'relationship': 'works_at'})]
 ```
 
+<a id="rdflib---when-you-need-semantic-power"></a>
+
 ## RDFLib - When You Need Semantic Power
 
 If you're dealing with semantic data and need [SPARQL](https://en.wikipedia.org/wiki/SPARQL)-like querying, [RDFLib](https://rdflib.readthedocs.io/en/stable/index.html) provides a perfect middle ground:
@@ -92,6 +112,8 @@ Bob -> TechCorp
 Alice -> Bob
 ```
 
+<a id="pygraphviz---visualization-with-query-capabilities"></a>
+
 ## PyGraphviz - Visualization with Query Capabilities
 
 When you need both visualization and querying use [pygraphviz](https://github.com/pygraphviz/pygraphviz):
@@ -107,6 +129,8 @@ def find_relationships(G, node):
 ```
 
 > **NOTE**: There might be an problem when installing pygraphviz in Google Colab, you can use matlplotlib + networkx instead
+
+<a id="diy-solution---custom-graph-structure"></a>
 
 ## DIY Solution - Custom Graph Structure
 
@@ -313,6 +337,8 @@ Leonardo DiCaprio -> Inception -> Michael Caine -> Interstellar -> Christopher N
 ['Inception']
 ```
 
+<a id="making-the-right-choice"></a>
+
 ## Making the Right Choice
 
 The best solution depends on your specific needs:
@@ -322,13 +348,19 @@ The best solution depends on your specific needs:
 - Go with PyGraphviz when visualization is important
 - Consider a custom solution for specialized query patterns
 
+<a id="performance-considerations"></a>
+
 ## Performance Considerations
 
 These solutions work well for graphs with thousands of nodes and edges. The key is keeping everything in memory and optimizing your query patterns. For NetworkX and RDFLib, using their built-in query methods is usually faster than writing custom traversal code.
 
+<a id="beyond-simple-solutions"></a>
+
 ## Beyond Simple Solutions
 
 When your knowledge graph grows beyond memory constraints or you need more complex querying capabilities, it might be time to consider solutions like [Neo4j](https://neo4j.com/) or [Amazon Neptune](https://aws.amazon.com/neptune/). However, for many use cases, these in-memory solutions provide the perfect balance of simplicity and functionality.
+
+<a id="a-note-on-automated-graph-construction"></a>
 
 ## A Note on Automated Graph Construction
 
@@ -342,9 +374,13 @@ Building knowledge graphs by hand, as shown in our examples, is straightforward.
 
 If you're interested in automatic graph construction, I'd recommend starting with established NLP libraries and knowledge graph toolkits rather than building everything from scratch. But that's a topic for another deep dive!
 
+<a id="wrapping-up"></a>
+
 ## Wrapping Up
 
 Don't jump to complex graph databases when simpler solutions might suffice. These in-memory approaches can handle surprisingly complex tasks while keeping your codebase clean and maintainable. Plus, they're perfect for prototyping before committing to a full-scale graph database solution.
+
+<a id="further-reading-references"></a>
 
 ## Further Reading, References
 
@@ -353,3 +389,7 @@ Don't jump to complex graph databases when simpler solutions might suffice. Thes
 - [GraphRAG](https://memgraph.com/docs/ai-ecosystem/graph-rag)
 - [CogniPy for Pandas - In-memory Graph Database and Knowledge Graph with Natural Language Interface - CogniPy 1.0.0 documentation](https://cognipy.org/) - In-memory Graph Database and Knowledge Graph with Natural Language Interface
 - not necessarily small and simple solutions: [Title Unavailable \| Site Unreachable](https://www.puppygraph.com/blog/best-graph-databases)
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links

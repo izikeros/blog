@@ -20,7 +20,7 @@ Prompt: Give me long blog post text on the Box-Cox transformation of 1 + x for d
 ---
 Data processing is an essential step in data science and machine learning, and one of the most common techniques used to prepare data is transformation. Transformation allows us to modify the distribution of a variable, making it more amenable to statistical analysis or machine learning algorithms. One commonly used transformation is the Box-Cox transformation, which is particularly useful when dealing with non-normal data. In this blog post, we will focus on the Box-Cox transformation of 1 + x, provide examples, and discuss exemplary use cases with synthetic, generated datasets. We will also provide Python code snippets to illustrate the process.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [The Box-Cox Transformation](#the-box-cox-transformation)
 - [Example 1: Synthetic Data](#example-1-synthetic-data)
@@ -31,7 +31,7 @@ Data processing is an essential step in data science and machine learning, and o
  	- [Medical data analysis](#medical-data-analysis)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## The Box-Cox Transformation
 

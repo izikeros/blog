@@ -32,7 +32,7 @@ Tags:
   - swimlanes
   - agile-practices
 Title: Mastering the Kanban Method - Unveiling the Hidden Gems of Effective Kanban Board Usage
-banner: /images/head/kanban.jpg
+banner: "/images/head/kanban.jpg"
 prompt:
 ---
 
@@ -41,7 +41,7 @@ prompt:
 
 In today's fast-paced and ever-evolving business landscape, organizations are constantly seeking efficient project management methodologies to enhance productivity and streamline workflows. One such approach that has gained significant popularity is the Kanban method. Kanban, originating from the Japanese word for "billboard" or "visual card," is a visual project management system that allows teams to track and manage work effectively. In this comprehensive guide, we will look into the specificity of the Kanban method, explore the proper utilization of Kanban boards, and reveal lesser-known tips and tricks to maximize their potential.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
 - [Understanding the Kanban Method Principles](#understanding-the-kanban-method-principles)
@@ -61,7 +61,7 @@ In today's fast-paced and ever-evolving business landscape, organizations are co
  	- [Implementing Agile Practices](#implementing-agile-practices)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Understanding the Kanban Method Principles
 

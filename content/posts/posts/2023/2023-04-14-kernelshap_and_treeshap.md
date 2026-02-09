@@ -12,7 +12,7 @@ Tags:
   - xai
   - explainable-ai
 Title: KernelShap and TreeShap - Two Most Popular Variations of the SHAP Method
-banner: /images/head/treeshap_kernelshap.jpg
+banner: "/images/head/treeshap_kernelshap.jpg"
 prompt:
 ---
 ## TLDR
@@ -29,7 +29,7 @@ Two popular methods for explaining AI models are KernelShap and TreeShap. These 
 > **SHAP (SHapley Additive exPlanations)** is a game theoretic approach to explain the output of any machine learning model. It connects optimal credit allocation with local explanations using the classic Shapley values from game theory and their related extensions (see [papers](https://github.com/shap/shap#citations) for details and citations).
 > *(from [SHAP documentation](https://shap.readthedocs.io/en/latest/index.html))*
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [TLDR](#tldr)
 - [Introduction](#introduction)
@@ -41,7 +41,7 @@ Two popular methods for explaining AI models are KernelShap and TreeShap. These 
  	- [TreeShap advantages and limitations](#treeshap-advantages-and-limitations)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## KernelShap
   

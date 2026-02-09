@@ -15,7 +15,7 @@ tags:
   - openai
 Category: Generative AI
 Image: /images/head/langchain_problems.jpg
-banner: /images/head/langchain_problems.jpg
+banner: "/images/head/langchain_problems.jpg"
 Summary: Beyond the Hype - LangChain's Hidden Flaws and How to Master AI Development.
 Status: published
 prompt:
@@ -27,7 +27,7 @@ X::[[langchain_alternatives]]
 
 [LangChain](https://docs.langchain.com/docs/), a popular framework for building applications with [large language models](https://en.wikipedia.org/wiki/Large_language_model) (LLMs), has been touted as a game-changer in the world of AI-driven development. However, as more users dive into the library and its capabilities, some have found that it falls short of expectations. In this section, we'll discuss ten issues with LangChain that have left users underwhelmed and questioning its value proposition.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Problems](#problems)
   - [1. Overly complex and unnecessary abstractions](#1-overly-complex-and-unnecessary-abstractions)
@@ -43,7 +43,7 @@ X::[[langchain_alternatives]]
 - [Takeaways - How to Use the LangChain Right Way?](#takeaways---how-to-use-the-langchain-right-way)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Problems
 

@@ -23,7 +23,7 @@ For reference see [making-git-auto-commit](https://stackoverflow.com/questions/4
 
 My choice was **gitwatch** used as systemd service.
 
-<!-- MarkdownTOC levels='1,2,3' autolink=True autoanchor=True -->
+
 
 - [gitwatch , active](#gitwatch--active)
   - [Notes for installation on Mac](#notes-for-installation-on-mac)
@@ -36,7 +36,7 @@ My choice was **gitwatch** used as systemd service.
 - [watchman](#watchman)
 - [inotify.sh](#inotifysh)
 
-<!-- /MarkdownTOC -->
+
 
 # [gitwatch](https://github.com/gitwatch/gitwatch) ![GitHub stars](https://img.shields.io/github/stars/gitwatch/gitwatch.svg?logo=github), active
 

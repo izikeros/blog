@@ -18,7 +18,7 @@ Title: Pandas Dataframe Schema and Data Types Validation
 citation_needed: false
 ---
 # Contents
-<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
 
 - [Pandera \(515 stars\) - column validation \(columns, types\), DataFrame Schema](#pandera-515-stars---column-validation-columns-types-dataframe-schema)
 - [Dataenforce \(59 stars\) - columns presence validation](#dataenforce-59-stars---columns-presence-validation)
@@ -31,7 +31,7 @@ citation_needed: false
   - [Generic Python object data validation](#generic-python-object-data-validation)
   - [pandas-specific data validation](#pandas-specific-data-validation)
 
-<!-- /MarkdownTOC -->
+
 
 Two things I found most useful and use most are Pandera and Dataenforce.
 

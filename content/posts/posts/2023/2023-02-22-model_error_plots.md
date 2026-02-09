@@ -11,11 +11,11 @@ Tags:
   - machine-learning
   - python
 Title: Pro Tips for Diagnosing Regression Model Errors
-banner: /images/head/diagnosing_errors_in_regression_models.jpg
+banner: "/images/head/diagnosing_errors_in_regression_models.jpg"
 prompt: Give me long, blog post text for the machine learning experts on the most insightful plots to visualize regression model prediction errors. Give me types of plots and put a special emphasis (elaborate more) on what can we learn from each plot. for each type of the plot give me python code snipped to generate that kind of the plot. Use boston housing dataset and the same type of regression model for all examples. The blog post text should be long, in-depth and can span over multiple answers.
 ---
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
 - [TLDR - list of the plots with short description](#tldr---list-of-the-plots-with-short-description)
@@ -31,7 +31,7 @@ prompt: Give me long, blog post text for the machine learning experts on the mos
   - [Mean Absolute Error Plot](#mean-absolute-error-plot)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 > **NOTE:** This article is still a bit draft but it is published since might be an inspiration and starting point for crafting own visual analysis.
 ## Introduction

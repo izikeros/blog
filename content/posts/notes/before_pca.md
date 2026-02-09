@@ -20,7 +20,7 @@ Prompt: What are the necessary steps before applying pca to the dataset for dime
 ---
 Principal Component Analysis (PCA) is a popular technique used for dimensionality reduction. It involves transforming a dataset into a new coordinate system that consists of principal components, which are linear combinations of the original features. PCA is useful for reducing the number of features in a dataset, while still retaining most of the information.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Preparations to PCA](#preparations-to-pca)
   - [Data Cleaning](#data-cleaning)
@@ -36,7 +36,7 @@ Principal Component Analysis (PCA) is a popular technique used for dimensionalit
   - [Address multicollinearity](#address-multicollinearity)
   - [Handle imbalanced data](#handle-imbalanced-data)
 
-<!-- /MarkdownTOC -->
+
 
 ## Preparations to PCA
 

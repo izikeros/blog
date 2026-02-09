@@ -22,7 +22,7 @@ prompt2: Give me long blog post on machine learning techniques used for contextu
 ---
 Automated speech-to-text transcription has come a long way in recent years, with advances in artificial intelligence and natural language processing enabling machines to transcribe human speech with increasing accuracy. However, there are still several challenges that remain unsolved, and which continue to limit the capabilities of automated speech recognition technology. In this blog post, we will explore some of the biggest unsolved problems in automated speech-to-text transcription.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Challenges](#challenges)
  	- [1.  Accurate transcription of spontaneous speech](#1-accurate-transcription-of-spontaneous-speech)
@@ -39,7 +39,7 @@ Automated speech-to-text transcription has come a long way in recent years, with
  	- [hybrid approaches](#hybrid-approaches)
 - [Summary](#summary)
 
-<!-- /MarkdownTOC -->
+
 
 ## Challenges
 

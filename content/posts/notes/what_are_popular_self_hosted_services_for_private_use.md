@@ -11,7 +11,7 @@ Tags:
   - nas
 Title: What Are the Most Popular Private Services That People Decide to Self-Host?
 ---
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [Popular self-hosted services for private (or family) usage](#popular-self-hosted-services-for-private-or-family-usage)
 	- [File servers](#file-servers)
@@ -26,7 +26,7 @@ Title: What Are the Most Popular Private Services That People Decide to Self-Hos
 	- [Personal Health Management](#personal-health-management)
 - [What devices can be used for self-hosting of private services?](#what-devices-can-be-used-for-self-hosting-of-private-services)
 
-<!-- /MarkdownTOC -->
+
 
 ## Popular self-hosted services for private (or family) usage
 

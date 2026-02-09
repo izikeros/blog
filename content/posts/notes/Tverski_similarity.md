@@ -20,7 +20,7 @@ Title: Tverski Similarity Metrics
 ---
 Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are two different similarity metrics that are used to compare strings or sequences. They are designed for specific purposes and have different mathematical formulas and applications.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Tversky Similarity](#tversky-similarity)
    - [Formula](#formula)
@@ -28,7 +28,7 @@ Tversky similarity and [[jaro_winkler_similarity|Jaro-Winkler]] similarity are t
 - [Jaro-Winkler Similarity \(for reference\)](#jaro-winkler-similarity-for-reference)
 - [Summary](#summary)
 
-<!-- /MarkdownTOC -->
+
 
 ## Tversky Similarity
 

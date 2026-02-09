@@ -32,7 +32,7 @@ Reconstruction of spatial (3D) structure of the document is typically done using
 
 ## List of approaches presented in this article
 
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [Dewarping](#dewarping)
   - [Page dewarp \(1.1k stars\)](#page-dewarp-11k-stars)
@@ -55,7 +55,7 @@ Reconstruction of spatial (3D) structure of the document is typically done using
   - [What to use for Unwarping and Deskewing?](#what-to-use-for-unwarping-and-deskewing)
   - [What to use for Document Segmentation](#what-to-use-for-document-segmentation)
 
-<!-- /MarkdownTOC -->
+
 
 # Dewarping
 

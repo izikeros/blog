@@ -17,20 +17,20 @@ Tags:
   - model
   - responsible-ai
 Title: Evaluation of Interpretability for Explainable AI
-banner: /images/head/AI_gray-haired_1_640.jpg
+banner: "/images/head/AI_gray-haired_1_640.jpg"
 prompt:
 ---
 
 Interpretability in machine learning is a complex and multifaceted topic. It refers to the ability of a model to explain its decisions and predictions to humans in a way that is understandable and meaningful. However, there is currently no agreed-upon definition or method for measuring interpretability.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Three levels of evaluating interpretability](#three-levels-of-evaluating-interpretability)
   - [Application level](#application-level)
   - [Human level](#human-level)
   - [Function level](#function-level)
 
-<!-- /MarkdownTOC -->
+
 
 ## Three levels of evaluating interpretability
 

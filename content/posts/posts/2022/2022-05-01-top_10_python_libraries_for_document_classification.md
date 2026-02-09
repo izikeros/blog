@@ -49,13 +49,13 @@ Tags:
   - Apache-Lucene
   - PyTorch-NLP
 Title: Top 10 Python Libraries for Document Classification
-banner: /images/head/document_classification.jpg
+banner: "/images/head/document_classification.jpg"
 prompt: give me long markdown blog-post text on Top 10 Python libraries for document classification
 ---
 
 Document classification is the task of assigning a document to one or more predefined categories based on its content. This is a common task in many areas, including natural language processing, information retrieval, and machine learning. Python has a wide range of libraries that can be used for document classification, and in this blog post, we will explore the top 10 Python libraries for this task.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1. Scikit-learn](#1-scikit-learn)
 - [2. NLTK](#2-nltk)
@@ -70,7 +70,7 @@ Document classification is the task of assigning a document to one or more prede
 - [Summary](#summary)
 - [Other tools](#other-tools)
 
-<!-- /MarkdownTOC -->
+
 
 ## 1. Scikit-learn
 

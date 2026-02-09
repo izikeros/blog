@@ -38,7 +38,7 @@ Databricks
 </pre>
 
 Here are some of the key features and components of Databricks:
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Databricks Workspace](#databricks-workspace)
 - [Databricks Runtime](#databricks-runtime)
@@ -48,7 +48,7 @@ Here are some of the key features and components of Databricks:
 - [Databricks Jobs](#databricks-jobs)
 - [Databricks Tables](#databricks-tables)
 
-<!-- /MarkdownTOC -->
+
 
 
 ## Databricks Workspace

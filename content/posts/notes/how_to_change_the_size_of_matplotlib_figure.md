@@ -14,7 +14,7 @@ Title: How to Change the Size of Matplotlib Figure?
 ---
 To change the size of a matplotlib figure, there are several ways you can do it. Here are some examples:
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [1.  Using the `figure` function](#1-using-the-figure-function)
 - [2.  Using the `rcParams` dictionary](#2-using-the-rcparams-dictionary)
@@ -22,7 +22,7 @@ To change the size of a matplotlib figure, there are several ways you can do it.
 - [4.  Using the `set_size_inches` method](#4-using-the-set_size_inches-method)
 - [5.  Using the `rc` function](#5-using-the-rc-function)
 
-<!-- /MarkdownTOC -->
+
 
 ## 1.  Using the `figure` function
 

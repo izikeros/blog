@@ -21,7 +21,7 @@ Prompt: Give me long blog post on heic and heif formats. dig into technical deta
 
 High Efficiency Image Format (HEIF) and High Efficiency Video Coding (HEVC) Image Format (HEIC) are the two latest image file formats introduced by the Moving Picture Experts Group (MPEG). These formats are designed to improve image quality while reducing file size, which is particularly important for mobile devices with limited storage capacity.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Technical Details of HEIF and HEIC](#technical-details-of-heif-and-heic)
 - [Advantages of HEIF and HEIC](#advantages-of-heif-and-heic)
@@ -31,7 +31,7 @@ High Efficiency Image Format (HEIF) and High Efficiency Video Coding (HEVC) Imag
  	- [Compatibility](#compatibility)
  	- [Future-Proofing](#future-proofing)
 
-<!-- /MarkdownTOC -->
+
 
 HEIF is a container format that can store a variety of image data, including single images, image sequences, and image collections. HEIC, on the other hand, is a specific implementation of HEIF that is used for still images.
 

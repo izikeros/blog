@@ -25,7 +25,7 @@ title: Creating Virtual Environments in Python
 ---
 Python virtual environments are an essential tool for isolating project dependencies and avoiding conflicts between different projects. This article will guide you through methods of creating virtual environments in Python.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Most popular methods](#most-popular-methods)
  	- [Using `venv`](#using-venv)
@@ -40,7 +40,7 @@ Python virtual environments are an essential tool for isolating project dependen
  	- [Using `Hatch`](#using-hatch)
  	- [Using `Pipx`](#using-pipx)
 
-<!-- /MarkdownTOC -->
+
 
 ## Most popular methods
 

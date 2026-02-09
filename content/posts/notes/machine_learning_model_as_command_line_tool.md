@@ -21,7 +21,7 @@ Machine learning (ML) models are becoming increasingly popular in various indust
 
 This article will cover the following topics:
 
-<!-- MarkdownTOC autolink="true" autoanchor="true" -->
+
 
 - [Why use command line tools for ML models](#why-use-command-line-tools-for-ml-models)
 - [Creating a command line tool using argparse](#creating-a-command-line-tool-using-argparse)
@@ -29,7 +29,7 @@ This article will cover the following topics:
 - [Packaging the command line tool as a Python PEX file](#packaging-the-command-line-tool-as-a-python-pex-file)
 - [Examples of command line tools for ML models](#examples-of-command-line-tools-for-ml-models)
 
-<!-- /MarkdownTOC -->
+
 
 ## Why use command line tools for ML models
 

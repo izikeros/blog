@@ -16,7 +16,7 @@ Tags:
   - roles
   - career
 Title: Is MLOps a Good Career?
-banner: /images/head/is_mlops_good_career.jpg
+banner: "/images/head/is_mlops_good_career.jpg"
 modified: 2023-01-12
 ---
 
@@ -30,7 +30,7 @@ Additionally, MLOps Engineers are typically well compensated and can expect to e
 
 Overall, a career in MLOps can be a good choice if you have a strong background in machine learning and programming, and are interested in working in a fast-paced, dynamic environment. It’s a field that is growing quickly and offers many opportunities for growth and development.
 
-<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
 
 - [What are the good aspects of MLOps career?](#what-are-the-good-aspects-of-mlops-career)
   - [1.  High demand](#1-high-demand)
@@ -48,7 +48,7 @@ Overall, a career in MLOps can be a good choice if you have a strong background 
   - [5.  Difficulty in finding the right team](#5-difficulty-in-finding-the-right-team)
   - [6.  Limited career mobility](#6-limited-career-mobility)
 
-<!-- /MarkdownTOC -->
+
 
 ## What are the good aspects of MLOps career?
 

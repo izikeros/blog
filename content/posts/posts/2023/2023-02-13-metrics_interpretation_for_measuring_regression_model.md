@@ -19,12 +19,12 @@ Tags:
   - data-science
   - data-analysis
 Title: Comprehensive Guide to Interpreting R², MSE, and RMSE for Regression Models.
-banner: /images/head/R2_MSE_RMSE.jpg
+banner: "/images/head/R2_MSE_RMSE.jpg"
 prompt: Give me detailed guidelines on how to interpret evaluation of the model performance in regression using R2, MSE and RMSE metrics. Add examples of cases when single metrics can be misleading and how to use other metrics to have accurate model performance assessment. Give me long, blog-post style markdown text with latex equations when needed and hyperlinks.
 ---
 
 In regression problems, the performance of a model can be evaluated using a variety of metrics, such as R², mean squared error (MSE), and root mean squared error (RMSE). These metrics provide different information about the accuracy and precision of the model's predictions. Below are some tips on how to jointly analyze various metrics and interpret their values.
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Metrics](#metrics)
   - [R² Score](#r%C2%B2-score)
@@ -46,7 +46,7 @@ In regression problems, the performance of a model can be evaluated using a vari
   - [Choose metrics based on the problem](#choose-metrics-based-on-the-problem)
 - [Summary](#summary)
 
-<!-- /MarkdownTOC -->
+
 
 ## Metrics
 

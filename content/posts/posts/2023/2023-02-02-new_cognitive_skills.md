@@ -15,13 +15,13 @@ Tags:
   - language-models
   - llm
 Title: New Cognitive Skills in the Age of AI Tailored Information Presentation
-banner: /images/head/cognitive_skills_ai_generative_models.jpg
+banner: "/images/head/cognitive_skills_ai_generative_models.jpg"
 prompt:
 ---
 
 up::[[MOC_Generative_AI]]
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 ## Contents
 
@@ -33,7 +33,7 @@ up::[[MOC_Generative_AI]]
  	- [Ability to multitasking and manage multiple streams of information at once](#ability-to-multitasking-and-manage-multiple-streams-of-information-at-once)
 - [Summary](#summary)
 
-<!-- /MarkdownTOC -->
+
 
 ## Speculating on New Cognitive Skills in Humans Using Large Language Models and Advanced AI Generative Models
 

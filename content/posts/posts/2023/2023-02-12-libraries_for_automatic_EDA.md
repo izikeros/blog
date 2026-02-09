@@ -2,7 +2,7 @@
 Category: Machine Learning
 Date: 2023-02-12
 Image: /images/head/auto_eda.jpg
-Modified: 2023-02-12
+Modified: 2026-02-07
 Slug: libraries-for-automated-eda
 Start: 2023-02-12
 Status: published
@@ -30,16 +30,40 @@ Tags:
   - feature-engineering
   - featuretools
 Title: Libraries for Automated Exploratory Data Analysis (EDA)
-banner: /images/head/auto_eda.jpg
+banner: "/images/head/auto_eda.jpg"
 prompt:
 todo: replace hotlinking images with local images
 ---
 
+
+
+- [Top-10 Tools for Automated EDA](#top-10-tools-for-automated-eda)
+  - [1. Pandas Profiling](#1-pandas-profiling)
+  - [2. DataPrep](#2-dataprep)
+  - [3. Sweetviz](#3-sweetviz)
+  - [4. Lux](#4-lux)
+  - [5. dabl](#5-dabl)
+  - [6. Autoviz](#6-autoviz)
+  - [7. Klib](#7-klib)
+  - [8. ExplainerDashboard](#8-explainerdashboard)
+  - [9. PyCaret](#9-pycaret)
+  - [10. Missingno](#10-missingno)
+- [Honorable mentions](#honorable-mentions)
+  - [Featuretools](#featuretools)
+  - [PyExplainer](#pyexplainer)
+- [References](#references)
+
+
+
 Exploratory Data Analysis (EDA) is an important step in the data analysis process. It allows us to explore and understand the dataset, identify patterns, and make informed decisions about data cleaning, feature engineering, and modeling. In recent years, several Python libraries have been developed to automate and streamline the EDA process. Here are 10 popular Python libraries for automated EDA:
+
+<a id="top-10-tools-for-automated-eda"></a>
 
 ## Top-10 Tools for Automated EDA
 
-### Pandas Profiling
+<a id="1-pandas-profiling"></a>
+
+### 1. Pandas Profiling
 
 ![github stars shield](https://img.shields.io/github/stars/ydataai/ydata-profiling.svg?logo=github)
 
@@ -47,7 +71,9 @@ Exploratory Data Analysis (EDA) is an important step in the data analysis proces
 
 ![pandas-profiling](/images/auto_eda/pandas-profiling.jpg)
 
-### 2.  DataPrep
+<a id="2-dataprep"></a>
+
+### 2. DataPrep
 
 ![github stars shield](https://img.shields.io/github/stars/sfu-db/dataprep.svg?logo=github)
 
@@ -68,7 +94,9 @@ df = load_dataset("titanic")
 create_report(df).show_browser()
 ```
 
-### 3.  Sweetviz
+<a id="3-sweetviz"></a>
+
+### 3. Sweetviz
 
 ![github stars shield](https://img.shields.io/github/stars/fbdesignpro/sweetviz.svg?logo=github)
 
@@ -76,7 +104,9 @@ create_report(df).show_browser()
 
 ![Sweetviz](https://camo.githubusercontent.com/0965c07124443fe73d4343ebc1642b8b3c68ef49913f32a42c4b6f567a477143/687474703a2f2f636f6f6c74696d696e672e636f6d2f53562f66656174757265732e706e67)
 
-### 4.  Lux
+<a id="4-lux"></a>
+
+### 4. Lux
 
 ![github stars shield](https://img.shields.io/github/stars/lux-org/lux.svg?logo=github)
 
@@ -84,7 +114,9 @@ create_report(df).show_browser()
 
 ![Lux](https://github.com/lux-org/lux-resources/raw/master/readme_img/demohighlight.gif?raw=true)
 
-### 5.  dabl
+<a id="5-dabl"></a>
+
+### 5. dabl
 
 ![github stars shield](https://img.shields.io/github/stars/dabl/dabl.svg?logo=github)
 
@@ -92,7 +124,9 @@ create_report(df).show_browser()
 
 ![dabl](https://dabl.github.io/dev/_images/sphx_glr_plot_mfeat_factors_005.png)
 
-### 6.  Autoviz
+<a id="6-autoviz"></a>
+
+### 6. Autoviz
 
 ![github stars shield](https://img.shields.io/github/stars/AutoViML/AutoViz.svg?logo=github)
 
@@ -100,7 +134,9 @@ create_report(df).show_browser()
 
 ![AutoViz](https://github.com/AutoViML/AutoViz/raw/master/var_charts.JPG)
 
-### 7.  Klib
+<a id="7-klib"></a>
+
+### 7. Klib
 
 ![github stars shield](https://img.shields.io/github/stars/akanz1/klib.svg?logo=github)
 
@@ -108,7 +144,9 @@ create_report(df).show_browser()
 
 ![Klib](https://raw.githubusercontent.com/akanz1/klib/main/examples/images/header.png)
 
-### 8.  ExplainerDashboard
+<a id="8-explainerdashboard"></a>
+
+### 8. ExplainerDashboard
 
 ![github stars shield](https://img.shields.io/github/stars/oegedijk/explainerdashboard.svg?logo=github)
 
@@ -116,7 +154,9 @@ create_report(df).show_browser()
 
 ![ExplainerDashboard](https://github.com/oegedijk/explainerdashboard/raw/master/explainerdashboard.gif)
 
-### 9.  PyCaret
+<a id="9-pycaret"></a>
+
+### 9. PyCaret
 
 ![github stars shield](https://img.shields.io/github/stars/pycaret/pycaret.svg?logo=github)
 
@@ -124,7 +164,9 @@ create_report(df).show_browser()
 
 ![PyCaret](https://github.com/pycaret/pycaret/raw/master/docs/images/pycaret_ts_quickdemo.gif)
 
-### Missingno
+<a id="10-missingno"></a>
+
+### 10. Missingno
 
 ![github stars shield](https://img.shields.io/github/stars/ResidentMario/missingno.svg?logo=github)
 
@@ -132,17 +174,23 @@ create_report(df).show_browser()
 
 ![Missingno](https://camo.githubusercontent.com/16475986b81be8268152a4423777683be2d95cdac5d84e70130eb98431959f20/68747470733a2f2f692e696d6775722e636f6d2f675775584b45722e706e67)
 
+<a id="honorable-mentions"></a>
+
 ## Honorable mentions
 
 There are three other tools that might be useful during data exploration.
 
-## Featuretools
+<a id="featuretools"></a>
+
+### Featuretools
 
 ![github stars shield](https://img.shields.io/github/stars/FeatureLabs/featuretools.svg?logo=github)
 
 [Featuretools](https://github.com/FeatureLabs/featuretools) is a library for **automated feature engineering** that allows you to automatically generate features from multiple tables. It includes tools for handling time-based data and can generate a set of feature definitions in just a few lines of code.
 
 ![Featuretools](https://github.com/alteryx/featuretools/raw/main/docs/source/_static/images/entity_set.png?raw=true)
+
+<a id="pyexplainer"></a>
 
 ### PyExplainer
 
@@ -153,6 +201,8 @@ There are three other tools that might be useful during data exploration.
 ![PyExplainer](https://github.com/awsm-research/PyExplainer/raw/master/img/pyexplainer_snap_demo.gif)
 
 *Any comments or suggestions? [Let me know](mailto:ksafjan@gmail.com?subject=Blog+post).*
+
+<a id="references"></a>
 
 ## References
 
@@ -166,3 +216,8 @@ It covers:
 - summarytools (R)
 - explore (R)
 - dataMaid (R)
+
+**Edits:**
+
+- 2026-02-07: Added table of contents with anchor links
+- 2026-02-07: Standardized heading numbering

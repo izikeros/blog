@@ -23,8 +23,6 @@ prompt: Give me long blog post tutorial on using T-SNE for dimensionality reduct
 todo: publish this as notebook to allow interactive visualizations with bokeh
 ---
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
-
 - [Introduction](#introduction)
 - [Dataset](#dataset)
 - [Getting started](#getting-started)
@@ -34,7 +32,6 @@ todo: publish this as notebook to allow interactive visualizations with bokeh
 - [Interactive visualizations](#interactive-visualizations)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
 
 ## Introduction
 

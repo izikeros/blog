@@ -22,7 +22,7 @@ tags:
   - type-hints
 title: Disable checks for flake8, mypy, bandit and black
 ---
-<!-- MarkdownTOC levels="2" autolink="true" autoanchor="true" -->
+
 
 - [Introduction](#introduction)
 - [Flake8: Flexible Python Code Linter](#flake8-flexible-python-code-linter)
@@ -32,7 +32,7 @@ title: Disable checks for flake8, mypy, bandit and black
 - [Best Practices](#best-practices)
 - [Conclusion](#conclusion)
 
-<!-- /MarkdownTOC -->
+
 
 ## Introduction
 

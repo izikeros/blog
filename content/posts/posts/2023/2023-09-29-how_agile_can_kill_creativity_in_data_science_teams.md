@@ -20,7 +20,7 @@ tags:
   - team-data-science-process
 Category: Machine Learning
 Image: /images/head/agile_data_science_640px.jpg
-banner: /images/head/agile_data_science_640px.jpg
+banner: "/images/head/agile_data_science_640px.jpg"
 Summary: Discover the delicate balance between Agile methodologies and imagination in the domain of data science and analytics. Uncover the impact of Agile approaches on creativity within data science teams. Explore how these practices shape the innovative landscape of data science and analytics.
 Status: published
 prompt: How Agile can kill creativity in Data Science / Analytics teams?
@@ -28,7 +28,7 @@ prompt: How Agile can kill creativity in Data Science / Analytics teams?
 
 Agile methodologies can provide numerous benefits to data science and analytics teams, such as quicker delivery, enhanced collaboration, and increased customer satisfaction. However, if not implemented effectively, Agile may unintentionally impede creativity in these teams. Here are a few ways Agile can potentially hinder creativity in data science/analytics.
 
-<!-- MarkdownTOC levels="2,3" autolink="true" autoanchor="true" -->
+
 
 - [Potential problems](#potential-problems)
   - [Tight deadlines and sprints](#tight-deadlines-and-sprints)
@@ -41,7 +41,7 @@ Agile methodologies can provide numerous benefits to data science and analytics 
   - [Frameworks tailored for data science projects](#frameworks-tailored-for-data-science-projects)
 - [References](#references)
 
-<!-- /MarkdownTOC -->
+
 
 ## Potential problems
 

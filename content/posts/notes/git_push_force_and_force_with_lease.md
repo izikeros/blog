@@ -22,7 +22,7 @@ up::[[MOC_Git]]
 
 In the world of version control, Git is a powerful and widely-used tool for managing and tracking changes in your codebase. It allows multiple developers to work on the same project simultaneously, without conflicts. But when it comes to pushing changes to a remote repository, you might encounter some challenges. In this article, we will explore two Git commands that can help you overcome these challenges: `git push --force` and `git push --force-with-lease`. We will discuss their differences, common use cases, and lesser-known but super useful aspects of each.
 
-<!-- MarkdownTOC levels="2,3,4" autolink="true" autoanchor="true" -->
+
 
 - [Git Push Force](#git-push-force)
  	- [Use Cases](#use-cases)
@@ -40,7 +40,7 @@ In the world of version control, Git is a powerful and widely-used tool for mana
 - [Comparing Git Push Force and Git Push Force-With-Lease](#comparing-git-push-force-and-git-push-force-with-lease)
 - [Related reading](#related-reading)
 
-<!-- /MarkdownTOC -->
+
 
 ## Git Push Force
 

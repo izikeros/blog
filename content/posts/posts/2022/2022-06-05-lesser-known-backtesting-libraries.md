@@ -17,7 +17,7 @@ Title: Lesser Known Backtesting Libraries
 citation_needed: false
 ---
 
-<!-- MarkdownTOC levels='2,3' autolink=True autoanchor=True -->
+
 
 - [Bt](#bt)
 - [AutoTrader](#autotrader)
@@ -39,7 +39,7 @@ citation_needed: false
 - [Closing Thoughts](#closing-thoughts)
 - [Credits](#credits)
 
-<!-- /MarkdownTOC -->
+
 
 This article describes lesser-known python libraries/scripts that can be used for backtesting. [Here](https://safjan.com/popular-backtesting-libraries/) is a list of the most popular backtesting libraries that are excluded from the scope of this article. Actively developed libraries are in the top of the list.
 
