@@ -13,6 +13,7 @@ Tags:
 Title: Display a Notification on the Screen in macOS
 ---
 up::[[MOC_macOS]]
+X::[[display_notification_popup]]
 
 To display a notification on the screen near the menu bar in macOS using the terminal, you can make use of the `osascript` command to execute AppleScript code. Here's an example command you can run:
 

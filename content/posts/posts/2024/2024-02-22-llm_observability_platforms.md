@@ -17,7 +17,7 @@ tags:
 Category: Generative AI
 Image: /images/head/observability_998_cr_640px.jpg
 banner: "/images/head/observability_998_cr_640px.jpg"
-Summary: Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article looks into the critical aspects of LLM Observability in the realm of generative AI.
+Summary: Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article looks into the critical aspects of LLM Observability in the domain of generative AI.
 Status: published
 prompt:
 ---

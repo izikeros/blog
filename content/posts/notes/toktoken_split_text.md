@@ -20,7 +20,7 @@ up::[[tokenizer]]
 
 ## Introduction
 
-In the realm of natural language processing and text analysis, it is often necessary to split a large piece of text into smaller parts while ensuring that the split does not break words or disrupt the meaning of the text. This task can be challenging, especially when dealing with the tokenization. However, with the help of the Tiktoken library and a custom Python module, splitting text based on a specified number of tokens can be an easy task.
+In the natural language processing and text analysis, it is often necessary to split a large piece of text into smaller parts while ensuring that the split does not break words or disrupt the meaning of the text. This task can be challenging, especially when dealing with the tokenization. However, with the help of the Tiktoken library and a custom Python module, splitting text based on a specified number of tokens can be an easy task.
 
 ## Understanding the Tiktoken Library
 

@@ -1,5 +1,409 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2026-02-07T00:00:00+01:00</updated><subtitle>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</subtitle><entry><title>Publishing a Python CLI Tool to Homebrew</title><link href="https://www.safjan.com/publishing-python-cli-tool-to-homebrew/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-02-05T00:00:00+01:00</published><updated>2026-02-05T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-02-05:/publishing-python-cli-tool-to-homebrew/</id><summary type="html">&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2026-02-26T00:00:00+01:00</updated><subtitle>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</subtitle><entry><title>Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance</title><link href="https://www.safjan.com/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-02-26T00:00:00+01:00</published><updated>2026-02-26T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-02-26:/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/</id><summary type="html">&lt;p&gt;Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable point-in-time reconstruction, and when lightweight metadata is enough. Includes practical tracing patterns, replay strategies, and a risk-based decision guide for production systems.&lt;/p&gt;</summary><content type="html">&lt;h2 id="1-the-invisible-problem-why-rag-systems-silently-drift"&gt;1. The invisible problem: why RAG systems silently drift&lt;/h2&gt;
+&lt;p&gt;Most teams building Retrieval-Augmented Generation systems obsess over the LLM, its version, its temperature, its prompt. The component that actually changes most often and most quietly is the index: the corpus of documents, their chunked representations, and the embeddings that map them into vector space.&lt;/p&gt;
+&lt;p&gt;Think about what happens when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A policy document is updated, but the old version lingers in the index alongside the new one.&lt;/li&gt;
+&lt;li&gt;An embedding model is upgraded, shifting similarity rankings for every query.&lt;/li&gt;
+&lt;li&gt;A reindexing job silently drops a document partition due to a pipeline bug.&lt;/li&gt;
+&lt;li&gt;A new batch of documents is ingested, and one source starts dominating 80% of retrievals on a topic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In each case, the RAG system's answers change, but the LLM didn't. The model is the same. The prompt is the same. The retrieval configuration is the same. Yet the user gets a different answer today than they got last week.&lt;/p&gt;
+&lt;p&gt;Without index versioning, you cannot answer the most basic audit question:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Why did the system give this answer on January 10th?"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is like running a production database without transaction logs or backups. You can serve queries, but you cannot explain, debug, or defend any historical result.&lt;/p&gt;
+&lt;p&gt;The index is the part of a RAG pipeline that changes the most, and almost nobody versions it.&lt;/p&gt;
+&lt;pre class="mermaid"&gt;
+flowchart LR
+    Q[Query] --&gt; M[Same Model]
+    M --&gt; P[Same Prompt]
+    P --&gt; I{Changed Index}
+    I --&gt;|v1| A1[Answer A]
+    I --&gt;|v2| A2[Different Answer]
+
+    style I fill:#f96,stroke:#333,color:#000
+    style A2 fill:#f96,stroke:#333,color:#000
+&lt;/pre&gt;
+
+&lt;h2 id="2-use-cases-that-justify-index-versioning"&gt;2. Use cases that justify index versioning&lt;/h2&gt;
+&lt;p&gt;Index versioning is not a theoretical exercise. Here are concrete scenarios where missing versioning causes real operational, legal, or quality failures.&lt;/p&gt;
+&lt;h3 id="21-debugging-and-root-cause-analysis"&gt;2.1 Debugging and root cause analysis&lt;/h3&gt;
+&lt;p&gt;Answer quality suddenly degrades. Users report that the system "stopped knowing" about a topic, or started contradicting itself. The engineering team investigates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Was it a model change? No, same model, same temperature.&lt;/li&gt;
+&lt;li&gt;Was it a prompt change? No, same template.&lt;/li&gt;
+&lt;li&gt;Was it an index change? Unknown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Without index versioning, you cannot isolate retrieval drift from generation drift. You're debugging blind. With version tags on every retrieval request, you can immediately correlate quality drops with specific index changes: "Hallucination rate jumped 15% after &lt;code&gt;index_v23&lt;/code&gt; was deployed, which coincided with a re-chunking of the legal policy corpus."&lt;/p&gt;
+&lt;h3 id="22-data-drift-detection"&gt;2.2 Data drift detection&lt;/h3&gt;
+&lt;p&gt;The knowledge base is not static. Documents are added, updated, and removed. Embedding models are upgraded. Chunking strategies evolve.&lt;/p&gt;
+&lt;p&gt;Index versioning lets you track:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Corpus drift: How many documents were added or removed between versions?&lt;/li&gt;
+&lt;li&gt;Embedding drift: Did switching from &lt;code&gt;text-embedding-ada-002&lt;/code&gt; to &lt;code&gt;text-embedding-3-large&lt;/code&gt; change retrieval behavior?&lt;/li&gt;
+&lt;li&gt;Source dominance shifts: Is one internal document now responsible for 70% of answers on a topic, when it used to be 30%?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are not hypothetical concerns. In enterprise deployments, source dominance drift is one of the most common causes of biased or narrow answers, and it is invisible without versioned tracking.&lt;/p&gt;
+&lt;h3 id="23-regulatory-compliance-and-audit"&gt;2.3 Regulatory compliance and audit&lt;/h3&gt;
+&lt;p&gt;This is where index versioning goes from "nice to have" to "legally required."&lt;/p&gt;
+&lt;p&gt;Under the EU AI Act (Regulation 2024/1689), high-risk AI systems must maintain records sufficient to reconstruct past decisions. If a RAG system supports employment decisions, credit assessments, or healthcare recommendations, a regulator may ask:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Reconstruct the knowledge base state and the retrieval trace for the answer provided to user X on date Y."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Without index versioning, this is impossible.&lt;/p&gt;
+&lt;p&gt;In financial services, auditors need to verify what knowledge base was active when an AI-assisted recommendation was generated. In healthcare, regulators need to confirm which clinical guidelines were indexed at the time of an AI-supported diagnosis.&lt;/p&gt;
+&lt;h3 id="24-reproducibility-for-evaluation"&gt;2.4 Reproducibility for evaluation&lt;/h3&gt;
+&lt;p&gt;RAG evaluation is meaningless without controlled variables. If you're comparing two retrieval strategies, two embedding models, or two chunking approaches, you need to hold the index constant, or at least know exactly how it differed.&lt;/p&gt;
+&lt;p&gt;Index versioning gives you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A/B testing of embedding models with rollback to the control version.&lt;/li&gt;
+&lt;li&gt;Regression testing: "Did the new index version degrade performance on our golden test set?"&lt;/li&gt;
+&lt;li&gt;Longitudinal evaluation: tracking quality metrics across index versions over months.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="25-incident-response-and-rollback"&gt;2.5 Incident response and rollback&lt;/h3&gt;
+&lt;p&gt;A corrupted ingestion pipeline indexes the wrong documents. A hallucination spike is traced to a specific batch of poorly formatted PDFs. A critical policy document was accidentally excluded during re-indexing.&lt;/p&gt;
+&lt;p&gt;In each case, the response must be fast:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Identify the problematic index version.&lt;/li&gt;
+&lt;li&gt;Rollback to the last known-good version.&lt;/li&gt;
+&lt;li&gt;Serve from the rolled-back index while the issue is resolved.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Without versioning, step 1 is a forensic investigation, step 2 is impossible, and step 3 requires rebuilding the entire index from scratch.&lt;/p&gt;
+&lt;h3 id="26-counterfactual-replay"&gt;2.6 Counterfactual replay&lt;/h3&gt;
+&lt;p&gt;For bias investigations and fairness audits, you need to ask:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"What would the system have answered with last month's index?"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This requires the ability to replay a query against a historical index state. Counterfactual replay is the best method we have for demonstrating that a system change improved (or degraded) fairness, accuracy, or safety.&lt;/p&gt;
+&lt;h2 id="3-what-exactly-needs-versioning"&gt;3. What exactly needs versioning?&lt;/h2&gt;
+&lt;p&gt;People often equate "index versioning" with "snapshotting the vector store." That's necessary but not enough. A RAG index is a composite artifact made of multiple independently changing components:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Component&lt;/th&gt;
+&lt;th&gt;What changes&lt;/th&gt;
+&lt;th&gt;Why it matters&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Document corpus&lt;/td&gt;
+&lt;td&gt;Documents added, removed, or updated&lt;/td&gt;
+&lt;td&gt;The content of the knowledge base&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Chunk boundaries&lt;/td&gt;
+&lt;td&gt;Chunking strategy or parameters change&lt;/td&gt;
+&lt;td&gt;Same document produces different retrieval units&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Embedding model&lt;/td&gt;
+&lt;td&gt;Model version upgraded&lt;/td&gt;
+&lt;td&gt;Same text maps to different vectors&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Vector index structure&lt;/td&gt;
+&lt;td&gt;HNSW/IVF parameters, rebuild&lt;/td&gt;
+&lt;td&gt;Approximate search behavior changes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Metadata and filters&lt;/td&gt;
+&lt;td&gt;ACLs, tags, timestamps, source labels&lt;/td&gt;
+&lt;td&gt;What is retrievable changes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Prompt templates&lt;/td&gt;
+&lt;td&gt;System prompt evolves&lt;/td&gt;
+&lt;td&gt;How retrieved context is used changes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;A "version" is the combination of all these, not just the vector snapshot. If you version the vectors but not the chunking strategy, the same document will produce different answers and you won't know why.&lt;/p&gt;
+&lt;p&gt;In practice, your version identifier should encode or reference all of these components. A simple approach is a composite version string or a version manifest:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;index_version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;v47&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;corpus_hash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;a3f8c1...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;chunk_strategy&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;semantic_v2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;embedding_model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text-embedding-3-large&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;embedding_model_version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2025-09&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;vector_index_type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HNSW&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;document_count&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;14832&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;last_updated&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2026-02-15T08:30:00Z&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;prompt_template_version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;v12&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="4-regulatory-context-when-versioning-becomes-mandatory"&gt;4. Regulatory context: when versioning becomes mandatory&lt;/h2&gt;
+&lt;h3 id="41-eu-ai-act-risk-classification-for-rag"&gt;4.1 EU AI Act risk classification for RAG&lt;/h3&gt;
+&lt;p&gt;The EU AI Act does not regulate "RAG systems" as a category. It regulates AI systems based on their application domain and impact.&lt;/p&gt;
+&lt;p&gt;A RAG system becomes high-risk when deployed in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Employment and worker management (screening, recruitment, task allocation)&lt;/li&gt;
+&lt;li&gt;Access to essential services (credit scoring, insurance, social benefits)&lt;/li&gt;
+&lt;li&gt;Education and vocational training (admissions, assessment)&lt;/li&gt;
+&lt;li&gt;Law enforcement (evidence evaluation, risk assessment)&lt;/li&gt;
+&lt;li&gt;Healthcare (clinical decision support, triage)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A RAG system used as an internal productivity tool (e.g., searching company wikis, drafting emails) is generally limited-risk or minimal-risk. Transparency obligations apply (users must know they're interacting with AI), but the heavy documentation and logging requirements do not.&lt;/p&gt;
+&lt;p&gt;For deployers integrating third-party LLMs into RAG pipelines: even if the base model is compliant, your retrieval layer, index, and data governance are your responsibility. The model provider's compliance does not cover your index.&lt;/p&gt;
+&lt;h3 id="42-what-the-regulation-actually-requires"&gt;4.2 What the regulation actually requires&lt;/h3&gt;
+&lt;p&gt;For high-risk systems, the EU AI Act mandates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Article 12 (Record-Keeping): Automatic logging of events sufficient to trace system behavior throughout its lifecycle. For RAG, this means logging retrieval traces, index versions, and context assembly decisions, not just input/output.&lt;/li&gt;
+&lt;li&gt;Article 11 (Technical Documentation): Description of the system architecture, data sources, training data (or in RAG's case, indexed data), and their versions.&lt;/li&gt;
+&lt;li&gt;Article 14 (Human Oversight): The system must allow effective human supervision, including the ability to review retrieval results and override decisions.&lt;/li&gt;
+&lt;li&gt;Article 9 (Risk Management): Ongoing monitoring, testing, and mitigation, which for RAG includes detecting index drift, evaluating retrieval quality, and maintaining rollback capability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The regulation does not require opening neural weights or explaining attention patterns. It requires system-level traceability and governance. Index versioning is the mechanism that makes this possible for the retrieval layer.&lt;/p&gt;
+&lt;h3 id="43-proportional-versioning-match-effort-to-risk"&gt;4.3 Proportional versioning: match effort to risk&lt;/h3&gt;
+&lt;p&gt;The principle here is proportionality. Not every RAG system needs a full replay architecture. But every RAG system needs &lt;em&gt;some&lt;/em&gt; level of version tracking.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Risk level&lt;/th&gt;
+&lt;th&gt;What to track&lt;/th&gt;
+&lt;th&gt;How to implement&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Low risk (internal assistant)&lt;/td&gt;
+&lt;td&gt;Embedding model version, document count, last update timestamp&lt;/td&gt;
+&lt;td&gt;Metadata tags on telemetry spans&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Medium risk (decision support)&lt;/td&gt;
+&lt;td&gt;Above + document hash sets, retrieval traces, index snapshot references&lt;/td&gt;
+&lt;td&gt;Structured audit events with blob storage references&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;High risk (regulatory decisions)&lt;/td&gt;
+&lt;td&gt;Above + full replay capability, immutable audit trail, point-in-time index reconstruction&lt;/td&gt;
+&lt;td&gt;Time-travel capable vector DB + archived prompts + evaluation metrics store&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Don't over-engineer for low-risk systems. Don't under-engineer for high-risk systems. The cost of getting this wrong runs in both directions: wasted engineering effort on one end, regulatory exposure on the other.&lt;/p&gt;
+&lt;h2 id="5-solution-architectures-from-lightweight-to-full-replay"&gt;5. Solution architectures: from lightweight to full replay&lt;/h2&gt;
+&lt;pre class="mermaid"&gt;
+graph BT
+    L0["&lt;b&gt;Level 0: Metadata Tagging&lt;/b&gt;&lt;br&gt;~zero cost &lt;br&gt;&lt;br&gt; basic drift detection"]
+    L1["&lt;b&gt;Level 1: Content Hashing&lt;/b&gt;&lt;br&gt;low cost &lt;br&gt;&lt;br&gt; change detection + audit trail"]
+    L2["&lt;b&gt;Level 2: Index Snapshots&lt;/b&gt;&lt;br&gt;medium cost &lt;br&gt;&lt;br&gt; point-in-time recovery + A/B testing"]
+    L3["&lt;b&gt;Level 3: Full Replay&lt;/b&gt;&lt;br&gt;high cost &lt;br&gt;&lt;br&gt; counterfactual analysis + regulatory demo"]
+    L4["&lt;b&gt;Level 4: Self-Healing Index&lt;/b&gt;&lt;br&gt;highest cost &lt;br&gt;&lt;br&gt; automated drift detection + remediation"]
+
+    L0 --&gt; L1 --&gt; L2 --&gt; L3 --&gt; L4
+
+    style L0 fill:#c8e6c9,stroke:#333,color:#000
+    style L1 fill:#a5d6a7,stroke:#333,color:#000
+    style L2 fill:#fff9c4,stroke:#333,color:#000
+    style L3 fill:#ffcc80,stroke:#333,color:#000
+    style L4 fill:#ef9a9a,stroke:#333,color:#000
+&lt;/pre&gt;
+
+&lt;h3 id="51-level-0-metadata-tagging-minimum-viable-versioning"&gt;5.1 Level 0: metadata tagging (minimum viable versioning)&lt;/h3&gt;
+&lt;p&gt;The cheapest possible starting point. Tag every retrieval request with basic version metadata:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;index_version&lt;/code&gt;, a monotonically increasing identifier&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;embedding_model_version&lt;/code&gt;, which model generated the vectors&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;document_count&lt;/code&gt;, how many documents are in the index&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;last_updated_timestamp&lt;/code&gt;, when the index was last modified&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Store these as OpenTelemetry span attributes on every &lt;code&gt;rag.retrieval&lt;/code&gt; span.&lt;/p&gt;
+&lt;p&gt;Cost: Near zero.
+Value: Basic drift detection, version correlation with quality metrics, and historical analysis.&lt;/p&gt;
+&lt;p&gt;This is the absolute minimum. If you are not doing this today, start here.&lt;/p&gt;
+&lt;h3 id="52-level-1-content-hashing-and-change-detection"&gt;5.2 Level 1: content hashing and change detection&lt;/h3&gt;
+&lt;p&gt;At ingestion time, compute a hash for each document and each chunk. Store a &lt;code&gt;document_hash_set_id&lt;/code&gt; that uniquely identifies the set of documents (and their versions) in the index.&lt;/p&gt;
+&lt;p&gt;This gets you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change detection without diff storage: know &lt;em&gt;that&lt;/em&gt; the index changed between v46 and v47, and &lt;em&gt;which documents&lt;/em&gt; changed.&lt;/li&gt;
+&lt;li&gt;Selective re-embedding: only re-embed documents whose content hash changed, saving API costs.&lt;/li&gt;
+&lt;li&gt;Audit trail: prove exactly which document versions were indexed at any point.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A practical schema extension for pgvector or similar:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;ALTER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;ADD&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;COLUMN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;content_hash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;TEXT&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;ALTER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;ADD&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;COLUMN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;model_version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;TEXT&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;ALTER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;embeddings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;ADD&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;COLUMN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;indexed_at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;TIMESTAMP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;DEFAULT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;NOW&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This pattern is well-documented in production pgvector deployments where content hash and text diff ratios determine whether re-embedding is necessary.&lt;/p&gt;
+&lt;h3 id="53-level-2-index-snapshots-with-point-in-time-recovery"&gt;5.3 Level 2: index snapshots with point-in-time recovery&lt;/h3&gt;
+&lt;p&gt;This is where you gain the ability to reconstruct past index states.&lt;/p&gt;
+&lt;p&gt;Several approaches, depending on your vector store:&lt;/p&gt;
+&lt;p&gt;Database-native time travel:
+- LanceDB provides built-in versioning with zero-cost snapshots. Every mutation creates a new version. You can check out any historical version and query against it.
+- Qdrant supports collection snapshots that can be stored and restored.
+- Milvus offers point-in-time recovery through its storage layer.&lt;/p&gt;
+&lt;p&gt;Alias-based zero-downtime deployment:
+- In Elasticsearch/OpenSearch, create timestamped indexes (&lt;code&gt;rag_index_2026_02_15&lt;/code&gt;) and use aliases (&lt;code&gt;rag_index_current&lt;/code&gt;) to swap atomically. Old indexes remain queryable for audit.&lt;/p&gt;
+&lt;p&gt;Storage-based snapshots:
+- For FAISS or ChromaDB, periodically snapshot the index files to blob storage (S3, Azure Blob). Tag with the version manifest from Section 3.&lt;/p&gt;
+&lt;p&gt;Blue-green deployment for model upgrades:
+- When upgrading the embedding model, build the new index in parallel. Route a percentage of traffic to the new index. Compare quality metrics. If acceptable, switch the alias. If not, rollback is instantaneous.&lt;/p&gt;
+&lt;h3 id="54-level-3-full-replay-architecture"&gt;5.4 Level 3: full replay architecture&lt;/h3&gt;
+&lt;p&gt;Store enough state to deterministically replay any historical request:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Index snapshot reference, which version was active&lt;/li&gt;
+&lt;li&gt;Retrieved document IDs and scores, the actual retrieval results&lt;/li&gt;
+&lt;li&gt;Exact prompt sent to LLM, including the assembled context&lt;/li&gt;
+&lt;li&gt;Model version and parameters: temperature, top_p, model name&lt;/li&gt;
+&lt;li&gt;Evaluation metrics: groundedness score, hallucination risk, confidence&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;With all five, you can answer:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"What would this query have returned with the index from three months ago?"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is what makes counterfactual analysis, bias investigations, and regulatory demonstrations possible.&lt;/p&gt;
+&lt;p&gt;The Drift-Adapter approach offers an interesting optimization here: instead of maintaining full parallel indexes for every embedding model version, use a lightweight learned transformation layer to map new query embeddings into the legacy embedding space. This achieves 95-99% of retrieval performance recovery at a fraction of the storage cost.&lt;/p&gt;
+&lt;h3 id="55-level-4-self-healing-index-with-drift-detection"&gt;5.5 Level 4: self-healing index with drift detection&lt;/h3&gt;
+&lt;p&gt;The most mature pattern: the index monitors its own health and triggers corrective actions.&lt;/p&gt;
+&lt;p&gt;Continuous monitoring:
+- Track retrieval quality metrics (precision@k, nDCG, confidence score distributions) per index version.
+- Monitor content freshness: flag embeddings older than a configurable threshold.
+- Detect semantic drift: compare embedding distributions between index versions.&lt;/p&gt;
+&lt;p&gt;Automated drift detection signals:
+- Content hash changes without corresponding re-embedding
+- Retrieval score distribution shift beyond a threshold
+- Embedding age exceeding freshness policy
+- Source dominance index crossing a configured limit&lt;/p&gt;
+&lt;p&gt;Automated remediation:
+- Trigger selective re-embedding for stale content
+- Alert on anomalous quality metric changes
+- Initiate alias-based index rebuild if drift exceeds tolerance&lt;/p&gt;
+&lt;p&gt;This pattern has been demonstrated in production using Elasticsearch with alias-based rebuilds, where the system continuously monitors query quality and initiates zero-downtime reindexing when drift is detected.&lt;/p&gt;
+&lt;h2 id="6-implementing-observability-around-index-versions"&gt;6. Implementing observability around index versions&lt;/h2&gt;
+&lt;h3 id="61-opentelemetry-span-design"&gt;6.1 OpenTelemetry span design&lt;/h3&gt;
+&lt;p&gt;Model every RAG request as a span hierarchy. The &lt;code&gt;index.version&lt;/code&gt; attribute must be present on the root span and the retrieval span:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rag.request (root span)
+  ├── index.version: &amp;quot;v47&amp;quot;
+  ├── embedding.model: &amp;quot;text-embedding-3-large&amp;quot;
+  ├── rag.retrieval
+  │     ├── top_k: 5
+  │     ├── retrieved_doc_ids: [&amp;quot;doc_123&amp;quot;, &amp;quot;doc_456&amp;quot;, ...]
+  │     ├── retrieval_scores: [0.92, 0.87, ...]
+  │     └── filter_applied: true
+  ├── rag.context_build
+  │     └── context_token_count: 2400
+  ├── rag.generation
+  │     ├── model: &amp;quot;gpt-4o&amp;quot;
+  │     └── temperature: 0.1
+  └── rag.evaluation
+        ├── groundedness_score: 0.91
+        └── hallucination_risk: 0.08
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This structure is natively understood by Azure Application Insights, Jaeger, SigNoz, and other OpenTelemetry-compatible backends.&lt;/p&gt;
+&lt;h3 id="62-metrics-to-track"&gt;6.2 Metrics to track&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Metric&lt;/th&gt;
+&lt;th&gt;What it reveals&lt;/th&gt;
+&lt;th&gt;Alert threshold (example)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Index freshness&lt;/td&gt;
+&lt;td&gt;Time since last index update&lt;/td&gt;
+&lt;td&gt;&amp;gt; 7 days for active knowledge bases&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Document churn rate&lt;/td&gt;
+&lt;td&gt;Additions/removals per period&lt;/td&gt;
+&lt;td&gt;&amp;gt; 20% churn in 24 hours&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Embedding model version distribution&lt;/td&gt;
+&lt;td&gt;Mixed model versions in index&lt;/td&gt;
+&lt;td&gt;Any version mismatch&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Retrieval score distribution&lt;/td&gt;
+&lt;td&gt;Shift in confidence over time&lt;/td&gt;
+&lt;td&gt;Mean score drops &amp;gt; 10% week-over-week&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Source dominance index&lt;/td&gt;
+&lt;td&gt;Single source answering disproportionately&lt;/td&gt;
+&lt;td&gt;Any source &amp;gt; 60% of retrievals for a topic&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Unsupported claim rate&lt;/td&gt;
+&lt;td&gt;Claims not grounded in retrieved context&lt;/td&gt;
+&lt;td&gt;&amp;gt; 5% of responses&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="63-alerting-on-index-related-anomalies"&gt;6.3 Alerting on index-related anomalies&lt;/h3&gt;
+&lt;p&gt;Configure alerts for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hallucination rate spike within 24 hours of a reindexing event&lt;/li&gt;
+&lt;li&gt;Sudden drop in average retrieval confidence scores&lt;/li&gt;
+&lt;li&gt;Unexpected change in document count (indicating accidental deletion or duplication)&lt;/li&gt;
+&lt;li&gt;Retrieval latency spike (possibly caused by index corruption or misconfiguration)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The important thing is correlating quality metrics with index version transitions. Without the version tag, an alert tells you something is wrong. With it, the alert tells you &lt;em&gt;what caused it&lt;/em&gt;.&lt;/p&gt;
+&lt;h3 id="64-governance-dashboards"&gt;6.4 Governance dashboards&lt;/h3&gt;
+&lt;p&gt;For teams operating RAG in regulated environments:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Index version timeline with quality metrics overlaid, so you can see exactly when quality changed and which index version was responsible.&lt;/li&gt;
+&lt;li&gt;Document lifecycle view: when was each document added, modified, or removed from the index?&lt;/li&gt;
+&lt;li&gt;Cross-version comparison: side-by-side retrieval results for the same query across two index versions.&lt;/li&gt;
+&lt;li&gt;Regulatory audit view: for a given date range, show all index versions that were active and their associated quality metrics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="7-practical-decision-framework"&gt;7. Practical decision framework&lt;/h2&gt;
+&lt;p&gt;Use this decision tree to choose your versioning level:&lt;/p&gt;
+&lt;pre class="mermaid"&gt;
+flowchart TD
+    Start([What versioning level do you need?]) --&gt; Q1{Regulated domain?&lt;br&gt;finance, healthcare,&lt;br&gt;employment, legal}
+    Q1 --&gt;|Yes| R1[Level 2+ with&lt;br&gt;immutable audit trail]
+    Q1 --&gt;|No| Q2{Index changes&lt;br&gt;more than weekly?}
+    Q2 --&gt;|Yes| R2[Level 1+&lt;br&gt;change detection]
+    Q2 --&gt;|No| Q3{Need to explain&lt;br&gt;past answers?}
+    Q3 --&gt;|Yes| R3[Level 3&lt;br&gt;replay capability]
+    Q3 --&gt;|No| Q4{High-risk under&lt;br&gt;EU AI Act?}
+    Q4 --&gt;|Yes| R4[Level 3-4&lt;br&gt;immutable logs +&lt;br&gt;point-in-time reconstruction]
+    Q4 --&gt;|No| Q5{Experimenting with&lt;br&gt;embeddings or chunking?}
+    Q5 --&gt;|Yes| R5[Level 2+&lt;br&gt;blue-green + A/B]
+    Q5 --&gt;|No| R6[Level 0&lt;br&gt;metadata tagging&lt;br&gt;is sufficient]
+
+    style R1 fill:#ef9a9a,stroke:#333,color:#000
+    style R4 fill:#ef9a9a,stroke:#333,color:#000
+    style R3 fill:#ffcc80,stroke:#333,color:#000
+    style R2 fill:#fff9c4,stroke:#333,color:#000
+    style R5 fill:#fff9c4,stroke:#333,color:#000
+    style R6 fill:#c8e6c9,stroke:#333,color:#000
+&lt;/pre&gt;
+
+&lt;h2 id="8-common-pitfalls"&gt;8. Common pitfalls&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;You version the vectors but forget the chunking strategy.&lt;/strong&gt; The same document, chunked differently, retrieves differently and answers differently. Change your chunking approach without bumping the index version and your version history lies to you.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nobody tracks prompt template changes.&lt;/strong&gt; Index is the same. Model is the same. But someone tweaked the system prompt last Tuesday, and now identical retrieved context produces different answers. If prompt versions aren't in your audit trail, you have a blind spot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You snapshot the whole index when you don't need to.&lt;/strong&gt; A million documents at 1536 dimensions is several gigabytes per snapshot. Often, storing the document hash set, the embedding model version, and the index config is enough to rebuild the index on demand. You don't always need the raw vectors sitting in cold storage.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;No retention policy.&lt;/strong&gt; Keeping every version forever gets expensive and may run afoul of GDPR data minimization rules. Set retention windows based on actual regulatory requirements: maybe six months for an internal tool, five to ten years for healthcare or finance.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You treat versioning as a one-time setup.&lt;/strong&gt; Pipelines change. New data sources show up. Embedding models get upgraded. Chunking strategies evolve. If your versioning system can't keep up, it becomes stale metadata that nobody trusts. Build it as infrastructure you maintain, not a script you ran once.&lt;/p&gt;
+&lt;h2 id="9-index-versioning-as-a-first-class-concern"&gt;9. Index versioning as a first-class concern&lt;/h2&gt;
+&lt;p&gt;The retrieval index is the part of your RAG system that changes the most and gets governed the least. It shifts more often than the model, more quietly than the prompt, and its effect on answer quality is larger than either.&lt;/p&gt;
+&lt;p&gt;Versioning your index is not optional for any team that cares about debugging, compliance, or evaluation. Without it, you can't explain past answers, you can't detect drift, and you can't roll back when something breaks.&lt;/p&gt;
+&lt;p&gt;How much versioning you need depends on what's at stake:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Level 0: tag every request with &lt;code&gt;index_version&lt;/code&gt; and &lt;code&gt;embedding_model_version&lt;/code&gt;. It costs nothing. Do this today.&lt;/li&gt;
+&lt;li&gt;Level 1-2: add these when your index changes often or when someone asks why the system gave a particular answer last month.&lt;/li&gt;
+&lt;li&gt;Level 3-4: invest here when regulators require it or when your system's outputs carry real consequences for real people.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The question most RAG systems can't answer today is straightforward:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"What did the system know, and how did it use that knowledge, on a specific date?"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you can answer that, you're ahead of almost everyone.&lt;/p&gt;
+&lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+&lt;/script&gt;</content><category term="Machine Learning"/><category term="rag"/><category term="observability"/><category term="explainability"/><category term="versioning"/><category term="eu-ai-act"/><category term="vector-database"/><category term="data-drift"/><category term="compliance"/><category term="audit"/></entry><entry><title>Publishing a Python CLI Tool to Homebrew</title><link href="https://www.safjan.com/publishing-python-cli-tool-to-homebrew/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-02-05T00:00:00+01:00</published><updated>2026-02-05T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-02-05:/publishing-python-cli-tool-to-homebrew/</id><summary type="html">&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;Homebrew distribution lets users install your Python CLI with &lt;code&gt;brew install your-tool&lt;/code&gt;. The process: create a GitHub "tap" repository, generate a Ruby formula file, test it, and publish.&lt;/p&gt;
 &lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;
 &lt;p&gt;Your package must be on PyPI with an &lt;code&gt;sdist&lt;/code&gt; (source distribution), not …&lt;/p&gt;</summary><content type="html">&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
@@ -5109,68 +5513,4 @@ Find paths from Alice to TechCorp: &amp;#39;Alice&amp;#39;, &amp;#39;Bob&amp;#39
 &lt;span class="n"&gt;play_audio&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://example.com/notification.mp3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Happy coding, and may your long-running operations always end with a satisfying ding!&lt;/p&gt;</content><category term="note"/><category term="jupyter-notebooks"/><category term="audio-notifications"/><category term="python"/><category term="macos"/><category term="windows"/><category term="cross-platform"/><category term="beepy"/><category term="text-to-speech"/><category term="afplay"/><category term="playsound"/><category term="winsound"/><category term="javascript-audio"/><category term="productivity"/><category term="long-running-operations"/><category term="workflow-enhancement"/><category term="coding-alerts"/><category term="custom-notifications"/><category term="system-sounds"/><category term="multiplatform-development"/><category term="interactive-computing"/></entry><entry><title>Notes on using ripgrep for projects with python, jupyter (ipynb) notebooks and markdown files</title><link href="https://www.safjan.com/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2024-09-13T00:00:00+02:00</published><updated>2024-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-09-13:/notes-on-using-ripgrep-for-projects-with-python-jupyter-ipynb-notebooks-and/</id><summary type="html">&lt;p&gt;Learn how to effectively use ripgrep (rg) for searching Python, Jupyter notebook (.ipynb), and Markdown (.md) files with various options like file type specificity, context display, and pattern matching.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Notes on using ripgrep (rg) mainly for use cases as a Python developer working with .py, .ipynb, and .md files:&lt;/p&gt;
-&lt;h2 id="basic-search"&gt;Basic search&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;path/to/search
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="search-only-python-files"&gt;Search only Python files&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;--type&lt;span class="w"&gt; &lt;/span&gt;py&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="search-jupyter-notebooks"&gt;Search Jupyter notebooks&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;--type-add&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ipynb:*.ipynb&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--type&lt;span class="w"&gt; &lt;/span&gt;ipynb&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="search-markdown-files"&gt;Search Markdown files&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;--type&lt;span class="w"&gt; &lt;/span&gt;md&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="case-insensitive-search"&gt;Case-insensitive search&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="search-for-whole-words"&gt;Search for whole words&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;-w&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;word&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Show context around matches&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;-C&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# 3 lines before and after&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="search-for-multiple-patterns"&gt;Search for multiple patterns&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern1|pattern2|pattern3&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Exclude specific directories:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--glob&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;!{venv,__pycache__}&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="search-for-python-functions"&gt;Search for Python functions&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;def \w+\(&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;```&lt;/span&gt;
-
-&lt;span class="c1"&gt;## Search for Markdown headers&lt;/span&gt;
-
-&lt;span class="sb"&gt;```&lt;/span&gt;sh
-&lt;span class="w"&gt;    &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;^#{1,6} .+&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;```&lt;/span&gt;
-
-&lt;span class="c1"&gt;## Count matches&lt;/span&gt;
-
-&lt;span class="sb"&gt;```&lt;/span&gt;sh
-&lt;span class="w"&gt;    &lt;/span&gt;rg&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;```&lt;/span&gt;
-
-&lt;span class="c1"&gt;## Display only the filenames where a pattern appears&lt;/span&gt;
-
-To&lt;span class="w"&gt; &lt;/span&gt;display&lt;span class="w"&gt; &lt;/span&gt;only&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;filenames&lt;span class="w"&gt; &lt;/span&gt;where&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;pattern&lt;span class="w"&gt; &lt;/span&gt;appears,&lt;span class="w"&gt; &lt;/span&gt;you&lt;span class="w"&gt; &lt;/span&gt;can&lt;span class="w"&gt; &lt;/span&gt;use&lt;span class="w"&gt; &lt;/span&gt;the&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;-l&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;or&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;--files-with-matches&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;option&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;ripgrep.&lt;span class="w"&gt; &lt;/span&gt;Here&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s&lt;span class="w"&gt; &lt;/span&gt;how&lt;span class="w"&gt; &lt;/span&gt;to&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;it:
-
-&lt;span class="sb"&gt;```&lt;/span&gt;sh
-rg&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pattern&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="search-for-files-with-a-specific-name-pattern"&gt;Search for files with a specific name pattern&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;rg --files -g "*.py"&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id="use-and-logic-for-multiple-patterns"&gt;Use AND logic for multiple patterns&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;rg "pattern1" | rg "pattern2"&lt;/code&gt;&lt;/p&gt;</content><category term="note"/><category term="ripgrep"/><category term="grep"/><category term="search"/><category term="code-search"/><category term="python-project"/><category term="developer-tools"/></entry></feed>
+&lt;p&gt;Happy coding, and may your long-running operations always end with a satisfying ding!&lt;/p&gt;</content><category term="note"/><category term="jupyter-notebooks"/><category term="audio-notifications"/><category term="python"/><category term="macos"/><category term="windows"/><category term="cross-platform"/><category term="beepy"/><category term="text-to-speech"/><category term="afplay"/><category term="playsound"/><category term="winsound"/><category term="javascript-audio"/><category term="productivity"/><category term="long-running-operations"/><category term="workflow-enhancement"/><category term="coding-alerts"/><category term="custom-notifications"/><category term="system-sounds"/><category term="multiplatform-development"/><category term="interactive-computing"/></entry></feed>

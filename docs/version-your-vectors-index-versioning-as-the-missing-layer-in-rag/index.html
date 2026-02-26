@@ -1,0 +1,978 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light dark"/>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+              rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/stylesheet/style.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/pygments/github.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="https://www.safjan.com/theme/font-awesome/css/solid.css">
+
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+        <link rel="stylesheet" type="text/css"
+              href="https://www.safjan.com/styles/custom.css">
+
+        <link href="https://www.safjan.com/feeds/all.atom.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/atom+xml" rel="alternate"
+              title="Krystian Safjan's Blog Atom">
+
+        <link href="https://www.safjan.com/feeds/all.rss.xml?utm_source=rss&utm_medium=feed&utm_campaign=rss-feed" type="application/rss+xml" rel="alternate"
+              title="Krystian Safjan's Blog RSS">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.safjan.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.safjan.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.safjan.com/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://www.safjan.com/favicon.ico">
+    <link rel="manifest" href="https://www.safjan.com/site.webmanifest">
+    <meta name="theme-color" content="#333333">
+    <meta name="apple-mobile-web-app-title" content="Krystian Safjan's Blog">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RM2PKDCCYM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RM2PKDCCYM');
+</script>
+<!-- End of Google tag (gtag.js) -->
+
+
+
+    <meta name="author" content="Krystian Safjan"/>
+    <meta name="description" content="Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable point-in-time reconstruction, and when lightweight metadata is enough. Includes practical tracing patterns, replay strategies, and a risk-based decision guide for production systems."/>
+    <meta name="keywords" content="rag, observability, explainability, versioning, eu-ai-act, vector-database, data-drift, compliance, audit">
+
+
+  <meta property="og:site_name" content="Krystian Safjan's Blog"/>
+  <meta property="og:title" content="Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance"/>
+  <meta property="og:description" content="Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable point-in-time reconstruction, and when lightweight metadata is enough. Includes practical tracing patterns, replay strategies, and a risk-based decision guide for production systems."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://www.safjan.com/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-02-26 00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-02-26 00:00:00+01:00"/>
+  <meta property="article:author" content="https://www.safjan.com/author/krystian-safjan/"/>
+  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:tag" content="rag"/>
+  <meta property="article:tag" content="observability"/>
+  <meta property="article:tag" content="explainability"/>
+  <meta property="article:tag" content="versioning"/>
+  <meta property="article:tag" content="eu-ai-act"/>
+  <meta property="article:tag" content="vector-database"/>
+  <meta property="article:tag" content="data-drift"/>
+  <meta property="article:tag" content="compliance"/>
+  <meta property="article:tag" content="audit"/>
+  <meta property="og:image" content="https://www.safjan.com//images/head/glass_balls_640px.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://www.safjan.com//images/head/glass_balls_640px.jpg"/>
+    <meta name="twitter:image:alt" content="Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance"/>
+
+
+    <meta name="twitter:site" content="@izikeros"/>
+    <meta name="twitter:creator" content="@izikeros"/>
+    <meta name="twitter:title" content="Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance"/>
+    <meta name="twitter:description" content="Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains..."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.safjan.com/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/"
+  },
+  "headline": "Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance",
+  "datePublished": "2026-02-26T00:00:00+01:00",
+  "dateModified": "2026-02-26T00:00:00+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Krystian Safjan",
+    "url": "https://www.safjan.com/author/krystian-safjan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krystian Safjan's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/profile_new.jpg"
+    }  },
+"image": "https://www.safjan.com//images/head/glass_balls_640px.jpg",  "url": "https://www.safjan.com/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/",
+  "description": "Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and...",
+  "articleSection": "Machine Learning",
+  "inLanguage": "en",
+  "keywords": "rag, observability, explainability, versioning, eu-ai-act, vector-database, data-drift, compliance, audit",
+  "wordCount": 3043,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
+  }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.safjan.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Machine Learning",
+      "item": "https://www.safjan.com/category/machine-learning.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Version Your Vectors - Index Versioning as the..."
+    }
+  ]
+}
+</script>
+
+
+
+<meta name="ai:summary" content="Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable...">
+
+<meta name="ai:topics" content="rag, observability, explainability, versioning, eu-ai-act, vector-database, data-drift, compliance, audit">
+
+
+
+<meta name="ai:word-count" content="3043">
+<meta name="ai:reading-time" content="15 min">
+
+<meta name="ai:section" content="Machine Learning">
+
+
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <title>    Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance
+</title>
+
+
+
+<!-- Google Automatic Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9767732578835199"
+     crossorigin="anonymous"></script>
+<!-- End of Google Automatic Ads -->
+
+
+</head>
+<body>
+<div id="reading-progress" class="reading-progress"></div>
+<aside>
+    <div>
+        <a href="https://www.safjan.com/">
+                <img src="/images/profile_new.jpg" alt="Krystian Safjan's Blog" title="Krystian Safjan's Blog" width="140" height="140">
+        </a>
+
+        <h1>
+            <a href="https://www.safjan.com/">Krystian Safjan's Blog</a>
+        </h1>
+
+<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
+
+
+        <ul class="social">
+                <li>
+                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-github" href="https://github.com/izikeros"
+                       target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </li>
+                <li>
+                    <a  class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank">
+                        <i class="fas fa-rss"></i>
+                    </a>
+                </li>
+        </ul>
+
+            <a class="linkedin-follow-btn"
+               href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=krystiansafjan"
+               target="_blank">Follow on LinkedIn</a>
+    </div>
+
+<div class="promo-box">
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+    </a>
+    
+    <p class="promo-box-headline">Ace Your MLOps Interview</p>
+    
+    <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-cta">
+        Get for $2.99
+    </a>
+    
+    <p class="promo-box-features">50 Q&A • PDF/ePUB/mobi</p>
+</div>
+</aside>
+<main>
+
+        <nav aria-label="Main navigation">
+            <a href="https://www.safjan.com/">Home</a>
+
+                <a href="/archives.html">Articles</a>
+                <a href="/til.html">Notes</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/pdfs/Krystian_Safjan_resume_priv.pdf">Resume</a>
+
+                <a href="https://www.safjan.com/feeds/all.atom.xml">Atom</a>
+
+                <a href="https://www.safjan.com/feeds/all.rss.xml">RSS</a>
+
+            <div id="search" class="nav-search"></div>
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+    <article class="single">
+        <header>
+                
+            <p>
+                <!-- Posted on: -->
+                2026-02-26 
+
+
+                <br/>
+            </p>
+            <h1>Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance</h1>
+            <div class="header-underline"></div>
+                <div class="summary"><p>Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable point-in-time reconstruction, and when lightweight metadata is enough. Includes practical tracing patterns, replay strategies, and a risk-based decision guide for production systems.</p></div>
+<div class="ai-analyzer-bar">
+    <div class="ai-analyzer-bar-inner">
+    <span class="ai-analyzer-text">Summarize and analyze this article with:</span>
+    <div class="ai-analyzer-buttons">
+        <a href="https://chat.openai.com/?q=https%3A%2F%2Fwww.safjan.com%2Fversion-your-vectors-index-versioning-as-the-missing-layer-in-rag%2F" target="_blank" rel="noopener noreferrer" class="ai-analyzer-btn ai-analyzer-chatgpt" title="Analyze with ChatGPT">
+            <span class="ai-analyzer-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364l2.0201-1.1685a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>
+            <span class="ai-analyzer-name">ChatGPT</span>
+        </a><a href="https://www.perplexity.ai/search/new?q=https%3A%2F%2Fwww.safjan.com%2Fversion-your-vectors-index-versioning-as-the-missing-layer-in-rag%2F" target="_blank" rel="noopener noreferrer" class="ai-analyzer-btn ai-analyzer-perplexity" title="Analyze with Perplexity">
+            <span class="ai-analyzer-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L8 4h3v6.5L5.5 5 4 6.5 9.5 12H4v3h5.5L4 20.5 5.5 22l5.5-5.5V23h2v-6.5l5.5 5.5 1.5-1.5-5.5-5.5H20v-3h-5.5L20 6.5 18.5 5 13 10.5V4h3l-4-4z"/></svg></span>
+            <span class="ai-analyzer-name">Perplexity</span>
+        </a><a href="https://claude.ai/new?q=https%3A%2F%2Fwww.safjan.com%2Fversion-your-vectors-index-versioning-as-the-missing-layer-in-rag%2F" target="_blank" rel="noopener noreferrer" class="ai-analyzer-btn ai-analyzer-claude" title="Analyze with Claude">
+            <span class="ai-analyzer-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H2.91l-.08.128.079.23zm8.204-.063l-1.263-3.576-.165-.126-.165.126-1.263 3.576.063.252h2.73zm3.799-5.283L12.12 8.39l-.12-.031-.12.031-4.592 2.22.008.253 4.584 2.573.12.032.12-.032 4.584-2.573zm.798 5.346l4.72 2.647.08-.23-.08-.128h-6.518l-.08.128.079.23zM12 3.59L6.632 6.47l.012.248L12 9.592l5.356-2.874.012-.248zm9.291 12.238L12.12 20.41l-.12.032-.12-.032-9.171-4.582-.08.23.08.127 9.17 4.932.121.031.12-.031 9.172-4.932.079-.128z"/></svg></span>
+            <span class="ai-analyzer-name">Claude</span>
+        </a><a href="https://gemini.google.com/app?query=https%3A%2F%2Fwww.safjan.com%2Fversion-your-vectors-index-versioning-as-the-missing-layer-in-rag%2F" target="_blank" rel="noopener noreferrer" class="ai-analyzer-btn ai-analyzer-gemini" title="Analyze with Gemini">
+            <span class="ai-analyzer-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 24A14.304 14.304 0 0 0 0 12 14.304 14.304 0 0 0 12 0a14.305 14.305 0 0 0 12 12 14.305 14.305 0 0 0-12 12"/></svg></span>
+            <span class="ai-analyzer-name">Gemini</span>
+        </a><a href="https://x.com/i/grok?text=https%3A%2F%2Fwww.safjan.com%2Fversion-your-vectors-index-versioning-as-the-missing-layer-in-rag%2F" target="_blank" rel="noopener noreferrer" class="ai-analyzer-btn ai-analyzer-grok" title="Analyze with Grok">
+            <span class="ai-analyzer-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+            <span class="ai-analyzer-name">Grok</span>
+        </a>
+    </div>
+</div>
+</div>
+
+                <div style="width: 100%; padding-bottom: 30px; position: relative;">
+                    <a href="https://www.safjan.com/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/">
+                        <img style="width: 100%; "
+                             src="/images/head/glass_balls_640px.jpg" alt="Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance">
+                    </a>
+                </div>
+
+
+        </header>
+
+
+
+
+        <div class="article-content">
+            <h2 id="1-the-invisible-problem-why-rag-systems-silently-drift">1. The invisible problem: why RAG systems silently drift</h2>
+<p>Most teams building Retrieval-Augmented Generation systems obsess over the LLM, its version, its temperature, its prompt. The component that actually changes most often and most quietly is the index: the corpus of documents, their chunked representations, and the embeddings that map them into vector space.</p>
+<p>Think about what happens when:</p>
+<ul>
+<li>A policy document is updated, but the old version lingers in the index alongside the new one.</li>
+<li>An embedding model is upgraded, shifting similarity rankings for every query.</li>
+<li>A reindexing job silently drops a document partition due to a pipeline bug.</li>
+<li>A new batch of documents is ingested, and one source starts dominating 80% of retrievals on a topic.</li>
+</ul>
+<p>In each case, the RAG system's answers change, but the LLM didn't. The model is the same. The prompt is the same. The retrieval configuration is the same. Yet the user gets a different answer today than they got last week.</p>
+<p>Without index versioning, you cannot answer the most basic audit question:</p>
+<blockquote>
+<p>"Why did the system give this answer on January 10th?"</p>
+</blockquote>
+<p>This is like running a production database without transaction logs or backups. You can serve queries, but you cannot explain, debug, or defend any historical result.</p>
+<p>The index is the part of a RAG pipeline that changes the most, and almost nobody versions it.</p>
+<pre class="mermaid">
+flowchart LR
+    Q[Query] --> M[Same Model]
+    M --> P[Same Prompt]
+    P --> I{Changed Index}
+    I -->|v1| A1[Answer A]
+    I -->|v2| A2[Different Answer]
+
+    style I fill:#f96,stroke:#333,color:#000
+    style A2 fill:#f96,stroke:#333,color:#000
+</pre>
+
+<h2 id="2-use-cases-that-justify-index-versioning">2. Use cases that justify index versioning</h2>
+<p>Index versioning is not a theoretical exercise. Here are concrete scenarios where missing versioning causes real operational, legal, or quality failures.</p>
+<h3 id="21-debugging-and-root-cause-analysis">2.1 Debugging and root cause analysis</h3>
+<p>Answer quality suddenly degrades. Users report that the system "stopped knowing" about a topic, or started contradicting itself. The engineering team investigates:</p>
+<ul>
+<li>Was it a model change? No, same model, same temperature.</li>
+<li>Was it a prompt change? No, same template.</li>
+<li>Was it an index change? Unknown.</li>
+</ul>
+<p>Without index versioning, you cannot isolate retrieval drift from generation drift. You're debugging blind. With version tags on every retrieval request, you can immediately correlate quality drops with specific index changes: "Hallucination rate jumped 15% after <code>index_v23</code> was deployed, which coincided with a re-chunking of the legal policy corpus."</p>
+<h3 id="22-data-drift-detection">2.2 Data drift detection</h3>
+<p>The knowledge base is not static. Documents are added, updated, and removed. Embedding models are upgraded. Chunking strategies evolve.</p>
+<p>Index versioning lets you track:</p>
+<ul>
+<li>Corpus drift: How many documents were added or removed between versions?</li>
+<li>Embedding drift: Did switching from <code>text-embedding-ada-002</code> to <code>text-embedding-3-large</code> change retrieval behavior?</li>
+<li>Source dominance shifts: Is one internal document now responsible for 70% of answers on a topic, when it used to be 30%?</li>
+</ul>
+<p>These are not hypothetical concerns. In enterprise deployments, source dominance drift is one of the most common causes of biased or narrow answers, and it is invisible without versioned tracking.</p>
+<h3 id="23-regulatory-compliance-and-audit">2.3 Regulatory compliance and audit</h3>
+<p>This is where index versioning goes from "nice to have" to "legally required."</p>
+<p>Under the EU AI Act (Regulation 2024/1689), high-risk AI systems must maintain records sufficient to reconstruct past decisions. If a RAG system supports employment decisions, credit assessments, or healthcare recommendations, a regulator may ask:</p>
+<blockquote>
+<p>"Reconstruct the knowledge base state and the retrieval trace for the answer provided to user X on date Y."</p>
+</blockquote>
+<p>Without index versioning, this is impossible.</p>
+<p>In financial services, auditors need to verify what knowledge base was active when an AI-assisted recommendation was generated. In healthcare, regulators need to confirm which clinical guidelines were indexed at the time of an AI-supported diagnosis.</p>
+<h3 id="24-reproducibility-for-evaluation">2.4 Reproducibility for evaluation</h3>
+<p>RAG evaluation is meaningless without controlled variables. If you're comparing two retrieval strategies, two embedding models, or two chunking approaches, you need to hold the index constant, or at least know exactly how it differed.</p>
+<p>Index versioning gives you:</p>
+<ul>
+<li>A/B testing of embedding models with rollback to the control version.</li>
+<li>Regression testing: "Did the new index version degrade performance on our golden test set?"</li>
+<li>Longitudinal evaluation: tracking quality metrics across index versions over months.</li>
+</ul>
+<h3 id="25-incident-response-and-rollback">2.5 Incident response and rollback</h3>
+<p>A corrupted ingestion pipeline indexes the wrong documents. A hallucination spike is traced to a specific batch of poorly formatted PDFs. A critical policy document was accidentally excluded during re-indexing.</p>
+<p>In each case, the response must be fast:</p>
+<ol>
+<li>Identify the problematic index version.</li>
+<li>Rollback to the last known-good version.</li>
+<li>Serve from the rolled-back index while the issue is resolved.</li>
+</ol>
+<p>Without versioning, step 1 is a forensic investigation, step 2 is impossible, and step 3 requires rebuilding the entire index from scratch.</p>
+<h3 id="26-counterfactual-replay">2.6 Counterfactual replay</h3>
+<p>For bias investigations and fairness audits, you need to ask:</p>
+<blockquote>
+<p>"What would the system have answered with last month's index?"</p>
+</blockquote>
+<p>This requires the ability to replay a query against a historical index state. Counterfactual replay is the best method we have for demonstrating that a system change improved (or degraded) fairness, accuracy, or safety.</p>
+<h2 id="3-what-exactly-needs-versioning">3. What exactly needs versioning?</h2>
+<p>People often equate "index versioning" with "snapshotting the vector store." That's necessary but not enough. A RAG index is a composite artifact made of multiple independently changing components:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What changes</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document corpus</td>
+<td>Documents added, removed, or updated</td>
+<td>The content of the knowledge base</td>
+</tr>
+<tr>
+<td>Chunk boundaries</td>
+<td>Chunking strategy or parameters change</td>
+<td>Same document produces different retrieval units</td>
+</tr>
+<tr>
+<td>Embedding model</td>
+<td>Model version upgraded</td>
+<td>Same text maps to different vectors</td>
+</tr>
+<tr>
+<td>Vector index structure</td>
+<td>HNSW/IVF parameters, rebuild</td>
+<td>Approximate search behavior changes</td>
+</tr>
+<tr>
+<td>Metadata and filters</td>
+<td>ACLs, tags, timestamps, source labels</td>
+<td>What is retrievable changes</td>
+</tr>
+<tr>
+<td>Prompt templates</td>
+<td>System prompt evolves</td>
+<td>How retrieved context is used changes</td>
+</tr>
+</tbody>
+</table>
+<p>A "version" is the combination of all these, not just the vector snapshot. If you version the vectors but not the chunking strategy, the same document will produce different answers and you won't know why.</p>
+<p>In practice, your version identifier should encode or reference all of these components. A simple approach is a composite version string or a version manifest:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;index_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v47&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;corpus_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f8c1...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;chunk_strategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;semantic_v2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;embedding_model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text-embedding-3-large&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;embedding_model_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-09&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;vector_index_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HNSW&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;document_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14832</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-02-15T08:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;prompt_template_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v12&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="4-regulatory-context-when-versioning-becomes-mandatory">4. Regulatory context: when versioning becomes mandatory</h2>
+<h3 id="41-eu-ai-act-risk-classification-for-rag">4.1 EU AI Act risk classification for RAG</h3>
+<p>The EU AI Act does not regulate "RAG systems" as a category. It regulates AI systems based on their application domain and impact.</p>
+<p>A RAG system becomes high-risk when deployed in:</p>
+<ul>
+<li>Employment and worker management (screening, recruitment, task allocation)</li>
+<li>Access to essential services (credit scoring, insurance, social benefits)</li>
+<li>Education and vocational training (admissions, assessment)</li>
+<li>Law enforcement (evidence evaluation, risk assessment)</li>
+<li>Healthcare (clinical decision support, triage)</li>
+</ul>
+<p>A RAG system used as an internal productivity tool (e.g., searching company wikis, drafting emails) is generally limited-risk or minimal-risk. Transparency obligations apply (users must know they're interacting with AI), but the heavy documentation and logging requirements do not.</p>
+<p>For deployers integrating third-party LLMs into RAG pipelines: even if the base model is compliant, your retrieval layer, index, and data governance are your responsibility. The model provider's compliance does not cover your index.</p>
+<h3 id="42-what-the-regulation-actually-requires">4.2 What the regulation actually requires</h3>
+<p>For high-risk systems, the EU AI Act mandates:</p>
+<ul>
+<li>Article 12 (Record-Keeping): Automatic logging of events sufficient to trace system behavior throughout its lifecycle. For RAG, this means logging retrieval traces, index versions, and context assembly decisions, not just input/output.</li>
+<li>Article 11 (Technical Documentation): Description of the system architecture, data sources, training data (or in RAG's case, indexed data), and their versions.</li>
+<li>Article 14 (Human Oversight): The system must allow effective human supervision, including the ability to review retrieval results and override decisions.</li>
+<li>Article 9 (Risk Management): Ongoing monitoring, testing, and mitigation, which for RAG includes detecting index drift, evaluating retrieval quality, and maintaining rollback capability.</li>
+</ul>
+<p>The regulation does not require opening neural weights or explaining attention patterns. It requires system-level traceability and governance. Index versioning is the mechanism that makes this possible for the retrieval layer.</p>
+<h3 id="43-proportional-versioning-match-effort-to-risk">4.3 Proportional versioning: match effort to risk</h3>
+<p>The principle here is proportionality. Not every RAG system needs a full replay architecture. But every RAG system needs <em>some</em> level of version tracking.</p>
+<table>
+<thead>
+<tr>
+<th>Risk level</th>
+<th>What to track</th>
+<th>How to implement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low risk (internal assistant)</td>
+<td>Embedding model version, document count, last update timestamp</td>
+<td>Metadata tags on telemetry spans</td>
+</tr>
+<tr>
+<td>Medium risk (decision support)</td>
+<td>Above + document hash sets, retrieval traces, index snapshot references</td>
+<td>Structured audit events with blob storage references</td>
+</tr>
+<tr>
+<td>High risk (regulatory decisions)</td>
+<td>Above + full replay capability, immutable audit trail, point-in-time index reconstruction</td>
+<td>Time-travel capable vector DB + archived prompts + evaluation metrics store</td>
+</tr>
+</tbody>
+</table>
+<p>Don't over-engineer for low-risk systems. Don't under-engineer for high-risk systems. The cost of getting this wrong runs in both directions: wasted engineering effort on one end, regulatory exposure on the other.</p>
+<h2 id="5-solution-architectures-from-lightweight-to-full-replay">5. Solution architectures: from lightweight to full replay</h2>
+<pre class="mermaid">
+graph BT
+    L0["<b>Level 0: Metadata Tagging</b><br>~zero cost <br><br> basic drift detection"]
+    L1["<b>Level 1: Content Hashing</b><br>low cost <br><br> change detection + audit trail"]
+    L2["<b>Level 2: Index Snapshots</b><br>medium cost <br><br> point-in-time recovery + A/B testing"]
+    L3["<b>Level 3: Full Replay</b><br>high cost <br><br> counterfactual analysis + regulatory demo"]
+    L4["<b>Level 4: Self-Healing Index</b><br>highest cost <br><br> automated drift detection + remediation"]
+
+    L0 --> L1 --> L2 --> L3 --> L4
+
+    style L0 fill:#c8e6c9,stroke:#333,color:#000
+    style L1 fill:#a5d6a7,stroke:#333,color:#000
+    style L2 fill:#fff9c4,stroke:#333,color:#000
+    style L3 fill:#ffcc80,stroke:#333,color:#000
+    style L4 fill:#ef9a9a,stroke:#333,color:#000
+</pre>
+
+<h3 id="51-level-0-metadata-tagging-minimum-viable-versioning">5.1 Level 0: metadata tagging (minimum viable versioning)</h3>
+<p>The cheapest possible starting point. Tag every retrieval request with basic version metadata:</p>
+<ul>
+<li><code>index_version</code>, a monotonically increasing identifier</li>
+<li><code>embedding_model_version</code>, which model generated the vectors</li>
+<li><code>document_count</code>, how many documents are in the index</li>
+<li><code>last_updated_timestamp</code>, when the index was last modified</li>
+</ul>
+<p>Store these as OpenTelemetry span attributes on every <code>rag.retrieval</code> span.</p>
+<p>Cost: Near zero.
+Value: Basic drift detection, version correlation with quality metrics, and historical analysis.</p>
+<p>This is the absolute minimum. If you are not doing this today, start here.</p>
+<h3 id="52-level-1-content-hashing-and-change-detection">5.2 Level 1: content hashing and change detection</h3>
+<p>At ingestion time, compute a hash for each document and each chunk. Store a <code>document_hash_set_id</code> that uniquely identifies the set of documents (and their versions) in the index.</p>
+<p>This gets you:</p>
+<ul>
+<li>Change detection without diff storage: know <em>that</em> the index changed between v46 and v47, and <em>which documents</em> changed.</li>
+<li>Selective re-embedding: only re-embed documents whose content hash changed, saving API costs.</li>
+<li>Audit trail: prove exactly which document versions were indexed at any point.</li>
+</ul>
+<p>A practical schema extension for pgvector or similar:</p>
+<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">embeddings</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">content_hash</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">embeddings</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">model_version</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">embeddings</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">indexed_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">();</span>
+</code></pre></div>
+
+<p>This pattern is well-documented in production pgvector deployments where content hash and text diff ratios determine whether re-embedding is necessary.</p>
+<h3 id="53-level-2-index-snapshots-with-point-in-time-recovery">5.3 Level 2: index snapshots with point-in-time recovery</h3>
+<p>This is where you gain the ability to reconstruct past index states.</p>
+<p>Several approaches, depending on your vector store:</p>
+<p>Database-native time travel:
+- LanceDB provides built-in versioning with zero-cost snapshots. Every mutation creates a new version. You can check out any historical version and query against it.
+- Qdrant supports collection snapshots that can be stored and restored.
+- Milvus offers point-in-time recovery through its storage layer.</p>
+<p>Alias-based zero-downtime deployment:
+- In Elasticsearch/OpenSearch, create timestamped indexes (<code>rag_index_2026_02_15</code>) and use aliases (<code>rag_index_current</code>) to swap atomically. Old indexes remain queryable for audit.</p>
+<p>Storage-based snapshots:
+- For FAISS or ChromaDB, periodically snapshot the index files to blob storage (S3, Azure Blob). Tag with the version manifest from Section 3.</p>
+<p>Blue-green deployment for model upgrades:
+- When upgrading the embedding model, build the new index in parallel. Route a percentage of traffic to the new index. Compare quality metrics. If acceptable, switch the alias. If not, rollback is instantaneous.</p>
+<h3 id="54-level-3-full-replay-architecture">5.4 Level 3: full replay architecture</h3>
+<p>Store enough state to deterministically replay any historical request:</p>
+<ol>
+<li>Index snapshot reference, which version was active</li>
+<li>Retrieved document IDs and scores, the actual retrieval results</li>
+<li>Exact prompt sent to LLM, including the assembled context</li>
+<li>Model version and parameters: temperature, top_p, model name</li>
+<li>Evaluation metrics: groundedness score, hallucination risk, confidence</li>
+</ol>
+<p>With all five, you can answer:</p>
+<blockquote>
+<p>"What would this query have returned with the index from three months ago?"</p>
+</blockquote>
+<p>This is what makes counterfactual analysis, bias investigations, and regulatory demonstrations possible.</p>
+<p>The Drift-Adapter approach offers an interesting optimization here: instead of maintaining full parallel indexes for every embedding model version, use a lightweight learned transformation layer to map new query embeddings into the legacy embedding space. This achieves 95-99% of retrieval performance recovery at a fraction of the storage cost.</p>
+<h3 id="55-level-4-self-healing-index-with-drift-detection">5.5 Level 4: self-healing index with drift detection</h3>
+<p>The most mature pattern: the index monitors its own health and triggers corrective actions.</p>
+<p>Continuous monitoring:
+- Track retrieval quality metrics (precision@k, nDCG, confidence score distributions) per index version.
+- Monitor content freshness: flag embeddings older than a configurable threshold.
+- Detect semantic drift: compare embedding distributions between index versions.</p>
+<p>Automated drift detection signals:
+- Content hash changes without corresponding re-embedding
+- Retrieval score distribution shift beyond a threshold
+- Embedding age exceeding freshness policy
+- Source dominance index crossing a configured limit</p>
+<p>Automated remediation:
+- Trigger selective re-embedding for stale content
+- Alert on anomalous quality metric changes
+- Initiate alias-based index rebuild if drift exceeds tolerance</p>
+<p>This pattern has been demonstrated in production using Elasticsearch with alias-based rebuilds, where the system continuously monitors query quality and initiates zero-downtime reindexing when drift is detected.</p>
+<h2 id="6-implementing-observability-around-index-versions">6. Implementing observability around index versions</h2>
+<h3 id="61-opentelemetry-span-design">6.1 OpenTelemetry span design</h3>
+<p>Model every RAG request as a span hierarchy. The <code>index.version</code> attribute must be present on the root span and the retrieval span:</p>
+<div class="highlight"><pre><span></span><code>rag.request (root span)
+  ├── index.version: &quot;v47&quot;
+  ├── embedding.model: &quot;text-embedding-3-large&quot;
+  ├── rag.retrieval
+  │     ├── top_k: 5
+  │     ├── retrieved_doc_ids: [&quot;doc_123&quot;, &quot;doc_456&quot;, ...]
+  │     ├── retrieval_scores: [0.92, 0.87, ...]
+  │     └── filter_applied: true
+  ├── rag.context_build
+  │     └── context_token_count: 2400
+  ├── rag.generation
+  │     ├── model: &quot;gpt-4o&quot;
+  │     └── temperature: 0.1
+  └── rag.evaluation
+        ├── groundedness_score: 0.91
+        └── hallucination_risk: 0.08
+</code></pre></div>
+
+<p>This structure is natively understood by Azure Application Insights, Jaeger, SigNoz, and other OpenTelemetry-compatible backends.</p>
+<h3 id="62-metrics-to-track">6.2 Metrics to track</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What it reveals</th>
+<th>Alert threshold (example)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Index freshness</td>
+<td>Time since last index update</td>
+<td>&gt; 7 days for active knowledge bases</td>
+</tr>
+<tr>
+<td>Document churn rate</td>
+<td>Additions/removals per period</td>
+<td>&gt; 20% churn in 24 hours</td>
+</tr>
+<tr>
+<td>Embedding model version distribution</td>
+<td>Mixed model versions in index</td>
+<td>Any version mismatch</td>
+</tr>
+<tr>
+<td>Retrieval score distribution</td>
+<td>Shift in confidence over time</td>
+<td>Mean score drops &gt; 10% week-over-week</td>
+</tr>
+<tr>
+<td>Source dominance index</td>
+<td>Single source answering disproportionately</td>
+<td>Any source &gt; 60% of retrievals for a topic</td>
+</tr>
+<tr>
+<td>Unsupported claim rate</td>
+<td>Claims not grounded in retrieved context</td>
+<td>&gt; 5% of responses</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-alerting-on-index-related-anomalies">6.3 Alerting on index-related anomalies</h3>
+<p>Configure alerts for:</p>
+<ul>
+<li>Hallucination rate spike within 24 hours of a reindexing event</li>
+<li>Sudden drop in average retrieval confidence scores</li>
+<li>Unexpected change in document count (indicating accidental deletion or duplication)</li>
+<li>Retrieval latency spike (possibly caused by index corruption or misconfiguration)</li>
+</ul>
+<p>The important thing is correlating quality metrics with index version transitions. Without the version tag, an alert tells you something is wrong. With it, the alert tells you <em>what caused it</em>.</p>
+<h3 id="64-governance-dashboards">6.4 Governance dashboards</h3>
+<p>For teams operating RAG in regulated environments:</p>
+<ul>
+<li>Index version timeline with quality metrics overlaid, so you can see exactly when quality changed and which index version was responsible.</li>
+<li>Document lifecycle view: when was each document added, modified, or removed from the index?</li>
+<li>Cross-version comparison: side-by-side retrieval results for the same query across two index versions.</li>
+<li>Regulatory audit view: for a given date range, show all index versions that were active and their associated quality metrics.</li>
+</ul>
+<h2 id="7-practical-decision-framework">7. Practical decision framework</h2>
+<p>Use this decision tree to choose your versioning level:</p>
+<pre class="mermaid">
+flowchart TD
+    Start([What versioning level do you need?]) --> Q1{Regulated domain?<br>finance, healthcare,<br>employment, legal}
+    Q1 -->|Yes| R1[Level 2+ with<br>immutable audit trail]
+    Q1 -->|No| Q2{Index changes<br>more than weekly?}
+    Q2 -->|Yes| R2[Level 1+<br>change detection]
+    Q2 -->|No| Q3{Need to explain<br>past answers?}
+    Q3 -->|Yes| R3[Level 3<br>replay capability]
+    Q3 -->|No| Q4{High-risk under<br>EU AI Act?}
+    Q4 -->|Yes| R4[Level 3-4<br>immutable logs +<br>point-in-time reconstruction]
+    Q4 -->|No| Q5{Experimenting with<br>embeddings or chunking?}
+    Q5 -->|Yes| R5[Level 2+<br>blue-green + A/B]
+    Q5 -->|No| R6[Level 0<br>metadata tagging<br>is sufficient]
+
+    style R1 fill:#ef9a9a,stroke:#333,color:#000
+    style R4 fill:#ef9a9a,stroke:#333,color:#000
+    style R3 fill:#ffcc80,stroke:#333,color:#000
+    style R2 fill:#fff9c4,stroke:#333,color:#000
+    style R5 fill:#fff9c4,stroke:#333,color:#000
+    style R6 fill:#c8e6c9,stroke:#333,color:#000
+</pre>
+
+<h2 id="8-common-pitfalls">8. Common pitfalls</h2>
+<p><strong>You version the vectors but forget the chunking strategy.</strong> The same document, chunked differently, retrieves differently and answers differently. Change your chunking approach without bumping the index version and your version history lies to you.</p>
+<p><strong>Nobody tracks prompt template changes.</strong> Index is the same. Model is the same. But someone tweaked the system prompt last Tuesday, and now identical retrieved context produces different answers. If prompt versions aren't in your audit trail, you have a blind spot.</p>
+<p><strong>You snapshot the whole index when you don't need to.</strong> A million documents at 1536 dimensions is several gigabytes per snapshot. Often, storing the document hash set, the embedding model version, and the index config is enough to rebuild the index on demand. You don't always need the raw vectors sitting in cold storage.</p>
+<p><strong>No retention policy.</strong> Keeping every version forever gets expensive and may run afoul of GDPR data minimization rules. Set retention windows based on actual regulatory requirements: maybe six months for an internal tool, five to ten years for healthcare or finance.</p>
+<p><strong>You treat versioning as a one-time setup.</strong> Pipelines change. New data sources show up. Embedding models get upgraded. Chunking strategies evolve. If your versioning system can't keep up, it becomes stale metadata that nobody trusts. Build it as infrastructure you maintain, not a script you ran once.</p>
+<h2 id="9-index-versioning-as-a-first-class-concern">9. Index versioning as a first-class concern</h2>
+<p>The retrieval index is the part of your RAG system that changes the most and gets governed the least. It shifts more often than the model, more quietly than the prompt, and its effect on answer quality is larger than either.</p>
+<p>Versioning your index is not optional for any team that cares about debugging, compliance, or evaluation. Without it, you can't explain past answers, you can't detect drift, and you can't roll back when something breaks.</p>
+<p>How much versioning you need depends on what's at stake:</p>
+<ul>
+<li>Level 0: tag every request with <code>index_version</code> and <code>embedding_model_version</code>. It costs nothing. Do this today.</li>
+<li>Level 1-2: add these when your index changes often or when someone asks why the system gave a particular answer last month.</li>
+<li>Level 3-4: invest here when regulators require it or when your system's outputs carry real consequences for real people.</li>
+</ul>
+<p>The question most RAG systems can't answer today is straightforward:</p>
+<blockquote>
+<p>"What did the system know, and how did it use that knowledge, on a specific date?"</p>
+</blockquote>
+<p>If you can answer that, you're ahead of almost everyone.</p>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+</script>
+        </div>
+
+
+
+
+            <div class="bibtex-note">
+                <p><b>To cite this article:</b></p>
+                <pre>@article{Saf2026Version,
+    author  = {Krystian Safjan},
+    title   = {Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance},
+    journal = {Krystian's Safjan Blog},
+    year    = {2026},
+}</pre>
+            </div>
+        <div class="article-tags">
+            <span class="tags-label">Tags:</span>
+                <a href="https://www.safjan.com/tag/rag/" class="article-tag">rag</a>
+                <a href="https://www.safjan.com/tag/observability/" class="article-tag">observability</a>
+                <a href="https://www.safjan.com/tag/explainability/" class="article-tag">explainability</a>
+                <a href="https://www.safjan.com/tag/versioning/" class="article-tag">versioning</a>
+                <a href="https://www.safjan.com/tag/eu-ai-act/" class="article-tag">eu-ai-act</a>
+                <a href="https://www.safjan.com/tag/vector-database/" class="article-tag">vector-database</a>
+                <a href="https://www.safjan.com/tag/data-drift/" class="article-tag">data-drift</a>
+                <a href="https://www.safjan.com/tag/compliance/" class="article-tag">compliance</a>
+                <a href="https://www.safjan.com/tag/audit/" class="article-tag">audit</a>
+        </div>
+
+
+
+
+
+
+
+            <div class="related-posts">
+                <h4 class="related-posts-title">You might also like</h4>
+                <div class="related-posts-grid">
+                        <a href="https://www.safjan.com/rankflow-plot-for-retriever-visual-evaluation/" class="related-post-card">
+                            <span class="related-post-title">RankFlow plot for retriever visual evaluation</span>
+                            <span class="related-post-date">Jul 08, 2024</span>
+                        </a>
+                        <a href="https://www.safjan.com/using-mlflowragas-integration-without-tracing/" class="related-post-card">
+                            <span class="related-post-title">Using MLflow-RAGAS Integration Without Tracing</span>
+                            <span class="related-post-date">Jan 11, 2026</span>
+                        </a>
+                        <a href="https://www.safjan.com/ragas-mlflow-rag-evaluation-tutorial/" class="related-post-card">
+                            <span class="related-post-title">RAG Evaluation with RAGAS and MLflow - A Practical Guide</span>
+                            <span class="related-post-date">Jan 08, 2026</span>
+                        </a>
+                        <a href="https://www.safjan.com/rag-fusion-enhancing-information-retrieval-in-large-language-models/" class="related-post-card">
+                            <span class="related-post-title">RAG-Fusion - Enhancing Information Retrieval in Large Language Models</span>
+                            <span class="related-post-date">Nov 06, 2023</span>
+                        </a>
+                </div>
+            </div>
+
+
+
+
+    </article>
+
+    <footer>
+<p>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+</p>    </footer>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Krystian Safjan's Blog",
+  "url": "https://www.safjan.com",
+"image": "/images/profile_new.jpg",  "description": ""
+}
+</script>
+
+
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: false,
+            showImages: false,
+            basePath: "/pagefind/"
+        });
+    });
+</script>
+
+<script src="https://www.safjan.com/theme/js/theme-switcher.js"></script>
+
+<style>
+.video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.video-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.video-embed-info {
+    padding: 0.5rem 0.75rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0 0 0.375rem 0.375rem;
+    font-size: 0.875rem;
+    margin-top: -0.375rem;
+}
+.video-embed-info a {
+    text-decoration: none;
+    color: inherit;
+}
+.video-embed-info a:hover {
+    text-decoration: underline;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('pre > code').forEach(function(code) {
+        var text = code.textContent.trim();
+        var lines = text.split('\n');
+        var url = lines[0].trim();
+
+        var videoId = null;
+        var embedUrl = null;
+        var platform = null;
+
+        // YouTube detection
+        var ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+            videoId = ytMatch[1];
+            embedUrl = 'https://www.youtube-nocookie.com/embed/' + videoId;
+            platform = 'youtube';
+        }
+
+        // Vimeo detection
+        var vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        if (vimeoMatch) {
+            videoId = vimeoMatch[1];
+            embedUrl = 'https://player.vimeo.com/video/' + videoId + '?dnt=1';
+            platform = 'vimeo';
+        }
+
+        if (!videoId || !embedUrl) return;
+
+        var meta = {};
+        lines.slice(1).forEach(function(line) {
+            var m = line.match(/^(\w+):\s*(.+)$/);
+            if (m) meta[m[1].toLowerCase()] = m[2].trim();
+        });
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'video-embed-wrapper';
+
+        var embed = document.createElement('div');
+        embed.className = 'video-embed';
+        embed.innerHTML = '<iframe src="' + embedUrl +
+            '" allowfullscreen loading="lazy" title="' + (meta.title || (platform === 'youtube' ? 'YouTube video' : 'Vimeo video')).replace(/"/g, '&quot;') + '"></iframe>';
+        wrapper.appendChild(embed);
+
+        if (meta.title || meta.author) {
+            var info = document.createElement('div');
+            info.className = 'video-embed-info';
+            var html = meta.title ? '<strong>' + meta.title + '</strong>' : '';
+            if (meta.author) {
+                html += (meta.title ? ' &bull; ' : '');
+                html += meta.authorurl ? '<a href="' + meta.authorurl + '" target="_blank" rel="noopener">' + meta.author + '</a>' : meta.author;
+            }
+            info.innerHTML = html;
+            wrapper.appendChild(info);
+        }
+        code.closest('pre').replaceWith(wrapper);
+    });
+});
+</script>
+
+<style>
+.tweet-embed-wrapper {
+    margin-bottom: 1rem;
+}
+.tweet-embed-loading {
+    padding: 1rem;
+    background: var(--color-bg-secondary, #f6f8fa);
+    border-radius: 0.375rem;
+    color: var(--color-text-secondary, #6c757d);
+    font-size: 0.875rem;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var twitterScriptLoaded = false;
+
+    function loadTwitterScript() {
+        if (twitterScriptLoaded) return;
+        twitterScriptLoaded = true;
+        var script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }
+
+    document.querySelectorAll('pre > code.language-tweet').forEach(function(code) {
+        var text = code.textContent.trim();
+        var url = text.split('\n')[0].trim();
+
+        // Twitter/X URL detection
+        var tweetMatch = url.match(/^https?:\/\/(twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
+        if (!tweetMatch) return;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'tweet-embed-wrapper';
+        wrapper.innerHTML = '<div class="tweet-embed-loading">Loading tweet...</div>';
+
+        code.closest('pre').replaceWith(wrapper);
+
+        // Fetch oEmbed data
+        var oembedUrl = 'https://publish.twitter.com/oembed?url=' + encodeURIComponent(url) + '&dnt=true&omit_script=true';
+
+        fetch(oembedUrl)
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                wrapper.innerHTML = data.html;
+                loadTwitterScript();
+                if (window.twttr && window.twttr.widgets) {
+                    window.twttr.widgets.load(wrapper);
+                }
+            })
+            .catch(function() {
+                wrapper.innerHTML = '<div class="tweet-embed-loading">Failed to load tweet. <a href="' + url + '" target="_blank" rel="noopener">View on Twitter</a></div>';
+            });
+    });
+});
+</script>
+</body>
+</html>
