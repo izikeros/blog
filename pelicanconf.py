@@ -390,12 +390,12 @@ ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-prev
 # Adds buttons to analyze articles with AI services (ChatGPT, Perplexity, etc.)
 
 AI_ANALYZER_BAR = {
-    'enabled': True,
-    'services': ['chatgpt', 'perplexity', 'claude', 'gemini', 'grok'],
-    'position': 'after_summary',
-    'text': 'Summarize and analyze this article with:',
-    'exclude_categories': ['note'],
-    'exclude_paths': [],
+    "enabled": True,
+    "services": ["chatgpt", "perplexity", "claude", "gemini", "grok"],
+    "position": "after_summary",
+    "text": "Summarize and analyze this article with:",
+    "exclude_categories": ["note"],
+    "exclude_paths": [],
 }
 
 # =============================================================================
@@ -403,7 +403,7 @@ AI_ANALYZER_BAR = {
 # =============================================================================
 
 # Google AdSense auto ads
-USE_GOOGLE_AUTO_ADS = True
+USE_GOOGLE_AUTO_ADS = False
 
 # Applause button (reader appreciation)
 USE_APPLAUSE = False
