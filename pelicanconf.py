@@ -351,6 +351,7 @@ PLUGINS += [
     "related_posts",  # Related articles suggestions
     "sitemap",  # Generate sitemap.xml
     nb_markup,  # Enhanced Jupyter notebook support (pelican_jupyter)
+    "series",
 ]
 
 # =============================================================================
