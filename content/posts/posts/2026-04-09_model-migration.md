@@ -8,7 +8,7 @@ Tags: llm-migration, model-deprecation, rag-systems, prompt-engineering, product
 Category: Machine Learning
 Image: /images/head/chatbot_model_replacement_640px.jpg
 banner: "/images/head/chatbot_model_replacement_640px.jpg"
-Summary: Model deprecations are routine. What they expose underneath -- unmeasured quality, model-coupled prompts, unversioned behavior -- rarely is. Here's what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way.
+Summary: Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here's what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way.
 Status: published
 prompt:
 ---
@@ -17,24 +17,24 @@ So OpenAI deprecated `gpt-4o-mini`. Or some other model you've built your whole 
 
 I've been through this a few times now. The API call swap? Easy. Twenty minutes, tops. But the swap has a way of revealing every shortcut and assumption your system has been quietly depending on. That's the part people don't usually mention until you're already in it.
 
----
+
 
 ## Table of contents
 
 1. [What migration actually is](#what-migration-actually-is)
 2. [The model options in 2026](#the-model-options-in-2026)
-3. [Phase 0 -- Know what you're migrating from](#phase-0--know-what-youre-migrating-from)
-4. [Phase 1 -- Build your evaluation harness first](#phase-1--build-your-evaluation-harness-first)
-5. [Phase 2 -- The prompt portability problem](#phase-2--the-prompt-portability-problem)
-6. [Phase 3 -- Automated prompt optimization with DSPy](#phase-3--automated-prompt-optimization-with-dspy)
-7. [Phase 4 -- Reasoning models: where they belong](#phase-4--reasoning-models-where-they-belong)
-8. [Phase 5 -- Handling missing parameters](#phase-5--handling-missing-parameters)
-9. [Phase 6 -- Risk assessment](#phase-6--risk-assessment)
-10. [Phase 7 -- Progressive rollout](#phase-7--progressive-rollout)
-11. [Phase 8 -- Post-migration monitoring](#phase-8--post-migration-monitoring)
+3. [Phase 0 - Know what you're migrating from](#phase-0--know-what-youre-migrating-from)
+4. [Phase 1 - Build your evaluation harness first](#phase-1--build-your-evaluation-harness-first)
+5. [Phase 2 - The prompt portability problem](#phase-2--the-prompt-portability-problem)
+6. [Phase 3 - Automated prompt optimization with DSPy](#phase-3--automated-prompt-optimization-with-dspy)
+7. [Phase 4 - Reasoning models: where they belong](#phase-4--reasoning-models-where-they-belong)
+8. [Phase 5 - Handling missing parameters](#phase-5--handling-missing-parameters)
+9. [Phase 6 - Risk assessment](#phase-6--risk-assessment)
+10. [Phase 7 - Progressive rollout](#phase-7--progressive-rollout)
+11. [Phase 8 - Post-migration monitoring](#phase-8--post-migration-monitoring)
 12. [The systems audit you should run regardless](#the-systems-audit-you-should-run-regardless)
 
----
+
 
 ## What migration actually is
 
@@ -52,7 +52,7 @@ Three things consistently surface during migration that were invisible before:
 
 The teams who migrate cleanly aren't the ones with the best migration plans. They're the ones who treated their LLM system like a real production system long before a deadline showed up.
 
----
+
 
 ## The model options in 2026
 
@@ -64,7 +64,7 @@ Before you plan anything, you need to know what you're migrating *to*. OpenAI's 
 
 [GPT-5.4](https://platform.openai.com/docs/models/gpt-5.4), [GPT-5.4-mini](https://platform.openai.com/docs/models/gpt-5.4-mini), and [GPT-5.4-nano](https://platform.openai.com/docs/models/gpt-5.4-nano) are the current flagship models. They support variable `reasoning_effort` (none/low/medium/high/xhigh), plus all the standard parameters: `temperature`, system prompts, JSON mode, function calling, streaming. For most RAG answer generation workloads, one of these is where you should land.
 
-**Recommended default for gpt-4o-mini replacement: `gpt-5.4-nano`** -- comparable cost tier ($0.20 per million input tokens vs $0.10 for gpt-4o-mini), significantly more capable, fully API-compatible. If you need the extra capability and can handle the cost, `gpt-5.4-mini` ($0.75/MTok input) is a strong middle option.
+**Recommended default for gpt-4o-mini replacement: `gpt-5.4-nano`** -comparable cost tier ($0.20 per million input tokens vs $0.10 for gpt-4o-mini), significantly more capable, fully API-compatible. If you need the extra capability and can handle the cost, `gpt-5.4-mini` ($0.75/MTok input) is a strong middle option.
 
 ### Pure reasoning models
 
@@ -85,9 +85,9 @@ Is the answer synthesis step genuinely multi-hop?
                         for verification layer over synthesis
 ```
 
----
 
-## Phase 0 -- Know what you're migrating from
+
+## Phase 0 -Know what you're migrating from
 
 I know, I know. You want to start swapping things. But before you write a line of migration code, document what your system actually does right now. Otherwise you'll have no way to tell if the migration worked or just seemed like it did.
 
@@ -118,9 +118,9 @@ Each of these is a behavioral assumption about your current model. And each assu
 
 Run your current system against a sample of real production queries and save the outputs. This is your before-state. Even if you don't have a formal eval harness yet, just having the raw outputs lets you compare later. Future-you will be grateful.
 
----
 
-## Phase 1 -- Build your evaluation harness first
+
+## Phase 1 - Build your evaluation harness first
 
 I can't stress this enough. Everything else you do, prompt changes, model selection, rollout strategy, is going to be guided by what your evals tell you. Skip this and you'll discover regressions in production. I've watched teams do this. The cost of fixing things at that point is genuinely 10x higher.
 
@@ -132,6 +132,8 @@ Sample 200–500 real queries from production logs. For each, store:
 - The retrieved context chunks
 - The current model's answer (this becomes your reference)
 - For as many as you can afford: a human-verified "ideal" answer
+
+> Notice: with this approach you are preparing for testing answer generation part of the RAG not the retriever.
 
 **Don't sample uniformly.** Stratify on purpose. Include:
 
@@ -149,15 +151,15 @@ Aim for at least 50 human-verified examples. 200 is significantly better.
 
 For a RAG system, here's what you actually need to measure:
 
-**Faithfulness** -- does the answer only claim things supported by the retrieved context? This is the big one. A model that hallucinates confidently is scarier than one that refuses to answer. Use the [Ragas faithfulness metric](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html).
+**Faithfulness** - does the answer only claim things supported by the retrieved context? This is the big one. A model that hallucinates confidently is scarier than one that refuses to answer. Use the [Ragas faithfulness metric](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html).
 
-**Answer relevance** -- does it answer what was actually asked? ([Ragas answer relevance](https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html))
+**Answer relevance** - does it answer what was actually asked? ([Ragas answer relevance](https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html))
 
-**Format compliance** -- does the output match your schema? JSON structure, citation format, length constraints. You'll likely need a custom LLM-as-judge metric here because format requirements vary widely.
+**Format compliance** - does the output match your schema? JSON structure, citation format, length constraints. You'll likely need a custom LLM-as-judge metric here because format requirements vary widely.
 
-**Refusal accuracy** -- when the context doesn't contain the answer, does the model say "I don't know" instead of making something up?
+**Refusal accuracy** - when the context doesn't contain the answer, does the model say "I don't know" instead of making something up?
 
-**Groundedness** -- can you trace specific claims back to specific chunks? Similar to faithfulness but more granular.
+**Groundedness** - can you trace specific claims back to specific chunks? Similar to faithfulness but more granular.
 
 ### Evaluation tooling
 
@@ -165,9 +167,9 @@ For a RAG system, here's what you actually need to measure:
 
 [PromptFoo](https://www.promptfoo.dev/) works well for regression testing during prompt iteration. Define test cases with expected outputs or assertions and run them against multiple models simultaneously, which is exactly the side-by-side comparison you need during migration.
 
-[LangSmith](https://smith.langchain.com/) or [Braintrust](https://braintrustdata.com/) if you want persistent experiment tracking. They store eval runs with scores, let you diff outputs visually, and can alert on regressions. Worth setting up if this migration will take more than a week.
+[LangSmith](https://smith.langchain.com/) or [Braintrust](https://www.braintrust.dev/) if you want persistent experiment tracking. They store eval runs with scores, let you diff outputs visually, and can alert on regressions. Worth setting up if this migration will take more than a week.
 
-[MLflow](https://mlflow.org/docs/latest/llm-tracking.html) for teams already in the MLflow ecosystem. It has native LLM tracking and integrates directly with DSPy (covered in Phase 3).
+[MLflow](https://mlflow.org/docs/latest/genai/tracing/) for teams already in the MLflow ecosystem. It has native LLM tracking and integrates directly with DSPy (covered in Phase 3).
 
 ### Define pass/fail gate criteria
 
@@ -193,9 +195,9 @@ flowchart TD
     style G fill:#1a3d2e,color:#8fd4b0
 ```
 
----
 
-## Phase 2 -- The prompt portability problem
+
+## Phase 2 - The prompt portability problem
 
 Okay, this is the part that causes the most pain, and people don't usually talk about it honestly.
 
@@ -219,9 +221,9 @@ These survive a model swap. You can read the prompt and tell whether any output 
 
 Sound familiar? Six months later your prompt is 800 words and full of stuff like:
 
-- *"Do not add unnecessary preambles"* -- patch for a greeting behavior specific to an old model weight
-- *"Avoid repeating the question in your answer"* -- patch for a retriggering behavior
-- *"Use natural language, not bullet points unless the question explicitly asks for a list"* -- patch for a formatting regression after a silent weight update
+- *"Do not add unnecessary preambles"* - patch for a greeting behavior specific to an old model weight
+- *"Avoid repeating the question in your answer"* - patch for a retriggering behavior
+- *"Use natural language, not bullet points unless the question explicitly asks for a list"* - patch for a formatting regression after a silent weight update
 
 None of these describe what your system is *supposed* to do. They're band-aids for specific past failures of a model that no longer exists.
 
@@ -238,8 +240,8 @@ If you're feeling called out right now, don't. The vast majority of production R
 ### What to do about it
 
 **Start with prompt archaeology.** Before you touch anything, go through every instruction in your current prompt and label it as either:
-- `SPEC` -- this describes intended behavior, survives model changes
-- `PATCH` -- this suppresses a specific failure, may not be relevant to new model
+- `SPEC` - this describes intended behavior, survives model changes
+- `PATCH` - this suppresses a specific failure, may not be relevant to new model
 
 In my experience, most 500+ word prompts end up being about 40% spec and 60% patch. The patches are candidates for removal or replacement after you test compatibility with the new model.
 
@@ -257,9 +259,9 @@ In my experience, most 500+ word prompts end up being about 40% spec and 60% pat
 
 **Few-shot examples are the most reliable format anchor.** More reliable than additional instructions. They act as a behavioral anchor that survives prompt wording differences across model versions. For format-critical RAG outputs, 2-3 few-shot examples will do more work than three paragraphs of format instructions.
 
----
 
-## Phase 3 -- Automated prompt optimization with DSPy
+
+## Phase 3 - Automated prompt optimization with DSPy
 
 So manual prompt iteration is what got you into the tuned-prompt mess. [DSPy](https://dspy.ai/) offers a way out: it learns the optimal prompt for your specific data and target model automatically, guided by whatever metric you care about.
 
@@ -298,7 +300,7 @@ Switching the target model is one line. Your golden dataset and metric stay iden
 # Before: gpt-4o-mini
 dspy.configure(lm=dspy.LM("openai/gpt-4o-mini"))
 
-# After: gpt-5.4-nano -- golden dataset unchanged, metric unchanged
+# After: gpt-5.4-nano - golden dataset unchanged, metric unchanged
 dspy.configure(lm=dspy.LM("openai/gpt-5.4-nano"))
 ```
 
@@ -328,9 +330,9 @@ flowchart TD
     style I fill:#3d2e1a,color:#d4c0a0
 ```
 
-**[BootstrapFewShot](https://dspy.ai/api/optimizers/BootstrapFewShot/)** -- the baseline. Generates complete demonstrations for each stage of your program, keeping only those that pass your metric. Use this first. Cheap, fast, often sufficient for single-stage answer generation migration.
+**[BootstrapFewShot](https://dspy.ai/api/optimizers/BootstrapFewShot/)** - the baseline. Generates complete demonstrations for each stage of your program, keeping only those that pass your metric. Use this first. Cheap, fast, often sufficient for single-stage answer generation migration.
 
-**[MIPROv2](https://dspy.ai/api/optimizers/MIPROv2/)** -- the workhorse. Runs three stages: bootstrapping to collect high-scoring traces, grounded proposal to draft potential instructions, then discrete search to evaluate instruction-example combinations. Costs ~$1.50-5 at medium auto setting, takes 20-40 minutes. Worth running before any production rollout.
+**[MIPROv2](https://dspy.ai/api/optimizers/MIPROv2/)** - the workhorse. Runs three stages: bootstrapping to collect high-scoring traces, grounded proposal to draft potential instructions, then discrete search to evaluate instruction-example combinations. Costs ~$1.50-5 at medium auto setting, takes 20-40 minutes. Worth running before any production rollout.
 
 ```python
 from dspy.teleprompt import MIPROv2
@@ -351,7 +353,7 @@ compiled_rag = optimizer.compile(
 compiled_rag.save("rag_pipeline_gpt54nano_v1.json")
 ```
 
-**[GEPA](https://dspy.ai/api/optimizers/GEPA/overview/)** -- the newest. Rather than optimizing only the globally best candidate (which leads to local optima), GEPA maintains a Pareto frontier: candidates that achieve the highest score on at least one evaluation instance. It uses a Teacher model to analyze failures and propose targeted fixes. Use for multi-stage pipelines where interaction effects between stages matter. Requires a strong reflection model (`gpt-5.4` or higher recommended).
+**[GEPA](https://dspy.ai/api/optimizers/GEPA/overview/)** - the newest. Rather than optimizing only the globally best candidate (which leads to local optima), GEPA maintains a Pareto frontier: candidates that achieve the highest score on at least one evaluation instance. It uses a Teacher model to analyze failures and propose targeted fixes. Use for multi-stage pipelines where interaction effects between stages matter. Requires a strong reflection model (`gpt-5.4` or higher recommended).
 
 ### The data split that matters
 
@@ -361,7 +363,7 @@ You can get real value from as few as 30 training examples. The validation set i
 
 ### DSPy in migration: tool vs framework
 
-Most common mistake I see: teams adopt DSPy as a permanent architectural layer when the problem only needed a one-time tool.
+Teams adopt DSPy as a permanent architectural layer when the problem only needed a one-time tool.
 
 **Use DSPy as a migration tool:** run MIPROv2 against your golden dataset on the new model, inspect the optimized prompt, extract it as a string, and deploy it without DSPy in your runtime path. Optimization benefit, no framework dependency.
 
@@ -376,9 +378,9 @@ A few things to be aware of:
 - **Reasoning models need special handling.** DSPy doesn't have first-class support for `reasoning_effort` yet. When targeting pure reasoning models (o4-mini, o3) or GPT-5.x with specific reasoning effort levels, wrap the model call in a custom `dspy.LM` class that sets `reasoning_effort` at initialization.
 - **Watch the adapter layer.** DSPy's adapters wrap your instructions in scaffolding. With reasoning models where prompt verbosity interferes with internal reasoning chains, this can produce unexpected behavior. Test it.
 
----
 
-## Phase 4 -- Reasoning models: where they belong
+
+## Phase 4 - Reasoning models: where they belong
 
 When people hear "more capable model family," their instinct is to slot the reasoning model right where the standard model was: answer generation. This is usually wrong.
 
@@ -411,7 +413,7 @@ flowchart TD
     style STANDARD fill:#1a2e1f,color:#90c4a0,stroke:#2a5a3a
 ```
 
-### Slot 1: Query decomposition -- strong fit, highest ROI
+### Slot 1: Query decomposition - strong fit, highest ROI
 
 Most enterprise RAG queries are compound, ambiguous, or require unpacking implicit assumptions before retrieval. A reasoning model at this stage:
 
@@ -421,33 +423,33 @@ Most enterprise RAG queries are compound, ambiguous, or require unpacking implic
 
 The reasoning happens *before* retrieval, so latency cost doesn't compound. Use `reasoning_effort: low` because query decomposition rarely needs deep thinking. You pay for one reasoning call and get better chunks in return for every subsequent step.
 
-### Slot 2: Context reranking and conflict detection -- strong fit
+### Slot 2: Context reranking and conflict detection - strong fit
 
 Standard [cross-encoder rerankers](https://www.sbert.net/docs/cross_encoder/usage/usage.html) like [BGE](https://huggingface.co/BAAI/bge-reranker-v2-m3) or [Cohere Rerank](https://cohere.com/rerank) score chunk-query relevance mechanically. A reasoning model can do something they can't: spot when retrieved chunks *contradict each other*. That's a signal to retry retrieval, not attempt synthesis over conflicting information.
 
 Especially useful in legal, compliance, and financial RAG where "relevance" means logical applicability, not just semantic similarity.
 
-### Slot 3: Answer synthesis on complex documents -- maybe
+### Slot 3: Answer synthesis on complex documents - maybe
 
 Use a reasoning model for synthesis only when the answer requires multi-hop inference across chunks (A implies B, B contradicts C, therefore...) or the domain is high-stakes with real consequences for wrong answers.
 
 Don't bother when the answer is directly stated in one or two chunks, or when query volume is high and latency matters. If you're generating templated output from straightforward lookups, a standard model is fine.
 
-### Slot 4: Agentic orchestration -- good fit, underused
+### Slot 4: Agentic orchestration - good fit, underused
 
 If you have multi-source RAG (vector DB + SQL + APIs + document store), you need something that decides *which retrieval path to take*, in what order, and when to stop. That's a planning problem, not a synthesis problem. Reasoning models are trained through RL to reason about *when and how to use tools*, not just call them when told.
 
 Use the reasoning model as the orchestration brain. Let cheaper instruction models handle the actual synthesis once the right context is assembled.
 
-### Slot 5: Faithfulness verification -- high value, underused
+### Slot 5: Faithfulness verification - high value, underused
 
 A second pass after generation: "Given only the following context, does this answer make claims not supported by the context? Flag the specific unsupported sentences."
 
 `reasoning_effort: low`. You're verifying, not generating. One cheap call that acts as your hallucination guardrail. The economics really work here for high-stakes outputs.
 
----
 
-## Phase 5 -- Handling parameter differences
+
+## Phase 5 - Handling parameter differences
 
 If you're migrating between standard GPT-5.x models (like gpt-4o-mini to gpt-5.4-nano), this section mostly doesn't apply. The standard parameters work identically.
 
@@ -455,16 +457,16 @@ The main difference: GPT-5.x models add `reasoning_effort` (none/low/medium/high
 
 If you're migrating to or using pure reasoning models (o-series), here's the complete parameter gap:
 
-| Parameter | GPT-5.x models | Pure reasoning (o-series) | Migration path |
-|---|---|---|---|
-| `temperature` | ✅ | ❌ | Use `reasoning_effort` instead, or prompt template variants |
-| `top_p` | ✅ | ❌ | Not needed, reasoning stabilizes output |
-| `max_tokens` | ✅ | ❌ | Use `max_completion_tokens` (covers thinking + output) |
-| `presence_penalty` | ✅ | ❌ | Not typically used in RAG anyway |
-| `frequency_penalty` | ✅ | ❌ | Not typically used in RAG anyway |
-| `reasoning_effort` | ✅ (none/low/medium/high/xhigh) | ✅ (low/medium/high only) | Built-in for GPT-5.x, only option for o-series |
-| `system` prompt | ✅ | Treated as developer message | Don't use both system and developer message |
-| `streaming` | ✅ | Limited (o3 with access) | Use progress indicators, not streaming text |
+| Parameter           | GPT-5.x models                 | Pure reasoning (o-series)    | Migration path                                              |
+| ------------------- | ------------------------------ | ---------------------------- | ----------------------------------------------------------- |
+| `temperature`       | ✅                              | ❌                            | Use `reasoning_effort` instead, or prompt template variants |
+| `top_p`             | ✅                              | ❌                            | Not needed, reasoning stabilizes output                     |
+| `max_tokens`        | ✅                              | ❌                            | Use `max_completion_tokens` (covers thinking + output)      |
+| `presence_penalty`  | ✅                              | ❌                            | Not typically used in RAG anyway                            |
+| `frequency_penalty` | ✅                              | ❌                            | Not typically used in RAG anyway                            |
+| `reasoning_effort`  | ✅ (none/low/medium/high/xhigh) | ✅ (low/medium/high only)     | Built-in for GPT-5.x, only option for o-series              |
+| `system` prompt     | ✅                              | Treated as developer message | Don't use both system and developer message                 |
+| `streaming`         | ✅                              | Limited (o3 with access)     | Use progress indicators, not streaming text                 |
 
 ### Temperature and reasoning_effort
 
@@ -486,9 +488,9 @@ Write shorter, higher-trust prompts when reasoning is active. Define the *goal* 
 
 For GPT-5.x with `reasoning_effort: none`, standard verbose prompts work fine.
 
----
 
-## Phase 6 -- Risk assessment
+
+## Phase 6 - Risk assessment
 
 Before any real traffic touches the new model, take a step back and run a structured risk assessment against your eval results.
 
@@ -517,23 +519,23 @@ flowchart TD
 
 ### Risk catalog
 
-**Format regression** -- one of the most common things to break. Newer models may wrap answers in markdown when you didn't ask, change capitalization, add disclaimers, or subtly alter JSON key naming. Fixable, but only if you're measuring it.
+**Format regression** - one of the most common things to break. Newer models may wrap answers in markdown when you didn't ask, change capitalization, add disclaimers, or subtly alter JSON key naming. Fixable, but only if you're measuring it.
 
-**Faithfulness change** -- this one can go either direction, which is what makes it tricky. More capable models are generally more faithful to retrieved context, but they also have stronger world-knowledge priors that can bleed through. Watch for answers that are factually correct but not actually grounded in the retrieved context. That's a subtle and dangerous failure mode.
+**Faithfulness change** - this one can go either direction, which is what makes it tricky. More capable models are generally more faithful to retrieved context, but they also have stronger world-knowledge priors that can bleed through. Watch for answers that are factually correct but not actually grounded in the retrieved context. That's a subtle and dangerous failure mode.
 
-**Latency change** -- gpt-5.4-nano is generally comparable to gpt-4o-mini for standard workloads. gpt-5.4-mini and gpt-5.4 (full) are slower. When you enable reasoning (`reasoning_effort: medium` or higher), latency increases significantly. At `high` or `xhigh` effort, a single query can take 30-90+ seconds. Pure reasoning models (o-series) operate in this higher-latency range. Measure P50, P95, P99 before committing.
+**Latency change** - gpt-5.4-nano is generally comparable to gpt-4o-mini for standard workloads. gpt-5.4-mini and gpt-5.4 (full) are slower. When you enable reasoning (`reasoning_effort: medium` or higher), latency increases significantly. At `high` or `xhigh` effort, a single query can take 30-90+ seconds. Pure reasoning models (o-series) operate in this higher-latency range. Measure P50, P95, P99 before committing.
 
-**Cost change** -- run a cost projection on your golden set query lengths x new model pricing before migration. The golden set gives you a realistic token distribution. Don't estimate from toy examples.
+**Cost change** - run a cost projection on your golden set query lengths x new model pricing before migration. The golden set gives you a realistic token distribution. Don't estimate from toy examples.
 
-**Streaming behavior** -- if your UI depends on streaming tokens, verify the new model's streaming token patterns don't break downstream parsing. Partial JSON parsing, in particular, can fail on different tokenization patterns.
+**Streaming behavior** - if your UI depends on streaming tokens, verify the new model's streaming token patterns don't break downstream parsing. Partial JSON parsing, in particular, can fail on different tokenization patterns.
 
-**Silent behavioral drift post-migration** -- even after successful migration, model providers update weights silently. This is the argument for pinning to a specific version string (`gpt-5.4-nano-2026-03-15` or similar dated versions) rather than a floating alias like `gpt-5.4-nano`. Floating aliases trade reproducibility for automatic access to improvements.
+**Silent behavioral drift post-migration** - even after successful migration, model providers update weights silently. This is the argument for pinning to a specific version string (`gpt-5.4-nano-2026-03-15` or similar dated versions) rather than a floating alias like `gpt-5.4-nano`. Floating aliases trade reproducibility for automatic access to improvements.
 
----
 
-## Phase 7 -- Progressive rollout
 
-Don't big-bang this. The cost of a bad rollout isn't the rollout itself. It's the user impact during the time it takes you to notice and roll back.
+## Phase 7 - Progressive rollout
+
+I recommend don't big-bang this. The cost of a bad rollout isn't the rollout itself. It's the user impact during the time it takes you to notice and roll back.
 
 ```mermaid
 flowchart LR
@@ -581,9 +583,9 @@ If you can segment production traffic by query type or user segment, use it. Sta
 
 Don't retire the old model integration the day you hit 100%. Keep the model name in a config variable so rollback is a single config change, not a code deployment. Wait at least a week before cleaning up the old path.
 
----
 
-## Phase 8 -- Post-migration monitoring
+
+## Phase 8 - Post-migration monitoring
 
 You're not done when you hit 100% traffic. You've just established a new baseline that will itself drift.
 
@@ -613,7 +615,7 @@ At minimum:
 
 [LangSmith](https://smith.langchain.com/), [Arize Phoenix](https://phoenix.arize.com/), and [Helicone](https://www.helicone.ai/) all handle these. One thing worth mentioning: generic APM monitoring won't give you what you need for an LLM system. The failure modes are different. The metrics that matter are different. It's a different kind of system.
 
----
+
 
 ## The systems audit you should run regardless
 
@@ -627,21 +629,21 @@ Two questions worth sitting with, migration or not:
 
 The migration is the deadline. But the real investment is in system discipline that makes the *next* migration boring instead of terrifying.
 
----
+
 
 ## Further reading
 
-- [DSPy Documentation and Tutorials](https://dspy.ai/) -- official docs with RAG optimization examples
-- [Ragas Framework](https://docs.ragas.io/) -- RAG-specific evaluation metrics
-- [OpenAI Model Deprecation Policy](https://platform.openai.com/docs/deprecations) -- deprecation schedule and migration guidance
-- [OpenAI o3 and o4-mini Technical Report](https://openai.com/index/introducing-o3-and-o4-mini/) -- capabilities and API parameters for reasoning models
-- [PromptFoo](https://www.promptfoo.dev/) -- LLM regression testing and model comparison
-- [LangSmith](https://smith.langchain.com/) -- LLM observability and experiment tracking
-- [Braintrust](https://www.braintrust.dev/) -- eval-driven LLM development platform
-- [Arize Phoenix](https://phoenix.arize.com/) -- open-source LLM tracing and evaluation
-- [MIPRO: Optimizing Instructions and Demonstrations](https://arxiv.org/abs/2406.11695) -- paper behind the MIPROv2 optimizer
-- [GEPA: Reflective Prompt Evolution](https://arxiv.org/abs/2507.19457) -- paper behind the GEPA optimizer
-- [BGE Reranker Models](https://huggingface.co/BAAI/bge-reranker-v2-m3) -- open-source cross-encoder reranking
-- [Cohere Rerank API](https://cohere.com/rerank) -- managed reranking service
-- [MLflow LLM Tracking](https://mlflow.org/docs/latest/llm-tracking.html) -- experiment tracking with native DSPy integration
-- [Helicone](https://www.helicone.ai/) -- LLM observability and cost tracking
+- [DSPy Documentation and Tutorials](https://dspy.ai/) - official docs with RAG optimization examples
+- [Ragas Framework](https://docs.ragas.io/) - RAG-specific evaluation metrics
+- [OpenAI Model Deprecation Policy](https://platform.openai.com/docs/deprecations) - deprecation schedule and migration guidance
+- [OpenAI o3 and o4-mini Technical Report](https://openai.com/index/introducing-o3-and-o4-mini/) - capabilities and API parameters for reasoning models
+- [PromptFoo](https://www.promptfoo.dev/) - LLM regression testing and model comparison
+- [LangSmith](https://smith.langchain.com/) - LLM observability and experiment tracking
+- [Braintrust](https://www.braintrust.dev/) - eval-driven LLM development platform
+- [Arize Phoenix](https://phoenix.arize.com/) - open-source LLM tracing and evaluation
+- [MIPRO: Optimizing Instructions and Demonstrations](https://arxiv.org/abs/2406.11695) - paper behind the MIPROv2 optimizer
+- [GEPA: Reflective Prompt Evolution](https://arxiv.org/abs/2507.19457) - paper behind the GEPA optimizer
+- [BGE Reranker Models](https://huggingface.co/BAAI/bge-reranker-v2-m3) - open-source cross-encoder reranking
+- [Cohere Rerank API](https://cohere.com/rerank) - managed reranking service
+- [MLflow LLM Tracking](https://mlflow.org/docs/latest/llm-tracking.html) - experiment tracking with native DSPy integration
+- [Helicone](https://www.helicone.ai/) - LLM observability and cost tracking
