@@ -8,88 +8,87 @@ Tags: agile, scrum, shape-up, basecamp, 37-signals, shape-up-method, six-week-cy
 Category: Software Development
 Image: /images/head/peaks_vivid_320x640px.jpg
 banner: "/images/head/peaks_vivid_320x640px.jpg"
-Summary: Shape Up offers a focused alternative to sprint-driven development, trading constant ceremonies and tight iterations for clear boundaries and six-week cycles. This article explores when it works well, when it doesn’t, and why it may help teams overwhelmed by process overhead.
+Summary: Shape Up replaces two-week sprints with six-week cycles, kills the backlog, and lets small teams decide how to build things. Here is when it works, when it doesn't, and what I think about it after digging in.
 Status: published
 prompt:
 ---
 
 
 
-- [What Makes Shape Up Different?](#what-makes-shape-up-different)
-- [When Shape Up Really Shines](#when-shape-up-really-shines)
-- [When It Might Not Be Your Best Bet](#when-it-might-not-be-your-best-bet)
-- [The Real Question](#the-real-question)
+- [What makes Shape Up different?](#what-makes-shape-up-different)
+- [When Shape Up works well](#when-shape-up-works-well)
+- [When it falls short](#when-it-falls-short)
+- [So what should you actually do?](#so-what-should-you-actually-do)
 - [Further reading](#further-reading)
 
 
 
 #agile #scrum #shape-up #basecamp #37-signals #kanban
 
-I've been thinking a lot lately about how we build software. Not the code itself—that's the easy part, really—but the _process_. The endless ceremonies, the sprint planning that somehow takes three hours, the daily standups that drift into problem-solving sessions, the backlog that's become this unwieldy beast no one wants to groom.
+I keep coming back to the same frustration with how we build software. Not the code, the _process_ around it. Sprint planning that eats three hours. Standups that turn into debugging sessions. A backlog so long nobody even scrolls to the bottom anymore.
 
-For years, we've been told that Agile is the answer. Scrum, Kanban, SAFe—pick your flavor. And look, these frameworks have helped countless teams ship better software. But somewhere along the way, something started feeling off. The two-week sprints that fragment work into artificial chunks. The constant context switching without possibility to think deeply about the problem on the table. The **weird pressure to estimate story points for work we barely understand yet**. The nagging feeling that we're **spending more time _managing_ the process than actually building things**.
+Agile was supposed to fix all this. Scrum, Kanban, SAFe, whatever. And those frameworks helped, I won't deny that. But at some point things drifted. Two-week sprints started fragmenting work into artificial chunks. Context switching never stopped. There was this constant pressure to estimate story points for work we barely understood yet, and I started noticing we were spending more time managing the process than actually building things.
 
-Then I stumbled onto [Shape Up](https://basecamp.com/shapeup), the approach developed by Basecamp (now [37signals](https://37signals.com/)), and it felt like someone had articulated frustrations I didn't even know I had.
+Then I found [Shape Up](https://basecamp.com/shapeup), the approach from Basecamp (now [37signals](https://37signals.com/)). It described exactly what was bothering me, better than I could.
 
 <a id="what-makes-shape-up-different"></a>
 
-## What Makes Shape Up Different?
+## What makes Shape Up different?
 
-Shape Up isn't just Agile with different terminology. It's a fundamentally different way of thinking about product development cycles.
+Shape Up is not Agile with different labels. The structure is different enough that it changes how you think about planning.
 
-> **The core idea**
-> Work in **six-week cycles**. Not two weeks. Six. **Long enough to build something meaningful, short enough to stay focused**. "Plus it gives you about eight chances a year to recalibrate and decide what to work on next." (see: [37signals](https://37signals.com/06)). Between cycles, there's a two-week cooldown where teams can breathe, fix bugs, explore ideas, or just catch up on that technical debt everyone's been ignoring.
+> Work in six-week cycles. Not two weeks. Six. Long enough to build something real, short enough that you can't hide. "Plus it gives you about eight chances a year to recalibrate and decide what to work on next." (see: [37signals](https://37signals.com/06)). Between cycles, there's a two-week cooldown for bugs, tech debt, or just breathing.
 
-But here's where it gets interesting: before a cycle starts, senior people do what Basecamp calls "**[shaping](https://basecamp.com/shapeup/0.3-chapter-01#shaping-the-work).**" They take raw ideas and turn them into bounded, well-considered pitches. Not detailed specifications—that would defeat the purpose—but something with clear boundaries, key insights, and thoughtful limitations. Crucially, they also identify what you're _not_ going to build.
+Before a cycle starts, senior people do what Basecamp calls "[shaping](https://basecamp.com/shapeup/0.3-chapter-01#shaping-the-work)." They take raw ideas and turn them into pitches with clear limits. Not detailed specs, but something with clear boundaries and a sense of what you're _not_ going to build. That last part is important.
 
-Then **small teams** (typically a **designer** and **one or two programmers**) take these shaped projects and run with them. No daily standups. No one breathing down their necks asking for status updates. They're trusted to figure out the details, make trade-offs, and solve problems. The appetite is fixed—six weeks—but the scope is flexible within reason. If something's taking too long, you cut scope, not time.
+Then small teams, usually a designer and one or two programmers, take the shaped project and run with it. No daily standups. No one hovering for status updates. The time is fixed at six weeks, but the scope flexes. If something is taking too long, you cut scope, not time.
 
-**There's no backlog**. Ideas that don't make it into a cycle just… don't exist anymore. **If they're good, they'll come back**. If they're not, well, you just saved yourself from maintaining a graveyard of forgotten tickets.
+There's no backlog. Ideas that don't make it into a cycle just disappear. If they matter, they'll resurface. If they don't, you saved yourself from a list of tickets nobody will ever touch.
 
-<a id="when-shape-up-really-shines"></a>
+<a id="when-shape-up-works-well"></a>
 
-## When Shape Up Really Shines
+## When Shape Up works well
 
-I've seen Shape Up work beautifully for product teams that are tired of the sprint treadmill. It's particularly powerful when you're **building features that need genuine design thinking** and integration work—the kind of projects that get mangled when you try to slice them into two-week chunks.
+I've seen it work for product teams that are tired of the sprint treadmill. It fits when you're building features that need real design thinking, the kind of work that breaks apart when you force it into two-week slices.
 
-It works when your **team is experienced enough** to operate with autonomy. When people can make good decisions without needing approval for every little thing. When you trust your developers to be adults who can communicate when they're stuck without needing a daily check-in.
+It works when your team is experienced enough to work without someone checking on them every day. When people can make decisions without approval for every small thing, and when they'll actually say something when they're stuck instead of waiting for a standup.
 
-The six-week cycles are a game-changer for **work that has natural complexity**. You can actually design something properly, build it thoughtfully, and refine it without this artificial urgency every two weeks. Teams report feeling less fragmented, more focused, and paradoxically more creative because they have room to think.
+Six weeks lets you sit with a problem long enough to solve it properly. A couple people I've talked to said they felt less scattered, and one mentioned actually having time to think about edge cases instead of just filing them as follow-up tickets. I've had the same feeling on longer projects.
 
-The "no backlog" philosophy is incredibly liberating. You stop maintaining this guilt-inducing list of things you'll never do. You stop feeling bad about all those tickets that have been sitting there for eighteen months. Each cycle is a fresh start.
+The no-backlog thing is better than it sounds. You stop maintaining a guilt list of things you'll never get to. You stop feeling bad about the tickets that have been sitting there for a year and a half. Every cycle is a clean slate.
 
-<a id="when-it-might-not-be-your-best-bet"></a>
+<a id="when-it-falls-short"></a>
 
-## When It Might Not Be Your Best Bet - Shape Up isn't a universal solution.
+## When it falls short
 
-If you're maintaining a **mature product** with **lots of small** customer **requests** and **bug fixes**, the six-week cycle might feel cumbersome. Sometimes you just need to knock out twenty small improvements, and cramming them into a "shaped" project feels forced. The cooldown weeks help, but if this is 80% of your work, you might be fighting the framework.
+Shape Up is not a universal fix.
 
-It assumes a certain organizational maturity. **The shaping process requires people who really understand both the business and the technology**. If you don't have **senior folks** who can do this well, you'll end up with poorly defined projects that either explode in scope or leave teams floundering. And honestly? **Good shaping is hard. It's a skill that takes time to develop.**
+If most of your work is small customer requests and bug fixes, the six-week cycle feels heavy. Sometimes you just need to knock out twenty little improvements, and trying to shape each one into a project is forced. The cooldown weeks help some, but if 80% of your work looks like this, you're probably fighting the framework.
 
-Shape Up can be rough for teams that need predictability. If you're in a context where stakeholders need firm **commitments about exactly what ships when**, the flexible scope model might cause friction. "We'll ship something good in six weeks" is a very different promise than "We'll deliver these fourteen story points by the end of Sprint 23."
+Shaping requires people who understand both the business and the technology. If you don't have senior folks who can do this well, you end up with vague projects that either blow up in scope or leave teams stuck. Good shaping is hard. It takes practice.
 
-It's also **not ideal if you're in true discovery mode**, experimenting rapidly with prototypes to find product-market fit. The **six-week commitment is too heavy** when you need to pivot every few days based on user feedback. Shape Up assumes you have _some_ clarity about what you're building.
+Teams that need predictability may struggle too. "We'll ship something good in six weeks" is a very different promise than "We'll deliver these fourteen story points by the end of Sprint 23." If your stakeholders need firm dates on specific features, the flexible scope will create problems.
 
-And let's be honest: if your **organization is deeply committed to Agile** ceremonies, metrics, and tooling, the transition can be difficult. No velocity charts. No burndown graphs. No story points. Some organizations aren't ready to let go of those security blankets.
+It's also wrong for true discovery mode. Six weeks is too much commitment when you need to pivot every few days based on user feedback. Shape Up assumes you have _some_ idea of what you're building.
 
-<a id="the-real-question"></a>
+And if your organization is deeply invested in Agile tooling, velocity charts, burndown graphs, story points, the transition is a hard sell. Some teams aren't ready to give those up, and pushing Shape Up into that environment just creates a different kind of process overhead.
 
-## The Real Question
+<a id="so-what-should-you-actually-do"></a>
 
-> The more I dig into Shape Up, the more I think the real question isn't "Is Shape Up better than Agile?" It's **"What problems are we actually trying to solve?"**
+## So what should you actually do?
 
-Are you frustrated by **fragmented work** and constant **context switching**? Shape Up might help. Are you drowning in **process overhead** and want to give teams **more autonomy**? Worth exploring. Do you need to ship **lots of small changes quickly and predictably**? Maybe stick with what you know.
+The useful question isn't "is Shape Up better than Agile?" It's "what's actually broken in how we work right now?"
 
-Shape Up' is opinionated. It makes trade-offs. It acknowledges that different contexts need different approaches.
+If your problem is fragmented work and constant context switching, Shape Up is worth trying. If you're drowning in process overhead, read the book and see what makes sense for you. But if you mostly need to ship small changes on a predictable schedule, you probably don't need to change anything.
 
-Not that Shape Up is better or worse than Scrum or Kanban, but that we should **be more thoughtful about _why_ we work the way we do**. Remember: dare to question the defaults. 
+I don't really care if Shape Up is "the right framework." What I care about is whether teams are honest about why they work the way they do. Most of us inherited our process from a previous team or a blog post from 2015. Maybe it's time to revisit that.
 
 <a id="further-reading"></a>
 
 ## Further reading
 - overview article on shape up method - [Shape Up: a complete guide to this new development methodology (2024)](https://agilefirst.io/what-is-shape-up/)
 - free book on shape up - [Shape Up: Stop Running in Circles and Ship Work that Matters](https://basecamp.com/shapeup)
-- [37signals](https://37signals.com/) - This site is a catalog of liberating ideas about how they (company behind basecamp, Ruby on Rails,...) works, do business, live...
+- [37signals](https://37signals.com/) - the company behind Basecamp, Ruby on Rails, and several opinionated books about how to run a software business
 
 **Edits:**
 

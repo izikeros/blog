@@ -10,7 +10,7 @@ tags:
   - rag
   - llm
   - retrieval-augmented-generation
-  - re-ranking
+  - reranking
   - lost-in-the-middle
 Category: Generative AI
 Image: /images/head/boosting_RAG.jpg

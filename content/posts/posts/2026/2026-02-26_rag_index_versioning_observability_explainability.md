@@ -22,7 +22,7 @@ Summary: Your RAG answered correctly yesterday. Today, it contradicts itself. No
 Status: published
 ---
 
-X::[[rag_explainability]]
+up::[[rag_explainability]]
 X::[[RAG_observability]]
 X::[[RAG_evaluation]]
 

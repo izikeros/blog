@@ -9,7 +9,7 @@ tags:
   - nlp
   - question-answering
   - rag
-  - re-ranking
+  - reranking
   - embeddings
   - Transformers
   - seq2seq

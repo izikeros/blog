@@ -1,5 +1,659 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2026-02-26T00:00:00+01:00</updated><subtitle>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</subtitle><entry><title>Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance</title><link href="https://www.safjan.com/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-02-26T00:00:00+01:00</published><updated>2026-02-26T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-02-26:/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/</id><summary type="html">&lt;p&gt;Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable point-in-time reconstruction, and when lightweight metadata is enough. Includes practical tracing patterns, replay strategies, and a risk-based decision guide for production systems.&lt;/p&gt;</summary><content type="html">&lt;h2 id="1-the-invisible-problem-why-rag-systems-silently-drift"&gt;1. The invisible problem: why RAG systems silently drift&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Krystian Safjan's Blog</title><link href="https://www.safjan.com/" rel="alternate"/><link href="https://www.safjan.com/feeds/all.atom.xml" rel="self"/><id>https://www.safjan.com/</id><updated>2026-04-09T00:00:00+02:00</updated><subtitle>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</subtitle><entry><title>The Real Cost of Model Migration - What Swapping LLMs Actually Requires</title><link href="https://www.safjan.com/the-real-cost-of-model-migration-what-swapping-llms-actually-requires/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-04-09T00:00:00+02:00</published><updated>2026-04-09T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-04-09:/the-real-cost-of-model-migration-what-swapping-llms-actually-requires/</id><summary type="html">&lt;p&gt;Model deprecations are routine. What they expose underneath -- unmeasured quality, model-coupled prompts, unversioned behavior -- rarely is. Here's what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way.&lt;/p&gt;</summary><content type="html">&lt;p&gt;So OpenAI deprecated &lt;code&gt;gpt-4o-mini&lt;/code&gt;. Or some other model you've built your whole system around just got a sunset date. The email lands and your first thought is: &lt;em&gt;how hard can a model swap be?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I've been through this a few times now. The API call swap? Easy. Twenty minutes, tops. But the swap has a way of revealing every shortcut and assumption your system has been quietly depending on. That's the part people don't usually mention until you're already in it.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="table-of-contents"&gt;Table of contents&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#what-migration-actually-is"&gt;What migration actually is&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#the-model-options-in-2026"&gt;The model options in 2026&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-0--know-what-youre-migrating-from"&gt;Phase 0 -- Know what you're migrating from&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-1--build-your-evaluation-harness-first"&gt;Phase 1 -- Build your evaluation harness first&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-2--the-prompt-portability-problem"&gt;Phase 2 -- The prompt portability problem&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-3--automated-prompt-optimization-with-dspy"&gt;Phase 3 -- Automated prompt optimization with DSPy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-4--reasoning-models-where-they-belong"&gt;Phase 4 -- Reasoning models: where they belong&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-5--handling-missing-parameters"&gt;Phase 5 -- Handling missing parameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-6--risk-assessment"&gt;Phase 6 -- Risk assessment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-7--progressive-rollout"&gt;Phase 7 -- Progressive rollout&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#phase-8--post-migration-monitoring"&gt;Phase 8 -- Post-migration monitoring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#the-systems-audit-you-should-run-regardless"&gt;The systems audit you should run regardless&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="what-migration-actually-is"&gt;What migration actually is&lt;/h2&gt;
+&lt;p&gt;Here's the (uncomfortable) truth: a model migration is really a systems audit. It just happens to come with a deadline someone else set for you.&lt;/p&gt;
+&lt;p&gt;When you swap the model under a RAG pipeline, you're removing the environment your system's behavior was calibrated in. And you get to find out how much of that behavior was intentional versus... just kind of happened over time.&lt;/p&gt;
+&lt;p&gt;Three things consistently surface during migration that were invisible before:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quality often wasn't measured.&lt;/strong&gt; A lot of production LLM systems have never been formally evaluated. No golden dataset, no faithfulness score, no format compliance check. "Quality" is whatever the team last looked at and didn't complain about. You can't claim "no quality loss" if you never measured quality to begin with.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Your prompt is coupled to the old model.&lt;/strong&gt; That system prompt you spent weeks on? It's not a specification. It's a negotiation artifact, the residue of back-and-forth between your intentions and one specific model's quirks. Swap the model and you haven't ported a prompt. You've orphaned it. (This one hurts. More in &lt;a href="#phase-2--the-prompt-portability-problem"&gt;Phase 2&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Model behavior often isn't versioned.&lt;/strong&gt; Pinning a model name isn't the same as pinning model behavior. OpenAI updates weights behind dated aliases without telling you. If you're using &lt;code&gt;gpt-4o-mini&lt;/code&gt; as a floating pointer, you may have already had a silent behavioral change in production. If your observability didn't catch it... well, that tells you something about your observability.&lt;/p&gt;
+&lt;p&gt;The teams who migrate cleanly aren't the ones with the best migration plans. They're the ones who treated their LLM system like a real production system long before a deadline showed up.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="the-model-options-in-2026"&gt;The model options in 2026&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Note: While this article uses OpenAI models as examples, the migration patterns, evaluation strategies, and architectural decisions apply to any LLM provider. The same principles work whether you're migrating between Anthropic's Claude models, open-source models, or any other provider.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Before you plan anything, you need to know what you're migrating &lt;em&gt;to&lt;/em&gt;. OpenAI's current model family has two very different architectures, and picking the wrong one can create more problems than the deprecation itself.&lt;/p&gt;
+&lt;h3 id="standard-instruction-models"&gt;Standard instruction models&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://platform.openai.com/docs/models/gpt-5.4"&gt;GPT-5.4&lt;/a&gt;, &lt;a href="https://platform.openai.com/docs/models/gpt-5.4-mini"&gt;GPT-5.4-mini&lt;/a&gt;, and &lt;a href="https://platform.openai.com/docs/models/gpt-5.4-nano"&gt;GPT-5.4-nano&lt;/a&gt; are the current flagship models. They support variable &lt;code&gt;reasoning_effort&lt;/code&gt; (none/low/medium/high/xhigh), plus all the standard parameters: &lt;code&gt;temperature&lt;/code&gt;, system prompts, JSON mode, function calling, streaming. For most RAG answer generation workloads, one of these is where you should land.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Recommended default for gpt-4o-mini replacement: &lt;code&gt;gpt-5.4-nano&lt;/code&gt;&lt;/strong&gt; -- comparable cost tier (&lt;span class="math"&gt;\(0.20 per million input tokens vs $0.10 for gpt-4o-mini), significantly more capable, fully API-compatible. If you need the extra capability and can handle the cost, &lt;code&gt;gpt-5.4-mini&lt;/code&gt; (\)&lt;/span&gt;0.75/MTok input) is a strong middle option.&lt;/p&gt;
+&lt;h3 id="pure-reasoning-models"&gt;Pure reasoning models&lt;/h3&gt;
+&lt;p&gt;The &lt;a href="https://openai.com/index/introducing-o3-and-o4-mini/"&gt;o-series models&lt;/a&gt; (o3, o4-mini) are pure reasoning models without the hybrid flexibility of GPT-5.x. They &lt;em&gt;only&lt;/em&gt; do reasoning, don't support &lt;code&gt;temperature&lt;/code&gt; or standard sampling parameters, and use &lt;code&gt;reasoning_effort&lt;/code&gt; as the sole control. These are specialists.&lt;/p&gt;
+&lt;p&gt;Here's what most people get wrong: for typical RAG pipelines, pure reasoning models aren't better answer generators. They're decision infrastructure. I'll get into exactly where they earn their cost in &lt;a href="#phase-4--reasoning-models-where-they-belong"&gt;Phase 4&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;Model&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;selection&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;decision&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="nx"&gt;Is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;answer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;synthesis&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;step&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;genuinely&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;multi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;hop&lt;/span&gt;&lt;span class="p"&gt;?&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;A&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;implies&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;contradicts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;C&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;therefore&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="err"&gt;└──&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;No&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="err"&gt;→&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Standard&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;model&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;gpt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m m-Double"&gt;5.4&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;nano&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;gpt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m m-Double"&gt;5.4&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;mini&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="err"&gt;└──&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Yes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;→&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;high&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;stakes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;real&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;consequences&lt;/span&gt;&lt;span class="p"&gt;?&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="err"&gt;└──&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;No&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="err"&gt;→&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Standard&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;model&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;reasoning_effort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;low&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;medium&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="err"&gt;└──&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Yes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;→&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Consider&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;pure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;reasoning&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;model&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;o3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;o4&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;mini&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;                        &lt;/span&gt;&lt;span class="nx"&gt;OR&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;standard&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;model&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;reasoning_effort&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;high&lt;/span&gt;
+&lt;span class="w"&gt;                        &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;verification&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;layer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;over&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;synthesis&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id="phase-0-know-what-youre-migrating-from"&gt;Phase 0 -- Know what you're migrating from&lt;/h2&gt;
+&lt;p&gt;I know, I know. You want to start swapping things. But before you write a line of migration code, document what your system actually does right now. Otherwise you'll have no way to tell if the migration worked or just seemed like it did.&lt;/p&gt;
+&lt;h3 id="inventory-your-integration-surface"&gt;Inventory your integration surface&lt;/h3&gt;
+&lt;p&gt;Pull every place in your codebase where the model name appears. This includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Direct API calls with &lt;code&gt;model=&lt;/code&gt; parameter&lt;/li&gt;
+&lt;li&gt;Configuration files and environment variables&lt;/li&gt;
+&lt;li&gt;Any SDK initialization that sets a default model&lt;/li&gt;
+&lt;li&gt;Evaluation scripts that may be pinned to the old model for judging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For each integration point, record: the model name, the prompt template used, the parameters passed (&lt;code&gt;temperature&lt;/code&gt;, &lt;code&gt;max_tokens&lt;/code&gt;, etc.), and the expected output format.&lt;/p&gt;
+&lt;h3 id="document-implicit-behavioral-assumptions"&gt;Document implicit behavioral assumptions&lt;/h3&gt;
+&lt;p&gt;This part's harder because these things rarely get written down. You need to look for anywhere your code processes model outputs and makes assumptions about what they look like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JSON parsing of model responses (field names, nesting depth)&lt;/li&gt;
+&lt;li&gt;Regex or string matching on output format&lt;/li&gt;
+&lt;li&gt;Length-based truncation or display logic&lt;/li&gt;
+&lt;li&gt;Citation extraction that assumes a specific citation format&lt;/li&gt;
+&lt;li&gt;Any code that branches on output content&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each of these is a behavioral assumption about your current model. And each assumption is a place where things can quietly break.&lt;/p&gt;
+&lt;h3 id="get-a-pre-migration-quality-snapshot"&gt;Get a pre-migration quality snapshot&lt;/h3&gt;
+&lt;p&gt;Run your current system against a sample of real production queries and save the outputs. This is your before-state. Even if you don't have a formal eval harness yet, just having the raw outputs lets you compare later. Future-you will be grateful.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="phase-1-build-your-evaluation-harness-first"&gt;Phase 1 -- Build your evaluation harness first&lt;/h2&gt;
+&lt;p&gt;I can't stress this enough. Everything else you do, prompt changes, model selection, rollout strategy, is going to be guided by what your evals tell you. Skip this and you'll discover regressions in production. I've watched teams do this. The cost of fixing things at that point is genuinely 10x higher.&lt;/p&gt;
+&lt;h3 id="build-a-golden-dataset"&gt;Build a golden dataset&lt;/h3&gt;
+&lt;p&gt;Sample 200–500 real queries from production logs. For each, store:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The original query&lt;/li&gt;
+&lt;li&gt;The retrieved context chunks&lt;/li&gt;
+&lt;li&gt;The current model's answer (this becomes your reference)&lt;/li&gt;
+&lt;li&gt;For as many as you can afford: a human-verified "ideal" answer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Don't sample uniformly.&lt;/strong&gt; Stratify on purpose. Include:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Stratum&lt;/th&gt;
+&lt;th&gt;Why&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Easy factual queries&lt;/td&gt;
+&lt;td&gt;Regression canary, should never fail&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Multi-chunk synthesis&lt;/td&gt;
+&lt;td&gt;Where model capability actually matters&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Conflicting context&lt;/td&gt;
+&lt;td&gt;Tests faithfulness under pressure&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Out-of-scope queries&lt;/td&gt;
+&lt;td&gt;Refusal behavior regression&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Edge cases your team knows about&lt;/td&gt;
+&lt;td&gt;The ones that broke things before&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Aim for at least 50 human-verified examples. 200 is significantly better.&lt;/p&gt;
+&lt;h3 id="what-to-evaluate"&gt;What to evaluate&lt;/h3&gt;
+&lt;p&gt;For a RAG system, here's what you actually need to measure:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Faithfulness&lt;/strong&gt; -- does the answer only claim things supported by the retrieved context? This is the big one. A model that hallucinates confidently is scarier than one that refuses to answer. Use the &lt;a href="https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html"&gt;Ragas faithfulness metric&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Answer relevance&lt;/strong&gt; -- does it answer what was actually asked? (&lt;a href="https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html"&gt;Ragas answer relevance&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Format compliance&lt;/strong&gt; -- does the output match your schema? JSON structure, citation format, length constraints. You'll likely need a custom LLM-as-judge metric here because format requirements vary widely.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Refusal accuracy&lt;/strong&gt; -- when the context doesn't contain the answer, does the model say "I don't know" instead of making something up?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Groundedness&lt;/strong&gt; -- can you trace specific claims back to specific chunks? Similar to faithfulness but more granular.&lt;/p&gt;
+&lt;h3 id="evaluation-tooling"&gt;Evaluation tooling&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://docs.ragas.io/"&gt;Ragas&lt;/a&gt; automates faithfulness, answer relevance, context precision, and context recall scoring using an LLM-as-judge approach. Point it at your golden dataset and run both old and new model outputs through it to get comparable scores.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.promptfoo.dev/"&gt;PromptFoo&lt;/a&gt; works well for regression testing during prompt iteration. Define test cases with expected outputs or assertions and run them against multiple models simultaneously, which is exactly the side-by-side comparison you need during migration.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://smith.langchain.com/"&gt;LangSmith&lt;/a&gt; or &lt;a href="https://braintrustdata.com/"&gt;Braintrust&lt;/a&gt; if you want persistent experiment tracking. They store eval runs with scores, let you diff outputs visually, and can alert on regressions. Worth setting up if this migration will take more than a week.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://mlflow.org/docs/latest/llm-tracking.html"&gt;MLflow&lt;/a&gt; for teams already in the MLflow ecosystem. It has native LLM tracking and integrates directly with DSPy (covered in Phase 3).&lt;/p&gt;
+&lt;h3 id="define-passfail-gate-criteria"&gt;Define pass/fail gate criteria&lt;/h3&gt;
+&lt;p&gt;Do this &lt;em&gt;before&lt;/em&gt; running any evals. Seriously. If you define criteria after seeing results, you'll unconsciously anchor them to whatever the new model happens to achieve. Human brains are terrible at this.&lt;/p&gt;
+&lt;p&gt;Example gate criteria:
+- Faithfulness score ≥ 0.92
+- Format compliance ≥ 0.98
+- Answer relevance ≥ 0.90
+- P95 latency within 20% of baseline
+- Refusal accuracy ≥ 0.95 on out-of-scope stratum&lt;/p&gt;
+&lt;pre class="mermaid"&gt;
+flowchart TD
+    A[Sample 200-500 production queries] --&gt; B[Stratify by difficulty and type]
+    B --&gt; C[Run current model - store as reference]
+    C --&gt; D[Human verify 50-200 examples]
+    D --&gt; E[Define metric weights per dimension]
+    E --&gt; F[Set gate criteria before migration begins]
+    F --&gt; G[Eval harness ready]
+
+    style A fill:#1e3a5f,color:#b8d4f0
+    style G fill:#1a3d2e,color:#8fd4b0
+&lt;/pre&gt;
+
+&lt;hr&gt;
+&lt;h2 id="phase-2-the-prompt-portability-problem"&gt;Phase 2 -- The prompt portability problem&lt;/h2&gt;
+&lt;p&gt;Okay, this is the part that causes the most pain, and people don't usually talk about it honestly.&lt;/p&gt;
+&lt;h3 id="written-prompts-vs-tuned-prompts"&gt;Written prompts vs tuned prompts&lt;/h3&gt;
+&lt;p&gt;There's a difference between a prompt that &lt;em&gt;specifies&lt;/em&gt; behavior and a prompt that was &lt;em&gt;tweaked until outputs stopped looking weird&lt;/em&gt;. It's a bigger difference than you'd think.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A written prompt&lt;/strong&gt; starts from a behavioral spec. You know what the system must do, what it must not do, what the output format looks like. The constraints are verifiable regardless of which model you're running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Answer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;using&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;only&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;present&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;provided&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;chunks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;does&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;contain&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sufficient&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;respond&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;exactly&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;I cannot answer this from the available information.&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;Format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;citations&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;source_id&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;inline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;immediately&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;after&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;claim&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;they&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;support&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;These survive a model swap. You can read the prompt and tell whether any output satisfies them, regardless of which model made it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A tuned prompt&lt;/strong&gt; is what most of us actually have. It starts from a vague goal and grows through patches. You wrote a first draft. Outputs were mostly fine but the model kept adding chatty preambles, so you added "be concise." Then it started truncating, so you added "be thorough but concise." Citations were inconsistent, so you added "always cite sources." Then it started over-citing, so you added "cite only when directly referencing a specific fact."&lt;/p&gt;
+&lt;p&gt;Sound familiar? Six months later your prompt is 800 words and full of stuff like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;"Do not add unnecessary preambles"&lt;/em&gt; -- patch for a greeting behavior specific to an old model weight&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;"Avoid repeating the question in your answer"&lt;/em&gt; -- patch for a retriggering behavior&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;"Use natural language, not bullet points unless the question explicitly asks for a list"&lt;/em&gt; -- patch for a formatting regression after a silent weight update&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;None of these describe what your system is &lt;em&gt;supposed&lt;/em&gt; to do. They're band-aids for specific past failures of a model that no longer exists.&lt;/p&gt;
+&lt;h3 id="why-tuned-prompts-are-so-common"&gt;Why tuned prompts are so common&lt;/h3&gt;
+&lt;p&gt;If you're feeling called out right now, don't. The vast majority of production RAG prompts are more tuned than written.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Patching is faster than specifying.&lt;/strong&gt; When you're iterating on a RAG system, you see problems and fix them. The fastest fix is usually adding an instruction. Writing a proper spec requires knowing all failure modes before you've seen them, which is... impossible when failures emerge from interaction with real data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nothing forces you to notice until migration.&lt;/strong&gt; A tuned prompt works. It produces acceptable outputs on the current model. The coupling only becomes visible when you remove the thing it's coupled to.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Many teams never wrote a spec to begin with.&lt;/strong&gt; Writing a specification for "correct behavior" before building the system requires a level of foresight that's genuinely hard to have. So the prompt &lt;em&gt;became&lt;/em&gt; the spec over time, simultaneously the behavioral specification and the accumulated technical debt. Good luck telling them apart from the inside.&lt;/p&gt;
+&lt;h3 id="what-to-do-about-it"&gt;What to do about it&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Start with prompt archaeology.&lt;/strong&gt; Before you touch anything, go through every instruction in your current prompt and label it as either:
+- &lt;code&gt;SPEC&lt;/code&gt; -- this describes intended behavior, survives model changes
+- &lt;code&gt;PATCH&lt;/code&gt; -- this suppresses a specific failure, may not be relevant to new model&lt;/p&gt;
+&lt;p&gt;In my experience, most 500+ word prompts end up being about 40% spec and 60% patch. The patches are candidates for removal or replacement after you test compatibility with the new model.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Run a compatibility baseline before touching anything.&lt;/strong&gt; Take your existing prompt verbatim, swap only the model name, run your golden dataset through it, and score with Ragas. This tells you how much of the prompt is still needed versus how much is suppressing behaviors the new model doesn't even have.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reconstruct minimally.&lt;/strong&gt; Where scores dropped, investigate the failure patterns before changing the prompt. Don't just start adding instructions (that's how you got here). Common adaptation points:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Issue&lt;/th&gt;
+&lt;th&gt;Diagnosis&lt;/th&gt;
+&lt;th&gt;Fix&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Markdown in plain-text outputs&lt;/td&gt;
+&lt;td&gt;New model has higher markdown affinity&lt;/td&gt;
+&lt;td&gt;Explicit format instruction&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Longer responses than expected&lt;/td&gt;
+&lt;td&gt;Different default length calibration&lt;/td&gt;
+&lt;td&gt;Token budget instruction + few-shot&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Citation format drift&lt;/td&gt;
+&lt;td&gt;Model interprets citation spec differently&lt;/td&gt;
+&lt;td&gt;Few-shot examples, not more words&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Refusal behavior change&lt;/td&gt;
+&lt;td&gt;Different threshold for "insufficient context"&lt;/td&gt;
+&lt;td&gt;Explicit refusal instruction with example&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JSON key naming change&lt;/td&gt;
+&lt;td&gt;Model paraphrases key names&lt;/td&gt;
+&lt;td&gt;Strict schema in system prompt or JSON mode&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Few-shot examples are the most reliable format anchor.&lt;/strong&gt; More reliable than additional instructions. They act as a behavioral anchor that survives prompt wording differences across model versions. For format-critical RAG outputs, 2-3 few-shot examples will do more work than three paragraphs of format instructions.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="phase-3-automated-prompt-optimization-with-dspy"&gt;Phase 3 -- Automated prompt optimization with DSPy&lt;/h2&gt;
+&lt;p&gt;So manual prompt iteration is what got you into the tuned-prompt mess. &lt;a href="https://dspy.ai/"&gt;DSPy&lt;/a&gt; offers a way out: it learns the optimal prompt for your specific data and target model automatically, guided by whatever metric you care about.&lt;/p&gt;
+&lt;h3 id="what-dspy-actually-does"&gt;What DSPy actually does&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/stanfordnlp/dspy"&gt;DSPy&lt;/a&gt; separates the &lt;em&gt;interface&lt;/em&gt; (what should the model do) from the &lt;em&gt;implementation&lt;/em&gt; (how do you tell it). You define Signatures (declarative input/output specs) and DSPy optimizers figure out the instructions and examples that best satisfy your metric on your data.&lt;/p&gt;
+&lt;p&gt;Why this matters for migration: &lt;strong&gt;the prompt that worked on gpt-4o-mini isn't guaranteed to be optimal for gpt-5.4-nano&lt;/strong&gt;. DSPy relearns the prompt for the new model automatically. You get model-specific optimization without the manual iteration that created the problem in the first place.&lt;/p&gt;
+&lt;h3 id="translating-your-pipeline-into-dspy"&gt;Translating your pipeline into DSPy&lt;/h3&gt;
+&lt;p&gt;Your answer generation step becomes a Signature:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;dspy&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RAGAnswer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Signature&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Answer the question using only the provided context chunks.&lt;/span&gt;
+&lt;span class="sd"&gt;    Cite sources using [chunk_id] notation.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;InputField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;desc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;retrieved context chunks with IDs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;InputField&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OutputField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;desc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;faithful, cited answer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RAGPipeline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Module&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;respond&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ChainOfThought&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RAGAnswer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;forward&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;respond&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Switching the target model is one line. Your golden dataset and metric stay identical:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Before: gpt-4o-mini&lt;/span&gt;
+&lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;LM&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai/gpt-4o-mini&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# After: gpt-5.4-nano -- golden dataset unchanged, metric unchanged&lt;/span&gt;
+&lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dspy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;LM&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;openai/gpt-5.4-nano&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="choosing-an-optimizer"&gt;Choosing an optimizer&lt;/h3&gt;
+&lt;pre class="mermaid"&gt;
+flowchart TD
+    A[Start: need to optimize prompt for new model] --&gt; B{How many pipeline stages?}
+
+    B --&gt;|Single stage| C{Budget and time?}
+    B --&gt;|Multi-stage| D[MIPROv2 or GEPA]
+
+    C --&gt;|Quick and cheap| E[BootstrapFewShot&lt;br/&gt;~$0.10, ~5 min]
+    C --&gt;|Thorough| F[MIPROv2&lt;br/&gt;~$1.50-5, ~30 min]
+
+    D --&gt; G{Complex failures&lt;br/&gt;need diagnosis?}
+    G --&gt;|No| F
+    G --&gt;|Yes| H[GEPA&lt;br/&gt;Expensive but deepest optimization]
+
+    E --&gt; I[Save compiled program as artifact]
+    F --&gt; I
+    H --&gt; I
+
+    style E fill:#1a3d2e,color:#8fd4b0
+    style F fill:#1e3a5f,color:#b8d4f0
+    style H fill:#3d1a2e,color:#d4b0c0
+    style I fill:#3d2e1a,color:#d4c0a0
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://dspy.ai/api/optimizers/BootstrapFewShot/"&gt;BootstrapFewShot&lt;/a&gt;&lt;/strong&gt; -- the baseline. Generates complete demonstrations for each stage of your program, keeping only those that pass your metric. Use this first. Cheap, fast, often sufficient for single-stage answer generation migration.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://dspy.ai/api/optimizers/MIPROv2/"&gt;MIPROv2&lt;/a&gt;&lt;/strong&gt; -- the workhorse. Runs three stages: bootstrapping to collect high-scoring traces, grounded proposal to draft potential instructions, then discrete search to evaluate instruction-example combinations. Costs ~$1.50-5 at medium auto setting, takes 20-40 minutes. Worth running before any production rollout.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dspy.teleprompt&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MIPROv2&lt;/span&gt;
+
+&lt;span class="n"&gt;optimizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MIPROv2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;metric&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;your_faithfulness_metric&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;auto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;medium&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;           &lt;span class="c1"&gt;# light / medium / heavy&lt;/span&gt;
+    &lt;span class="n"&gt;num_threads&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;compiled_rag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;optimizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;RAGPipeline&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+    &lt;span class="n"&gt;trainset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;train_examples&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# 20% of golden dataset&lt;/span&gt;
+    &lt;span class="n"&gt;valset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;val_examples&lt;/span&gt;        &lt;span class="c1"&gt;# 80% of golden dataset&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Save as versioned artifact&lt;/span&gt;
+&lt;span class="n"&gt;compiled_rag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rag_pipeline_gpt54nano_v1.json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://dspy.ai/api/optimizers/GEPA/overview/"&gt;GEPA&lt;/a&gt;&lt;/strong&gt; -- the newest. Rather than optimizing only the globally best candidate (which leads to local optima), GEPA maintains a Pareto frontier: candidates that achieve the highest score on at least one evaluation instance. It uses a Teacher model to analyze failures and propose targeted fixes. Use for multi-stage pipelines where interaction effects between stages matter. Requires a strong reflection model (&lt;code&gt;gpt-5.4&lt;/code&gt; or higher recommended).&lt;/p&gt;
+&lt;h3 id="the-data-split-that-matters"&gt;The data split that matters&lt;/h3&gt;
+&lt;p&gt;This one's counterintuitive: &lt;strong&gt;20% training, 80% validation&lt;/strong&gt;. Yes, reversed from what you're used to. Prompt-based optimizers overfit to small training sets way more aggressively than neural networks. A prompt optimized on 60 examples and validated on 240 will generalize far better than the other way around.&lt;/p&gt;
+&lt;p&gt;You can get real value from as few as 30 training examples. The validation set is where quality is actually measured.&lt;/p&gt;
+&lt;h3 id="dspy-in-migration-tool-vs-framework"&gt;DSPy in migration: tool vs framework&lt;/h3&gt;
+&lt;p&gt;Most common mistake I see: teams adopt DSPy as a permanent architectural layer when the problem only needed a one-time tool.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Use DSPy as a migration tool:&lt;/strong&gt; run MIPROv2 against your golden dataset on the new model, inspect the optimized prompt, extract it as a string, and deploy it without DSPy in your runtime path. Optimization benefit, no framework dependency.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Adopt DSPy as a framework&lt;/strong&gt; only if you're going to keep experimenting: swapping models regularly, adding pipeline stages, running continuous optimization against production feedback. That's where the framework investment pays off.&lt;/p&gt;
+&lt;h3 id="dspy-limitations-to-know-before-committing"&gt;DSPy limitations to know before committing&lt;/h3&gt;
+&lt;p&gt;A few things to be aware of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Your metric quality determines everything.&lt;/strong&gt; DSPy optimizes whatever metric you give it. Weak metric? You'll get a confidently wrong optimized prompt. Make sure faithfulness is in there, not just answer relevance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The optimized prompt can look weird.&lt;/strong&gt; MIPROv2 generates instructions that work but can be verbose and repetitive in ways a human wouldn't write. Debugging means re-running evals, not reading the prompt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reasoning models need special handling.&lt;/strong&gt; DSPy doesn't have first-class support for &lt;code&gt;reasoning_effort&lt;/code&gt; yet. When targeting pure reasoning models (o4-mini, o3) or GPT-5.x with specific reasoning effort levels, wrap the model call in a custom &lt;code&gt;dspy.LM&lt;/code&gt; class that sets &lt;code&gt;reasoning_effort&lt;/code&gt; at initialization.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Watch the adapter layer.&lt;/strong&gt; DSPy's adapters wrap your instructions in scaffolding. With reasoning models where prompt verbosity interferes with internal reasoning chains, this can produce unexpected behavior. Test it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="phase-4-reasoning-models-where-they-belong"&gt;Phase 4 -- Reasoning models: where they belong&lt;/h2&gt;
+&lt;p&gt;When people hear "more capable model family," their instinct is to slot the reasoning model right where the standard model was: answer generation. This is usually wrong.&lt;/p&gt;
+&lt;p&gt;Think of it like hiring. You wouldn't pay a principal engineer to write CRUD endpoints. You hire them to make decisions when things are ambiguous. Same logic here.&lt;/p&gt;
+&lt;h3 id="the-rag-pipeline-with-reasoning-model-placement"&gt;The RAG pipeline with reasoning model placement&lt;/h3&gt;
+&lt;pre class="mermaid"&gt;
+flowchart TD
+    Q[User query] --&gt; QD
+
+    subgraph REASONING ["Reasoning model layer (low-medium effort)"]
+        QD["Query decomposition&lt;br/&gt;+ intent routing"]
+        VER["Faithfulness&lt;br/&gt;verification"]
+    end
+
+    subgraph STANDARD ["Standard model layer"]
+        RET["Vector/hybrid&lt;br/&gt;retrieval"]
+        RNK["Reranking +&lt;br/&gt;conflict detection"]
+        SYN["Answer&lt;br/&gt;synthesis"]
+    end
+
+    QD --&gt; RET
+    RET --&gt; RNK
+    RNK --&gt; SYN
+    SYN --&gt; VER
+    VER --&gt; ANS[Response]
+
+    style REASONING fill:#1e2a3f,color:#a0c4f0,stroke:#3a5a8f
+    style STANDARD fill:#1a2e1f,color:#90c4a0,stroke:#2a5a3a
+&lt;/pre&gt;
+
+&lt;h3 id="slot-1-query-decomposition-strong-fit-highest-roi"&gt;Slot 1: Query decomposition -- strong fit, highest ROI&lt;/h3&gt;
+&lt;p&gt;Most enterprise RAG queries are compound, ambiguous, or require unpacking implicit assumptions before retrieval. A reasoning model at this stage:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Decomposes "what's our exposure if we exit the APAC contracts before Q3 given the renegotiation clauses?" into 3–4 targeted retrieval sub-queries&lt;/li&gt;
+&lt;li&gt;Classifies intent (factual / comparative / policy / out-of-scope) to route appropriately&lt;/li&gt;
+&lt;li&gt;Identifies which sub-questions are answerable from the knowledge base vs. need human input&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The reasoning happens &lt;em&gt;before&lt;/em&gt; retrieval, so latency cost doesn't compound. Use &lt;code&gt;reasoning_effort: low&lt;/code&gt; because query decomposition rarely needs deep thinking. You pay for one reasoning call and get better chunks in return for every subsequent step.&lt;/p&gt;
+&lt;h3 id="slot-2-context-reranking-and-conflict-detection-strong-fit"&gt;Slot 2: Context reranking and conflict detection -- strong fit&lt;/h3&gt;
+&lt;p&gt;Standard &lt;a href="https://www.sbert.net/docs/cross_encoder/usage/usage.html"&gt;cross-encoder rerankers&lt;/a&gt; like &lt;a href="https://huggingface.co/BAAI/bge-reranker-v2-m3"&gt;BGE&lt;/a&gt; or &lt;a href="https://cohere.com/rerank"&gt;Cohere Rerank&lt;/a&gt; score chunk-query relevance mechanically. A reasoning model can do something they can't: spot when retrieved chunks &lt;em&gt;contradict each other&lt;/em&gt;. That's a signal to retry retrieval, not attempt synthesis over conflicting information.&lt;/p&gt;
+&lt;p&gt;Especially useful in legal, compliance, and financial RAG where "relevance" means logical applicability, not just semantic similarity.&lt;/p&gt;
+&lt;h3 id="slot-3-answer-synthesis-on-complex-documents-maybe"&gt;Slot 3: Answer synthesis on complex documents -- maybe&lt;/h3&gt;
+&lt;p&gt;Use a reasoning model for synthesis only when the answer requires multi-hop inference across chunks (A implies B, B contradicts C, therefore...) or the domain is high-stakes with real consequences for wrong answers.&lt;/p&gt;
+&lt;p&gt;Don't bother when the answer is directly stated in one or two chunks, or when query volume is high and latency matters. If you're generating templated output from straightforward lookups, a standard model is fine.&lt;/p&gt;
+&lt;h3 id="slot-4-agentic-orchestration-good-fit-underused"&gt;Slot 4: Agentic orchestration -- good fit, underused&lt;/h3&gt;
+&lt;p&gt;If you have multi-source RAG (vector DB + SQL + APIs + document store), you need something that decides &lt;em&gt;which retrieval path to take&lt;/em&gt;, in what order, and when to stop. That's a planning problem, not a synthesis problem. Reasoning models are trained through RL to reason about &lt;em&gt;when and how to use tools&lt;/em&gt;, not just call them when told.&lt;/p&gt;
+&lt;p&gt;Use the reasoning model as the orchestration brain. Let cheaper instruction models handle the actual synthesis once the right context is assembled.&lt;/p&gt;
+&lt;h3 id="slot-5-faithfulness-verification-high-value-underused"&gt;Slot 5: Faithfulness verification -- high value, underused&lt;/h3&gt;
+&lt;p&gt;A second pass after generation: "Given only the following context, does this answer make claims not supported by the context? Flag the specific unsupported sentences."&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;reasoning_effort: low&lt;/code&gt;. You're verifying, not generating. One cheap call that acts as your hallucination guardrail. The economics really work here for high-stakes outputs.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="phase-5-handling-parameter-differences"&gt;Phase 5 -- Handling parameter differences&lt;/h2&gt;
+&lt;p&gt;If you're migrating between standard GPT-5.x models (like gpt-4o-mini to gpt-5.4-nano), this section mostly doesn't apply. The standard parameters work identically.&lt;/p&gt;
+&lt;p&gt;The main difference: GPT-5.x models add &lt;code&gt;reasoning_effort&lt;/code&gt; (none/low/medium/high/xhigh) as an optional parameter. Set it to &lt;code&gt;none&lt;/code&gt; for standard instruction-following behavior, or use low/medium/high when you need reasoning.&lt;/p&gt;
+&lt;p&gt;If you're migrating to or using pure reasoning models (o-series), here's the complete parameter gap:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Parameter&lt;/th&gt;
+&lt;th&gt;GPT-5.x models&lt;/th&gt;
+&lt;th&gt;Pure reasoning (o-series)&lt;/th&gt;
+&lt;th&gt;Migration path&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;temperature&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;Use &lt;code&gt;reasoning_effort&lt;/code&gt; instead, or prompt template variants&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;top_p&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;Not needed, reasoning stabilizes output&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;max_tokens&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;Use &lt;code&gt;max_completion_tokens&lt;/code&gt; (covers thinking + output)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;presence_penalty&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;Not typically used in RAG anyway&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;frequency_penalty&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;Not typically used in RAG anyway&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;reasoning_effort&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;✅ (none/low/medium/high/xhigh)&lt;/td&gt;
+&lt;td&gt;✅ (low/medium/high only)&lt;/td&gt;
+&lt;td&gt;Built-in for GPT-5.x, only option for o-series&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;system&lt;/code&gt; prompt&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;Treated as developer message&lt;/td&gt;
+&lt;td&gt;Don't use both system and developer message&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;streaming&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;Limited (o3 with access)&lt;/td&gt;
+&lt;td&gt;Use progress indicators, not streaming text&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="temperature-and-reasoning_effort"&gt;Temperature and reasoning_effort&lt;/h3&gt;
+&lt;p&gt;For RAG, you were almost certainly running &lt;code&gt;temperature=0&lt;/code&gt; or close to it. You wanted determinism, not creativity.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;With GPT-5.x models:&lt;/strong&gt; You can still use &lt;code&gt;temperature=0&lt;/code&gt; for deterministic output. If you want reasoning on specific queries, add &lt;code&gt;reasoning_effort: low&lt;/code&gt; or &lt;code&gt;medium&lt;/code&gt;. The two parameters work together.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;With pure reasoning models (o-series):&lt;/strong&gt; No temperature control. The reasoning process itself stabilizes output, giving you consistency by default. If you needed temperature for diversity (generating multiple answer variants), replace it with explicit prompt variants or use a GPT-5.x model with &lt;code&gt;temperature&lt;/code&gt; + &lt;code&gt;reasoning_effort: none&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="the-max_completion_tokens-trap"&gt;The &lt;code&gt;max_completion_tokens&lt;/code&gt; trap&lt;/h3&gt;
+&lt;p&gt;Set this generously. Here's why: thinking tokens don't appear in your output but they're billed and count against this budget. At &lt;code&gt;high&lt;/code&gt; effort, a single complex query can burn 10,000-50,000 thinking tokens. If &lt;code&gt;max_completion_tokens&lt;/code&gt; is too low, the model's reasoning gets truncated mid-thought. You get degraded output and no obvious error signal. Start at 16,000 for medium effort, 32,000+ for high effort, and keep an eye on actual consumption.&lt;/p&gt;
+&lt;h3 id="prompt-verbosity-inversion-with-reasoning"&gt;Prompt verbosity inversion with reasoning&lt;/h3&gt;
+&lt;p&gt;This one's weird if you've internalized standard prompt engineering advice. When using reasoning (either pure o-series models or GPT-5.x with &lt;code&gt;reasoning_effort&lt;/code&gt; &amp;gt; none), being explicit and repetitive hurts. Over-specified prompts interfere with the internal reasoning chain. The model follows your constraints mechanically instead of actually reasoning toward the goal.&lt;/p&gt;
+&lt;p&gt;Write shorter, higher-trust prompts when reasoning is active. Define the &lt;em&gt;goal&lt;/em&gt; and &lt;em&gt;constraints&lt;/em&gt; but leave the &lt;em&gt;method&lt;/em&gt; to the model. I know this feels uncomfortable. It's the opposite of everything we learned, but it works.&lt;/p&gt;
+&lt;p&gt;For GPT-5.x with &lt;code&gt;reasoning_effort: none&lt;/code&gt;, standard verbose prompts work fine.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="phase-6-risk-assessment"&gt;Phase 6 -- Risk assessment&lt;/h2&gt;
+&lt;p&gt;Before any real traffic touches the new model, take a step back and run a structured risk assessment against your eval results.&lt;/p&gt;
+&lt;pre class="mermaid"&gt;
+flowchart TD
+    EVAL[Run eval suite on new model] --&gt; F1 &amp; F2 &amp; F3 &amp; F4
+
+    F1{Format compliance&lt;br/&gt;≥ threshold?}
+    F2{Faithfulness&lt;br/&gt;≥ threshold?}
+    F3{Latency P95&lt;br/&gt;within range?}
+    F4{Edge case&lt;br/&gt;behavior OK?}
+
+    F1 --&gt;|Fail| R1[Debug: markdown bleed,&lt;br/&gt;JSON key drift,&lt;br/&gt;length calibration]
+    F2 --&gt;|Fail| R2[Debug: world knowledge&lt;br/&gt;bleeding through,&lt;br/&gt;chunk attribution loss]
+    F3 --&gt;|Fail| R3[Evaluate cost/latency&lt;br/&gt;tradeoff, consider&lt;br/&gt;model tier change]
+    F4 --&gt;|Fail| R4[Expand golden set&lt;br/&gt;for edge cases,&lt;br/&gt;refusal tuning]
+
+    F1 &amp; F2 &amp; F3 &amp; F4 --&gt;|All pass| PROCEED[Proceed to rollout]
+
+    R1 &amp; R2 &amp; R3 &amp; R4 --&gt; FIX[Fix and re-evaluate]
+    FIX --&gt; EVAL
+
+    style PROCEED fill:#1a3d2e,color:#8fd4b0
+    style FIX fill:#3d1a1a,color:#d4a0a0
+&lt;/pre&gt;
+
+&lt;h3 id="risk-catalog"&gt;Risk catalog&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Format regression&lt;/strong&gt; -- one of the most common things to break. Newer models may wrap answers in markdown when you didn't ask, change capitalization, add disclaimers, or subtly alter JSON key naming. Fixable, but only if you're measuring it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Faithfulness change&lt;/strong&gt; -- this one can go either direction, which is what makes it tricky. More capable models are generally more faithful to retrieved context, but they also have stronger world-knowledge priors that can bleed through. Watch for answers that are factually correct but not actually grounded in the retrieved context. That's a subtle and dangerous failure mode.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Latency change&lt;/strong&gt; -- gpt-5.4-nano is generally comparable to gpt-4o-mini for standard workloads. gpt-5.4-mini and gpt-5.4 (full) are slower. When you enable reasoning (&lt;code&gt;reasoning_effort: medium&lt;/code&gt; or higher), latency increases significantly. At &lt;code&gt;high&lt;/code&gt; or &lt;code&gt;xhigh&lt;/code&gt; effort, a single query can take 30-90+ seconds. Pure reasoning models (o-series) operate in this higher-latency range. Measure P50, P95, P99 before committing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cost change&lt;/strong&gt; -- run a cost projection on your golden set query lengths x new model pricing before migration. The golden set gives you a realistic token distribution. Don't estimate from toy examples.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Streaming behavior&lt;/strong&gt; -- if your UI depends on streaming tokens, verify the new model's streaming token patterns don't break downstream parsing. Partial JSON parsing, in particular, can fail on different tokenization patterns.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Silent behavioral drift post-migration&lt;/strong&gt; -- even after successful migration, model providers update weights silently. This is the argument for pinning to a specific version string (&lt;code&gt;gpt-5.4-nano-2026-03-15&lt;/code&gt; or similar dated versions) rather than a floating alias like &lt;code&gt;gpt-5.4-nano&lt;/code&gt;. Floating aliases trade reproducibility for automatic access to improvements.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="phase-7-progressive-rollout"&gt;Phase 7 -- Progressive rollout&lt;/h2&gt;
+&lt;p&gt;Don't big-bang this. The cost of a bad rollout isn't the rollout itself. It's the user impact during the time it takes you to notice and roll back.&lt;/p&gt;
+&lt;pre class="mermaid"&gt;
+flowchart LR
+    A[Shadow mode&lt;br/&gt;48-72h&lt;br/&gt;Log only] --&gt;|Metrics stable| B[5% traffic&lt;br/&gt;Gate check]
+    B --&gt;|Pass| C[20% traffic&lt;br/&gt;Gate check]
+    C --&gt;|Pass| D[50% traffic&lt;br/&gt;Gate check]
+    D --&gt;|Pass| E[100%&lt;br/&gt;Full cutover]
+
+    B --&gt;|Fail| R[Rollback + investigate]
+    C --&gt;|Fail| R
+    D --&gt;|Fail| R
+
+    style A fill:#2a2a1e,color:#c4c490
+    style E fill:#1a3d2e,color:#8fd4b0
+    style R fill:#3d1a1a,color:#d4a0a0
+&lt;/pre&gt;
+
+&lt;h3 id="shadow-mode-first"&gt;Shadow mode first&lt;/h3&gt;
+&lt;p&gt;Route a percentage of production traffic to the new model, log both responses, but serve only the old model's response to users. Run for 48-72 hours to collect real distribution data. This is the only way to validate behavior on production traffic without user exposure.&lt;/p&gt;
+&lt;p&gt;Yeah, shadow mode requires infrastructure. You need to fire two model calls per request and log both. Worth it though. You'll be surprised how many behavioral differences show up on real traffic that your golden dataset missed entirely.&lt;/p&gt;
+&lt;h3 id="gate-criteria-at-each-step"&gt;Gate criteria at each step&lt;/h3&gt;
+&lt;p&gt;Define your numeric pass/fail criteria before the rollout begins. At each step, automated checks verify:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;gate_criteria&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;faithfulness_score&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;gt;=&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;0.92&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;format_compliance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;gt;=&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;0.98&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;answer_relevance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;gt;=&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;0.90&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;p95_latency_ms&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;=&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;3000&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;refusal_accuracy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;gt;=&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;0.95&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;error_rate&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;=&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;0.001&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If any gate fails, the rollout stops. Not pauses for discussion. Stops. The investigation happens before traffic increases, not during.&lt;/p&gt;
+&lt;h3 id="traffic-segmentation-for-canary-rollout"&gt;Traffic segmentation for canary rollout&lt;/h3&gt;
+&lt;p&gt;If you can segment production traffic by query type or user segment, use it. Start with lower-stakes queries. Factual lookups before complex synthesis. Internal users before customers.&lt;/p&gt;
+&lt;h3 id="keep-rollback-ready-for-a-week"&gt;Keep rollback ready for a week&lt;/h3&gt;
+&lt;p&gt;Don't retire the old model integration the day you hit 100%. Keep the model name in a config variable so rollback is a single config change, not a code deployment. Wait at least a week before cleaning up the old path.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="phase-8-post-migration-monitoring"&gt;Phase 8 -- Post-migration monitoring&lt;/h2&gt;
+&lt;p&gt;You're not done when you hit 100% traffic. You've just established a new baseline that will itself drift.&lt;/p&gt;
+&lt;h3 id="pin-your-model-version-string"&gt;Pin your model version string&lt;/h3&gt;
+&lt;p&gt;This is the one I see skipped most often.&lt;/p&gt;
+&lt;p&gt;Use versioned model strings like &lt;code&gt;gpt-5.4-nano-2026-03-15&lt;/code&gt;, not floating aliases like &lt;code&gt;gpt-5.4-nano&lt;/code&gt;. OpenAI updates weights behind floating aliases without telling you. When they do, your system's behavior changes and you did nothing. You won't get a deprecation notice. You'll get unexplained metric shifts in your dashboards... if you have dashboards.&lt;/p&gt;
+&lt;p&gt;If you &lt;em&gt;want&lt;/em&gt; automatic access to model improvements, fine. But make that a deliberate choice, not something you fell into because you didn't think about it.&lt;/p&gt;
+&lt;h3 id="ongoing-eval-cadence"&gt;Ongoing eval cadence&lt;/h3&gt;
+&lt;p&gt;Run your eval suite on a random sample of production queries weekly. Use an LLM-as-judge approach so you don't need human annotation at scale. A weekly automated run catches behavioral drift from silent weight updates, shifts in what users are asking, or changes to your retrieval corpus that interact with generation in unexpected ways.&lt;/p&gt;
+&lt;p&gt;Set up alerting on eval score degradation. If faithfulness drops more than 3 points week-over-week, investigate. Don't wait for users to complain.&lt;/p&gt;
+&lt;h3 id="what-your-observability-actually-needs-to-cover"&gt;What your observability actually needs to cover&lt;/h3&gt;
+&lt;p&gt;At minimum:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Token consumption per request (input, output, and thinking tokens if applicable)&lt;/li&gt;
+&lt;li&gt;The actual model version string used (not the alias, the resolved version)&lt;/li&gt;
+&lt;li&gt;Total latency per request, not just generation time&lt;/li&gt;
+&lt;li&gt;Output format validation pass/fail&lt;/li&gt;
+&lt;li&gt;Downstream parsing failures from unexpected output format&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://smith.langchain.com/"&gt;LangSmith&lt;/a&gt;, &lt;a href="https://phoenix.arize.com/"&gt;Arize Phoenix&lt;/a&gt;, and &lt;a href="https://www.helicone.ai/"&gt;Helicone&lt;/a&gt; all handle these. One thing worth mentioning: generic APM monitoring won't give you what you need for an LLM system. The failure modes are different. The metrics that matter are different. It's a different kind of system.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="the-systems-audit-you-should-run-regardless"&gt;The systems audit you should run regardless&lt;/h2&gt;
+&lt;p&gt;Model deprecation is a forcing function. The problems it exposes have been there for months or years. The teams in the best position during migration aren't the ones who saw this specific deprecation coming. They're the ones who built systems that were observable and measurable from the start.&lt;/p&gt;
+&lt;p&gt;Two questions worth sitting with, migration or not:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Can you actually measure output quality?&lt;/strong&gt; Not "does the team think it looks fine." Can you produce a number? If not, you're flying blind. A model change, a corpus change, a prompt tweak, a silent weight update... any of these will shift behavior and you won't know.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Is your prompt a specification or a pile of patches?&lt;/strong&gt; Do the archaeology exercise. If the patch ratio is high (and it probably is), that's a liability that compounds with every future model change.&lt;/p&gt;
+&lt;p&gt;The migration is the deadline. But the real investment is in system discipline that makes the &lt;em&gt;next&lt;/em&gt; migration boring instead of terrifying.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="further-reading"&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dspy.ai/"&gt;DSPy Documentation and Tutorials&lt;/a&gt; -- official docs with RAG optimization examples&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.ragas.io/"&gt;Ragas Framework&lt;/a&gt; -- RAG-specific evaluation metrics&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://platform.openai.com/docs/deprecations"&gt;OpenAI Model Deprecation Policy&lt;/a&gt; -- deprecation schedule and migration guidance&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://openai.com/index/introducing-o3-and-o4-mini/"&gt;OpenAI o3 and o4-mini Technical Report&lt;/a&gt; -- capabilities and API parameters for reasoning models&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.promptfoo.dev/"&gt;PromptFoo&lt;/a&gt; -- LLM regression testing and model comparison&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://smith.langchain.com/"&gt;LangSmith&lt;/a&gt; -- LLM observability and experiment tracking&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.braintrust.dev/"&gt;Braintrust&lt;/a&gt; -- eval-driven LLM development platform&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://phoenix.arize.com/"&gt;Arize Phoenix&lt;/a&gt; -- open-source LLM tracing and evaluation&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2406.11695"&gt;MIPRO: Optimizing Instructions and Demonstrations&lt;/a&gt; -- paper behind the MIPROv2 optimizer&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2507.19457"&gt;GEPA: Reflective Prompt Evolution&lt;/a&gt; -- paper behind the GEPA optimizer&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://huggingface.co/BAAI/bge-reranker-v2-m3"&gt;BGE Reranker Models&lt;/a&gt; -- open-source cross-encoder reranking&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cohere.com/rerank"&gt;Cohere Rerank API&lt;/a&gt; -- managed reranking service&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mlflow.org/docs/latest/llm-tracking.html"&gt;MLflow LLM Tracking&lt;/a&gt; -- experiment tracking with native DSPy integration&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.helicone.ai/"&gt;Helicone&lt;/a&gt; -- LLM observability and cost tracking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type="module"&gt;
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Machine Learning"/><category term="llm-migration"/><category term="model-deprecation"/><category term="rag-systems"/><category term="prompt-engineering"/><category term="production-ai"/><category term="ai-evaluation"/><category term="llmops"/><category term="reasoning-models"/><category term="dspy"/><category term="prompt-optimization"/><category term="ai-architecture"/><category term="retrieval-augmented-generation"/><category term="ai-reliability"/><category term="gpt-4o-mini"/><category term="model-versioning"/><category term="ai-observability"/><category term="progressive-rollout"/><category term="faithfulness-evaluation"/><category term="technical-debt"/><category term="ai-engineering"/></entry><entry><title>The illusion of control in AI-assisted engineering</title><link href="https://www.safjan.com/the-illusion-of-control-in-ai-assisted-engineering/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-03-03T00:00:00+01:00</published><updated>2026-03-03T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-03-03:/the-illusion-of-control-in-ai-assisted-engineering/</id><summary type="html">&lt;h2 id="the-illusion-of-control-in-ai-assisted-engineering"&gt;The illusion of control in AI-assisted engineering&lt;/h2&gt;
+&lt;p&gt;Dashboards are green. Reviews complete on time. Audits pass. And the organization is slowly losing track of what its own systems actually do.&lt;/p&gt;
+&lt;p&gt;I keep running into this in teams that use AI-assisted engineering a …&lt;/p&gt;</summary><content type="html">&lt;h2 id="the-illusion-of-control-in-ai-assisted-engineering"&gt;The illusion of control in AI-assisted engineering&lt;/h2&gt;
+&lt;p&gt;Dashboards are green. Reviews complete on time. Audits pass. And the organization is slowly losing track of what its own systems actually do.&lt;/p&gt;
+&lt;p&gt;I keep running into this in teams that use AI-assisted engineering a lot. The controls are all still there. They're just not controlling what anyone thinks they're controlling.&lt;/p&gt;
+&lt;h3 id="the-distinction-nobody-separates"&gt;The distinction nobody separates&lt;/h3&gt;
+&lt;p&gt;When teams adopt AI-assisted development, the first question management asks is: &lt;em&gt;Is a human still reviewing the output?&lt;/em&gt; Yes. Code review gates are there. Architecture sign-offs happen. Compliance checklists get filled in.&lt;/p&gt;
+&lt;p&gt;But the word "oversight" covers two different things. One is &lt;em&gt;operational control&lt;/em&gt;: can you approve, reject, or modify the output? The other is &lt;em&gt;epistemic control&lt;/em&gt;: do you actually understand what was built, why it works this way, and what it assumes?&lt;/p&gt;
+&lt;p&gt;AI-assisted workflows keep the first and slowly destroy the second. Every governance framework I've seen was designed when these two things were inseparable. The engineer who wrote a module was the same person who reviewed it and signed off on it. They understood it because they built it. That coupling is broken now, and most orgs haven't noticed.&lt;/p&gt;
+&lt;h3 id="what-governance-theater-actually-looks-like"&gt;What governance theater actually looks like&lt;/h3&gt;
+&lt;p&gt;I watched this happen on a project last year. A team was building an integration layer between an enterprise platform and a third-party data provider. AI tooling generated the service contracts, transformation logic, and error-handling paths. Engineers reviewed everything. And here's what surprised me: the code review was thorough. More thorough than most reviews I've seen. Line-by-line, comments on the PR, long discussions about edge cases. Architecture board signed off.&lt;/p&gt;
+&lt;p&gt;Six months later, a cascading failure traced back to a silent retry pattern in the error-handling logic that misbehaved under load. The postmortem asked who understood the design intent behind that module. Nobody. The AI generated it. The engineer reviewed it carefully, caught formatting issues and a null-check bug, but never asked &lt;em&gt;why the retry logic was structured that way&lt;/em&gt; because the review was focused on "is this correct," not "what is this assuming."&lt;/p&gt;
+&lt;p&gt;The review wasn't sloppy. That's what made it disturbing. The process did exactly what it was designed to do. It just wasn't designed for code that arrived without anyone having thought through the design.&lt;/p&gt;
+&lt;p&gt;The compliance version is worse. Imagine software company under financial regulation gets asked during an external audit to explain the reasoning behind an algorithmic approach touching customer data classification. The honest answer? It was AI-generated and the team validated the outputs without tracing the reasoning. No compliance framework accepts that. You either make up a rationale after the fact or admit a gap the auditors weren't looking for.&lt;/p&gt;
+&lt;h3 id="how-responsibility-diffuses"&gt;How responsibility diffuses&lt;/h3&gt;
+&lt;p&gt;In a normal engineering workflow, you can point at someone and say: you designed this, you understood it, you signed off. Architecture review boards exist partly to create that paper trail. When something breaks, you know who to ask.&lt;/p&gt;
+&lt;p&gt;AI-assisted workflows put something in the authorship chain that can't be asked, can't explain itself, and can't take responsibility when a regulator shows up. Responsibility doesn't move to the AI. It just gets spread thin across everyone who touched the output. Everyone reviewed it. Nobody wrote it. When an incident review or an auditor asks "who understood this design," nobody answers.&lt;/p&gt;
+&lt;p&gt;You don't notice this in any one sprint. But after a year of it, an organization ends up with a growing pile of production systems where nobody recorded the design intent, nobody captured the assumptions, and the engineers maintaining the code can't explain why a service boundary is where it is or why the retry logic works the way it does. The code passes tests. The architecture diagrams exist. The understanding doesn't.&lt;/p&gt;
+&lt;h3 id="the-slower-risks"&gt;The slower risks&lt;/h3&gt;
+&lt;p&gt;Leadership conversations about AI in engineering tend to focus on the obvious stuff: hallucinated code, security vulnerabilities, IP leakage. Those are real. The risks that worry me more take longer to show up.&lt;/p&gt;
+&lt;p&gt;One is architectural drift. When dozens of teams across an organization generate code through AI without shared context, each team's output embeds slightly different assumptions about data models, error handling, and service contracts. Service A assumes retries are idempotent. Service B doesn't. Both pass their own tests. The inconsistency only surfaces when they're under load together, and by then the damage spreads fast.&lt;/p&gt;
+&lt;p&gt;Another: AI-generated systems are unusually hard to change later. Normal technical debt is annoying but manageable because somebody on the team once understood the code. When a system was generated and reviewed but not really authored, the next team inherits a black box. They can't refactor confidently because nobody can tell them what the original constraints were. So they wrap it, route around it, or just don't touch it. The codebase hardens in a way that's different from normal decay.&lt;/p&gt;
+&lt;p&gt;Regulators are catching up, too. In financial services and telecom especially, the questions about AI-assisted code generation are getting specific. The organizations I'd worry about aren't the ones using AI the most. They're the ones that adopted it without changing their traceability and governance to match.&lt;/p&gt;
+&lt;h3 id="reframing-the-question"&gt;Reframing the question&lt;/h3&gt;
+&lt;p&gt;The question isn't whether humans are in the loop. They are. The question is whether the human hitting "approve" on a PR could explain the design to an auditor, rebuild the module if the original was lost, or predict how it fails under conditions the tests don't cover.&lt;/p&gt;
+&lt;p&gt;Reviewing code for correctness and understanding a system's architecture are different activities. Review processes were designed when they were the same activity. AI-assisted workflows have split them apart, and no one updated the process to compensate.&lt;/p&gt;
+&lt;p&gt;Some of this is fixable. Not every AI-generated module needs deep human comprehension. Boilerplate, scaffolding, config, sure. But integration contracts, error-handling strategies, anything that encodes assumptions about how other systems behave? Someone needs to understand those, and "reviewed the PR" isn't the same as understanding them. Architectural reviews need to start asking "why is this designed this way" instead of just "does this look right." Traceability for AI-generated code needs to capture the assumptions, not just the output.&lt;/p&gt;
+&lt;p&gt;If leadership teams keep the review ceremonies running while the understanding underneath thins out, they're not managing risk. They're performing risk management. And that works until someone actually tests it, which in regulated industries tends to happen during an incident or an audit, when the consequences are already serious.&lt;/p&gt;
+&lt;h3 id="questions-worth-sitting-with"&gt;Questions worth sitting with&lt;/h3&gt;
+&lt;p&gt;Can your organization tell the difference between systems your teams approved and systems they actually understand? Does anyone track that? I've never seen it tracked.&lt;/p&gt;
+&lt;p&gt;If a regulator or an acquirer asked your team to walk through the design intent behind a critical integration, who would take the call? Would they be explaining what they know, or reverse-engineering it on the spot?&lt;/p&gt;
+&lt;p&gt;Have your sign-off processes changed at all since AI adoption started? Every code review approval and architecture sign-off carries an implicit claim: "I understood this." If that claim has quietly become "I checked this," the paperwork is still flowing but the assurance behind it isn't there anymore.&lt;/p&gt;
+&lt;p&gt;I don't have good answers to any of this. I'm working through it myself.&lt;/p&gt;</content><category term="Machine Learning"/></entry><entry><title>Version Your Vectors - Index Versioning as the Missing Layer in RAG Observability and Compliance</title><link href="https://www.safjan.com/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2026-02-26T00:00:00+01:00</published><updated>2026-02-26T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2026-02-26:/version-your-vectors-index-versioning-as-the-missing-layer-in-rag/</id><summary type="html">&lt;p&gt;Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable point-in-time reconstruction, and when lightweight metadata is enough. Includes practical tracing patterns, replay strategies, and a risk-based decision guide for production systems.&lt;/p&gt;</summary><content type="html">&lt;h2 id="1-the-invisible-problem-why-rag-systems-silently-drift"&gt;1. The invisible problem: why RAG systems silently drift&lt;/h2&gt;
 &lt;p&gt;Most teams building Retrieval-Augmented Generation systems obsess over the LLM, its version, its temperature, its prompt. The component that actually changes most often and most quietly is the index: the corpus of documents, their chunked representations, and the embeddings that map them into vector space.&lt;/p&gt;
 &lt;p&gt;Think about what happens when:&lt;/p&gt;
 &lt;ul&gt;
@@ -3696,53 +4350,50 @@ They use the &lt;code&gt;--name&lt;/code&gt; syntax and are accessed with &lt;co
 &lt;h2 id="references"&gt;References&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://peps.python.org/pep-3102/"&gt;PEP 3102 – Keyword-Only Arguments | peps.python.org&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="note"/><category term="python"/><category term="api"/><category term="pep"/><category term="keyword-arguments"/><category term="future-proofing"/></entry><entry><title>Six Weeks, Real Progress - Exploring Shape Up for Product Work</title><link href="https://www.safjan.com/six-weeks-real-progress-exploring-shape-up-for-product-work/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2025-10-06T00:00:00+02:00</published><updated>2026-02-07T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-06:/six-weeks-real-progress-exploring-shape-up-for-product-work/</id><summary type="html">&lt;p&gt;Shape Up offers a focused alternative to sprint-driven development, trading constant ceremonies and tight iterations for clear boundaries and six-week cycles. This article explores when it works well, when it doesn’t, and why it may help teams overwhelmed by process overhead.&lt;/p&gt;</summary><content type="html">&lt;ul&gt;
-&lt;li&gt;&lt;a href="#what-makes-shape-up-different"&gt;What Makes Shape Up Different?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#when-shape-up-really-shines"&gt;When Shape Up Really Shines&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#when-it-might-not-be-your-best-bet"&gt;When It Might Not Be Your Best Bet&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-real-question"&gt;The Real Question&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="note"/><category term="python"/><category term="api"/><category term="pep"/><category term="keyword-arguments"/><category term="future-proofing"/></entry><entry><title>Six Weeks, Real Progress - Exploring Shape Up for Product Work</title><link href="https://www.safjan.com/six-weeks-real-progress-exploring-shape-up-for-product-work/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2025-10-06T00:00:00+02:00</published><updated>2026-02-07T00:00:00+01:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2025-10-06:/six-weeks-real-progress-exploring-shape-up-for-product-work/</id><summary type="html">&lt;p&gt;Shape Up replaces two-week sprints with six-week cycles, kills the backlog, and lets small teams decide how to build things. Here is when it works, when it doesn't, and what I think about it after digging in.&lt;/p&gt;</summary><content type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href="#what-makes-shape-up-different"&gt;What makes Shape Up different?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#when-shape-up-works-well"&gt;When Shape Up works well&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#when-it-falls-short"&gt;When it falls short&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#so-what-should-you-actually-do"&gt;So what should you actually do?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#further-reading"&gt;Further reading&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I've been thinking a lot lately about how we build software. Not the code itself—that's the easy part, really—but the &lt;em&gt;process&lt;/em&gt;. The endless ceremonies, the sprint planning that somehow takes three hours, the daily standups that drift into problem-solving sessions, the backlog that's become this unwieldy beast no one wants to groom.&lt;/p&gt;
-&lt;p&gt;For years, we've been told that Agile is the answer. Scrum, Kanban, SAFe—pick your flavor. And look, these frameworks have helped countless teams ship better software. But somewhere along the way, something started feeling off. The two-week sprints that fragment work into artificial chunks. The constant context switching without possibility to think deeply about the problem on the table. The &lt;strong&gt;weird pressure to estimate story points for work we barely understand yet&lt;/strong&gt;. The nagging feeling that we're &lt;strong&gt;spending more time &lt;em&gt;managing&lt;/em&gt; the process than actually building things&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Then I stumbled onto &lt;a href="https://basecamp.com/shapeup"&gt;Shape Up&lt;/a&gt;, the approach developed by Basecamp (now &lt;a href="https://37signals.com/"&gt;37signals&lt;/a&gt;), and it felt like someone had articulated frustrations I didn't even know I had.&lt;/p&gt;
+&lt;p&gt;I keep coming back to the same frustration with how we build software. Not the code, the &lt;em&gt;process&lt;/em&gt; around it. Sprint planning that eats three hours. Standups that turn into debugging sessions. A backlog so long nobody even scrolls to the bottom anymore.&lt;/p&gt;
+&lt;p&gt;Agile was supposed to fix all this. Scrum, Kanban, SAFe, whatever. And those frameworks helped, I won't deny that. But at some point things drifted. Two-week sprints started fragmenting work into artificial chunks. Context switching never stopped. There was this constant pressure to estimate story points for work we barely understood yet, and I started noticing we were spending more time managing the process than actually building things.&lt;/p&gt;
+&lt;p&gt;Then I found &lt;a href="https://basecamp.com/shapeup"&gt;Shape Up&lt;/a&gt;, the approach from Basecamp (now &lt;a href="https://37signals.com/"&gt;37signals&lt;/a&gt;). It described exactly what was bothering me, better than I could.&lt;/p&gt;
 &lt;p&gt;&lt;a id="what-makes-shape-up-different"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="what-makes-shape-up-different"&gt;What Makes Shape Up Different?&lt;/h2&gt;
-&lt;p&gt;Shape Up isn't just Agile with different terminology. It's a fundamentally different way of thinking about product development cycles.&lt;/p&gt;
+&lt;h2 id="what-makes-shape-up-different"&gt;What makes Shape Up different?&lt;/h2&gt;
+&lt;p&gt;Shape Up is not Agile with different labels. The structure is different enough that it changes how you think about planning.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;The core idea&lt;/strong&gt;
-Work in &lt;strong&gt;six-week cycles&lt;/strong&gt;. Not two weeks. Six. &lt;strong&gt;Long enough to build something meaningful, short enough to stay focused&lt;/strong&gt;. "Plus it gives you about eight chances a year to recalibrate and decide what to work on next." (see: &lt;a href="https://37signals.com/06"&gt;37signals&lt;/a&gt;). Between cycles, there's a two-week cooldown where teams can breathe, fix bugs, explore ideas, or just catch up on that technical debt everyone's been ignoring.&lt;/p&gt;
+&lt;p&gt;Work in six-week cycles. Not two weeks. Six. Long enough to build something real, short enough that you can't hide. "Plus it gives you about eight chances a year to recalibrate and decide what to work on next." (see: &lt;a href="https://37signals.com/06"&gt;37signals&lt;/a&gt;). Between cycles, there's a two-week cooldown for bugs, tech debt, or just breathing.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;But here's where it gets interesting: before a cycle starts, senior people do what Basecamp calls "&lt;strong&gt;&lt;a href="https://basecamp.com/shapeup/0.3-chapter-01#shaping-the-work"&gt;shaping&lt;/a&gt;.&lt;/strong&gt;" They take raw ideas and turn them into bounded, well-considered pitches. Not detailed specifications—that would defeat the purpose—but something with clear boundaries, key insights, and thoughtful limitations. Crucially, they also identify what you're &lt;em&gt;not&lt;/em&gt; going to build.&lt;/p&gt;
-&lt;p&gt;Then &lt;strong&gt;small teams&lt;/strong&gt; (typically a &lt;strong&gt;designer&lt;/strong&gt; and &lt;strong&gt;one or two programmers&lt;/strong&gt;) take these shaped projects and run with them. No daily standups. No one breathing down their necks asking for status updates. They're trusted to figure out the details, make trade-offs, and solve problems. The appetite is fixed—six weeks—but the scope is flexible within reason. If something's taking too long, you cut scope, not time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;There's no backlog&lt;/strong&gt;. Ideas that don't make it into a cycle just… don't exist anymore. &lt;strong&gt;If they're good, they'll come back&lt;/strong&gt;. If they're not, well, you just saved yourself from maintaining a graveyard of forgotten tickets.&lt;/p&gt;
-&lt;p&gt;&lt;a id="when-shape-up-really-shines"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="when-shape-up-really-shines"&gt;When Shape Up Really Shines&lt;/h2&gt;
-&lt;p&gt;I've seen Shape Up work beautifully for product teams that are tired of the sprint treadmill. It's particularly powerful when you're &lt;strong&gt;building features that need genuine design thinking&lt;/strong&gt; and integration work—the kind of projects that get mangled when you try to slice them into two-week chunks.&lt;/p&gt;
-&lt;p&gt;It works when your &lt;strong&gt;team is experienced enough&lt;/strong&gt; to operate with autonomy. When people can make good decisions without needing approval for every little thing. When you trust your developers to be adults who can communicate when they're stuck without needing a daily check-in.&lt;/p&gt;
-&lt;p&gt;The six-week cycles are a game-changer for &lt;strong&gt;work that has natural complexity&lt;/strong&gt;. You can actually design something properly, build it thoughtfully, and refine it without this artificial urgency every two weeks. Teams report feeling less fragmented, more focused, and paradoxically more creative because they have room to think.&lt;/p&gt;
-&lt;p&gt;The "no backlog" philosophy is incredibly liberating. You stop maintaining this guilt-inducing list of things you'll never do. You stop feeling bad about all those tickets that have been sitting there for eighteen months. Each cycle is a fresh start.&lt;/p&gt;
-&lt;p&gt;&lt;a id="when-it-might-not-be-your-best-bet"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="when-it-might-not-be-your-best-bet-shape-up-isnt-a-universal-solution"&gt;When It Might Not Be Your Best Bet - Shape Up isn't a universal solution.&lt;/h2&gt;
-&lt;p&gt;If you're maintaining a &lt;strong&gt;mature product&lt;/strong&gt; with &lt;strong&gt;lots of small&lt;/strong&gt; customer &lt;strong&gt;requests&lt;/strong&gt; and &lt;strong&gt;bug fixes&lt;/strong&gt;, the six-week cycle might feel cumbersome. Sometimes you just need to knock out twenty small improvements, and cramming them into a "shaped" project feels forced. The cooldown weeks help, but if this is 80% of your work, you might be fighting the framework.&lt;/p&gt;
-&lt;p&gt;It assumes a certain organizational maturity. &lt;strong&gt;The shaping process requires people who really understand both the business and the technology&lt;/strong&gt;. If you don't have &lt;strong&gt;senior folks&lt;/strong&gt; who can do this well, you'll end up with poorly defined projects that either explode in scope or leave teams floundering. And honestly? &lt;strong&gt;Good shaping is hard. It's a skill that takes time to develop.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Shape Up can be rough for teams that need predictability. If you're in a context where stakeholders need firm &lt;strong&gt;commitments about exactly what ships when&lt;/strong&gt;, the flexible scope model might cause friction. "We'll ship something good in six weeks" is a very different promise than "We'll deliver these fourteen story points by the end of Sprint 23."&lt;/p&gt;
-&lt;p&gt;It's also &lt;strong&gt;not ideal if you're in true discovery mode&lt;/strong&gt;, experimenting rapidly with prototypes to find product-market fit. The &lt;strong&gt;six-week commitment is too heavy&lt;/strong&gt; when you need to pivot every few days based on user feedback. Shape Up assumes you have &lt;em&gt;some&lt;/em&gt; clarity about what you're building.&lt;/p&gt;
-&lt;p&gt;And let's be honest: if your &lt;strong&gt;organization is deeply committed to Agile&lt;/strong&gt; ceremonies, metrics, and tooling, the transition can be difficult. No velocity charts. No burndown graphs. No story points. Some organizations aren't ready to let go of those security blankets.&lt;/p&gt;
-&lt;p&gt;&lt;a id="the-real-question"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="the-real-question"&gt;The Real Question&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The more I dig into Shape Up, the more I think the real question isn't "Is Shape Up better than Agile?" It's &lt;strong&gt;"What problems are we actually trying to solve?"&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Are you frustrated by &lt;strong&gt;fragmented work&lt;/strong&gt; and constant &lt;strong&gt;context switching&lt;/strong&gt;? Shape Up might help. Are you drowning in &lt;strong&gt;process overhead&lt;/strong&gt; and want to give teams &lt;strong&gt;more autonomy&lt;/strong&gt;? Worth exploring. Do you need to ship &lt;strong&gt;lots of small changes quickly and predictably&lt;/strong&gt;? Maybe stick with what you know.&lt;/p&gt;
-&lt;p&gt;Shape Up' is opinionated. It makes trade-offs. It acknowledges that different contexts need different approaches.&lt;/p&gt;
-&lt;p&gt;Not that Shape Up is better or worse than Scrum or Kanban, but that we should &lt;strong&gt;be more thoughtful about &lt;em&gt;why&lt;/em&gt; we work the way we do&lt;/strong&gt;. Remember: dare to question the defaults. &lt;/p&gt;
+&lt;p&gt;Before a cycle starts, senior people do what Basecamp calls "&lt;a href="https://basecamp.com/shapeup/0.3-chapter-01#shaping-the-work"&gt;shaping&lt;/a&gt;." They take raw ideas and turn them into pitches with clear limits. Not detailed specs, but something with clear boundaries and a sense of what you're &lt;em&gt;not&lt;/em&gt; going to build. That last part is important.&lt;/p&gt;
+&lt;p&gt;Then small teams, usually a designer and one or two programmers, take the shaped project and run with it. No daily standups. No one hovering for status updates. The time is fixed at six weeks, but the scope flexes. If something is taking too long, you cut scope, not time.&lt;/p&gt;
+&lt;p&gt;There's no backlog. Ideas that don't make it into a cycle just disappear. If they matter, they'll resurface. If they don't, you saved yourself from a list of tickets nobody will ever touch.&lt;/p&gt;
+&lt;p&gt;&lt;a id="when-shape-up-works-well"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="when-shape-up-works-well"&gt;When Shape Up works well&lt;/h2&gt;
+&lt;p&gt;I've seen it work for product teams that are tired of the sprint treadmill. It fits when you're building features that need real design thinking, the kind of work that breaks apart when you force it into two-week slices.&lt;/p&gt;
+&lt;p&gt;It works when your team is experienced enough to work without someone checking on them every day. When people can make decisions without approval for every small thing, and when they'll actually say something when they're stuck instead of waiting for a standup.&lt;/p&gt;
+&lt;p&gt;Six weeks lets you sit with a problem long enough to solve it properly. A couple people I've talked to said they felt less scattered, and one mentioned actually having time to think about edge cases instead of just filing them as follow-up tickets. I've had the same feeling on longer projects.&lt;/p&gt;
+&lt;p&gt;The no-backlog thing is better than it sounds. You stop maintaining a guilt list of things you'll never get to. You stop feeling bad about the tickets that have been sitting there for a year and a half. Every cycle is a clean slate.&lt;/p&gt;
+&lt;p&gt;&lt;a id="when-it-falls-short"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="when-it-falls-short"&gt;When it falls short&lt;/h2&gt;
+&lt;p&gt;Shape Up is not a universal fix.&lt;/p&gt;
+&lt;p&gt;If most of your work is small customer requests and bug fixes, the six-week cycle feels heavy. Sometimes you just need to knock out twenty little improvements, and trying to shape each one into a project is forced. The cooldown weeks help some, but if 80% of your work looks like this, you're probably fighting the framework.&lt;/p&gt;
+&lt;p&gt;Shaping requires people who understand both the business and the technology. If you don't have senior folks who can do this well, you end up with vague projects that either blow up in scope or leave teams stuck. Good shaping is hard. It takes practice.&lt;/p&gt;
+&lt;p&gt;Teams that need predictability may struggle too. "We'll ship something good in six weeks" is a very different promise than "We'll deliver these fourteen story points by the end of Sprint 23." If your stakeholders need firm dates on specific features, the flexible scope will create problems.&lt;/p&gt;
+&lt;p&gt;It's also wrong for true discovery mode. Six weeks is too much commitment when you need to pivot every few days based on user feedback. Shape Up assumes you have &lt;em&gt;some&lt;/em&gt; idea of what you're building.&lt;/p&gt;
+&lt;p&gt;And if your organization is deeply invested in Agile tooling, velocity charts, burndown graphs, story points, the transition is a hard sell. Some teams aren't ready to give those up, and pushing Shape Up into that environment just creates a different kind of process overhead.&lt;/p&gt;
+&lt;p&gt;&lt;a id="so-what-should-you-actually-do"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="so-what-should-you-actually-do"&gt;So what should you actually do?&lt;/h2&gt;
+&lt;p&gt;The useful question isn't "is Shape Up better than Agile?" It's "what's actually broken in how we work right now?"&lt;/p&gt;
+&lt;p&gt;If your problem is fragmented work and constant context switching, Shape Up is worth trying. If you're drowning in process overhead, read the book and see what makes sense for you. But if you mostly need to ship small changes on a predictable schedule, you probably don't need to change anything.&lt;/p&gt;
+&lt;p&gt;I don't really care if Shape Up is "the right framework." What I care about is whether teams are honest about why they work the way they do. Most of us inherited our process from a previous team or a blog post from 2015. Maybe it's time to revisit that.&lt;/p&gt;
 &lt;p&gt;&lt;a id="further-reading"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="further-reading"&gt;Further reading&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;overview article on shape up method - &lt;a href="https://agilefirst.io/what-is-shape-up/"&gt;Shape Up: a complete guide to this new development methodology (2024)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;free book on shape up - &lt;a href="https://basecamp.com/shapeup"&gt;Shape Up: Stop Running in Circles and Ship Work that Matters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://37signals.com/"&gt;37signals&lt;/a&gt; - This site is a catalog of liberating ideas about how they (company behind basecamp, Ruby on Rails,...) works, do business, live...&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://37signals.com/"&gt;37signals&lt;/a&gt; - the company behind Basecamp, Ruby on Rails, and several opinionated books about how to run a software business&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Edits:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -5296,221 +5947,4 @@ Find paths from Alice to TechCorp: &amp;#39;Alice&amp;#39;, &amp;#39;Bob&amp;#39
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 &lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;actions/checkout@v2&lt;/span&gt;
 &lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;# ... rest of the job steps&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"/><category term="github"/><category term="github-actions"/><category term="workflow"/><category term="ci"/><category term="yaml"/></entry><entry><title>Pandas Categorical - Benefits and Use Cases</title><link href="https://www.safjan.com/pandas-categorical-benefits-and-use-cases/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2024-10-01T00:00:00+02:00</published><updated>2024-10-01T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-10-01:/pandas-categorical-benefits-and-use-cases/</id><summary type="html">&lt;p&gt;Learn about the memory efficiency, improved performance, meaningful order, type safety, and faster groupby operations with pandas Categorical data type, especially beneficial for large datasets with limited unique values.&lt;/p&gt;</summary><content type="html">&lt;h2 id="tldr"&gt;TL;DR&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Memory efficiency&lt;/strong&gt;: Uses less memory for data with limited unique values.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Improved performance&lt;/strong&gt;: Faster computations and aggregations, especially for large datasets.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Meaningful order&lt;/strong&gt;: Allows custom ordering of categories for sorting and plotting.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Type safety&lt;/strong&gt;: Ensures only predefined categories can be assigned, preventing errors.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Faster groupby operations&lt;/strong&gt;: Improves performance when grouping data.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;These benefits are most noticeable with large datasets and columns having a limited number of unique values that repeat frequently.&lt;/p&gt;
-&lt;p&gt;Using pandas categorical data type instead of int or string can be beneficial in several scenarios. Here are some reasons and examples where using categorical is better:&lt;/p&gt;
-&lt;h2 id="1-memory-efficiency"&gt;1. Memory efficiency&lt;/h2&gt;
-&lt;p&gt;For datasets with a limited number of unique values that repeat frequently, categorical data uses less memory than int or string.&lt;/p&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Create a large DataFrame with repeated values&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;status&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;active&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;inactive&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pending&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;)})&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Compare memory usage&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String dtype: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;status&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1e6&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.2f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; MB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Categorical dtype: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;status&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;category&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1e6&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.2f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; MB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Outcome:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;String&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dtype&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;64.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;MB&lt;/span&gt;
-&lt;span class="nx"&gt;Categorical&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dtype&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;1.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;MB&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="2-improved-performance"&gt;2. Improved performance&lt;/h2&gt;
-&lt;p&gt;Categorical data can lead to faster computations and aggregations, especially for large datasets.&lt;/p&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Create a large DataFrame with repeated values&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;color&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;red&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;green&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;blue&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;yellow&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;)})&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Compare performance for value_counts()&lt;/span&gt;
-&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;color&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String dtype: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.4f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; seconds&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;color&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;color&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;category&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;color&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Categorical dtype: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.4f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; seconds&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Outcome:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;String&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dtype&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0779&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;seconds&lt;/span&gt;
-&lt;span class="nx"&gt;Categorical&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dtype&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0090&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;seconds&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="3-meaningful-order"&gt;3. Meaningful order&lt;/h2&gt;
-&lt;p&gt;Categorical data allows you to specify a custom order for the categories, which is useful for sorting and plotting.&lt;/p&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;size&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;small&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;medium&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;large&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;small&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;large&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;medium&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Create an ordered categorical column&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;size_cat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Categorical&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;size&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;categories&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;small&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;medium&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;large&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;ordered&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Sort by the categorical column&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;size_cat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Plot with a meaningful order&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;size_cat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="4-type-safety"&gt;4. Type safety&lt;/h2&gt;
-&lt;p&gt;Categorical data ensures that only predefined categories can be assigned, preventing data entry errors.&lt;/p&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fruit&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;banana&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;cherry&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fruit&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Categorical&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fruit&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;categories&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;banana&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;cherry&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-
-&lt;span class="c1"&gt;# This will raise a ValueError&lt;/span&gt;
-&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;orange&amp;#39;&lt;/span&gt;
-&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="5-improved-groupby-operations"&gt;5. Improved groupby operations&lt;/h2&gt;
-&lt;p&gt;Categorical data can speed up groupby operations, especially when there are many groups.&lt;/p&gt;
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Create a large DataFrame with repeated values&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;group&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;E&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;randn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;})&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Compare performance for groupby operation&lt;/span&gt;
-&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;group&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String dtype: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.4f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; seconds&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;group&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;group&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;category&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;group&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;value&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Categorical dtype: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;.4f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; seconds&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;String&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dtype&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;0.1000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;seconds&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
-&lt;span class="nx"&gt;Categorical&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dtype&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0198&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;seconds&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"/><category term="pandas"/></entry><entry><title>Audio Notifications in Jupyter Notebooks Across Platforms</title><link href="https://www.safjan.com/audio-notifications-in-jupyter-notebooks-across-platforms/?utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=safjan-blog" rel="alternate"/><published>2024-09-13T00:00:00+02:00</published><updated>2024-09-13T00:00:00+02:00</updated><author><name>Krystian Safjan</name></author><id>tag:www.safjan.com,2024-09-13:/audio-notifications-in-jupyter-notebooks-across-platforms/</id><summary type="html">&lt;p&gt;Learn how to implement sound notifications in Jupyter notebooks using the cross-platform &lt;code&gt;beepy&lt;/code&gt; package and native macOS commands like &lt;code&gt;say&lt;/code&gt; and &lt;code&gt;afplay&lt;/code&gt; for enhanced productivity.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Enhancing Your Notebook Experience with Sound Notifications&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;When working with long-running operations in Jupyter notebooks or other interactive computing environments, it's often helpful to have audible notifications to alert you when tasks are complete. This is particularly useful when you're multitasking or working on time-consuming processes. In this post, we'll explore various methods to implement sound notifications across different platforms, with a special focus on macOS.&lt;/p&gt;
-&lt;h2 id="1-the-beepy-package-cross-platform-simplicity"&gt;1. The Beepy Package: Cross-Platform Simplicity&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;beepy&lt;/code&gt; package offers a straightforward, cross-platform solution for playing notification sounds in Python. It's easy to install and use, making it an excellent choice for beginners and experienced users alike.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;beepy&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Play a notification sound&lt;/span&gt;
-&lt;span class="n"&gt;beepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;beep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sound&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code&gt;beepy&lt;/code&gt; package comes with several pre-defined sounds, identified by numbers 1-7. Here's a quick reference:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;'coin'&lt;/li&gt;
-&lt;li&gt;'robot_error'&lt;/li&gt;
-&lt;li&gt;'error'&lt;/li&gt;
-&lt;li&gt;'ping'&lt;/li&gt;
-&lt;li&gt;'ready'&lt;/li&gt;
-&lt;li&gt;'success'&lt;/li&gt;
-&lt;li&gt;'wilhelm'&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;To use &lt;code&gt;beepy&lt;/code&gt;, first install it via pip:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install beepy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Then, you can easily integrate it into your notebook cells:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sleep&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Simulate a long-running operation&lt;/span&gt;
-&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Play a notification sound&lt;/span&gt;
-&lt;span class="n"&gt;beepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;beep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sound&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# &amp;#39;ready&amp;#39; sound&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Operation complete!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="2-macos-say-command-text-to-speech-notifications"&gt;2. MacOS 'say' Command: Text-to-Speech Notifications&lt;/h2&gt;
-&lt;p&gt;For macOS users, the built-in &lt;code&gt;say&lt;/code&gt; command provides a unique way to create custom voice notifications. This method turns text into speech, allowing for more informative alerts.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;say &amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Usage&lt;/span&gt;
-&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;I&amp;#39;m done now with the data processing task.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;You can customize the voice and speaking rate:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;say -v Samantha -r 200 &amp;quot;Your analysis is complete&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="3-macos-afplay-command-system-sound-playback"&gt;3. MacOS 'afplay' Command: System Sound Playback&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;afplay&lt;/code&gt; command in macOS allows you to play system sounds or custom audio files. First, you can list available system sounds:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Library&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Sounds&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Then, play a specific sound:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;play_sound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sound_name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;afplay /System/Library/Sounds/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;sound_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;.aiff&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Usage&lt;/span&gt;
-&lt;span class="n"&gt;play_sound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hero&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="4-playsound-library-another-cross-platform-option"&gt;4. Playsound Library: Another Cross-Platform Option&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;playsound&lt;/code&gt; library offers a simple, cross-platform solution for playing sound files:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;playsound&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;playsound&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Play an MP3 file&lt;/span&gt;
-&lt;span class="n"&gt;playsound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/to/your/soundfile.mp3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Install it using pip:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install playsound
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="5-windows-specific-solution-winsound"&gt;5. Windows-Specific Solution: Winsound&lt;/h2&gt;
-&lt;p&gt;For Windows users, the built-in &lt;code&gt;winsound&lt;/code&gt; module provides a platform-specific option:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;winsound&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Play a system sound&lt;/span&gt;
-&lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PlaySound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SystemExclamation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SND_ALIAS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Play a custom WAV file&lt;/span&gt;
-&lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PlaySound&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;path/to/your/sound.wav&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;winsound&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SND_FILENAME&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id="6-web-based-notebooks-javascript-audio"&gt;6. Web-Based Notebooks: JavaScript Audio&lt;/h2&gt;
-&lt;p&gt;For web-based notebooks like Google Colab, you can use JavaScript to play audio:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.display&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Javascript&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;play_audio&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Javascript&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="s2"&gt;        var audio = new Audio(&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;);&lt;/span&gt;
-&lt;span class="s2"&gt;        audio.play();&lt;/span&gt;
-&lt;span class="s2"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Usage&lt;/span&gt;
-&lt;span class="n"&gt;play_audio&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://example.com/notification.mp3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Happy coding, and may your long-running operations always end with a satisfying ding!&lt;/p&gt;</content><category term="note"/><category term="jupyter-notebooks"/><category term="audio-notifications"/><category term="python"/><category term="macos"/><category term="windows"/><category term="cross-platform"/><category term="beepy"/><category term="text-to-speech"/><category term="afplay"/><category term="playsound"/><category term="winsound"/><category term="javascript-audio"/><category term="productivity"/><category term="long-running-operations"/><category term="workflow-enhancement"/><category term="coding-alerts"/><category term="custom-notifications"/><category term="system-sounds"/><category term="multiplatform-development"/><category term="interactive-computing"/></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="note"/><category term="github"/><category term="github-actions"/><category term="workflow"/><category term="ci"/><category term="yaml"/></entry></feed>

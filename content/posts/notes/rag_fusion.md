@@ -11,7 +11,7 @@ tags:
   - llm
   - information-retrieval
   - rag
-  - re-ranking
+  - reranking
   - semantic-search
   - llm-technique
 ---
