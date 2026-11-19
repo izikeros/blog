@@ -199,6 +199,7 @@ USE_FOLDER_AS_CATEGORY = False  # Don't use folder structure for categories
 
 # Main navigation menu items
 MENUITEMS = (
+    ("About", "/about/"),
     ("Articles", "/archives.html"),
     ("Notes", "/til.html"),
     ("Categories", "/categories.html"),
@@ -352,6 +353,7 @@ LLMS_TXT_DESCRIPTION = (
     "and engineering leadership."
 )
 LLMS_TXT_INTRO = (
+    "- [About the author](https://safjan.com/about/)\n"
     "- [Resume](https://safjan.com/pdfs/Krystian_Safjan_resume_priv.pdf)\n"
     "- [LinkedIn](https://pl.linkedin.com/in/krystiansafjan)\n"
     "- [GitHub](https://github.com/izikeros)\n"
