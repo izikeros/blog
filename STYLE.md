@@ -150,6 +150,33 @@ Keep the information, drop the false attribution:
 When rewriting existing text, keep first-person passages that are already
 there - they are his. Don't add new ones.
 
+## Summaries (frontmatter `Summary:`)
+
+The summary shows up in listings, the meta description, search results and
+`llms.txt`. It should tell the reader plainly what the post covers, so they
+can decide whether to read it. No clickbait.
+
+- One or two plain sentences, roughly 15–40 words. Say what the post shows,
+  compares or explains, with the concrete tools, methods or numbers it covers.
+- Lead with the topic or the finding: "Compares `pyenv`, `conda` and `uv` for
+  managing Python versions on macOS, with setup commands for each." A short
+  first-person line is fine for essays: "Why I stopped using X for Y."
+- Don't open with "Learn how to…", "Discover…", "Master…", "Unlock…",
+  "Explore…" or "Want to know…?". Don't address the reader with teaser
+  questions.
+- No promises or hype: "everything you need to know", "ultimate", "the secret
+  to", "you won't believe", "game-changing", "supercharge", "boost your
+  productivity", "take your X to the next level", "comprehensive guide".
+- No exclamation marks, emoji, or "Let's dive in".
+- Don't promise more than the post delivers. If it is a short note with one
+  command, say that.
+
+> ✗ Unlock the power of Python virtual environments! Learn everything you need
+> to know to supercharge your workflow.
+>
+> ✓ How to create, activate and remove Python virtual environments with `venv`,
+> and when `uv` is the simpler choice.
+
 ## Before / after
 
 ### Opening
@@ -193,5 +220,6 @@ there - they are his. Don't add new ones.
 - [ ] Headings describe content; long posts have a TLDR or a jump link.
 - [ ] Ending is practical (opinion, next step, questions, further reading).
 - [ ] English is simple and correct, not polished into someone else's voice.
+- [ ] `Summary` is plain and descriptive, no clickbait (see "Summaries").
 - [ ] Frontmatter rules from AGENTS.md followed (`Summary`, `Status`,
       `Modified`).
