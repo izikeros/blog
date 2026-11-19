@@ -42,7 +42,7 @@ STATIC_PATHS = [
     "images",  # Article images and assets
     "pdfs",  # PDF files (resume, etc.)
     "zipfiles",  # Downloadable archives
-    "robots.txt",  # Search engine directives
+    "robots.txt",  # Search engine and AI crawler directives
     ".nojekyll",  # Disable Jekyll processing on GitHub Pages
     "CNAME",  # Custom domain for GitHub Pages
     "ads.txt",  # Ads.txt for ad networks
@@ -341,7 +341,22 @@ PLUGINS = [
     "feed_utm",  # Add UTM tracking params to RSS/Atom feeds
     "obsidian",  # Obsidian wiki-links and hashtag support
     "pelican_ai_analyzer_bar",  # AI service buttons for article analysis
+    "llms_txt",  # Generate /llms.txt index for LLM tools (llmstxt.org)
 ]
+
+# llms.txt (see pelican-plugins/llms_txt); notes go to the "Optional" section
+LLMS_TXT_DESCRIPTION = (
+    "Practitioner notes by Krystian Safjan, AI/ML technical leader at EY, "
+    "on building and operating LLM, RAG and ML systems in enterprise "
+    "environments: evaluation, MLOps, model migration, agentic workflows "
+    "and engineering leadership."
+)
+LLMS_TXT_INTRO = (
+    "- [Resume](https://safjan.com/pdfs/Krystian_Safjan_resume_priv.pdf)\n"
+    "- [LinkedIn](https://pl.linkedin.com/in/krystiansafjan)\n"
+    "- [GitHub](https://github.com/izikeros)\n"
+    "- [Google Scholar](https://scholar.google.pl/citations?user=UlNJgMoAAAAJ)"
+)
 
 # Additional plugins (uncomment to enable):
 PLUGINS += [
