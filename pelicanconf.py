@@ -119,6 +119,7 @@ DISPLAY_DATE_BEFORE_TITLE = True  # Show date above article title
 DISPLAY_DATE_AFTER_TITLE = False  # Don't show date below title
 PROMO_BOX = True  # Show promotional content box in sidebar
 CUSTOM_CSS = "styles/custom.css"  # Path to custom stylesheet
+USE_GOOGLE_FONTS = False  # System font stack: no render-blocking third-party CSS
 THEME_COLOR_ENABLE_USER_OVERRIDE = True  # Allow dark/light mode toggle
 
 # Homepage blocks (first page only), see Flex README "Homepage"
