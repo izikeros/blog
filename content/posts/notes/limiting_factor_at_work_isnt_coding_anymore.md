@@ -6,6 +6,7 @@ Modified: 2026-01-28
 Status: published
 Tags: agentic-coding, vibe-coding, software-development, software-project
 Category: note
+Summary: With AI agents writing the code, the bottleneck moves to deciding what to build and catching when things go wrong. Notes on decision latency, the hidden cost of unfinished agent projects, and why AI-generated tests tend to confirm existing code instead of challenging it.
 ---
 
 In a Hacker News [discussion](https://news.ycombinator.com/item?id=46782811) on the article [Management as AI Superpower](https://www.oneusefulthing.org/p/management-as-ai-superpower) by Ethan Mollick, I came across a comment that resonated strongly with a realization I’ve had recently while coding with a factory.ai droid:

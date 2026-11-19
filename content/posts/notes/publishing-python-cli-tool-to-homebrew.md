@@ -6,6 +6,7 @@ Modified: 2026-02-05
 Status: published
 Tags: python, homebrew, cli, packaging, distribution, macos
 Category: note
+Summary: Step-by-step guide to distributing a Python CLI via Homebrew. Create a tap repository, generate the Ruby formula with homebrew-pypi-poet, test it locally, and publish so users can run brew install.
 ---
 
 ## Overview

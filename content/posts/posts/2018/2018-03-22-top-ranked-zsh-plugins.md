@@ -13,7 +13,6 @@ tags:
   - scrapping
   - python
   - Linux
-modified: 2022-09-01
 banner: "/images/head/inside-work-tree.jpg"
 Series: Zsh plugins
 ---

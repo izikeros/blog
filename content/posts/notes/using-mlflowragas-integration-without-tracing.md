@@ -6,6 +6,7 @@ Modified: 2026-01-11
 Status: published
 Tags: mlflow, ragas, RAG-evaluation, rag-optimization, rag
 Category: note
+Summary: How to compute RAGAS metrics with mlflow.genai.evaluate() and log them to MLflow experiments without instrumenting your RAG pipeline with traces, using either pre-computed static outputs or a plain predict_fn.
 ---
 
 - [Option 1: Static Data Approach (Recommended)](#option-1-static-data-approach-recommended)
