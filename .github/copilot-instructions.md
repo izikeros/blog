@@ -64,7 +64,7 @@ The blog uses numerous plugins installed in `pyproject.toml`:
 - **pelican-simple-footnotes** — Markdown footnote support
 - **pelican-sitemap** — Generate sitemap.xml
 - **pelican-featured-image** — Extract featured image from content
-- **pelican-ai-analyzer-bar** — AI-generated content indicator (local dev package)
+- **pelican-ai-analyzer-bar** — buttons to summarize the article in ChatGPT/Perplexity/Claude/Gemini/Grok (izikeros' GitHub repo)
 - **pelican-share-post** — Social sharing buttons
 - **pelican-more-categories** — Enhanced category support
 

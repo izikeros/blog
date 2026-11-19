@@ -14,10 +14,10 @@ hype, filler and generic "ultimate guide" phrasing.
 ## Tech stack
 
 - Python 3.12, **uv** (`uv.lock`); PDM files (`pdm.lock`) are legacy.
-- Pelican >= 4.11; pelican-obsidian / pelican-jupyter from izikeros' git forks
-  (installed by `make venv`); sitemap, series, neighbors, render-math, yaml-metadata, related-posts.
-- `pyproject.toml` references `../pelican-ai-analyzer-bar` as an editable path
-  dependency — it must exist as a sibling directory for `uv sync` to succeed.
+- Pelican >= 4.12; pelican-obsidian, pelican-jupyter and pelican-ai-analyzer-bar
+  installed from izikeros' GitHub repos (pinned in `uv.lock`, refresh with
+  `uv lock --upgrade-package <name>`); sitemap, series, neighbors, render-math,
+  yaml-metadata, related-posts.
 - Node via `npx`: pagefind (search), prettier, html-validate. Pre-commit: prettier, markdownlint-cli2.
 
 ## Setup
