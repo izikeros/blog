@@ -141,7 +141,7 @@ TOPIC_HUBS = [
 # Code syntax highlighting theme (Pygments)
 # Options: monokai, github, friendly, colorful, etc.
 PYGMENTS_STYLE = "github"
-# PYGMENTS_STYLE_DARK = "monokai"  # Optional: different theme for dark mode
+PYGMENTS_STYLE_DARK = "github-dark"  # dark mode (system preference or toggle)
 
 # Notebook syntax highlighting - use theme's pygments CSS for unified styling
 IPYNB_SKIP_CSS = True  # Don't inject notebook's own pygments CSS (uses theme's instead)
