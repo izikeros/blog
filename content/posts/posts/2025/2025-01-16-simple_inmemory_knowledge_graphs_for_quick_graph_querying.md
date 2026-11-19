@@ -4,7 +4,7 @@ Slug: simple-inmemory-knowledge-graphs-for-quick-graph-querying
 Date: 2025-01-16
 Modified: 2026-02-07
 Start: 2025-01-16
-tags:
+Tags:
   - graph
   - knowledge-graph
   - query

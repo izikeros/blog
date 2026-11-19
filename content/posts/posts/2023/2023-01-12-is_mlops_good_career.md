@@ -17,7 +17,7 @@ Tags:
   - career
 Title: Is MLOps a Good Career?
 banner: "/images/head/is_mlops_good_career.jpg"
-modified: 2023-01-12
+Modified: 2023-01-12
 ---
 
 ## MLOps career

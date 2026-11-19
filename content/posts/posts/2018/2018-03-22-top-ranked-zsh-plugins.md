@@ -8,7 +8,7 @@ Start: 2018-03-22
 Modified: 2026-02-02
 Status: published
 Summary: There is an exhaustive but curated list of Zsh plugins posted on GitHub project Awesome Zsh plugins. You can find there 800+ links to plugins, themes and Zsh plugin managers/frameworks. Even though it is a collection of awesome stuff the number is a bit high get orientation which plugins gained already good reputation from Zsh users community. In this post I will identify most popular plugins - those which have the highest number of stars.
-tags:
+Tags:
   - zsh
   - scrapping
   - python

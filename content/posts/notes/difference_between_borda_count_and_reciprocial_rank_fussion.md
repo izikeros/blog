@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about Borda Count and Reciprocal Rank methods for combining rankings, understanding their key differences in approach and sensitivity to item positions. Discover when each method is more suitable based on specific use cases.
 ai_summary: true
 Title: Borda Count vs. Reciprocal Rank - Choosing the Right Ranking Method for Your Data
-tags:
+Tags:
   - borda
   - rank
   - rank-combining

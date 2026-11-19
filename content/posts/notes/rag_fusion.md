@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about RAG-fusion, a technique that generates multiple query versions from user input and re-ranks them to enhance information retrieval in Large Language Models, providing more relevant responses.
 ai_summary: true
 Title: RAG-Fusion - Enhancing Information Retrieval in Large Language Models
-tags:
+Tags:
   - llm
   - information-retrieval
   - rag

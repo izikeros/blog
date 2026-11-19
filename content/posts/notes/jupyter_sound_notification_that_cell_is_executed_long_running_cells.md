@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to implement sound notifications in Jupyter notebooks using the cross-platform `beepy` package and native macOS commands like `say` and `afplay` for enhanced productivity.
 ai_summary: true
 Title: Audio Notifications in Jupyter Notebooks Across Platforms
-tags:
+Tags:
   - jupyter-notebooks
   - audio-notifications
   - python

@@ -7,7 +7,7 @@ Status: published
 Summary: "Learn how storing credentials in the `.netrc` file securely manages Basic Authentication with curl, enhancing both efficiency and security compared to using `-u username:password`."
 ai_summary: true
 Title: "Avoid using curl -u “username:secret”!"
-tags:
+Tags:
   - curl
   - security
   - shell-history

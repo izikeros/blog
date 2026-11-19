@@ -1,16 +1,16 @@
 ---
-title: Change black line length
-date: 2021-11-29
-modified: 2022-09-01
-status: published
-tags:
+Title: Change black line length
+Date: 2021-11-29
+Modified: 2022-09-01
+Status: published
+Tags:
   - black
   - python
   - pyqa
   - quality
-summary: notes on using black formatter
-slug: change-black-line-length
-category: note
+Summary: notes on using black formatter
+Slug: change-black-line-length
+Category: note
 citation_needed: false
 ---
 X:[[black_formatter]]

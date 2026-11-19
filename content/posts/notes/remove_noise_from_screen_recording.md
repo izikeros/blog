@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to remove noise from screen recordings using FFmpeg and Audacity, or explore free alternatives like DaVinci Resolve, Kdenlive, and Olive Video Editor for effective audio cleaning.
 ai_summary: true
 Title: Remove Noise From Screen Recording
-tags:
+Tags:
   - noise
   - denoising
   - video

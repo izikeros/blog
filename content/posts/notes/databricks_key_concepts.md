@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about key concepts of Databricks, including its workspace, runtime, file system, clusters, notebooks, jobs, and tables, to understand how they support collaborative data engineering and analytics.
 ai_summary: true
 Title: Databricks - key concepts
-tags:
+Tags:
   - databricks
   - data-science
   - notebook

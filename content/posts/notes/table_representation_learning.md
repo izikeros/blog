@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how table representation learning enhances understanding and utilization of tabular data through column embeddings and semantic detection, improving applications like data discovery and validation.
 ai_summary: true
 Title: Table Representation Learning
-tags:
+Tags:
   - llm
   - generative-ai
   - database

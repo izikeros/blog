@@ -7,7 +7,7 @@ Status: published
 Summary: Learn best practices for using `**kwargs` in Python, including maintaining code clarity, avoiding typos, and ensuring robustness, to help you write more idiomatic and secure Python code.
 ai_summary: true
 Title: Mastering kwargs in Python - Best Practices for Experienced Developers
-tags:
+Tags:
   - python
   - kwargs
   - idiomatic-python

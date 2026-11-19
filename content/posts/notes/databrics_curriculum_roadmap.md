@@ -7,7 +7,7 @@ Status: published
 Summary: Learn from scratch to become proficient in Databricks by understanding its basics, setting up the environment, grasping Apache Spark fundamentals, and performing basic data processing tasks.
 ai_summary: true
 Title: Databricks Curriculum - From Zero to Hero
-tags:
+Tags:
   - databricks
   - learning
   - learn-databricks

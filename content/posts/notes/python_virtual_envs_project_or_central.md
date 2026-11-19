@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about two methods for managing Python virtual environments—project-folder and centralized approaches—and discover their respective benefits in terms of project organization and maintenance.
 ai_summary: true
 Title: Location of Python Virtual Environments - Choosing Between Project-Folder and Centralized Folder
-tags:
+Tags:
   - python
   - virtualenv
   - location

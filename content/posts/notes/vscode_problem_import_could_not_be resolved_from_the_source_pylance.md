@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to resolve the "Import 'pandas' could not be resolved from the source" warning in VSCode's Jupyter notebook using Pylance by ensuring the correct Python interpreter and virtual environment are activated.
 ai_summary: true
 Title: VSCode problem - import could not be resolved from the source (Pylance)
-tags:
+Tags:
   - vscode
   - jupyter-notebook
   - pandas

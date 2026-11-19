@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to job-hop effectively by gaining varied experience, staying at each role for a minimum of a year, and always moving up professionally—plus tips on preparing for interviews and understanding the impact on your resume.
 ai_summary: true
 Title: The Right Way to Job-Hop
-tags:
+Tags:
   - job
   - job-search
   - career

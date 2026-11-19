@@ -14,7 +14,7 @@ Tags:
   - machine-learning
 Title: MLOps Certifications - A Comprehensive Guide
 banner: "/images/head/mlops_certificates.jpg"
-modified: 2023-01-13
+Modified: 2023-01-13
 prompt:
 todo: need to verify the offer and the links
 ---

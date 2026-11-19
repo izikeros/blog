@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to download and integrate HuggingFace language models into Ollama by creating a modelfile with specific parameters and running the model using the Ollama command.
 ai_summary: true
 Title: How to add HuggingFace model to ollama
-tags:
+Tags:
   - ollama
   - huggingface
   - llm

@@ -11,8 +11,8 @@ Tags:
   - python
   - Linux
 Title: Top Popular ZSH Plugins on GitHub (2021)
-modified: 2021-11-29
-slug: top-popular-zsh-plugins-on-github-2021
+Modified: 2021-11-29
+Slug: top-popular-zsh-plugins-on-github-2021
 Series: Zsh plugins
 ---
 

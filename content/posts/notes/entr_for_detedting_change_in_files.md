@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to use `entr` to automate tasks by running commands when files change, ideal for developers during the coding process. Discover its key features and usage examples for streamlining development workflows.
 ai_summary: true
 Title: entr - run arbitrary command when files change
-tags:
+Tags:
   - change
   - watch
   - watch-files

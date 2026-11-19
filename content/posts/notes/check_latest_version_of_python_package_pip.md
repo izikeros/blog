@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to check the latest version of a Python package using pip's new command, PyPI API with curl and jq, or the `yolk` package, each method offering different levels of convenience and speed.
 ai_summary: true
 Title: How to Check Latest Version of Python Package?
-tags:
+Tags:
   - pip
   - package-version
   - pypi

@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about the memory efficiency, improved performance, meaningful order, type safety, and faster groupby operations with pandas Categorical data type, especially beneficial for large datasets with limited unique values.
 ai_summary: true
 Title: Pandas Categorical - Benefits and Use Cases
-tags:
+Tags:
   - pandas
 ---
 ## TL;DR

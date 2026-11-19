@@ -7,7 +7,7 @@ Status: published
 Summary: In Python, use standalone functions over static methods when functionality is independent of classes to improve code organization, reuse, testing, and maintainability.
 ai_summary: true
 Title: Improving Code Maintainability - When to Use Standalone Functions Over Static Methods in Python
-tags:
+Tags:
   - python
   - function
   - python-method

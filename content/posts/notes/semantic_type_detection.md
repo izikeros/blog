@@ -7,7 +7,7 @@ Status: published
 Summary: Semantic type detection in tables helps understand content for applications like data discovery and validation by labeling columns with standardized types, enhancing machine learning models' performance and facilitating data integration.
 ai_summary: true
 Title: Semantic Type Detection
-tags:
+Tags:
   - llm
   - generative-ai
   - table-representation-learning

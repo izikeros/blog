@@ -7,7 +7,7 @@ Status: published
 Summary: SPLADE learns query/document sparse expansion using BERT's MLM head and sparse regularization, offering efficient use of inverted indices, explicit lexical matches, and interpretability while excelling in generalizing to out-of-domain data.
 ai_summary: true
 Title: SPLADE sparse vectors - explaination, properties
-tags:
+Tags:
   - splade
   - tf-idf
   - bag-of-words

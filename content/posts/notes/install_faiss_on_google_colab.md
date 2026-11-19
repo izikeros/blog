@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to easily install the Faiss library on Google Colab for efficient vector similarity search.
 ai_summary: true
 Title: How to install Faiss on Google Colab
-tags:
+Tags:
   - faiss
   - colab
   - pip-install

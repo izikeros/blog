@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to store directory names from a specified folder into an array using the `read -r -d $'\0'` command in Bash, ensuring proper handling of special characters and whitespace.
 ai_summary: true
 Title: Store Output of the Command Into Array in Bash
-tags:
+Tags:
   - bash
   - array
   - cli

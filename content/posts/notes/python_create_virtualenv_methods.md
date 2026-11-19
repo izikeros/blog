@@ -1,11 +1,11 @@
 ---
 Summary: Learn how to create and manage virtual environments in Python using popular tools like `venv`, `virtualenv`, and `conda`, ensuring isolated project dependencies and avoiding conflicts.
 ai_summary: true
-category: note
-date: 2022-05-12
-status: published
-slug: python-create-virtualenv-methods
-tags:
+Category: note
+Date: 2022-05-12
+Status: published
+Slug: python-create-virtualenv-methods
+Tags:
   - python
   - virtual-environment
   - venv
@@ -21,7 +21,7 @@ tags:
   - python-environment-setup
   - python-dependency-management
   - python-packaging
-title: Creating Virtual Environments in Python
+Title: Creating Virtual Environments in Python
 ---
 Python virtual environments are an essential tool for isolating project dependencies and avoiding conflicts between different projects. This article will guide you through methods of creating virtual environments in Python.
 

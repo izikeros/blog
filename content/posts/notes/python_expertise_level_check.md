@@ -7,7 +7,7 @@ Status: published
 Summary: Learn to assess your or a candidate's level of Python expertise by understanding the key skills and knowledge required for beginners, advanced programmers, and experts.
 ai_summary: true
 Title: Python Expertise Level - Self-Assessment
-tags:
+Tags:
   - python
   - programming
   - interview

@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about RAGAS metrics, including their descriptions and required input data, to quickly assess model performance. Find the cheat sheet in PDF or JPG format for easy reference.
 ai_summary: true
 Title: RAGAS metrics cheat sheet
-tags:
+Tags:
   - RAGAS
   - RAG-evaluation
   - consistency

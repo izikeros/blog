@@ -4,7 +4,7 @@ Slug: prompt-discovery
 Date: 2023-11-04
 Modified: 2023-11-04
 Start: 2023-08-08
-tags:
+Tags:
   - machine-learning
   - generative-ai
   - prompt

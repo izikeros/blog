@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to effectively use ripgrep (rg) for searching Python, Jupyter notebook (.ipynb), and Markdown (.md) files with various options like file type specificity, context display, and pattern matching.
 ai_summary: true
 Title: Notes on using ripgrep for projects with python, jupyter (ipynb) notebooks and markdown files
-tags:
+Tags:
   - ripgrep
   - grep
   - search

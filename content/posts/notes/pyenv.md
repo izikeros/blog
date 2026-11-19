@@ -1,13 +1,13 @@
 ---
 Summary: Learn how to use pyenv to manage multiple Python versions on macOS, ensuring consistent behavior across projects without affecting system Python. Discover installation steps and common commands for setting up and managing Python environments efficiently.
 ai_summary: true
-title: Using Pyenv
-slug: using-pyenv
-category: note
-date: 2022-05-12
-modified: 2024-12-18
-status: published
-tags:
+Title: Using Pyenv
+Slug: using-pyenv
+Category: note
+Date: 2022-05-12
+Modified: 2024-12-18
+Status: published
+Tags:
   - macos
   - pyenv
   - python

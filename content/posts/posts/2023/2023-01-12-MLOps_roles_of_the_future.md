@@ -16,7 +16,7 @@ Tags:
   - roles
 Title: MLOps Roles of the Future
 banner: "/images/head/mlops_roles_of_the_future.jpg"
-modified: 2023-01-12
+Modified: 2023-01-12
 ---
 up::[[mlops]]
 

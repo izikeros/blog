@@ -7,7 +7,7 @@ Status: published
 Summary: Product Led Growth (PLG) focuses on using a user-friendly product to drive acquisition and expansion, relying on features that encourage self-service, viral growth, and data-driven improvements. Readers will learn how PLG companies prioritize user experience, freemium models, and customer success to achieve organic growth.
 ai_summary: true
 Title: Product Led Growth
-tags:
+Tags:
   - startup
   - methodology
   - product-led-growth

@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to easily remove diacritics and sanitize strings in Python using the `unidecode` library, enabling better search functionality and data normalization for international text.
 ai_summary: true
 Title: How to Remove Diacritics and Sanitize Strings in Python
-tags:
+Tags:
   - python
   - nlp
   - sanitize

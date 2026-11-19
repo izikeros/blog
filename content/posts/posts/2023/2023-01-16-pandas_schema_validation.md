@@ -25,7 +25,7 @@ Tags:
   - in-list-validation
 Title: Pandas Schema Validation
 banner: "/images/head/elegant_panda.jpg"
-modified: 2023-01-16
+Modified: 2023-01-16
 prompt:
 todo: validate the text for libraries, validate code snippets, consider adding errors, mention decorators
 ---

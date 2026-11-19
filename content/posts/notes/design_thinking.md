@@ -7,7 +7,7 @@ Status: published
 Summary: Design thinking is an innovative approach emphasizing empathy, creativity, and iteration to solve complex problems and develop user-centric solutions, applicable across various industries for effective product development.
 ai_summary: true
 Title: Design Thinking
-tags:
+Tags:
   - startup
   - design-thinking
   - methodology

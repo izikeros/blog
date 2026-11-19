@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to accurately count tokens in text using OpenAI's `tiktoken` library, essential for controlling prompt length and managing costs in natural language processing projects.
 ai_summary: true
 Title: How to Count Tokens - Tokenization With Tiktoken.
-tags:
+Tags:
   - tokenizers
   - token
   - tokenization

@@ -4,7 +4,7 @@ Slug: open-source-llm-observability-tools-and-platforms
 Date: 2024-02-22
 Modified: 2024-06-26
 Start: 2024-02-22
-tags:
+Tags:
   - observability
   - mlops
   - llmops

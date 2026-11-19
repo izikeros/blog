@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to use CSS variables for dynamic and reusable styling, enabling features like interactive UIs, easy theming, and design consistency across components. Discover practical usage examples and best practices while understanding limitations and browser support issues.
 ai_summary: true
 Title: Using CSS Variables for Dynamic and Reusable Styling
-tags:
+Tags:
   - css
   - web-development
   - front-end

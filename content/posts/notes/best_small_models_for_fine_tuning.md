@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about the top small models for fine-tuning, including rankings and insights from a webinar on optimizing open-source large language models to rival GPT-4.
 ai_summary: true
 Title: Best Small Models for Fine Tuning
-tags:
+Tags:
   - predibase
   - evaluation
   - llm

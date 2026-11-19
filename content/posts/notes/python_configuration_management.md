@@ -5,7 +5,7 @@ Modified: 2023-07-12
 Slug: python-configuration-management
 Status: published
 Summary: None
-tags:
+Tags:
   - python
   - configuration
   - hydra

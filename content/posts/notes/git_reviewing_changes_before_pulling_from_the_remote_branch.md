@@ -7,7 +7,7 @@ Status: published
 Summary: Learn a streamlined workflow to review changes made in a remote Git branch before pulling, using commands like `git fetch`, `git diff`, and `tig` to ensure your local repository stays up-to-date without conflicts.
 ai_summary: true
 Title: Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch
-tags:
+Tags:
   - git
   - workflow
   - github

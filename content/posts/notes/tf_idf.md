@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how TF-IDF calculates the importance of a word in a document and why rare words are given more weight than common ones. Explore examples to understand term frequency and inverse document frequency metrics.
 ai_summary: true
 Title: TF-IDF with examples
-tags:
+Tags:
   - tfidf
   - tf-idf
   - bag-of-words

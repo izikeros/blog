@@ -4,7 +4,7 @@ Slug: from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques
 Date: 2023-09-11
 Modified: 2023-11-06
 Start: 2023-09-11
-tags:
+Tags:
   - chunking
   - text-processing
   - nlp

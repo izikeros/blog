@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to track traffic from RSS/Atom feeds using UTM parameters, Google Analytics, dedicated feed analytics services, and server logs to gain insights into your blog's feed consumption.
 ai_summary: true
 Title: Rss Traffic Analysis for a Blog
-tags:
+Tags:
   - rss
   - atom
   - analytics

@@ -11,7 +11,7 @@ Summary: This article explores distinguishing details of Markov Models and Trans
 Status: published
 prompt: Give me a long article that points How LLMs like GPT, transformers differ from Markov Models? Both predict next character. The target audience is professionals so do a deep dive, and look into the details of both types of models. Use proper introduction. Focus on explaining how the self attention makes difference to a fixed context length for markov models.
 System-prompt: You are Data Science expert and statistical methods expert. Carefully heed the user's instructions. Respond using Markdown. GPT-4, temp 0.7, top-p:0.4
-tags:
+Tags:
   - machine-learning
   - transformers
   - markov-models

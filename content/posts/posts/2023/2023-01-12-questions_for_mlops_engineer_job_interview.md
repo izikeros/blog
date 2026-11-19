@@ -14,7 +14,7 @@ Tags:
   - interview
 Title: 50 Questions for MLOps Engineer Job Interview
 banner: /images/head/mlops_interview_questions.jpg
-modified: 2023-01-12
+Modified: 2023-01-12
 ---
 [![MLOps interview questions](https://safjan.com/images/mlop_interview_book_cover_3D_300px.jpg)](https://gumroad.com/)
 

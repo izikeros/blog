@@ -4,7 +4,7 @@ Slug: how-agile-can-kill-creativity-in-data-science-team
 Date: 2023-09-29
 Modified: 2023-09-29
 Start: 2023-09-29
-tags:
+Tags:
   - data-science
   - agile
   - scrum

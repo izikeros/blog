@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how specifying an OSI Approved license in your Python project's `pyproject.toml` file ensures clarity on terms of use, compliance with open-source standards, and reflects your commitment to the open-source community.
 ai_summary: true
 Title: OSI Approved in license metadata for Python project
-tags:
+Tags:
   - license
   - pyproject
   - osi

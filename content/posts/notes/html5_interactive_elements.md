@@ -7,7 +7,7 @@ Status: published
 Summary: Learn about HTML5's interactive elements like `<details>`, `<summary>`, and `<dialog>` to enhance web content interactivity without complex JavaScript, plus see practical examples.
 ai_summary: true
 Title: HTML5 interactive elements
-tags:
+Tags:
   - html5
 ---
 # HTML5 Interactive Elements: An Overview and Usage Guide

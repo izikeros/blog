@@ -7,7 +7,7 @@ Status: published
 Summary: The Lean Startup method remains valuable but faces criticisms such as oversimplification, overemphasis on MVPs, bias towards tech startups, market saturation, and challenges in applying it across different industries. Readers will learn about these critiques and the evolving nature of startup methodologies.
 ai_summary: true
 Title: Criticism of the Lean Startup
-tags:
+Tags:
   - lean
   - lean-startup
   - methodology

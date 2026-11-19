@@ -1,16 +1,16 @@
 ---
 Summary: Learn why reinstalling your operating system frequently can improve performance, encourage good backups, clean up unnecessary files, and automate restoration processes, offering long-term maintenance benefits.
 ai_summary: true
-category: note
-date: 2022-06-03
-status: published
-slug: reinstall-os-frequently
-tags:
+Category: note
+Date: 2022-06-03
+Status: published
+Slug: reinstall-os-frequently
+Tags:
   - reinstall
   - automation
   - scripts
   - backup
-title: Reinstall frequently
+Title: Reinstall frequently
 prompt: Write a blog post on the benefits of the habit of reinstalling the system frequently. Take into account that this habit enforces creating good backups and automating backup creation, giving an opportunity to clean up the system from the stuff that is not needed (programs, data, documents). Encourages automation of system restore - e.g. creating dedicated scripts or playbooks.
 ---
 Once, when looking for macOS brew install automation I stumbled upon [gist](https://gist.github.com/izikeros/d4a8a6a7b8fa267f2b4fd6c1fbd6a08e) that has strange, counterintuitive advice: "Reinstall frequently". But in curse of time and experience I was more and more convinced by that idea. Both for system restore and resuming projects paused some time ago.

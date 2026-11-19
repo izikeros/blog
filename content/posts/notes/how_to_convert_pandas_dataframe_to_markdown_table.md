@@ -7,7 +7,7 @@ Status: published
 Summary: Learn three methods to convert a pandas DataFrame into a markdown table, including using the `to_markdown()` method directly from pandas and leveraging the `tabulate` package.
 ai_summary: true
 Title: How to Convert Pandas DataFrame to Markdown Table?
-tags:
+Tags:
   - pandas
   - table
   - markdown

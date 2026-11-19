@@ -12,8 +12,8 @@ Tags:
   - Linux
 Title: Top Popular ZSH Plugins on GitHub (2023)
 banner: "/images/head/inside-work-tree.jpg"
-modified: 2023-01-30
-slug: top-popular-zsh-plugins-on-github-2023
+Modified: 2023-01-30
+Slug: top-popular-zsh-plugins-on-github-2023
 Series: Zsh plugins
 ---
 

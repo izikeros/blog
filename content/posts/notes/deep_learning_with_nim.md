@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to get started with deep learning in Nim using libraries like SciNim, Arraymancer, and Flambleau, leveraging Nim's efficiency and unique features for numeric computation and model implementation.
 ai_summary: true
 Title: Deep Learning with Nim
-tags:
+Tags:
   - nim
   - deep-learning
   - scinim

@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to use bash parameter expansion with default values to handle unset or null variables, improve script robustness, and enhance readability through various examples and use cases.
 ai_summary: true
 Title: Bash Parameter Expansion With Default Value
-tags:
+Tags:
   - bash
   - parameter-expansion
 ---

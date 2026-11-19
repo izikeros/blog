@@ -4,7 +4,7 @@ Slug: understanding-retrieval-augmented-generation-rag-empowering-llms
 Date: 2023-08-24
 Modified: 2023-10-23
 Start: 2023-08-24
-tags:
+Tags:
   - llm
   - nlp
   - question-answering

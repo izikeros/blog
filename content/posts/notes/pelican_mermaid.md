@@ -7,7 +7,7 @@ Status: published
 Summary: Learn how to embed Mermaid diagrams in your Pelican blog posts using HTML code or a markdown extension, enhancing visual explanations of processes and systems.
 ai_summary: true
 Title: Using Mermaid Diagrams in Pelican Blog Post
-tags:
+Tags:
   - mermaid
   - pelican
   - diagram

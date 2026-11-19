@@ -7,7 +7,7 @@ Status: published
 Summary: QLoRA (Quantized Low-Rank Adaptation) enables efficient fine-tuning of large language models using a 4-bit quantized base model and trainable low-rank adapters, significantly reducing memory usage while maintaining performance. Key techniques include 4-bit NormalFloat quantization, paged optimizers, and double quantization.
 ai_summary: true
 Title: How does QLoRA works?
-tags:
+Tags:
   - qlora
   - lora
   - low-rank-adaptation
