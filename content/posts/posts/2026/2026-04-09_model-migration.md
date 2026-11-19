@@ -2,59 +2,65 @@
 Title: The Real Cost of Model Migration - What Swapping LLMs Actually Requires
 Slug: the-real-cost-of-model-migration-what-swapping-llms-actually-requires
 Date: 2026-04-09
-Modified: 2026-04-09
+Modified: 2026-11-19
 Start: 2026-04-09
-Tags: llm-migration, model-deprecation, rag-systems, prompt-engineering, production-ai, ai-evaluation, llmops, reasoning-models, dspy, prompt-optimization, ai-architecture, retrieval-augmented-generation, ai-reliability, gpt-4o-mini, model-versioning, ai-observability, progressive-rollout, faithfulness-evaluation, technical-debt, ai-engineering
+Tags: llm-migration, model-deprecation, rag-systems, prompt-engineering, ai-evaluation, llmops, reasoning-models, dspy
 Category: Machine Learning
 Image: /images/head/chatbot_model_replacement_640px.jpg
 banner: "/images/head/chatbot_model_replacement_640px.jpg"
-Summary: Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here's what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way.
+Summary: Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks through what a migration actually requires - evaluation, prompt portability, reasoning model placement and rollout.
 Status: published
 prompt:
 ---
+X::[[enhancing_rag_with_small_transformer_models]]
 
 So OpenAI deprecated `gpt-4o-mini`. Or some other model you've built your whole system around just got a sunset date. The email lands and your first thought is: *how hard can a model swap be?*
 
-I've been through this a few times now. The API call swap? Easy. Twenty minutes, tops. But the swap has a way of revealing every shortcut and assumption your system has been quietly depending on. That's the part people don't usually mention until you're already in it.
+The API call swap itself is easy. Twenty minutes, tops. But the swap has a way of revealing every shortcut and assumption your system has been quietly depending on. That's the part people don't usually mention until you're already in it.
 
+## TLDR
 
+- Swapping the model name takes minutes. The real work is finding out what your system was quietly depending on.
+- Build an evaluation harness (golden dataset, Ragas metrics, pass/fail gates) before you change anything.
+- Label every prompt instruction as SPEC or PATCH - patches written for the old model are the first candidates to drop.
+- DSPy can re-optimize the prompt for the new model; use it as a one-off migration tool unless you plan to keep experimenting.
+- Put reasoning models where decisions are made (query decomposition, orchestration, verification), not in plain answer generation.
+- Pin dated model versions, roll out gradually, and keep running evals after the migration.
 
 ## Table of contents
 
 1. [What migration actually is](#what-migration-actually-is)
 2. [The model options in 2026](#the-model-options-in-2026)
-3. [Phase 0 - Know what you're migrating from](#phase-0--know-what-youre-migrating-from)
-4. [Phase 1 - Build your evaluation harness first](#phase-1--build-your-evaluation-harness-first)
-5. [Phase 2 - The prompt portability problem](#phase-2--the-prompt-portability-problem)
-6. [Phase 3 - Automated prompt optimization with DSPy](#phase-3--automated-prompt-optimization-with-dspy)
-7. [Phase 4 - Reasoning models: where they belong](#phase-4--reasoning-models-where-they-belong)
-8. [Phase 5 - Handling missing parameters](#phase-5--handling-missing-parameters)
-9. [Phase 6 - Risk assessment](#phase-6--risk-assessment)
-10. [Phase 7 - Progressive rollout](#phase-7--progressive-rollout)
-11. [Phase 8 - Post-migration monitoring](#phase-8--post-migration-monitoring)
+3. [Phase 0 - Know what you're migrating from](#phase-0-know-what-youre-migrating-from)
+4. [Phase 1 - Build your evaluation harness first](#phase-1-build-your-evaluation-harness-first)
+5. [Phase 2 - The prompt portability problem](#phase-2-the-prompt-portability-problem)
+6. [Phase 3 - Automated prompt optimization with DSPy](#phase-3-automated-prompt-optimization-with-dspy)
+7. [Phase 4 - Reasoning models: where they belong](#phase-4-reasoning-models-where-they-belong)
+8. [Phase 5 - Handling parameter differences](#phase-5-handling-parameter-differences)
+9. [Phase 6 - Risk assessment](#phase-6-risk-assessment)
+10. [Phase 7 - Progressive rollout](#phase-7-progressive-rollout)
+11. [Phase 8 - Post-migration monitoring](#phase-8-post-migration-monitoring)
 12. [The systems audit you should run regardless](#the-systems-audit-you-should-run-regardless)
-
-
 
 ## What migration actually is
 
-Here's the (uncomfortable) truth: a model migration is really a systems audit. It just happens to come with a deadline someone else set for you.
+A model migration is really a systems audit, with a deadline someone else set for you.
 
-When you swap the model under a RAG pipeline, you're removing the environment your system's behavior was calibrated in. And you get to find out how much of that behavior was intentional versus... just kind of happened over time.
+When you swap the model under a RAG pipeline, you're removing the environment your system's behavior was calibrated in. And you get to find out how much of that behavior was intentional and how much just happened over time.
 
 Three things consistently surface during migration that were invisible before:
 
 **Quality often wasn't measured.** A lot of production LLM systems have never been formally evaluated. No golden dataset, no faithfulness score, no format compliance check. "Quality" is whatever the team last looked at and didn't complain about. You can't claim "no quality loss" if you never measured quality to begin with.
 
-**Your prompt is coupled to the old model.** That system prompt you spent weeks on? It's not a specification. It's a negotiation artifact, the residue of back-and-forth between your intentions and one specific model's quirks. Swap the model and you haven't ported a prompt. You've orphaned it. (This one hurts. More in [Phase 2](#phase-2--the-prompt-portability-problem).)
+**Your prompt is coupled to the old model.** The system prompt you spent weeks on is usually less a specification and more a record of negotiations between your intentions and one model's quirks. When you swap the model, much of it stops making sense (more in [Phase 2](#phase-2-the-prompt-portability-problem)).
 
-**Model behavior often isn't versioned.** Pinning a model name isn't the same as pinning model behavior. OpenAI updates weights behind dated aliases without telling you. If you're using `gpt-4o-mini` as a floating pointer, you may have already had a silent behavioral change in production. If your observability didn't catch it... well, that tells you something about your observability.
+**Model behavior often isn't versioned.** Pinning a model name isn't the same as pinning model behavior. OpenAI can update the model behind a floating alias without telling you. If you're using `gpt-4o-mini` as a floating pointer, you may have already had a silent behavioral change in production. If your monitoring didn't catch it, that's worth knowing before the migration starts.
 
-The teams who migrate cleanly aren't the ones with the best migration plans. They're the ones who treated their LLM system like a real production system long before a deadline showed up.
-
-
+Migration goes much smoother for teams that treated their LLM system like a real production system long before the deadline showed up.
 
 ## The model options in 2026
+
+> **NOTE:** Model names, prices and API parameters below are as of April 2026. Check the current provider docs before relying on them.
 
 *Note: While this article uses OpenAI models as examples, the migration patterns, evaluation strategies, and architectural decisions apply to any LLM provider. The same principles work whether you're migrating between Anthropic's Claude models, open-source models, or any other provider.*
 
@@ -64,13 +70,13 @@ Before you plan anything, you need to know what you're migrating *to*. OpenAI's 
 
 [GPT-5.4](https://platform.openai.com/docs/models/gpt-5.4), [GPT-5.4-mini](https://platform.openai.com/docs/models/gpt-5.4-mini), and [GPT-5.4-nano](https://platform.openai.com/docs/models/gpt-5.4-nano) are the current flagship models. They support variable `reasoning_effort` (none/low/medium/high/xhigh), plus all the standard parameters: `temperature`, system prompts, JSON mode, function calling, streaming. For most RAG answer generation workloads, one of these is where you should land.
 
-**Recommended default for gpt-4o-mini replacement: `gpt-5.4-nano`** -comparable cost tier ($0.20 per million input tokens vs $0.10 for gpt-4o-mini), significantly more capable, fully API-compatible. If you need the extra capability and can handle the cost, `gpt-5.4-mini` ($0.75/MTok input) is a strong middle option.
+**Recommended default for gpt-4o-mini replacement: `gpt-5.4-nano`** - comparable cost tier ($0.20 per million input tokens vs $0.10 for gpt-4o-mini), more capable, fully API-compatible. If you need the extra capability and can handle the cost, `gpt-5.4-mini` ($0.75/MTok input) is a strong middle option.
 
 ### Pure reasoning models
 
 The [o-series models](https://openai.com/index/introducing-o3-and-o4-mini/) (o3, o4-mini) are pure reasoning models without the hybrid flexibility of GPT-5.x. They *only* do reasoning, don't support `temperature` or standard sampling parameters, and use `reasoning_effort` as the sole control. These are specialists.
 
-Here's what most people get wrong: for typical RAG pipelines, pure reasoning models aren't better answer generators. They're decision infrastructure. I'll get into exactly where they earn their cost in [Phase 4](#phase-4--reasoning-models-where-they-belong).
+A common mistake is to treat pure reasoning models as better answer generators. In typical RAG pipelines they are more useful for the decisions around generation: query decomposition, routing and verification. I'll get into exactly where they earn their cost in [Phase 4](#phase-4-reasoning-models-where-they-belong).
 
 ```
 Model selection decision tree:
@@ -85,11 +91,9 @@ Is the answer synthesis step genuinely multi-hop?
                         for verification layer over synthesis
 ```
 
+## Phase 0 - Know what you're migrating from
 
-
-## Phase 0 -Know what you're migrating from
-
-I know, I know. You want to start swapping things. But before you write a line of migration code, document what your system actually does right now. Otherwise you'll have no way to tell if the migration worked or just seemed like it did.
+It's tempting to start swapping things right away. Before you write a line of migration code, document what your system actually does right now. Otherwise you'll have no way to tell if the migration worked or just seemed like it did.
 
 ### Inventory your integration surface
 
@@ -116,13 +120,11 @@ Each of these is a behavioral assumption about your current model. And each assu
 
 ### Get a pre-migration quality snapshot
 
-Run your current system against a sample of real production queries and save the outputs. This is your before-state. Even if you don't have a formal eval harness yet, just having the raw outputs lets you compare later. Future-you will be grateful.
-
-
+Run your current system against a sample of real production queries and save the outputs. This is your before-state. Even if you don't have a formal eval harness yet, just having the raw outputs lets you compare later.
 
 ## Phase 1 - Build your evaluation harness first
 
-I can't stress this enough. Everything else you do, prompt changes, model selection, rollout strategy, is going to be guided by what your evals tell you. Skip this and you'll discover regressions in production. I've watched teams do this. The cost of fixing things at that point is genuinely 10x higher.
+This is the most important phase. Everything else you do - prompt changes, model selection, rollout strategy - is going to be guided by what your evals tell you. Skip it and you'll discover regressions in production, where they are much more expensive to fix.
 
 ### Build a golden dataset
 
@@ -133,7 +135,7 @@ Sample 200–500 real queries from production logs. For each, store:
 - The current model's answer (this becomes your reference)
 - For as many as you can afford: a human-verified "ideal" answer
 
-> Notice: with this approach you are preparing for testing answer generation part of the RAG not the retriever.
+> **NOTE:** This approach tests the answer generation part of the RAG pipeline, not the retriever.
 
 **Don't sample uniformly.** Stratify on purpose. Include:
 
@@ -145,7 +147,7 @@ Sample 200–500 real queries from production logs. For each, store:
 | Out-of-scope queries | Refusal behavior regression |
 | Edge cases your team knows about | The ones that broke things before |
 
-Aim for at least 50 human-verified examples. 200 is significantly better.
+Aim for at least 50 human-verified examples. 200 is much better.
 
 ### What to evaluate
 
@@ -173,9 +175,10 @@ For a RAG system, here's what you actually need to measure:
 
 ### Define pass/fail gate criteria
 
-Do this *before* running any evals. Seriously. If you define criteria after seeing results, you'll unconsciously anchor them to whatever the new model happens to achieve. Human brains are terrible at this.
+Do this *before* running any evals. If you define criteria after seeing results, it's very easy to anchor them, without noticing, to whatever the new model happens to achieve.
 
 Example gate criteria:
+
 - Faithfulness score ≥ 0.92
 - Format compliance ≥ 0.98
 - Answer relevance ≥ 0.90
@@ -195,11 +198,9 @@ flowchart TD
     style G fill:#1a3d2e,color:#8fd4b0
 ```
 
-
-
 ## Phase 2 - The prompt portability problem
 
-Okay, this is the part that causes the most pain, and people don't usually talk about it honestly.
+This is the part that usually causes the most pain, and it's rarely discussed honestly.
 
 ### Written prompts vs tuned prompts
 
@@ -229,13 +230,13 @@ None of these describe what your system is *supposed* to do. They're band-aids f
 
 ### Why tuned prompts are so common
 
-If you're feeling called out right now, don't. The vast majority of production RAG prompts are more tuned than written.
+If this describes your prompt, you're in good company. Tuned prompts are common, and there are good reasons for it.
 
-**Patching is faster than specifying.** When you're iterating on a RAG system, you see problems and fix them. The fastest fix is usually adding an instruction. Writing a proper spec requires knowing all failure modes before you've seen them, which is... impossible when failures emerge from interaction with real data.
+**Patching is faster than specifying.** When you're iterating on a RAG system, you see problems and fix them. The fastest fix is usually adding an instruction. Writing a proper spec requires knowing all failure modes before you've seen them, which is impossible when failures emerge from interaction with real data.
 
 **Nothing forces you to notice until migration.** A tuned prompt works. It produces acceptable outputs on the current model. The coupling only becomes visible when you remove the thing it's coupled to.
 
-**Many teams never wrote a spec to begin with.** Writing a specification for "correct behavior" before building the system requires a level of foresight that's genuinely hard to have. So the prompt *became* the spec over time, simultaneously the behavioral specification and the accumulated technical debt. Good luck telling them apart from the inside.
+**Many teams never wrote a spec to begin with.** Writing a specification for "correct behavior" before building the system requires a level of foresight that's hard to have. So the prompt *became* the spec over time, simultaneously the behavioral specification and the accumulated technical debt. Good luck telling them apart from the inside.
 
 ### What to do about it
 
@@ -243,7 +244,7 @@ If you're feeling called out right now, don't. The vast majority of production R
 - `SPEC` - this describes intended behavior, survives model changes
 - `PATCH` - this suppresses a specific failure, may not be relevant to new model
 
-In my experience, most 500+ word prompts end up being about 40% spec and 60% patch. The patches are candidates for removal or replacement after you test compatibility with the new model.
+Long prompts that grew over months are often more patch than spec. The patches are candidates for removal or replacement after you test compatibility with the new model.
 
 **Run a compatibility baseline before touching anything.** Take your existing prompt verbatim, swap only the model name, run your golden dataset through it, and score with Ragas. This tells you how much of the prompt is still needed versus how much is suppressing behaviors the new model doesn't even have.
 
@@ -258,8 +259,6 @@ In my experience, most 500+ word prompts end up being about 40% spec and 60% pat
 | JSON key naming change | Model paraphrases key names | Strict schema in system prompt or JSON mode |
 
 **Few-shot examples are the most reliable format anchor.** More reliable than additional instructions. They act as a behavioral anchor that survives prompt wording differences across model versions. For format-critical RAG outputs, 2-3 few-shot examples will do more work than three paragraphs of format instructions.
-
-
 
 ## Phase 3 - Automated prompt optimization with DSPy
 
@@ -378,8 +377,6 @@ A few things to be aware of:
 - **Reasoning models need special handling.** DSPy doesn't have first-class support for `reasoning_effort` yet. When targeting pure reasoning models (o4-mini, o3) or GPT-5.x with specific reasoning effort levels, wrap the model call in a custom `dspy.LM` class that sets `reasoning_effort` at initialization.
 - **Watch the adapter layer.** DSPy's adapters wrap your instructions in scaffolding. With reasoning models where prompt verbosity interferes with internal reasoning chains, this can produce unexpected behavior. Test it.
 
-
-
 ## Phase 4 - Reasoning models: where they belong
 
 When people hear "more capable model family," their instinct is to slot the reasoning model right where the standard model was: answer generation. This is usually wrong.
@@ -447,8 +444,6 @@ A second pass after generation: "Given only the following context, does this ans
 
 `reasoning_effort: low`. You're verifying, not generating. One cheap call that acts as your hallucination guardrail. The economics really work here for high-stakes outputs.
 
-
-
 ## Phase 5 - Handling parameter differences
 
 If you're migrating between standard GPT-5.x models (like gpt-4o-mini to gpt-5.4-nano), this section mostly doesn't apply. The standard parameters work identically.
@@ -478,17 +473,15 @@ For RAG, you were almost certainly running `temperature=0` or close to it. You w
 
 ### The `max_completion_tokens` trap
 
-Set this generously. Here's why: thinking tokens don't appear in your output but they're billed and count against this budget. At `high` effort, a single complex query can burn 10,000-50,000 thinking tokens. If `max_completion_tokens` is too low, the model's reasoning gets truncated mid-thought. You get degraded output and no obvious error signal. Start at 16,000 for medium effort, 32,000+ for high effort, and keep an eye on actual consumption.
+Set this generously. Thinking tokens don't appear in your output but they're billed and count against this budget. At `high` effort, a single complex query can burn 10,000-50,000 thinking tokens. If `max_completion_tokens` is too low, the model's reasoning gets truncated mid-thought. You get degraded output and no obvious error signal. Start at 16,000 for medium effort, 32,000+ for high effort, and keep an eye on actual consumption.
 
 ### Prompt verbosity inversion with reasoning
 
 This one's weird if you've internalized standard prompt engineering advice. When using reasoning (either pure o-series models or GPT-5.x with `reasoning_effort` > none), being explicit and repetitive hurts. Over-specified prompts interfere with the internal reasoning chain. The model follows your constraints mechanically instead of actually reasoning toward the goal.
 
-Write shorter, higher-trust prompts when reasoning is active. Define the *goal* and *constraints* but leave the *method* to the model. I know this feels uncomfortable. It's the opposite of everything we learned, but it works.
+Write shorter, higher-trust prompts when reasoning is active. Define the *goal* and *constraints* but leave the *method* to the model. This goes against the usual prompt engineering advice, so test both variants on your golden set.
 
 For GPT-5.x with `reasoning_effort: none`, standard verbose prompts work fine.
-
-
 
 ## Phase 6 - Risk assessment
 
@@ -523,15 +516,13 @@ flowchart TD
 
 **Faithfulness change** - this one can go either direction, which is what makes it tricky. More capable models are generally more faithful to retrieved context, but they also have stronger world-knowledge priors that can bleed through. Watch for answers that are factually correct but not actually grounded in the retrieved context. That's a subtle and dangerous failure mode.
 
-**Latency change** - gpt-5.4-nano is generally comparable to gpt-4o-mini for standard workloads. gpt-5.4-mini and gpt-5.4 (full) are slower. When you enable reasoning (`reasoning_effort: medium` or higher), latency increases significantly. At `high` or `xhigh` effort, a single query can take 30-90+ seconds. Pure reasoning models (o-series) operate in this higher-latency range. Measure P50, P95, P99 before committing.
+**Latency change** - gpt-5.4-nano is generally comparable to gpt-4o-mini for standard workloads. gpt-5.4-mini and gpt-5.4 (full) are slower. When you enable reasoning (`reasoning_effort: medium` or higher), latency increases noticeably. At `high` or `xhigh` effort, a single query can take 30-90+ seconds. Pure reasoning models (o-series) operate in this higher-latency range. Measure P50, P95, P99 before committing.
 
 **Cost change** - run a cost projection on your golden set query lengths x new model pricing before migration. The golden set gives you a realistic token distribution. Don't estimate from toy examples.
 
 **Streaming behavior** - if your UI depends on streaming tokens, verify the new model's streaming token patterns don't break downstream parsing. Partial JSON parsing, in particular, can fail on different tokenization patterns.
 
 **Silent behavioral drift post-migration** - even after successful migration, model providers update weights silently. This is the argument for pinning to a specific version string (`gpt-5.4-nano-2026-03-15` or similar dated versions) rather than a floating alias like `gpt-5.4-nano`. Floating aliases trade reproducibility for automatic access to improvements.
-
-
 
 ## Phase 7 - Progressive rollout
 
@@ -583,8 +574,6 @@ If you can segment production traffic by query type or user segment, use it. Sta
 
 Don't retire the old model integration the day you hit 100%. Keep the model name in a config variable so rollback is a single config change, not a code deployment. Wait at least a week before cleaning up the old path.
 
-
-
 ## Phase 8 - Post-migration monitoring
 
 You're not done when you hit 100% traffic. You've just established a new baseline that will itself drift.
@@ -615,21 +604,17 @@ At minimum:
 
 [LangSmith](https://smith.langchain.com/), [Arize Phoenix](https://phoenix.arize.com/), and [Helicone](https://www.helicone.ai/) all handle these. One thing worth mentioning: generic APM monitoring won't give you what you need for an LLM system. The failure modes are different. The metrics that matter are different. It's a different kind of system.
 
-
-
 ## The systems audit you should run regardless
 
-Model deprecation is a forcing function. The problems it exposes have been there for months or years. The teams in the best position during migration aren't the ones who saw this specific deprecation coming. They're the ones who built systems that were observable and measurable from the start.
+Model deprecation is a forcing function. The problems it exposes have been there for months or years. A system that was observable and measurable from the start is in a much better position, whatever the next deprecation is.
 
 Two questions worth sitting with, migration or not:
 
-**Can you actually measure output quality?** Not "does the team think it looks fine." Can you produce a number? If not, you're flying blind. A model change, a corpus change, a prompt tweak, a silent weight update... any of these will shift behavior and you won't know.
+**Can you actually measure output quality?** Not "does the team think it looks fine." Can you produce a number? If not, you're flying blind. A model change, a corpus change, a prompt tweak, a silent weight update - any of these will shift behavior and you won't know.
 
 **Is your prompt a specification or a pile of patches?** Do the archaeology exercise. If the patch ratio is high (and it probably is), that's a liability that compounds with every future model change.
 
-The migration is the deadline. But the real investment is in system discipline that makes the *next* migration boring instead of terrifying.
-
-
+The migration has a deadline. The work on evaluation, prompt specs and versioning pays off beyond it, and makes the *next* migration much easier.
 
 ## Further reading
 
