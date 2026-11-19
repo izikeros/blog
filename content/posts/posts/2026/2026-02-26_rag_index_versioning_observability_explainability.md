@@ -3,7 +3,7 @@ Title: Version Your Vectors - Index Versioning as the Missing Layer in RAG
   Observability and Compliance
 Slug: version-your-vectors-index-versioning-as-the-missing-layer-in-rag
 Date: 2026-02-26
-Modified: 2026-02-26
+Modified: 2026-11-19
 Start: 2026-02-26
 Tags: 
   - rag
@@ -18,13 +18,21 @@ Tags:
 Category: Machine Learning
 Image: /images/head/glass_balls_640px.jpg
 banner: "/images/head/glass_balls_640px.jpg"
-Summary: Your RAG answered correctly yesterday. Today, it contradicts itself. Nothing obvious changed — except the index. Retrieval drift is silent, cumulative, and rarely audited. This piece explains how to make it observable and reproducible - what must be versioned beyond vectors, how to enable point-in-time reconstruction, and when lightweight metadata is enough. Includes practical tracing patterns, replay strategies, and a risk-based decision guide for production systems.
+Summary: A RAG system can give a different answer today than last week, with the same model and the same prompt - because the index changed. Retrieval drift is silent, cumulative and rarely audited. This post shows how to make it observable and reproducible - what to version beyond vectors, how to reconstruct past index states, and when lightweight metadata is enough. Includes tracing patterns, replay strategies and a risk-based decision guide for production systems.
 Status: published
 ---
 
 up::[[rag_explainability]]
 X::[[RAG_observability]]
 X::[[RAG_evaluation]]
+
+## TLDR
+
+- The index (documents, chunks, embeddings, metadata) changes more often than the model or the prompt, and is rarely versioned.
+- Without index versioning you can't explain a past answer, separate retrieval drift from generation drift, or roll back a bad reindex.
+- A "version" covers the corpus, chunking strategy, embedding model, index structure, metadata and prompt template - not just the vectors.
+- Match the effort to the risk: Level 0 (version tags on every request) costs nothing; full replay is for regulated, high-stakes systems.
+- Under the EU AI Act, high-risk systems need traceable logs - for RAG that includes the index version behind each answer.
 
 ## 1. The invisible problem: why RAG systems silently drift
 
@@ -45,8 +53,6 @@ Without index versioning, you cannot answer the most basic audit question:
 
 This is like running a production database without transaction logs or backups. You can serve queries, but you cannot explain, debug, or defend any historical result.
 
-The index is the part of a RAG pipeline that changes the most, and almost nobody versions it.
-
 ```mermaid
 flowchart LR
     Q[Query] --> M[Same Model]
@@ -63,7 +69,7 @@ flowchart LR
 
 ## 2. Use cases that justify index versioning
 
-Index versioning is not a theoretical exercise. Here are concrete scenarios where missing versioning causes real operational, legal, or quality failures.
+Here are concrete scenarios where missing versioning causes real operational, legal, or quality failures.
 
 ### 2.1 Debugging and root cause analysis
 
@@ -85,13 +91,15 @@ Index versioning lets you track:
 - Embedding drift: Did switching from `text-embedding-ada-002` to `text-embedding-3-large` change retrieval behavior?
 - Source dominance shifts: Is one internal document now responsible for 70% of answers on a topic, when it used to be 30%?
 
-These are not hypothetical concerns. In enterprise deployments, source dominance drift is one of the most common causes of biased or narrow answers, and it is invisible without versioned tracking.
+In enterprise deployments, source dominance drift is one of the most common causes of biased or narrow answers, and it is invisible without versioned tracking.
 
 ### 2.3 Regulatory compliance and audit
 
-This is where index versioning goes from "nice to have" to "legally required."
+For high-risk systems, this is where index versioning goes from "nice to have" to "legally required."
 
-Under the EU AI Act (Regulation 2024/1689), high-risk AI systems must maintain records sufficient to reconstruct past decisions. If a RAG system supports employment decisions, credit assessments, or healthcare recommendations, a regulator may ask:
+> **NOTE:** This is not legal advice. Check the details with your compliance or legal team.
+
+Under the [EU AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj) (Regulation 2024/1689), high-risk AI systems must automatically record events (logs) that make their functioning traceable ([Article 12](https://artificialintelligenceact.eu/article/12/)), and deployers must keep those logs for at least six months ([Article 26](https://artificialintelligenceact.eu/article/26/)). If a RAG system supports employment decisions, credit assessments, or healthcare recommendations (see [Annex III](https://artificialintelligenceact.eu/annex/3/)), a regulator may ask:
 
 > "Reconstruct the knowledge base state and the retrieval trace for the answer provided to user X on date Y."
 
@@ -186,10 +194,10 @@ For deployers integrating third-party LLMs into RAG pipelines: even if the base 
 
 For high-risk systems, the EU AI Act mandates:
 
-- Article 12 (Record-Keeping): Automatic logging of events sufficient to trace system behavior throughout its lifecycle. For RAG, this means logging retrieval traces, index versions, and context assembly decisions, not just input/output.
-- Article 11 (Technical Documentation): Description of the system architecture, data sources, training data (or in RAG's case, indexed data), and their versions.
-- Article 14 (Human Oversight): The system must allow effective human supervision, including the ability to review retrieval results and override decisions.
-- Article 9 (Risk Management): Ongoing monitoring, testing, and mitigation, which for RAG includes detecting index drift, evaluating retrieval quality, and maintaining rollback capability.
+- [Article 12](https://artificialintelligenceact.eu/article/12/) (Record-Keeping): The system must technically allow automatic logging of events over its lifetime, so that its functioning can be traced. For RAG, this means logging retrieval traces, index versions, and context assembly decisions, not just input/output.
+- [Article 11](https://artificialintelligenceact.eu/article/11/) (Technical Documentation): A *provider* obligation - description of the system architecture, data sources, training data (or in RAG's case, indexed data), and their versions.
+- [Article 14](https://artificialintelligenceact.eu/article/14/) (Human Oversight): The system must allow effective human supervision, including the ability to review retrieval results and override decisions.
+- [Article 9](https://artificialintelligenceact.eu/article/9/) (Risk Management): Ongoing monitoring, testing, and mitigation, which for RAG includes detecting index drift, evaluating retrieval quality, and maintaining rollback capability.
 
 The regulation does not require opening neural weights or explaining attention patterns. It requires system-level traceability and governance. Index versioning is the mechanism that makes this possible for the retrieval layer.
 
@@ -203,7 +211,7 @@ The principle here is proportionality. Not every RAG system needs a full replay 
 | Medium risk (decision support) | Above + document hash sets, retrieval traces, index snapshot references | Structured audit events with blob storage references |
 | High risk (regulatory decisions) | Above + full replay capability, immutable audit trail, point-in-time index reconstruction | Time-travel capable vector DB + archived prompts + evaluation metrics store |
 
-Don't over-engineer for low-risk systems. Don't under-engineer for high-risk systems. The cost of getting this wrong runs in both directions: wasted engineering effort on one end, regulatory exposure on the other.
+Match the effort to the risk: an internal assistant doesn't need a replay architecture, and a system used for regulated decisions can't do without one. The cost of getting this wrong runs in both directions: wasted engineering effort on one end, regulatory exposure on the other.
 
 
 
@@ -235,7 +243,7 @@ The cheapest possible starting point. Tag every retrieval request with basic ver
 - `document_count`, how many documents are in the index
 - `last_updated_timestamp`, when the index was last modified
 
-Store these as OpenTelemetry span attributes on every `rag.retrieval` span.
+Store these as [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-spans/) span attributes on every `rag.retrieval` span.
 
 Cost: Near zero.
 Value: Basic drift detection, version correlation with quality metrics, and historical analysis.
@@ -252,7 +260,7 @@ This gets you:
 - Selective re-embedding: only re-embed documents whose content hash changed, saving API costs.
 - Audit trail: prove exactly which document versions were indexed at any point.
 
-A practical schema extension for pgvector or similar:
+A practical schema extension for [pgvector](https://github.com/pgvector/pgvector) or similar:
 
 ```sql
 ALTER TABLE embeddings ADD COLUMN content_hash TEXT;
@@ -269,15 +277,15 @@ This is where you gain the ability to reconstruct past index states.
 Several approaches, depending on your vector store:
 
 Database-native time travel:
-- LanceDB provides built-in versioning with zero-cost snapshots. Every mutation creates a new version. You can check out any historical version and query against it.
-- Qdrant supports collection snapshots that can be stored and restored.
-- Milvus offers point-in-time recovery through its storage layer.
+- [LanceDB](https://lancedb.com/docs/tables/versioning/) has built-in, cheap versioning. Every mutation creates a new version, and you can check out any historical version and query against it.
+- [Qdrant](https://qdrant.tech/documentation/concepts/snapshots/) supports collection snapshots that can be stored and restored.
+- [Milvus](https://milvus.io/docs/milvus_backup_overview.md) supports backup and restore through the separate [milvus-backup](https://github.com/zilliztech/milvus-backup) tool.
 
 Alias-based zero-downtime deployment:
-- In Elasticsearch/OpenSearch, create timestamped indexes (`rag_index_2026_02_15`) and use aliases (`rag_index_current`) to swap atomically. Old indexes remain queryable for audit.
+- In Elasticsearch/OpenSearch, create timestamped indexes (`rag_index_2026_02_15`) and use [aliases](https://www.elastic.co/guide/en/elasticsearch/reference/current/aliases.html) (`rag_index_current`) to swap atomically. Old indexes remain queryable for audit.
 
 Storage-based snapshots:
-- For FAISS or ChromaDB, periodically snapshot the index files to blob storage (S3, Azure Blob). Tag with the version manifest from Section 3.
+- For [FAISS](https://github.com/facebookresearch/faiss) or [ChromaDB](https://www.trychroma.com/), periodically snapshot the index files to blob storage (S3, Azure Blob). Tag with the version manifest from Section 3.
 
 Blue-green deployment for model upgrades:
 - When upgrading the embedding model, build the new index in parallel. Route a percentage of traffic to the new index. Compare quality metrics. If acceptable, switch the alias. If not, rollback is instantaneous.
@@ -430,7 +438,7 @@ flowchart TD
 
 The retrieval index is the part of your RAG system that changes the most and gets governed the least. It shifts more often than the model, more quietly than the prompt, and its effect on answer quality is larger than either.
 
-Versioning your index is not optional for any team that cares about debugging, compliance, or evaluation. Without it, you can't explain past answers, you can't detect drift, and you can't roll back when something breaks.
+If your team cares about debugging, compliance, or evaluation, you need some form of index versioning. Without it, you can't explain past answers, you can't detect drift, and you can't roll back when something breaks.
 
 How much versioning you need depends on what's at stake:
 
@@ -443,3 +451,15 @@ The question most RAG systems can't answer today is straightforward:
 > "What did the system know, and how did it use that knowledge, on a specific date?"
 
 If you can answer that, you're ahead of almost everyone.
+
+## Further reading
+
+- [EU AI Act - Regulation (EU) 2024/1689](https://eur-lex.europa.eu/eli/reg/2024/1689/oj) - official text
+- [EU AI Act Explorer](https://artificialintelligenceact.eu/) - article-by-article view, including [Annex III](https://artificialintelligenceact.eu/annex/3/) high-risk use cases
+- [OpenTelemetry semantic conventions for GenAI spans](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-spans/)
+- [LanceDB - table versioning](https://lancedb.com/docs/tables/versioning/)
+- [Qdrant - snapshots](https://qdrant.tech/documentation/concepts/snapshots/)
+- [Milvus Backup](https://milvus.io/docs/milvus_backup_overview.md)
+- [Elasticsearch - aliases](https://www.elastic.co/guide/en/elasticsearch/reference/current/aliases.html) and [OpenSearch - index aliases](https://docs.opensearch.org/latest/im-plugin/index-alias/)
+
+Any comments or suggestions? Let me know.
