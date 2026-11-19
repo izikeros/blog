@@ -111,3 +111,29 @@ def test_category_redirects_skip_live_and_write_old(tmp_path):
     page = (tmp_path / "category" / "old-cat.html").read_text()
     assert 'url=https://example.com/category/new-cat.html"' in page
     assert not (tmp_path / "category" / "new-cat.html").exists()
+
+
+def test_image_dimensions_reads_png_and_jpeg_headers(tmp_path):
+    import struct
+    from image_dimensions import read_image_size
+
+    png = tmp_path / "a.png"
+    png.write_bytes(b"\x89PNG\r\n\x1a\n" + b"\0\0\0\rIHDR" + struct.pack(">II", 640, 320) + b"\0" * 8)
+    jpg = tmp_path / "b.jpg"
+    # SOI, APP0 segment (skipped), SOF0 with height 90, width 160
+    jpg.write_bytes(b"\xff\xd8\xff\xe0\x00\x04\0\0\xff\xc0\x00\x11\x08" + struct.pack(">HH", 90, 160) + b"\0" * 12)
+    assert read_image_size(png) == (640, 320)
+    assert read_image_size(jpg) == (160, 90)
+    assert read_image_size(tmp_path / "missing.png") is None
+
+
+def test_image_dimensions_resolves_only_local_files(tmp_path):
+    from image_dimensions import resolve_local_image
+
+    (tmp_path / "images").mkdir()
+    (tmp_path / "images" / "x.jpg").write_bytes(b"")
+    assert resolve_local_image("/images/x.jpg", tmp_path) == tmp_path / "images" / "x.jpg"
+    assert resolve_local_image("images/x.jpg", tmp_path) == tmp_path / "images" / "x.jpg"
+    assert resolve_local_image("https://site.com/images/x.jpg", tmp_path, "https://site.com") == tmp_path / "images" / "x.jpg"
+    assert resolve_local_image("https://cdn.example.com/x.jpg", tmp_path) is None
+    assert resolve_local_image("/images/nope.jpg", tmp_path) is None
