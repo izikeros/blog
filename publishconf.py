@@ -14,7 +14,9 @@ from pelicanconf import *
 
 # --- But overwrite some of them
 # If your site is available via HTTPS, make sure SITEURL begins with https://
-SITEURL = "https://www.safjan.com"
+# Must match content/CNAME: www.safjan.com 301-redirects to the apex domain,
+# so canonical URLs, sitemap and feeds must use the apex.
+SITEURL = "https://safjan.com"
 RELATIVE_URLS = False
 
 FEED_DOMAIN = SITEURL
