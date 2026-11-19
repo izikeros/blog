@@ -5,7 +5,7 @@ description: Read-only quality gate for blog content before committing or publis
 
 # Content QA
 
-Nothing here modifies the repository. Report the findings, then fix only what the user asked for.
+Nothing here modifies the repository. Report the findings, then fix only what the user asked for. When you do fix an article or note, set its `Modified:` to today's date (`YYYY-MM-DD`).
 
 ## 1. Static checks
 

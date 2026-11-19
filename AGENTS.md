@@ -60,7 +60,12 @@ Status: published         # REQUIRED: missing Status defaults to draft (DEFAULT_
 ```
 
 Required: `Title`, `Date`, `Category`, `Summary`. Use capitalized keys only
-(no `tags`/`Tags` mix). Bump `Modified` only for substantive updates.
+(no `tags`/`Tags` mix).
+
+**Rule: whenever you modify an article or note, set `Modified:` to today's date
+(`YYYY-MM-DD`)** in the same commit. Add the key after `Date:` if missing.
+Applies to body and frontmatter edits alike; only skip it for bulk mechanical
+changes across many files (e.g. key normalization) unless asked.
 
 ## Commands
 
