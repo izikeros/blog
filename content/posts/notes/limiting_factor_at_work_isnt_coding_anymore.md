@@ -2,7 +2,7 @@
 Title: The limiting factor at work isn't writing code anymore
 Slug: the-limiting-factor-at-work-isnt-writing-code-anymore
 Date: 2026-01-28
-Modified: 2026-01-28
+Modified: 2026-11-19
 Status: published
 Tags: agentic-coding, vibe-coding, software-development, software-project
 Category: note

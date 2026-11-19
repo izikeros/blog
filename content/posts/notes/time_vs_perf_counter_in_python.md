@@ -2,7 +2,7 @@
 Title: time.time() vs time.perf_counter() in Python
 Slug: timetime-vs-timeperfcounter-in-python
 Date: 2026-07-21
-Modified: 2026-07-21
+Modified: 2026-11-19
 Status: published
 Tags: python, benchmarking, observability, time-measurement, time
 Category: note

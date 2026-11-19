@@ -1,7 +1,7 @@
 ---
 Category: note
 Date: 2025-10-10
-Modified: 2025-10-10
+Modified: 2026-11-19
 Slug: bare-asterisk-in-python-function-signatures
 Status: published
 Summary: Learn how to use the bare asterisk in Python function signatures to enforce keyword-only arguments, enhancing clarity and preventing argument order bugs in your code.

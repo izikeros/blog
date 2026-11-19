@@ -2,7 +2,7 @@
 Title: Using MLflow-RAGAS Integration Without Tracing
 Slug: using-mlflowragas-integration-without-tracing
 Date: 2026-01-11
-Modified: 2026-01-11
+Modified: 2026-11-19
 Status: published
 Tags: mlflow, ragas, RAG-evaluation, rag-optimization, rag
 Category: note

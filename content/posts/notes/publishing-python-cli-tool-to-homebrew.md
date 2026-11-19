@@ -2,7 +2,7 @@
 Title: Publishing a Python CLI Tool to Homebrew
 Slug: publishing-python-cli-tool-to-homebrew
 Date: 2026-02-05
-Modified: 2026-02-05
+Modified: 2026-11-19
 Status: published
 Tags: python, homebrew, cli, packaging, distribution, macos
 Category: note
