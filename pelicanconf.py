@@ -363,30 +363,6 @@ PLUGINS = [
     "obsidian",  # Obsidian wiki-links and hashtag support
     "pelican_ai_analyzer_bar",  # AI service buttons for article analysis
     "llms_txt",  # Generate /llms.txt index for LLM tools (llmstxt.org)
-    "category_redirects",  # Redirect pages for removed category URLs
-]
-
-# Category taxonomy (2026-11): old category slug -> new location
-CATEGORY_REDIRECTS = {
-    "machine-learning": "category/applied-ml-data-science.html",
-    "data-science": "category/applied-ml-data-science.html",
-    "algorithmic-trading": "category/applied-ml-data-science.html",
-    "generative-ai": "category/llm-engineering.html",
-    "mlops": "category/mlops-llmops.html",
-    "linux": "category/software-engineering-tools.html",
-    "software-development": "category/software-engineering-tools.html",
-    "howto": "categories.html",
-    "exploring-new-ideas": "categories.html",
-}
-
-# Positioning topics first in llms.txt (remaining categories follow by size)
-LLMS_TXT_CATEGORY_ORDER = [
-    "LLM Engineering",
-    "RAG & Retrieval",
-    "Evaluation & Observability",
-    "MLOps & LLMOps",
-    "AI Engineering Leadership",
-    "Responsible AI",
 ]
 
 # llms.txt (see pelican-plugins/llms_txt); notes go to the "Optional" section
