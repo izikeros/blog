@@ -122,13 +122,6 @@ CUSTOM_CSS = "styles/custom.css"  # Path to custom stylesheet
 THEME_COLOR_ENABLE_USER_OVERRIDE = True  # Allow dark/light mode toggle
 
 # Homepage blocks (first page only), see Flex README "Homepage"
-AUTHOR_STRIP = {
-    "text": (
-        "Written by Krystian Safjan: enterprise GenAI at EY, technical lead of a "
-        "RAG assistant used by 100,000+ people, former ML team lead at Nokia."
-    ),
-    "links": [("About", "/about/"), ("Resume", "/pdfs/Krystian_Safjan_resume_priv.pdf")],
-}
 START_HERE = [
     "the-real-cost-of-model-migration-what-swapping-llms-actually-requires",
     "version-your-vectors-index-versioning-as-the-missing-layer-in-rag",
