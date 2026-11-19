@@ -61,7 +61,7 @@ The fund fundamentally rebalances 10 assets, which can be seen as 10 data source
 
 ![img](https://i.ibb.co/jVbgPDL/Screenshot-2019-12-22-at-4-12-41-PM.png)
 
-In the above, *a**i* represents weight, and *Xi* represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least risk.
+In the above, *a<sub>i</sub>* represents weight, and *X<sub>i</sub>* represents a performance criterion. Maximizing the function yields a portfolio close to the “efficient frontier” - basically, the goal is to make the most money at the least risk.
 > Read more on [FTSE Russell Capping Methodology](https://research.ftserussell.com/products/downloads/Capping_Methodology_Guide.pdf)
 
 ## Volume-Weighted Average Price (VWAP)

@@ -34,7 +34,7 @@ def __init__(self, required_arg, *, optional=None, debug=False):
     pass
 ```
 
-*_Combined with _args:__
+**Combined with `*args`:**
 
 ```python
 def process(*items, separator=", ", prefix=""):
@@ -75,7 +75,7 @@ func(1, 2, b=3)     # TypeError: too many positional arguments
 
 The function above only accepts one positional argument (`a`). The `*` doesn't "consume" anything - it just blocks additional positional arguments from being accepted.
 
-*_When you use _args with keyword-only parameters__ - you put a name on the asterisk, and now it captures all the excess positional arguments, but you can still have keyword-only parameters after it:
+**When you use `*args` with keyword-only parameters** - you put a name on the asterisk, and now it captures all the excess positional arguments, but you can still have keyword-only parameters after it:
 
 ```python
 def func(a, *args, b):
