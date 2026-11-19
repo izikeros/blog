@@ -178,7 +178,7 @@ ENABLE_TOC = True  # Collapsible TOC on long posts without a manual TOC
 TOC_MIN_HEADINGS = 5
 
 # Author box at the end of articles (not on notes)
-SHOW_AUTHOR_BOX = True
+SHOW_AUTHOR_BOX = False
 AUTHOR_BOX_ROLE = "AI/ML technical leader building LLM and RAG systems in enterprise."
 AUTHOR_BOX_LINKS = [
     ("About", "/about/"),
