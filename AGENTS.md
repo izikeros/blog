@@ -92,6 +92,8 @@ modify content in place — run with `--dry-run` first where supported.
 
 - Remotes: `forgejo` (primary push target; Forgejo push-mirrors to GitHub on
   every push) and `origin` (GitHub, read-only from the work Mac).
+  GitHub-side commits sync back to Forgejo via
+  `.github/workflows/sync-to-forgejo.yml` (fast-forward only; fails on divergence).
 - Atomic, conventional commits (`feat:`, `fix:`, `docs:`, `content:`, `chore:`).
 - Never add `Co-authored-by` trailers for AI tools.
 - Don't commit `docs/` together with source changes.

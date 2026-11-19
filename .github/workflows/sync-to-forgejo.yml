@@ -1,0 +1,46 @@
+# GitHub -> Forgejo half of the bi-directional sync.
+# Forgejo -> GitHub is a Forgejo push mirror (sync on commit), which
+# force-pushes; this job gets GitHub-side commits (PRs merged on GitHub,
+# web edits) into Forgejo first so the mirror doesn't overwrite them.
+#
+# Pushes are fast-forward only: if both sides diverged the job fails and
+# the conflict must be resolved manually (nothing is lost).
+# Pushing an identical SHA back (the mirror's echo) is a no-op, so no loop.
+#
+# Secrets: FORGEJO_TOKEN (Forgejo token, repository read/write)
+# Variables (optional): FORGEJO_REPO_URL, FORGEJO_USER, FORGEJO_SYNC_TIMEOUT_MINUTES
+name: Sync to Forgejo
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: forgejo-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: ${{ !github.event.deleted }}
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ fromJSON(vars.FORGEJO_SYNC_TIMEOUT_MINUTES || '10') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Push ref to Forgejo (fast-forward only)
+        env:
+          FORGEJO_TOKEN: ${{ secrets.FORGEJO_TOKEN }}
+          FORGEJO_REPO_URL: ${{ vars.FORGEJO_REPO_URL || 'https://forgejo.safix.pl/izikeros/blog.git' }}
+          FORGEJO_USER: ${{ vars.FORGEJO_USER || 'izikeros' }}
+        run: |
+          test -n "$FORGEJO_TOKEN" || { echo "::error::FORGEJO_TOKEN secret missing"; exit 1; }
+          remote="https://${FORGEJO_USER}:${FORGEJO_TOKEN}@${FORGEJO_REPO_URL#https://}"
+          git push "$remote" "${GITHUB_SHA}:${GITHUB_REF}"
