@@ -177,6 +177,15 @@ HOME_HIDE_TAGS = True  # Hide tags on home page article cards
 ENABLE_TOC = True  # Collapsible TOC on long posts without a manual TOC
 TOC_MIN_HEADINGS = 5
 
+# Author box at the end of articles (not on notes)
+SHOW_AUTHOR_BOX = True
+AUTHOR_BOX_ROLE = "AI/ML technical leader building LLM and RAG systems in enterprise."
+AUTHOR_BOX_LINKS = [
+    ("About", "/about/"),
+    ("LinkedIn", "https://pl.linkedin.com/in/krystiansafjan"),
+    ("GitHub", "https://github.com/izikeros"),
+]
+
 # Typography enhancement (smart quotes, etc.)
 TYPOGRIFY = False
 TYPOGRIFY_IGNORE_TAGS = ["style", "script", "title", "code", "pre"]
