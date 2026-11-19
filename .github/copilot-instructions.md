@@ -85,6 +85,9 @@ Custom fork of **Flex** theme with modifications:
 
 ## Key Conventions
 
+### Writing style
+When writing, rewriting or editing article/note prose, follow `STYLE.md` (author voice, AI-tells to avoid, checklist).
+
 ### Content File Format
 - **Markdown articles**: `content/posts/posts/<YYYY>/YYYY-MM-DD_article-slug.md`
 - **Notes** (Category `note`, hidden from index): `content/posts/notes/<slug>.md`

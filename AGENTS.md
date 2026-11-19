@@ -1,6 +1,6 @@
 # AGENTS.md — safjan.com blog
 
-Pelican 4.11 static blog (https://safjan.com, apex domain; `www` redirects).
+Pelican 4.12 static blog (https://safjan.com, apex domain; `www` redirects).
 Theme: `pelican-themes/Flex` (git submodule → `izikeros/Flex`, has its own `AGENTS.md`).
 More detail: `.github/copilot-instructions.md`.
 
@@ -10,6 +10,9 @@ Readers are AI technical leaders, enterprise practitioners, forward-deployed
 engineers and senior+ AI/ML/LLM engineers. Write as a practitioner: concrete
 trade-offs, decision criteria, failure modes, numbers with methodology. Avoid
 hype, filler and generic "ultimate guide" phrasing.
+
+**Before writing, rewriting or editing prose, read [`STYLE.md`](STYLE.md)**
+(author voice, AI-tells to avoid, before/after examples, final checklist).
 
 ## Tech stack
 

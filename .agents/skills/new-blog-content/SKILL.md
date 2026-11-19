@@ -7,6 +7,8 @@ description: Create a new blog post, TIL note or page for this Pelican blog with
 
 Create content that builds on the first try and is ready to be cited by search and answer engines.
 
+Write the body in the author's voice: follow [`STYLE.md`](../../../STYLE.md) and run its checklist before finishing.
+
 ## Where files go
 
 | Type | Path | Category |
