@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: AI Engineering Leadership
 Date: 2022-10-22
 Image: /images/head/is_mlops_good_career.jpg
 Slug: is-mlops-good-career

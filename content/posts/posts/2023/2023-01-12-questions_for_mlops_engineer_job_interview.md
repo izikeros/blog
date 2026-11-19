@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: AI Engineering Leadership
 Date: 2022-11-02
 Image: /images/head/mlops_interview_questions.jpg
 Slug: 50-questions-for-MLOps-engineer-job-interview

@@ -5,7 +5,7 @@ Date: 2025-10-06
 Modified: 2026-11-19
 Start: 2025-10-06
 Tags: agile, scrum, shape-up, basecamp, product-development-process, software-development
-Category: Software Development
+Category: AI Engineering Leadership
 Image: /images/head/peaks_vivid_320x640px.jpg
 banner: "/images/head/peaks_vivid_320x640px.jpg"
 Summary: Shape Up replaces two-week sprints with six-week cycles, kills the backlog, and lets small teams decide how to build things. Here is when it works, when it doesn't, and what I think about it after digging in.

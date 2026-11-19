@@ -1,5 +1,5 @@
 ---
-Category: Generative AI
+Category: Evaluation & Observability
 Date: 2023-04-18
 Image: /images/head/intrisic_vs_ext_640px.jpg
 Modified: 2023-04-18

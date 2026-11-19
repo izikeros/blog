@@ -16,7 +16,7 @@ hype, filler and generic "ultimate guide" phrasing.
 
 ## Tech stack
 
-- Python 3.12, **uv** (`uv.lock`); PDM files (`pdm.lock`) are legacy.
+- Python 3.12, **uv** (`pyproject.toml` + `uv.lock`) is the only dependency manager.
 - Pelican >= 4.12; pelican-obsidian, pelican-jupyter and pelican-ai-analyzer-bar
   installed from izikeros' GitHub repos (pinned in `uv.lock`, refresh with
   `uv lock --upgrade-package <name>`); sitemap, series, neighbors, render-math,
@@ -53,7 +53,7 @@ Title: Clear, specific title
 Slug: clear-specific-title
 Date: 2026-01-31
 Modified: 2026-01-31
-Category: Generative AI   # note | Machine Learning | Generative AI | MLOps | Responsible AI | Howto | Linux | Software Development | Data Science
+Category: LLM Engineering # see "Categories" below
 Tags:
   - rag
   - evaluation
@@ -74,6 +74,27 @@ scripted or repetitive edits across many files that don't change what a reader
 sees, e.g. frontmatter key normalization, lint/format fixes, removing anchor
 IDs, link or path rewrites, repairing broken notebook JSON. Leave `Modified:`
 untouched in such commits.
+
+## Categories
+
+One category per article, picked by topic (format such as "howto" is a tag).
+The list is enforced by `KNOWN_CATEGORIES` in `scripts/validate_frontmatter.py`.
+
+| Category | Use for |
+|---|---|
+| LLM Engineering | Building with LLMs: model choice/migration, prompting, frameworks, enterprise use |
+| RAG & Retrieval | RAG pipelines, chunking, embeddings, vector DBs, knowledge graphs, index versioning |
+| Evaluation & Observability | LLM/RAG/ML evaluation, metrics, monitoring, tracing |
+| MLOps & LLMOps | Deployment, pipelines, platforms, policies, data validation, maturity |
+| AI Engineering Leadership | Teams, roles, careers, process (Agile, Shape Up), AI-assisted engineering practice |
+| Responsible AI | Explainability (SHAP, LIME), privacy, governance, regulation |
+| Applied ML & Data Science | Classic ML, statistics, EDA, visualization, document AI, Kaggle, trading |
+| Software Engineering & Tools | Python engineering, testing, coding assistants, CLI/shell, self-hosting, blogging |
+| note | Short TIL notes in `content/posts/notes/` (hidden from index) |
+
+Removed category URLs redirect via `CATEGORY_REDIRECTS` in `pelicanconf.py`
+(plugin `pelican-plugins/category_redirects`). `LLMS_TXT_CATEGORY_ORDER` puts
+the positioning categories first in `llms.txt`.
 
 ## Commands
 

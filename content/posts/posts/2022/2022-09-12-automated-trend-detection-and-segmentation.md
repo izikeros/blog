@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Applied ML & Data Science
 Date: 2022-09-12
 Image: images/head/trend_detection_head.jpg
 Modified: 2026-02-07

@@ -22,7 +22,7 @@ Tags:
   - test-quality
   - code-quality
   - developer-productivity
-Category: Software Development
+Category: Software Engineering & Tools
 Image: /images/head/abstract_1.jpg
 banner: /images/head/abstract_1.jpg
 Summary: Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide concrete examples, prompts, and workflows that transform test coverage from a metrics exercise into a robust quality assurance system. Learn how to implement behavioral auditing, generate sophisticated test suites, detect flaky tests, and integrate advanced testing practices into your CI/CD pipeline - all using the power of AI-assisted development.

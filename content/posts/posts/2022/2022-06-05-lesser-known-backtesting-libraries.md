@@ -1,5 +1,5 @@
 ---
-Category: Algorithmic Trading
+Category: Applied ML & Data Science
 Date: 2022-06-05
 Image: images/head/backtesting.jpg
 Modified: 2023-07-12

@@ -274,7 +274,7 @@ tags:
   - machine-learning
   - rag
   - llm
-Category: Generative AI
+Category: RAG & Retrieval
 Image: /images/head/boosting_RAG.jpg
 Summary: This article discusses several advanced techniques...
 Status: published
@@ -291,7 +291,7 @@ tags:
   - machine-learning
   - rag
   - llm
-Category: Generative AI
+Category: RAG & Retrieval
 Image: /images/head/boosting_RAG.jpg
 Summary: This article discusses several advanced techniques...
 Status: published

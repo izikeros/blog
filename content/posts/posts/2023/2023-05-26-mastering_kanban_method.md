@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: AI Engineering Leadership
 Date: 2023-05-26
 Image: /images/head/kanban.jpg
 Modified: 2023-05-26

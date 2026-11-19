@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Software Engineering & Tools
 Date: 2023-01-15
 Image: /images/head/verify_backups.jpg
 Modified: 2026-02-07

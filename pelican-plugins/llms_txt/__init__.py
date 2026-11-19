@@ -5,7 +5,8 @@ llms.txt Plugin
 Generates ``llms.txt`` (https://llmstxt.org) in the output root: a Markdown
 index of the site for LLM-based tools and answer engines.
 
-Articles are grouped by category (largest first, newest article first).
+Articles are grouped by category (LLMS_TXT_CATEGORY_ORDER first, then
+largest first; newest article first).
 Categories in LLMS_TXT_OPTIONAL_CATEGORIES go under the spec's "## Optional".
 
 Settings:
@@ -14,6 +15,8 @@ Settings:
     LLMS_TXT_INTRO: Optional extra Markdown placed after the description.
     LLMS_TXT_OPTIONAL_CATEGORIES: Category names treated as optional.
         Default: INDEX_EXCLUDE_CATEGORIES.
+    LLMS_TXT_CATEGORY_ORDER: Category names listed first, in this order.
+        Default: [].
     LLMS_TXT_SUMMARY_MAX: Max characters of each summary. Default: 200.
 """
 
@@ -75,7 +78,10 @@ def _write(pelican):
     intro = settings.get("LLMS_TXT_INTRO")
     if intro:
         out += [intro.strip(), ""]
-    for name in sorted(main, key=lambda n: (-len(main[n]), n.lower())):
+    order = {c.lower(): i for i, c in enumerate(settings.get("LLMS_TXT_CATEGORY_ORDER", []))}
+    for name in sorted(
+        main, key=lambda n: (order.get(n.lower(), len(order)), -len(main[n]), n.lower())
+    ):
         out += [f"## {name}", ""]
         out += [_link(siteurl, a, limit) for a in main[name]]
         out.append("")

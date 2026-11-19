@@ -13,7 +13,7 @@ Tags:
   - llm
   - gpt
   - openai
-Category: Generative AI
+Category: LLM Engineering
 Image: /images/head/langchain_problems.jpg
 banner: "/images/head/langchain_problems.jpg"
 Summary: Beyond the Hype - LangChain's Hidden Flaws and How to Master AI Development.

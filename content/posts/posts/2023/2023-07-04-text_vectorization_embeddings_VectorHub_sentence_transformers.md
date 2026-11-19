@@ -1,5 +1,5 @@
 ---
-Category: Generative AI
+Category: RAG & Retrieval
 Date: 2023-07-04
 Image: /images/head/text_vectorization.jpg
 Modified: 2023-07-04

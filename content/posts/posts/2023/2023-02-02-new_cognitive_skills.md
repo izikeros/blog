@@ -1,5 +1,5 @@
 ---
-Category: Generative AI
+Category: AI Engineering Leadership
 Date: 2023-02-02
 Image: /images/head/cognitive_skills_ai_generative_models.jpg
 Modified: 2023-02-02

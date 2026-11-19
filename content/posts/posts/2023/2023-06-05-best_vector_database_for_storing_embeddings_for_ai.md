@@ -1,5 +1,5 @@
 ---
-Category: Generative AI
+Category: RAG & Retrieval
 Date: 2023-06-05
 Image: /images/head/vectordb.jpg
 Modified: 2023-06-05

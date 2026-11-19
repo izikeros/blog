@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2023-02-08
 Image: /images/head/data_scientist.jpg
 Modified: 2023-02-08

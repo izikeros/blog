@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2022-06-09
 Image: /images/head/abstract_1.jpg
 Modified: 2026-02-07

@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: MLOps & LLMOps
 Date: 2023-01-30
 Image: /images/head/databricks_logo.jpg
 Modified: 2023-01-30

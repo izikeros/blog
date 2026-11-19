@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2022-10-11
 Image: /images/head/visual_text_exploration_wordcloud.jpg
 Modified: 2026-02-07

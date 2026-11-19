@@ -10,7 +10,7 @@ Tags:
   - testing
   - dependency-injection
   - software-development
-Category: Machine Learning
+Category: Software Engineering & Tools
 Image: /images/head/dependency_injection_2_cr_640px.jpg
 banner: "/images/head/dependency_injection_2_cr_640px.jpg"
 Summary: Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code.

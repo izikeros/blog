@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Software Engineering & Tools
 Date: 2019-01-05
 Image: /images/head/books.jpg
 Modified: 2023-01-19

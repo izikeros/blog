@@ -5,7 +5,7 @@ Date: 2026-04-09
 Modified: 2026-11-19
 Start: 2026-04-09
 Tags: llm-migration, model-deprecation, rag-systems, prompt-engineering, ai-evaluation, llmops, reasoning-models, dspy
-Category: Machine Learning
+Category: LLM Engineering
 Image: /images/head/chatbot_model_replacement_640px.jpg
 banner: "/images/head/chatbot_model_replacement_640px.jpg"
 Summary: Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks through what a migration actually requires - evaluation, prompt portability, reasoning model placement and rollout.

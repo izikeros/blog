@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: AI Engineering Leadership
 Date: 2022-11-12
 Image: /images/head/roles_in_mlops.jpg
 Slug: roles-in-mlops

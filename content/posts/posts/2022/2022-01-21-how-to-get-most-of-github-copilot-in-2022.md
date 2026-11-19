@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Software Engineering & Tools
 Date: 2022-01-25
 Image: /images/head/copilot-warp-speed-head.jpg
 Modified: 2026-02-07

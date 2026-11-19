@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: MLOps & LLMOps
 Date: 2021-01-31
 Image: /images/head/errors_in_dataset.jpg
 Modified: 2023-01-31

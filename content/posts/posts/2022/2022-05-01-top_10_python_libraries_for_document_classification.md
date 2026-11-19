@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2022-05-01
 Image: /images/head/document_classification.jpg
 Modified: 2022-05-01

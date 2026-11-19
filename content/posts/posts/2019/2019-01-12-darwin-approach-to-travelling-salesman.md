@@ -1,5 +1,5 @@
 ---
-Category: Exploring new ideas
+Category: Applied ML & Data Science
 Date: 2019-01-12
 Image: /images/head/cells_small.jpg
 Modified: 2023-07-12

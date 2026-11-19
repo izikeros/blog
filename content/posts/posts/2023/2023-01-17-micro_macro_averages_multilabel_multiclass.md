@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Evaluation & Observability
 Date: 2021-12-22
 Image: /images/head/micro_macro_averaging.jpg
 Modified: 2026-02-07

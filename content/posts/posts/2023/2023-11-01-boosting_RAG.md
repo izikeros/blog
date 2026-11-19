@@ -12,7 +12,7 @@ Tags:
   - retrieval-augmented-generation
   - reranking
   - lost-in-the-middle
-Category: Generative AI
+Category: RAG & Retrieval
 Image: /images/head/boosting_RAG.jpg
 banner: "/images/head/boosting_RAG.jpg"
 Summary: This article discusses several advanced techniques that can be applied at different stages of the RAG pipeline to enhance its performance in a production setting.

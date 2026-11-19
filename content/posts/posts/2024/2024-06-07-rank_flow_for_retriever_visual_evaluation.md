@@ -14,7 +14,7 @@ Tags:
   - rankflow
   - observability
   - callback
-Category: Machine Learning
+Category: Evaluation & Observability
 Image: /images/head/rankflow_plot_head.jpg
 banner: "/images/head/rankflow_plot_head.jpg"
 Summary: RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.

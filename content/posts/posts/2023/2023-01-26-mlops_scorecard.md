@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: MLOps & LLMOps
 Date: 2023-01-21
 Image: /images/head/mlops_scorecard_640px.jpg
 Modified: 2023-01-26

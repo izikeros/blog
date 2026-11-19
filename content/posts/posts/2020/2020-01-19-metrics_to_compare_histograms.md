@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Evaluation & Observability
 Date: 2020-01-19
 Image: /images/head/compare_histograms.jpg
 Modified: 2026-02-07

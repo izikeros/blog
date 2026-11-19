@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2021-02-18
 Image: /images/head/kurtosis.jpg
 Modified: 2021-02-18

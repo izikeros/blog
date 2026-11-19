@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: MLOps & LLMOps
 Date: 2021-01-16
 Image: /images/head/elegant_panda.jpg
 Slug: pandas-schema-validation

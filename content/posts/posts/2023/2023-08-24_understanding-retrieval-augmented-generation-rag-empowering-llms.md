@@ -15,7 +15,7 @@ Tags:
   - seq2seq
   - prompt
   - pretrained-dense-retrieval
-Category: Generative AI
+Category: RAG & Retrieval
 Image: /images/head/rag_futuristic_library_640px.jpg
 banner: "/images/head/rag_futuristic_library_640px.jpg"
 Summary: Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.

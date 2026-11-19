@@ -1,5 +1,5 @@
 ---
-Category: Algorithmic Trading
+Category: Software Engineering & Tools
 Date: 2023-04-06
 Image: /images/head/zero_knowledge.jpg
 Modified: 2026-02-07

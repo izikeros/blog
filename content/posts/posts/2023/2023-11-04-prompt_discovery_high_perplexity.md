@@ -10,7 +10,7 @@ Tags:
   - prompt
   - prompt-engineering
   - prompt-discovery
-Category: Generative AI
+Category: LLM Engineering
 Image: /images/head/prompt_discovery.jpg
 banner: /images/head/prompt_discovery.jpg
 Summary: Learn prompt discovery to uncover the most effective prompts and combinations thereof to achieve specific tasks, while also considering factors like response quality, model performance, and computational efficiency

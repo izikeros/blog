@@ -15,7 +15,7 @@ Tags:
   - data-drift
   - compliance
   - audit
-Category: Machine Learning
+Category: RAG & Retrieval
 Image: /images/head/glass_balls_640px.jpg
 banner: "/images/head/glass_balls_640px.jpg"
 Summary: A RAG system can give a different answer today than last week, with the same model and the same prompt - because the index changed. Retrieval drift is silent, cumulative and rarely audited. This post shows how to make it observable and reproducible - what to version beyond vectors, how to reconstruct past index states, and when lightweight metadata is enough. Includes tracing patterns, replay strategies and a risk-based decision guide for production systems.

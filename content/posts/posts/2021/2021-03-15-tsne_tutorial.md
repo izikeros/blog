@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2021-03-15
 Image: /images/head/tsne_head.jpg
 Modified: 2021-03-15

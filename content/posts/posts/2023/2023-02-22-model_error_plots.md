@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Evaluation & Observability
 Date: 2022-02-22
 Image: /images/head/diagnosing_errors_in_regression_models.jpg
 Modified: 2023-02-22

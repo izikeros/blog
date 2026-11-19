@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2022-02-11
 Image: /images/head/dewarp_deskew.jpg
 Modified: 2023-07-12

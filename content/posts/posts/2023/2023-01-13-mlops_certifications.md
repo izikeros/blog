@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: AI Engineering Leadership
 Date: 2022-11-27
 Image: /images/head/mlops_certificates.jpg
 Slug: mlops-certifications-a-comprehensive-guide

@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: AI Engineering Leadership
 Date: 2023-02-23
 Image: /images/head/speech_and_expertise.jpg
 Modified: 2023-02-23

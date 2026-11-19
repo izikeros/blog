@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2023-02-09
 Image: /images/head/game_theory_battlefield_640px.jpg
 Modified: 2023-02-09

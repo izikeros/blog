@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Software Engineering & Tools
 Date: 2021-12-02
 Image: /images/head/vscode-as-nim-ide.jpg
 Slug: vscode-as-nim-ide

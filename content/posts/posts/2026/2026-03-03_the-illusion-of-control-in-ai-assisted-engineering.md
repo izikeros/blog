@@ -5,7 +5,7 @@ Date: 2026-03-03
 Modified: 2026-11-19
 Start: 
 Tags: 
-Category: Machine Learning
+Category: AI Engineering Leadership
 Image: /images/head/abstract_1.jpg
 banner: "/images/head/abstract_1.jpg"
 Summary: AI-assisted engineering keeps operational control (approve, reject, sign off) but erodes epistemic control (understanding what was built and why). How review ceremonies turn into governance theater, how responsibility diffuses, and the slower risks of architectural drift and unexplainable systems.

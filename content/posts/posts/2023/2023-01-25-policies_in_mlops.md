@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: MLOps & LLMOps
 Date: 2023-01-25
 Image: /images/head/mlops_policies.jpg
 Modified: 2023-01-25

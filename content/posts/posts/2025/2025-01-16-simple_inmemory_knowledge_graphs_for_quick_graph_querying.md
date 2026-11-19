@@ -12,7 +12,7 @@ Tags:
   - neo4j
   - rdflib
   - SPARQL
-Category: Howto
+Category: RAG & Retrieval
 Image: /images/head/knowledge_graph_cr_640px.jpg
 banner: "/images/head/knowledge_graph_cr_640px.jpg"
 Summary: As developers, we often reach for full-scale graph databases when simpler solutions would suffice. When your knowledge graph is modest in size, keeping it in memory can be both efficient and practical. Let's explore some powerful tools that make this approach work beautifully.

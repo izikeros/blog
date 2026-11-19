@@ -12,7 +12,7 @@ from validate_frontmatter import check_text  # noqa: E402
 VALID = """---
 Title: T
 Date: 2024-01-02 10:00
-Category: MLOps
+Category: MLOps & LLMOps
 Summary: S
 ---
 body
@@ -75,3 +75,39 @@ def test_llms_txt_groups_and_marks_optional(tmp_path):
     assert out.index("[New]") < out.index("[Old]") < out.index("## Optional")
     assert "- [New](https://example.com/new/): Short & sweet" in out
     assert out.index("## Optional") < out.index("[Til]")
+
+
+def test_llms_txt_category_order_overrides_size(tmp_path):
+    llms_txt._collect(
+        SimpleNamespace(
+            articles=[
+                _article("A", "Big", 1),
+                _article("B", "Big", 2),
+                _article("C", "Small", 3),
+            ]
+        )
+    )
+    settings = {"SITENAME": "Blog", "LLMS_TXT_CATEGORY_ORDER": ["Small"]}
+    llms_txt._write(SimpleNamespace(settings=settings, output_path=str(tmp_path)))
+    out = (tmp_path / "llms.txt").read_text()
+    assert out.index("## Small") < out.index("## Big")
+
+
+def test_category_redirects_skip_live_and_write_old(tmp_path):
+    import category_redirects
+
+    live = SimpleNamespace(slug="new-cat")
+    category_redirects._collect(SimpleNamespace(categories=[(live, [])]))
+    settings = {
+        "SITEURL": "https://example.com",
+        "CATEGORY_REDIRECTS": {
+            "old-cat": "category/new-cat.html",
+            "new-cat": "categories.html",
+        },
+    }
+    category_redirects._write(
+        SimpleNamespace(settings=settings, output_path=str(tmp_path))
+    )
+    page = (tmp_path / "category" / "old-cat.html").read_text()
+    assert 'url=https://example.com/category/new-cat.html"' in page
+    assert not (tmp_path / "category" / "new-cat.html").exists()

@@ -24,7 +24,7 @@ Tags:
   - chunk-linking
   - llm
   - rag
-Category: Machine Learning
+Category: RAG & Retrieval
 Image: /images/head/chunking_puzzle_640px.jpg
 banner: "/images/head/chunking_puzzle_640px.jpg"
 Summary: Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?

@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Software Engineering & Tools
 Date: 2022-03-01
 Image: /images/head/pelican_theme.jpg
 Modified: 2022-03-01

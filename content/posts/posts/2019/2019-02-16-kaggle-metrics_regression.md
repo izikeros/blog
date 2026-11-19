@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Evaluation & Observability
 Date: 2019-02-16
 Image: /images/head/performance_metrics.jpg
 Modified: 2019-03-01

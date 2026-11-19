@@ -18,7 +18,7 @@ Tags:
   - creative-thinking
   - agile-data-science-process
   - team-data-science-process
-Category: Machine Learning
+Category: AI Engineering Leadership
 Image: /images/head/agile_data_science_640px.jpg
 banner: "/images/head/agile_data_science_640px.jpg"
 Summary: Discover the delicate balance between Agile methodologies and imagination in the domain of data science and analytics. Uncover the impact of Agile approaches on creativity within data science teams. Explore how these practices shape the innovative landscape of data science and analytics.

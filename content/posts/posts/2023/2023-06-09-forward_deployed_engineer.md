@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: AI Engineering Leadership
 Date: 2023-06-09
 Image: /images/head/forward_deployed_engineer_2.jpg
 banner: "/images/head/forward_deployed_engineer_2.jpg"

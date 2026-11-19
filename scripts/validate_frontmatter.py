@@ -28,16 +28,14 @@ REQUIRED = ["Title", "Date", "Category", "Summary"]
 CANONICAL = REQUIRED + ["Modified", "Tags", "Slug", "Status", "Image", "Series"]
 KNOWN_CATEGORIES = {
     "note",
-    "Machine Learning",
-    "Generative AI",
-    "MLOps",
+    "LLM Engineering",
+    "RAG & Retrieval",
+    "Evaluation & Observability",
+    "MLOps & LLMOps",
+    "AI Engineering Leadership",
     "Responsible AI",
-    "Howto",
-    "Linux",
-    "Software Development",
-    "Data Science",
-    "Algorithmic Trading",
-    "Exploring new ideas",
+    "Applied ML & Data Science",
+    "Software Engineering & Tools",
 }
 FRONTMATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*(\n|\Z)", re.S)
 

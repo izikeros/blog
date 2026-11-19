@@ -1,5 +1,5 @@
 ---
-Category: Generative AI
+Category: LLM Engineering
 Date: 2023-02-01
 Image: /images/head/language_models_for_corporate_knowledge.jpg
 Modified: 2023-02-01

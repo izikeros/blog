@@ -56,7 +56,7 @@ Extract tag candidates from:
 
 **Category Context:**
 - Use category to inform relevant domain tags
-- E.g., "Generative AI" category suggests LLM-related tags
+- E.g., "RAG & Retrieval" category suggests retrieval- and LLM-related tags
 
 ### Step 3: Build Tag Candidates
 
@@ -169,7 +169,7 @@ After adding tags, invoke the `article-post-edit-actions` skill with:
 **Article content excerpts:**
 ```markdown
 Title: Techniques to Boost RAG Performance in Production
-Category: Generative AI
+Category: RAG & Retrieval
 
 ...discusses hybrid search, re-ranking...
 ...using LangChain and ChromaDB...

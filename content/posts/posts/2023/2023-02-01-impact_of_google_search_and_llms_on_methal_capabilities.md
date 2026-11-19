@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: AI Engineering Leadership
 Date: 2023-02-01
 Image: /images/head/search_engines_impact_on_cognitive_skills.jpg
 Modified: 2023-02-01

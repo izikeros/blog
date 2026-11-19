@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: AI Engineering Leadership
 Date: 2022-10-28
 Image: /images/head/mlops_roles_of_the_future.jpg
 Slug: mlops_roles_of_the_future

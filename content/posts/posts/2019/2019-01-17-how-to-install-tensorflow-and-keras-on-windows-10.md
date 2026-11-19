@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Software Engineering & Tools
 Date: 2019-01-17
 Image: /images/head/keras+tensorflow.jpg
 Modified: 2019-02-08

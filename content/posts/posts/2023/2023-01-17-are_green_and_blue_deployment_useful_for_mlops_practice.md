@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: MLOps & LLMOps
 Date: 2023-01-03
 Image: /images/head/blue_green.jpg
 Modified: 2026-02-07

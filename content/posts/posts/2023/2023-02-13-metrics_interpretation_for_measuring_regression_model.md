@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Evaluation & Observability
 Date: 2023-02-13
 Image: /images/head/R2_MSE_RMSE.jpg
 Modified: 2023-02-13

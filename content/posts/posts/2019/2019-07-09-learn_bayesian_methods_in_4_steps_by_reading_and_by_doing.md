@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Applied ML & Data Science
 Date: 2019-07-09
 Image: /images/learn_bayes/probab_distrib.png
 Modified: 2023-07-12

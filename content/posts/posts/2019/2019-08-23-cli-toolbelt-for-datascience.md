@@ -1,5 +1,5 @@
 ---
-Category: Linux
+Category: Software Engineering & Tools
 Date: 2019-08-23
 Image: /images/head/cli_tools.jpg
 Modified: 2023-07-12

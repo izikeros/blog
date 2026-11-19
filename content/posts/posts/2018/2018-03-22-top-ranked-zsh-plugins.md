@@ -1,6 +1,6 @@
 ---
 Title: Top Popular ZSH Plugins on GitHub (2018)
-Category: Linux
+Category: Software Engineering & Tools
 Date: 2018-03-22
 Image: /images/head/inside-work-tree.jpg
 Slug: top-popular-zsh-plugins-on-github

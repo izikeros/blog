@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: Applied ML & Data Science
 Date: 2023-02-12
 Image: /images/head/auto_eda.jpg
 Modified: 2026-02-07

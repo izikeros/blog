@@ -1,5 +1,5 @@
 ---
-Category: Machine Learning
+Category: AI Engineering Leadership
 Date: 2023-01-19
 Image: /images/head/team_project_head.jpg
 Modified: 2023-07-12

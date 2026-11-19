@@ -1,5 +1,5 @@
 ---
-Category: MLOps
+Category: MLOps & LLMOps
 Date: 2023-02-12
 Image: /images/head/pipelines.jpg
 Modified: 2023-02-12

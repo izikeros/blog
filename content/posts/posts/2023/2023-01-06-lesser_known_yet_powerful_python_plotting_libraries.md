@@ -1,5 +1,5 @@
 ---
-Category: Howto
+Category: Applied ML & Data Science
 Date: 2022-09-30
 Image: /images/head/lesser_known_plotting_libraries.jpg
 Modified: 2023-07-12
