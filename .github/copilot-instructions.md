@@ -114,7 +114,7 @@ When writing, rewriting or editing article/note prose, follow `STYLE.md` (author
 ### Styling & Assets
 - Favicons: Generated via [RealFaviconGenerator](https://realfavicongenerator.net/), placed in `content/`
 - CSS minification: `npm run minify-pygments` for code highlighting
-- Font Awesome: `npm run copy-fontawesome` from node_modules
+- Icons: inline SVG sprite in the Flex theme (`static/icons/sprite.svg`, `icon()` macro); no Font Awesome
 - JavaScript minification: `npm run minify-js` for dark mode theme script
 
 ### RSS/Atom Feeds
@@ -184,7 +184,6 @@ pelican -lr --debug         # Debug live reload
 ```bash
 npm run build              # Run all minification/copy tasks
 npm run minify-js          # Minify dark theme JS
-npm run copy-fontawesome   # Copy Font Awesome icons to static/
 npm run minify-pygments    # Minify Pygments CSS for code highlighting
 npm run test               # Build and validate site
 ```
