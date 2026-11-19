@@ -1,76 +1,97 @@
-# AGENTS.md
+# AGENTS.md — safjan.com blog
 
-Guidance for AI coding agents working in this repository.
+Pelican 4.11 static blog (https://safjan.com, apex domain; `www` redirects).
+Theme: `pelican-themes/Flex` (git submodule → `izikeros/Flex`, has its own `AGENTS.md`).
+More detail: `.github/copilot-instructions.md`.
 
-## Overview
+## Audience and voice
 
-Source and generated output of the blog [safjan.com](https://www.safjan.com), built with the Pelican
-static site generator. Markdown (and some notebook) articles live in `content/`; the rendered site is
-written to `docs/` and committed (GitHub Pages compatible). See `README.md` for detailed maintenance notes.
+Readers are AI technical leaders, enterprise practitioners, forward-deployed
+engineers and senior+ AI/ML/LLM engineers. Write as a practitioner: concrete
+trade-offs, decision criteria, failure modes, numbers with methodology. Avoid
+hype, filler and generic "ultimate guide" phrasing.
 
 ## Tech stack
 
-- Python 3.12 (`requires-python = "==3.12.*"`), uv (`uv.lock`) – PDM files (`pdm.lock`, `.pdm-python`) are legacy
-- Pelican >= 4.11 with many plugins (pelican-obsidian and pelican-jupyter from izikeros' git forks,
-  sitemap, series, neighbors, render-math, yaml-metadata, related-posts, ...)
-- Theme: `pelican-themes/Flex` (git submodule, izikeros/Flex fork)
-- Node tooling via `npx`: pagefind (search index), prettier, html-validate; `package.json` holds theme asset scripts
-- Dev: pytest, djlint; pre-commit hooks: prettier, markdownlint-cli2
-
-## Repo layout
-
-- `content/posts/` – articles (`posts/<year>/...`), plus `notes/`, `notebooks/`; `content/pages/`, `images/`, `pdfs/`
-- `docs/` – generated site (`OUTPUT_PATH`), thousands of files – never edit by hand
-- `pelicanconf.py` (dev), `publishconf.py` (production, `SITEURL = https://www.safjan.com`)
-- `pelican-themes/` – Flex submodule and other themes
-- `pelican-plugins/` – local plugins directory referenced by `PLUGIN_PATHS` (not tracked in git)
-- `scripts/` – content maintenance: `fix_duplicate_ids.py`, `remove_anchor_ids.py`, `generate_summaries.py` (local Ollama)
-- `tests/test_fix_yaml_tags.py` – tests for the `fix_yaml_tags` plugin from `pelican-plugins/`
-- `helpers/` – notebooks/scripts used to create article figures
-- `.factory/skills/` – article editing skills (SEO, tags, TOC, post-edit)
+- Python 3.12, **uv** (`uv.lock`); PDM files (`pdm.lock`) are legacy.
+- Pelican >= 4.11; pelican-obsidian / pelican-jupyter from izikeros' git forks
+  (installed by `make venv`); sitemap, series, neighbors, render-math, yaml-metadata, related-posts.
+- `pyproject.toml` references `../pelican-ai-analyzer-bar` as an editable path
+  dependency — it must exist as a sibling directory for `uv sync` to succeed.
+- Node via `npx`: pagefind (search), prettier, html-validate. Pre-commit: prettier, markdownlint-cli2.
 
 ## Setup
 
 ```bash
 git submodule update --init
-make venv            # uv lock --upgrade && uv sync + git installs of pelican-obsidian / pelican-jupyter
+make venv   # uv lock --upgrade && uv sync + git installs of pelican-obsidian / pelican-jupyter
 ```
 
-`pyproject.toml` also references `../pelican-ai-analyzer-bar` as an editable path dependency – it must exist
-as a sibling directory for `uv sync` to succeed.
+## Layout
 
-## Build / run (Makefile)
-
-```bash
-make devserver       # pelican -lr, serve + regenerate
-make html            # build with pelicanconf.py into docs/
-make publish         # build with publishconf.py + npx pagefind
-make validate-html   # / validate-html-strict, format-html
-make fix-duplicate-ids | remove-anchor-ids | generate-summaries
-make clean
+```
+content/posts/posts/<YYYY>/YYYY-MM-DD_slug.md   # articles (shown on index)
+content/posts/notes/<slug>.md                   # short notes, Category: note (hidden from index, /til.html)
+content/posts/notebooks/YYYY-MM-DD-name/*.ipynb # notebook articles (+ .nbdata metadata)
+content/pages/                                  # static pages
+content/images/, content/pdfs/                  # assets
+pelican-plugins/                                # local plugins (llms_txt, seo_leo_enhancer, ...)
+scripts/                                        # content maintenance scripts
+helpers/                                        # notebooks/scripts for article figures
+.factory/skills/                                # article editing skills (SEO, tags, TOC, post-edit)
+docs/                                           # GENERATED site (GitHub Pages) — never edit by hand
 ```
 
-## Test
+## Frontmatter (YAML, capitalized keys)
 
-```bash
-pytest tests         # needs the local pelican-plugins/ directory
+```yaml
+---
+Title: Clear, specific title
+Slug: clear-specific-title
+Date: 2026-01-31
+Modified: 2026-01-31
+Category: Generative AI   # note | Machine Learning | Generative AI | MLOps | Responsible AI | Howto | Linux | Software Development | Data Science
+Tags:
+  - rag
+  - evaluation
+Summary: One or two plain sentences stating what the reader learns (used in listings, meta description and llms.txt).
+Status: published         # or draft
+---
 ```
 
-## Conventions
+Required: `Title`, `Date`, `Category`, `Summary`. Use capitalized keys only
+(no `tags`/`Tags` mix). Bump `Modified` only for substantive updates.
 
-- Articles are Markdown with YAML front matter; keep existing metadata keys (title, date, tags, category,
-  summary, ...) consistent with neighbouring posts. Front Matter CMS data lives in `.frontmatter/`.
-- Markdown is checked by markdownlint-cli2 and prettier via pre-commit.
-- Content changes go in `content/`; regenerate `docs/` with `make publish` instead of editing HTML.
+## Commands
 
-## Gotchas
+Use the repo venv: `.venv/bin/python`, `.venv/bin/pelican` (or `source .venv/bin/activate`).
 
-- `make e2e` and `make push` run `git add`/`commit`/`push` automatically – do not run them as part of agent work.
-- `docs/` is huge; avoid broad searches/rewrites there and keep diffs to generated output out of unrelated commits.
-- `generate-summaries` calls an Ollama server on localhost.
+| Purpose | Command | Side effects |
+|---|---|---|
+| Validate post metadata | `make validate-frontmatter PY=.venv/bin/python` | none |
+| Safe checks (metadata + tests) | `make check PY=.venv/bin/python` | none |
+| Production build to temp dir | `.venv/bin/pelican content -o /tmp/blog-out -s publishconf.py` | none (~1 min) |
+| Dev server | `make devserver` | writes `docs/` with dev URLs |
+| Production build | `make publish` | rewrites `docs/` + pagefind |
+
+`docs/` is huge: avoid broad searches/rewrites there.
+`tests/test_fix_yaml_tags.py` is stale (its plugin no longer exists).
+
+Do NOT run `make e2e` or `make push` — they `git commit` and `git push`.
+Do NOT build into `docs/` unless asked; prefer `-o /tmp/...` for verification.
+`scripts/fix_duplicate_ids.py`, `remove_anchor_ids.py`, `generate_summaries.py`
+modify content in place — run with `--dry-run` first where supported.
 
 ## Don'ts
 
-- Don't commit secrets (e.g. `.factory/mcp.json` tokens, API keys) or `.venv/`, `node_modules/`, `cache/`.
-- Don't modify the Flex submodule here – changes belong in the izikeros/Flex repo.
+- Don't commit secrets (`.env`, `.factory/mcp.json` tokens, API keys), `.venv/`, `node_modules/`, `cache/`.
+- Don't modify the Flex submodule here — changes belong in the izikeros/Flex repo.
 - Don't push to remotes or publish the site without explicit instruction.
+
+## Git
+
+- Remotes: `forgejo` (primary push target; Forgejo push-mirrors to GitHub on
+  every push) and `origin` (GitHub, read-only from the work Mac).
+- Atomic, conventional commits (`feat:`, `fix:`, `docs:`, `content:`, `chore:`).
+- Never add `Co-authored-by` trailers for AI tools.
+- Don't commit `docs/` together with source changes.
