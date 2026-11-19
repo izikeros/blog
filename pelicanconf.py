@@ -306,6 +306,8 @@ MARKDOWN = {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
         # Extra features: tables, fenced code, footnotes, etc.
         "markdown.extensions.extra": {},
+        # !!! note / tradeoff / decision "Title" callout blocks
+        "markdown.extensions.admonition": {},
         # Metadata in markdown files
         "markdown.extensions.meta": {},
         # Table of contents generation
