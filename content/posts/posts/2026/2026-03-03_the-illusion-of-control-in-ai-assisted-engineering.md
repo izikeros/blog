@@ -2,7 +2,7 @@
 Title: The illusion of control in AI-assisted engineering
 Slug: the-illusion-of-control-in-ai-assisted-engineering
 Date: 2026-03-03
-Modified: 
+Modified: 2026-11-19
 Start: 
 Tags: 
 Category: Machine Learning
