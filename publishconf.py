@@ -29,9 +29,6 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Clean subtitle for feeds (no HTML) - overrides pelicanconf.py version
-SITESUBTITLE = "Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python"
-
 DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
