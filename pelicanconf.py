@@ -121,6 +121,29 @@ PROMO_BOX = True  # Show promotional content box in sidebar
 CUSTOM_CSS = "styles/custom.css"  # Path to custom stylesheet
 THEME_COLOR_ENABLE_USER_OVERRIDE = True  # Allow dark/light mode toggle
 
+# Homepage blocks (first page only), see Flex README "Homepage"
+AUTHOR_STRIP = {
+    "text": (
+        "Written by Krystian Safjan: enterprise GenAI at EY, technical lead of a "
+        "RAG assistant used by 100,000+ people, former ML team lead at Nokia."
+    ),
+    "links": [("About", "/about/"), ("Resume", "/pdfs/Krystian_Safjan_resume_priv.pdf")],
+}
+START_HERE = [
+    "the-real-cost-of-model-migration-what-swapping-llms-actually-requires",
+    "version-your-vectors-index-versioning-as-the-missing-layer-in-rag",
+    "techniques-to-boost-rag-performance-in-production",
+    "ragas-mlflow-rag-evaluation-tutorial",
+    "the-role-and-responsibilities-of-a-forward-deployed-engineer",
+]
+TOPIC_HUBS = [
+    {"title": "RAG", "url": "/tag/rag/", "description": "Retrieval, indexing and RAG in production"},
+    {"title": "Evaluation", "url": "/tag/evaluation/", "description": "Measuring LLM and retrieval quality"},
+    {"title": "LLMOps & MLOps", "url": "/category/mlops.html", "description": "Shipping and operating models"},
+    {"title": "Responsible AI", "url": "/category/responsible-ai.html", "description": "Risk, fairness and governance"},
+    {"title": "Engineering", "url": "/category/software-development.html", "description": "Software practice and tooling"},
+]
+
 # Code syntax highlighting theme (Pygments)
 # Options: monokai, github, friendly, colorful, etc.
 PYGMENTS_STYLE = "github"
@@ -340,6 +363,30 @@ PLUGINS = [
     "obsidian",  # Obsidian wiki-links and hashtag support
     "pelican_ai_analyzer_bar",  # AI service buttons for article analysis
     "llms_txt",  # Generate /llms.txt index for LLM tools (llmstxt.org)
+    "category_redirects",  # Redirect pages for removed category URLs
+]
+
+# Category taxonomy (2026-11): old category slug -> new location
+CATEGORY_REDIRECTS = {
+    "machine-learning": "category/applied-ml-data-science.html",
+    "data-science": "category/applied-ml-data-science.html",
+    "algorithmic-trading": "category/applied-ml-data-science.html",
+    "generative-ai": "category/llm-engineering.html",
+    "mlops": "category/mlops-llmops.html",
+    "linux": "category/software-engineering-tools.html",
+    "software-development": "category/software-engineering-tools.html",
+    "howto": "categories.html",
+    "exploring-new-ideas": "categories.html",
+}
+
+# Positioning topics first in llms.txt (remaining categories follow by size)
+LLMS_TXT_CATEGORY_ORDER = [
+    "LLM Engineering",
+    "RAG & Retrieval",
+    "Evaluation & Observability",
+    "MLOps & LLMOps",
+    "AI Engineering Leadership",
+    "Responsible AI",
 ]
 
 # llms.txt (see pelican-plugins/llms_txt); notes go to the "Optional" section
