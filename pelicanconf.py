@@ -177,11 +177,12 @@ DEFAULT_DATE_FORMAT = "%B %d, %Y"  # Format: January 15, 2024
 # Article metadata display
 SHOW_ARTICLE_AUTHOR = False  # Hide author name (single-author blog)
 SHOW_ARTICLE_CATEGORY = False  # Hide category in article header
-SHOW_DATE_MODIFIED = False  # Hide "last modified" date
+SHOW_DATE_MODIFIED = True  # Show "Updated" date when it differs from Date
 HOME_HIDE_TAGS = True  # Hide tags on home page article cards
 
 # Table of Contents
-ENABLE_TOC = False  # Disable automatic TOC generation
+ENABLE_TOC = True  # Collapsible TOC on long posts without a manual TOC
+TOC_MIN_HEADINGS = 5
 
 # Typography enhancement (smart quotes, etc.)
 TYPOGRIFY = False
