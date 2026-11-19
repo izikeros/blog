@@ -38,7 +38,7 @@ content/images/, content/pdfs/                  # assets
 pelican-plugins/                                # local plugins (llms_txt, seo_leo_enhancer, ...)
 scripts/                                        # content maintenance scripts
 helpers/                                        # notebooks/scripts for article figures
-.agents/skills/                                 # agent skills (Copilot CLI; .factory/skills symlinks here for Droid)
+.agents/skills/                                 # agent skills (shared by Copilot CLI and Droid)
 docs/                                           # GENERATED site (GitHub Pages) — never edit by hand
 ```
 
