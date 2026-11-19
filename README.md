@@ -72,7 +72,7 @@ z blog && source ~/.venv/bin/activate
 To upgrade packages that are upgradable
 
 ```bash
-pdm upgrade
+uv lock --upgrade && uv sync
 ```
 
 ### install plugins and themes
