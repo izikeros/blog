@@ -71,7 +71,7 @@ The blog uses numerous plugins installed in `pyproject.toml`:
 ### Content Metadata
 Articles use YAML frontmatter (or Python-style metadata) with:
 - `Title`, `Date`, `Modified`, `Category`, `Tags`, `Summary`
-- When modifying an article or note, set `Modified:` to today's date (`YYYY-MM-DD`)
+- When modifying an article or note, set `Modified:` to today's date (`YYYY-MM-DD`); bulk mechanical changes (key normalization, lint/format fixes, link rewrites) are exempt and must not touch it
 - `Image` / featured image support
 - `Series` for grouping related posts
 - Obsidian/wikilink integration

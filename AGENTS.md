@@ -64,8 +64,13 @@ Required: `Title`, `Date`, `Category`, `Summary`. Use capitalized keys only
 
 **Rule: whenever you modify an article or note, set `Modified:` to today's date
 (`YYYY-MM-DD`)** in the same commit. Add the key after `Date:` if missing.
-Applies to body and frontmatter edits alike; only skip it for bulk mechanical
-changes across many files (e.g. key normalization) unless asked.
+Applies to body and frontmatter edits alike.
+
+**Exempt: bulk mechanical changes never update `Modified:`.** These are
+scripted or repetitive edits across many files that don't change what a reader
+sees, e.g. frontmatter key normalization, lint/format fixes, removing anchor
+IDs, link or path rewrites, repairing broken notebook JSON. Leave `Modified:`
+untouched in such commits.
 
 ## Commands
 
