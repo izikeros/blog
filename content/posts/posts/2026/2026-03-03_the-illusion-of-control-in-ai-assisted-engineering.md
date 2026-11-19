@@ -9,7 +9,7 @@ Category: AI Engineering Leadership
 Image: /images/head/abstract_1.jpg
 banner: "/images/head/abstract_1.jpg"
 Summary: AI-assisted engineering keeps operational control (approve, reject, sign off) but erodes epistemic control (understanding what was built and why). How review ceremonies turn into governance theater, how responsibility diffuses, and the slower risks of architectural drift and unexplainable systems.
-Status: published
+Status: draft
 ---
 
 ## The illusion of control in AI-assisted engineering
