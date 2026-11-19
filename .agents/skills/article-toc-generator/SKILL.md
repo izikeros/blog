@@ -22,6 +22,13 @@ Generate and maintain Table of Contents for markdown blog articles with proper a
 
 ## Process
 
+> **Jupyter notebooks (`.ipynb`):** never edit them as text. Each line is a
+> JSON string, and deleting a marker with a regex can leave an unterminated
+> string. That broke `2021-09-13-Interactive_plots_for_blogging.ipynb`, and
+> Pelican then skipped it on every build. Edit cell `source` lists with
+> `json`/`nbformat`, then confirm the file still parses:
+> `python3 -c "import json,sys;json.load(open(sys.argv[1]))" file.ipynb`
+
 ### Step 1: Read and Parse Article
 
 1. Read the markdown file
