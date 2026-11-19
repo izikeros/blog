@@ -38,7 +38,7 @@ content/images/, content/pdfs/                  # assets
 pelican-plugins/                                # local plugins (llms_txt, seo_leo_enhancer, ...)
 scripts/                                        # content maintenance scripts
 helpers/                                        # notebooks/scripts for article figures
-.factory/skills/                                # article editing skills (SEO, tags, TOC, post-edit)
+.agents/skills/                                 # agent skills (Copilot CLI; .factory/skills symlinks here for Droid)
 docs/                                           # GENERATED site (GitHub Pages) — never edit by hand
 ```
 
@@ -55,7 +55,7 @@ Tags:
   - rag
   - evaluation
 Summary: One or two plain sentences stating what the reader learns (used in listings, meta description and llms.txt).
-Status: published         # or draft
+Status: published         # REQUIRED: missing Status defaults to draft (DEFAULT_METADATA)
 ---
 ```
 
@@ -81,6 +81,19 @@ Do NOT run `make e2e` or `make push` — they `git commit` and `git push`.
 Do NOT build into `docs/` unless asked; prefer `-o /tmp/...` for verification.
 `scripts/fix_duplicate_ids.py`, `remove_anchor_ids.py`, `generate_summaries.py`
 modify content in place — run with `--dry-run` first where supported.
+
+## Skills (`.agents/skills/`)
+
+Load the matching skill before doing these tasks:
+
+| Task | Skill |
+|------|-------|
+| Write a new post, note or page; fill in frontmatter | `new-blog-content` |
+| Check content before commit or publish; "post is missing" | `content-qa` |
+| Publish or deploy; "why isn't it live" | `publish-and-verify` |
+| Edit an existing article (TOC, tags, SEO/LEO, Modified/Edits) | `article-*` |
+
+Add new skills to `.agents/skills/<name>/SKILL.md` (uppercase file name).
 
 ## Don'ts
 
