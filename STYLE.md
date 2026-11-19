@@ -28,7 +28,8 @@ will explore…") were generated and are **not** a style reference.
    "From my experience, I have benefited most from…", "I've been through this a
    few times now.", "I'm a happy user of both." Claims are anchored in
    something the author did, saw or tried. When it's a hypothetical, say so
-   ("Imagine a team that…").
+   ("Imagine a team that…"). Use first person only for experience the author
+   actually has - see "Avoid invented experience" below.
 2. **Start with the situation, not with a definition.** Good openings name a
    concrete trigger or frustration:
    - "So OpenAI deprecated `gpt-4o-mini`. … The email lands and your first
@@ -130,6 +131,25 @@ Rewrite any of these on sight:
 - Vague attributions ("experts say", "studies show") without a link.
 - Emoji, exclamation marks in prose, marketing superlatives.
 
+### Avoid invented experience
+
+Never attribute something to the author's own experience unless he provided
+it (in the draft, notes, the request or an earlier post). That covers "I've
+seen", "in my projects", "a team I worked with", "last year we…", made-up
+anecdotes, numbers or client stories. It misleads readers and undermines the
+credibility the blog is built on.
+
+Keep the information, drop the false attribution:
+
+- state it as a general observation: "Data pipeline bugs often come from the
+  data itself, not the code.";
+- attribute it to a source, with a link: "The Google SRE book describes…";
+- frame it as a hypothetical: "Imagine a team that…", "A typical case is…";
+- or leave a marker for the author to fill in: `[TODO: own example?]`.
+
+When rewriting existing text, keep first-person passages that are already
+there - they are his. Don't add new ones.
+
 ## Before / after
 
 ### Opening
@@ -147,19 +167,28 @@ Rewrite any of these on sight:
 >
 > ✓ I don't think the review was sloppy, and that is what bothers me.
 
-### Tutorial intro (illustrative - never invent experience the author didn't have)
+### Tutorial intro
 
 > ✗ Data plays a critical role in the field of data science, and the accuracy
 > and quality of data directly impacts the success of data-driven projects.
 >
-> ✓ Most of the data pipeline bugs I've chased came from the data itself.
-> Here are the checks I now run first.
+> ✓ A pipeline can be bug-free and still produce garbage, because the input
+> data changed. These are the checks worth running before you blame the code.
+
+### Invented experience
+
+> ✗ I've seen this exact failure in three client projects last year.
+>
+> ✓ This failure is common in projects where the retry logic was generated
+> and never reviewed for design intent.
 
 ## Checklist before you finish
 
 - [ ] Opening names a concrete situation, problem or trigger.
 - [ ] Every claim is backed by experience, a number, a link or is clearly
       marked as opinion/hypothetical.
+- [ ] No first-person experience, anecdote or number that the author didn't
+      provide; new ones are generalized, sourced, hypothetical or `[TODO]`.
 - [ ] No phrases from the "Avoid" list; no em dashes in body text.
 - [ ] Headings describe content; long posts have a TLDR or a jump link.
 - [ ] Ending is practical (opinion, next step, questions, further reading).
