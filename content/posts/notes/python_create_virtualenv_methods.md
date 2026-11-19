@@ -1,5 +1,5 @@
 ---
-Summary: Learn how to create and manage virtual environments in Python using popular tools like `venv`, `virtualenv`, and `conda`, ensuring isolated project dependencies and avoiding conflicts.
+Summary: How to create Python virtual environments with venv, virtualenv, pyenv and conda, with the commands to create, activate and deactivate each.
 ai_summary: true
 Category: note
 Date: 2022-05-12

@@ -4,7 +4,7 @@ Date: 2023-09-27
 Modified: 2023-09-27
 Slug: langchain-recursivecharactertextsplitter-split-by-tokens-instead-of-characters
 Status: published
-Summary: Learn how to use LangChain's RecursiveCharacterTextSplitter to split text into chunks based on tokens, suitable for LLM context limits, and discover the steps to implement this in your natural language processing tasks.
+Summary: How to make LangChain's RecursiveCharacterTextSplitter measure chunk size in tokens instead of characters, so chunks fit the LLM context limit.
 ai_summary: true
 Tags:
   - text-splitting

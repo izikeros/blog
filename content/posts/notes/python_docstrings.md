@@ -4,7 +4,7 @@ Date: 2021-09-29
 Modified: 2023-07-12
 Slug: python-docstrings-styles
 Status: published
-Summary: Most popular conventions used in python docstrings and format support in various tools.
+Summary: Examples of the most popular Python docstring styles (Google, NumPy, reST) and which formats are supported by Pyment, pdoc3 and PyCharm.
 Tags:
   - docstrings
   - python

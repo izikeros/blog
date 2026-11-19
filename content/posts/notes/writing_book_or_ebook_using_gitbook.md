@@ -4,7 +4,7 @@ Date: 2023-01-31
 Modified: 2023-07-12
 Slug: writing-book-or-ebook-using-gitbook
 Status: published
-Summary: Learn how to create a book or ebook using Gitbook and Markdown, covering setup, writing chapters, adding media, and publishing in various formats like PDF, ePub, and Mobi.
+Summary: "How to write a book in Markdown with GitBook: setup, writing chapters, adding media, and publishing to PDF, ePub and Mobi."
 ai_summary: true
 Tags:
   - markdown

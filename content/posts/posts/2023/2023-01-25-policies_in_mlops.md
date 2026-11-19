@@ -6,7 +6,7 @@ Modified: 2023-01-25
 Slug: mlops-policies
 Start: 2023-01-25
 Status: published
-Summary: Discover the secrets to successful MLOps - From planning to deployment, get a comprehensive guide to ML policies.
+Summary: Eight policies for MLOps, from data governance and model development standards to deployment, retraining, tooling, compliance and team roles, plus steps and blockers when introducing MLOps in an organization.
 Tags:
   - mlops
 Title: Policies in MLOps

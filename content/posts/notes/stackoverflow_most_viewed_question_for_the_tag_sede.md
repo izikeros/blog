@@ -4,7 +4,7 @@ Date: 2023-02-13
 Modified: 2023-07-12
 Slug: stackoverflow-most-viewed-question-for-the-tag
 Status: published
-Summary: Learn how to use Stack Exchange Data Explorer (SEDE) to find and analyze the most viewed questions with a specific tag on Stack Overflow. Follow step-by-step instructions to compose and run a SQL query that retrieves top questions based on view count.
+Summary: A SQL query for Stack Exchange Data Explorer (SEDE) that lists the most viewed Stack Overflow questions for a given tag, with steps to run it.
 ai_summary: true
 Tags:
   - most-viewed-questions

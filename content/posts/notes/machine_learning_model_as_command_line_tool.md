@@ -4,7 +4,7 @@ Date: 2023-01-17
 Modified: 2023-07-12
 Slug: creating-command-line-tools-from-machine-learning-models
 Status: published
-Summary: Learn how to create efficient and portable command line tools from machine learning models using Python's argparse and PEX files, enabling easy integration into various workflows.
+Summary: How to turn a machine learning model into a command line tool with Python's argparse and package it as a portable PEX file.
 ai_summary: true
 Tags:
   - machine-learning

@@ -4,7 +4,7 @@ Date: 2025-11-28
 Modified: 2025-11-28
 Slug: git-worktrees-for-ai-coding
 Status: published
-Summary: Learn how Git worktrees create isolated environments for AI-assisted coding, allowing you to keep your main development line clean while experimenting with AI suggestions in dedicated branches.
+Summary: How Git worktrees give AI-assisted coding a separate working directory and branch, so you can try AI suggestions without touching your main development line.
 ai_summary: true
 Tags: git, workflows, agents, ai, refactoring
 Title: Using Git Worktrees as Clean Rooms for AI-Assisted Coding

@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: bash-coloring
 Status: published
-Summary: Learn how to use ANSI escape codes in Bash scripts to colorize output for better readability and feedback messages.
+Summary: A set of Bash variables built with tput for colored and bold terminal output, with markers for info, pass, warning and question messages.
 ai_summary: true
 Tags:
   - bash

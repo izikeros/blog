@@ -4,7 +4,7 @@ Date: 2023-02-20
 Modified: 2023-07-12
 Slug: anchor-explanations
 Status: published
-Summary: Learn about anchor explanations in explainable AI, which provide transparent, human-readable rules to understand why machine learning models make specific predictions, enhancing trust and decision-making across various fields.
+Summary: "What anchor explanations are in explainable AI: if-then rules that, when met, keep a model's prediction the same, and how they help explain individual predictions."
 ai_summary: true
 Tags:
   - explainable-ai

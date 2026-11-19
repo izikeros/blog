@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: git-delete-branch
 Status: published
-Summary: Learn how to delete Git branches locally and remotely, including commands for both operations and tips on managing merged branches.
+Summary: Commands to delete a Git branch locally and on the remote, with tips for cleaning up branches that are already merged.
 ai_summary: true
 Tags:
   - branch

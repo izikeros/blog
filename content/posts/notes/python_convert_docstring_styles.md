@@ -4,7 +4,7 @@ Date: 2021-09-29
 Modified: 2023-07-12
 Slug: python-convert-docstring-styles
 Status: published
-Summary: Description of tools for converting docstring style in python code
+Summary: How to convert docstrings between styles, for example from numpy-style to google-style, with Pyment, which supports javadoc, reST, numpydoc and google formats.
 Tags:
   - convert
   - docstring

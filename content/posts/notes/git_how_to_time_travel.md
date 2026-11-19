@@ -4,7 +4,7 @@ Date: 2023-07-14
 Modified: 2023-07-14
 Slug: time-travel-in-git-creating-a-branch-from-the-past-and-crafting-a-new future
 Status: published
-Summary: Learn how to create a new Git branch from a past commit while keeping subsequent changes in a separate branch, allowing you to start fresh from an earlier state without losing recent work.
+Summary: How to create a new Git branch from an earlier commit while keeping the later commits on a separate branch, so you can start again from an older state without losing work.
 ai_summary: true
 Tags:
   - git

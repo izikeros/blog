@@ -4,7 +4,7 @@ Date: 2023-03-05
 Modified: 2023-07-12
 Slug: bash-script-with-arguments-implemented-as-functions
 Status: published
-Summary: Learn how to use functions and `eval` in a bash script to dynamically execute commands passed as arguments, creating flexible and reusable scripts.
+Summary: A minimal Bash example that defines functions and uses eval to call the function named in the script's first argument.
 ai_summary: true
 Tags:
   - bash

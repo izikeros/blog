@@ -4,7 +4,7 @@ Date: 2023-03-09
 Modified: 2023-07-12
 Slug: the-difference-between-class-attribute-or-property-and-the-class-variable
 Status: published
-Summary: Learn the distinction between attributes (instance-specific data) and class variables (shared data across all instances) in Python classes, crucial for understanding object-oriented programming effectively.
+Summary: The difference between instance attributes, which hold data for one object, and class variables, which are shared by all instances of a Python class, with code examples.
 ai_summary: true
 Tags:
   - python

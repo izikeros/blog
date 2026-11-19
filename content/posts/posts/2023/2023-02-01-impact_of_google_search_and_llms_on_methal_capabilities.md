@@ -6,7 +6,7 @@ Modified: 2023-02-01
 Slug: impact_of_google_search_and_llms_on_methal_capabilities
 Start: 2023-02-01
 Status: published
-Summary: Understand the effects of search engines and AI on our mental and cognitive capabilities. Equip yourself with the knowledge you need to make informed decisions about your own usage of these technologies.
+Summary: Positive and negative effects of search engines and generative AI models on memory, problem solving and other cognitive capabilities, and what this means for how we use them.
 Tags:
   - machine-learning
   - AI

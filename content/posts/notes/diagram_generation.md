@@ -4,7 +4,7 @@ Date: 2023-01-25
 Modified: 2023-07-12
 Slug: diagram-generation
 Status: published
-Summary: Learn about various methods for generating diagrams programmatically using Ascii art, Graphviz, Mermaid, PlantUML, and LaTeX Tikz, along with examples of how to create simple diagrams in each format.
+Summary: Ways to describe diagrams as text (ASCII art, Graphviz, Mermaid, PlantUML and LaTeX TikZ), with a simple example diagram in each format.
 ai_summary: true
 Tags:
   - diagram

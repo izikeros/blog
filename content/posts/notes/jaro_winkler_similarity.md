@@ -4,7 +4,7 @@ Date: 2023-08-29
 Modified: 2023-08-29
 Slug: jaro-winkler-similarity
 Status: published
-Summary: Learn about Jaro-Winkler similarity, a string-matching algorithm that emphasizes common prefixes and how to implement it in Python, providing better performance for strings with shared beginnings.
+Summary: How Jaro-Winkler string similarity works, why it gives higher scores to strings with a common prefix, a Python example, and when to choose other metrics instead.
 ai_summary: true
 Tags:
   - nlp

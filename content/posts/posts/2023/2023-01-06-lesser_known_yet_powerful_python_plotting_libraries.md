@@ -5,7 +5,7 @@ Image: /images/head/lesser_known_plotting_libraries.jpg
 Modified: 2023-07-12
 Slug: lesser-known-yet-powerful-python-plotting-libraries
 Status: published
-Summary: The most widely used libraries for plotting in python are matplotlib, Plotly, seaborn, and bokeh. This article describes 10 other powerful plotting libraries available in Python that can be used to create high-quality plots and visualizations.
+Summary: Ten Python plotting libraries beyond matplotlib, Plotly, seaborn and Bokeh, including HoloViews, bqplot, plotnine, geoplotlib, Pygal and PyQtGraph, with a short description of each.
 Tags:
   - holoviews
   - bokeh

@@ -4,7 +4,7 @@ Date: 2023-06-27
 Modified: 2023-07-12
 Slug: bash-rename-mutliple-image-files-to-match-pattern-with-sequence-number
 Status: published
-Summary: Learn how to use a Bash script to rename multiple image files in a directory to a standardized pattern with sequence numbers, maintaining their original extensions for better organization.
+Summary: A Bash script that renames all image files in a directory to a common pattern with sequence numbers while keeping their original extensions.
 ai_summary: true
 Tags:
   - bash

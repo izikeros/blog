@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: are-lime-explanations-any-useful
 Start: 2023-04-18
 Status: published
-Summary: Don't let black box models hold you back. With LIME, you can interpret the predictions of even the most complex machine learning models.
+Summary: What LIME (Local Interpretable Model-agnostic Explanations) is, where it is used in practice to explain black-box models, and its benefits and limitations.
 Tags:
   - machine-learning
   - lime

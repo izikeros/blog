@@ -4,7 +4,7 @@ Date: 2023-12-07
 Modified: 2023-12-07
 Slug: github-search-techniques
 Status: published
-Summary: Learn how to effectively use GitHub's advanced search features, including searching by name, description, README, topic, organization, license, stars, date, forks, language, and last push, to find the exact repositories you need.
+Summary: GitHub search qualifiers for finding repositories by name, description, README, topic, organization, license, stars, forks, language, creation date and last push, with examples.
 ai_summary: true
 Title: GitHub Search Techniques
 Tags:

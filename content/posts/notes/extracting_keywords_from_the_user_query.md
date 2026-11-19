@@ -4,7 +4,7 @@ Date: 2023-06-09
 Modified: 2023-07-12
 Slug: extracting-keywords-from-the-user-query
 Status: published
-Summary: Learn about various approaches to extracting keywords from user queries, including rule-based methods, linguistic analysis, machine learning techniques, and the pros and cons of each method.
+Summary: "Approaches to extracting keywords from user search queries: rule-based methods, linguistic analysis, machine learning and statistical methods, hybrid approaches and LLMs, with pros and cons of each."
 ai_summary: true
 Tags:
   - keywords

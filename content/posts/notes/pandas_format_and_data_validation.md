@@ -4,7 +4,7 @@ Date: 2022-04-27
 Modified: 2023-07-12
 Slug: pandas-dataframe-validation
 Status: published
-Summary: Learn how to validate column presence and data types in pandas DataFrames using Pandera and Dataenforce, including practical examples for schema validation and runtime enforcement.
+Summary: How to validate column presence and data types in pandas DataFrames with Pandera schemas and Dataenforce type hints, with code examples.
 ai_summary: true
 Tags:
   - pandas

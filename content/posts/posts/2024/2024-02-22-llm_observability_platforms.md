@@ -17,7 +17,7 @@ Tags:
 Category: Evaluation & Observability
 Image: /images/head/observability_998_cr_640px.jpg
 banner: "/images/head/observability_998_cr_640px.jpg"
-Summary: Managing and monitoring the complex behavior of Large Language Models (LLMs) becomes increasingly crucial. LLMOps and LLM Observability provide essential tools for understanding and controlling these models, ensuring their safe and effective deployment. This article looks into the critical aspects of LLM Observability in the domain of generative AI.
+Summary: What LLM observability is, which functions an observability solution should provide, and a list of open source tools such as Langfuse, Phoenix, OpenLLMetry, Evidently, Giskard and LangKit.
 Status: published
 prompt:
 ---

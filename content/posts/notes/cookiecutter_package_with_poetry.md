@@ -4,7 +4,7 @@ Date: 2023-07-26
 Modified: 2023-07-26
 Slug: cookiecutter-for-the-python-package-with-poetry
 Status: published
-Summary: Learn how to use Cookiecutter and Poetry to streamline Python project setup, leveraging pre-configured templates and efficient dependency management for a faster development cycle.
+Summary: How to combine Cookiecutter templates with Poetry for dependency management to set up a new Python package, and what each tool adds to the project setup.
 ai_summary: true
 Tags:
   - cookiecutter

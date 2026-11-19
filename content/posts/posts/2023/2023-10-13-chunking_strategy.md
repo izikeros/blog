@@ -27,7 +27,7 @@ Tags:
 Category: RAG & Retrieval
 Image: /images/head/chunking_puzzle_640px.jpg
 banner: "/images/head/chunking_puzzle_640px.jpg"
-Summary: Discover text chunking - the secret sauce behind accurate search results and smarter language models! By understanding how to effectively chunk text, we can improve the way we index documents, handle user queries, and utilize search results. Ready to uncover the secrets of text chunking?
+Summary: "Text chunking methods for semantic search and RAG: fixed-size windows in characters or tokens, recursive and structure-aware splitting, NLP topic-based chunking, content-aware splitting, and adding metadata or summaries."
 Status: published
 prompt:
 ---

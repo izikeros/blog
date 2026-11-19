@@ -4,7 +4,7 @@ Date: 2022-08-31
 Modified: 2023-07-12
 Slug: how-to-convert-html-to-clean-markdown
 Status: published
-Summary: Instruction on how to convert HTML document to markdown with cleaning the output from the clutter.
+Summary: How to convert HTML pages to clean Markdown with pandoc, then remove the leftover divs, attributes and HTML comments with grep and sed.
 Tags:
   - html
   - markdown

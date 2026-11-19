@@ -4,7 +4,7 @@ Date: 2022-02-15
 Modified: 2023-07-12
 Slug: python-get-file-and-path-parts-dirname-base-name-extension
 Status: published
-Summary: Learn how to extract various parts of a file path using Python's `os` module, including basename, dirname, core name, and extension.
+Summary: How to split a file path into dirname, base name, core name and extension with functions from Python's os module.
 ai_summary: true
 Tags:
   - base

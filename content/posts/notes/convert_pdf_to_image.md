@@ -1,5 +1,5 @@
 ---
-Summary: Learn how to convert a PDF document into images using the `pdftoppm` tool in Linux, including options for specifying page ranges and adjusting resolution.
+Summary: How to convert a PDF into PNG images with pdftoppm from poppler-utils on Linux and macOS, including page ranges with -f and -l and setting the resolution.
 ai_summary: true
 Category: note
 Title: Convert PDF document to image

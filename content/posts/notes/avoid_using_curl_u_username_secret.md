@@ -4,7 +4,7 @@ Date: 2024-01-20
 Modified: 2024-01-20
 Slug: avoid-using-curl-u-usernamesecret
 Status: published
-Summary: "Learn how storing credentials in the `.netrc` file securely manages Basic Authentication with curl, enhancing both efficiency and security compared to using `-u username:password`."
+Summary: Why curl -u username:password leaks credentials to shell history, and how to store them in a .netrc file for Basic Authentication instead.
 ai_summary: true
 Title: "Avoid using curl -u “username:secret”!"
 Tags:

@@ -4,7 +4,7 @@ Date: 2023-03-15
 Modified: 2023-07-12
 Slug: punctuation-restoration
 Status: published
-Summary: Learn how machine learning techniques can restore missing or incorrect punctuation in texts, improving readability and accuracy through data preparation, feature extraction, and model training steps.
+Summary: "How machine learning restores missing punctuation in text: data preparation, model training and prediction steps, plus the main challenges."
 ai_summary: true
 Tags:
   - nlp

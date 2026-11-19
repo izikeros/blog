@@ -16,7 +16,7 @@ Tags:
   - squashing
   - git-commands
 Category: note
-Summary: Discover the differences between Git Push Force and Git Push Force-With-Lease, their common use cases, and lesser-known features to help you manage your codebase effectively and safely.
+Summary: Explains the difference between git push --force and git push --force-with-lease, when each is used, and why force-with-lease is the safer option on shared branches.
 ---
 up::[[MOC_Git]]
 

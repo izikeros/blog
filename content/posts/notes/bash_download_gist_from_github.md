@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: bash-download-gist-from-github
 Status: published
-Summary: Learn how to download Gists from GitHub using `curl` in Bash, including options for outputting content to stdout or saving it to a file.
+Summary: How to download a GitHub Gist with curl, either printing it to stdout or saving it to a file, with the curl options explained.
 ai_summary: true
 Tags:
   - bash

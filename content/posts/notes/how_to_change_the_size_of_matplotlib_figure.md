@@ -4,7 +4,7 @@ Date: 2023-02-12
 Modified: 2023-07-12
 Slug: how-to-change-the-size-of-matplotlib-figure
 Status: published
-Summary: Learn multiple methods to change the size of Matplotlib figures, including using the `figure`, `subplots`, and `set_size_inches` functions.
+Summary: "Five ways to set the size of a Matplotlib figure: the figure function, the rcParams dictionary, subplots, the set_size_inches method and the rc function, with code for each."
 ai_summary: true
 Tags:
   - matplotlib

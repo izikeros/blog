@@ -4,7 +4,7 @@ Date: 2023-03-06
 Modified: 2023-07-12
 Slug: activitypub-how-it-works-how-to-use-it
 Status: published
-Summary: Learn how ActivityPub enables decentralized social networking by allowing users to interact across different platforms and control their own data, using activity streams represented in JSON-LD format. Discover its applications in social networks, chat apps, content management systems, and collaboration tools.
+Summary: How the ActivityPub protocol enables decentralized social networking, with activity streams in JSON-LD and users keeping control of their data, and where it is used, from social networks to chat and content management systems.
 ai_summary: true
 Tags:
   - activitypub

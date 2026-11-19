@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: metrics-to-compare-histograms
 Start: 2023-01-19
 Status: published
-Summary: Learn about metrics used to compare histograms with examples of how to calculate them in python. From Chi-Squared distance to Kullback-Leibler divergence and Earth Mover's distance. A comprehensive guide.
+Summary: Metrics for comparing histograms, including Chi-squared distance, Earth Mover's distance and Kullback-Leibler divergence, with Python examples of how to calculate them.
 Tags:
   - histogram
   - statistics

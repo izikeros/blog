@@ -18,7 +18,7 @@ Tags:
 Category: RAG & Retrieval
 Image: /images/head/rag_futuristic_library_640px.jpg
 banner: "/images/head/rag_futuristic_library_640px.jpg"
-Summary: Understand innovative artificial intelligence framework that empower large language models (LLMs) by anchoring them to external knowledge sources with accurate, current information.
+Summary: "An introduction to retrieval-augmented generation (RAG): how adding information from external sources to the prompt helps large language models give accurate and current answers."
 Status: published
 note: see RAG.excalidraw
 ---

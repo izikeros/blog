@@ -4,7 +4,7 @@ Date: 2023-08-12
 Modified: 2023-08-12
 Slug: split-glued-or-joined-words
 Status: published
-Summary: Learn how to split glued words using the wordninja and wordsegment packages, with examples in Python code for both library usage and command-line interface.
+Summary: How to split joined words such as 'bettergood' into separate words with the wordninja and wordsegment Python packages, from code and from the command line.
 ai_summary: true
 Tags:
   - nlp

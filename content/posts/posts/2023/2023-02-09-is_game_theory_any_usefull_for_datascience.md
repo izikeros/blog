@@ -6,7 +6,7 @@ Modified: 2023-02-09
 Slug: is-game-theory-any-usefull-for-datascience
 Start: 2023-02-09
 Status: published
-Summary: Exploring the intersection of game theory and data science - insights into decision-making, network behavior, and optimization algorithms.
+Summary: "Where game theory is used in data science: modeling decision-making, analyzing behavior in networks, and designing optimization algorithms."
 Tags:
   - machine-learning
   - game-theory

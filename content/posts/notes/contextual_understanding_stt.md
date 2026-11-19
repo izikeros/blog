@@ -4,7 +4,7 @@ Date: 2023-03-30
 Modified: 2023-07-12
 Slug: contextual_understanding-speech-to-text
 Status: published
-Summary: Learn about the challenges in automated speech-to-text transcription, focusing on accurate transcription of spontaneous speech, handling multiple speakers, and achieving contextual understanding through machine learning techniques.
+Summary: Open challenges in automated speech-to-text, such as spontaneous speech, multiple speakers, accents and real-time use, and machine learning methods for contextual understanding, from POS tagging and NER to RNNs and CNNs.
 ai_summary: true
 Tags:
   - speech-to-text

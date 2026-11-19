@@ -4,7 +4,7 @@ Date: 2024-06-25
 Modified: 2024-06-25
 Slug: measuring-quality-and-quantity-of-unit-tests-in-python-projects-advanced-strategies
 Status: published
-Summary: Learn advanced strategies for measuring the quality and quantity of unit tests in Python projects, including metrics like mutation testing, cyclomatic complexity coverage, test smell detection, and more.
+Summary: Metrics for judging Python unit tests beyond code coverage, including mutation testing, cyclomatic complexity coverage, test smell detection, assertion density and flakiness score, with tools to use.
 ai_summary: true
 Title: Measuring Quality and Quantity of Unit Tests in Python Projects - Advanced Strategies
 Tags:

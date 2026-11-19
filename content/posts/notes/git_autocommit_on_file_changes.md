@@ -4,7 +4,7 @@ Date: 2021-09-14
 Modified: 2023-07-12
 Slug: git-autocommit-on-file-changes
 Status: published
-Summary: How to create automatically commits if any file in the watched folder was changed
+Summary: Tools that commit changes automatically when files in a watched folder change, such as gitwatch, gwatch, etckeeper and git-wip, which I looked at to keep a history of my notes.
 Tags:
   - git
   - autocommit

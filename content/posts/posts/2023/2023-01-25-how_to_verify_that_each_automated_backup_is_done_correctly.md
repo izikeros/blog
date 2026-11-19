@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: verify-backups-restic-example
 Start: 2023-01-25
 Status: published
-Summary: Learn how to verify your backups with Restic, ensure completeness, integrity, and recoverability. Automate the process for peace of mind. Read now
+Summary: How to verify Restic backups for completeness, integrity and recoverability, and how to automate these checks.
 Tags:
   - linux
   - backup

@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: micro-and-macro-averages-in-multiclass-multilabel-problems
 Start: 2023-01-17
 Status: published
-Summary: Learn about micro and macro averages in multiclass multilabel problems, the difference between multiclass and multilabel problems and when to use micro and macro averages.
+Summary: The difference between multiclass and multilabel problems, how micro and macro averages of metrics are calculated, and when to use each.
 Tags:
   - classification
   - metrics

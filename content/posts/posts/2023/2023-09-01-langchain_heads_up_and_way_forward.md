@@ -16,7 +16,7 @@ Tags:
 Category: LLM Engineering
 Image: /images/head/langchain_problems.jpg
 banner: "/images/head/langchain_problems.jpg"
-Summary: Beyond the Hype - LangChain's Hidden Flaws and How to Master AI Development.
+Summary: Ten common problems with LangChain, such as unnecessary abstractions, poor documentation, inefficient token usage and a focus on demos, and how to use it so these problems have less impact.
 Status: published
 prompt:
 ---

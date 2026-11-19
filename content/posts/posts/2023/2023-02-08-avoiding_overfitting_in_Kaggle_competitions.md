@@ -6,7 +6,7 @@ Modified: 2023-02-08
 Slug: avoiding-overfitting-in-Kaggle-competitions
 Start: 2023-02-08
 Status: published
-Summary: Ready to take your Kaggle competition game to the next level? Learn how to recognize and prevent overfitting for top-notch results.
+Summary: How to recognize overfitting in Kaggle competitions and methods to prevent it, from cross-validation, early stopping, regularization and ensembles to adversarial validation and Bayesian hyperparameter optimization.
 Tags:
   - kaggle
   - overfitting

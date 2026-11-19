@@ -4,7 +4,7 @@ Date: 2023-08-12
 Modified: 2025-03-18
 Slug: cookiecutter-alternatives
 Status: published
-Summary: Learn about alternative scaffolding tools to Cookiecutter, including Yeoman, Hygen, Plop, Slush, SAO, Jolt, and Boilr, each suited for different project needs such as rapid prototyping, large-scale projects, and advanced file processing.
+Summary: A short overview of scaffolding tools that can replace Cookiecutter (Yeoman, Hygen, Plop, Slush, SAO, Jolt and Boilr), with a suggested tool for each use case, such as Plop for rapid prototyping.
 ai_summary: true
 Title: Cookiecutter alternatives
 Tags:

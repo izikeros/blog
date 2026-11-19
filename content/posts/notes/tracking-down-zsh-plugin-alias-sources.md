@@ -4,7 +4,7 @@ Date: 2025-02-28
 Modified: 2025-02-28
 Slug: tracking-down-zsh-alias-plugin-sources
 Status: published
-Summary: Learn how to trace and identify the source of zsh aliases defined by plugins using verbose tracing and grep, enabling you to pinpoint exactly where custom aliases are created.
+Summary: How to find which zsh plugin defines an alias by starting zsh with trace and verbose flags (zsh -xv) and filtering the output with grep.
 ai_summary: true
 Tags:
   - til

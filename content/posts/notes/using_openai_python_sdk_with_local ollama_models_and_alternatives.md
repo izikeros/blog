@@ -4,7 +4,7 @@ Date: 2025-07-29
 Modified: 2025-07-29
 Slug: openai-python-sdk-with-local-ollama-models-and-alternatives
 Status: published
-Summary: Learn how to use the official `openai` Python package with local Ollama models and when it's better to opt for LiteLLM as a more unified alternative.
+Summary: How to call local Ollama models with the official openai Python package through Ollama's OpenAI-compatible API, and when LiteLLM is the better choice as a unified layer.
 ai_summary: true
 Tags:
   - openai

@@ -6,7 +6,7 @@ Modified: 2023-04-18
 Slug: measure-quality-of-embeddings-intrinsic-vs-extrinsic
 Start: 2023-04-18
 Status: published
-Summary: Learn how to measure the quality of word and sentence embeddings in natural language processing (NLP), including intrinsic and extrinsic evaluation, and their strengths and limitations.
+Summary: How to measure the quality of word and sentence embeddings with intrinsic and extrinsic evaluation, and the strengths and limitations of each approach.
 Tags:
   - machine-learning
   - python

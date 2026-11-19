@@ -8,7 +8,7 @@ Tags:
   - python
   - pyqa
   - quality
-Summary: notes on using black formatter
+Summary: How to change the Black formatter line length in pyproject.toml, with notes on common limits such as PEP 8's 79 characters.
 Slug: change-black-line-length
 Category: note
 citation_needed: false

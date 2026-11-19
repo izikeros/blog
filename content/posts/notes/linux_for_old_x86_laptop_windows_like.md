@@ -4,7 +4,7 @@ Date: 2023-02-26
 Modified: 2023-07-12
 Slug: linux-for-old-x86-laptop-windows-like
 Status: published
-Summary: Learn about five lightweight Linux distributions—Lubuntu, Linux Mint Xfce, Zorin OS Lite, and Peppermint OS—that offer a Windows-like look and feel, ideal for old x86 laptops.
+Summary: "Five lightweight Linux distributions with a Windows-like look for old x86 laptops: Lubuntu, Linux Mint Xfce, Zorin OS Lite, Peppermint OS and LXLE."
 ai_summary: true
 Tags:
   - Linux

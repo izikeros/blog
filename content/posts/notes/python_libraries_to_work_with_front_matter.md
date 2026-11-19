@@ -4,7 +4,7 @@ Date: 2023-07-11
 Modified: 2023-07-12
 Slug: python-packages-yaml-front-matter-markdown
 Status: Published
-Summary: Learn about using Python packages like PyYAML and Frontmatter for extracting and processing YAML front matter in Markdown documents, suitable for both simple extraction and advanced manipulation tasks.
+Summary: Compares Python packages for reading YAML front matter in Markdown files, including PyYAML, python-frontmatter, Python-Markdown, mistune and CommonMark, and which to choose for simple extraction or advanced editing.
 ai_summary: true
 Image: /images/head/markdown_yaml_640px.jpg
 banner: "/images/head/markdown_yaml_640px.jpg"

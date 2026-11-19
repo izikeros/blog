@@ -4,7 +4,7 @@ Date: 2023-01-27
 Modified: 2023-07-12
 Slug: pdf-compress-reduce-size-minimize
 Status: published
-Summary: Learn how to compress and reduce the size of PDF documents using Python's pdfminify package, Ghostscript commands, and different settings for optimal compression without sacrificing quality too much.
+Summary: How to reduce PDF file size with the Python pdfminify package or a Ghostscript command, and how the PDFSETTINGS options trade size for quality.
 ai_summary: true
 Tags:
   - pdf

@@ -4,7 +4,7 @@ Date: 2023-02-28
 Modified: 2023-07-12
 Slug: git-sign-commit-n-commits-back
 Status: published
-Summary: Learn how to sign specific commits that are multiple steps back in a Git history using interactive rebase, including the necessary commands and steps involved.
+Summary: How to GPG-sign commits that are several commits back in history using interactive rebase with git commit --amend -S, with the exact steps.
 ai_summary: true
 Tags:
   - git

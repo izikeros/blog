@@ -4,7 +4,7 @@ Date: 2021-09-28
 Modified: 2023-07-12
 Slug: python-documentation-with-pdoc3
 Status: published
-Summary: summary
+Summary: Commands for generating HTML documentation from Python code with pdoc3 and opening it in the browser, with links to alternatives such as MkDocs Material, Docusaurus and VitePress.
 Tags:
   - documentation
   - pdoc3

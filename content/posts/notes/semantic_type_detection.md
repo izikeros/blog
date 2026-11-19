@@ -4,7 +4,7 @@ Date: 2023-12-01
 Modified: 2023-12-01
 Slug: semantic-type-detection
 Status: published
-Summary: Semantic type detection in tables helps understand content for applications like data discovery and validation by labeling columns with standardized types, enhancing machine learning models' performance and facilitating data integration.
+Summary: "What semantic type detection in tables is: labeling columns with standardized types to support data discovery, validation and integration, and to improve machine learning models on tabular data."
 ai_summary: true
 Title: Semantic Type Detection
 Tags:

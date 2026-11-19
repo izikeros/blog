@@ -1,5 +1,5 @@
 ---
-Summary: Learn how to selectively disable checks for Flake8, Mypy, Bandit, and Black to maintain code quality while accommodating specific project needs. Discover inline and configuration file methods for disabling linting and type checking errors in Python projects.
+Summary: How to disable specific checks in Flake8, Mypy, Bandit and Black, both inline in the code and in configuration files, with notes on when it is reasonable to do so.
 ai_summary: true
 Category: note
 Date: 2022-05-12

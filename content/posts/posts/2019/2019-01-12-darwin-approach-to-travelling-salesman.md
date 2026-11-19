@@ -5,7 +5,7 @@ Image: /images/head/cells_small.jpg
 Modified: 2023-07-12
 Started: 2018-12-25
 Status: published
-Summary: Can the evolutionary approach crash the problem that brute-forcing will last far more than the age of the universe? This post shows how to attack the Traveling Salesman Problem using Darwin's approach. I'm describing the evolution model and design decisions. See the animation of how the population was evolving through the epochs.
+Summary: "Solving the Traveling Salesman Problem with a genetic algorithm in Python: the evolution model, selection, crossover and mutation design decisions, and an animation of the population over epochs."
 Tags:
   - machine-learning
   - evolutionary

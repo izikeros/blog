@@ -4,7 +4,7 @@ Date: 2023-01-18
 Modified: 2023-07-12
 Slug: random-forest-understand-and-tweak
 Status: published
-Summary: Learn how to effectively understand and optimize your Random Forest classifier using tools like permutation importance and SHAP values for feature importance, and partial dependence plots for visualizing feature relationships.
+Summary: "Tools for understanding and tuning a Random Forest classifier: feature importance (including permutation importance and SHAP), partial dependence plots, treeinterpreter and Random Forest Explorer."
 ai_summary: true
 Tags:
   - machine-learning

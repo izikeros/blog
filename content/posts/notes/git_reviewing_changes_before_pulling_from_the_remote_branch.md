@@ -4,7 +4,7 @@ Date: 2023-06-20
 Modified: 2024-10-31
 Slug: git-workflow-reviewing-changes-before-pulling-remote-branch
 Status: published
-Summary: Learn a streamlined workflow to review changes made in a remote Git branch before pulling, using commands like `git fetch`, `git diff`, and `tig` to ensure your local repository stays up-to-date without conflicts.
+Summary: "A workflow for reviewing remote changes before pulling: git fetch, then git log and git diff against @{upstream}, or tig, to see new commits and changed files."
 ai_summary: true
 Title: Efficient Workflow for Reviewing Changes in Git before Pulling from Remote Branch
 Tags:

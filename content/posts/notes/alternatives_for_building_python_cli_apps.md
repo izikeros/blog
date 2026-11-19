@@ -27,7 +27,7 @@ Tags:
   - python-standard-library
   - type-hints
 Category: note
-Summary: Discover the best tools and frameworks for building Python CLI apps. Explore Click, argparse, Typer, and more. Master the art of command-line application development.
+Summary: "Compares Python libraries for building CLI apps: Click, argparse, Typer, Fire, Cement, Docopt and Plumbum, with examples and advice on which to choose for simple scripts or complex tools."
 Image: ""
 ---
 

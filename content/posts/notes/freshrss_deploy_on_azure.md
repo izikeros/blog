@@ -4,7 +4,7 @@ Date: 2023-04-11
 Modified: 2023-07-12
 Slug: how-to-deploy-freshrss-in-the-cloud-for-free-on-azure
 Status: published
-Summary: Learn how to deploy FreshRSS in the cloud for free using Microsoft Azure, gaining access to scalable and reliable RSS feed aggregation from anywhere.
+Summary: Steps to deploy the FreshRSS feed aggregator on Microsoft Azure using its free offering, so you can read your RSS feeds from any device.
 ai_summary: true
 Tags:
   - rss

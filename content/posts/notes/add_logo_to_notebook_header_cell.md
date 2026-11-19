@@ -4,7 +4,7 @@ Date: 2021-10-12
 Modified: 2023-07-12
 Slug: add-logo-to-notebook-header
 Status: published
-Summary: Instruction on how to add a logo to notebook header cell to strengthen visual identification of the project
+Summary: A short HTML snippet that places a project logo next to the title in the first markdown cell of a Jupyter notebook.
 Tags:
   - jupyter
   - howto

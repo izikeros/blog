@@ -4,7 +4,7 @@ Date: 2023-02-13
 Modified: 2023-07-12
 Slug: plotly_transparent_background
 Status: published
-Summary: Learn how to make Plotly plots with transparent backgrounds using the "layout" or "config" parameters, enabling customization for both appearance and interactivity.
+Summary: "Three ways to make a Plotly plot background transparent in Python: the layout parameter, the config parameter and the to_image function."
 ai_summary: true
 Tags:
   - plotly

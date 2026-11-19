@@ -4,7 +4,7 @@ Date: 2023-03-14
 Modified: 2023-07-12
 Slug: salt-and-pepper-for-hashing
 Status: published
-Summary: Learn about "salt" and "pepper" techniques in hashing/obfuscation to enhance security by adding randomness and secret keys, making it harder for attackers to reverse-engineer input values.
+Summary: The difference between salt (a random value stored with each hash) and pepper (a secret key kept separately) and how both make hashed values harder to reverse.
 ai_summary: true
 Tags:
   - hashing

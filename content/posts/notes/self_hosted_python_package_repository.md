@@ -4,7 +4,7 @@ Date: 2023-08-12
 Modified: 2023-08-12
 Slug: create-self-hosted-python-package-repository
 Status: published
-Summary: Create a self-hosted Python package repository using tools like Devpi or Artifactory to manage and distribute Python packages privately or publicly without relying on external services. Learn how to set up, configure, and upload packages in this general guide.
+Summary: General steps to set up a self-hosted Python package repository with tools like Devpi or Artifactory, including configuration and uploading packages, as an alternative to PyPI.
 ai_summary: true
 Tags:
   - pypi

@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: how-to-use-rpc-in-python
 Start: 2023-02-13
 Status: published
-Summary: Get Started with RPC - A Beginner's Guide to Building a Python RPC Server Using xmlrpc and jsonrpc.
+Summary: How to use remote procedure calls (RPC) in Python, with a basic server and client built using xmlrpc and jsonrpc.
 Tags:
   - python
   - microservices

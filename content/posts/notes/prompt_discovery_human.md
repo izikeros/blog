@@ -4,7 +4,7 @@ Date: 2023-08-08
 Modified: 2023-08-08
 Slug: prompt_discivery-large-language-models-llms-prompt-engineering
 Status: published
-Summary: Learn about prompt discovery in large language models, including technical aspects like prompt formulation, semantic representation, and permutations to optimize model responses for accuracy and relevance.
+Summary: "What prompt discovery means for large language models: how prompts are formulated and varied to get accurate and relevant answers, the main challenges, and the types of tools used."
 ai_summary: true
 Tags:
   - prompt-engineering

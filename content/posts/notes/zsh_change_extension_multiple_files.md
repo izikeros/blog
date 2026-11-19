@@ -4,7 +4,7 @@ Date: 2022-04-22
 Modified: 2023-07-12
 Slug: change-extension-for-multiple-files-in-zsh
 Status: published
-Summary: Learn how to use `zmv` in Zsh to change file extensions efficiently, covering multiple files with a single command.
+Summary: How to change the extension of many files at once in Zsh with zmv, for example from .lis to .txt with one command.
 ai_summary: true
 Tags:
   - zsh

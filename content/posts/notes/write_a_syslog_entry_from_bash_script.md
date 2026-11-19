@@ -4,7 +4,7 @@ Date: 2022-09-02
 Modified: 2023-07-12
 Slug: write-a-syslog-entry-from-a-bash-script
 Status: published
-Summary: Instruction on how to write a message to system log from the bash script using logger-utility
+Summary: How to write a message to the system log from a Bash script with the logger utility, including the tag and priority options.
 Tags:
   - bash
   - log

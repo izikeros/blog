@@ -4,7 +4,7 @@ Date: 2023-06-28
 Modified: 2023-07-12
 Slug: script-to-python-package-using-poetry-and-pycharm
 Status: published
-Summary: Learn how to convert a simple Python script into a package using Poetry and PyCharm, including setting up the project, configuring dependencies, and publishing it.
+Summary: "Step-by-step conversion of a single Python script into a package with Poetry and PyCharm: project setup, virtual environment, dependencies, interpreter configuration and publishing."
 ai_summary: true
 Tags:
   - python

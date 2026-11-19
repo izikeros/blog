@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: zero-knowledge-for-5yo
 Start: 2023-04-06
 Status: published
-Summary: Imagine being able to prove something without actually revealing it. That is the power of zero-knowledge proofs, the technology that keeps your crypto safe.
+Summary: A simple explanation of zero-knowledge proofs, which let you prove you know something without revealing it, with an everyday example and their use in cryptocurrencies.
 Tags:
   - crypto
   - cryptocurrency

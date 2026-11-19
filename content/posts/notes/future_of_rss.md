@@ -4,7 +4,7 @@ Date: 2023-03-05
 Modified: 2023-07-12
 Slug: future-of-rss
 Status: published
-Summary: Explore the future of RSS, considering its potential obsolescence due to social media dominance or evolution into a more interactive format that supports multimedia content, potentially combating misinformation.
+Summary: "Speculates on the future of RSS: whether social media makes it obsolete or it evolves into a more interactive format with multimedia support that could help fight misinformation."
 ai_summary: true
 Tags:
   - rss

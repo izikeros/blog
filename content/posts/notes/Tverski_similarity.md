@@ -4,7 +4,7 @@ Date: 2023-12-10
 Modified: 2023-12-10
 Slug: tverski-similarity-metrics
 Status: published
-Summary: Learn about Tversky similarity, a metric for comparing sets used in information retrieval and recommendation systems, which balances precision and recall through parameters α and β. Understand its formula and see a Python implementation example.
+Summary: Tversky similarity, a set comparison metric used in information retrieval and recommendation systems, with its formula, the role of the α and β weights, and a Python implementation. Jaro-Winkler is included for reference.
 ai_summary: true
 Tags:
   - nlp

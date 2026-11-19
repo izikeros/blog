@@ -6,7 +6,7 @@ Modified: 2023-05-26
 Slug: mastering-kanban-method
 Start: 2023-05-26
 Status: published
-Summary: Ever wondered how to supercharge your team's productivity? Say hello to Kanban, the dynamic method that brings clarity and efficiency to your projects.
+Summary: The core Kanban principles, common mistakes like ignoring WIP limits, and lesser-known tips for Kanban boards such as classes of service, marking blocked tasks and swimlanes.
 Tags:
   - kanban-method
   - kanban-board

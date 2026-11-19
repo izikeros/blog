@@ -4,7 +4,7 @@ Date: 2023-02-28
 Modified: 2023-07-12
 Slug: git-create-path
 Status: published
-Summary: Learn how to create a patch file for the changes between the current HEAD and a specific commit in Git using `git diff --patch`, and how to apply that patch later.
+Summary: How to create a patch file with the changes between HEAD and a given commit using git diff --patch, and how to apply it later.
 ai_summary: true
 Tags:
   - git

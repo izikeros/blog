@@ -4,7 +4,7 @@ Date: 2023-02-20
 Modified: 2023-07-12
 Slug: before-pca
 Status: published
-Summary: Learn about essential preparatory steps for Principal Component Analysis (PCA), including data cleaning, standardization, feature selection, and determining the number of components to ensure accurate dimensionality reduction.
+Summary: "Checks and preprocessing steps before running PCA: data cleaning, handling outliers, standardization, feature selection and choosing the number of components."
 ai_summary: true
 Tags:
   - data-preprocessing

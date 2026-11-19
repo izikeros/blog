@@ -5,7 +5,7 @@ Modified: 2023-07-12
 Prompt: Give me long text with proposals of a key changes to the rss standard (and technical solution for implementing it) to prevent RSS becoming obsolete.
 Slug: future-changes-to-rss
 Status: published
-Summary: Discover how RSS can stay relevant in the face of emerging technologies with key changes such as multimedia support, personalization, and security.
+Summary: "Proposed changes to the RSS standard that could keep it relevant: multimedia support, personalization and recommendations, social sharing, and better security and privacy."
 Tags:
   - rss
 Title: Future-Proofing RSS - Key Changes and Technical Solutions to Keep the Web Feed Format Relevant

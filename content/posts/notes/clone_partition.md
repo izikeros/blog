@@ -4,7 +4,7 @@ Date: 2022-03-03
 Modified: 2023-07-12
 Slug: clone-partition-in-linux
 Status: published
-Summary: how to clone disk partition in Linux
+Summary: Commands to clone a disk partition in Linux with dd and pv, and to create a compressed disk image with dd and gzip.
 Tags:
   - Linux
   - dd

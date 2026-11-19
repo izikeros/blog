@@ -4,7 +4,7 @@ Date: 2022-04-22
 Modified: 2023-07-12
 Slug: zsh-loop-over-files-and-run-command
 Status: published
-Summary: Learn how to loop over files in a directory and run a command on each file using ZSH.
+Summary: A one-line Zsh for loop that runs a command on each file in a directory.
 ai_summary: true
 Tags:
   - zsh

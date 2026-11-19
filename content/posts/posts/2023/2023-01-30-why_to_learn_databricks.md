@@ -6,7 +6,7 @@ Modified: 2023-01-30
 Slug: why-to-learn-databricks
 Start: 2023-01-30
 Status: published
-Summary: Learn how Databricks can help you master big data, improve data processing and machine learning skills and excel in your career. Boost your career with this powerful platform.
+Summary: "Why Databricks is worth learning for data work: handling large data volumes, integration with other data tools, built-in libraries for data processing and machine learning, and a cloud-based platform."
 Tags:
   - machine-learning
   - databricks

@@ -5,7 +5,7 @@ Image: images/head/backtesting.jpg
 Modified: 2023-07-12
 Slug: lesser-known-backtesting-libraries
 Status: Published
-Summary: This article presents a set of lesser-known but interesting libraries that can be used for backtesting trading strategies and trading algorithms in general.
+Summary: A list of lesser-known Python libraries for backtesting trading strategies, such as bt, AutoTrader, Blueshift, TradingGym and BTGym, with a short description of each.
 Tags:
   - trading
   - backtesting

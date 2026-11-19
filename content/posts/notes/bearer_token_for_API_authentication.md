@@ -4,7 +4,7 @@ Date: 2023-08-24
 Modified: 2023-08-24
 Slug: bearer-token-authentication-for-api
 Status: published
-Summary: Learn about bearer token authentication for API security, including how it works, its benefits, and key considerations for implementation and security.
+Summary: How bearer token authentication for APIs works, using tokens such as JWT or OAuth in the request header, its benefits, and security points to consider when implementing it.
 ai_summary: true
 Tags:
   - bearer

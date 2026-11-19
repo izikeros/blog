@@ -4,7 +4,7 @@ Date: 2024-03-21
 Modified: 2024-03-21
 Slug: github-permission-to-repogit-denied-to-user
 Status: published
-Summary: Learn how to resolve 'Permission to repo.git denied' errors by managing SSH keys in Git for users dealing with multiple GitHub accounts. Discover the causes and solutions involving ssh-agent commands like `ssh-add -D` and key-specific removals.
+Summary: How to fix the "Permission to repo.git denied to user" error when you use multiple GitHub accounts, by managing SSH keys in ssh-agent with ssh-add -D or removing a specific key.
 ai_summary: true
 Title: GitHub - Troubleshooting 'Permission to repo.git denied to user'
 Tags:

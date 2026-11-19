@@ -4,7 +4,7 @@ Date: 2023-04-11
 Modified: 2023-07-12
 Slug: how-to-deploy-freshrss-in-the-cloud-for-free-on-gcp
 Status: published
-Summary: Learn how to deploy FreshRSS for free on Google Cloud Platform by setting up a Compute Engine instance, configuring a database, and installing necessary packages and configurations.
+Summary: "Steps to deploy FreshRSS on Google Cloud Platform using the free tier: create a project, launch a Compute Engine instance, set up the database and install FreshRSS."
 ai_summary: true
 Tags:
   - rss

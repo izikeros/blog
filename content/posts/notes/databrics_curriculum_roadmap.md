@@ -4,7 +4,7 @@ Date: 2023-12-04
 Modified: 2023-12-04
 Slug: databricks-curriculum-from-zero-to-hero
 Status: published
-Summary: Learn from scratch to become proficient in Databricks by understanding its basics, setting up the environment, grasping Apache Spark fundamentals, and performing basic data processing tasks.
+Summary: A staged learning plan for Databricks, from the basics and environment setup through Apache Spark fundamentals and data processing, with prerequisites and reasoning for each topic.
 ai_summary: true
 Title: Databricks Curriculum - From Zero to Hero
 Tags:

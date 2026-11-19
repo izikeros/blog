@@ -4,7 +4,7 @@ Date: 2023-03-26
 Modified: 2023-07-12
 Slug: dca_investing_strategy_variants
 Status: published
-Summary: Learn about Dollar-Cost Averaging (DCA) and its variants like Traditional DCA, Value Averaging, which help in reducing market risk by adjusting investment amounts based on asset performance.
+Summary: An overview of dollar-cost averaging (DCA) and 15 of its variants, including value averaging, CPPI, step-up, threshold and momentum DCA, and how each one changes the amount invested over time.
 ai_summary: true
 Tags:
   - finance

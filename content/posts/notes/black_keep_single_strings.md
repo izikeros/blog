@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: black-keep-single-quotes-strings
 Status: published
-Summary: Learn how to use Black's `--single-quote` option and `--skip-string-normalization` for consistent single quotes in your codebase, even with pre-existing string conventions.
+Summary: "How to keep single-quoted strings when using Black: the --skip-string-normalization option and the status of the requested --single-quote option."
 ai_summary: true
 Tags:
   - black

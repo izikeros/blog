@@ -4,7 +4,7 @@ Date: 2023-10-17
 Modified: 2023-10-17
 Slug: python-expertise-level-self-assessment
 Status: published
-Summary: Learn to assess your or a candidate's level of Python expertise by understanding the key skills and knowledge required for beginners, advanced programmers, and experts.
+Summary: A list of statements that describe beginner, advanced and expert Python skills, for assessing your own or a candidate's level of Python expertise.
 ai_summary: true
 Title: Python Expertise Level - Self-Assessment
 Tags:

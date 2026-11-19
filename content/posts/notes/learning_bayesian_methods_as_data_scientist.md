@@ -3,7 +3,7 @@ Category: note
 Date: 2023-01-13
 Modified: 2023-07-12
 Status: published
-Summary: summary
+Summary: A nine-step outline for learning Bayesian methods as a data scientist, from Bayes' theorem and priors to MCMC, variational inference and tools like PyMC and Stan, with book references.
 Tags:
   - machine-learning
   - bayesian

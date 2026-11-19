@@ -5,7 +5,7 @@ Image: /images/head/text_vectorization.jpg
 Modified: 2023-07-04
 Slug: text-vectorization-with-vectorhub-and-sentence-transformers
 Status: published
-Summary: Learn how to use Sentence Transformers for text vectorization with different models using consistent API.
+Summary: How to vectorize text with Sentence Transformers, using different embedding models through one consistent API, based on an example that originally used VectorHub.
 Tags:
   - embeddings
   - nlp

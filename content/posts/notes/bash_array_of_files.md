@@ -4,7 +4,7 @@ Date: 2023-11-13
 Modified: 2023-11-13
 Slug: store-output-of-the-command-into-array-in-bash
 Status: published
-Summary: Learn how to store directory names from a specified folder into an array using the `read -r -d $'\0'` command in Bash, ensuring proper handling of special characters and whitespace.
+Summary: How to store the directory names from a folder in a Bash array using find with while IFS= read -r -d $'\0', so names with spaces and special characters are handled correctly.
 ai_summary: true
 Title: Store Output of the Command Into Array in Bash
 Tags:

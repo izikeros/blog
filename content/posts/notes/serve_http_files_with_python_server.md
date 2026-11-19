@@ -4,7 +4,7 @@ Date: 2022-04-27
 Modified: 2023-07-12
 Slug: serve-http-files-with-python-server
 Status: published
-Summary: Learn how to use Python's built-in HTTP server module to share and serve HTML pages, including handling CORS limitations with a simple command-line instruction.
+Summary: A one-line command, python -m http.server, to serve files from a local directory over HTTP, useful for sharing files or working around CORS limits on local HTML pages.
 ai_summary: true
 Tags:
   - python

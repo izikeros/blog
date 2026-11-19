@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: bash-base-name-without-extension
 Status: published
-Summary: Learn how to extract file base names without extensions and get the current directory name in Bash scripts using built-in commands.
+Summary: Bash one-liners to get a file name without its extension and the current directory name without the full path.
 ai_summary: true
 Tags:
   - base

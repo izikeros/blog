@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: man-alternatives-usage-explanations-and-cheatsheets
 Status: published
-Summary: Learn how to use `tldr` pages, `cheat`, and `eg` for simplified command-line documentation and interactive cheatsheets to boost your productivity.
+Summary: "Three alternatives to man pages that show practical command examples: tldr pages, cheat and eg."
 ai_summary: true
 Tags:
   - software/alternatives

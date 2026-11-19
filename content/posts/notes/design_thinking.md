@@ -4,7 +4,7 @@ Date: 2023-09-04
 Modified: 2023-11-07
 Slug: design-thinking
 Status: published
-Summary: Design thinking is an innovative approach emphasizing empathy, creativity, and iteration to solve complex problems and develop user-centric solutions, applicable across various industries for effective product development.
+Summary: An overview of design thinking, a human-centered approach to product development based on empathy, creativity and iteration, and where it is used.
 ai_summary: true
 Title: Design Thinking
 Tags:

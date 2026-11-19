@@ -1,5 +1,5 @@
 ---
-Summary: Learn why reinstalling your operating system frequently can improve performance, encourage good backups, clean up unnecessary files, and automate restoration processes, offering long-term maintenance benefits.
+Summary: "Why I came to agree with the advice to reinstall your system frequently: it forces good backups, removes clutter and pushes you to automate the restore of your setup."
 ai_summary: true
 Category: note
 Date: 2022-06-03

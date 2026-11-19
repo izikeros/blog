@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: change-character-encoding
 Status: published
-Summary: Learn how to convert file encoding from ISO-8859-1 to UTF-8 using the `iconv` command and save the output to a temporary file.
+Summary: A one-line iconv command to convert a file from ISO-8859-1 to UTF-8.
 ai_summary: true
 Tags:
   - change

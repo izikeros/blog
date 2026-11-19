@@ -4,7 +4,7 @@ Date: 2022-10-12
 Modified: 2023-07-12
 Slug: install-calibre-web-qnap-nas-tutorial
 Status: published
-Summary: Learn how to install Calibre-Web on QNAP NAS using Docker, including setup steps and basic configuration for accessing your eBook library from a web interface.
+Summary: How to install Calibre-Web on a QNAP NAS with Docker and do the basic setup, so you can browse and read your Calibre eBook library in a web browser.
 ai_summary: true
 Tags:
   - calibre

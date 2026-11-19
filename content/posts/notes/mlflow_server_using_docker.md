@@ -4,7 +4,7 @@ Date: 2023-01-16
 Modified: 2023-07-12
 Slug: deploying-mlflow-on-local-machine-using-docker
 Status: published
-Summary: Learn how to deploy an MLFlow server on your local machine using Docker, covering the setup process from pulling the Docker image to accessing the MLFlow web UI and running commands.
+Summary: "Steps to run an MLflow server on a local machine with Docker: pull the image, start the container, open the web UI, set the tracking URI and persist data."
 ai_summary: true
 Tags:
   - mlflow

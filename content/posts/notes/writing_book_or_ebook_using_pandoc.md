@@ -4,7 +4,7 @@ Date: 2023-01-31
 Modified: 2023-07-12
 Slug: writing-book-or-ebook-using-pandoc
 Status: published
-Summary: Learn how to write a book or ebook using Markdown and Pandoc, covering installation, writing chapters, adding media, and converting to various formats like PDF.
+Summary: "How to write a book in Markdown and convert it with Pandoc: installation, chapter structure, adding media, and output to PDF and other formats."
 ai_summary: true
 Tags:
   - markdown

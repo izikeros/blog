@@ -4,7 +4,7 @@ Date: 2023-01-17
 Modified: 2023-07-12
 Slug: self-hosted-private-services
 Status: published
-Summary: Learn about popular self-hosted services like Nextcloud for file storage, Plex for media streaming, and Home Assistant for home automation to enhance personal productivity and smart home management.
+Summary: A list of services people often self-host for private or family use, such as Nextcloud, Plex and Home Assistant, plus backup, VPN, finance and knowledge management tools and the devices to run them on.
 ai_summary: true
 Tags:
   - self-hosted

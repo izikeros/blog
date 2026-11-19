@@ -4,7 +4,7 @@ Date: 2023-02-28
 Modified: 2023-07-12
 Slug: git-sign-previous-commit
 Status: published
-Summary: Learn how to sign a previous commit using Git and your GPG key with the `git commit --amend --no-edit -S` command, including steps to set up and verify the signature.
+Summary: How to GPG-sign the last commit with git commit --amend --no-edit -S, and how to check the signature afterwards.
 ai_summary: true
 Tags:
   - git

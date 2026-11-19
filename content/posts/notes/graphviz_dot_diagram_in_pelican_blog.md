@@ -4,7 +4,7 @@ Date: 2023-01-19
 Modified: 2023-07-12
 Slug: graphviz-dot-diagram-in-pelican-blog
 Status: published
-Summary: Learn how to dynamically generate Graphviz diagrams in your Pelican blog posts using plugins like `pelican-graphviz` and `pelican-ipynb` to enhance your content with visual descriptions.
+Summary: How to render Graphviz (dot) diagrams from code blocks in Pelican blog posts, using plugins such as pelican-graphviz and pelican-ipynb.
 ai_summary: true
 Tags:
   - graphviz

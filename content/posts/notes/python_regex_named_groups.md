@@ -4,7 +4,7 @@ Date: 2023-04-19
 Modified: 2023-07-12
 Slug: python-regex-named-groups
 Status: published
-Summary: Learn how to use Python's regex named groups and the `groupdict()` method to capture and access matched text in a dictionary format.
+Summary: How to use named groups, (?P<name>...), in Python regular expressions and get the matched text as a dictionary with match.groupdict().
 ai_summary: true
 Tags:
   - python

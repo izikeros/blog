@@ -4,7 +4,7 @@ Date: 2023-01-05
 Modified: 2023-07-12
 Slug: difference-between-numba-jit-and-njit-decorators
 Status: published
-Summary: Description of the difference between jit and njit numba decorators
+Summary: "The difference between the Numba jit and njit decorators: njit is stricter about input and output types, and in return can compile faster, more memory-efficient code."
 Tags:
   - python
   - numba

@@ -4,7 +4,7 @@ Date: 2023-08-12
 Modified: 2023-08-12
 Slug: lesser-known-python-package-repository-managers
 Status: published
-Summary: Learn about lesser-known Python package repository managers like Warehouse, pypiserver, Bandersnatch, and EggBasket, each offering unique features for hosting private packages or mirroring PyPI.
+Summary: Four lesser-known Python package repository managers - Warehouse, pypiserver, Bandersnatch and EggBasket - as alternatives to Artifactory and devpi for private packages or PyPI mirrors.
 ai_summary: true
 Tags:
   - pypi

@@ -4,7 +4,7 @@ Date: 2023-06-30
 Modified: 2023-07-12
 Slug: understanding-bhattacharyya-distance-and-coefficient-for-probability-distributions
 Status: published
-Summary: Learn about the Bhattacharyya distance and coefficient, their applications in statistics and machine learning, and see Python code examples to understand how they measure the similarity between probability distributions.
+Summary: What the Bhattacharyya distance and coefficient measure, how they relate, and where they are used in statistics and machine learning, with Python code for comparing two probability distributions.
 ai_summary: true
 Tags:
   - tag1

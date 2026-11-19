@@ -4,7 +4,7 @@ Date: 2023-09-29
 Modified: 2023-09-29
 Slug: the-right-way-to-job-hop
 Status: published
-Summary: Learn how to job-hop effectively by gaining varied experience, staying at each role for a minimum of a year, and always moving up professionally—plus tips on preparing for interviews and understanding the impact on your resume.
+Summary: "LLM-extracted advice from a Stack Overflow podcast on job-hopping: follow new tech trends, stay at least a year in each role, always move up, prepare for interviews and consider how it looks on a resume."
 ai_summary: true
 Title: The Right Way to Job-Hop
 Tags:

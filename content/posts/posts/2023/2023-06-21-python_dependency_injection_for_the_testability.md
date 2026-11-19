@@ -13,7 +13,7 @@ Tags:
 Category: Software Engineering & Tools
 Image: /images/head/dependency_injection_2_cr_640px.jpg
 banner: "/images/head/dependency_injection_2_cr_640px.jpg"
-Summary: Learn how to use dependency injection to decouple dependencies from our functions, methods, or classes, making it easier to test and maintain our code.
+Summary: How dependency injection in Python decouples functions, methods and classes from their dependencies, which makes the code easier to test and maintain.
 Status: published
 prompt:
 ---

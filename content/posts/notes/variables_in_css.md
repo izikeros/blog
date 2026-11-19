@@ -4,7 +4,7 @@ Date: 2025-10-14
 Modified: 2025-10-14
 Slug: css-variables-dynamic-reusable-styling
 Status: published
-Summary: Learn how to use CSS variables for dynamic and reusable styling, enabling features like interactive UIs, easy theming, and design consistency across components. Discover practical usage examples and best practices while understanding limitations and browser support issues.
+Summary: How CSS custom properties work (--name and var()), how scoping in :root and components works, and how to use them for theming and runtime updates, with notes on limitations and browser support.
 ai_summary: true
 Title: Using CSS Variables for Dynamic and Reusable Styling
 Tags:

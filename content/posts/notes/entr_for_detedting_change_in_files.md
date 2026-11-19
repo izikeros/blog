@@ -4,7 +4,7 @@ Date: 2024-01-01
 Modified: 2024-01-01
 Slug: entr-run-arbitrary-command-when-files-change
 Status: published
-Summary: Learn how to use `entr` to automate tasks by running commands when files change, ideal for developers during the coding process. Discover its key features and usage examples for streamlining development workflows.
+Summary: How to use entr to run a command when files change, for example rebuilding with make or rerunning tests, with its main options and usage examples.
 ai_summary: true
 Title: entr - run arbitrary command when files change
 Tags:

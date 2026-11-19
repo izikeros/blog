@@ -13,7 +13,7 @@ Tags:
 Category: LLM Engineering
 Image: /images/head/prompt_discovery.jpg
 banner: /images/head/prompt_discovery.jpg
-Summary: Learn prompt discovery to uncover the most effective prompts and combinations thereof to achieve specific tasks, while also considering factors like response quality, model performance, and computational efficiency
+Summary: "What prompt discovery is: a systematic process for finding and refining prompts that get the desired output from a language model, weighing response quality, model performance and compute cost."
 Status: published
 prompt:
 ---

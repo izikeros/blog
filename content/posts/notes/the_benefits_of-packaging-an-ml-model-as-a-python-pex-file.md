@@ -4,7 +4,7 @@ Date: 2023-01-17
 Modified: 2023-07-12
 Slug: the-benefits-of-packaging-an-ml-model-as-a-python-pex-file
 Status: published
-Summary: Learn how packaging machine learning models as Python PEX files enhances portability, security, and reproducibility, ensuring easy distribution and consistent results across different environments.
+Summary: "Benefits of packaging a machine learning model as a Python PEX file: portability, security, reproducibility, speed and flexibility when distributing the model to other environments."
 ai_summary: true
 Tags:
   - python

@@ -6,7 +6,7 @@ Modified: 2023-07-12
 Prompt: I would like to make a separate article on the types of data science projects mentioned above. Give me a long, markdown article with hyperlinks and references to learn more about it. Use hyperlinks on crucial terms and tools. In the end, provide also an HTML page description for this article (less than 160 characters).
 Slug: common-types-of-data-science-projects
 Status: published
-Summary: Learn about common types of data science projects and best practices for approaching them. From end-to-end individual work to production-ready projects, this guide covers it all.
+Summary: Five common types of data science projects (individual, collaborative, shared notebook, production-ready and research) and good practices for each.
 Tags:
   - machine-learning
   - project

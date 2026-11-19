@@ -6,7 +6,7 @@ Modified: 2023-04-19
 Slug: attacking-differential-privacy-using-the-correlation-between-the-features
 Start: 2023-04-19
 Status: published
-Summary: Learn how the differential privacy works by simulating attack on data protected with that technique.
+Summary: How an attacker can use correlation between features to reconstruct data protected with differential privacy, with a Python demo on the age and education-num features and ways to mitigate the attack.
 Tags:
   - machine-learning
   - python

@@ -1,5 +1,5 @@
 ---
-Summary: Learn how to use Python's `warnings` module to ignore or suppress warnings either globally or locally within a code block. Discover methods for disabling and re-enabling warnings to fine-tune your debugging process.
+Summary: How to suppress Python warnings with the warnings module, either globally with filterwarnings() or for one block of code with the catch_warnings() context manager, and how to enable them again.
 ai_summary: true
 Category: note
 Date: 2022-05-12

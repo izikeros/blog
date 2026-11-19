@@ -4,7 +4,7 @@ Date: 2025-09-10
 Modified: 2025-09-10
 Slug: threading-vs-multiprocessing-gil-implications
 Status: published
-Summary: Learn about the Global Interpreter Lock (GIL) and how threading and multiprocessing in Python differ, with examples showing that multiprocessing is better for CPU-bound tasks due to GIL limitations.
+Summary: How the Global Interpreter Lock (GIL) affects threading and multiprocessing in Python, with examples showing that threads suit I/O-bound tasks and processes suit CPU-bound tasks.
 ai_summary: true
 Tags: python, threading, multiprocessing, gil, concurrency, parallelism, performance
 Title: Threading vs Multiprocessing in Python - GIL Implications and Choosing the Right Tool

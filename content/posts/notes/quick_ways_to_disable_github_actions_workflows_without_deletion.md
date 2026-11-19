@@ -4,7 +4,7 @@ Date: 2024-10-03
 Modified: 2024-10-03
 Slug: quick-ways-to-disable-github-actions-workflows-without-deletion
 Status: published
-Summary: Learn three quick methods to temporarily disable GitHub Actions workflows without deleting them, including commenting out code, using manual triggers, and adding conditional logic.
+Summary: "Three ways to temporarily disable a GitHub Actions workflow without deleting it: comment out the file, switch the trigger to workflow_dispatch, or add if: false to the job."
 ai_summary: true
 Title: Quick Ways to Disable GitHub Actions Workflows Without Deletion
 Tags:

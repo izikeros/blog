@@ -4,7 +4,7 @@ Date: 2023-01-05
 Modified: 2023-07-12
 Slug: difference-between-matthews-and-f1
 Status: published
-Summary: Description of the difference between Matthews correlation coefficient and F1
+Summary: "Compares the Matthews correlation coefficient (MCC) and the F1 score for binary classification: what each measures, how they treat true negatives, and why MCC is more reliable on imbalanced data."
 Tags:
   - machine-learning
   - classification

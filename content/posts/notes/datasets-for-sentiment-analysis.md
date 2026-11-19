@@ -4,7 +4,7 @@ Date: 2022-01-25
 Modified: 2023-07-12
 Slug: datasets-for-sentiment-analysis
 Status: published
-Summary: Explore a variety of datasets used for sentiment analysis, including reviews from McAuley and Leskovec, Yelp, Kaggle, and more, to enhance your understanding of different data sources in natural language processing.
+Summary: A list of datasets used for sentiment analysis, including McAuley and Leskovec reviews, the Yelp Academic Dataset, Maas et al. movie reviews, Pang and Lee, and Blitzer et al. product reviews.
 ai_summary: true
 Tags:
   - sentiment-analysis

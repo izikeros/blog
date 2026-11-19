@@ -4,7 +4,7 @@ Date: 2021-11-29
 Modified: 2023-08-12
 Slug: black-code-formatter
 Status: published
-Summary: notes on using black formatter
+Summary: "Notes on the Black Python formatter: installing it for Jupyter notebooks and changing the line length limit."
 Tags:
   - black
   - python

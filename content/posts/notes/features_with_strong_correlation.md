@@ -4,7 +4,7 @@ Date: 2023-02-21
 Modified: 2023-07-12
 Slug: features-with-strong-correlation
 Status: published
-Summary: Learn how to extract and display the top n pairs of features with the strongest correlation in a pandas DataFrame, useful for datasets with over 1000 features where visual analysis is impractical.
+Summary: Pandas code that lists the top n feature pairs with the strongest correlation, for datasets with 1000+ features where a correlation heatmap is too large to read.
 ai_summary: true
 Tags:
   - pandas

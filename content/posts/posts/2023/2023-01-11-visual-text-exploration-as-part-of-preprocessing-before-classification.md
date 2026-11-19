@@ -5,7 +5,7 @@ Image: /images/head/visual_text_exploration_wordcloud.jpg
 Modified: 2026-02-07
 Slug: visual-text-exploration-as-part-of-preprocessing-before-classification
 Status: published
-Summary: This post discusses importance of visual text exploration in preprocessing for classification, covers techniques (wordcloud, Sentiment Analysis, topic modeling, data cleaning) & how to use them with popular libraries. Encourages readers to try for own projects.
+Summary: "Visual text exploration before text classification: data cleaning, word clouds, sentiment analysis and topic modeling, with examples using popular Python libraries."
 Tags:
   - NLP
   - python

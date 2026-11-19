@@ -4,7 +4,7 @@ Date: 2021-02-20
 Modified: 2023-07-12
 Slug: box-cox-transformation
 Status: published
-Summary: Learn about the Box-Cox transformation, a method to normalize non-normal data through power functions, and see Python code examples for applying it to synthetic datasets. Explore use cases in customer behavior analysis, financial data, and medical research.
+Summary: How the Box-Cox transformation makes non-normal data closer to normal with a power function, with Python examples on synthetic data and use cases in customer, financial and medical data.
 ai_summary: true
 Tags:
   - box-cox

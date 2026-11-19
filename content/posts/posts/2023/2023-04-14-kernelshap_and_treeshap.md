@@ -6,7 +6,7 @@ Modified: 2023-11-05
 Slug: kernelshap-treeshap-two-most-popular-variations-of-the-shap-method
 Start: 2023-04-14
 Status: published
-Summary: Making sense of AI's inner workings with KernelShap and TreeShap the powerfull tools for responsible AI.
+Summary: How KernelSHAP and TreeSHAP work around the exponential cost of exact Shapley values in the original SHAP method, and how the two differ in approach and supported models.
 Tags:
   - shap
   - xai

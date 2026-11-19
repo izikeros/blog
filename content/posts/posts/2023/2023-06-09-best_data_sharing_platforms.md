@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: popular-and-lesser-known-dataset-sharing-platforms
 Start: 2023-06-09
 Status: published
-Summary: Looking for the key to unlocking valuable datasets? Dive into the world of Kaggle, UCI, and more as we unveil the best platforms for data enthusiasts.
+Summary: Popular and lesser-known platforms for finding datasets, including Kaggle, the UCI Machine Learning Repository, Google Dataset Search, Data.gov, OpenML and GitHub.
 Tags:
   - machine-learning
   - python

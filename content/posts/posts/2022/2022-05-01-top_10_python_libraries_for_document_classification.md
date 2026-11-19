@@ -6,7 +6,7 @@ Modified: 2022-05-01
 Slug: top-10-python-libraries-for-document-classification
 Start: 2022-05-01
 Status: published
-Summary: Unlock the power of document classification with these top Python libraries! Discover the best tools for effortless text analysis and more.
+Summary: Ten Python libraries for document classification, including scikit-learn, NLTK, Gensim, TensorFlow, PyTorch, FastText and TextBlob, with a short description of each.
 Tags:
   - document-intelligence
   - AI

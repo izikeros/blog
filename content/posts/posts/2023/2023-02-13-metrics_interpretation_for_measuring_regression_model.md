@@ -6,7 +6,7 @@ Modified: 2023-02-13
 Slug: interpreting-r2-mse-rmse-for-regression-models
 Start: 2023-02-13
 Status: published
-Summary: Don't let misleading metrics fool you. Master the art of analyzing regression model performance and make smarter decisions.
+Summary: How to interpret R², MSE and RMSE together when evaluating regression models, and what different combinations of their values tell you about the model.
 Tags:
   - machine-learning
   - r2-score

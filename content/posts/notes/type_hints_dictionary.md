@@ -4,7 +4,7 @@ Date: 2022-04-22
 Modified: 2023-07-12
 Slug: use-python-typeddict-to-type-hint-dictionaries
 Status: published
-Summary: Learn how to use Python's `TypedDict` to type hint dictionary fields, ensuring better code clarity and reducing errors in function definitions and usage.
+Summary: How to type hint dictionary fields in Python by subclassing TypedDict and using the class as a function return type, with a short code example.
 ai_summary: true
 Tags:
   - python

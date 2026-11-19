@@ -4,7 +4,7 @@ Date: 2024-10-01
 Modified: 2024-10-01
 Slug: pandas-categorical-benefits-and-use-cases
 Status: published
-Summary: Learn about the memory efficiency, improved performance, meaningful order, type safety, and faster groupby operations with pandas Categorical data type, especially beneficial for large datasets with limited unique values.
+Summary: "Why to use the pandas Categorical data type for columns with few unique values: lower memory use, faster computations and groupby, custom category order and type safety."
 ai_summary: true
 Title: Pandas Categorical - Benefits and Use Cases
 Tags:

@@ -15,7 +15,7 @@ Tags:
 Category: RAG & Retrieval
 Image: /images/head/knowledge_graph_cr_640px.jpg
 banner: "/images/head/knowledge_graph_cr_640px.jpg"
-Summary: As developers, we often reach for full-scale graph databases when simpler solutions would suffice. When your knowledge graph is modest in size, keeping it in memory can be both efficient and practical. Let's explore some powerful tools that make this approach work beautifully.
+Summary: "In-memory options for small knowledge graphs instead of a full graph database: NetworkX, RDFLib, PyGraphviz and a custom Python structure, with guidance on choosing between them."
 Status: published
 prompt:
 ---

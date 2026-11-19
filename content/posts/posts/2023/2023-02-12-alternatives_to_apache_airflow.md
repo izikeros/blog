@@ -6,7 +6,7 @@ Modified: 2023-02-12
 Slug: alternatives-to-apache-airflow
 Start: 2023-02-12
 Status: published
-Summary: Looking for a new workflow management tool? Do not settle for Apache Airflow just because it is popular. Discover 10 cutting-edge alternatives that could be a better fit for your needs.
+Summary: "Ten alternatives to Apache Airflow for workflow management: Prefect, Luigi, Apache NiFi, Argo, Zeebe, Dagster, Conductor, Kubeflow Pipelines, Oozie and Pinball, with short notes on each."
 Tags:
   - machine-learning
   - workflow

@@ -4,7 +4,7 @@ Date: 2023-01-13
 Modified: 2023-07-12
 Slug: 10-scikit-learn-exercises-for-aspiring-data-scientists
 Status: published
-Summary: Learn to apply key machine learning techniques such as linear regression, decision trees, k-means clustering, and SVMs through practical exercises using the Scikit-Learn library on popular datasets like Boston Housing, Iris, and MNIST.
+Summary: Ten scikit-learn exercise ideas, from linear regression and decision trees to k-means clustering and SVMs, on datasets such as Boston Housing, Iris and MNIST, with the relevant scikit-learn classes for each.
 ai_summary: true
 Tags:
   - scikit-learn-exercises

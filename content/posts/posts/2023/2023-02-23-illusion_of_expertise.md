@@ -6,7 +6,7 @@ Modified: 2023-02-23
 Slug: illusion-of-expertise
 Start: 2023-02-23
 Status: published
-Summary: We often associate eloquent speech with intelligence and knowledge. But what if I told you that this assumption is not always true?
+Summary: Why eloquent speech is often taken as a sign of knowledge and expertise, and why this assumption can be wrong.
 Tags:
   - machine-learning
   - python

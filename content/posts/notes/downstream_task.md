@@ -4,7 +4,7 @@ Date: 2023-07-21
 Modified: 2023-07-21
 Slug: what-is-downstream-task
 Status: published
-Summary: Learn about downstream tasks in data science workflows, covering steps from model deployment to decision making and performance monitoring.
+Summary: Explains the term "downstream task" in data science using a simple workflow, from data preparation and modeling to deployment, decision making and performance monitoring.
 ai_summary: true
 Tags:
   - data-science

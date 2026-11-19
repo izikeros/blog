@@ -4,7 +4,7 @@ Date: 2024-05-31
 Modified: 2024-05-31
 Slug: ragas-metrics-cheat-sheet
 Status: published
-Summary: Learn about RAGAS metrics, including their descriptions and required input data, to quickly assess model performance. Find the cheat sheet in PDF or JPG format for easy reference.
+Summary: A one-page cheat sheet of RAGAS metrics with a short description of each and the input data it needs, available as PDF and JPG.
 ai_summary: true
 Title: RAGAS metrics cheat sheet
 Tags:

@@ -4,7 +4,7 @@ Date: 2023-03-05
 Modified: 2023-07-12
 Slug: data-science-competitions-win-money
 Status: published
-Summary: Learn about Kaggle, DrivenData, DataHack, Analytics Vidhya, Topcoder, and CodaLab—platforms hosting data science competitions with substantial cash prizes for solving real-world problems.
+Summary: "A list of platforms that run data science competitions with cash prizes: Kaggle, DrivenData, DataHack, Analytics Vidhya, Topcoder and CodaLab."
 ai_summary: true
 Tags:
   - data-science

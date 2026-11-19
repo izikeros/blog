@@ -4,7 +4,7 @@ Date: 2021-10-20
 Modified: 2023-07-12
 Slug: time-tracking-apps
 Status: published
-Summary: Learn about GTime, a manual time-tracking app that helps professionals log their activities efficiently, paired with ActivityWatch for missed entries, to boost productivity and billable hours tracking.
+Summary: "The time tracking setup that works for me: GTime for logging activities manually, with the open source ActivityWatch to fill in entries I forgot to log."
 ai_summary: true
 Tags:
   - time

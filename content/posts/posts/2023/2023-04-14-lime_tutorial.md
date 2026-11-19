@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: lime-tutorial
 Start: 2023-04-14
 Status: published
-Summary: Unveiling the mysteries of AI decisions? Let us dive into LIME, the tool that sheds light on the black box.
+Summary: A tutorial on using LIME to explain predictions of a random forest classifier trained on the Iris dataset, including visualizing which features drive each decision.
 Tags:
   - machine-learning
   - python

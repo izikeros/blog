@@ -6,7 +6,7 @@ Modified: 2023-01-26
 Slug: mlops-scorecard
 Start: 2023-01-26
 Status: published
-Summary: Use proposed scorecard to assess how advanced is your organization in implementing MLOps processes.
+Summary: A sample MLOps scorecard for assessing how far an organization has gone with MLOps, scoring 0-100 in each of six areas such as governance and data management.
 Tags:
   - mlops
   - scorecard

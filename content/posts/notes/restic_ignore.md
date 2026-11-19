@@ -4,7 +4,7 @@ Date: 2023-07-27
 Modified: 2023-07-27
 Slug: gitignore-style-exclusion-for-restic
 Status: published
-Summary: Learn how to use `.gitignore`-style exclusion patterns with Restic by creating a `.resticignore` file to ignore specific files and directories during backups.
+Summary: How to exclude files and directories from restic backups with gitignore-style patterns stored in a .resticignore file.
 ai_summary: true
 Tags:
   - restic

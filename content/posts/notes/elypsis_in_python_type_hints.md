@@ -4,7 +4,7 @@ Date: 2023-04-03
 Modified: 2023-07-12
 Slug: type-hints-elypsis-for-arbitrary-number-of-elements
 Status: published
-Summary: Learn how to use ellipsis (`...`) in Python type hints to denote functions or tuples with an arbitrary number of elements, ensuring clear and flexible definitions.
+Summary: How to use the ellipsis (...) in Python type hints, for example Tuple[str, ...] for a tuple with any number of elements.
 ai_summary: true
 Tags:
   - python

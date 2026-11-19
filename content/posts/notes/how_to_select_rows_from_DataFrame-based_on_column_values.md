@@ -4,7 +4,7 @@ Date: 2023-02-12
 Modified: 2023-07-12
 Slug: how-to-select-rows-from-DataFrame-based-on-column-values
 Status: published
-Summary: Learn how to select rows from a pandas DataFrame using boolean indexing, the query() method, loc(), and iloc() methods for various conditions and scenarios.
+Summary: "Four ways to select rows from a pandas DataFrame by column values: boolean indexing, the query() method, loc and iloc, with code examples."
 ai_summary: true
 Tags:
   - python

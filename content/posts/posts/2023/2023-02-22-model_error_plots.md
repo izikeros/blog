@@ -6,7 +6,7 @@ Modified: 2023-02-22
 Slug: regression-model-errors-plot
 Start: 2023-02-22
 Status: published
-Summary: Improve your regression model's accuracy and predictability by uncovering hidden errors with these essential plots.
+Summary: "Plots for diagnosing regression model errors: residual plot, histogram of residuals, scale-location, Q-Q, leverage, Cook's distance, actual vs. predicted, and MAE vs. parameter."
 Tags:
   - machine-learning
   - python

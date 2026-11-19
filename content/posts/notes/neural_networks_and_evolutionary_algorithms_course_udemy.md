@@ -4,7 +4,7 @@ Date: 2023-01-23
 Modified: 2023-07-12
 Slug: combining-neural-networks-and-evolutionary-algorithms
 Status: published
-Summary: Learn how evolutionary algorithms enhance neural network performance through weight optimization, architecture search, and complex problem solving like multi-objective optimization. Discover various techniques including genetic algorithms and differential evolution for fine-tuning and improving AI model efficiency.
+Summary: "Ways to combine evolutionary algorithms with neural networks: weight optimization (neuroevolution), architecture search and multi-objective optimization, using genetic algorithms or differential evolution."
 ai_summary: true
 Tags:
   - neural-networks

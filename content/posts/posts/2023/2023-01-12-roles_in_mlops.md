@@ -5,7 +5,7 @@ Image: /images/head/roles_in_mlops.jpg
 Slug: roles-in-mlops
 Start: 2023-01-12
 Status: published
-Summary: Learn about the different roles in MLOps and the responsibilities of each role, including Model Deployment Engineer, Data pipeline Engineer, Model Monitoring Engineer, Model Governance Engineer, Machine Learning Infra Engineer and Machine Learning Platform Engineer.
+Summary: "Specialized roles in MLOps and their responsibilities: model deployment, data pipeline, model monitoring, model governance, ML infrastructure and ML platform engineers."
 Tags:
   - mlops
   - devops

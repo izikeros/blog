@@ -4,7 +4,7 @@ Date: 2021-12-16
 Modified: 2023-07-12
 Slug: git-delete-branches-merged-into-main-branch
 Status: published
-Summary: Learn how to clean up outdated feature branches by using `git fetch --prune` to remove irrelevant local branches that have been merged into the main branch, ensuring your repository stays organized and clutter-free.
+Summary: "How to clean up old feature branches: run git fetch --prune to remove stale remote-tracking branches, then delete local branches already merged into the main branch."
 ai_summary: true
 Tags:
   - branch

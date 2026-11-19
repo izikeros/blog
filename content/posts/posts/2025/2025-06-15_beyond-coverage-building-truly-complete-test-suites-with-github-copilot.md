@@ -18,7 +18,7 @@ Tags:
 Category: Software Engineering & Tools
 Image: /images/head/beyond_coverage.jpg
 banner: "/images/head/beyond_coverage.jpg"
-Summary: This article explores how to move beyond simplistic code coverage metrics to build truly comprehensive test suites using GitHub Copilot. Drawing from practical experience, I demonstrate how AI-assisted testing can identify behavioral gaps, validate API contracts, generate maintainable tests, and address flaky tests - ultimately creating a sustainable quality assurance strategy focused on behaviors rather than coverage percentages. Learn specific techniques for behavioral auditing, integration testing, and continuous quality monitoring that have transformed our approach to software reliability.
+Summary: "How to use GitHub Copilot to build test suites around behavior rather than coverage percentages: behavioral auditing, API contract tests, generating maintainable tests and dealing with flaky tests."
 Status: published
 prompt:
 ---

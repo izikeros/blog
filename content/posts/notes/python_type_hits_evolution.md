@@ -4,7 +4,7 @@ Date: 2025-10-24
 Modified: 2025-10-24
 Slug: evolution-of-type-hints-in-python
 Status: published
-Summary: Learn about the evolution of type hints in Python, from initial comments to modern inline typing and key features introduced in each major version, enabling powerful static type checking with tools like mypy and pyright.
+Summary: How Python type hints evolved from type comments in PEP 484 (Python 3.5) to inline annotations and newer typing features in each major version, checked with tools like mypy and pyright.
 ai_summary: true
 Tags: python, typing, pep484, static-typing, mypy
 Title: Evolution of Type Hints in Python — From Comments to Inline Typing and Beyond

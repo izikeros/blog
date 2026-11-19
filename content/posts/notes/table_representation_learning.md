@@ -4,7 +4,7 @@ Date: 2023-12-01
 Modified: 2023-12-01
 Slug: table-representation-learning
 Status: published
-Summary: Learn how table representation learning enhances understanding and utilization of tabular data through column embeddings and semantic detection, improving applications like data discovery and validation.
+Summary: "Short introduction to table representation learning: learning embeddings for columns or whole tables and detecting semantic column types for data discovery, validation and integration."
 ai_summary: true
 Title: Table Representation Learning
 Tags:

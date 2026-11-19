@@ -4,7 +4,7 @@ Date: 2023-01-25
 Modified: 2023-07-12
 Slug: databricks-potential-usages
 Status: published
-Summary: Learn how Databricks can be used for data engineering, machine learning, real-time stream processing, data analysis, business intelligence, and production deployment.
+Summary: "A short list of common Databricks use cases: data engineering, machine learning, real-time stream processing, data analysis, business intelligence and production deployment."
 ai_summary: true
 Tags:
   - machine-learning

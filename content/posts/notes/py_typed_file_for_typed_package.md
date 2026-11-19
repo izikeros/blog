@@ -4,7 +4,7 @@ Date: 2023-11-13
 Modified: 2023-11-13
 Slug: the-importance-of-adding-py-typed-file-to-your-typed-package
 Status: published
-Summary: Learn why and how to add a `py.typed` file to your Python package for proper type checking with tools like `mypy`. Discover the steps to integrate this file using `poetry` or `setup.py` and understand its importance for accurate package distribution.
+Summary: Why mypy ignores the type hints of an installed package without a py.typed marker file, and how to add the file with Poetry or setup.py so it ships with the distribution.
 ai_summary: true
 Title: The Importance of Adding a `py.typed` File to Your Typed Package
 Tags:

@@ -5,7 +5,7 @@ Image: /images/head/elegant_panda.jpg
 Slug: pandas-schema-validation
 Start: 2023-01-16
 Status: published
-Summary: Overview of the available tools and methods for schema validation in pandas, examplary code snippets and recommendation for when to use given tool.
+Summary: Tools for schema validation of pandas DataFrames, including built-in attributes, pandas_schema, Great Expectations and Pandera, with code snippets and advice on when to use each.
 Tags:
   - pandas
   - python

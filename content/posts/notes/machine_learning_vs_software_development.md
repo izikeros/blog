@@ -4,7 +4,7 @@ Date: 2023-01-16
 Modified: 2023-07-12
 Slug: machine-learning-vs-software_development
 Status: published
-Summary: summary
+Summary: "Compares machine learning development with traditional software development: what they share and how they differ in focus, data, testing, deployment and performance metrics."
 Tags:
   - mlops
   - software-development

@@ -4,7 +4,7 @@ Date: 2023-02-13
 Modified: 2023-07-12
 Slug: plotly-how-to-set-y-axis-range
 Status: published
-Summary: Learn how to manually set and automatically adjust the Y axis range in Plotly to effectively visualize and compare data. Explore examples using Python's Plotly library for precise control over your graphs.
+Summary: How to set the Y axis range in Plotly with Python, manually with fixed values or automatically, with code examples for common use cases.
 ai_summary: true
 Tags:
   - plotly

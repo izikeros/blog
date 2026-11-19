@@ -4,7 +4,7 @@ Date: 2023-03-03
 Modified: 2023-07-12
 Slug: best-python-ide-for-an-old-computer
 Status: published
-Summary: Learn about the best lightweight Python IDEs suitable for older computers, including IDLE, Geany, and PyCharm Community Edition, each offering essential features like syntax highlighting and autocompletion without requiring heavy resources.
+Summary: Lightweight Python IDEs and editors for older computers, including IDLE, Geany, Spyder, PyCharm Community Edition, Sublime Text, Thonny and Pyzo, with notes on their features.
 ai_summary: true
 Title: Best Python IDE for and Old Computer
 Tags:

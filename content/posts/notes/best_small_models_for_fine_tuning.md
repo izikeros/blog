@@ -4,7 +4,7 @@ Date: 2024-07-03
 Modified: 2024-08-01
 Slug: best-small-models-for-fine-tuning
 Status: published
-Summary: Learn about the top small models for fine-tuning, including rankings and insights from a webinar on optimizing open-source large language models to rival GPT-4.
+Summary: A ranking of small open-source models for fine-tuning from the Predibase Fine-tuning Index (llama-3-8b, phi-3, zephyr-7b-beta, mistral-7b) and a related webinar on matching GPT-4 with fine-tuned models.
 ai_summary: true
 Title: Best Small Models for Fine Tuning
 Tags:

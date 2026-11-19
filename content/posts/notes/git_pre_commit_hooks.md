@@ -4,7 +4,7 @@ Date: 2021-10-08
 Modified: 2023-07-12
 Slug: git-pre-commit-hooks
 Status: published
-Summary: Pre-commit is a convenient framework to manage git hooks. Uses configuration in the yaml file, handle the installation of required hooks and tools.
+Summary: How to install pre-commit and configure Git hooks in a .pre-commit-config.yaml file, using hooks from the pre-commit-hooks repository.
 Tags:
   - best-practices
   - commit

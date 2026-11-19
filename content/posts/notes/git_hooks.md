@@ -4,7 +4,7 @@ Date: 2021-10-20
 Modified: 2023-07-12
 Slug: git-hooks
 Status: published
-Summary: Example of how to set up git hooks manually or with pre-commit tool
+Summary: An example of setting up a Git pre-commit hook manually, with a Python script that runs isort, and the same setup done with the pre-commit tool.
 Tags:
   - git
   - hooks

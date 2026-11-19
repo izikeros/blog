@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: libraries-for-automated-eda
 Start: 2023-02-12
 Status: published
-Summary: EDA Made Easy - Discover Top-10 Python Libraries That Will Take Your Data Analysis to the Next Level! Learn the Secrets of Automated EDA!
+Summary: Ten Python libraries for automated exploratory data analysis, including Pandas Profiling, DataPrep, Sweetviz, Lux, dabl, AutoViz, Klib, ExplainerDashboard, PyCaret and Missingno.
 Tags:
   - python
   - data-engineering

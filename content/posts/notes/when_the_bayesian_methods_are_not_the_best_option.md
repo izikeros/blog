@@ -4,7 +4,7 @@ Date: 2023-01-16
 Modified: 2023-07-12
 Slug: when-the-bayesian-methods-are-not-the-best-option
 Status: published
-Summary: Learn when Bayesian methods might not be the best choice, including scenarios with scarce data, complex models, high-dimensional problems, and non-conjugate models where alternative approaches could be more practical.
+Summary: Situations where Bayesian methods may not be the best choice, such as scarce data, very complex or high-dimensional models and non-conjugate models, and which alternatives to consider.
 ai_summary: true
 Tags:
   - bayesian

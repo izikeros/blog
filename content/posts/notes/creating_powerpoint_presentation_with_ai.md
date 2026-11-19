@@ -4,7 +4,7 @@ Date: 2023-07-17
 Modified: 2023-07-17
 Slug: creating-a-powerpoint-presentation-with-a-language-model
 Status: published
-Summary: Learn how to generate a PowerPoint presentation using the OpenAI Azure API and Python, including setting up prerequisites, authenticating with the API, and generating an outline with ChatGPT.
+Summary: "How to generate a PowerPoint presentation with Python, python-pptx and the Azure OpenAI API: prerequisites, authentication, generating an outline with ChatGPT and building the slides."
 ai_summary: true
 Tags:
   - powerpoint-presentation

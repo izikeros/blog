@@ -4,7 +4,7 @@ Date: 2024-01-24
 Modified: 2024-01-24
 Slug: the-most-powerful-mac-productivity-and-automation-apps
 Status: published
-Summary: Learn about 12 powerful Mac apps for boosting productivity, automating tasks, organizing your desktop, and enhancing your workflow, including Alfred, BetterTouchTool, Hazel, Keyboard Maestro, and more.
+Summary: A list of Mac productivity and automation apps, including Alfred, BetterTouchTool, Hazel, Automator, Keyboard Maestro, Bartender and Magnet, with a one-line description of each.
 ai_summary: true
 Title: The Most Powerful Mac Productivity and Automation Apps
 Tags:

@@ -6,7 +6,7 @@ Modified: 2021-03-15
 Slug: tsne-tutorial
 Start: 2021-03-15
 Status: published
-Summary: Want to create beautiful visualizations from complex data? Discover the power of T-SNE for dimensionality reduction in Python.
+Summary: "Tutorial on t-SNE dimensionality reduction in Python with scikit-learn: preparing a dataset, running TSNE, and plotting the results with static and interactive visualizations."
 Tags:
   - data-visualization
   - machine-learning

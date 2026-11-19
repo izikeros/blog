@@ -5,7 +5,7 @@ Image: /images/head/rss_banner_small.jpg
 Modified: 2023-07-12
 Slug: the-best-self-hosted-rss-feed-readers-in-2022
 Status: published
-Summary: Best self-hosted RSS Feed Readers selected by popularity and project activity.
+Summary: Self-hosted, open-source RSS feed readers in 2022 selected by popularity and project activity, including NewsBlur, Tiny Tiny RSS, FreshRSS, Miniflux and yarr.
 Title: The Best Self-Hosted, Open Source RSS Feed Readers in 2022
 citation_needed: false
 Tags:

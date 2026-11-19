@@ -5,7 +5,7 @@ Image: /images/head/backtesting.jpg
 Modified: 2023-07-12
 Slug: popular-backtesting-libraries
 Status: Published
-Summary: Popular backtesting libraries with stars as popularity indicators.
+Summary: A list of popular Python backtesting libraries, such as backtrader, Lean, Jesse, vectorbt, backtesting.py and zipline, ranked by GitHub stars.
 Tags:
   - trading
   - crypto

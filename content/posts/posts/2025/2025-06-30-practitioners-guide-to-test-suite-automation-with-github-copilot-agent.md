@@ -25,7 +25,7 @@ Tags:
 Category: Software Engineering & Tools
 Image: /images/head/abstract_1.jpg
 banner: /images/head/abstract_1.jpg
-Summary: Discover practical, battle-tested techniques for automating test suite development using GitHub Copilot Agent Mode. This comprehensive guide moves beyond theoretical concepts to provide concrete examples, prompts, and workflows that transform test coverage from a metrics exercise into a robust quality assurance system. Learn how to implement behavioral auditing, generate sophisticated test suites, detect flaky tests, and integrate advanced testing practices into your CI/CD pipeline - all using the power of AI-assisted development.
+Summary: "Prompts and workflows for automating test suite development with GitHub Copilot Agent Mode: behavioral auditing, test generation, flaky test detection and CI/CD integration, with a payment processor example."
 Status: draft
 prompt:
 ---

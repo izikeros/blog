@@ -1,5 +1,5 @@
 ---
-Summary: Learn the most common formatting characters for displaying dates and times, including options for year, month, day, hour, minute, and second.
+Summary: A reference of common date and time format codes such as %Y, %m, %d, %B and %H, used by the date command and Python strftime.
 ai_summary: true
 Title: Date formatting
 Category: note

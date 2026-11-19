@@ -4,7 +4,7 @@ Date: 2022-06-27
 Modified: 2026-11-19
 Slug: trading-algorithms
 Status: published
-Summary: This note contains a collection of trading algorithms or links to algorithms
+Summary: "A collection of trading strategies with short descriptions and links: momentum, mean reversion, dynamic hedging and VWAP, plus algorithmic trading libraries."
 Tags:
   - finance/algotrading
   - finance/crypto

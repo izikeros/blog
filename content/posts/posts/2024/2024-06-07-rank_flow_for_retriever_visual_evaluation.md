@@ -17,7 +17,7 @@ Tags:
 Category: Evaluation & Observability
 Image: /images/head/rankflow_plot_head.jpg
 banner: "/images/head/rankflow_plot_head.jpg"
-Summary: RAG systems depend on high-quality retrieval to surface relevant information. Analyzing how document rankings evolve through multiple re-ranking steps is complex. This article explores ways to collect ranking data and visualize rank changes to optimize retriever effectiveness.
+Summary: How to collect document rankings from each re-ranking step of a RAG retriever, using structured logs or callbacks, and visualize rank changes with a rank flow (bump) chart.
 summary2: Retrieval-Augmented Generation systems rely heavily on effective retrieval. Tracking rank changes across multiple re-ranking stages is crucial but challenging. Visual analysis tools like rankflow charts can help AI professionals gain rapid insights into retriever performance.
 summary3: The retriever is a critical component in RAG systems. Monitoring how document ranks shift across re-ranking phases provides valuable performance insights. We'll examine methods for tracking rank data and creating visual representations to streamline retriever analysis.
 summary4: Effective retrieval is the cornerstone of RAG system performance. Tracing document rank changes through multiple re-ranking stages can be daunting. This piece look into techniques for gathering ranking data and generating visualizations to enhance retriever analysis.

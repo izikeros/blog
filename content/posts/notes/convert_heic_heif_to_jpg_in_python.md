@@ -4,7 +4,7 @@ Date: 2023-04-14
 Modified: 2023-07-12
 Slug: convert-heic-and-heif-to-jpg-png-bmp-with-python
 Status: published
-Summary: Learn how to use Python, specifically the Pillow library, to convert HEIF and HEIC files into popular formats like JPEG, PNG, and BMP. Follow step-by-step instructions and code examples for single and bulk conversions.
+Summary: How to convert HEIC and HEIF images to JPEG, PNG or BMP in Python with the Pillow library, for single files and whole folders.
 ai_summary: true
 Tags:
   - python

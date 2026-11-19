@@ -5,7 +5,7 @@ Image: /images/head/is_mlops_good_career.jpg
 Slug: is-mlops-good-career
 Start: 2023-01-12
 Status: published
-Summary: Is a career in MLOps right for you? Learn about the pros and cons of this growing field, including high demand, high earning potential, exciting work, and career growth opportunities.
+Summary: Pros and cons of a career in MLOps, including demand for skilled people, earning potential, type of work and growth opportunities.
 Tags:
   - mlops
   - devops

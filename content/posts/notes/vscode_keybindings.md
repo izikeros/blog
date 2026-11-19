@@ -4,7 +4,7 @@ Date: 2025-02-11
 Modified: 2025-02-11
 Slug: managing-vs-code-keyboard-shortcuts-a-complete-guide
 Status: published
-Summary: Learn how VS Code handles context-dependent keyboard shortcuts, resolve conflicts using the Keyboard Shortcuts editor, and customize them for efficient coding.
+Summary: How VS Code resolves context-dependent keyboard shortcuts, how to find and fix conflicts in the Keyboard Shortcuts editor, and how to customize bindings.
 ai_summary: true
 Tags:
   - vscode

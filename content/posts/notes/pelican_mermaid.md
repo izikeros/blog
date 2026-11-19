@@ -4,7 +4,7 @@ Date: 2023-11-28
 Modified: 2023-11-28
 Slug: mermaid-in-pelican-post
 Status: published
-Summary: Learn how to embed Mermaid diagrams in your Pelican blog posts using HTML code or a markdown extension, enhancing visual explanations of processes and systems.
+Summary: "Two ways to add Mermaid diagrams to Pelican blog posts written in Markdown: embedding the Mermaid script in HTML (recommended) or using a Markdown extension."
 ai_summary: true
 Title: Using Mermaid Diagrams in Pelican Blog Post
 Tags:

@@ -4,7 +4,7 @@ Date: 2021-11-29
 Image: /images/head/inside-work-tree.jpg
 Start: 2021-11-25
 Status: published
-Summary: Explore the most popular Zsh plugins from the 1800+ options on the Awesome Zsh plugins GitHub project. See which ones have the highest number of stars from the Zsh community.
+Summary: The most popular Zsh plugins from the 1800+ entries in the Awesome Zsh plugins list as of 2021, ranked by GitHub stars.
 Tags:
   - zsh
   - scrapping

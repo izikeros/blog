@@ -4,7 +4,7 @@ Date: 2025-10-29
 Modified: 2025-10-29
 Slug: python-protocols-structural-subtyping
 Status: published
-Summary: Learn how Python protocols using structural subtyping in PEP 544 allow for flexible, decoupled code by defining shapes through method signatures rather than class inheritance. Explore examples of implementing read-only attributes and optional methods within protocols.
+Summary: How Python protocols (PEP 544, Python 3.8) provide structural subtyping, so type checkers accept any class with the right methods and attributes, with examples of read-only attributes and optional methods.
 ai_summary: true
 Tags: python, typing, protocols, static-typing, pep544
 Title: Understanding Python Protocols - Structural Subtyping in Practice

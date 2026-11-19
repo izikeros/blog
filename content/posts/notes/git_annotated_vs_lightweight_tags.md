@@ -4,7 +4,7 @@ Date: 2023-03-31
 Modified: 2023-07-12
 Slug: git-annotated-vs-lightweight-tags
 Status: published
-Summary: Learn about the differences between Git's annotated and lightweight tags, including their creation methods, additional metadata, and appropriate usage scenarios to effectively manage your repository's versioning.
+Summary: "Explains the difference between annotated and lightweight Git tags: how to create each, what metadata annotated tags store, and when to use which."
 ai_summary: true
 Tags:
   - git

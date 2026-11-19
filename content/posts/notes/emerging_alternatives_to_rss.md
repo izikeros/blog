@@ -4,7 +4,7 @@ Date: 2023-03-05
 Modified: 2023-07-12
 Slug: emerging-alternatives-to-rss
 Status: published
-Summary: Learn about JSON Feed, WebSub, ActivityPub, and GraphQL—emerging web standards that could replace RSS due to their efficiency, versatility, and support for real-time content delivery in modern web applications.
+Summary: "Compares RSS with newer web standards that could replace it: JSON Feed, WebSub, ActivityPub and GraphQL, and what each offers for real-time content delivery."
 ai_summary: true
 Tags:
   - rss

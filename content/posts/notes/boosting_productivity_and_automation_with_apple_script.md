@@ -4,7 +4,7 @@ Date: 2023-07-10
 Modified: 2023-07-12
 Slug: boosting-productivity-and-automation-with-applescript-on-macos
 Status: published
-Summary: Learn how to boost productivity and automate tasks on macOS using AppleScript, covering its basic commands, cool tricks, and alternatives like Automator and Hammerspoon.
+Summary: "How to automate tasks on macOS with AppleScript: basic commands, workflow, application and system automation, a few tricks such as notifications, and alternatives like Automator and Hammerspoon."
 ai_summary: true
 Tags:
   - macos

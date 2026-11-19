@@ -4,7 +4,7 @@ Date: 2023-01-14
 Modified: 2023-07-12
 Slug: how-to-experiment-with-mlflow-locally-on-laptop-or-pc
 Status: published
-Summary: summary
+Summary: "How to install MLflow with pip, log parameters and metrics from a Python script and view runs with mlflow ui, plus four ways to run an MLflow server: cloud service, VM, Docker or Kubernetes."
 Tags:
   - mlops
   - mlflow

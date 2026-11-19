@@ -4,7 +4,7 @@ Date: 2022-02-22
 Modified: 2024-05-29
 Slug: python-add-parent-directory-to-path
 Status: published
-Summary: None
+Summary: "Four ways to import modules from a parent directory in Python: sys.path.insert(), sys.path.append(), the PYTHONPATH environment variable and a .pth file, plus a pathlib variant."
 Tags:
   - python
   - gist

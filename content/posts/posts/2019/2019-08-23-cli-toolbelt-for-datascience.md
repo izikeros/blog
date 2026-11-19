@@ -4,7 +4,7 @@ Date: 2019-08-23
 Image: /images/head/cli_tools.jpg
 Modified: 2023-07-12
 Status: published
-Summary: Description of GNU utils and other less standard tools that helps with processing data from CLI or with shell scripts.
+Summary: GNU Coreutils text tools (comm, head, shuf, sort, split, tail, uniq, wc) and other command-line utilities for processing data in the shell and in scripts.
 Tags:
   - machine-learning
   - Linux

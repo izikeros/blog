@@ -4,7 +4,7 @@ Date: 2025-09-21
 Modified: 2025-09-21
 Slug: concurrent-futures-simpler-parallelism
 Status: published
-Summary: Learn how to simplify parallel and concurrent programming in Python using `concurrent.futures`, including executors for managing threads and processes, and futures for handling task results.
+Summary: How the concurrent.futures module runs tasks in parallel with ThreadPoolExecutor for I/O-bound work and ProcessPoolExecutor for CPU-bound work, and how to collect results from futures.
 ai_summary: true
 Tags: python, concurrency, parallelism, threading, multiprocessing, performance
 Title: Simpler Parallelism with concurrent.futures

@@ -6,7 +6,7 @@ Modified: 2023-01-19
 Slug: evaluation-of-interpretability-for-explainable-ai
 Start: 2023-01-19
 Status: published
-Summary: Learn about the evaluation of interpretability in machine learning with this guide. Discover different levels and methods for assessing the explainability of models.
+Summary: Three levels of evaluating interpretability in machine learning (application, human and function level), with tools and methods for assessing model explanations.
 Tags:
   - rai
   - interpretability

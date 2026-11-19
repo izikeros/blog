@@ -6,7 +6,7 @@ Modified: 2022-03-01
 Slug: create-theme-for-pelican-blog-tutorial
 Start: 2022-03-01
 Status: published
-Summary: A great Pelican theme can make all the difference. Learn how to design your own with our comprehensive tutorial.
+Summary: "Step-by-step tutorial for creating a Pelican theme: directory layout, base and other Jinja templates, static files, theme.conf, CSS, and configuring and testing the theme."
 Tags:
   - pelican
   - static-site-generator

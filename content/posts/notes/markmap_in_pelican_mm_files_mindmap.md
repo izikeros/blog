@@ -4,7 +4,7 @@ Date: 2023-02-02
 Modified: 2023-07-12
 Slug: markmap-mindmap-in-pelican-blog
 Status: published
-Summary: Learn how to integrate interactive Markmap mindmaps into your Pelican blog posts with step-by-step instructions for setup and embedding.
+Summary: Steps to embed interactive Markmap mind maps in Pelican blog posts written in Markdown, from installing markmap to adding the generated diagram to the post.
 ai_summary: true
 Tags:
   - mindmap

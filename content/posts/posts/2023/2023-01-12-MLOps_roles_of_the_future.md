@@ -5,7 +5,7 @@ Image: /images/head/mlops_roles_of_the_future.jpg
 Slug: mlops_roles_of_the_future
 Start: 2023-01-12
 Status: published
-Summary: Discover the future of MLOps specializations, including Explainable AI/MLOps, Federated Learning/Edge MLOps, Reinforcement Learning/MLOps, AI/ML in IoT and IIoT, Model Explainability and Fairness.
+Summary: "Possible future MLOps specializations: explainable AI, federated and edge learning, reinforcement learning, ML in IoT and IIoT, and model explainability and fairness."
 Tags:
   - mlops
   - devops

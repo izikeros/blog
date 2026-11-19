@@ -4,7 +4,7 @@ Date: 2023-11-10
 Modified: 2023-11-10
 Slug: tfidf-with-examples
 Status: published
-Summary: Learn how TF-IDF calculates the importance of a word in a document and why rare words are given more weight than common ones. Explore examples to understand term frequency and inverse document frequency metrics.
+Summary: How TF-IDF combines term frequency and inverse document frequency to score how important a word is to a document, with examples of high and low scores and the formula.
 ai_summary: true
 Title: TF-IDF with examples
 Tags:

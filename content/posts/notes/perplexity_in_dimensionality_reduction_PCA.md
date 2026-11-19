@@ -4,7 +4,7 @@ Date: 2023-06-30
 Modified: 2023-07-12
 Slug: demystifying-perplexity-assessing-dimensionality-reduction-with-pca
 Status: published
-Summary: Learn how to use perplexity to assess the quality of dimensionality reduction with Principal Component Analysis (PCA), gaining insights into preserving data structure and local neighborhoods. Explore practical Python code examples for evaluating PCA performance.
+Summary: How to use perplexity to assess dimensionality reduction with PCA, by comparing the perplexity of the original and reduced data, with Python code.
 ai_summary: true
 Tags:
   - pca

@@ -15,7 +15,7 @@ Tags:
 Category: RAG & Retrieval
 Image: /images/head/boosting_RAG.jpg
 banner: "/images/head/boosting_RAG.jpg"
-Summary: This article discusses several advanced techniques that can be applied at different stages of the RAG pipeline to enhance its performance in a production setting.
+Summary: Techniques to improve RAG performance in production, including hybrid search, chunk summaries, query transformations, embedding fine-tuning, re-ranking, metadata filtering, query routing and handling the lost-in-the-middle problem.
 Status: published
 prompt:
 ---

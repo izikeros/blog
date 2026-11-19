@@ -5,7 +5,7 @@ Image: /images/head/keras+tensorflow.jpg
 Modified: 2019-02-08
 Start: 2019-01-17
 Status: published
-Summary: Guide on how to install TensorFlow cpu-only version - the case for machines without GPU supporting CUDA. Step-by-step procedure starting from creating conda environment till testing if TensorFlow and Keras Works.
+Summary: Step-by-step install of the CPU-only TensorFlow and Keras on Windows 10 with a conda environment, from creating the environment to testing the setup. Partly outdated since TensorFlow 2.x.
 Tags:
   - machine-learning
   - tensorflow

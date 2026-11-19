@@ -6,7 +6,7 @@ Modified: 2025-11-28
 Status: published
 Tags: git, worktrees, ai-coding, refactoring, workflows, vscode, productivity
 Category: note
-Summary: A practical, hands-on guide to turning a single codebase into a multi-workflow environment using Git worktrees, VS Code, and AI coding assistants. The tutorial shows how to isolate experiments, compare results, and speed up refactoring work with agents and Copilot.
+Summary: A step-by-step tutorial on using Git worktrees, VS Code and AI coding assistants such as GitHub Copilot to run several workflows on one codebase, isolate experiments and compare refactoring results.
 ---
 
 _A practical step-by-step tutorial using Git worktrees, small and large refactorings, and GitHub Copilot._

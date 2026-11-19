@@ -4,7 +4,7 @@ Date: 2023-08-12
 Modified: 2023-08-12
 Slug: storing-private-python-packages-with-local-nas-and-lightweight-servers
 Status: published
-Summary: Learn how to store private Python packages on a local NAS using simple file system repositories or lightweight PyPI servers like `pypiserver`, suitable for small teams and personal projects with basic package management features.
+Summary: "Two simple ways to host private Python packages on a local NAS without Devpi or Artifactory: a plain file system repository or a lightweight server like pypiserver."
 ai_summary: true
 Tags:
   - pypi

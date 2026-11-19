@@ -5,7 +5,7 @@ Image: /images/head/mlops_certificates.jpg
 Slug: mlops-certifications-a-comprehensive-guide
 Start: 2023-01-13
 Status: published
-Summary: Learn about popular MLOps certifications offered by Amazon, Google, and Microsoft. Understand if they are worth the effort and money and discover free MLOps certifications available to gain knowledge and understanding of the field.
+Summary: MLOps-related certifications from AWS and Google Cloud, whether they are worth the effort and money, and free MLOps courses and certificates.
 Tags:
   - mlops
   - certificates

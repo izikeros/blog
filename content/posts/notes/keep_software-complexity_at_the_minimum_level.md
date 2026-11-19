@@ -4,7 +4,7 @@ Date: 2023-02-09
 Modified: 2023-07-12
 Slug: software-complexity-at-the-minimum-level
 Status: published
-Summary: Learn 10 tips for simplifying software complexity, including starting with a simple design, avoiding over-engineering, using clear code, and automating testing, to make your project easier to maintain and scale.
+Summary: Ten tips for keeping software complexity low, such as starting with a simple design, avoiding over-engineering, writing clear code and automating tests.
 ai_summary: true
 Tags:
   - software-development

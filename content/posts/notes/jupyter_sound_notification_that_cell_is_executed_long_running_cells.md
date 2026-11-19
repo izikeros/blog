@@ -4,7 +4,7 @@ Date: 2024-09-13
 Modified: 2024-09-13
 Slug: audio-notifications-in-jupyter-notebooks-across-platforms
 Status: published
-Summary: Learn how to implement sound notifications in Jupyter notebooks using the cross-platform `beepy` package and native macOS commands like `say` and `afplay` for enhanced productivity.
+Summary: "Ways to play a sound when a long-running Jupyter cell finishes: the beepy and playsound packages, the macOS say and afplay commands, winsound on Windows, and JavaScript audio."
 ai_summary: true
 Title: Audio Notifications in Jupyter Notebooks Across Platforms
 Tags:

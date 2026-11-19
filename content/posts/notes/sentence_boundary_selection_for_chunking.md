@@ -4,7 +4,7 @@ Date: 2024-08-30
 Modified: 2024-08-30
 Slug: implementing-sentence-boundary-detection-in-python-for-improved-text-chunkin
 Status: published
-Summary: Learn how to implement sentence boundary detection using spaCy in Python, including handling edge cases and preprocessing techniques for more accurate text chunking.
+Summary: How to implement sentence boundary detection in Python with spaCy to split text into chunks, including edge cases like abbreviations and text preprocessing.
 ai_summary: true
 Title: Implementing Sentence Boundary Detection in Python for Improved Text Chunking
 Tags:

@@ -4,7 +4,7 @@ Date: 2024-01-04
 Modified: 2024-01-04
 Slug: html5-interactive-elements
 Status: published
-Summary: Learn about HTML5's interactive elements like `<details>`, `<summary>`, and `<dialog>` to enhance web content interactivity without complex JavaScript, plus see practical examples.
+Summary: An overview of HTML5 interactive elements - details, summary, dialog, datalist, progress, meter, output and canvas - with short examples that need little or no JavaScript.
 ai_summary: true
 Title: HTML5 interactive elements
 Tags:

@@ -4,7 +4,7 @@ Date: 2023-07-03
 Modified: 2023-07-12
 Slug: token-split-text
 Status: published
-Summary: Learn how to efficiently split text into parts based on token limits using the Tiktoken library and a custom Python module, ensuring meaningful splits without breaking words.
+Summary: A Python module that uses the tiktoken library to split long text into parts that fit a token limit without breaking words.
 ai_summary: true
 Tags:
   - tokenization

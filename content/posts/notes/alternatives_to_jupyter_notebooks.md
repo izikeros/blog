@@ -4,7 +4,7 @@ Date: 2023-02-27
 Modified: 2023-07-12
 Slug: best-alternatives-to-jupyter-notebooks
 Status: published
-Summary: Explore various alternatives to Jupyter Notebooks, including Visual Studio Code, Spyder, PyCharm, and more, each with unique features suited for different data science needs.
+Summary: A list of alternatives to Jupyter Notebooks, including VS Code, Spyder, PyCharm, Marimo, Zeppelin, Databricks and Colab, with the main strengths of each.
 ai_summary: true
 Tags:
   - openai

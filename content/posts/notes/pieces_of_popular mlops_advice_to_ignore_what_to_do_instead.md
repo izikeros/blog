@@ -5,7 +5,7 @@ Modified: 2023-07-12
 Prompt: Give markdown article with hyperlinks on 3 Pieces of Popular MLOps Advice to Ignore — and What to Do Instead. In the article discuss three advices for mlops that are false helpers or are not the best option nowadays. Propose alternative solution to each of these three.
 Slug: pieces-of-popular mlops-advice-to-ignore-what-to-do-instead
 Status: published
-Summary: Discover 3 common MLOps advice to avoid and learn better alternatives to improve your machine learning operations. Learn to use modular, polyglot and multi-cloud approach.
+Summary: Three popular pieces of MLOps advice to ignore - one monolithic platform, one language, one cloud provider - and the modular, polyglot and multi-cloud alternatives.
 Tags:
   - mlops
 Title: 3 Pieces of Popular MLOps Advice to Ignore — And What to Do Instead

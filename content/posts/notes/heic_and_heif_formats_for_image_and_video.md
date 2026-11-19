@@ -4,7 +4,7 @@ Date: 2023-04-14
 Modified: 2023-07-12
 Slug: heif-and-heic-format-for-images-and-video
 Status: published
-Summary: Learn about the benefits of using HEIF and HEIC formats, including smaller file sizes, better image quality, support for advanced features like HDR and WCG, and improved management of image collections.
+Summary: "Explains the HEIF and HEIC image formats: smaller files at similar or better quality, support for HDR and wide color gamut, and how they help manage image collections."
 ai_summary: true
 Tags:
   - heic

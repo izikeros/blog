@@ -4,7 +4,7 @@ Date: 2022-04-14
 Modified: 2023-07-12
 Slug: python-configuration-management
 Status: published
-Summary: None
+Summary: "Overview of Python packages for managing project configuration: hydra, decouple, omegaconf, upsilonconf, ml_collections and Pydantic, with usage examples and short notes on Dynaconf, ConfigParser and Cerberus."
 Tags:
   - python
   - configuration

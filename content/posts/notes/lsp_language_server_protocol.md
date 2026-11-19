@@ -4,7 +4,7 @@ Date: 2025-10-16
 Modified: 2025-10-16
 Slug: language-server-protocol-minimal-example
 Status: published
-Summary: Learn how the Language Server Protocol standardizes communication between code editors and language servers, enabling editors like VS Code to request features such as diagnostics and completions from a single server, simplifying development workflows.
+Summary: How the Language Server Protocol lets editors like VS Code talk to one language server over JSON-RPC to get diagnostics and completions, instead of each editor building its own support.
 ai_summary: true
 Tags: language-server-protocol, vscode, lsp, developer-tools, editors, programming
 Title: Understanding the Language Server Protocol through a Minimal Working Example

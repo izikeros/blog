@@ -4,7 +4,7 @@ Date: 2023-02-23
 Modified: 2023-07-12
 Slug: model-stacking-bagging-ensembling-boosting-5yo
 Status: published
-Summary: Learn how model stacking, bagging, ensembling, and boosting work using a LEGO metaphor to improve machine learning accuracy. Discover how combining different models can create stronger predictive models.
+Summary: Model stacking, bagging, ensembling and boosting explained with a LEGO metaphor, showing how combining several models can give more accurate predictions than one model alone.
 ai_summary: true
 Tags:
   - machine-learning

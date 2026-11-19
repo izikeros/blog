@@ -4,7 +4,7 @@ Date: 2022-04-21
 Modified: 2023-07-12
 Slug: allow-arbitrary-types-pandas-in-pydantic
 Status: published
-Summary: None
+Summary: "Two ways to use a pandas DataFrame as a field type in a Pydantic model: setting arbitrary_types_allowed in the model Config, or defining a TypeVar type hint."
 Tags:
   - pydantic
   - pandas

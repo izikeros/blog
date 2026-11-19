@@ -4,7 +4,7 @@ Date: 2023-07-27
 Modified: 2023-07-27
 Slug: location-of-python-virtual-environments-choosing-between-project-folder-and-central-folder
 Status: published
-Summary: Learn about two methods for managing Python virtual environments—project-folder and centralized approaches—and discover their respective benefits in terms of project organization and maintenance.
+Summary: Compares keeping Python virtual environments inside each project folder with keeping them in one central folder, and how each choice affects cleanup, backup and project organization.
 ai_summary: true
 Title: Location of Python Virtual Environments - Choosing Between Project-Folder and Centralized Folder
 Tags:

@@ -6,7 +6,7 @@ Modified: 2023-01-31
 Slug: finding-errors-in-data
 Start: 2023-01-31
 Status: published
-Summary: Explore methods to detect & fix errors in data, including validation, visualizations, statistical tests, cleaning techniques, machine learning & data quality tools. Get concise, easy to understand information with examples & links to external resources.
+Summary: "Methods for finding and fixing errors in data: data validation, visualizations for outliers, statistical checks like z-scores, cleaning techniques such as imputation, and machine learning methods like anomaly detection."
 Tags:
   - machine-learning
   - data-engineering

@@ -4,7 +4,7 @@ Date: 2023-02-12
 Modified: 2023-07-12
 Slug: how-to-rename-one-or-more-columns-in-pandas-dataframe
 Status: published
-Summary: Learn how to rename one or more columns in a pandas DataFrame using the `rename` function, including renaming single and multiple columns, performing in-place modifications, and using functions for dynamic renaming.
+Summary: "Examples of renaming columns in a pandas DataFrame with rename(): one column, several columns, in-place changes and renaming with a function."
 ai_summary: true
 Tags:
   - pandas

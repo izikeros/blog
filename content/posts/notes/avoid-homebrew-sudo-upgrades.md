@@ -4,7 +4,7 @@ Date: 2025-10-31
 Modified: 2025-10-31
 Slug: avoid-homebrew-sudo-upgrades
 Status: published
-Summary: Learn how to manage Homebrew upgrades on macOS to avoid sudo prompts, by differentiating between formulae and casks and using specific commands like `--formula`, `--cask`, and pinning problematic packages.
+Summary: Why some Homebrew upgrades on macOS ask for sudo (casks installed from .pkg files) and how to avoid it with brew upgrade --formula, separate cask upgrades and pinning problem packages.
 ai_summary: true
 Tags: homebrew, macos, automation, dev-tools
 Title: Avoiding Homebrew Upgrades That Require Sudo on macOS

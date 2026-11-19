@@ -4,7 +4,7 @@ Date: 2023-03-06
 Modified: 2023-07-12
 Slug: rustification-of-python
 Status: published
-Summary: Learn about the trend of integrating Rust into Python to address performance limitations, explore concrete examples like PyO3 and Maturin, and discuss the future role of Rust in Python development.
+Summary: The trend of using Rust to speed up Python, with examples of tools like PyO3 and Maturin and thoughts on Rust's future role in the Python ecosystem.
 ai_summary: true
 Tags:
   - rustification-of-python

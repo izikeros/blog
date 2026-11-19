@@ -4,7 +4,7 @@ Date: 2024-04-19
 Modified: 2024-04-19
 Slug: use-decouple-with-pydantic-or-python-dataclass-to-manage-configuration-in-py
 Status: published
-Summary: Learn how to use `python-decouple` with Pydantic or dataclasses for managing configuration in Python applications, including basic setup and advantages of using these tools.
+Summary: How to load settings with python-decouple and keep them in a Pydantic model or a dataclass, with examples, the advantages of typed config, and whether config should be immutable.
 ai_summary: true
 Title: Use Decouple With Pydantic or Python Dataclass to Manage Configuration in Python App
 Tags:

@@ -4,7 +4,7 @@ Date: 2023-01-27
 Modified: 2023-07-12
 Slug: methods-for-python-ml-models-packaging-and-deployment
 Status: published
-Summary: Learn about different methods of packaging machine learning models—containers for complex dependencies, virtual environments for specific versions, serverless for on-demand invocation, PEX for lightweight deployments, and cloud-based platforms for easy management and scaling.
+Summary: "How to choose a packaging method for ML models: containers for complex dependencies, virtual environments, serverless functions, PEX files for light deployments, and managed cloud platforms."
 ai_summary: true
 Tags:
   - machine-learning

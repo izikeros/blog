@@ -4,7 +4,7 @@ Date: 2025-08-04
 Modified: 2025-08-04
 Slug: chunking-libraries
 Status: Draft
-Summary: Learn about various text chunking libraries, including Docling, zchunk, Chonky, Semchunk, semantic-chunker-langchain, and Semantic_chunking, each offering unique approaches to segmenting text into meaningful chunks.
+Summary: "A list of text chunking libraries for RAG with links: Docling chunkers, zchunk, Chonky, semchunk, semantic-chunker-langchain and Semantic_chunking."
 ai_summary: true
 Title: Chunking Libraries
 Tags:

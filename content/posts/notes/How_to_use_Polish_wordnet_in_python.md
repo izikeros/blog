@@ -4,7 +4,7 @@ Date: 2023-01-17
 Modified: 2023-07-12
 Slug: How-to-use-Polish-wordnet-in-python
 Status: published
-Summary: Learn how to use the Polish WordNet in Python with the `plwordnet` package, including downloading the database, installing necessary libraries, and performing operations like finding synonyms.
+Summary: "How to use the Polish WordNet in Python with the plwordnet package: downloading the database, installing the libraries and running basic queries such as finding synonyms."
 ai_summary: true
 Tags:
   - machine-learning

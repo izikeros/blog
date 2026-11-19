@@ -4,7 +4,7 @@ Date: 2022-05-12
 Modified: 2023-07-12
 Slug: pytest-check-lists-equal
 Status: published
-Summary: Learn how to write a function using pytest to check if two lists are equal by comparing their lengths and sorted contents.
+Summary: A short helper function for test assertions that checks if two lists are equal by comparing their lengths and sorted contents.
 ai_summary: true
 Tags:
   - pytest

@@ -4,7 +4,7 @@ Date: 2023-02-24
 Modified: 2023-07-12
 Slug: plot-in-plot-matplot-lib
 Status: published
-Summary: Learn how to create nested plots using Matplotlib, including adding smaller plots within a larger plot and customizing their positions and titles.
+Summary: How to place smaller plots inside a larger Matplotlib figure and set their position and titles. English translation of a tutorial from mofanpy.com.
 ai_summary: true
 Tags:
   - matplotlib

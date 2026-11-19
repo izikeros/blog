@@ -6,7 +6,7 @@ Modified: 2023-06-05
 Slug: the-best-vector-databases-for-storing-embeddings
 Start: 2023-06-05
 Status: published
-Summary: Look into the World of Vector Databases Fueling NLP's Transformative Journey.
+Summary: Compares vector databases for storing embeddings, including Chroma, Faiss, Milvus, pgvector, Pinecone, Qdrant, Vespa, Weaviate and DeepLake, with a feature table and recommendations for PoCs and advanced use.
 Tags:
   - machine-learning
   - python

@@ -6,7 +6,7 @@ Modified: 2026-02-07
 Slug: blue-green-deployment-in-mlops
 Start: 2023-01-17
 Status: published
-Summary: Learn about blue/green deployment in MLOps, its usefulness and when to use it, and the cost and complexity of maintaining two separate environments
+Summary: What blue/green deployment is, when it is useful for machine learning models, and the cost and complexity of keeping two separate environments.
 Tags:
   - mlops
   - devops

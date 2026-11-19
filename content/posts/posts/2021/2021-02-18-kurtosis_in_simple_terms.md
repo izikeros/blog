@@ -6,7 +6,7 @@ Modified: 2021-02-18
 Slug: kurtosis-in-simple-terms
 Start: 2021-02-18
 Status: published
-Summary: Statistics can be tricky, but understanding kurtosis is a must for anyone who wants to avoid making common mistakes in statistical analyses. Learn how to interpret it in this comprehensive guide.
+Summary: What kurtosis means for normal, flat and peaked distributions, how to interpret it in context, and common mistakes such as relying on it in small samples.
 Tags:
   - statistics
   - python

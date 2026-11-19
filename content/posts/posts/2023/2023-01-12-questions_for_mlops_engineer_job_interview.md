@@ -5,7 +5,7 @@ Image: /images/head/mlops_interview_questions.jpg
 Slug: 50-questions-for-MLOps-engineer-job-interview
 Start: 2023-01-12
 Status: published
-Summary: Get ready for your next MLOps Engineer interview with our comprehensive list of 50+ questions. Covering topics like deployment, management, data pipeline, monitoring, and more.
+Summary: 50 questions for an MLOps engineer job interview, covering model deployment and management, data pipelines, monitoring and related topics.
 Tags:
   - mlops
   - job

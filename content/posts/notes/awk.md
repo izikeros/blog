@@ -12,7 +12,7 @@ Tags:
   - software/alternatives
   - Linux
 Title: Awk
-Summary: Code snippets for AWK
+Summary: AWK one-liners, including a script that checks that every line of a CSV file has the expected number of fields.
 ---
 
 ## Validate CSV number of fields

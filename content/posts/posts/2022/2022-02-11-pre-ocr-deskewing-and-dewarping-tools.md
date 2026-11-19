@@ -5,7 +5,7 @@ Image: /images/head/dewarp_deskew.jpg
 Modified: 2023-07-12
 Slug: tools-for-doc-deskewing-and-dewarping
 Status: Published
-Summary: Sometimes input for document processing tasks such as OCR, table detection or text segmentation can be scanned or photo taken from hand that do not have ideal perspective - is rotated or spatially distorted in some way (warped document). If you are looking for my recommendations go straight to the last section of this article "Summary and recommendations".
+Summary: 15 open-source tools for deskewing and dewarping scanned or photographed documents before OCR, including page_dewarp, DewarpNet, unpaper and deskew, with recommendations on what to use.
 Tags:
   - document-intelligence
   - document-processing

@@ -4,7 +4,7 @@ Date: 2023-02-24
 Modified: 2023-07-12
 Slug: how-to-save-numpy-array-to-file
 Status: published
-Summary: Learn how to save and load single or multiple NumPy arrays using `np.save`, `np.load`, and `np.savez` functions, enabling efficient data persistence.
+Summary: "How to save and load NumPy arrays: np.save and np.load for a single array in a .npy file, and np.savez for several arrays in one file."
 ai_summary: true
 Tags:
   - numpy

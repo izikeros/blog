@@ -4,7 +4,7 @@ Date: 2023-02-02
 Modified: 2023-07-12
 Slug: writing-a-book-or-ebook-in-markdown
 Status: published
-Summary: Write, format, and style your ebook with ease using Markdown, Pandoc, CSS, Calibre, and Git.
+Summary: "A toolchain for writing an ebook in Markdown: a text editor, Pandoc for conversion to EPUB, MOBI and PDF, CSS for styling, Calibre and Git."
 Tags:
   - markdown
   - content-creation

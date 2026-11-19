@@ -4,7 +4,7 @@ Date: 2023-07-28
 Modified: 2024-07-14
 Slug: Rank-fusion-algorithms-from-simple-to-advanced
 Status: published
-Summary: Learn about rank fusion algorithms, starting from the simple Borda method and progressing to advanced techniques like LambdaMART and neural rank fusion, to improve combined ranking reliability.
+Summary: Overview of rank fusion algorithms that combine several ranked lists into one, from the simple Borda count through CPMF, rank-biased precision and reciprocal rank fusion to LambdaMART and neural rank fusion.
 ai_summary: true
 Title: Rank Fusion Algorithms - From Simple to Advanced
 Tags:

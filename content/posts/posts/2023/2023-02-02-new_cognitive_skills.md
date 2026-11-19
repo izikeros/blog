@@ -6,7 +6,7 @@ Modified: 2023-02-02
 Slug: pros-and-cons-of-reliance-on-ai-generating-models
 Start: 2023-02-02
 Status: published
-Summary: Exploring the new cognitive skills of tomorrow with advanced AI generative models.
+Summary: A speculative essay on new cognitive skills people may develop when large language models present information tailored to them, such as processing complex information faster.
 Tags:
   - AI
   - future

@@ -4,7 +4,7 @@ Date: 2023-07-08
 Modified: 2023-07-12
 Slug: software-versioning-schemes
 Status: published
-Summary: Learn about popular versioning schemes like Semantic Versioning, Calendar Versioning, and ZeroVer, along with lesser-known alternatives such as Romantic and Hash-based Versioning, to better manage software releases and updates.
+Summary: "Overview of software versioning schemes: Semantic Versioning, Calendar Versioning and ZeroVer, plus less common ones like Romantic, hash-based and custom versioning."
 ai_summary: true
 Tags:
   - versioning

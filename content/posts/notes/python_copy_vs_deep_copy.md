@@ -4,7 +4,7 @@ Date: 2025-03-20
 Modified: 2025-03-20
 Slug: understanding-pythons-copy-vs-deepcopy-when-to-use-each
 Status: published
-Summary: Learn when to use `copy.copy()` for shallow copying and `copy.deepcopy()` for deep copying in Python, understanding their differences and typical use cases.
+Summary: The difference between shallow copying with copy.copy() and deep copying with copy.deepcopy() in Python, with typical use cases and pitfalls of each.
 ai_summary: true
 Tags:
   - python
