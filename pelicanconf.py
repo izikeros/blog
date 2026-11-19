@@ -370,6 +370,7 @@ PLUGINS = [
     "pelican_ai_analyzer_bar",  # AI service buttons for article analysis
     "llms_txt",  # Generate /llms.txt index for LLM tools (llmstxt.org)
     "category_redirects",  # Redirect pages for removed category URLs
+    "image_dimensions",  # width/height for Image metadata (no layout shift)
 ]
 
 # Category taxonomy (2026-11): old category slug -> new location
