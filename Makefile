@@ -46,6 +46,8 @@ help:
 	@echo '   make fix-duplicate-ids              remove duplicate HTML IDs from md  '
 	@echo '   make remove-anchor-ids              remove <a id> anchors from md      '
 	@echo '   make generate-summaries             generate missing summaries (Ollama)'
+	@echo '   make validate-frontmatter           check post metadata (read-only)    '
+	@echo '   make check                          frontmatter + unit tests (safe)    '
 	@echo '                                                                          '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
@@ -117,7 +119,16 @@ generate-summaries:
 	@echo "Generating missing article summaries with Ollama..."
 	@$(PY) scripts/generate_summaries.py "$(INPUTDIR)/posts"
 
+validate-frontmatter:
+	@$(PY) scripts/validate_frontmatter.py
+
+test:
+	@$(PY) -m pytest -q tests/test_validate_and_llms_txt.py
+
+# Non-mutating checks, safe for agents/CI: frontmatter + unit tests
+check: validate-frontmatter test
+
 push:
 	git add . && git commit -m "Blog content update" && git push
 
-.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html validate-html-strict fix-duplicate-ids remove-anchor-ids generate-summaries
+.PHONY: html help clean regenerate e2e venv serve serve-global devserver publish push format-html validate-html validate-html-strict fix-duplicate-ids remove-anchor-ids generate-summaries validate-frontmatter test check
