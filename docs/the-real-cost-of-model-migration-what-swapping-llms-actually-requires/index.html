@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-code">
 <head>
     <meta charset="utf-8"/>
     <meta name="color-scheme" content="light dark"/>
@@ -16,18 +16,26 @@
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
-              rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/stylesheet/style.css">
 
 
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/pygments/github.min.css">
+    <link id="pygments-light" rel="stylesheet" type="text/css"
+          href="https://safjan.com/theme/pygments/github.min.css"
+          media="(prefers-color-scheme: light)">
+    <link id="pygments-dark" rel="stylesheet" type="text/css"
+          href="https://safjan.com/theme/pygments/github-dark.min.css"
+          media="(prefers-color-scheme: dark)">
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t === 'dark' || t === 'light') {
+          document.getElementById('pygments-light').media = t === 'light' ? 'all' : 'not all';
+          document.getElementById('pygments-dark').media = t === 'dark' ? 'all' : 'not all';
+        }
+      })();
+    </script>
 
-
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/fontawesome.css">
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/brands.css">
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/solid.css">
 
     <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css">
 
@@ -63,40 +71,28 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here&#39;s what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way."/>
-    <meta name="keywords" content="llm-migration, model-deprecation, rag-systems, prompt-engineering, production-ai, ai-evaluation, llmops, reasoning-models, dspy, prompt-optimization, ai-architecture, retrieval-augmented-generation, ai-reliability, gpt-4o-mini, model-versioning, ai-observability, progressive-rollout, faithfulness-evaluation, technical-debt, ai-engineering">
+    <meta name="description" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks through what a migration actually requires - evaluation, prompt portability, reasoning model placement and rollout."/>
+    <meta name="keywords" content="llm-migration, model-deprecation, rag-systems, prompt-engineering, ai-evaluation, llmops, reasoning-models, dspy">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="The Real Cost of Model Migration - What Swapping LLMs Actually Requires"/>
-  <meta property="og:description" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here&#39;s what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way."/>
+  <meta property="og:description" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks through what a migration actually requires - evaluation, prompt portability, reasoning model placement and rollout."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://safjan.com/the-real-cost-of-model-migration-what-swapping-llms-actually-requires/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2026-04-09 00:00:00+02:00"/>
-  <meta property="article:modified_time" content="2026-04-09 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2026-11-19 00:00:00+01:00"/>
   <meta property="article:author" content="https://safjan.com/author/krystian-safjan/"/>
-  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:section" content="LLM Engineering"/>
   <meta property="article:tag" content="llm-migration"/>
   <meta property="article:tag" content="model-deprecation"/>
   <meta property="article:tag" content="rag-systems"/>
   <meta property="article:tag" content="prompt-engineering"/>
-  <meta property="article:tag" content="production-ai"/>
   <meta property="article:tag" content="ai-evaluation"/>
   <meta property="article:tag" content="llmops"/>
   <meta property="article:tag" content="reasoning-models"/>
   <meta property="article:tag" content="dspy"/>
-  <meta property="article:tag" content="prompt-optimization"/>
-  <meta property="article:tag" content="ai-architecture"/>
-  <meta property="article:tag" content="retrieval-augmented-generation"/>
-  <meta property="article:tag" content="ai-reliability"/>
-  <meta property="article:tag" content="gpt-4o-mini"/>
-  <meta property="article:tag" content="model-versioning"/>
-  <meta property="article:tag" content="ai-observability"/>
-  <meta property="article:tag" content="progressive-rollout"/>
-  <meta property="article:tag" content="faithfulness-evaluation"/>
-  <meta property="article:tag" content="technical-debt"/>
-  <meta property="article:tag" content="ai-engineering"/>
   <meta property="og:image" content="https://safjan.com//images/head/chatbot_model_replacement_640px.jpg"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
@@ -108,7 +104,7 @@
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
     <meta name="twitter:title" content="The Real Cost of Model Migration - What Swapping LLMs Actually Requires"/>
-    <meta name="twitter:description" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here&#39;s what a migration actually requires, from..."/>
+    <meta name="twitter:description" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks through what a migration actually..."/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -119,7 +115,7 @@
   },
   "headline": "The Real Cost of Model Migration - What Swapping LLMs Actually Requires",
   "datePublished": "2026-04-09T00:00:00+02:00",
-  "dateModified": "2026-04-09T00:00:00+02:00",
+  "dateModified": "2026-11-19T00:00:00+01:00",
   "author": {
     "@type": "Person",
     "name": "Krystian Safjan",
@@ -133,11 +129,11 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "https://safjan.com//images/head/chatbot_model_replacement_640px.jpg",  "url": "https://safjan.com/the-real-cost-of-model-migration-what-swapping-llms-actually-requires/",
-  "description": "Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here's what a...",
-  "articleSection": "Machine Learning",
+  "description": "Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks...",
+  "articleSection": "LLM Engineering",
   "inLanguage": "en",
-  "keywords": "llm-migration, model-deprecation, rag-systems, prompt-engineering, production-ai, ai-evaluation, llmops, reasoning-models, dspy, prompt-optimization, ai-architecture, retrieval-augmented-generation, ai-reliability, gpt-4o-mini, model-versioning, ai-observability, progressive-rollout, faithfulness-evaluation, technical-debt, ai-engineering",
-  "wordCount": 5333,
+  "keywords": "llm-migration, model-deprecation, rag-systems, prompt-engineering, ai-evaluation, llmops, reasoning-models, dspy",
+  "wordCount": 5406,
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["article h1", ".summary", ".tldr", "article \u003e p:first-of-type"]
@@ -157,8 +153,8 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Machine Learning",
-      "item": "https://safjan.com/category/machine-learning.html"
+      "name": "LLM Engineering",
+      "item": "https://safjan.com/category/llm-engineering.html"
     },
     {
       "@type": "ListItem",
@@ -171,16 +167,16 @@
 
 
 
-<meta name="ai:summary" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here&#39;s what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way.">
+<meta name="ai:summary" content="Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks through what a migration actually requires - evaluation, prompt portability, reasoning model placement and rollout.">
 
-<meta name="ai:topics" content="llm-migration, model-deprecation, rag-systems, prompt-engineering, production-ai, ai-evaluation, llmops, reasoning-models, dspy, prompt-optimization, ai-architecture, retrieval-augmented-generation, ai-reliability, gpt-4o-mini, model-versioning, ai-observability, progressive-rollout, faithfulness-evaluation, technical-debt, ai-engineering">
+<meta name="ai:topics" content="llm-migration, model-deprecation, rag-systems, prompt-engineering, ai-evaluation, llmops, reasoning-models, dspy">
 
 
 
-<meta name="ai:word-count" content="5333">
-<meta name="ai:reading-time" content="26 min">
+<meta name="ai:word-count" content="5406">
+<meta name="ai:reading-time" content="27 min">
 
-<meta name="ai:section" content="Machine Learning">
+<meta name="ai:section" content="LLM Engineering">
 
 
 
@@ -207,50 +203,50 @@
             <a href="https://safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
+<p>AI/ML technical leader · building LLM & RAG systems in enterprise · evaluation, LLMOps, engineering leadership</p>
 
 
         <ul class="social">
                 <li>
-                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
-                       target="_blank">
-                        <i class="fab fa-linkedin"></i>
+                    <a rel="noopener noreferrer" class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank" aria-label="LinkedIn">
+                        <svg class="icon icon-linkedin" style="width: 0.875em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-linkedin"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-github" href="https://github.com/izikeros"
-                       target="_blank">
-                        <i class="fab fa-github"></i>
+                    <a rel="noopener noreferrer" class="sc-github" href="https://github.com/izikeros"
+                       target="_blank" aria-label="GitHub">
+                        <svg class="icon icon-github" style="width: 0.969em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-github"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
-                       target="_blank">
-                        <i class="fas fa-envelope"></i>
+                    <a rel="noopener noreferrer" class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank" aria-label="Email">
+                        <svg class="icon icon-envelope" style="width: 1.0em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-envelope"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
-                       target="_blank">
-                        <i class="fas fa-graduation-cap"></i>
+                    <a rel="noopener noreferrer" class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank" aria-label="Google Scholar">
+                        <svg class="icon icon-graduation-cap" style="width: 1.25em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-graduation-cap"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-rss" href="/feeds/all.rss.xml"
-                       target="_blank">
-                        <i class="fas fa-rss"></i>
+                    <a rel="noopener noreferrer" class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank" aria-label="RSS feed">
+                        <svg class="icon icon-rss" style="width: 0.875em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-rss"></use></svg>
                     </a>
                 </li>
         </ul>
 
             <a class="linkedin-follow-btn"
                href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=krystiansafjan"
-               target="_blank">Follow on LinkedIn</a>
+               target="_blank" rel="noopener noreferrer">Follow on LinkedIn</a>
     </div>
 
 <div class="promo-box">
     <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
-        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover" width="280" height="300" loading="lazy" decoding="async">
     </a>
     
     <p class="promo-box-headline">Ace Your MLOps Interview</p>
@@ -282,8 +278,8 @@
                 <pagefind-searchbox placeholder="Search..." hide-shortcut></pagefind-searchbox>
             </div>
             <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
+                <svg class="icon icon-sun" style="width: 1.0em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-sun"></use></svg>
+                <svg class="icon icon-moon" style="width: 1.0em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-moon"></use></svg>
             </button>
         </nav>
 
@@ -296,10 +292,11 @@
 
 
                 <br/>
+                    <span class="article-updated">Updated: <time datetime="2026-11-19T00:00:00+01:00">2026-11-19</time></span>
             </p>
-            <h1>The Real Cost of Model Migration - What Swapping LLMs Actually Requires</h1>
+            <h1 data-pagefind-body data-pagefind-meta="title" data-pagefind-weight="10">The Real Cost of Model Migration - What Swapping LLMs Actually Requires</h1>
             <div class="header-underline"></div>
-                <div class="summary"><p>Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. Here's what a migration actually requires, from evaluation to prompt portability to rollout, based on doing this a few times the hard way.</p></div>
+                <div class="summary" data-pagefind-body><p>Model deprecations are routine. What they expose underneath - unmeasured quality, model-coupled prompts, unversioned behavior - rarely is. This post walks through what a migration actually requires - evaluation, prompt portability, reasoning model placement and rollout.</p></div>
 <div class="ai-analyzer-bar">
     <div class="ai-analyzer-bar-inner">
     <span class="ai-analyzer-text">Summarize and analyze this article with:</span>
@@ -326,8 +323,9 @@
 
                 <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://safjan.com/the-real-cost-of-model-migration-what-swapping-llms-actually-requires/">
-                        <img style="width: 100%; "
-                             src="/images/head/chatbot_model_replacement_640px.jpg" alt="The Real Cost of Model Migration - What Swapping LLMs Actually Requires">
+                        <img style="width: 100%; height: auto;"
+                             src="/images/head/chatbot_model_replacement_640px.jpg" alt="The Real Cost of Model Migration - What Swapping LLMs Actually Requires"
+width="640" height="349" fetchpriority="high" decoding="async">
                     </a>
                 </div>
 
@@ -336,42 +334,60 @@
 
 
 
+        <details class="toc-details" id="toc-container" data-min-headings="5">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
 
-        <div class="article-content">
+        <div class="article-content" data-pagefind-body>
             <p>So OpenAI deprecated <code>gpt-4o-mini</code>. Or some other model you've built your whole system around just got a sunset date. The email lands and your first thought is: <em>how hard can a model swap be?</em></p>
-<p>I've been through this a few times now. The API call swap? Easy. Twenty minutes, tops. But the swap has a way of revealing every shortcut and assumption your system has been quietly depending on. That's the part people don't usually mention until you're already in it.</p>
+<p>The API call swap itself is easy. Twenty minutes, tops. But the swap has a way of revealing every shortcut and assumption your system has been quietly depending on. That's the part people don't usually mention until you're already in it.</p>
+<h2 id="tldr">TLDR</h2>
+<ul>
+<li>Swapping the model name takes minutes. The real work is finding out what your system was quietly depending on.</li>
+<li>Build an evaluation harness (golden dataset, Ragas metrics, pass/fail gates) before you change anything.</li>
+<li>Label every prompt instruction as SPEC or PATCH - patches written for the old model are the first candidates to drop.</li>
+<li>DSPy can re-optimize the prompt for the new model; use it as a one-off migration tool unless you plan to keep experimenting.</li>
+<li>Put reasoning models where decisions are made (query decomposition, orchestration, verification), not in plain answer generation.</li>
+<li>Pin dated model versions, roll out gradually, and keep running evals after the migration.</li>
+</ul>
 <h2 id="table-of-contents">Table of contents</h2>
 <ol>
 <li><a href="#what-migration-actually-is">What migration actually is</a></li>
 <li><a href="#the-model-options-in-2026">The model options in 2026</a></li>
-<li><a href="#phase-0--know-what-youre-migrating-from">Phase 0 - Know what you're migrating from</a></li>
-<li><a href="#phase-1--build-your-evaluation-harness-first">Phase 1 - Build your evaluation harness first</a></li>
-<li><a href="#phase-2--the-prompt-portability-problem">Phase 2 - The prompt portability problem</a></li>
-<li><a href="#phase-3--automated-prompt-optimization-with-dspy">Phase 3 - Automated prompt optimization with DSPy</a></li>
-<li><a href="#phase-4--reasoning-models-where-they-belong">Phase 4 - Reasoning models: where they belong</a></li>
-<li><a href="#phase-5--handling-missing-parameters">Phase 5 - Handling missing parameters</a></li>
-<li><a href="#phase-6--risk-assessment">Phase 6 - Risk assessment</a></li>
-<li><a href="#phase-7--progressive-rollout">Phase 7 - Progressive rollout</a></li>
-<li><a href="#phase-8--post-migration-monitoring">Phase 8 - Post-migration monitoring</a></li>
+<li><a href="#phase-0-know-what-youre-migrating-from">Phase 0 - Know what you're migrating from</a></li>
+<li><a href="#phase-1-build-your-evaluation-harness-first">Phase 1 - Build your evaluation harness first</a></li>
+<li><a href="#phase-2-the-prompt-portability-problem">Phase 2 - The prompt portability problem</a></li>
+<li><a href="#phase-3-automated-prompt-optimization-with-dspy">Phase 3 - Automated prompt optimization with DSPy</a></li>
+<li><a href="#phase-4-reasoning-models-where-they-belong">Phase 4 - Reasoning models: where they belong</a></li>
+<li><a href="#phase-5-handling-parameter-differences">Phase 5 - Handling parameter differences</a></li>
+<li><a href="#phase-6-risk-assessment">Phase 6 - Risk assessment</a></li>
+<li><a href="#phase-7-progressive-rollout">Phase 7 - Progressive rollout</a></li>
+<li><a href="#phase-8-post-migration-monitoring">Phase 8 - Post-migration monitoring</a></li>
 <li><a href="#the-systems-audit-you-should-run-regardless">The systems audit you should run regardless</a></li>
 </ol>
 <h2 id="what-migration-actually-is">What migration actually is</h2>
-<p>Here's the (uncomfortable) truth: a model migration is really a systems audit. It just happens to come with a deadline someone else set for you.</p>
-<p>When you swap the model under a RAG pipeline, you're removing the environment your system's behavior was calibrated in. And you get to find out how much of that behavior was intentional versus... just kind of happened over time.</p>
+<p>A model migration is really a systems audit, with a deadline someone else set for you.</p>
+<p>When you swap the model under a RAG pipeline, you're removing the environment your system's behavior was calibrated in. And you get to find out how much of that behavior was intentional and how much just happened over time.</p>
 <p>Three things consistently surface during migration that were invisible before:</p>
 <p><strong>Quality often wasn't measured.</strong> A lot of production LLM systems have never been formally evaluated. No golden dataset, no faithfulness score, no format compliance check. "Quality" is whatever the team last looked at and didn't complain about. You can't claim "no quality loss" if you never measured quality to begin with.</p>
-<p><strong>Your prompt is coupled to the old model.</strong> That system prompt you spent weeks on? It's not a specification. It's a negotiation artifact, the residue of back-and-forth between your intentions and one specific model's quirks. Swap the model and you haven't ported a prompt. You've orphaned it. (This one hurts. More in <a href="#phase-2--the-prompt-portability-problem">Phase 2</a>.)</p>
-<p><strong>Model behavior often isn't versioned.</strong> Pinning a model name isn't the same as pinning model behavior. OpenAI updates weights behind dated aliases without telling you. If you're using <code>gpt-4o-mini</code> as a floating pointer, you may have already had a silent behavioral change in production. If your observability didn't catch it... well, that tells you something about your observability.</p>
-<p>The teams who migrate cleanly aren't the ones with the best migration plans. They're the ones who treated their LLM system like a real production system long before a deadline showed up.</p>
+<p><strong>Your prompt is coupled to the old model.</strong> The system prompt you spent weeks on is usually less a specification and more a record of negotiations between your intentions and one model's quirks. When you swap the model, much of it stops making sense (more in <a href="#phase-2-the-prompt-portability-problem">Phase 2</a>).</p>
+<p><strong>Model behavior often isn't versioned.</strong> Pinning a model name isn't the same as pinning model behavior. OpenAI can update the model behind a floating alias without telling you. If you're using <code>gpt-4o-mini</code> as a floating pointer, you may have already had a silent behavioral change in production. If your monitoring didn't catch it, that's worth knowing before the migration starts.</p>
+<p>Migration goes much smoother for teams that treated their LLM system like a real production system long before the deadline showed up.</p>
 <h2 id="the-model-options-in-2026">The model options in 2026</h2>
+<blockquote>
+<p><strong>NOTE:</strong> Model names, prices and API parameters below are as of April 2026. Check the current provider docs before relying on them.</p>
+</blockquote>
 <p><em>Note: While this article uses OpenAI models as examples, the migration patterns, evaluation strategies, and architectural decisions apply to any LLM provider. The same principles work whether you're migrating between Anthropic's Claude models, open-source models, or any other provider.</em></p>
 <p>Before you plan anything, you need to know what you're migrating <em>to</em>. OpenAI's current model family has two very different architectures, and picking the wrong one can create more problems than the deprecation itself.</p>
 <h3 id="standard-instruction-models">Standard instruction models</h3>
 <p><a href="https://platform.openai.com/docs/models/gpt-5.4">GPT-5.4</a>, <a href="https://platform.openai.com/docs/models/gpt-5.4-mini">GPT-5.4-mini</a>, and <a href="https://platform.openai.com/docs/models/gpt-5.4-nano">GPT-5.4-nano</a> are the current flagship models. They support variable <code>reasoning_effort</code> (none/low/medium/high/xhigh), plus all the standard parameters: <code>temperature</code>, system prompts, JSON mode, function calling, streaming. For most RAG answer generation workloads, one of these is where you should land.</p>
-<p><strong>Recommended default for gpt-4o-mini replacement: <code>gpt-5.4-nano</code></strong> -comparable cost tier (<span class="math">\(0.20 per million input tokens vs $0.10 for gpt-4o-mini), significantly more capable, fully API-compatible. If you need the extra capability and can handle the cost, <code>gpt-5.4-mini</code> (\)</span>0.75/MTok input) is a strong middle option.</p>
+<p><strong>Recommended default for gpt-4o-mini replacement: <code>gpt-5.4-nano</code></strong> - comparable cost tier (<span class="math">\(0.20 per million input tokens vs $0.10 for gpt-4o-mini), more capable, fully API-compatible. If you need the extra capability and can handle the cost, <code>gpt-5.4-mini</code> (\)</span>0.75/MTok input) is a strong middle option.</p>
 <h3 id="pure-reasoning-models">Pure reasoning models</h3>
 <p>The <a href="https://openai.com/index/introducing-o3-and-o4-mini/">o-series models</a> (o3, o4-mini) are pure reasoning models without the hybrid flexibility of GPT-5.x. They <em>only</em> do reasoning, don't support <code>temperature</code> or standard sampling parameters, and use <code>reasoning_effort</code> as the sole control. These are specialists.</p>
-<p>Here's what most people get wrong: for typical RAG pipelines, pure reasoning models aren't better answer generators. They're decision infrastructure. I'll get into exactly where they earn their cost in <a href="#phase-4--reasoning-models-where-they-belong">Phase 4</a>.</p>
+<p>A common mistake is to treat pure reasoning models as better answer generators. In typical RAG pipelines they are more useful for the decisions around generation: query decomposition, routing and verification. I'll get into exactly where they earn their cost in <a href="#phase-4-reasoning-models-where-they-belong">Phase 4</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="nx">Model</span><span class="w"> </span><span class="nx">selection</span><span class="w"> </span><span class="nx">decision</span><span class="w"> </span><span class="nx">tree</span><span class="p">:</span>
 
 <span class="nx">Is</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">answer</span><span class="w"> </span><span class="nx">synthesis</span><span class="w"> </span><span class="nx">step</span><span class="w"> </span><span class="nx">genuinely</span><span class="w"> </span><span class="nx">multi</span><span class="o">-</span><span class="nx">hop</span><span class="p">?</span>
@@ -384,8 +400,8 @@
 <span class="w">                        </span><span class="k">for</span><span class="w"> </span><span class="nx">verification</span><span class="w"> </span><span class="nx">layer</span><span class="w"> </span><span class="nx">over</span><span class="w"> </span><span class="nx">synthesis</span>
 </code></pre></div>
 
-<h2 id="phase-0-know-what-youre-migrating-from">Phase 0 -Know what you're migrating from</h2>
-<p>I know, I know. You want to start swapping things. But before you write a line of migration code, document what your system actually does right now. Otherwise you'll have no way to tell if the migration worked or just seemed like it did.</p>
+<h2 id="phase-0-know-what-youre-migrating-from">Phase 0 - Know what you're migrating from</h2>
+<p>It's tempting to start swapping things right away. Before you write a line of migration code, document what your system actually does right now. Otherwise you'll have no way to tell if the migration worked or just seemed like it did.</p>
 <h3 id="inventory-your-integration-surface">Inventory your integration surface</h3>
 <p>Pull every place in your codebase where the model name appears. This includes:</p>
 <ul>
@@ -406,9 +422,9 @@
 </ul>
 <p>Each of these is a behavioral assumption about your current model. And each assumption is a place where things can quietly break.</p>
 <h3 id="get-a-pre-migration-quality-snapshot">Get a pre-migration quality snapshot</h3>
-<p>Run your current system against a sample of real production queries and save the outputs. This is your before-state. Even if you don't have a formal eval harness yet, just having the raw outputs lets you compare later. Future-you will be grateful.</p>
+<p>Run your current system against a sample of real production queries and save the outputs. This is your before-state. Even if you don't have a formal eval harness yet, just having the raw outputs lets you compare later.</p>
 <h2 id="phase-1-build-your-evaluation-harness-first">Phase 1 - Build your evaluation harness first</h2>
-<p>I can't stress this enough. Everything else you do, prompt changes, model selection, rollout strategy, is going to be guided by what your evals tell you. Skip this and you'll discover regressions in production. I've watched teams do this. The cost of fixing things at that point is genuinely 10x higher.</p>
+<p>This is the most important phase. Everything else you do - prompt changes, model selection, rollout strategy - is going to be guided by what your evals tell you. Skip it and you'll discover regressions in production, where they are much more expensive to fix.</p>
 <h3 id="build-a-golden-dataset">Build a golden dataset</h3>
 <p>Sample 200–500 real queries from production logs. For each, store:</p>
 <ul>
@@ -418,7 +434,7 @@
 <li>For as many as you can afford: a human-verified "ideal" answer</li>
 </ul>
 <blockquote>
-<p>Notice: with this approach you are preparing for testing answer generation part of the RAG not the retriever.</p>
+<p><strong>NOTE:</strong> This approach tests the answer generation part of the RAG pipeline, not the retriever.</p>
 </blockquote>
 <p><strong>Don't sample uniformly.</strong> Stratify on purpose. Include:</p>
 <table>
@@ -451,12 +467,12 @@
 </tr>
 </tbody>
 </table>
-<p>Aim for at least 50 human-verified examples. 200 is significantly better.</p>
+<p>Aim for at least 50 human-verified examples. 200 is much better.</p>
 <h3 id="what-to-evaluate">What to evaluate</h3>
 <p>For a RAG system, here's what you actually need to measure:</p>
 <p><strong>Faithfulness</strong> - does the answer only claim things supported by the retrieved context? This is the big one. A model that hallucinates confidently is scarier than one that refuses to answer. Use the <a href="https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html">Ragas faithfulness metric</a>.</p>
 <p><strong>Answer relevance</strong> - does it answer what was actually asked? (<a href="https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html">Ragas answer relevance</a>)</p>
-<p><strong>Format compliance</strong> - does the output match your schema? JSON structure, citation format, length constraints. You'll likely need a custom  metric here because format requirements vary widely.</p>
+<p><strong>Format compliance</strong> - does the output match your schema? JSON structure, citation format, length constraints. You'll likely need a custom LLM-as-judge metric here because format requirements vary widely.</p>
 <p><strong>Refusal accuracy</strong> - when the context doesn't contain the answer, does the model say "I don't know" instead of making something up?</p>
 <p><strong>Groundedness</strong> - can you trace specific claims back to specific chunks? Similar to faithfulness but more granular.</p>
 <h3 id="evaluation-tooling">Evaluation tooling</h3>
@@ -465,13 +481,15 @@
 <p><a href="https://smith.langchain.com/">LangSmith</a> or <a href="https://www.braintrust.dev/">Braintrust</a> if you want persistent experiment tracking. They store eval runs with scores, let you diff outputs visually, and can alert on regressions. Worth setting up if this migration will take more than a week.</p>
 <p><a href="https://mlflow.org/docs/latest/genai/tracing/">MLflow</a> for teams already in the MLflow ecosystem. It has native LLM tracking and integrates directly with DSPy (covered in Phase 3).</p>
 <h3 id="define-passfail-gate-criteria">Define pass/fail gate criteria</h3>
-<p>Do this <em>before</em> running any evals. Seriously. If you define criteria after seeing results, you'll unconsciously anchor them to whatever the new model happens to achieve. Human brains are terrible at this.</p>
-<p>Example gate criteria:
-- Faithfulness score ≥ 0.92
-- Format compliance ≥ 0.98
-- Answer relevance ≥ 0.90
-- P95 latency within 20% of baseline
-- Refusal accuracy ≥ 0.95 on out-of-scope stratum</p>
+<p>Do this <em>before</em> running any evals. If you define criteria after seeing results, it's very easy to anchor them, without noticing, to whatever the new model happens to achieve.</p>
+<p>Example gate criteria:</p>
+<ul>
+<li>Faithfulness score ≥ 0.92</li>
+<li>Format compliance ≥ 0.98</li>
+<li>Answer relevance ≥ 0.90</li>
+<li>P95 latency within 20% of baseline</li>
+<li>Refusal accuracy ≥ 0.95 on out-of-scope stratum</li>
+</ul>
 <pre class="mermaid">
 flowchart TD
     A[Sample 200-500 production queries] --> B[Stratify by difficulty and type]
@@ -486,7 +504,7 @@ flowchart TD
 </pre>
 
 <h2 id="phase-2-the-prompt-portability-problem">Phase 2 - The prompt portability problem</h2>
-<p>Okay, this is the part that causes the most pain, and people don't usually talk about it honestly.</p>
+<p>This is the part that usually causes the most pain, and it's rarely discussed honestly.</p>
 <h3 id="written-prompts-vs-tuned-prompts">Written prompts vs tuned prompts</h3>
 <p>There's a difference between a prompt that <em>specifies</em> behavior and a prompt that was <em>tweaked until outputs stopped looking weird</em>. It's a bigger difference than you'd think.</p>
 <p><strong>A written prompt</strong> starts from a behavioral spec. You know what the system must do, what it must not do, what the output format looks like. The constraints are verifiable regardless of which model you're running:</p>
@@ -507,15 +525,15 @@ flowchart TD
 </ul>
 <p>None of these describe what your system is <em>supposed</em> to do. They're band-aids for specific past failures of a model that no longer exists.</p>
 <h3 id="why-tuned-prompts-are-so-common">Why tuned prompts are so common</h3>
-<p>If you're feeling called out right now, don't. The vast majority of production RAG prompts are more tuned than written.</p>
-<p><strong>Patching is faster than specifying.</strong> When you're iterating on a RAG system, you see problems and fix them. The fastest fix is usually adding an instruction. Writing a proper spec requires knowing all failure modes before you've seen them, which is... impossible when failures emerge from interaction with real data.</p>
+<p>If this describes your prompt, you're in good company. Tuned prompts are common, and there are good reasons for it.</p>
+<p><strong>Patching is faster than specifying.</strong> When you're iterating on a RAG system, you see problems and fix them. The fastest fix is usually adding an instruction. Writing a proper spec requires knowing all failure modes before you've seen them, which is impossible when failures emerge from interaction with real data.</p>
 <p><strong>Nothing forces you to notice until migration.</strong> A tuned prompt works. It produces acceptable outputs on the current model. The coupling only becomes visible when you remove the thing it's coupled to.</p>
-<p><strong>Many teams never wrote a spec to begin with.</strong> Writing a specification for "correct behavior" before building the system requires a level of foresight that's genuinely hard to have. So the prompt <em>became</em> the spec over time, simultaneously the behavioral specification and the accumulated technical debt. Good luck telling them apart from the inside.</p>
+<p><strong>Many teams never wrote a spec to begin with.</strong> Writing a specification for "correct behavior" before building the system requires a level of foresight that's hard to have. So the prompt <em>became</em> the spec over time, simultaneously the behavioral specification and the accumulated technical debt. Good luck telling them apart from the inside.</p>
 <h3 id="what-to-do-about-it">What to do about it</h3>
 <p><strong>Start with prompt archaeology.</strong> Before you touch anything, go through every instruction in your current prompt and label it as either:
 - <code>SPEC</code> - this describes intended behavior, survives model changes
 - <code>PATCH</code> - this suppresses a specific failure, may not be relevant to new model</p>
-<p>In my experience, most 500+ word prompts end up being about 40% spec and 60% patch. The patches are candidates for removal or replacement after you test compatibility with the new model.</p>
+<p>Long prompts that grew over months are often more patch than spec. The patches are candidates for removal or replacement after you test compatibility with the new model.</p>
 <p><strong>Run a compatibility baseline before touching anything.</strong> Take your existing prompt verbatim, swap only the model name, run your golden dataset through it, and score with Ragas. This tells you how much of the prompt is still needed versus how much is suppressing behaviors the new model doesn't even have.</p>
 <p><strong>Reconstruct minimally.</strong> Where scores dropped, investigate the failure patterns before changing the prompt. Don't just start adding instructions (that's how you got here). Common adaptation points:</p>
 <table>
@@ -767,10 +785,10 @@ flowchart TD
 <p><strong>With GPT-5.x models:</strong> You can still use <code>temperature=0</code> for deterministic output. If you want reasoning on specific queries, add <code>reasoning_effort: low</code> or <code>medium</code>. The two parameters work together.</p>
 <p><strong>With pure reasoning models (o-series):</strong> No temperature control. The reasoning process itself stabilizes output, giving you consistency by default. If you needed temperature for diversity (generating multiple answer variants), replace it with explicit prompt variants or use a GPT-5.x model with <code>temperature</code> + <code>reasoning_effort: none</code>.</p>
 <h3 id="the-max_completion_tokens-trap">The <code>max_completion_tokens</code> trap</h3>
-<p>Set this generously. Here's why: thinking tokens don't appear in your output but they're billed and count against this budget. At <code>high</code> effort, a single complex query can burn 10,000-50,000 thinking tokens. If <code>max_completion_tokens</code> is too low, the model's reasoning gets truncated mid-thought. You get degraded output and no obvious error signal. Start at 16,000 for medium effort, 32,000+ for high effort, and keep an eye on actual consumption.</p>
+<p>Set this generously. Thinking tokens don't appear in your output but they're billed and count against this budget. At <code>high</code> effort, a single complex query can burn 10,000-50,000 thinking tokens. If <code>max_completion_tokens</code> is too low, the model's reasoning gets truncated mid-thought. You get degraded output and no obvious error signal. Start at 16,000 for medium effort, 32,000+ for high effort, and keep an eye on actual consumption.</p>
 <h3 id="prompt-verbosity-inversion-with-reasoning">Prompt verbosity inversion with reasoning</h3>
 <p>This one's weird if you've internalized standard prompt engineering advice. When using reasoning (either pure o-series models or GPT-5.x with <code>reasoning_effort</code> &gt; none), being explicit and repetitive hurts. Over-specified prompts interfere with the internal reasoning chain. The model follows your constraints mechanically instead of actually reasoning toward the goal.</p>
-<p>Write shorter, higher-trust prompts when reasoning is active. Define the <em>goal</em> and <em>constraints</em> but leave the <em>method</em> to the model. I know this feels uncomfortable. It's the opposite of everything we learned, but it works.</p>
+<p>Write shorter, higher-trust prompts when reasoning is active. Define the <em>goal</em> and <em>constraints</em> but leave the <em>method</em> to the model. This goes against the usual prompt engineering advice, so test both variants on your golden set.</p>
 <p>For GPT-5.x with <code>reasoning_effort: none</code>, standard verbose prompts work fine.</p>
 <h2 id="phase-6-risk-assessment">Phase 6 - Risk assessment</h2>
 <p>Before any real traffic touches the new model, take a step back and run a structured risk assessment against your eval results.</p>
@@ -800,7 +818,7 @@ flowchart TD
 <h3 id="risk-catalog">Risk catalog</h3>
 <p><strong>Format regression</strong> - one of the most common things to break. Newer models may wrap answers in markdown when you didn't ask, change capitalization, add disclaimers, or subtly alter JSON key naming. Fixable, but only if you're measuring it.</p>
 <p><strong>Faithfulness change</strong> - this one can go either direction, which is what makes it tricky. More capable models are generally more faithful to retrieved context, but they also have stronger world-knowledge priors that can bleed through. Watch for answers that are factually correct but not actually grounded in the retrieved context. That's a subtle and dangerous failure mode.</p>
-<p><strong>Latency change</strong> - gpt-5.4-nano is generally comparable to gpt-4o-mini for standard workloads. gpt-5.4-mini and gpt-5.4 (full) are slower. When you enable reasoning (<code>reasoning_effort: medium</code> or higher), latency increases significantly. At <code>high</code> or <code>xhigh</code> effort, a single query can take 30-90+ seconds. Pure reasoning models (o-series) operate in this higher-latency range. Measure P50, P95, P99 before committing.</p>
+<p><strong>Latency change</strong> - gpt-5.4-nano is generally comparable to gpt-4o-mini for standard workloads. gpt-5.4-mini and gpt-5.4 (full) are slower. When you enable reasoning (<code>reasoning_effort: medium</code> or higher), latency increases noticeably. At <code>high</code> or <code>xhigh</code> effort, a single query can take 30-90+ seconds. Pure reasoning models (o-series) operate in this higher-latency range. Measure P50, P95, P99 before committing.</p>
 <p><strong>Cost change</strong> - run a cost projection on your golden set query lengths x new model pricing before migration. The golden set gives you a realistic token distribution. Don't estimate from toy examples.</p>
 <p><strong>Streaming behavior</strong> - if your UI depends on streaming tokens, verify the new model's streaming token patterns don't break downstream parsing. Partial JSON parsing, in particular, can fail on different tokenization patterns.</p>
 <p><strong>Silent behavioral drift post-migration</strong> - even after successful migration, model providers update weights silently. This is the argument for pinning to a specific version string (<code>gpt-5.4-nano-2026-03-15</code> or similar dated versions) rather than a floating alias like <code>gpt-5.4-nano</code>. Floating aliases trade reproducibility for automatic access to improvements.</p>
@@ -861,11 +879,11 @@ flowchart LR
 </ul>
 <p><a href="https://smith.langchain.com/">LangSmith</a>, <a href="https://phoenix.arize.com/">Arize Phoenix</a>, and <a href="https://www.helicone.ai/">Helicone</a> all handle these. One thing worth mentioning: generic APM monitoring won't give you what you need for an LLM system. The failure modes are different. The metrics that matter are different. It's a different kind of system.</p>
 <h2 id="the-systems-audit-you-should-run-regardless">The systems audit you should run regardless</h2>
-<p>Model deprecation is a forcing function. The problems it exposes have been there for months or years. The teams in the best position during migration aren't the ones who saw this specific deprecation coming. They're the ones who built systems that were observable and measurable from the start.</p>
+<p>Model deprecation is a forcing function. The problems it exposes have been there for months or years. A system that was observable and measurable from the start is in a much better position, whatever the next deprecation is.</p>
 <p>Two questions worth sitting with, migration or not:</p>
-<p><strong>Can you actually measure output quality?</strong> Not "does the team think it looks fine." Can you produce a number? If not, you're flying blind. A model change, a corpus change, a prompt tweak, a silent weight update... any of these will shift behavior and you won't know.</p>
+<p><strong>Can you actually measure output quality?</strong> Not "does the team think it looks fine." Can you produce a number? If not, you're flying blind. A model change, a corpus change, a prompt tweak, a silent weight update - any of these will shift behavior and you won't know.</p>
 <p><strong>Is your prompt a specification or a pile of patches?</strong> Do the archaeology exercise. If the patch ratio is high (and it probably is), that's a liability that compounds with every future model change.</p>
-<p>The migration is the deadline. But the real investment is in system discipline that makes the <em>next</em> migration boring instead of terrifying.</p>
+<p>The migration has a deadline. The work on evaluation, prompt specs and versioning pays off beyond it, and makes the <em>next</em> migration much easier.</p>
 <h2 id="further-reading">Further reading</h2>
 <ul>
 <li><a href="https://dspy.ai/">DSPy Documentation and Tutorials</a> - official docs with RAG optimization examples</li>
@@ -970,22 +988,10 @@ flowchart LR
                 <a href="https://safjan.com/tag/model-deprecation/" class="article-tag">model-deprecation</a>
                 <a href="https://safjan.com/tag/rag-systems/" class="article-tag">rag-systems</a>
                 <a href="https://safjan.com/tag/prompt-engineering/" class="article-tag">prompt-engineering</a>
-                <a href="https://safjan.com/tag/production-ai/" class="article-tag">production-ai</a>
                 <a href="https://safjan.com/tag/ai-evaluation/" class="article-tag">ai-evaluation</a>
                 <a href="https://safjan.com/tag/llmops/" class="article-tag">llmops</a>
                 <a href="https://safjan.com/tag/reasoning-models/" class="article-tag">reasoning-models</a>
                 <a href="https://safjan.com/tag/dspy/" class="article-tag">dspy</a>
-                <a href="https://safjan.com/tag/prompt-optimization/" class="article-tag">prompt-optimization</a>
-                <a href="https://safjan.com/tag/ai-architecture/" class="article-tag">ai-architecture</a>
-                <a href="https://safjan.com/tag/retrieval-augmented-generation/" class="article-tag">retrieval-augmented-generation</a>
-                <a href="https://safjan.com/tag/ai-reliability/" class="article-tag">ai-reliability</a>
-                <a href="https://safjan.com/tag/gpt-4o-mini/" class="article-tag">gpt-4o-mini</a>
-                <a href="https://safjan.com/tag/model-versioning/" class="article-tag">model-versioning</a>
-                <a href="https://safjan.com/tag/ai-observability/" class="article-tag">ai-observability</a>
-                <a href="https://safjan.com/tag/progressive-rollout/" class="article-tag">progressive-rollout</a>
-                <a href="https://safjan.com/tag/faithfulness-evaluation/" class="article-tag">faithfulness-evaluation</a>
-                <a href="https://safjan.com/tag/technical-debt/" class="article-tag">technical-debt</a>
-                <a href="https://safjan.com/tag/ai-engineering/" class="article-tag">ai-engineering</a>
         </div>
 
 
@@ -994,8 +1000,10 @@ flowchart LR
 
 
 
+
             <div class="related-posts">
-                <h4 class="related-posts-title">You might also like</h4>
+                <h4 class="related-posts-title">
+More on <a href="https://safjan.com/tag/prompt-engineering/">prompt-engineering</a>                </h4>
                 <div class="related-posts-grid">
                         <a href="https://safjan.com/prompt-discovery/" class="related-post-card">
                             <span class="related-post-title">Prompt Discovery</span>
@@ -1023,7 +1031,7 @@ flowchart LR
 
     <footer>
 <p>
-  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license noopener noreferrer" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 

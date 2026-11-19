@@ -11,6 +11,16 @@
 (function() {
   'use strict';
 
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
+
   var STORAGE_KEY = 'theme-preference';
   var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -45,21 +55,36 @@
     } else {
       document.documentElement.removeAttribute('data-theme');
     }
+    updatePygments(theme);
     updateIcon();
+  }
+
+  // Swap light/dark Pygments stylesheets (only present with PYGMENTS_STYLE_DARK)
+  function updatePygments(theme) {
+    var light = document.getElementById('pygments-light');
+    var dark = document.getElementById('pygments-dark');
+    if (!light || !dark) return;
+    if (theme === 'dark' || theme === 'light') {
+      light.media = theme === 'light' ? 'all' : 'not all';
+      dark.media = theme === 'dark' ? 'all' : 'not all';
+    } else {
+      light.media = '(prefers-color-scheme: light)';
+      dark.media = '(prefers-color-scheme: dark)';
+    }
   }
 
   function updateIcon() {
     var btn = document.getElementById('theme-toggle');
     if (!btn) return;
     
-    var sunIcon = btn.querySelector('.fa-sun');
-    var moonIcon = btn.querySelector('.fa-moon');
+    var sunIcon = btn.querySelector('.icon-sun');
+    var moonIcon = btn.querySelector('.icon-moon');
     if (!sunIcon || !moonIcon) return;
 
     var effective = getEffectiveTheme();
     // Show sun when dark (click to go light), show moon when light (click to go dark)
-    sunIcon.style.display = effective === 'dark' ? 'inline' : 'none';
-    moonIcon.style.display = effective === 'light' ? 'inline' : 'none';
+    sunIcon.style.display = effective === 'dark' ? 'inline-block' : 'none';
+    moonIcon.style.display = effective === 'light' ? 'inline-block' : 'none';
   }
 
   function toggle() {
@@ -99,6 +124,16 @@
 (function() {
   'use strict';
 
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
+
   var progressBar = null;
 
   function updateProgress() {
@@ -125,10 +160,21 @@
 /**
  * Table of Contents Generator
  * Auto-generates TOC from h2/h3 headings in article content
- * Only shows if there are 3+ headings, hidden by default (uses <details>)
+ * Shows only with data-min-headings+ headings (default 3) and when the
+ * article has no hand-written TOC; hidden by default (uses <details>)
  */
 (function() {
   'use strict';
+
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
 
   document.addEventListener('DOMContentLoaded', function() {
     var tocContainer = document.getElementById('toc-container');
@@ -138,11 +184,24 @@
     if (!tocContainer || !tocList || !content) return;
 
     var headings = content.querySelectorAll('h2, h3');
-    
-    // Hide TOC if fewer than 3 headings
-    if (headings.length < 3) {
+    var minHeadings = parseInt(tocContainer.getAttribute('data-min-headings'), 10) || 3;
+
+    // Skip if the article already links to most of its headings (manual TOC)
+    var linked = 0;
+    headings.forEach(function(heading) {
+      if (heading.id && content.querySelector('a[href="#' + CSS.escape(heading.id) + '"]')) {
+        linked++;
+      }
+    });
+
+    if (headings.length < minHeadings || linked * 2 >= headings.length) {
       tocContainer.style.display = 'none';
       return;
+    }
+
+    // Long outlines: list only top-level sections
+    if (headings.length > 20 && content.querySelectorAll('h2').length >= minHeadings) {
+      headings = content.querySelectorAll('h2');
     }
 
     headings.forEach(function(heading, index) {
@@ -171,6 +230,16 @@
 (function() {
   'use strict';
 
+  var script = document.currentScript;
+  var SPRITE = script ? script.src.replace(/js\/theme-switcher\.js.*$/, 'icons/sprite.svg') : '';
+
+  function svgIcon(name, width) {
+    return '<svg class="icon icon-' + name + '" style="width: ' + width + 'em" aria-hidden="true" focusable="false">' +
+      '<use href="' + SPRITE + '#icon-' + name + '"></use></svg>';
+  }
+  var COPY_ICON = svgIcon('copy', 0.875);
+  var CHECK_ICON = svgIcon('check', 1);
+
   document.addEventListener('DOMContentLoaded', function() {
     // Find all code blocks (both <pre><code> and highlight tables)
     var codeBlocks = document.querySelectorAll('.article-content pre, .article-content .highlight');
@@ -178,6 +247,8 @@
     codeBlocks.forEach(function(block) {
       // Skip if already has a copy button
       if (block.querySelector('.copy-btn')) return;
+      // A <pre> inside .highlight is covered by the .highlight button
+      if (block.tagName === 'PRE' && block.parentElement.closest('.highlight')) return;
       
       // Create wrapper if needed
       var wrapper = block;
@@ -192,17 +263,17 @@
       var btn = document.createElement('button');
       btn.className = 'copy-btn';
       btn.setAttribute('aria-label', 'Copy code');
-      btn.innerHTML = '<i class="fas fa-copy"></i>';
+      btn.innerHTML = COPY_ICON;
       
       btn.addEventListener('click', function() {
         var code = block.querySelector('code') || block.querySelector('pre') || block;
         var text = code.textContent || code.innerText;
         
         navigator.clipboard.writeText(text).then(function() {
-          btn.innerHTML = '<i class="fas fa-check"></i>';
+          btn.innerHTML = CHECK_ICON;
           btn.classList.add('copied');
           setTimeout(function() {
-            btn.innerHTML = '<i class="fas fa-copy"></i>';
+            btn.innerHTML = COPY_ICON;
             btn.classList.remove('copied');
           }, 2000);
         }).catch(function() {
@@ -215,10 +286,10 @@
           textarea.select();
           try {
             document.execCommand('copy');
-            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.innerHTML = CHECK_ICON;
             btn.classList.add('copied');
             setTimeout(function() {
-              btn.innerHTML = '<i class="fas fa-copy"></i>';
+              btn.innerHTML = COPY_ICON;
               btn.classList.remove('copied');
             }, 2000);
           } catch (e) {}

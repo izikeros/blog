@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-code">
 <head>
     <meta charset="utf-8"/>
     <meta name="color-scheme" content="light dark"/>
@@ -16,18 +16,26 @@
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
-              rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/stylesheet/style.css">
 
 
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/pygments/github.min.css">
+    <link id="pygments-light" rel="stylesheet" type="text/css"
+          href="https://safjan.com/theme/pygments/github.min.css"
+          media="(prefers-color-scheme: light)">
+    <link id="pygments-dark" rel="stylesheet" type="text/css"
+          href="https://safjan.com/theme/pygments/github-dark.min.css"
+          media="(prefers-color-scheme: dark)">
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t === 'dark' || t === 'light') {
+          document.getElementById('pygments-light').media = t === 'light' ? 'all' : 'not all';
+          document.getElementById('pygments-dark').media = t === 'dark' ? 'all' : 'not all';
+        }
+      })();
+    </script>
 
-
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/fontawesome.css">
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/brands.css">
-    <link rel="stylesheet" type="text/css" href="https://safjan.com/theme/font-awesome/css/solid.css">
 
     <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css">
 
@@ -63,20 +71,20 @@
 
 
     <meta name="author" content="Krystian Safjan"/>
-    <meta name="description" content="Want to know why your AI model made that decision? ELI5 has got you covered. Let&#39;s dive into Explainable AI with ELI5."/>
+    <meta name="description" content="A tutorial on explaining models with the ELI5 library on the Titanic dataset, using permutation importance for a random forest and feature weights for logistic regression."/>
     <meta name="keywords" content="python, explainable-ai, eli5, machine-learning, xai, data-science, data-visualization, tutorial, titanic-dataset, feature-importance">
 
 
   <meta property="og:site_name" content="Krystian Safjan's Blog"/>
   <meta property="og:title" content="Understanding AI with ELI5 - Demystifying Decisions (tutorial)"/>
-  <meta property="og:description" content="Want to know why your AI model made that decision? ELI5 has got you covered. Let&#39;s dive into Explainable AI with ELI5."/>
+  <meta property="og:description" content="A tutorial on explaining models with the ELI5 library on the Titanic dataset, using permutation importance for a random forest and feature weights for logistic regression."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://safjan.com/eli5-tutorial/"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-02-20 00:00:00+01:00"/>
   <meta property="article:modified_time" content="2023-07-12 00:00:00+02:00"/>
   <meta property="article:author" content="https://safjan.com/author/krystian-safjan/"/>
-  <meta property="article:section" content="Machine Learning"/>
+  <meta property="article:section" content="Responsible AI"/>
   <meta property="article:tag" content="python"/>
   <meta property="article:tag" content="explainable-ai"/>
   <meta property="article:tag" content="eli5"/>
@@ -98,7 +106,7 @@
     <meta name="twitter:site" content="@izikeros"/>
     <meta name="twitter:creator" content="@izikeros"/>
     <meta name="twitter:title" content="Understanding AI with ELI5 - Demystifying Decisions (tutorial)"/>
-    <meta name="twitter:description" content="Want to know why your AI model made that decision? ELI5 has got you covered. Let&#39;s dive into Explainable AI with ELI5."/>
+    <meta name="twitter:description" content="A tutorial on explaining models with the ELI5 library on the Titanic dataset, using permutation importance for a random forest and feature weights for logistic regression."/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -123,8 +131,8 @@
       "url": "/images/profile_new.jpg"
     }  },
 "image": "https://safjan.com//images/head/eli5.jpg",  "url": "https://safjan.com/eli5-tutorial/",
-  "description": "Want to know why your AI model made that decision? ELI5 has got you covered. Let's dive into Explainable AI with ELI5.",
-  "articleSection": "Machine Learning",
+  "description": "A tutorial on explaining models with the ELI5 library on the Titanic dataset, using permutation importance for a random forest and feature weights for...",
+  "articleSection": "Responsible AI",
   "inLanguage": "en",
   "keywords": "python, explainable-ai, eli5, machine-learning, xai, data-science, data-visualization, tutorial, titanic-dataset, feature-importance",
   "wordCount": 1538,
@@ -147,8 +155,8 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Machine Learning",
-      "item": "https://safjan.com/category/machine-learning.html"
+      "name": "Responsible AI",
+      "item": "https://safjan.com/category/responsible-ai.html"
     },
     {
       "@type": "ListItem",
@@ -161,7 +169,7 @@
 
 
 
-<meta name="ai:summary" content="Want to know why your AI model made that decision? ELI5 has got you covered. Let&#39;s dive into Explainable AI with ELI5.">
+<meta name="ai:summary" content="A tutorial on explaining models with the ELI5 library on the Titanic dataset, using permutation importance for a random forest and feature weights for logistic regression.">
 
 <meta name="ai:topics" content="python, explainable-ai, eli5, machine-learning, xai, data-science, data-visualization, tutorial, titanic-dataset, feature-importance">
 
@@ -170,7 +178,7 @@
 <meta name="ai:word-count" content="1538">
 <meta name="ai:reading-time" content="7 min">
 
-<meta name="ai:section" content="Machine Learning">
+<meta name="ai:section" content="Responsible AI">
 
 
 
@@ -197,50 +205,50 @@
             <a href="https://safjan.com/">Krystian Safjan's Blog</a>
         </h1>
 
-<p>Data Scientist and Team Leader writing about Machine Learning, MLOps, and Python</p>
+<p>AI/ML technical leader · building LLM & RAG systems in enterprise · evaluation, LLMOps, engineering leadership</p>
 
 
         <ul class="social">
                 <li>
-                    <a  class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
-                       target="_blank">
-                        <i class="fab fa-linkedin"></i>
+                    <a rel="noopener noreferrer" class="sc-linkedin" href="https://pl.linkedin.com/in/krystiansafjan"
+                       target="_blank" aria-label="LinkedIn">
+                        <svg class="icon icon-linkedin" style="width: 0.875em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-linkedin"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-github" href="https://github.com/izikeros"
-                       target="_blank">
-                        <i class="fab fa-github"></i>
+                    <a rel="noopener noreferrer" class="sc-github" href="https://github.com/izikeros"
+                       target="_blank" aria-label="GitHub">
+                        <svg class="icon icon-github" style="width: 0.969em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-github"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-envelope" href="mailto:ksafjan@gmail.com"
-                       target="_blank">
-                        <i class="fas fa-envelope"></i>
+                    <a rel="noopener noreferrer" class="sc-envelope" href="mailto:ksafjan@gmail.com"
+                       target="_blank" aria-label="Email">
+                        <svg class="icon icon-envelope" style="width: 1.0em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-envelope"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
-                       target="_blank">
-                        <i class="fas fa-graduation-cap"></i>
+                    <a rel="noopener noreferrer" class="sc-graduation-cap" href="https://scholar.google.pl/citations?user=UlNJgMoAAAAJ"
+                       target="_blank" aria-label="Google Scholar">
+                        <svg class="icon icon-graduation-cap" style="width: 1.25em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-graduation-cap"></use></svg>
                     </a>
                 </li>
                 <li>
-                    <a  class="sc-rss" href="/feeds/all.rss.xml"
-                       target="_blank">
-                        <i class="fas fa-rss"></i>
+                    <a rel="noopener noreferrer" class="sc-rss" href="/feeds/all.rss.xml"
+                       target="_blank" aria-label="RSS feed">
+                        <svg class="icon icon-rss" style="width: 0.875em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-rss"></use></svg>
                     </a>
                 </li>
         </ul>
 
             <a class="linkedin-follow-btn"
                href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=krystiansafjan"
-               target="_blank">Follow on LinkedIn</a>
+               target="_blank" rel="noopener noreferrer">Follow on LinkedIn</a>
     </div>
 
 <div class="promo-box">
     <a href="https://ksafjanuser.gumroad.com/l/mlops" class="promo-box-image">
-        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover">
+        <img src="/images/mlop_interview_book_cover_3D_300px.jpg" alt="MLOps Interview Book Cover" width="280" height="300" loading="lazy" decoding="async">
     </a>
     
     <p class="promo-box-headline">Ace Your MLOps Interview</p>
@@ -272,8 +280,8 @@
                 <pagefind-searchbox placeholder="Search..." hide-shortcut></pagefind-searchbox>
             </div>
             <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
+                <svg class="icon icon-sun" style="width: 1.0em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-sun"></use></svg>
+                <svg class="icon icon-moon" style="width: 1.0em" aria-hidden="true" focusable="false"><use href="https://safjan.com/theme/icons/sprite.svg#icon-moon"></use></svg>
             </button>
         </nav>
 
@@ -286,10 +294,11 @@
 
 
                 <br/>
+                    <span class="article-updated">Updated: <time datetime="2023-07-12T00:00:00+02:00">2023-07-12</time></span>
             </p>
-            <h1>Understanding AI with ELI5 - Demystifying Decisions (tutorial)</h1>
+            <h1 data-pagefind-body data-pagefind-meta="title" data-pagefind-weight="10">Understanding AI with ELI5 - Demystifying Decisions (tutorial)</h1>
             <div class="header-underline"></div>
-                <div class="summary"><p>Want to know why your AI model made that decision? ELI5 has got you covered. Let's dive into Explainable AI with ELI5.</p></div>
+                <div class="summary" data-pagefind-body><p>A tutorial on explaining models with the ELI5 library on the Titanic dataset, using permutation importance for a random forest and feature weights for logistic regression.</p></div>
 <div class="ai-analyzer-bar">
     <div class="ai-analyzer-bar-inner">
     <span class="ai-analyzer-text">Summarize and analyze this article with:</span>
@@ -316,8 +325,9 @@
 
                 <div style="width: 100%; padding-bottom: 30px; position: relative;">
                     <a href="https://safjan.com/eli5-tutorial/">
-                        <img style="width: 100%; "
-                             src="/images/head/eli5.jpg" alt="Understanding AI with ELI5 - Demystifying Decisions (tutorial)">
+                        <img style="width: 100%; height: auto;"
+                             src="/images/head/eli5.jpg" alt="Understanding AI with ELI5 - Demystifying Decisions (tutorial)"
+width="640" height="320" fetchpriority="high" decoding="async">
                     </a>
                 </div>
 
@@ -326,8 +336,14 @@
 
 
 
+        <details class="toc-details" id="toc-container" data-min-headings="5">
+            <summary>Table of Contents</summary>
+            <nav class="toc" aria-label="Table of Contents">
+                <ul class="toc-list"></ul>
+            </nav>
+        </details>
 
-        <div class="article-content">
+        <div class="article-content" data-pagefind-body>
             <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e1e542dd">
 
 
@@ -1156,8 +1172,10 @@ top features
 
 
 
+
             <div class="related-posts">
-                <h4 class="related-posts-title">You might also like</h4>
+                <h4 class="related-posts-title">
+More on <a href="https://safjan.com/tag/python/">python</a>                </h4>
                 <div class="related-posts-grid">
                         <a href="https://safjan.com/how-the-lime-method-for-explainable-ai-works/" class="related-post-card">
                             <span class="related-post-title">LIME - Understanding How This Method for Explainable AI Works</span>
@@ -1185,7 +1203,7 @@ top features
 
     <footer>
 <p>
-  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+  &copy; 2026 Krystian Safjan - This work is licensed under a <a rel="license noopener noreferrer" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
 </p>    </footer>
 </main>
 
